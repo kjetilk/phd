@@ -1,5 +1,8 @@
 \documentclass[12pt]{article}
 \usepackage{cite}
+
+\newcommand{\rdfnode}[1]{\texttt{#1}}
+
 \title{Conditional selectivity for Hexastores}
 
 \author{Kjetil Kjernsmo}
@@ -10,22 +13,58 @@
 \begin{abstract}
 In this paper we see how the common assumption of independence of the
 selectivity of RDF nodes can be abandoned. We shall also find it
-instructive to explore how selectivity can be determined exactly by
-using index size for a Hexastore triple store. Finally, we will
-suggest further directions for selectivity estimation in the
-conditional regime.
+instructive to explore how selectivity can be determined exactly when
+a SPARQL query is executed on a Hexastore triple store
+\cite{Weiss:2008:HSI:1453856.1453965}. Finally, we will suggest
+further directions for selectivity estimation in the conditional
+regime.
 
 \end{abstract}
 
 \section{Introduction}
+
 Several authors have studied the use of selectivity estimation for
 optimizing SPARQL query execution plans, both in the context of Basic
-Graph Patterns \cite{Stocker:2008:SBG:1367497.1367578}.
+Graph Patterns \cite{Stocker:2008:SBG:1367497.1367578} and in more
+general cases. % TODO more references. OptARQ?
+
+The above authors assume that the selectivity of RDF nodes are
+independent, admit that this assumption is easily violated and
+continue to use a conditional estimate for the object node.
+
+It is easy to point out cases where the independence assumption is
+unlikely to hold: If a predicate is \rdfnode{rdf:type}, then only
+classes are likely objects, and their frequency  would likely be
+different from e.g. literals.
+
+\section{Conditional selectivity}
+
+Previous authors have taken selectivity as analogous to the
+probability of matching a SPARQL node or triple with a node or triple
+in the data. For a triple, $<S, P, O>$ the selectivity is the
+intersection of the selectivity of each node.
+
+From elementary statistics, we know that the intersection probability
+can be written as
+\begin{equation}
+Pr(A_1 \cap A_2  \cap \ldots \cap A_n) = 
+  Pr(A_n | A_1 \cap A_2  \cap \ldots \cap A_{n-1}) \\
+  \cdot Pr(A_{n-1} | A_1 \cap A_2  \cap \ldots \cap A_{n-2}) 
+  \cdot \ldots \cdot Pr(A_2 | A_1) \cdot Pr(A_1) ,
+\end{equation}
+where the $|$ symbol is read as ``given'', e.g. ``given a predicate
+\rdfnode{rdf:type} what is the probability that the object is \rdfnode{foaf:Person}?''
+
+Analogously, the conditional selectivity for a triple $T$ can be written as 
+\begin{equation}
+sel(T) = sel(S \cap P \cap O) = sel(O | S \cap P) \cdot sel(P | S)
+\cdot sel(S) . 
+\end{equation}
 
 
-
-\bibliography{selectivity}{}
 \bibliographystyle{plain}
+\bibliography{selectivity}
+
 
 
 \end{document}
