@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt, draft]{article}
 \usepackage{cite}
 
 \newcommand{\rdfnode}[1]{\texttt{#1}}
@@ -9,6 +9,7 @@
 
 \begin{document}
 \maketitle
+
 
 \begin{abstract}
 In this paper we see how the common assumption of independence of the
@@ -68,6 +69,30 @@ always be unity, whether conditional or independent, since it will
 match all possible RDF nodes. 
 
 % TODO example?
+
+\section{Exact selectivity for Hexastore}
+
+The Hexastore was first described in
+\cite{Weiss:2008:HSI:1453856.1453965}, which sought to exploit a key
+strength of the RDF triple model by using six-way indices for
+efficient lookup.
+
+A Hexastore contains the six indices \textsf{spo}, \textsf{pso},
+\textsf{osp}, \textsf{sop}, \textsf{pos} and \textsf{ops}. Each index
+has the following structure, taking \textsf{spo} as an example: ``A
+subject key $s_i$ is associated to a sorted vector of $n_i$ property
+keys, $\{p_1^i , p_2^i , \ldots , p^i_{n_i} \}$. Each property key $p_j^i$
+is, in its turn, linked to an associated sorted list of $k_{i,j}$
+object keys.''\cite{Weiss:2008:HSI:1453856.1453965}, section~4.1.
+
+Now, given a query, we shall explain how the selectivity can be
+computed exactly rather than being estimated. First, we define a
+function $cm(x)$ which returns the number of matches of a given SPARQL
+node $x$. % TODO: needs to be a lot more precise
+
+
+
+
 
 \bibliographystyle{plain}
 \bibliography{selectivity}
