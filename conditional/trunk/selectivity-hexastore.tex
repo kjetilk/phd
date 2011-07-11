@@ -2,7 +2,7 @@
 \usepackage{cite}
 
 \newcommand{\rdfnode}[1]{\texttt{#1}}
-\newcommand{\todo}[1]{\textbf{TODO:}~#1}
+\newcommand{\todo}[1]{\tiny{TODO}\normalsize\footnote{\textbf{TODO:}~#1}}
 
 \title{Conditional selectivity for Hexastores}
 
@@ -46,7 +46,8 @@ different from e.g. literals.
 \section{Conditional selectivity}
 
 Previous authors have taken selectivity as analogous to the
-probability of matching a SPARQL node or triple with a node or triple
+probability of matching a SPARQL node\todo{terminology, (SPARQL nodes
+  vs. RDF nodes) could be better} or triple with a node or triple
 in the data. For a triple, $<S, P, O>$ the selectivity is the
 intersection of the selectivity of each node.
 
@@ -61,7 +62,7 @@ Pr(A_1 \cap A_2  \cap \ldots \cap A_n) =
 where the $|$ symbol is read as ``given'', e.g. ``given a predicate
 \rdfnode{rdf:type} what is the probability that the object is \rdfnode{foaf:Person}?''
 
-Analogously, the conditional selectivity for a triple $T$ can be written as 
+Analogously\todo{anybody good at arguing this mathematically?}, the conditional selectivity for a triple $T$ can be written as 
 \begin{equation}
 sel(T) = sel(S \cap P \cap O) = sel(O | S \cap P) \cdot sel(P | S)
 \cdot sel(S) . 
@@ -95,7 +96,17 @@ computed exactly rather than being estimated. First, we define a
 function $cm(x)$ which returns the number of matches of a given SPARQL
 node $x$. \todo{needs to be a lot more precise}
 
-
+Then, 
+\begin{equation}
+sel(S) = \frac{cm(s_i)}{i} ,
+\end{equation}
+\begin{equation}
+sel(P) = \frac{cm(p_{n_i}^i)}{n_i}
+\end{equation}
+and
+\begin{equation}
+sel(O) = \frac{cm(o_{k_{i,n_i}}^{i,n_i})}{k_{i,n_i}}
+\end{equation}
 
 
 
