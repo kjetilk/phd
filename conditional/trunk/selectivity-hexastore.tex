@@ -2,6 +2,7 @@
 \usepackage{cite}
 
 \newcommand{\rdfnode}[1]{\texttt{#1}}
+\newcommand{\todo}[1]{\textbf{TODO:}~#1}
 
 \title{Conditional selectivity for Hexastores}
 
@@ -10,6 +11,10 @@
 \begin{document}
 \maketitle
 
+\section*{Status of this document}
+
+This is currently at braindump status. Do not distribute without the
+permission of the author.
 
 \begin{abstract}
 In this paper we see how the common assumption of independence of the
@@ -27,7 +32,7 @@ regime.
 Several authors have studied the use of selectivity estimation for
 optimizing SPARQL query execution plans, both in the context of Basic
 Graph Patterns \cite{Stocker:2008:SBG:1367497.1367578} and in more
-general cases. % TODO more references. OptARQ?
+general cases. \todo{more references. OptARQ?}
 
 The above authors assume that the selectivity of RDF nodes are
 independent, admit that this assumption is easily violated and
@@ -68,7 +73,7 @@ Finally, note that for unbound nodes (variables), the selectivity will
 always be unity, whether conditional or independent, since it will
 match all possible RDF nodes. 
 
-% TODO example?
+\todo{example?}
 
 \section{Exact selectivity for Hexastore}
 
@@ -88,7 +93,7 @@ object keys.''\cite{Weiss:2008:HSI:1453856.1453965}, section~4.1.
 Now, given a query, we shall explain how the selectivity can be
 computed exactly rather than being estimated. First, we define a
 function $cm(x)$ which returns the number of matches of a given SPARQL
-node $x$. % TODO: needs to be a lot more precise
+node $x$. \todo{needs to be a lot more precise}
 
 
 
