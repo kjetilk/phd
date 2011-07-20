@@ -84,7 +84,7 @@ and namespace declarations omitted for brevity:
 
 \begin{verbatim}
 </alice> a foaf:Person ;
-         foaf:name "Alice Example" ;
+         foaf:firstName "Alice" ;
          rel:spouseOf </bob> .
 </bob>   a foaf:Person ;
          foaf:firstName "Bob" ;
@@ -105,7 +105,14 @@ subject variable doesn't influence this. Finally, $sel(O | S \cap P) =
 the same triples as \rdfterm{rdf:type}. Thus, we arrive at the
 expected result. 
 
-
+In a slightly harder example:
+\begin{verbatim}
+?person foaf:firstName "Bob" .
+\end{verbatim}
+We still have $sel(S) = 1$ as above, and there are still two
+predicates that match, so $sel(P | S) = 2/7$, but only half of those
+match the literal, so $sel(O | S \cap P) = 1/2$, giving us the
+expected $sel(T) = 1/7$.
 
 \section{Exact selectivity for Hexastore}
 
