@@ -1,7 +1,7 @@
 \documentclass[12pt, draft]{article}
 \usepackage{cite}
 
-\newcommand{\rdfnode}[1]{\texttt{#1}}
+\newcommand{\rdfterm}[1]{\texttt{#1}}
 \newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
 \title{Conditional selectivity for Hexastores}
@@ -41,17 +41,17 @@ independent, admit that this assumption is easily violated and
 continue to use a conditional estimate for the object node.
 
 It is easy to point out cases where the independence assumption is
-unlikely to hold: If a predicate is \rdfnode{rdf:type}, then only
+unlikely to hold: If a predicate is \rdfterm{rdf:type}, then only
 classes are likely objects, and their frequency  would likely be
 different from e.g. literals.
 
 \section{Conditional selectivity}
 
 Previous authors have taken selectivity as analogous to the
-probability of matching a SPARQL node\todo{terminology, (SPARQL nodes
-  vs. RDF terms) could be better} or triple with a node or triple
-in the data. For a triple, $<S, P, O>$ the selectivity is the
-intersection of the selectivity of each node.
+probability of matching a SPARQL term (RDF Term or variable) with an
+RDF term in the data or a SPARQL triple pattern with a triple in the
+data.  For a triple, $<S, P, O>$ the selectivity is the intersection
+of the selectivity of each node.
 
 From elementary statistics, we know that the intersection probability
 can be written as
@@ -62,7 +62,7 @@ Pr(A_1 \cap A_2  \cap \ldots \cap A_n) =
   \cdot \ldots \cdot Pr(A_2 | A_1) \cdot Pr(A_1) ,
 \end{equation}
 where the $|$ symbol is read as ``given'', e.g. ``given a predicate
-\rdfnode{rdf:type} what is the probability that the object is \rdfnode{foaf:Person}?''
+\rdfterm{rdf:type} what is the probability that the object is \rdfterm{foaf:Person}?''
 
 Analogously\todo{anybody good at arguing this mathematically?}, the conditional selectivity for a triple $T$ can be written as 
 \begin{equation}
@@ -96,7 +96,7 @@ object keys.''\cite{Weiss:2008:HSI:1453856.1453965}, section~4.1.
 Now, given a query, we shall explain how the selectivity can be
 computed exactly rather than being estimated. First, we define a
 function $cm(x)$ which returns the number of matches of a given SPARQL
-node $x$. \todo{needs to be a lot more precise}
+term $x$. \todo{needs to be a lot more precise}
 
 Then, 
 \begin{equation}
