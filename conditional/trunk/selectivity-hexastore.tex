@@ -77,7 +77,7 @@ Finally, note that for variables, the selectivity will always be
 unity, whether conditional or independent, since it will match all
 possible RDF terms.
 
-\subsection{Example}
+\subsection{Example}\label{sec:example}
 
 Consider the following RDF graph, expressed in Turtle with base URI
 and namespace declarations omitted for brevity:
@@ -129,10 +129,16 @@ keys, $\{p_1^i , p_2^i , \ldots , p^i_{n_i} \}$. Each property key $p_j^i$
 is, in its turn, linked to an associated sorted list of $k_{i,j}$
 object keys.''\cite{Weiss:2008:HSI:1453856.1453965}, section~4.1.
 
+Let us return to the example in section~\ref{sec:example}: We have
+$s_1 = \texttt{key-for-alice}$ and $i=2$. Further, $p_1^1 =
+\texttt{key-for-foaf:firstName}$, $p_2^1 = \texttt{key-for-rdf:type}$ and $p_3^1 =
+\texttt{key-for-rel:spouseOf}$ and $n_1 = 3$. For each predicate, there is only
+one object, so $k_{1,1} = 1$ and $o_{1_{1,1_1}}^{1,1_1} = \texttt{key-for-Alice-literal}$.
+
 Now, given a query, we shall explain how the selectivity can be
 computed exactly rather than being estimated. First, we define a
-function $cm(x)$ which returns the number of matches of a given SPARQL
-term $x$. \todo{needs to be a lot more precise}
+function $cm(x)$ which returns the number of matches of a given key
+$x$\todo{argue the term-key-connection}. \todo{needs to be a lot more precise}
 
 Then, 
 \begin{equation}
