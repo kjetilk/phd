@@ -64,8 +64,9 @@ Pr(A_1 \cap A_2  \cap \ldots \cap A_n) &=&
 where the $|$ symbol is read as ``given'', e.g. ``given a predicate
 \rdfterm{rdf:type} what is the probability that the object is \rdfterm{foaf:Person}?''
 
-Analogously\todo{anybody good at arguing this mathematically?}, the conditional selectivity for a triple $T$ can be written as 
-\begin{equation}
+Analogously\todo{anybody good at arguing this mathematically?}, the
+conditional selectivity for a triple pattern $T$ can be written as 
+\begin{equation}\ref{eq:sel}
 sel(T) = sel(S \cap P \cap O) = sel(O | S \cap P) \cdot sel(P | S)
 \cdot sel(S) . 
 \end{equation}
@@ -76,7 +77,35 @@ Finally, note that for variables, the selectivity will always be
 unity, whether conditional or independent, since it will match all
 possible RDF terms.
 
-\todo{example?}
+\subsection{Example}
+
+Consider the following RDF graph, expressed in Turtle with base URI
+and namespace declarations omitted for brevity:
+
+\begin{verbatim}
+</alice> a foaf:Person ;
+         foaf:name "Alice Example" ;
+         rel:spouseOf </bob> .
+</bob>   a foaf:Person ;
+         foaf:firstName "Bob" ;
+         foaf:based_near </place> .
+</place> rdfs:label "Our House" .
+\end{verbatim}
+
+A very simple example is to find the selectivity for the triple pattern
+\begin{verbatim}
+?person a foaf:Person .
+\end{verbatim}
+We can easily see that $sel(T) = 2/7$ since two out of the 7 triples
+match the pattern. To see how Eq.~\cite{eq:sel} is used, we note that
+$sel(S) = 1$ since it is a variable. $sel(P | S) = 2/7$ since the
+predicate matches the two occurences of \rdfterm{rdf:type} and the
+subject variable doesn't influence this. Finally, $sel(O | S \cap P) =
+1$ since the only two occurences of \rdfterm{foaf:Person} occurs in
+the same triples as \rdfterm{rdf:type}. Thus, we arrive at the
+expected result. 
+
+
 
 \section{Exact selectivity for Hexastore}
 
