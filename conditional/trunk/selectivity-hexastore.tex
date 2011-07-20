@@ -66,7 +66,7 @@ where the $|$ symbol is read as ``given'', e.g. ``given a predicate
 
 Analogously\todo{anybody good at arguing this mathematically?}, the
 conditional selectivity for a triple pattern $T$ can be written as 
-\begin{equation}\ref{eq:sel}
+\begin{equation}\label{eq:sel}
 sel(T) = sel(S \cap P \cap O) = sel(O | S \cap P) \cdot sel(P | S)
 \cdot sel(S) . 
 \end{equation}
@@ -97,7 +97,7 @@ A very simple example is to find the selectivity for the triple pattern
 ?person a foaf:Person .
 \end{verbatim}
 We can easily see that $sel(T) = 2/7$ since two out of the 7 triples
-match the pattern. To see how Eq.~\cite{eq:sel} is used, we note that
+match the pattern. To see how Eq.~\ref{eq:sel} is used, we note that
 $sel(S) = 1$ since it is a variable. $sel(P | S) = 2/7$ since the
 predicate matches the two occurences of \rdfterm{rdf:type} and the
 subject variable doesn't influence this. Finally, $sel(O | S \cap P) =
