@@ -51,7 +51,7 @@ Previous authors have taken selectivity as analogous to the
 probability of matching a SPARQL term (RDF Term or variable) with an
 RDF term in the data or a SPARQL triple pattern with a triple in the
 data.  For a triple, $<S, P, O>$ the selectivity is the intersection
-of the selectivity of each node.
+of the selectivity of each term.
 
 From elementary statistics, we know that the intersection probability
 can be written as
@@ -70,11 +70,11 @@ sel(T) = sel(S \cap P \cap O) = sel(O | S \cap P) \cdot sel(P | S)
 \cdot sel(S) . 
 \end{equation}
 We note that intersection is commutative, thus similar
-relations can be shown for each permutation of nodes.
+relations can be shown for each permutation of terms.
 
-Finally, note that for unbound nodes (variables), the selectivity will
-always be unity, whether conditional or independent, since it will
-match all possible RDF terms. 
+Finally, note that for variables, the selectivity will always be
+unity, whether conditional or independent, since it will match all
+possible RDF terms.
 
 \todo{example?}
 
