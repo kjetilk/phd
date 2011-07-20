@@ -18,7 +18,7 @@ permission of the author.
 
 \begin{abstract}
 In this paper we see how the common assumption of independence of the
-selectivity of RDF nodes can be abandoned. We shall also find it
+selectivity of RDF terms can be abandoned. We shall also find it
 instructive to explore how selectivity can be determined exactly when
 a SPARQL query is executed on a Hexastore triple store
 \cite{Weiss:2008:HSI:1453856.1453965}. Finally, we will suggest
@@ -34,7 +34,7 @@ optimizing SPARQL query execution plans, both in the context of Basic
 Graph Patterns \cite{Stocker:2008:SBG:1367497.1367578} and in more
 general cases. \todo{more references. OptARQ?}
 
-The above authors assume that the selectivity of RDF nodes are
+The above authors assume that the selectivity of RDF terms are
 independent, admit that this assumption is easily violated and
 continue to use a conditional estimate for the object node.
 
@@ -47,7 +47,7 @@ different from e.g. literals.
 
 Previous authors have taken selectivity as analogous to the
 probability of matching a SPARQL node\todo{terminology, (SPARQL nodes
-  vs. RDF nodes) could be better} or triple with a node or triple
+  vs. RDF terms) could be better} or triple with a node or triple
 in the data. For a triple, $<S, P, O>$ the selectivity is the
 intersection of the selectivity of each node.
 
@@ -72,7 +72,7 @@ relations can be shown for each permutation of nodes.
 
 Finally, note that for unbound nodes (variables), the selectivity will
 always be unity, whether conditional or independent, since it will
-match all possible RDF nodes. 
+match all possible RDF terms. 
 
 \todo{example?}
 
