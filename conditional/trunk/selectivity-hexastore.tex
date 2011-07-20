@@ -135,10 +135,16 @@ $s_1 = \texttt{key-for-alice}$ and $i=2$. Further, $p_1^1 =
 \texttt{key-for-rel:spouseOf}$ and $n_1 = 3$. For each predicate, there is only
 one object, so $k_{1,1} = 1$ and $o_{1_{1,1_1}}^{1,1_1} = \texttt{key-for-Alice-literal}$.
 
-Now, given a query, we shall explain how the selectivity can be
-computed exactly rather than being estimated. First, we define a
-function $cm(x)$ which returns the number of matches of a given key
-$x$\todo{argue the term-key-connection}. \todo{needs to be a lot more precise}
+The pattern that emerges is that since the index for the predicate is
+already dependent on the match for the subject, the conditional
+selectivity depends only on the number of matches of a term and the
+total number of keys in the index. Thus, the selectivity can be
+computed \emph{exactly} based on the data only. The selectivity of a
+query then depends only on what indices are used. 
+
+Formalizing this notion, we first define a function $cm(x)$ which
+returns the number of matches of a given key $x$\todo{argue the
+  term-key-connection}. 
 
 Then, 
 \begin{equation}
@@ -152,6 +158,11 @@ and
 sel(O = o_{k_{i,n_i}}^{i,n_i} |S = s_i \cap P = p_{n_i}^i) =
 \frac{cm(o_{k_{i,n_i}}^{i,n_i})}{k_{i,n_i}} .
 \end{equation}
+\todo{surely needs more work}
+
+With this, it should be possible to store the selectivity along with
+the indices in a Hexastore.
+
 
 \section{Further work on conditional selectivity}
 
