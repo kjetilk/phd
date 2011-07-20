@@ -55,12 +55,12 @@ of the selectivity of each node.
 
 From elementary statistics, we know that the intersection probability
 can be written as
-\begin{equation}
-Pr(A_1 \cap A_2  \cap \ldots \cap A_n) = 
-  Pr(A_n | A_1 \cap A_2  \cap \ldots \cap A_{n-1}) \\
-  \cdot Pr(A_{n-1} | A_1 \cap A_2  \cap \ldots \cap A_{n-2}) 
-  \cdot \ldots \cdot Pr(A_2 | A_1) \cdot Pr(A_1) ,
-\end{equation}
+\begin{eqnarray}
+Pr(A_1 \cap A_2  \cap \ldots \cap A_n) &=& 
+  Pr(A_n | A_1 \cap A_2  \cap \ldots \cap A_{n-1}) \nonumber\\
+  &&\cdot Pr(A_{n-1} | A_1 \cap A_2  \cap \ldots \cap A_{n-2}) \cdot \ldots \nonumber\\
+  && \cdot Pr(A_2 | A_1) \cdot Pr(A_1) ,
+\end{eqnarray}
 where the $|$ symbol is read as ``given'', e.g. ``given a predicate
 \rdfterm{rdf:type} what is the probability that the object is \rdfterm{foaf:Person}?''
 
