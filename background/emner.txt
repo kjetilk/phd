@@ -36,3 +36,15 @@ MNSES9100 - Science, Ethics and Society
 V&H
 http://www.uio.no/studier/emner/matnat/ifi/MNSES9100/index.xml
 Obligatorisk
+
+
+INF4290 - Software Verification and Validation
+10
+V
+http://www.uio.no/studier/emner/matnat/ifi/INF4290/index.xml
+"Statistical testing"?
+
+INF5040 - Åpen distribuert prosessering 
+H
+10
+http://www.uio.no/studier/emner/matnat/ifi/INF5040/index.xml
