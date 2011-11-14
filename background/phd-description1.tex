@@ -1,0 +1,64 @@
+\documentclass[a4paper,english,10pt]{article}
+\usepackage{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+
+\title{Problem statement and suggested project outline}
+\author{Kjetil Kjernsmo}
+
+\begin{document}
+
+\maketitle
+
+
+Query federation has been an active field for some time, but has until
+the advent of the Semantic Web not been used in a highly diverse set
+of endpoints, commonly they have been under the control of a single
+institution. RDF has a triple-based data model for the Semantic Web,
+and SPARQL is a standardized query language to query such data.
+
+Query federation with SPARQL has attracted much attention
+from industry and academia alike, and four implementations of basic
+query federation were submitted to the SPARQL 1.1 Working Group as
+input for the forthcoming work. The basic query federation feature was
+supported by a large number of group members, and the latest working
+draft of the proposed standard was published on June 1st 2010 and is
+expected to enter a Last Call review period shortly.
+
+There is a very strong industrial use case for SPARQL query
+federation, as it is a straightforward way to combine data from the
+large number of SPARQL Endpoints. With the emergence of the Linked
+Data Web, URIs serves as ``global keys'', and makes data combination
+across data sources trivial if a working SPARQL query federation
+engine can be used.
+
+While the basic feature set of the proposed standard can enable users
+to create federated queries, it is not of great use as it requires
+extensive prior knowledge of both the data to be queried and
+performance characteristics of the involved query engines. 
+
+I intend to investigate possible remedies to this problem by using
+statistical techniques. 
+
+An important technique execution optimization is known as
+``selectivity estimation''. This technique seeks to optimize the order
+of which parts of the query is executed. In the greater database
+literature, this has been widely studied, but the SPARQL spesific
+literature leaves many open questions.
+
+An oft-cited paper is \cite{Stocker:2008:SBG:1367497.1367578}. In that
+paper, the authors assume that the selectivity of RDF terms are
+independent, admit that this assumption is easily violated and
+continue to use a conditional estimate for the object node. This is
+clearly flawed, and I have already started writing a first paper to
+address this. Thus, it is intended that my first paper will address
+open issues on selectivity estimation in the single-database
+conditional case.  Several directions can be explored, possibly
+involving Bayesian Networks, user configurable common SPARQL patterns,
+estimation based on known ontologies, etc.
+
+
+
+
+\end{document}
