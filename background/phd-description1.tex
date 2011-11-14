@@ -36,10 +36,15 @@ engine can be used.
 While the basic feature set of the proposed standard can enable users
 to create federated queries, it is not of great use as it requires
 extensive prior knowledge of both the data to be queried and
-performance characteristics of the involved query engines. 
+performance characteristics of the involved query engines. Without
+this knowledge, the overall performance is insufficient for any
+practical applications.
 
 I intend to investigate possible remedies to this problem by using
 statistical techniques. 
+
+\section*{Paper 1: Conditional selectivity estimation on a single database}
+
 
 An important technique execution optimization is known as
 ``selectivity estimation''. This technique seeks to optimize the order
@@ -58,7 +63,20 @@ conditional case.  Several directions can be explored, possibly
 involving Bayesian Networks, user configurable common SPARQL patterns,
 estimation based on known ontologies, etc.
 
+\section*{Paper 2: Empirical evaluation of implementations}
 
+Since the main objective of the proposed work is to create systems
+that have sufficient performance for practical applications, it is of
+paramount importance to have methodology that can falsify any
+conjecture about an implementation's performance.
 
+In a federated regime, any query is likely to execute queries on
+several different SPARQL implementations. Many of those are free
+software so the algorithms they use could in principle be analyzed,
+but in practice, this would be very time-consuming. Some may be
+undocumented or even trade secrets, thus precluding any such
+analysis. It is therefore my intention to treat the individual SPARQL
+implementations as ``black boxes'' and exclusively evaluate the
+performance characteristics by empirical means, aka ``benchmarking''.
 
 \end{document}
