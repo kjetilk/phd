@@ -111,4 +111,20 @@ design to investigate whether it is possible to cover the entire
 hopefully representative data and queries. This would then be the main
 topic of paper 2.
 
+\section*{Paper 3: Conditional selectivity in the federated case}
+
+In paper~1, I explored selectivity estimation as a technique for query
+optimization. In a federated regime, selectivity estimation is
+important because without it, large amounts of data may needlessly be
+passed back and forth between different endpoints. However, the
+federation engine has no way of estimating the selectivity of the
+entire query since it has no record of the structure of the data.
+
+The third paper will explore ways to remedy this situation, e.g. by
+compiling statistics that may be exposed in a service description. In
+particular, parameterized statistics may be useful. 
+
+Finally, techniques developed in paper~2 will be used to evaluate the
+efficiency of various techniques.
+
 \end{document}
