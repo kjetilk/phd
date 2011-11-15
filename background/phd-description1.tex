@@ -79,4 +79,36 @@ analysis. It is therefore my intention to treat the individual SPARQL
 implementations as ``black boxes'' and exclusively evaluate the
 performance characteristics by empirical means, aka ``benchmarking''.
 
+I note that none of the established SPARQL benchmarks, or any other
+benchmark I've seen, regard performance (however it is measured) as a
+stochastic variable. It clearly is --- other things running on the
+benchmark system, randomness in algorithms, unknown data structure,
+etc. --- all contribute to random fluctuations in
+performance. Consequently, none of the benchmarks use well-established
+statistical methodology for hypothesis testing. They should, as
+randomness could influence the conclusions drawn. Rectifying this
+problem is a first step in the second paper I plan to write.
+
+However, I wish to perform a much deeper investigation in the same
+direction. In physical science and engineering, conventional wisdom
+has been that you should only vary one variable at a time to study the
+effects of that one variable. In medical science, this has been
+abandoned several decades ago, thanks to advances in statistics. In
+e.g. a case where the researcher administrates different treatments to
+terminally ill patients, some of which may be painful or shorten their
+lives, experimental economy is extremely important.
+
+In SPARQL benchmarking, the state of the art is that one compiles data
+which one hopes is representative for a wide selection of use cases,
+and a select few queries. The performance is then measured. Recently,
+\cite{Duan:2011:AOC:1989323.1989340} showed that the data used by all
+existing benchmarks is far from representative, leaving many open
+problems.
+
+With this in mind, I plan to use ideas from statistical experimental
+design to investigate whether it is possible to cover the entire
+(realistic) parameter space, thus resolving the problem of choosing
+hopefully representative data and queries. This would then be the main
+topic of paper 2.
+
 \end{document}
