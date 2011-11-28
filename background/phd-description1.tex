@@ -47,7 +47,7 @@ statistical techniques.
 \section*{Paper 1: Conditional selectivity estimation on a single database}
 
 
-An important technique execution optimization is known as
+An important technique for execution optimization is known as
 ``selectivity estimation''. This technique seeks to optimize the order
 of which parts of the query is executed. In the greater database
 literature, this has been widely studied, but the SPARQL spesific
@@ -68,17 +68,18 @@ estimation based on known ontologies, etc.
 
 Since the main objective of the proposed work is to create systems
 that have sufficient performance for practical applications, it is of
-paramount importance to have methodology that can falsify any
+paramount importance to have methodology that can falsify a
 conjecture about an implementation's performance.
 
 In a federated regime, any query is likely to execute queries on
 several different SPARQL implementations. Many of those are free
 software so the algorithms they use could in principle be analyzed,
-but in practice, this would be very time-consuming. Some may be
-undocumented or even trade secrets, thus precluding any such
-analysis. It is therefore my intention to treat the individual SPARQL
-implementations as ``black boxes'' and exclusively evaluate the
-performance characteristics by empirical means, aka ``benchmarking''.
+but in practice, this would be very time-consuming. Some
+implementations may be undocumented or even trade secrets, thus
+precluding any such analysis. It is therefore my intention to treat
+the individual SPARQL implementations as ``black boxes'' and
+exclusively evaluate the performance characteristics by empirical
+means, aka ``benchmarking''.
 
 I note that none of the established SPARQL benchmarks, or any other
 benchmark I've seen, regard performance (however it is measured) as a
