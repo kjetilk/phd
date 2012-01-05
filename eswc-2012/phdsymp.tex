@@ -19,6 +19,51 @@ Postboks 1080 Blindern,
 
 \section{Introduction}
 
+Query federation has been an active field for some time, but has until
+the advent of the Semantic Web not been used in a highly diverse set
+of endpoints, commonly they have been under the control of a single
+institution. RDF has a triple-based data model for the Semantic Web,
+and SPARQL is a standardized query language to query such data.
+
+Query federation with SPARQL has attracted much attention
+from industry and academia alike, and four implementations of basic
+query federation were submitted to the SPARQL 1.1 Working Group as
+input for the forthcoming work. The basic query federation feature was
+supported by a large number of group members, and the latest working
+draft of the proposed standard was published on June 1st 2010 and is
+expected to enter a Last Call review period shortly. % TODO: Check
+                                % status
+
+While the basic feature set of the proposed standard can enable users
+to create federated queries, it is not of great use as it requires
+extensive prior knowledge of both the data to be queried and
+performance characteristics of the involved query engines. Without
+this knowledge, the overall performance is insufficient for any
+practical applications.
+
+I intend to investigate possible remedies to this problem by using
+statistical techniques. 
+
+Since the main objective of the proposed work is to create systems
+that have sufficient performance for practical applications, it is of
+paramount importance to have methodology that can falsify a
+conjecture about an implementation's performance.
+
+In a federated regime, any query is likely to execute queries on
+several different SPARQL implementations. Many of those are free
+software so the algorithms they use could in principle be analyzed,
+but in practice, this would be very time-consuming. Some
+implementations may be undocumented or even trade secrets, thus
+precluding any such analysis. It is therefore my intention to treat
+the individual SPARQL implementations as ``black boxes'' and
+exclusively evaluate the performance characteristics by empirical
+means, aka ``benchmarking''.
+
+However, I have found the current state of the art in benchmarking
+lacking in its use of statistics, which motivates two distincts
+directions of work: \emph{Statistical experimental planning and execution in
+benchmarking} and \emph{statistical methods to optimize SPARQL queries
+in a federated regime}.
 
 \section{Problem Definition}
 
