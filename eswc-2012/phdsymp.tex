@@ -1,4 +1,5 @@
-\documentclass{llncs}
+%\documentclass{llncs}
+\documentclass{article}
 
 \begin{document}
 \title{Sharing statistics for SPARQL Federation optimization, with
@@ -40,7 +41,7 @@ While the basic feature set of the proposed standard can enable users
 to create federated queries, it is not of great use as it requires
 extensive prior knowledge of both the data to be queried and
 performance characteristics of the involved query engines. Without
-this knowledge, the overall performance is insufficient for any
+this knowledge, the overall performance is insufficient for many
 practical applications.
 
 I intend to investigate possible remedies to this problem by using
@@ -79,6 +80,35 @@ federated regime.
 The contemporary problem in benchmarking is to distinguish
 implementations when the measured difference is little or susceptible
 to random noise.
+
+Current common practice in benchmarking SPARQL-enabled systems is to
+use or synthesize a certain dataset, then formulate a number of
+queries seen as representative of SPARQL use in some way. These
+queries are then executed, and some characteristic of performance is
+measured, for example the time it takes for the engine to return the
+full result. Commonly, this process is repeated a number of times, and
+an average response time is found. The performance of different
+engines can then be compared based on these averages.
+
+In many cases, this is sufficient. Sometimes, one engine can execute a
+query an order of magnitude faster than another, in which case, there
+is hardly reasonable doubt which is faster.
+
+When the difference is little, we must consider the possibility that
+the measurements are impacted by random noise. Computer systems are
+generally very deterministic systems, but there are nevertheless many
+such scenarios: The underlying system may be doing other tasks. This
+is likely to be particularly important in enterprise environments
+where high-load applications are often running on virtual
+machines. The engine may use randomized algorithms, or the data may be
+of such a nature it triggers worst-case behaviour in situations the
+query writer cannot foresee. All this contributes to that we should
+consider the performance metric, whatever metric is used, as a
+\emph{stochastic variable}.
+
+Doing this opens new methodological possibilities, first and foremost
+using well-established statistical hypothesis testing rather than just
+comparing averages. 
 
 \section{State of the Art}
 
