@@ -135,11 +135,12 @@ generally very deterministic systems, but there are nevertheless many
 such scenarios: The underlying system may be doing other tasks. This
 is likely to be particularly important in enterprise environments
 where high-load applications are often running on virtual
-machines. The engine may use randomized algorithms, or the data may be
-of such a nature it triggers worst-case behaviour in situations the
-query writer cannot foresee. All this contributes to that we should
-consider the performance metric, whatever metric is used, as a
-\emph{stochastic variable}.
+machines. The garbage collection of some languages may trigger on not
+easily foreseeable points. The engine may use randomized algorithms,
+or the data may be of such a nature it triggers worst-case behaviour
+in situations the query writer cannot foresee. All this contributes to
+that we should consider the performance metric, whatever metric is
+used, as a \emph{stochastic variable}.
 
 Doing this opens new methodological possibilities, first and foremost
 using well-established statistical hypothesis testing rather than just
