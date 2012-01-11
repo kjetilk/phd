@@ -157,35 +157,37 @@ use to see if any changes they do to the engine has unexpected adverse
 effects on other parts of the system?
 
 The above relies on that the test data and queries are in fact
-representative of the system as a whole, but this is usually not proven.
-In physical science and engineering, conventional wisdom
-has been that you should only vary one variable at a time to study the
-effects of that one variable. In medical science, this has been
-abandoned several decades ago, thanks to advances in statistics. In
-e.g. a case where the researcher administrates different treatments to
-terminally ill patients, some of which may be painful or shorten their
-lives, experimental economy is extremely important.
+representative of the system as a whole. It is often asserted that it
+is not possible to create a ``one-size-fits-all'' benchmark (see
+e.g. \cite{Schmidt:2011:FBS:2063016.2063054}) to cover all aspects of
+an application. While that may be true in the general case, I want to
+challenge the assumption that the best we can do is to accommodate a
+multitude of dimensions and essential challenges in the case of
+SPARQL.
+
+In physical science and engineering, conventional wisdom has been that
+you should only vary one variable at a time to study the effects of
+that one variable. In medical science, this has been abandoned several
+decades ago, thanks to advances in statistics. In e.g. a case where
+the researcher administrates different treatments to terminally ill
+patients, some of which may be painful or shorten their lives,
+experimental economy is extremely important.
 
 Using techniques from statistical experimental design, I conjecture
-that it is possible to design an experiment (i.e. a benchmark) so
-that it provably representative of all realistic situations. This
-would permit us to make rather categorical statements regarding
-overall query engine performance.
+that it is possible to design an experiment (i.e. a benchmark) so that
+we can prove it covers all realistic cases and that we can justify
+why the remaining corner cases are unlikely to influence the result.
 
 
 \section{State of the Art}
 
 \subsection{In SPARQL Federation}
 
-\subsubsection{Technology}
-
 I take the technology state of the art to be represented by the
 current basic SPARQL 1.1 Federated Query Working
 Draft\footnote{http://www.w3.org/TR/2011/WD-sparql11-federated-query-20111117/}. For
 an academic treatment of the current specification, see
 \cite{springerlink:10.1007/978-3-642-21064-8_1} and references therein.
-
-\subsubsection{Science}
 
 In \cite{springerlink:10.1007/978-3-642-21064-8_1}, the authors show
 an optimization strategy based on execution order of different
