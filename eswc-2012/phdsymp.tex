@@ -88,12 +88,13 @@ also pointed out that it causes other problems as well, for example a
 high number of requests to federation members. 
 
 This problem has already received some attention, \cite{5337556}
-addressed this problem by making it possible to exchange histograms,
-but I suspect this will prove to become untenable as the number of
-histograms to be computed and the number of bins in each histogram to
-represent highly heterogenous data would be very high. This would also
-cause the amount of statistical data to be exchanged between endpoints
-to be very high.
+addressed this problem by making it possible to exchange histograms
+and other data, and \cite{Harth:2010:DSO:1772690.1772733} introduced
+QTrees. I suspect these approaches will suffer from either involving
+too much statistical data or if constraining the data size, leaving
+too much out. The problem becomes how to digest the most useful
+statistics in as little as possible space.
+
 
 \subsection{In Benchmarking}
 
