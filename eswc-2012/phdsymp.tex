@@ -1,5 +1,5 @@
-%\documentclass{llncs}
-\documentclass{article}
+\documentclass{llncs}
+%\documentclass{article}
 
 \begin{document}
 \title{Sharing statistics for SPARQL Federation optimization, with
@@ -74,6 +74,35 @@ in a federated regime}.
 
 This part of the thesis addresses problems of query optimization in a
 federated regime.
+
+An intrinsic problem of the current federated regime is that the
+system first executing the federated query has no information of the
+characteristics of neither the data nor the performance of the systems
+it further submits queries to. This limits the techniques it can use
+to optimize the query before submitting.
+
+One aspect of this problem can be illustrated by a self-experienced
+practical problem: In a federated conjuctive query, we created a query
+to ask for certain books written in a certain
+language. Some of the book metadata resided on one endpoint, the
+language metadata was on another endpoint. Unbeknowst to us, the
+distribution of languages were extremely skewed, i.e. the vast
+majority of books were written in one language. Thus, sending the
+language query first would in some cases be favourable, returning only
+a handful of results, in other cases, it would result in a very large
+number of results, which would then need to be bound in queries sent
+to other endpoints, causing weak performance.
+
+In the non-federated case, this can be mitigated by the well-known
+histogram technique for subsequent selectivity estimation at query
+execution time. In the federated case, this is not possible as nothing
+is known about the distribution of data on individual
+endpoints. \cite{5337556} addressed this problem by making it possible
+to exchange histograms, but in the general case this is untenable as
+the number of histograms to be computed and the number
+of bins in each histogram to represent highly heterogenous data would
+be very high. This would also cause the amount of statistical data to
+be exchanged between endpoints to be very high.
 
 \subsection{In Benchmarking}
 
