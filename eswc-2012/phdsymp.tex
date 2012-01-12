@@ -89,11 +89,9 @@ high number of requests to federation members.
 
 This problem has already received some attention, \cite{5337556}
 addressed this problem by making it possible to exchange histograms
-and other data, and \cite{Harth:2010:DSO:1772690.1772733} introduced
-QTrees. I suspect these approaches will suffer from either involving
-too much statistical data or if constraining the data size, leaving
-too much out. The problem becomes how to digest the most useful
-statistics in as little as possible space. % TODO: Do they sacrifice data?
+and other data. However, histogram approaches generally suffers from
+the problem that they grow too large or become a insufficiently
+accurate digest, especially in face of very heterogenous data.
 
 
 \subsection{In Benchmarking}
@@ -184,6 +182,10 @@ assist the SemWIQ optimizer, written by the same authors.
 
 For benchmarking federated query processing strategies,
 \cite{Schmidt:2011:FBS:2063016.2063054} report the development of \emph{FedBench}.
+
+\cite{Harth:2010:DSO:1772690.1772733} introduced QTrees to alleviate
+the problem, but it is not clear to me if it will solve it. 
+
 
 \subsection{In Benchmarking}
 
