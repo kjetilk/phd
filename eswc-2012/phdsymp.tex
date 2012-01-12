@@ -215,9 +215,27 @@ would appreciate discussing at the Symposium.
 
 \subsection{In SPARQL Federation}
 
-There are many possible approaches for this part of the thesis. At
-this stage, it seems that use of selectivity estimation may be the
-most feasible direction.
+There are many possible approaches for this part of the thesis. As I
+expect great advances to be made before I start tackling this problem,
+I have not chosen any methodology, but work to find more
+space-efficient ways to expose statistics in the service description
+and standardize those seems like an interesting direction. 
+
+To this end, I briefly looked into two approaches:
+\cite{Getoor:2001:SEU:375663.375727} used Bayesian Networks and
+Probabilistic Relational Models to efficiently represent the joint
+distribution of database tables, a formalism that could be extended to
+RDF databases.
+
+Another approach that I have not seen used in the literature is to use
+parameterized statistics. This would amount to attempt fitting data to
+a known distribution function and expose which distribution and its
+parameters in the service description.
+
+Finally, I have seen little work on the problem of rapidly changing
+data, so the adaption of existing techniques to such situations may
+also be a interesting problem.
+
 
 \subsection{In Benchmarking}
 
