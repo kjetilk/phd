@@ -186,7 +186,7 @@ Draft\footnote{http://www.w3.org/TR/2011/WD-sparql11-federated-query-20111117/}.
 A recent scientific treatment of the current specification, is in
 \cite{springerlink:10.1007/978-3-642-21064-8-1}. In this paper, the
 authors also show an optimization strategy based on execution order of
-different algebraic elements. % TODO: wording here
+so-called well-designed patterns.
 
 In \cite{5337556}, it is shown how various statistics-gathering
 techniques, including histograms can be computed to assist the SemWIQ
@@ -253,29 +253,28 @@ also be a interesting problem.
 This part of the thesis seeks to use advances from statistical
 experimental planning to improve accuracy and dependability of
 benchmarking. Already in 1926, Ronald~Fischer noted that complex
-experiments can be much more efficient than simple
-ones\footnote{Cited in
-  http://en.wikipedia.org/wiki/Factorial\_experiment}, starting the
+experiments can be much more efficient than simple ones\footnote{Cited
+  in http://en.wikipedia.org/wiki/Factorial\_experiment}, starting the
 experimental design field. One of the simpler designs is ``fractional
 factorial design'', in which several ``factors'' are studied by using
-different ``treatments''. In terms of SPARQL execution, one factor can
-for example be the level of nested \texttt{OPTIONAL}s, number of
-triples in a basic graph pattern, etc, and the treatment is to vary
-these numbers. The key to understanding why this can be efficient is
-that these variations need not occur in the same experiment. Thus,
-many combinations of factors can be studied by carefully designing
-queries to cover different factors, and a formalism called
-``resolution'' has been developed to classify how well this has been
-achieved.
+different ``treatments''. In terms of SPARQL execution, the SPARQL
+engine is clearly a factor, but also for example the nestedness of
+\texttt{OPTIONAL}s can be a factor, number of triples in a basic graph
+pattern, etc, and the treatment is to vary these numbers to different
+``levels''. The key to understanding why this can be efficient is that
+these variations need not occur in the same experiment. Thus, many
+combinations of factors can be studied by carefully designing queries
+to cover different factors, and a formalism called ``resolution'' has
+been developed to classify how well this has been achieved.
 
 Fractional factorial design is covered in elementary text-books in
-statistics, and I intend to go further into the statistical literature
-to see if there is methodology that is even better suited to the
-problem. Armed with this, I hope to use amongst other things, the
-complexity analysis of SPARQL (see
-e.g. \cite{Schmidt:2010:FSQ:1804669.1804675}) to find suitable factors
-to see if my admittedly bold proposition that it is possible to design
-a benchmark to cover all realistic cases.
+statistics but is most likely inadequate for this purpose, so I
+intend to go further into the statistical literature to see if there
+is methodology that is even better suited to the problem. Armed with
+this, I hope to use amongst other things, the complexity analysis of
+SPARQL (see e.g. \cite{Schmidt:2010:FSQ:1804669.1804675}) to find
+suitable factors to see if my admittedly bold proposition that it is
+possible to design a benchmark to cover all realistic cases.
 
 %\section{Conclusion}
 
