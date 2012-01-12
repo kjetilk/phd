@@ -1,7 +1,7 @@
 \documentclass{llncs}
 %\documentclass{article}
+\usepackage{cite}
 
-\begin{document}
 \title{Sharing statistics for SPARQL Federation optimization, with
   emphasis on benchmark quality}
 \author{Kjetil Kjernsmo}
@@ -10,10 +10,11 @@ Postboks 1080 Blindern,
 0316 Oslo, Norway}
 
 
+\begin{document}
 
 \maketitle
-
 \email{kjekje@ifi.uio.no}
+
 
 \begin{abstract}
 
@@ -172,7 +173,7 @@ current basic SPARQL 1.1 Federated Query Working
 Draft\footnote{http://www.w3.org/TR/2011/WD-sparql11-federated-query-20111117/}. 
 
 A recent scientific treatment of the current specification, is in
-\cite{springerlink:10.1007/978-3-642-21064-8_1}. In this paper, the
+\cite{springerlink:10.1007/978-3-642-21064-8-1}. In this paper, the
 authors also show an optimization strategy based on execution order of
 different algebraic elements. % TODO: wording here
 
@@ -225,5 +226,7 @@ experimental planning to improve accuracy and dependability of benchmarking.
 
 \section{Conclusion}
 
+\bibliographystyle{plain}
+\bibliography{selectivity,federation,benchmarks}
 
 \end{document}
