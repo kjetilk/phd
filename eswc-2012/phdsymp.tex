@@ -158,7 +158,7 @@ the researcher administrates different treatments to terminally ill
 patients, some of which may be painful or shorten their lives,
 experimental economy is extremely important.
 
-Using techniques from statistical experimental design, I conjecture
+Using techniques from statistical experimental design, I propose
 that it is possible to design an experiment (i.e. a benchmark) so that
 we can prove it covers all realistic cases and that we can justify
 why the remaining corner cases are unlikely to influence the result.
@@ -240,11 +240,35 @@ also be a interesting problem.
 \subsection{In Benchmarking}
 
 This part of the thesis seeks to use advances from statistical
-experimental planning to improve accuracy and dependability of benchmarking.
+experimental planning to improve accuracy and dependability of
+benchmarking. Already in 1926, Ronald~Fischer noted that complex
+experiments can be much more efficient than simple
+ones~\cite{Fisher_1926}\footnote{Cited in
+  http://en.wikipedia.org/wiki/Factorial\_experiment}, starting the
+experimental design field. One of the simpler designs is ``fractional
+factorial design'', in which several ``factors'' are studied by using
+different ``treatments''. In terms of SPARQL execution, one factor can
+for example be the level of nested \texttt{OPTIONAL}s, number of
+triples in a basic graph pattern, etc, and the treatment is to vary
+these numbers. The key to understanding why this can be efficient is
+that these variations need not occur in the same experiment. Thus,
+many combinations of factors can be studied by carefully designing
+queries to cover different factors, and a formalism called
+``resolution'' has been developed to classify how well this has been
+achieved.
+
+Fractional factorial design is covered in elementary text-books in
+statistics, and I intend to go further into the statistical literature
+to see if there is methodology that is even better suited to the
+problem. Armed with this, I hope to use amongst other things, the
+complexity analysis of SPARQL (see
+e.g. \cite{Schmidt:2010:FSQ:1804669.1804675}) to find suitable factors
+to see if my admittedly bold proposition that it is possible to design
+a benchmark to cover all realistic cases.
 
 \section{Conclusion}
 
 \bibliographystyle{plain}
-\bibliography{selectivity,federation,benchmarks}
+\bibliography{selectivity,federation,benchmarks,statistics,optimization}
 
 \end{document}
