@@ -31,7 +31,7 @@ Postboks 1080 Blindern,
   notion that a ``one-size-fits-all'' benchmark is impossible.
 \end{abstract}
 
-\section{Introduction}
+\section{Motivation}
 
 Query federation with SPARQL has attracted much attention
 from industry and academia alike, and four implementations of basic
@@ -67,21 +67,35 @@ depth, currently focusing my efforts on benchmarking. The long-term
 goal of my work is SPARQL Federation, but it is a minor concern in
 this paper.
 
-\section{Problem Definition}
+\section{State of the Art and Open Problems}
 
 \subsection{In SPARQL Federation}
 
-When using FedBench, (see \cite{Schmidt:2011:FBS:2063016.2063054}),
-the authors note that the absence of statistics has very adverse
-effects on performance as join order is impossible to optimize. It is
-also pointed out that it causes other problems as well, for example a
-high number of requests to federation members. 
+I take the technology state of the art to be represented by the
+current basic SPARQL 1.1 Federated Query Working
+Draft\footnote{http://www.w3.org/TR/2011/WD-sparql11-federated-query-20111117/}. 
 
-This problem has already received some attention, \cite{5337556}
-addressed this problem by making it possible to exchange histograms
-and other data. However, histogram approaches generally suffers from
-the problem that they grow too large or become a insufficiently
+A recent scientific treatment of the current specification is in
+\cite{springerlink:10.1007/978-3-642-21064-8-1}. In this paper, the
+authors also show an optimization strategy based on execution order of
+so-called well-designed patterns.
+
+For benchmarking federated query processing strategies,
+\cite{Schmidt:2011:FBS:2063016.2063054} report the development of
+\emph{FedBench}. In this paper, the authors note that the
+absence of statistics has very adverse effects on performance as join
+order is impossible to optimize. It is also pointed out that it causes
+other problems as well, for example a high number of requests to
+federation members. I take this as a key research problem.
+
+This problem has already received some attention, in \cite{5337556} it
+is shown how various statistics-gathering techniques, including
+histograms can be computed to assist the SemWIQ optimizer, written by
+the same authors.  However, histogram approaches generally suffers
+from the problem that they grow too large or become a insufficiently
 accurate digest, especially in face of very heterogeneous data.
+\cite{Harth:2010:DSO:1772690.1772733} introduced QTrees, which may
+alleviate the problem of histogram size, but it may not solve it.
 
 Thus, the core problem is: How do we compute and expose a digest that
 is of optimal size for the query performance problem?
@@ -160,29 +174,6 @@ Thus far, the benchmarking problem has been seen as a software testing
 problem, but as stated in the introduction this is not the only
 objective, we may now see if benchmark data can be exposed to help
 federation query optimizers along with a statistical digest.
-
-\section{State of the Art}
-
-\paragraph{In SPARQL Federation}
-
-I take the technology state of the art to be represented by the
-current basic SPARQL 1.1 Federated Query Working
-Draft\footnote{http://www.w3.org/TR/2011/WD-sparql11-federated-query-20111117/}. 
-
-A recent scientific treatment of the current specification, is in
-\cite{springerlink:10.1007/978-3-642-21064-8-1}. In this paper, the
-authors also show an optimization strategy based on execution order of
-so-called well-designed patterns.
-
-In \cite{5337556}, it is shown how various statistics-gathering
-techniques, including histograms can be computed to assist the SemWIQ
-optimizer, written by the same authors.
-\cite{Harth:2010:DSO:1772690.1772733} introduced QTrees, which may
-alleviate the problem of histogram size, but it may not solve it.
-
-For benchmarking federated query processing strategies,
-\cite{Schmidt:2011:FBS:2063016.2063054} report the development of \emph{FedBench}.
-
 
 
 \paragraph{In Benchmarking}
