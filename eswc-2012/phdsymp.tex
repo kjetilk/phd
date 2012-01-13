@@ -20,9 +20,9 @@ Postboks 1080 Blindern,
 
 \begin{abstract}
   Federation of semantic data on SPARQL endpoints will allow data to
-  remain distributed so that they can be controlled by local curators
+  remain distributed so that it can be controlled by local curators
   and swiftly updated. There are considerable performance problems,
-  which the present work proposes to address mainly by computation
+  which the present work proposes to address, mainly by computation
   and exposure of statistical digests to assist selectivity
   estimation.
 
@@ -50,23 +50,23 @@ performance characteristics of the involved query engines. Without
 this knowledge, the overall performance is insufficient for most
 practical applications.
 
-To help optimize, SPARQL endpoints should expose details about both
+To aid optimization, SPARQL endpoints should expose details about both
 data and performance characteristics of the engine itself. The
 proposed work has two focal points: \emph{Statistical digests of
   data for optimizations} and \emph{benchmarking SPARQL engines}. 
 
-The focus on SPARQL benchmarking is not just motivated from the
-optimization perspective, as I have found the current state of the art
+The focus on SPARQL benchmarking is not only motivated from the
+perspective of optimization, as I have found the current state of the art
 in SPARQL benchmarking lacking in its use of statistics. The emphasis
 in the present paper is on statistics in benchmarking with the purpose
 of putting it on a firmer foundation from a hypothesis testing
 perspective.
 
-I am still in an early phase of my work, and I have not yet started to
-explore the scientific literature around SPARQL Federation to any
-depth, currently focusing my efforts on benchmarking. The long-term
-goal of my work is SPARQL Federation, but it is a minor concern in
-this paper.
+I have not yet started to explore the scientific literature around
+SPARQL Federation in any depth as I am still in an early phase of my
+work. I am currently focusing my efforts on benchmarking. The
+long-term goal of my work is SPARQL Federation, but that is a minor
+concern in this paper.
 
 \section{State of the Art and Open Problems}
 
@@ -84,28 +84,28 @@ so-called well-designed patterns.
 For benchmarking federated query processing strategies,
 \cite{Schmidt:2011:FBS:2063016.2063054} report the development of
 \emph{FedBench}. In this paper, the authors note that the
-absence of statistics has very adverse effects on performance as join
+absence of statistics has very adverse effects on performance as the join
 order is impossible to optimize. It is also pointed out that it causes
 other problems as well, for example a high number of requests to
 federation members. I take this as a key research problem.
 
 This problem has already received some attention, in \cite{5337556} it
 is shown how various statistics-gathering techniques, including
-histograms can be computed to assist the SemWIQ optimizer, written by
-the same authors.  However, histogram approaches generally suffers
+histograms, can be computed to assist the SemWIQ optimizer, written by
+the same authors.  However, histogram approaches generally suffer
 from the problem that they grow too large or become a insufficiently
-accurate digest, especially in face of very heterogeneous data.
+accurate digest, especially in the face of very heterogeneous data.
 \cite{Harth:2010:DSO:1772690.1772733} introduced QTrees, which may
-alleviate the problem of histogram size, but it may not solve it.
+alleviate the problem of histogram size, but which may not solve it.
 
-Thus, the core problem is: How do we compute and expose a digest that
+Therefore, the core problem is: How do we compute and expose a digest that
 is of optimal size for the query performance problem?
 
 \subsection{In Benchmarking}
 
 Numerous benchmarks have been developed for SPARQL, but
-\cite{Duan:2011:AOC:1989323.1989340} showed that currently, most
-benchmarks poorly represent the typical data and queries that is used
+\cite{Duan:2011:AOC:1989323.1989340} showed that currently most
+benchmarks poorly represent the typical data and queries that are used
 on the Semantic Web.
 
 Most recently, \cite{mxro:Morsey2011DBpedia} addressed some of these
@@ -116,13 +116,13 @@ use or synthesize a certain dataset, then formulate a number of
 queries seen as representative of SPARQL use in some way. These
 queries are then executed, and some characteristic of performance is
 measured, for example the time it takes for the engine to return the
-full result. Commonly, this process is repeated a number of times, and
+full result. Commonly, this process is repeated a number of times and
 an average response time is found. The performance of different
-engines can then be compared based on these averages.
+engines can then be compared, based on these averages.
 
 In many cases, this is sufficient. Sometimes, one engine can execute a
-query an order of magnitude faster than another, in which case, there
-is hardly reasonable doubt which is faster. Small differences may seem
+query in an order of magnitude faster than another, in which case, there
+is hardly reasonable doubt as to which is faster. Small differences may seem
 unimportant but may become important if they are systematic. Even if
 one engine is dramatically better than another in one case, small
 deficiencies may add up to make the other a better choice for most
@@ -131,33 +131,33 @@ applications anyway.
 In this case, we must consider the possibility that the measurements
 are impacted by random noise. Sources of random noise may be the
 overall system load, garbage collection triggers, use of randomized
-algorithms, or that the data are of such a nature that it triggers
+algorithms, or that the data is of such a nature that it triggers
 worst-case behaviour, etc. All this contributes to that we should
 consider the performance metric, whatever metric is used, as a
 \emph{stochastic variable}.
 
-Doing this opens new methodological possibilities, first and foremost
+This opens new methodological possibilities, first and foremost
 using well-established statistical hypothesis testing or ranking
 rather than just comparing averages.
 
-With the currently published benchmarks, it is up to the user to
-select an engine with the best characteristics relative to their own
+Within the currently published benchmarks, it is up to the user to
+select an engine with the best characteristics, relative to their own
 expected application. However, I am often asked the question: ``what
-is the best general-purpose triple store?'' and those who ask are not
-prepared to provide any further qualification. This prompts the
-question: Can we collapse all the metrics into a single \emph{test
+is the best general-purpose triple store?'' Those who ask are not
+prepared to expand on the question. Thus, we should ask ourselves: 
+Can we collapse all the metrics into a single \emph{test
   statistic} that can summarize the performance of the engine as a
-whole? Also, can we provide a system to developers that they can use
-to see if any changes they do to the engine has unexpected adverse
+whole? Also, can we provide a system for developers that they can use
+to see if any changes they do to the engine can have unexpected adverse
 effects on other parts of the system? For those who are able to
 qualify their inquiry, weighing different parts of the system or
 metrics is more useful and will yield a more tenable answer, and
 motivates the question: Can we use the system to better find the
 distinguishing characteristics so that we can return a question that
 will actually help new users of SPARQL engines to chose one that meets
-their need?
+their needs?
 
-The above relies on data and queries that are in fact representative
+The above relies on data and queries that are representative
 of the system as a whole. It is often asserted that it is not possible
 to create a ``one-size-fits-all'' benchmark (see
 e.g. \cite{Schmidt:2011:FBS:2063016.2063054}) to cover all aspects of
@@ -168,18 +168,18 @@ a best effort basis in the case of SPARQL.
 In physical science and engineering, conventional wisdom has been that
 you should only vary one variable at a time to study the effects of
 that one variable. In medical science, this has been abandoned several
-decades ago, thanks to advances in statistics. In e.g. a case where
+decades ago, thanks to advances in statistics. In for example a case where
 the researcher administrates different treatments to terminally ill
 patients, some of which may be painful or shorten their lives,
 experimental economy is extremely important.
 
 Using techniques from statistical experimental design, I propose
 that it is possible to design an experiment (i.e. a benchmark) so that
-we can prove it covers all realistic cases and that we can justify
+we can prove it covers all realistic cases and with which we can justify
 why the remaining corner cases are unlikely to influence the
 result. For further elaboration, see Section~\ref{sec:benchmethod}.
 
-Thus far, the benchmarking problem has been seen as a software testing
+So far, the benchmarking problem has been seen as a software testing
 problem, but as stated in the introduction this is not the only
 objective, we may now see if benchmark data can be exposed to help
 federation query optimizers along with a statistical digest.
@@ -188,11 +188,11 @@ The problems addressed by existing benchmarks such as the one cited
 above are almost orthogonal to the problems considered by my proposed
 project. While I have heard of some cases where a hypothesis test is
 used to demonstrate that one implementation is better than another, it
-is seemingly not common practice. Furthermore, I have not to date seen
+seems not to be common practice. Furthermore, I have not to date seen
 any work towards using contemporary statistical methods to evaluate
 the performance of software, but I shall admit that my literature
-study have been limited to RDF/OWL databases, and practical benchmarks
-of databases, file systems, scientific software, etc. Thus, the
+study has been limited to RDF/OWL databases, and practical benchmarks
+of databases, file systems, scientific software, etc. Therefore, the
 existence of relevant references in the deeper computer science
 literature is a key issue I would appreciate discussing at the
 Symposium.
@@ -204,25 +204,25 @@ Symposium.
 \subsection{In SPARQL Federation}
 
 There are many possible approaches for this part of the thesis. As I
-expect great advances to be made before I start tackling this problem,
-I have not chosen any methodology, but work to find more
-space-efficient ways to expose statistics in the service description
-and standardize those seems like an interesting direction. 
+expect substantial advances to be made before I start tackling this
+problem, I have not chosen any methodology, but an interesting
+direction for work seem to be to find more space-efficient ways to
+expose statistics in the service description and standardize them.
 
-To this end, I briefly looked into two approaches:
+To this end, I have briefly looked into two approaches:
 \cite{Getoor:2001:SEU:375663.375727} used Bayesian Networks and
 Probabilistic Relational Models to efficiently represent the joint
 distribution of database tables, a formalism that could be extended to
 RDF databases.
 
 Another approach that I have not seen used in the literature is to use
-parametrized statistics. This would amount to attempt fitting data to
+parametrized statistics. This would amount to an attempt to fit data to
 a known distribution function and expose which distribution and its
 parameters in the service description.
 
 Finally, I have seen little work on the problem of rapidly changing
 data, so the adaption of existing techniques to such situations may
-also be a interesting problem.
+also be an interesting problem.
 
 The evaluation methodology for the SPARQL federation work of the
 thesis will largely be covered by running the elaborate benchmark
@@ -237,12 +237,12 @@ experiments can be much more efficient than simple ones\footnote{Cited
   in http://en.wikipedia.org/wiki/Factorial\_experiment}, starting the
 experimental design field. One of the simpler designs is ``fractional
 factorial design'', in which several ``factors'' are studied. In terms
-of SPARQL execution, the SPARQL engine is clearly a factor, but also
-for example the nestedness of \texttt{OPTIONAL}s can be a factor,
-number of triples in a basic graph pattern, etc, and these numbers are
+of SPARQL execution, the SPARQL engine is clearly a factor, but also,
+for example, the nestedness of \texttt{OPTIONAL}s can be a factor,
+or the number of triples in a basic graph pattern, etc. These numbers are
 varied to different ``levels''. The key to understanding why this can
 be efficient is that these variations need not occur in the same
-experiment. Thus, many combinations of factors can be studied by
+experiment. Therefore, many combinations of factors can be studied by
 carefully designing queries to cover different factors, and a
 formalism called ``resolution'' has been developed to classify how
 well this has been achieved, partly answering the question of
@@ -250,12 +250,12 @@ evaluation methodology for this part of the thesis.
 
 Factorial design is covered in elementary text-books in
 statistics but is most likely inadequate for this purpose, so I intend
-to go further into the statistical literature to see if there is
-methodology that is even better suited to the problem. Armed with
-this, I hope to use amongst other things, the complexity analysis of
+to go further into the statistical literature to see if there is a
+methodology that is even better suited to the problem. Using
+this, I hope to use, amongst other things, the complexity analysis of
 SPARQL to find suitable factors to see if my admittedly bold
 proposition that it is possible to design a benchmark to cover all
-realistic cases.
+realistic cases can be shown to hold.
 
 
 
