@@ -49,25 +49,23 @@ performance characteristics of the involved query engines. Without
 this knowledge, the overall performance is insufficient for most
 practical applications.
 
-I intend to investigate possible remedies to this problem by using
-statistical techniques. 
+To help optimize, SPARQL endpoints should expose details about both
+data and performance characteristics of the engine itself. The
+proposed work has two focal points: \emph{Statistical digests of
+  data for optimizations} and \emph{benchmarking SPARQL engines}. 
 
-Since the main objective of the proposed work is to create systems
-that have sufficient performance for practical applications, it is of
-paramount importance to have methodology that can rigorously rank
-implementations based on performance.
-
-However, I have found the current state of the art in SPARQL benchmarking
-lacking in its use of statistics, which motivates two distinct
-directions of work: \emph{Statistical experimental planning and execution in
-benchmarking} and \emph{statistical methods to optimize SPARQL queries
-in a federated regime}.
+The focus on SPARQL benchmarking is not just motivated from the
+optimization perspective, as I have found the current state of the art
+in SPARQL benchmarking lacking in its use of statistics. The emphasis
+in the present paper is on statistics in benchmarking with the purpose
+of putting it on a firmer foundation from a hypothesis testing
+perspective.
 
 I am still in an early phase of my work, and I have not yet started to
 explore the scientific literature around SPARQL Federation to any
-depth, currently focusing my efforts on benchmarking. Therefore, this
-paper also focuses on benchmarking rather than the more long-term goal
-of SPARQL Federation.
+depth, currently focusing my efforts on benchmarking. The long-term
+goal of my work is SPARQL Federation, but it is a minor concern in
+this paper.
 
 \section{Problem Definition}
 
