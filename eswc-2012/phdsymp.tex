@@ -177,8 +177,13 @@ experimental economy is extremely important.
 Using techniques from statistical experimental design, I propose
 that it is possible to design an experiment (i.e. a benchmark) so that
 we can prove it covers all realistic cases and that we can justify
-why the remaining corner cases are unlikely to influence the result.
+why the remaining corner cases are unlikely to influence the
+result. For further elaboration, see Section~\ref{sec:benchmethod}.
 
+Thus far, the benchmarking problem has been seen as a software testing
+problem, but we could also ask if the existence of benchmark data can
+be exposed to help federation query optimizers along with a
+statistical digest.
 
 \section{State of the Art}
 
@@ -253,7 +258,7 @@ data, so the adaption of existing techniques to such situations may
 also be a interesting problem.
 
 
-\subsection{In Benchmarking}
+\subsection{In Benchmarking}\label{sec:benchmethod}
 
 This part of the thesis seeks to use advances from statistical
 experimental planning to improve accuracy and dependability of
@@ -283,7 +288,9 @@ possible to design a benchmark to cover all realistic cases.
 
 %\section{Conclusion}
 
-\bibliographystyle{plain}
+%\bibliographystyle{plain}
+\bibliographystyle{plain-csmin}
+%\bibliographystyle{splncs03}
 \bibliography{selectivity,federation,benchmarks,optimization}
 
 \end{document}
