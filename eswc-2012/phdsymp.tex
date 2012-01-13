@@ -22,14 +22,13 @@ Postboks 1080 Blindern,
   Federation of semantic data on SPARQL endpoints will allow data to
   remain distributed so that they can be controlled by local curators
   and swiftly updated. There are considerable performance problems,
-  intended in the suggested work to be addressed mainly by computation
+  which the present work proposes to address mainly by computation
   and exposure of statistical digests to assist selectivity
   estimation.
 
   Discontent with current state of the art in benchmarking prompts the
-  author to devote much of the time to the evaluation problem and to
-  challenge the notion that a ``one-size-fits-all'' benchmark is
-  impossible.
+  author to focus on the evaluation problem and to challenge the
+  notion that a ``one-size-fits-all'' benchmark is impossible.
 \end{abstract}
 
 \section{Introduction}
@@ -53,7 +52,7 @@ While the basic feature set of the proposed standard can enable users
 to create federated queries, it is not of great use as it requires
 extensive prior knowledge of both the data to be queried and
 performance characteristics of the involved query engines. Without
-this knowledge, the overall performance is insufficient for many
+this knowledge, the overall performance is insufficient for most
 practical applications.
 
 I intend to investigate possible remedies to this problem by using
@@ -61,8 +60,8 @@ statistical techniques.
 
 Since the main objective of the proposed work is to create systems
 that have sufficient performance for practical applications, it is of
-paramount importance to have methodology that can falsify a
-hypothesis about an implementation's performance.
+paramount importance to have methodology that can rigorously rank
+implementations based on performance.
 
 In a federated regime, any query is likely to execute queries on
 several different SPARQL implementations. Many of those are free
@@ -74,7 +73,7 @@ the individual SPARQL implementations as ``black boxes'' and
 exclusively evaluate the performance characteristics by empirical
 means, aka ``benchmarking''.
 
-However, I have found the current state of the art in benchmarking
+However, I have found the current state of the art in SPARQL benchmarking
 lacking in its use of statistics, which motivates two distinct
 directions of work: \emph{Statistical experimental planning and execution in
 benchmarking} and \emph{statistical methods to optimize SPARQL queries
@@ -105,11 +104,13 @@ and other data. However, histogram approaches generally suffers from
 the problem that they grow too large or become a insufficiently
 accurate digest, especially in face of very heterogeneous data.
 
+Thus, the core problem is: How do we compute and expose a digest that
+is of optimal size for the query performance problem?
 
 \subsection{In Benchmarking}
 
 The contemporary problem in benchmarking is to distinguish
-implementations when the measured difference is little or susceptible
+implementations when the measured difference is small or susceptible
 to random noise.
 
 Current common practice in benchmarking SPARQL-enabled systems is to
@@ -125,16 +126,14 @@ In many cases, this is sufficient. Sometimes, one engine can execute a
 query an order of magnitude faster than another, in which case, there
 is hardly reasonable doubt which is faster.
 
-When the difference is little, we must consider the possibility that
+When the difference is small, we must consider the possibility that
 the measurements are impacted by random noise. Computer systems are
 generally very deterministic systems, but there are nevertheless many
-such scenarios: The underlying system may be doing other tasks. This
-is likely to be particularly important in enterprise environments
-where high-load applications are often running on virtual
-machines. The garbage collection of some languages may trigger on not
-easily foreseeable points. The engine may use randomized algorithms,
-or the data may be of such a nature it triggers worst-case behaviour
-in situations the query writer cannot foresee. All this contributes to
+such scenarios: The underlying system may be doing other tasks. The
+garbage collection of some languages may trigger at not easily
+foreseeable points. The engine may use randomized algorithms, or the
+data may be of such a nature that it triggers worst-case behaviour in
+situations the query writer cannot foresee. All this contributes to
 that we should consider the performance metric, whatever metric is
 used, as a \emph{stochastic variable}.
 
@@ -152,7 +151,7 @@ as a whole? Also, can we provide a system to developers that they can
 use to see if any changes they do to the engine has unexpected adverse
 effects on other parts of the system?
 
-The above relies on that the test data and queries are in fact
+The above relies on data and queries that are in fact
 representative of the system as a whole. It is often asserted that it
 is not possible to create a ``one-size-fits-all'' benchmark (see
 e.g. \cite{Schmidt:2011:FBS:2063016.2063054}) to cover all aspects of
