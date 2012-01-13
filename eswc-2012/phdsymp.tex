@@ -33,7 +33,8 @@ Postboks 1080 Blindern,
 
 \section{Motivation}
 
-Query federation with SPARQL has attracted much attention
+Query federation with SPARQL, which is a standardized query language
+for the Semantic Web, has attracted much attention
 from industry and academia alike, and four implementations of basic
 query federation were submitted to the SPARQL 1.1 Working Group as
 input for the forthcoming
@@ -101,6 +102,14 @@ Thus, the core problem is: How do we compute and expose a digest that
 is of optimal size for the query performance problem?
 
 \subsection{In Benchmarking}
+
+Numerous benchmarks have been developed for SPARQL, but
+\cite{Duan:2011:AOC:1989323.1989340} showed that currently, most
+benchmarks poorly represent the typical data and queries that is used
+on the Semantic Web.
+
+Most recently, \cite{mxro:Morsey2011DBpedia} addressed some of these
+problems by using real data and real queries from DBpedia.
 
 Current common practice in benchmarking SPARQL-enabled systems is to
 use or synthesize a certain dataset, then formulate a number of
@@ -175,28 +184,19 @@ problem, but as stated in the introduction this is not the only
 objective, we may now see if benchmark data can be exposed to help
 federation query optimizers along with a statistical digest.
 
+The problems addressed by existing benchmarks such as the one quoted
+above are almost orthogonal to the problems considered by my proposed
+project. While I have heard of some cases where a hypothesis test is
+used to demonstrate that one implementation is better than another, it
+is seemingly not common practice. Furthermore, I have not to date seen
+any work towards using contemporary statistical methods to evaluate
+the performance of software, but I shall admit that my literature
+study have been limited to RDF/OWL databases, and practical benchmarks
+of databases, file systems, scientific software, etc. Thus, the
+existence of relevant references in the deeper computer science
+literature is a key issue I would appreciate discussing at the
+Symposium.
 
-\paragraph{In Benchmarking}
-
-Numerous benchmarks have been developed for SPARQL, but
-\cite{Duan:2011:AOC:1989323.1989340} showed that currently, most
-benchmarks poorly represent the typical data and queries that is used
-on the Semantic Web.
-
-Most recently, \cite{mxro:Morsey2011DBpedia} addressed some of these
-problems by using real data and real queries from DBpedia.
-
-The problems addressed by these studies are almost orthogonal to the
-problems considered by my proposed project. While I have heard of some
-cases where a hypothesis test is used to demonstrate that one
-implementation is better than another, it is seemingly not common
-practice. Furthermore, I have not to date seen any work towards using
-contemporary statistical methods to evaluate the performance of
-software, but I shall admit that my literature study have been limited
-to RDF/OWL databases, and practical benchmarks of databases, file
-systems, scientific software, etc. Thus, the existence of relevant
-references in the deeper computer science literature is a key issue I
-would appreciate discussing at the Symposium.
 
 
 \section{Proposed Approach and Methodology}
