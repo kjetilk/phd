@@ -33,12 +33,6 @@ Postboks 1080 Blindern,
 
 \section{Introduction}
 
-Query federation has been an active field for some time, but has until
-the advent of the Semantic Web not been used in a highly diverse set
-of endpoints, commonly they have been under the control of a single
-institution. RDF has a triple-based data model for the Semantic Web,
-and SPARQL is a standardized query language to query such data.
-
 Query federation with SPARQL has attracted much attention
 from industry and academia alike, and four implementations of basic
 query federation were submitted to the SPARQL 1.1 Working Group as
@@ -62,16 +56,6 @@ Since the main objective of the proposed work is to create systems
 that have sufficient performance for practical applications, it is of
 paramount importance to have methodology that can rigorously rank
 implementations based on performance.
-
-In a federated regime, any query is likely to execute queries on
-several different SPARQL implementations. Many of those are free
-software so the algorithms they use could in principle be analyzed,
-but in practice, this would be very time-consuming. Some
-implementations may be undocumented or even trade secrets, thus
-precluding any such analysis. It is therefore my intention to treat
-the individual SPARQL implementations as ``black boxes'' and
-exclusively evaluate the performance characteristics by empirical
-means, aka ``benchmarking''.
 
 However, I have found the current state of the art in SPARQL benchmarking
 lacking in its use of statistics, which motivates two distinct
@@ -130,16 +114,16 @@ one engine is dramatically better than another in one case, small
 deficiencies may add up to make the other a better choice for most
 applications anyway.
 
-When the difference is small, we must consider the possibility that
-the measurements are impacted by random noise. Computer systems are
-generally very deterministic systems, but there are nevertheless many
-such scenarios: The underlying system may be doing other tasks. The
-garbage collection of some languages may trigger at not easily
-foreseeable points. The engine may use randomized algorithms, or the
-data may be of such a nature that it triggers worst-case behaviour in
-situations the query writer cannot foresee. All this contributes to
-that we should consider the performance metric, whatever metric is
-used, as a \emph{stochastic variable}.
+In this case, we must consider the possibility that the measurements
+are impacted by random noise. Computer systems are generally very
+deterministic systems, but there are nevertheless many such scenarios:
+The underlying system may be doing other tasks. The garbage collection
+of some languages may trigger at not easily foreseeable points. The
+engine may use randomized algorithms, or the data may be of such a
+nature that it triggers worst-case behaviour in situations the query
+writer cannot foresee. All this contributes to that we should consider
+the performance metric, whatever metric is used, as a \emph{stochastic
+  variable}.
 
 Doing this opens new methodological possibilities, first and foremost
 using well-established statistical hypothesis testing rather than just
