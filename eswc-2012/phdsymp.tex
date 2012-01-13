@@ -113,19 +113,18 @@ deficiencies may add up to make the other a better choice for most
 applications anyway.
 
 In this case, we must consider the possibility that the measurements
-are impacted by random noise. Computer systems are generally very
-deterministic systems, but there are nevertheless many such scenarios:
-The underlying system may be doing other tasks. The garbage collection
-of some languages may trigger at not easily foreseeable points. The
-engine may use randomized algorithms, or the data may be of such a
-nature that it triggers worst-case behaviour in situations the query
-writer cannot foresee. All this contributes to that we should consider
-the performance metric, whatever metric is used, as a \emph{stochastic
+are impacted by random noise. For example: The underlying system may
+be doing other tasks. The garbage collection of some languages may
+trigger at not easily foreseeable points. The engine may use
+randomized algorithms, or the data may be of such a nature that it
+triggers worst-case behaviour in situations the query writer cannot
+foresee. All this contributes to that we should consider the
+performance metric, whatever metric is used, as a \emph{stochastic
   variable}.
 
 Doing this opens new methodological possibilities, first and foremost
-using well-established statistical hypothesis testing rather than just
-comparing averages. 
+using well-established statistical hypothesis testing or ranking
+rather than just comparing averages.
 
 With the currently published benchmarks, it is up to the user to
 select an engine with the best characteristics relative to their own
@@ -173,7 +172,7 @@ statistical digest.
 
 \section{State of the Art}
 
-\subsection{In SPARQL Federation}
+\paragraph{In SPARQL Federation}
 
 I take the technology state of the art to be represented by the
 current basic SPARQL 1.1 Federated Query Working
@@ -195,7 +194,7 @@ For benchmarking federated query processing strategies,
 
 
 
-\subsection{In Benchmarking}
+\paragraph{In Benchmarking}
 
 Numerous benchmarks have been developed for SPARQL, but
 \cite{Duan:2011:AOC:1989323.1989340} showed that currently, most
@@ -275,8 +274,8 @@ possible to design a benchmark to cover all realistic cases.
 %\section{Conclusion}
 
 %\bibliographystyle{plain}
-%\bibliographystyle{plain-csmin}
-\bibliographystyle{splncs03}
+\bibliographystyle{plain-csmin}
+%\bibliographystyle{splncs03}
 \bibliography{selectivity,federation,benchmarks,optimization}
 
 \end{document}
