@@ -88,10 +88,6 @@ is of optimal size for the query performance problem?
 
 \subsection{In Benchmarking}
 
-The contemporary problem in benchmarking is to distinguish
-implementations when the measured difference is small or susceptible
-to random noise.
-
 Current common practice in benchmarking SPARQL-enabled systems is to
 use or synthesize a certain dataset, then formulate a number of
 queries seen as representative of SPARQL use in some way. These
@@ -110,12 +106,10 @@ deficiencies may add up to make the other a better choice for most
 applications anyway.
 
 In this case, we must consider the possibility that the measurements
-are impacted by random noise. For example: The underlying system may
-be doing other tasks. The garbage collection of some languages may
-trigger at not easily foreseeable points. The engine may use
-randomized algorithms, or the data may be of such a nature that it
-triggers worst-case behaviour in situations the query writer cannot
-foresee. All this contributes to that we should consider the
+are impacted by random noise. Sources of random noise may be the
+overall system load, garbage collection triggers, use of randomized
+algorithms, or the data of such a nature that it triggers worst-case
+behaviour, etc. All this contributes to that we should consider the
 performance metric, whatever metric is used, as a \emph{stochastic
   variable}.
 
@@ -270,8 +264,8 @@ realistic cases.
 %\section{Conclusion}
 
 %\bibliographystyle{plain}
-\bibliographystyle{plain-csmin}
-%\bibliographystyle{splncs03}
+%\bibliographystyle{plain-csmin}
+\bibliographystyle{splncs03}
 \bibliography{selectivity,federation,benchmarks,optimization}
 
 \end{document}
