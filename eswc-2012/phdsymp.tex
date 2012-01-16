@@ -238,15 +238,17 @@ experiments can be much more efficient than simple ones\footnote{Cited
 experimental design field. One of the simpler designs is ``fractional
 factorial design'', in which several ``factors'' are studied. In terms
 of SPARQL execution, the SPARQL engine is clearly a factor, but also,
-for example, the nestedness of \texttt{OPTIONAL}s can be a factor,
-or the number of triples in a basic graph pattern, etc. These numbers are
+for example, the nestedness of \texttt{OPTIONAL}s can be a factor, or
+the number of triples in a basic graph pattern, etc. These numbers are
 varied to different ``levels''. The key to understanding why this can
 be efficient is that these variations need not occur in the same
 experiment. Therefore, many combinations of factors can be studied by
 carefully designing queries to cover different factors, and a
 formalism called ``resolution'' has been developed to classify how
 well this has been achieved, partly answering the question of
-evaluation methodology for this part of the thesis.
+evaluation methodology for this part of the thesis. We should also
+validate by comparing this benchmark with conclusions from existing
+benchmarks.
 
 Factorial design is covered in elementary text-books in
 statistics but is most likely inadequate for this purpose, so I intend
@@ -265,8 +267,6 @@ implementations. Adjusting how different features are weighed will
 help those who know details of their expected SPARQL use and
 normalization-techniques of the weights will answer the special case
 of ``the best general-purpose SPARQL engine''.
-
-
 
 %\section{Conclusion}
 
