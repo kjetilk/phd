@@ -39,8 +39,8 @@ from industry and academia alike, and four implementations of basic
 query federation were submitted to the SPARQL 1.1 Working Group as
 input for the forthcoming
 work\footnote{http://www.w3.org/2009/sparql/wiki/Feature:BasicFederatedQuery}. 
-The basic query federation feature was
-supported by a large number of group members, and the Last Call working
+This feature was
+supported by a many group members, and the Last Call working
 draft of the proposed standard was published on 17~November~2011.
 
 While the basic feature set of the proposed standard can enable users
@@ -75,7 +75,6 @@ concern in this paper.
 I take the technology state of the art to be represented by the
 current basic SPARQL 1.1 Federated Query Working
 Draft\footnote{http://www.w3.org/TR/2011/WD-sparql11-federated-query-20111117/}. 
-
 A recent scientific treatment of the current specification is in
 \cite{springerlink:10.1007/978-3-642-21064-8-1}. In this paper, the
 authors also show an optimization strategy based on execution order of
@@ -107,7 +106,6 @@ Numerous benchmarks have been developed for SPARQL, but
 \cite{Duan:2011:AOC:1989323.1989340} showed that currently most
 benchmarks poorly represent the typical data and queries that are used
 on the Semantic Web.
-
 Most recently, \cite{mxro:Morsey2011DBpedia} addressed some of these
 problems by using real data and real queries from DBpedia.
 
@@ -116,9 +114,10 @@ use or synthesize a certain dataset, then formulate a number of
 queries seen as representative of SPARQL use in some way. These
 queries are then executed, and some characteristic of performance is
 measured, for example the time it takes for the engine to return the
-full result. Commonly, this process is repeated a number of times and
-an average response time is found. The performance of different
-engines can then be compared, based on these averages.
+full result. Since there is a certain randomness in query times, this
+process is repeated a number of times and an average response time is
+found. The performance of different engines can then be compared,
+based on these averages.
 
 In many cases, this is sufficient. Sometimes, one engine can execute a
 query in an order of magnitude faster than another, in which case, there
@@ -128,13 +127,9 @@ one engine is dramatically better than another in one case, small
 deficiencies may add up to make the other a better choice for most
 applications anyway.
 
-In this case, we must consider the possibility that the measurements
-are impacted by random noise. Sources of random noise may be the
-overall system load, garbage collection triggers, use of randomized
-algorithms, or that the data is of such a nature that it triggers
-worst-case behaviour, etc. All this contributes to that we should
-consider the performance metric, whatever metric is used, as a
-\emph{stochastic variable}.
+In this case, we must consider the possibility that the random noise
+can influence the conclusions. Whatever metric is used, it should be
+treated as a \emph{stochastic variable}.
 
 This opens new methodological possibilities, first and foremost
 using well-established statistical hypothesis testing or ranking
@@ -230,11 +225,9 @@ designs of the thesis.
 
 \subsection{In Benchmarking}\label{sec:benchmethod}
 
-This part of the thesis seeks to use advances from statistical
-experimental planning to improve accuracy and dependability of
-benchmarking. Already in 1926, Ronald~Fischer noted that complex
-experiments can be much more efficient than simple ones\footnote{Cited
-  in http://en.wikipedia.org/wiki/Factorial\_experiment}, starting the
+Already in 1926, Ronald~Fischer noted that complex experiments can be
+much more efficient than simple ones\footnote{Cited in
+  http://en.wikipedia.org/wiki/Factorial\_experiment}, starting the
 experimental design field. One of the simpler designs is ``fractional
 factorial design'', in which several ``factors'' are studied. In terms
 of SPARQL execution, the SPARQL engine is clearly a factor, but also,
