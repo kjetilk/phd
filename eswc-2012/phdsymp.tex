@@ -74,28 +74,29 @@ concern in this paper.
 
 I take the technology state of the art to be represented by the
 current basic SPARQL 1.1 Federated Query Working
-Draft\footnote{http://www.w3.org/TR/2011/WD-sparql11-federated-query-20111117/}. 
+Draft\footnote{http://www.w3.org/TR/2011/WD-sparql11-federated-query-20111117/}. In
+addition, many have implemented federation that doesn't require 
+explicit references to service endpoints, e.g.~\cite{springerlink:10.1007/978-3-642-25073-6-38}.
 A recent scientific treatment of the current specification is in
 \cite{springerlink:10.1007/978-3-642-21064-8-1}. In this paper, the
 authors also show an optimization strategy based on execution order of
 so-called well-designed patterns.
 
-For benchmarking federated query processing strategies,
-\cite{Schmidt:2011:FBS:2063016.2063054} report the development of
-\emph{FedBench}. In this paper, the authors note that the
-absence of statistics has very adverse effects on performance as the join
-order is impossible to optimize. It is also pointed out that it causes
-other problems as well, for example a high number of requests to
-federation members. I take this as a key research problem.
+A recent review of the state of the art is in
+\cite{springerlink:10.1007/978-3-642-17551-0-5}. In addition,
+\cite{springerlink:10.1007/978-3-642-25073-6-38} proposes
+\emph{bound joins} and proves it can dramatically reduce the number of
+requests needed to federation members as well as the implementation of
+FedX.
 
-This problem has already received some attention, in \cite{5337556} it
-is shown how various statistics-gathering techniques, including
-histograms, can be computed to assist the SemWIQ optimizer, written by
-the same authors.  However, histogram approaches generally suffer
-from the problem that they grow too large or become an insufficiently
-accurate digest, especially in the face of very heterogeneous data.
-\cite{Harth:2010:DSO:1772690.1772733} introduced QTrees, which may
-alleviate the problem of histogram size, but which may not solve it.
+It has been my intention to focus on the two problems listed in
+section~3.3.1
+in~\cite{springerlink:10.1007/978-3-642-17551-0-5}. Notably, histogram
+approaches generally suffer from the problem that they grow too large
+or become an insufficiently accurate digest, especially in the face of
+very heterogeneous data.  \cite{Harth:2010:DSO:1772690.1772733}
+introduced QTrees, which may alleviate the problem of histogram size,
+but which may not solve it.
 
 Therefore, the core problem is: How do we compute and expose a digest that
 is of optimal size for the query performance problem?
@@ -107,7 +108,9 @@ Numerous benchmarks have been developed for SPARQL, but
 benchmarks poorly represent the typical data and queries that are used
 on the Semantic Web.
 Most recently, \cite{mxro:Morsey2011DBpedia} addressed some of these
-problems by using real data and real queries from DBpedia.
+problems by using real data and real queries from
+DBpedia. \cite{Schmidt:2011:FBS:2063016.2063054} has developed a
+benchmark for the federated case.
 
 Current common practice in benchmarking SPARQL-enabled systems is to
 use or synthesize a certain dataset, then formulate a number of
