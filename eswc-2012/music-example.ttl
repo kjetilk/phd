@@ -37,3 +37,15 @@ dbpedia:Another_Day_(Roy_Harper_song)
 	dbpprop:name "Another Day" ;	
 	dbpedia-owl:wikiPageExternalLink <http://www.youtube.com/watch?v=WKAOu37oMkM> .
 
+dbpedia:Have_a_Cigar a dbpedia-owl:Single ;
+        foaf:name "Have a Cigar" ;
+	dbpprop:writer dbpedia:Roger_Waters ;
+	dbpedia-owl:musicalArtist dbpedia:Pink_Floyd, dbpedia:Roy_Harper ;
+	dbpedia-owl:musicalBand dbpedia:Pink_Floyd .
+
+dbpedia:Hats_Off_to_(Roy)_Harper a dbpedia-owl:MusicalWork, yago:LedZeppelinSongs ;
+        foaf:name "Hats Off to (Roy) Harper" ;
+        dbpprop:artist dbpedia:Led_Zeppelin ;
+	foaf:topic dbpedia:Roy_Harper .
+
+
