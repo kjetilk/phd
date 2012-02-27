@@ -92,6 +92,27 @@ data by web developers\footnote{http://code.google.com/p/linked-data-api/}.
 
 \section{Non-trivial graph traversal}
 
+\section{Lacking links in standards}
+
+The SPARQL 1.1 Graph Store HTTP
+Protocol\footnote{\url{http://www.w3.org/TR/2011/WD-sparql11-http-rdf-update-20110512/}},
+currently with a Last Call status, claims to define a protocol in the
+REST architectural style. It is not clear how it satisfies the
+constraints of REST. On one hand, the strong ties to HTTP is overly
+restrictive from a REST point of view, on the other, the specification
+contains no mention today of how hypermedia (i.e. RDF in this case)
+will drive interaction, which is the critical part of a using the REST
+architectural style. Moreover, it defines out-of-band URI keywords
+(\texttt{graph}). As mentioned in the introduction, this is not
+necessarily a violation of architectural constraints, but the
+specification has no mention of how applications can interact to
+achieve the same tasks as it could with this out-of-band information.
+
+This represents a lost opportunity to consider the practical
+implications of HATEOAS to come up with a clearly RESTful specification.
+
+% TODO: more than one URI for graph traversal
+
 \section{Finding the way with VoID}
 
 
