@@ -26,6 +26,8 @@ making a bridge between LOD and SPARQL possible.
 
 \end{abstract}
 
+\section*{BRAINDUMP STATUS}
+
 \section{Introduction}
 
 Some bloggers in the developer community, see e.g.~\cite{sunsetonmvc},
@@ -52,11 +54,12 @@ The HATEOAS constraint requires that the application can navigate from
 one resources to another using the hypermedia links in the present
 resource \emph{only}, it should not require any out-of-band
 information to do so. Thus, a RESTful API should not require prior
-knowledge of a URI structure, but it does not forbid it as long as the
-same information can be gleened from the resources. Nor does it
-require that all resources can be reached from any other resource. As
-such, the constraint is not very strict, one could argue that as long
-as there are some links, the API satisfies the HATEOAS constraint.
+knowledge of a URI structure, but one may define the API in terms of
+URI structure as long as the same information can be gleened from the
+resources. Nor does it require that all resources can be reached from
+any other resource. As such, the constraint is not very strict, one
+could argue that as long as there are some links, the API satisfies
+the HATEOAS constraint.
 
 Since RDF is built on URIs, many of which can be dereferenced to
 obtain further links, it lends itself well to RESTful APIs, but it is
