@@ -75,17 +75,20 @@ language of choice, and this pattern has proved very useful. However,
 for slightly more complex applications, one has to traverse a
 relatively large graph to find the data one requires. In most cases,
 one would need to match the graph with a pattern, which is essentially
-what the SPARQL query language does. The main problem is that there
-may not be a link present that makes it possible for the application
-to find the query endpoint without requiring out-of-band information,
-which implies that non-REST interactions are required. To remedy this
-situation, we would need to add more links.
+what the SPARQL query language does. In the Linked Data Design
+Issue\footnote{\url{http://www.w3.org/DesignIssues/LinkedData}} Tim
+Berners-Lee notes ``To make the data be effectively linked, someone
+who only has the URI of something must be able to find their way the
+SPARQL endpoint.'', but this is generally not possible today without
+requiring out-of-band information, which implies that non-REST
+interactions are required. To remedy this situation, we would need to
+add more links.
 
 
 \section{Questions for discussion}
 
 \begin{enumerate}
-\item TimBL suggests in the Linked Data Design
+\item Tim Berners-Lee suggests in the Linked Data Design
   Issue\footnote{\url{http://www.w3.org/DesignIssues/LinkedData}} the
   use of ``Minimum Spanning Graph'', what other triples would humans
   and machines find useful?
