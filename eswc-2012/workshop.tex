@@ -49,7 +49,7 @@ graph. Moreover, we will argue that this shortcoming is due to that
 the community does not adequately take into account the constraint
 known as ``Hypermedia as the Engine of Application State'' (commonly
 abbreviated HATEOAS) from the REST architectural style, see
-\cite{fielding}~Chapter~5.
+\cite{Fielding_2000_Architectural-Styles}~Chapter~5.
 
 The HATEOAS constraint requires that the application can navigate from
 one resources to another using the hypermedia links in the present
@@ -87,7 +87,12 @@ add more links.
 
 \section{Non-trivial graph traversal}
 
-\section{Finding the way with voiD}
+\section{Finding the way with VoID}
+
+
+</resource/foo> dct:isPartOf 
+  [ a void:Dataset ;
+    void:sparqlEndpoint </sparql> . ] .
 
 
 \section{Questions for discussion}
@@ -101,9 +106,9 @@ add more links.
 \end{enumerate}
 
 
-%\bibliographystyle{plain-csmin}
+\bibliographystyle{plain-csmin}
 %\bibliographystyle{jbact}
 %\bibliographystyle{splncs03}
-%\bibliography{selectivity,federation,benchmarks,optimization}
+\bibliography{federation,webarch,webframeworks}
 
 \end{document}
