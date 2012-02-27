@@ -68,7 +68,29 @@ doesn't enable any useful interactions. Therefore, whether the HATEOAS
 constraint is satisfied must be judged on the basis of the practical
 applications the API enables.
 
+The LOD Cloud consists of well-linked datasets and to find simple
+answers by simply dereferencing URIs, parse the returned content and
+address it by conventional methods provided by the programming
+language of choice, and this pattern has proved very useful. However,
+for slightly more complex applications, one has to traverse a
+relatively large graph to find the data one requires. In most cases,
+one would need to match the graph with a pattern, which is essentially
+what the SPARQL query language does. The main problem is that there
+may not be a link present that makes it possible for the application
+to find the query endpoint without requiring out-of-band information,
+which implies that non-REST interactions are required. To remedy this
+situation, we would need to add more links.
 
+
+\section{Questions for discussion}
+
+\begin{enumerate}
+\item TimBL suggests in the Linked Data Design
+  Issue\footnote{\url{http://www.w3.org/DesignIssues/LinkedData}} the
+  use of ``Minimum Spanning Graph'', what other triples would humans
+  and machines find useful?
+
+\end{enumerate}
 
 
 %\bibliographystyle{plain-csmin}
