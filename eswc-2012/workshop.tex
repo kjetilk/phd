@@ -120,13 +120,96 @@ Prefixes are in the following omitted for brevity.
 
 \subsection{Simple hypermedia vocabulary}
 
+To help drive interaction through hypermedia, the RDF information
+resources has to contain information about the URIs that can be used
+to perform operations other than pure reads. To this end, we suggest a
+simple vocabulary that can be used to supply some statements with all
+resources that the client may be allowed to manipulate.
+
+In keeping with the REST philosophy that the representation should be
+independent of the protocol that is used to transfer it, the
+vocabulary is independent of HTTP, but the explanatory comments uses
+HTTP examples, as this makes the discussion clearer.
+
+\begin{verbatim}
+hm:operations a rdf:Property ;
+              rdfs:range foaf:Document ;
+              rdfs:domain hm:Operations .
+\end{verbatim}
+\texttt{hm:operations} link the resource we want to manipulate,
+typically the current information resource to the operations we may be
+allowed to perform on it.
+
+
+In all the following examples, the object of the statement is the
+Request-URI that the server suggests is used to manipulate the resource.
+\begin{verbatim}
+hm:mergeInto a rdf:Property ;
+             rdfs:range hm:Operations ;
+             rdfs:domain foaf:Document .
+\end{verbatim}
+\texttt{hm:mergeInto} is used to indicate that a HTTP POST operation
+will do an RDF merge of the request body with the content at the
+Request-URI.
+
+\begin{verbatim}
+hm:serverCreate a rdf:Property ;
+                rdfs:range hm:Operations ;
+                rdfs:domain foaf:Document .
+\end{verbatim}
+\texttt{hm:serverCreate} is used to indicate that a HTTP POST
+operation to the Request-URI will create a new resource with a
+server-supplied URI.
+
+\begin{verbatim}
+hm:delete a rdf:Property ;
+          rdfs:range hm:Operations ;
+          rdfs:domain foaf:Document .
+\end{verbatim}
+\texttt{hm:delete} is used to indicate that the resource should be
+deleted when issuing a HTTP DELETE operation to the Request-URI. 
+
+\begin{verbatim}
+hm:put a rdf:Property ;
+       rdfs:range hm:Operations ;
+       rdfs:domain foaf:Document .
+\end{verbatim}
+\texttt{hm:put} is used to indicate that the resource should be
+created using the request body or updated with it if it already exists
+when issuing a HTTP PUT operation to the Request-URI.
+
+\begin{verbatim}
+hm:Operations a rdfs:Class .
+\end{verbatim}
+The class of possible operations.
+
+To manipulate default graphs, properties \texttt{hm:mergeIntoDefault},
+\texttt{hm:deleteDefault} and \texttt{hm:putDefault} are defined
+similarly.
+
+In most cases, the current information resource will be the subject of
+the \texttt{hm:operations} \strong{but also} the object of the allowed
+operations. A typical information resource will supply the following
+triples (given a suitable base URI):
+
+\begin{verbatim}
+<> hm:operations
+   [ a hm:Operations ;
+     hm:mergeInto <> ;
+     hm:delete <> ;
+     hm:put <> ;
+     hm:serverCreate <../> .
+   ] .
+\end{verbatim}
+This represents the common case when you GET a resource, then update
+it with PUT or DELETE or append triples with POST.
 
 
 \subsection{Finding the way with VoID}
 
-
+\begin{verbatim}
 <> void:inDataset [ void:sparqlEndpoint </sparql> . ] .
-
+\end{verbatim}
 
 \section{Questions for discussion}
 
@@ -135,6 +218,9 @@ Prefixes are in the following omitted for brevity.
   Issue\footnote{\url{http://www.w3.org/DesignIssues/LinkedData}} the
   use of ``Minimum Spanning Graph'', what other triples would humans
   and machines find useful?
+
+\item What can we do to add more H Factors\footnote{see
+  \url{http://amundsen.com/hypermedia/hfactor/}} to RDF?
 
 \end{enumerate}
 
