@@ -105,3 +105,25 @@ there must be something in the RDF itself that can be used by
 practical applications to write data. Therefore, whether the HATEOAS
 constraint is satisfied must be judged on the basis of the practical
 applications the protocol enables.
+
+\section{Required links}
+
+As noted in \cite{sunsetonmvc}, AtomPub has a single service endpoint,
+and you can navigate to what you need from there. This motivates the
+first discussion topic of this paper:
+
+\begin{question}
+Is a single service endpoint enough for Linked Data?
+\end{question}
+
+We note that the distributed graph structure of the LOD Cloud makes
+this awkward: For every new data source encountered in a graph
+traversal, a new service endpoint must be queried. Moreover, it would
+be awkward if fine-grained access controls for writing is being used
+to record permissions for all resources in a single service
+description. It seems likely that a few triples attached to each
+information resource is better suited in most cases.
+
+
+
+
