@@ -133,22 +133,16 @@ minimal vocabulary, but like the H~Factor web page, we shall find it
 instructive to use examples. In the following, we use Turtle syntax
 with prefixes omitted for brevity. Also, we note that in many cases,
 we are making statements about the current resource, which given a
-reasonable base URI can be written as \texttt{<>}. These are the H~Factors:
+reasonable base URI can be written as \texttt{<>}. We have not found
+the following factors to be relevant to RDF: \textsf{LE}, \textsf{CU}
+and \textsf{LT} (though the latter may be supported by
+RDForms\footnote{\url{http://vocab.deri.ie/rdforms}}?)  Then
+\textsf{LO} and \textsf{CL} are trivially supported. The remaining are:
+
 
 \begin{description}
-\item[LE] Support for embedded links (HTTP GET)
 
-Not relevant for RDF.
-
-\item[LO] Support for out-bound navigational links (HTTP GET)
-
-Trivially supported by RDF.
-
-\item[LT] Support for templated queries (HTTP GET)
-
-Undefined by this paper. Possibly supported by RDForms\footnote{\url{http://vocab.deri.ie/rdforms}}?
-
-\item[LN] Support for non-idempotent updates (HTTP POST) 
+\item[\textsf{LN}] Support for non-idempotent updates (HTTP POST) 
 
 \begin{verbatim}
 <> hm:canBe hm:mergedInto ;
@@ -165,7 +159,7 @@ case) to POST an RDF payload to some URI and the server will itself
 assign a URI to the posted RDF payload. 
 
 
-\item[LI] Support for idempotent updates (HTTP PUT, DELETE) 
+\item[\textsf{LI}] Support for idempotent updates (HTTP PUT, DELETE) 
 
 \begin{verbatim}
 <> hm:canBe hm:replaced ,
@@ -178,19 +172,14 @@ triple says that the resource may be deleted, typically by a HTTP
 DELETE on the resource URI.
 
 
-\item[CR] Support for modifying control data for read requests
+\item[\textsf{CR}] Support for modifying control data for read requests
   (e.g. HTTP Accept-* headers).
 
 \begin{verbatim}
 <> hm:acceptsFormats <http://www.w3.org/ns/formats/Turtle> .
 \end{verbatim}
 
-\item[CU] Support for modifying control data for update requests
-  (e. g. Content-* headers).
-
-Undefined by this paper.
-
-\item[CM] Support for indicating the interface method for requests
+\item[\textsf{CM}] Support for indicating the interface method for requests
   (e.g. HTTP GET, POST, PUT, DELETE methods).
 
 E.g.
@@ -201,11 +190,6 @@ hm:deleted         hm:httpMethod "DELETE" .
 hm:mergedInto      hm:httpMethod "POST" .
 hm:createSimilarAt hm:httpMethod "POST" .
 \end{verbatim}
-
-\item[CL] Support for adding semantic meaning to link elements using
-  link relations (e.g. HTML rel attribute). 
-
-Trivially supported by RDF.
 
 \end{description}
 
