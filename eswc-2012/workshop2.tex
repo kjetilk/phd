@@ -75,13 +75,7 @@ the REST architectural style, see
 In a read-only situation, the HATEOAS constraint requires that the
 application can navigate from one resources to another using the
 hypermedia links in the present resource \emph{only}, it should not
-require any out-of-band information to do so. Thus, a RESTful protocol
-should not require prior knowledge of a URI structure, but one may
-define the protocol in terms of URI structure as long as the same
-information can be gleaned from the resources. Nor does it require
-that all resources can be reached from any other resource. As such,
-the constraint is not very strict, one could argue that as long as
-there are some links, the protocol satisfies the HATEOAS constraint.
+require any out-of-band information.
 
 Since RDF is built on URIs, many of which can be dereferenced to
 obtain further links, it lends itself well to RESTful protocols, but
@@ -152,8 +146,7 @@ assign a URI to the posted RDF payload.
 \item[\textsf{LI}] Support for idempotent updates (HTTP PUT, DELETE) 
 
 \begin{verbatim}
-<> hm:canBe hm:replaced ,
-            hm:deleted .
+<> hm:canBe hm:replaced, hm:deleted .
 \end{verbatim}
 
 The first triple says that the current resource may be replaced by, in
@@ -172,13 +165,9 @@ DELETE on the resource URI.
 \item[\textsf{CM}] Support for indicating the interface method for requests
   (e.g. HTTP GET, POST, PUT, DELETE methods).
 
-E.g.
-
+For example (with similar triples for other HTTP methods):
 \begin{verbatim}
-hm:replaced        hm:httpMethod "PUT" .
-hm:deleted         hm:httpMethod "DELETE" .
-hm:mergedInto      hm:httpMethod "POST" .
-hm:createSimilarAt hm:httpMethod "POST" .
+hm:replaced hm:httpMethod "PUT" .
 \end{verbatim}
 
 \end{description}
