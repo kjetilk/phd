@@ -233,6 +233,34 @@ vocabulary like the above?
 Can we create a better vocabulary for hypermedia RDF than the sketch above?
 \end{question}
 
+\section{Bridging LOD and SPARQL}
+
+In many cases, it is sufficient to get a small number of resources to
+collect the data needed for a given usage, but slightly more involved
+queries (e.g. ``what kind of connections exists between Kate Bush, Roy
+Harper and bands that have sold more than 200 million albums?'') would
+likely cause thousands of resources to be downloaded and examined. For
+this, more advanced graph pattern matching as well as more advanced
+mechanisms for source selection is
+required. \cite{springerlink:10.1007/978-3-642-25073-6-38} provides
+some techniques that should prove very valuable in this respect and so
+it becomes important that SPARQL can be used with Linked Data in a
+RESTful manner.
+
+In the Linked Data Design
+Issue\footnote{\url{http://www.w3.org/DesignIssues/LinkedData}} Tim
+Berners-Lee notes ``To make the data be effectively linked, someone
+who only has the URI of something must be able to find their way the
+SPARQL endpoint.'', but this is generally not possible today without
+requiring out-of-band information, which implies that non-REST
+interactions are required. 
+
+The triples needed to do this is already defined in
+VoID\footnote{\url{http://vocab.deri.ie/void}} and in use:
+\begin{verbatim}
+<> void:inDataset [ void:sparqlEndpoint </sparql> . ] .
+\end{verbatim}
+
 
 
 \bibliographystyle{plain-csmin}
