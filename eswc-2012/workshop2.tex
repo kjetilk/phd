@@ -43,8 +43,8 @@ HTML is a hypermedia type; XML is not.
 \end{quote}
 Furthermore, he defines a classification scheme called H~Factor as ``a
 measurement of the level of hypermedia support and sophistication of a
-media-type.'' The REST & WOA Wiki defines ``the Hypermedia
-Scale''\footnote{\url{http://restpatterns.org/Articles/The_Hypermedia_Scale}},
+media-type.'' The REST \& WOA Wiki defines ``the Hypermedia
+Scale''\footnote{\url{http://restpatterns.org/Articles/The\_Hypermedia\_Scale}},
 where the categorization is based on capabilities for create, read,
 update and delete operations.  Standing on it's own, RDF is a
 hypermedia type, but only at the \textsf{LO} and \textsf{CL} levels,
@@ -124,6 +124,109 @@ to record permissions for all resources in a single service
 description. It seems likely that a few triples attached to each
 information resource is better suited in most cases.
 
+\section{Defining hypermedia RDF}
+
+We noted that for a read-write RESTful protocol, we need to say in the
+RDF message itself what can of operations can be made. We also note
+that only information resources can be manipulated, and we argued that
+it should be possible to add the required triples to every
+resource. We should be able to define hypermedia RDF in terms of a
+minimal vocabulary, but like the H~Factor web page, we shall find it
+instructive to use examples. In the following, we use Turtle syntax
+with prefixes omitted for brevity. Also, we note that in many cases,
+we are making statements about the current resource, which given a
+reasonable base URI can be written as \texttt{<>}. These are the H~Factors:
+
+\begin{description}
+\item[LE] Support for embedded links (HTTP GET)
+
+Not relevant for RDF.
+
+\item[LO] Support for out-bound navigational links (HTTP GET)
+
+Trivially supported by RDF.
+
+\item[LT] Support for templated queries (HTTP GET)
+
+Undefined by this paper. Possibly supported by RDForms\footnote{\url{http://vocab.deri.ie/rdforms}}?
+
+\item[LN] Support for non-idempotent updates (HTTP POST) 
+
+\begin{verbatim}
+<> hm:canBe hm:mergedInto ;
+   hm:createSimilarAt <../> .
+\end{verbatim}
+
+The first triple says that the current resource can be merged with
+another resource. In a typical HTTP case, this would be achieved by
+POSTing to the current resource with an RDF payload, and the server
+would perform a RDF merge of the payload with the current resource.
+
+The second triple exists to make it possible (in the typical HTTP
+case) to POST an RDF payload to some URI and the server will itself
+assign a URI to the posted RDF payload. 
+
+
+\item[LI] Support for idempotent updates (HTTP PUT, DELETE) 
+
+\begin{verbatim}
+<> hm:canBe hm:replaced ,
+            hm:deleted .
+\end{verbatim}
+
+The first triple says that the current resource may be replaced by, in
+the HTTP case, PUTting an RDF payload to the resource URI. The second
+triple says that the resource may be deleted, typically by a HTTP
+DELETE on the resource URI.
+
+
+\item[CR] Support for modifying control data for read requests
+  (e.g. HTTP Accept-* headers).
+
+\begin{verbatim}
+<> hm:acceptsFormats <http://www.w3.org/ns/formats/Turtle> .
+\end{verbatim}
+
+\item[CU] Support for modifying control data for update requests
+  (e. g. Content-* headers).
+
+Undefined by this paper.
+
+\item[CM] Support for indiciating the interface method for requests
+  (e.g. HTTP GET, POST, PUT, DELETE methods).
+
+E.g.
+
+\begin{verbatim}
+hm:replaced        hm:httpMethod "PUT" .
+hm:deleted         hm:httpMethod "DELETE" .
+hm:mergedInto      hm:httpMethod "POST" .
+hm:createSimilarAt hm:httpMethod "POST" .
+\end{verbatim}
+
+\item[CL] Support for adding semantic meaning to link elements using
+  link relations (e.g. HTML rel attribute). 
+
+Trivially supported by RDF.
+
+\end{description}
+
+We see that with a simple vocabulary, RDF can become a very powerful
+hypermedia type. We also note that this vocabulary does enable agents
+to do the same operations as the SPARQL  1.1 Graph Store HTTP
+Protocol\footnote{\url{http://www.w3.org/TR/2011/WD-sparql11-http-rdf-update-20110512/}},
+but being fully RESTful. The specification is currently not RESTful
+per the discussion above, even though it was a key design goal. It
+should also be possible to use this on the default (nameless) graph by
+assigning it a name in the service description rather than defining it
+in a out-of-band specification like it is currently being done.
 
 
 
+
+\bibliographystyle{plain-csmin}
+%\bibliographystyle{jbact}
+%\bibliographystyle{splncs03}
+\bibliography{federation,webarch,webframeworks}
+
+\end{document}
