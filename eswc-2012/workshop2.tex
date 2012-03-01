@@ -50,3 +50,37 @@ update and delete operations.  Standing on it's own, RDF is a
 hypermedia type, but only at the \textsf{LO} and \textsf{CL} levels,
 and just an R~Type (read) on the Hypermedia Scale. We aim at improving
 this situation.
+
+Amundsen argues in a blog
+post\footnote{\url{http://amundsen.com/blog/archives/1083}} that the
+Semantic Web community should not pursue an API for RDF, but rather
+make sure RDF is a more powerful hypermedia type, like HTML or
+Atom. He argues that a key factor in the success of the Web is that
+messages not only contain data but also application control
+information, and this is needed for the Web to scale.
+
+We also note that some bloggers in the developer community, see
+e.g.~\cite{sunsetonmvc}, is currently predicting a paradigm shift in
+common practices, prompted by the trend towards richer clients. This
+has caused a departure from the time-tested Model-View-Controller
+pattern that has been the dominant paradigm in web development for
+more than a decade.
+
+Semantic Web services is likely to be an important source of data for
+future applications, but for foreseeable future just one of many. A
+key promise of Linked Open Data (LOD) in particular, and the Semantic
+Web in general is the ability to integrate many data sources
+easily. There are two key issues, first read-write operations must be
+similar to how it is done with other hypermedia types to make it
+possible to use generic code to minimize the effort required to
+support RDF. Secondly, it requires relevant links and that the
+resulting graph can be traversed by reasonable means.
+
+While links are highly abundant across the LOD cloud, this paper will
+argue that key links are missing to make it possible to traverse the
+resulting graph and to enable read-write operations. Moreover, we will
+argue that this shortcoming is due to that the community does not
+adequately take into account the constraint known as ``Hypermedia as
+the Engine of Application State'' (commonly abbreviated HATEOAS) from
+the REST architectural style, see
+\cite{Fielding_2000_Architectural-Styles}~Chapter~5.
