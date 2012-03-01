@@ -49,22 +49,21 @@ Scale. We aim at improving this situation.
 Amundsen argues in a blog
 post\footnote{\url{http://amundsen.com/blog/archives/1083}} that the
 Semantic Web community should not pursue an API for RDF, but rather
-work to make RDF serializations more powerful hypermedia types, like HTML or
-Atom. He argues that a key factor in the success of the Web is that
-messages not only contain data but also application control
-information, and this is needed for the Web to scale.
+make RDF serializations more powerful hypermedia types. He argues that
+a key factor in the success of the Web is that messages not only
+contain data but also application control information, and this is
+needed for the Web to scale.
 
 Semantic Web services are likely to be an important source of data for
 future applications, but for foreseeable future just one of many. A
-key promise of Linked Open Data (LOD) in particular, and the Semantic
-Web in general is the ability to integrate many data sources
-easily. There are two key issues, first read-write operations must be
-similar to how it is done with other hypermedia types to make it
-possible to use generic code to minimize the effort required to
+key promise of the Semantic Web is the ability to integrate many data
+sources easily. There are two key issues, first read-write operations
+must be similar to how it is done with other hypermedia types to make
+it possible to use generic code to minimize the effort required to
 support RDF. Secondly, it requires relevant links and that the
 resulting graph can be traversed by reasonable means.
 
-While links are abundant across the LOD cloud, this paper will
+While links are abundant across the Linked Open Data (LOD) cloud, this paper will
 argue that key links are missing to make it possible to traverse the
 resulting graph and to enable read-write operations. Moreover, we will
 argue that this shortcoming is due to that the community does not
@@ -223,8 +222,7 @@ Issue\footnote{\url{http://www.w3.org/DesignIssues/LinkedData}} Tim
 Berners-Lee notes ``To make the data be effectively linked, someone
 who only has the URI of something must be able to find their way the
 SPARQL endpoint.'', but this is generally not possible today without
-requiring out-of-band information, which implies that non-REST
-interactions are required. 
+requiring out-of-band information.
 
 The triples needed to do this is already defined in
 VoID\footnote{\url{http://vocab.deri.ie/void}} and in use:
