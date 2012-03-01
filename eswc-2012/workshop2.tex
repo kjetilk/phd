@@ -84,3 +84,24 @@ adequately take into account the constraint known as ``Hypermedia as
 the Engine of Application State'' (commonly abbreviated HATEOAS) from
 the REST architectural style, see
 \cite{Fielding_2000_Architectural-Styles}~Chapter~5.
+
+In a read-only situation, the HATEOAS constraint requires that the
+application can navigate from one resources to another using the
+hypermedia links in the present resource \emph{only}, it should not
+require any out-of-band information to do so. Thus, a RESTful protocol
+should not require prior knowledge of a URI structure, but one may
+define the protocol in terms of URI structure as long as the same
+information can be gleened from the resources. Nor does it require
+that all resources can be reached from any other resource. As such,
+the constraint is not very strict, one could argue that as long as
+there are some links, the protocol satisfies the HATEOAS constraint.
+
+Since RDF is built on URIs, many of which can be dereferenced to
+obtain further links, it lends itself well to RESTful protocols, but
+it is debateable whether a protocol can be said to be RESTful if the
+links doesn't enable any useful interactions. Importantly, if there is
+to be such a thing as a RESTful read-write Semantic Web protocol,
+there must be something in the RDF itself that can be used by
+practical applications to write data. Therefore, whether the HATEOAS
+constraint is satisfied must be judged on the basis of the practical
+applications the protocol enables.
