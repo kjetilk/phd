@@ -60,11 +60,13 @@ messages not only contain data but also application control
 information, and this is needed for the Web to scale.
 
 We also note that some bloggers in the developer community, see
-e.g.~\cite{sunsetonmvc}, is currently predicting a paradigm shift in
-common practices, prompted by the trend towards richer clients. This
-has caused a departure from the time-tested Model-View-Controller
-pattern that has been the dominant paradigm in web development for
-more than a decade.
+e.g. a post by Gregg
+Caines\footnote{\url{http://caines.ca/blog/programming/the-sun-is-setting-on-rails-style-mvc-frameworks/}},
+%\cite{sunsetonmvc} 
+is currently predicting a paradigm shift in common practices, prompted
+by the trend towards richer clients. This has caused a departure from
+the time-tested Model-View-Controller pattern that has been the
+dominant paradigm in web development for more than a decade.
 
 Semantic Web services is likely to be an important source of data for
 future applications, but for foreseeable future just one of many. A
@@ -108,7 +110,8 @@ applications the protocol enables.
 
 \section{Required links}
 
-As noted in \cite{sunsetonmvc}, AtomPub has a single service endpoint,
+%As noted in \cite{sunsetonmvc} 
+AtomPub has a single service endpoint,
 and you can navigate to what you need from there. This motivates the
 first discussion topic of this paper:
 
@@ -221,6 +224,14 @@ should also be possible to use this on the default (nameless) graph by
 assigning it a name in the service description rather than defining it
 in a out-of-band specification like it is currently being done.
 
+\begin{question}
+Should the SPARQL 1.1 Graph Store HTTP Protocol be replaced by a
+vocabulary like the above?
+\end{question}
+
+\begin{question}
+Can we create a better vocabulary for hypermedia RDF than the sketch above?
+\end{question}
 
 
 
