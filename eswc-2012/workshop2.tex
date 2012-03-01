@@ -18,13 +18,35 @@ Postboks 1080 Blindern,
 
 
 \begin{abstract}
-
-
-
+This paper will give an overview of the practical implications of the
+HATEOAS constraint of the REST architectural style, and in that light argue why
+hypermedia RDF is a practical necessity. We will then sketch a
+vocabulary for hypermedia RDF using Mike Amundsen's H~Factor
+classification as motivator. Finally, we will briefly argue that
+SPARQL is important when making non-trivial traversals of Linked Data
+graphs, and see how to a bridge between Linked Data and SPARQL may be
+created with hypermedia RDF.
 \end{abstract}
 
 \section*{BRAINDUMP STATUS}
 
 \section{Introduction}
 
-% hm:can-be hm:put-to
+%<> hm:can-be hm:put-to ;
+% hm:can-be hm:deleted .
+
+Mike Amundsen defines hypermedia types\footnote{\url{http://amundsen.com/hypermedia/}} as 
+\begin{quote}
+Hypermedia Types are MIME media types that contain native
+hyper-linking semantics that induce application flow. For example,
+HTML is a hypermedia type; XML is not.
+\end{quote}
+Furthermore, he defines a classification scheme called H~Factor as ``a
+measurement of the level of hypermedia support and sophistication of a
+media-type.'' The REST & WOA Wiki defines ``the Hypermedia
+Scale''\footnote{\url{http://restpatterns.org/Articles/The_Hypermedia_Scale}},
+where the categorization is based on capabilities for create, read,
+update and delete operations.  Standing on it's own, RDF is a
+hypermedia type, but only at the \textsf{LO} and \textsf{CL} levels
+on, and just an R~Type (read) on the Hypermedia Scale. We aim at improving
+this situation.
