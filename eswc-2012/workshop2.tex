@@ -257,7 +257,23 @@ VoID\footnote{\url{http://vocab.deri.ie/void}} and in use:
 <> void:inDataset [ void:sparqlEndpoint </sparql> . ] .
 \end{verbatim}
 
+\section{Conclusion}
 
+We have shown how RDF serializations can become very powerful
+hypermedia types by using a simple vocabulary. We have argued briefly
+that some triples should be added to every information resource, but
+note that most triples are only relevant to write-operations and
+should only appear in that case. We also noted that SPARQL is
+important for non-trivial traversal of Linked Data. In summary, the
+addition of the following triples would make life easier for
+developers of applications that use Semantic Web data:
+
+\begin{verbatim}
+<> hm:canBe hm:mergedInto, hm:replaced , hm:deleted ;
+   hm:createSimilarAt <../> ;
+   hm:acceptsFormats <http://www.w3.org/ns/formats/Turtle> ;
+   void:inDataset [ void:sparqlEndpoint </sparql> . ] .
+\end{verbatim}
 
 \bibliographystyle{plain-csmin}
 %\bibliographystyle{jbact}
