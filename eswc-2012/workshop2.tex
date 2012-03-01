@@ -28,12 +28,7 @@ graphs, and see how to a bridge between Linked Data and SPARQL may be
 created with hypermedia RDF.
 \end{abstract}
 
-\section*{BRAINDUMP STATUS}
-
 \section{Introduction}
-
-%<> hm:can-be hm:put-to ;
-% hm:can-be hm:deleted .
 
 Mike Amundsen defines hypermedia types\footnote{\url{http://amundsen.com/hypermedia/}} as 
 \begin{quote}
@@ -46,15 +41,15 @@ measurement of the level of hypermedia support and sophistication of a
 media-type.'' The REST \& WOA Wiki defines ``the Hypermedia
 Scale''\footnote{\url{http://restpatterns.org/Articles/The\_Hypermedia\_Scale}},
 where the categorization is based on capabilities for create, read,
-update and delete operations.  Standing on it's own, RDF is a
-hypermedia type, but only at the \textsf{LO} and \textsf{CL} levels,
-and just an R~Type (read) on the Hypermedia Scale. We aim at improving
-this situation.
+update and delete operations.  Standing on it's own, RDF
+serializations are hypermedia types, but only at the \textsf{LO} and
+\textsf{CL} levels, and just an R~Type (read) on the Hypermedia
+Scale. We aim at improving this situation.
 
 Amundsen argues in a blog
 post\footnote{\url{http://amundsen.com/blog/archives/1083}} that the
 Semantic Web community should not pursue an API for RDF, but rather
-work to make RDF a more powerful hypermedia type, like HTML or
+work to make RDF serializations more powerful hypermedia types, like HTML or
 Atom. He argues that a key factor in the success of the Web is that
 messages not only contain data but also application control
 information, and this is needed for the Web to scale.
@@ -214,9 +209,10 @@ Trivially supported by RDF.
 
 \end{description}
 
-We see that with a simple vocabulary, RDF can become a very powerful
-hypermedia type. We also note that this vocabulary does enable agents
-to do the same operations as the SPARQL  1.1 Graph Store HTTP
+We see that with a simple vocabulary, RDF serializations can become a
+very powerful hypermedia types. We also note that this vocabulary does
+enable agents to do the same operations as the SPARQL 1.1 Graph Store
+HTTP
 Protocol\footnote{\url{http://www.w3.org/TR/2011/WD-sparql11-http-rdf-update-20110512/}},
 but being fully RESTful. The specification is currently not RESTful
 per the discussion above, even though it was a key design goal. It
