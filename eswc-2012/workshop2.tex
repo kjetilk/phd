@@ -41,7 +41,7 @@ measurement of the level of hypermedia support and sophistication of a
 media-type.'' The REST \& WOA Wiki defines ``the Hypermedia
 Scale''\footnote{\url{http://restpatterns.org/Articles/The\_Hypermedia\_Scale}},
 where the categorization is based on capabilities for create, read,
-update and delete operations.  Standing on it's own, RDF
+update and delete operations.  Considered on their own, RDF
 serializations are hypermedia types, but only at the \textsf{LO} and
 \textsf{CL} levels, and just an R~Type (read) on the Hypermedia
 Scale. We aim at improving this situation.
@@ -51,14 +51,14 @@ post\footnote{\url{http://amundsen.com/blog/archives/1083}} that the
 Semantic Web community should not pursue an API for RDF, but rather
 make RDF serializations more powerful hypermedia types. He argues that
 a key factor in the success of the Web is that messages not only
-contain data but also application control information, and this is
+contain data but also application control information, and that this is
 needed for the Web to scale.
 
 Semantic Web services are likely to be an important source of data for
-future applications, but for foreseeable future just one of many. A
+future applications, but for foreseeable future they are just one of many. A
 key promise of the Semantic Web is the ability to integrate many data
 sources easily. There are two key issues, first read-write operations
-must be similar to how it is done with other hypermedia types to make
+must be similar to how it is done with other hypermedia types, to make
 it possible to use generic code to minimize the effort required to
 support RDF. Secondly, it requires relevant links and that the
 resulting graph can be traversed by reasonable means.
@@ -74,13 +74,13 @@ the REST architectural style, see
 
 In a read-only situation, the HATEOAS constraint requires that the
 application can navigate from one resources to another using the
-hypermedia links in the present resource \emph{only}, it should not
+hypermedia links in the present resource \emph{only}, they should not
 require any out-of-band information.
 
 Since RDF is built on URIs, many of which can be dereferenced to
 obtain further links, it lends itself well to RESTful protocols, but
 it is debatable whether a protocol can be said to be RESTful if the
-links doesn't enable any useful interactions. Importantly, if there is
+links don't enable any useful interactions. Importantly, if there is
 to be such a thing as a RESTful read-write Semantic Web protocol,
 there must be something in the RDF itself that can be used by
 practical applications to write data. Therefore, whether the HATEOAS
@@ -101,20 +101,20 @@ Is a single service endpoint enough for Linked Data?
 We note that the distributed graph structure of the LOD Cloud makes
 this awkward: For every new data source encountered in a graph
 traversal, a new service endpoint must be queried. Moreover, it would
-be awkward if fine-grained access controls for writing is being used
+be awkward if fine-grained access controls for writing are being used
 to record permissions for all resources in a single service
 description. It seems likely that a few triples attached to each
-information resource is better suited in most cases.
+information resource are better suited in most cases.
 
 \section{Defining hypermedia RDF}
 
 We noted that for a read-write RESTful protocol, we need to say in the
-RDF message itself what can of operations can be made. We also note
+RDF message itself what kind of operations can be made. We also note
 that only information resources can be manipulated, and we argued that
 it should be possible to add the required triples to every
 resource. We should be able to define hypermedia RDF in terms of a
-minimal vocabulary, but like the H~Factor web page, we shall find it
-instructive to use examples. In the following, we use Turtle syntax
+minimal vocabulary, but like the H~Factor web page, we will find it
+instructive to use examples. In the following, we use Turtle syntax,
 with prefixes omitted for brevity. Also, we note that in many cases,
 we are making statements about the current resource, which given a
 reasonable base URI can be written as \texttt{<>}. We have not found
@@ -173,15 +173,15 @@ hm:replaced hm:httpMethod "PUT" .
 \end{description}
 
 We see that with a simple vocabulary, RDF serializations can become a
-very powerful hypermedia types. We also note that this vocabulary does
-enable agents to do the same operations as the SPARQL 1.1 Graph Store
+very powerful hypermedia types. We also note that this vocabulary
+enables agents to do the same operations as the SPARQL 1.1 Graph Store
 HTTP
 Protocol\footnote{\url{http://www.w3.org/TR/2011/WD-sparql11-http-rdf-update-20110512/}},
-but being fully RESTful. The Protocol specification is currently not RESTful
+while being fully RESTful. The Protocol specification is currently not RESTful
 per the discussion above, even though it was a key design goal. It
 should also be possible to use this on the default (nameless) graph by
 assigning it a name in the service description rather than defining it
-in a out-of-band specification like it is currently being done.
+in an out-of-band specification like is currently being done.
 
 \begin{question}
 Should the SPARQL 1.1 Graph Store HTTP Protocol be replaced by a
@@ -199,8 +199,8 @@ collect the data needed for a given usage, but slightly more involved
 queries (e.g. ``what kind of connections exists between Kate Bush, Roy
 Harper and bands that have sold more than 200 million albums?'') would
 likely cause thousands of resources to be downloaded and examined. For
-this, more advanced graph pattern matching as well as more advanced
-mechanisms for source selection is
+this, more advanced graph pattern matching, as well as more advanced
+mechanisms for source selection, is
 required. \cite{springerlink:10.1007/978-3-642-25073-6-38} provides
 some techniques that should prove very valuable in this respect and so
 it becomes important that SPARQL can be used with Linked Data in a
@@ -213,8 +213,8 @@ who only has the URI of something must be able to find their way the
 SPARQL endpoint.'', but this is generally not possible today without
 requiring out-of-band information.
 
-The triples needed to do this is already defined in
-VoID\footnote{\url{http://vocab.deri.ie/void}} and in use:
+The triples needed to do this are already defined in
+VoID\footnote{\url{http://vocab.deri.ie/void}} and are in use:
 \begin{verbatim}
 <> void:inDataset [ void:sparqlEndpoint </sparql> . ] .
 \end{verbatim}
@@ -226,7 +226,7 @@ hypermedia types by using a simple vocabulary. We have argued briefly
 that some triples should be added to every information resource, but
 note that most triples are only relevant to write-operations and
 should only appear in that case. We also noted that SPARQL is
-important for non-trivial traversal of Linked Data. In summary, the
+important for non-trivial traversal of Linked Data. To sum up, the
 addition of the following triples would make life easier for
 developers of applications that use Semantic Web data:
 
