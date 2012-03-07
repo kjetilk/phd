@@ -223,13 +223,16 @@ VoID\footnote{\url{http://vocab.deri.ie/void}} and are in use:
 \section{Conclusion}
 
 We have shown how RDF serializations can become very powerful
-hypermedia types by using a simple vocabulary. We have argued briefly
-that some triples should be added to every information resource, but
-note that most triples are only relevant to write-operations and
-should only appear in that case. We also noted that SPARQL is
-important for non-trivial traversal of Linked Data. To sum up, the
-addition of the following triples would make life easier for
-developers of applications that use Semantic Web data:
+hypermedia types by using a simple vocabulary. As a consequence,
+developers can use Linked Data in a read-write scenario without
+specialized knowledge about RDF APIs or other out-of-band
+information. We have argued briefly that some triples should be added
+to every information resource, but note that most triples are only
+relevant to write-operations and should only appear in that case. We
+also noted that SPARQL is important for non-trivial traversal of
+Linked Data. To sum up, the addition of the following triples would
+make life easier for developers of applications that use Semantic Web
+data:
 
 \begin{verbatim}
 <> hm:canBe hm:mergedInto, hm:replaced, hm:deleted ;
