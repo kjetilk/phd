@@ -89,26 +89,28 @@ concern in this paper. Overall, the expected contributions are:
 
 \subsection{In SPARQL Federation}
 
-I take the technology state of the art to be represented by the
+I take the state of the art in technology to be represented by the
 current basic SPARQL 1.1 Federated Query Working
 Draft\footnote{http://www.w3.org/TR/2011/WD-sparql11-federated-query-20111117/}. In
 addition, many have implemented federation that doesn't require 
 explicit references to service endpoints, e.g.~\cite{springerlink:10.1007/978-3-642-25073-6-38}.
 A recent scientific treatment of the current specification is in
-\cite{springerlink:10.1007/978-3-642-21064-8-1}. In this paper, the
+\cite{springerlink:10.1007/978-3-642-21064-8-1}. In that paper, the
 authors also show an optimization strategy based on execution order of
 so-called well-designed patterns.
 
 A recent review of the state of the art is in
 \cite{springerlink:10.1007/978-3-642-17551-0-5}. In addition,
 \cite{springerlink:10.1007/978-3-642-25073-6-38} proposes
-\emph{bound joins} and proves it can dramatically reduce the number of
-requests needed to federation members as well as the implementation of
+\emph{bound joins} and proves they can dramatically reduce the number of
+requests to federation members that are needed, as well as the implementation of
 FedX.
 
 It has been my intention to focus on the two problems listed in
 section~3.3.1
-in~\cite{springerlink:10.1007/978-3-642-17551-0-5}. Notably, histogram
+in~\cite{springerlink:10.1007/978-3-642-17551-0-5}, i.e. strike a
+balance between accuracy and index size, and updating statistics as
+data changes. Notably, histogram
 approaches generally suffer from the problem that they grow too large
 or become an insufficiently accurate digest, especially in the face of
 very heterogeneous data.  \cite{Harth:2010:DSO:1772690.1772733}
@@ -202,9 +204,9 @@ federation query optimizers along with a statistical digest.
 
 The problems addressed by existing benchmarks such as the ones cited
 above are almost orthogonal to the problems considered by my proposed
-project. While I have seen some cases that compares performance based
-on box plots\footnote{See \url{http://shootout.alioth.debian.org/} for example}
-but it seems not to be common practice. Furthermore, I have not to date seen
+project. While I have seen some cases that compare performance based
+on box plots\footnote{See \url{http://shootout.alioth.debian.org/} for
+  example}, it seems not to be common practice. Furthermore, I have not to date seen
 any work towards using methods like factorial designs to evaluate
 the performance of software, but there may be a limit in terms of
 complexity for where it is feasible, and I will restrict myself to
@@ -219,7 +221,7 @@ SPARQL for this thesis.
 There are many possible approaches for this part of the thesis. As I
 expect substantial advances to be made before I start tackling this
 problem, I have not chosen any methodology, but an interesting
-direction for work seem to be to find more space-efficient ways to
+direction for work seems to be to find more space-efficient ways to
 expose statistics in the service description and standardize them.
 
 To this end, I have briefly looked into two approaches:
@@ -265,8 +267,8 @@ Factorial design inspires the present work and is covered in
 elementary text-books in statistics but is inadequate for this
 purpose, so I intend to go further into the statistical literature to
 see if there is a methodology that is better suited to the
-problem. Using this, I hope to use, amongst other things, the
-complexity analysis of SPARQL to find suitable factors to see if my
+problem. I also intend to use existing results on complexity bounds
+for SPARQL query answering to find suitable factors to see if my
 admittedly bold proposition that it is possible to design a benchmark
 to cover all realistic cases can be shown to hold.
 
