@@ -247,22 +247,20 @@ for example, the nestedness of \texttt{OPTIONAL}s can be a factor, or
 the number of triples in a basic graph pattern, etc. These numbers are
 varied to different ``levels''. The key to understanding why this can
 be efficient is that these variations need not occur in the same
-experiment. Therefore, many combinations of factors can be studied by
-carefully designing queries to cover different factors, and a
-formalism called ``resolution'' has been developed to classify how
-well this has been achieved, partly answering the question of
-evaluation methodology for this part of the thesis. We should also
-validate by comparing this benchmark with conclusions from existing
-benchmarks.
+experiment. Therefore, for the SPARQL language, many combinations of
+factors can be studied by carefully designing queries to cover
+different factors, and a formalism called ``resolution'' has been
+developed to classify how well this has been achieved, partly
+answering the question of evaluation methodology for this part of the
+thesis. We should also validate by comparing this benchmark with
+conclusions from existing benchmarks.
 
-A systematic approach based on statistical experimental design would
-imply that all possible axes of variation are identified, to identify
-possible contributions from different hardware platforms, operating
-system constraints, backend tuning, triple store features, to SPARQL
-language features and protocols. To make this benchmark feasible most
-variations of parameters must be done by a software suite designed for
-this purpose as the number of experiments that results will be very
-large.
+A systematic approach based on statistical experimental design means
+developing methods to add factors (not only language features will be
+factors), and then use this methodology to add and then vary all the
+factors in an optimal fashion. Developing a software suite to perform
+most of the experiments is a key requirement as the number of
+experiments that results will be very large.
 
 Factorial design inspires the present work and is covered in
 elementary text-books in statistics but is inadequate for this
