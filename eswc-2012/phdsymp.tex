@@ -85,6 +85,11 @@ concern in this paper. Overall, the expected contributions are:
 \item statistical digests of data that are optimized with respect to
   size and query performance.
 \end{itemize}
+\item SPARQL engine developers can use the benchmark to reliably
+  quantify unexpected adverse effects from a given modification.
+\item New SPARQL engine users can identify key differences between
+  different engines, and therefore be able to more wisely choose
+  engine to use.
 \end{itemize}
 
 
@@ -275,14 +280,7 @@ coefficients can be exposed in the service description to give
 federated query engines assistance in optimizing for performance
 characteristics of certain SPARQL implementations. 
 
-Ultimately, this approach may be of great value to new users of SPARQL
-engines, as it can point out key differences between engines and
-therefore help users identify aspects that they should investigate
-with respect to their own expected uses. By normalizing weights
-between features, we may also attempt to advice those who do not know
-anything about their expected usage. Similarly, it may of great use to
-developers as it would quantify any adverse effects a modification may
-have. 
+
 
 % TODO here
 
