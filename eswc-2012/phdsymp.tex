@@ -26,7 +26,10 @@ Postboks 1080 Blindern,
   and exposure of statistical digests to assist selectivity
   estimation.
 
-% TODO Here
+  For an objective evaluation as well as comparison of engines,
+  benchmarks that exhaustively covers the parameter space is
+  required. We propose an investigation into this problem using
+  statistical experimental planning.
 \end{abstract}
 
 \section{Motivation}
@@ -146,8 +149,7 @@ queries are then executed, and some characteristic of performance is
 measured, for example the time it takes for the engine to return the
 full result. Since there is a certain randomness in query times, this
 process is repeated a number of times and an average response time is
-found. The performance of different engines can then be compared,
-based on these averages.
+found. Different engines can be compared based on these averages.
 
 In many cases, this is sufficient. Sometimes, one engine can execute a
 query in an order of magnitude faster than another. If this happens
@@ -161,7 +163,6 @@ add up to make the other a better choice for most applications anyway.
 In this case, we must consider the possibility that the random noise
 can influence the conclusions. Whatever metric is used, it should be
 treated as a \emph{stochastic variable}.
-
 This opens new methodological possibilities, first and foremost
 using well-established statistical hypothesis testing or ranking
 rather than just comparing averages.
@@ -173,8 +174,6 @@ favor one engine, other queries that have not been tried may reveal
 that there are strong adverse effects that may not have been
 anticipated. A more systematic approach is needed to provide a
 comprehensive and objective basis for comparing SPARQL engines.
-
-% TODO here
 
 In physical science and engineering, conventional wisdom has been that
 you should only vary one variable at a time to study the effects of
@@ -230,7 +229,7 @@ parameters in the service description.
 
 Finally, I have seen little work on the problem of rapidly changing
 data, so the adaption of existing techniques to such situations may
-also be an interesting problem.
+also be a interesting.
 
 The evaluation methodology for the SPARQL federation work of the
 thesis will largely be covered by running the elaborate benchmark
@@ -281,8 +280,6 @@ federated query engines assistance in optimizing for performance
 characteristics of certain SPARQL implementations. 
 
 
-
-% TODO here
 
 \bibliographystyle{plain-csmin}
 %\bibliographystyle{abbrv}
