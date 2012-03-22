@@ -5,11 +5,13 @@ queries <- read.delim("/home/kjekje/DBPediaBenchmark/data/dbpedia.aksw.org/bench
 singleQuery <- function(endpoint, queries, runs = 5) {
   auxdata <- SPARQL(url=endpoint, query=queries$auxquery)
   using <- as.vector(auxdata$results[sample((1:nrow(auxdata$results)), runs),]) # TODO: Support multivars
-  sapply(using, insertAuxillaries, queries$query)
+  runqueries <- sapply(using, runQueries, queries$query)
+  runqueries
 }
 
-insertAuxillaries <- function(var, query) {
-  sub("%%var%%", paste("<", var, ">", sep="", collapse=""), query, fixed=TRUE)
+runQueries <- function(var, queryWithVar) {
+  query <- sub("%%var%%", paste("<", var, ">", sep="", collapse=""), queryWithVar, fixed=TRUE)
+  timeQuery("http://dbpedia.org/sparql", query)
 }
 
 singleQuery("http://dbpedia.org/sparql", queries[1,])
