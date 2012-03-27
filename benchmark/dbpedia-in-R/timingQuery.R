@@ -13,6 +13,7 @@ timeQuery <- function(endpoint, query, ..., curlh = getCurlHandle()) {
        )
 }
 
-timeQuery("http://dbpedia.org/sparql", "SELECT * WHERE { ?concept a skos:Concept } LIMIT 100");
+#timeQuery("http://dbpedia.org/sparql", "SELECT * WHERE { ?concept a skos:Concept } LIMIT 100");
+#timeQuery("http://kjekje-vm:8890/sparql", "SELECT * WHERE { ?concept a skos:Concept } LIMIT 100");
 
     
