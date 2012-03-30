@@ -10,11 +10,16 @@ singleQuery <- function(endpoint, queries, runs = 5) {
 }
 
 runQueries <- function(var, queryWithVar, endpoint) {
-  substQuery <- queryWithVar
-  for(name in names(var)) {
-    substQuery <- gsub(paste("%%", name, "%%", sep="", collapse=""),
-                       paste("<", var[[name]], ">", sep="", collapse=""),
-                       substQuery, fixed=TRUE)
+  if (length(var) < 1) stop("Auxillary query had no results")
+  if (length(var) == 1) {
+    substQuery <- sub("%%var%%", paste("<", var, ">", sep="", collapse=""), queryWithVar, fixed=TRUE)
+  } else {
+    substQuery <- queryWithVar
+    for(name in names(var)) {
+      substQuery <- gsub(paste("%%", name, "%%", sep="", collapse=""),
+                         paste("<", var[[name]], ">", sep="", collapse=""),
+                         substQuery, fixed=TRUE)
+    }
   }
   timeQuery(endpoint, substQuery)
 }
