@@ -10,8 +10,13 @@ singleQuery <- function(endpoint, queries, runs = 5) {
 }
 
 runQueries <- function(var, queryWithVar, endpoint) {
-  query <- sub("%%var%%", paste("<", var, ">", sep="", collapse=""), queryWithVar, fixed=TRUE)
-  timeQuery(endpoint, query)
+  substQuery <- queryWithVar
+  for(name in names(var)) {
+    substQuery <- gsub(paste("%%", name, "%%", sep="", collapse=""),
+                       paste("<", var[[name]], ">", sep="", collapse=""),
+                       substQuery, fixed=TRUE)
+  }
+  timeQuery(endpoint, substQuery)
 }
 
 single <- singleQuery("http://kjekje-vm/sparql", queries["union,distinct",])
