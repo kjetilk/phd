@@ -26,9 +26,10 @@ runQueries <- function(var, queryWithVar, endpoint) {
 
 allQueries <- function(allqueries, endpoint, runs = 5) {
   for(queryname in row.names(allqueries)) {
-    singlequery <- singleQuery(allqueries[queryname,], endpoint, runs)
-#    browser()
-  }
+   singleq <- singleQuery(allqueries[queryname,], endpoint, runs)
+   browser()
+   singleq
+ }
 }
 
 
