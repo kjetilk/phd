@@ -3,11 +3,10 @@ library(SPARQL)
 allqueries <- read.delim("/home/kjekje/DBPediaBenchmark/data/dbpedia.aksw.org/benchmark.dbpedia.org/Queries.txt", header=FALSE, col.names=c('name', 'query', 'auxquery'), row.names=1, colClasses = "character")
 
 singleQuery <- function(queries, endpoint, runs = 5) {
-#browser()
   auxdata <- SPARQL(url=endpoint, query=queries$auxquery)
   using <- as.matrix(auxdata$results[sample((1:nrow(auxdata$results)), runs),])
-  runqueries <- apply(using, 1, runQueries, queries$query, endpoint)
-  runqueries
+  runqueries <- t(apply(using, 1, runQueries, queries$query, endpoint))
+  as.data.frame(runqueries)
 }
 
 runQueries <- function(var, queryWithVar, endpoint) {
@@ -22,7 +21,7 @@ runQueries <- function(var, queryWithVar, endpoint) {
                          substQuery, fixed=TRUE)
     }
   }
-  timeQuery(endpoint, substQuery)
+  unlist(timeQuery(endpoint, substQuery))
 }
 
 allQueries <- function(allqueries, endpoint, runs = 5) {
