@@ -1,9 +1,9 @@
 library(SPARQL)
 
-queries <- read.delim("/home/kjekje/DBPediaBenchmark/data/dbpedia.aksw.org/benchmark.dbpedia.org/Queries.txt", header=FALSE, col.names=c('name', 'query', 'auxquery'), row.names=1, colClasses = "character")
+allqueries <- read.delim("/home/kjekje/DBPediaBenchmark/data/dbpedia.aksw.org/benchmark.dbpedia.org/Queries.txt", header=FALSE, col.names=c('name', 'query', 'auxquery'), row.names=1, colClasses = "character")
 
 singleQuery <- function(queries, endpoint, runs = 5) {
-browser()
+#browser()
   auxdata <- SPARQL(url=endpoint, query=queries$auxquery)
   using <- as.matrix(auxdata$results[sample((1:nrow(auxdata$results)), runs),])
   runqueries <- apply(using, 1, runQueries, queries$query, endpoint)
@@ -25,10 +25,13 @@ runQueries <- function(var, queryWithVar, endpoint) {
   timeQuery(endpoint, substQuery)
 }
 
-allQueries <- function(queries, endpoint, runs = 5) {
-  apply(queries, 1, singleQuery, endpoint, runs)
+allQueries <- function(allqueries, endpoint, runs = 5) {
+  for(queryname in row.names(allqueries)) {
+    singlequery <- singleQuery(allqueries[queryname,], endpoint, runs)
+#    browser()
+  }
 }
-  
+
 
 single <- singleQuery(queries["union,distinct",], "http://kjekje-vm/sparql")
 single1 <- singleQuery(queries[1,], "http://kjekje-vm/sparql")
