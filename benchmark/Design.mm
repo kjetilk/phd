@@ -15,8 +15,11 @@
 <node CREATED="1333395811998" ID="ID_1684541291" MODIFIED="1333396919461" POSITION="right" TEXT="End results:">
 <node CREATED="1333396921343" ID="ID_267123421" MODIFIED="1333396950265" TEXT="Benchmarks for thorough evaluation"/>
 <node CREATED="1333396951055" ID="ID_1178442085" MODIFIED="1333396968582" TEXT="Help developers evaluate a change"/>
-<node CREATED="1333396969647" ID="ID_1644888900" MODIFIED="1333397096151" TEXT="Assist people in choosing engine by make it easier to articulate what&apos;s important"/>
+<node CREATED="1333396969647" ID="ID_1644888900" MODIFIED="1334173653275" STYLE="fork" TEXT="Assist people in choosing engine by make it easier to articulate what&apos;s important"/>
 <node CREATED="1333397101514" ID="ID_39116573" MODIFIED="1333397109983" TEXT="Expose data that can help optimization"/>
+<node CREATED="1334167624277" ID="ID_178055341" MODIFIED="1334167636181" TEXT="The One True Benchmark">
+<node CREATED="1334167637298" ID="ID_1586477914" MODIFIED="1334173666056" TEXT="Normalization of coefficients?"/>
+</node>
 </node>
 </node>
 </map>
