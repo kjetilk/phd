@@ -1,6 +1,6 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1333395561680" ID="ID_485928455" MODIFIED="1333395581393" TEXT="Benchmark design">
+<node CREATED="1333395561680" ID="ID_485928455" MODIFIED="1334178478837" TEXT="Benchmark design">
 <node CREATED="1333395586724" ID="ID_1100110923" MODIFIED="1333395625835" POSITION="right" TEXT="Exhaustive macrobenchmarks">
 <node CREATED="1333396467429" ID="ID_1279958215" MODIFIED="1333396476361" TEXT="Maybe enough for some?"/>
 <node CREATED="1333396477376" ID="ID_36273484" MODIFIED="1333396499109" TEXT="Use to drill down to microbenchmarks"/>
@@ -9,9 +9,15 @@
 <node CREATED="1333396595698" ID="ID_1139628688" MODIFIED="1333396739290" TEXT="Combine qualitative with quantitative?"/>
 </node>
 </node>
-<node CREATED="1333395631652" ID="ID_1757863365" MODIFIED="1333395641497" POSITION="right" TEXT="Complexity bounds"/>
-<node CREATED="1333395642148" ID="ID_750759169" MODIFIED="1333395740740" POSITION="right" TEXT="Many functions, log x, x log x, x&#xb2;, x! etc"/>
-<node CREATED="1333395750781" ID="ID_2697894" MODIFIED="1333395811084" POSITION="right" TEXT="Exposure of coefficients"/>
+<node CREATED="1334178503417" ID="ID_121731419" MODIFIED="1334178518473" POSITION="right" TEXT="Loose directions">
+<node CREATED="1333395631652" ID="ID_1757863365" MODIFIED="1333395641497" TEXT="Complexity bounds"/>
+<node CREATED="1334178392075" ID="ID_43080007" MODIFIED="1334178400369" TEXT="Language grammar"/>
+<node CREATED="1333395642148" ID="ID_750759169" MODIFIED="1334178353290" TEXT="Many functions">
+<node CREATED="1334178354746" ID="ID_1904085778" MODIFIED="1334178358866" TEXT="log x, x log x, x&#xb2;, x! etc"/>
+<node CREATED="1334178359370" ID="ID_1449400771" MODIFIED="1334178381329" TEXT="functions of triples, triples in a pattern, nestedness, etc"/>
+</node>
+<node CREATED="1333395750781" ID="ID_2697894" MODIFIED="1333395811084" TEXT="Exposure of coefficients"/>
+</node>
 <node CREATED="1333395811998" ID="ID_1684541291" MODIFIED="1333396919461" POSITION="right" TEXT="End results:">
 <node CREATED="1333396921343" ID="ID_267123421" MODIFIED="1333396950265" TEXT="Benchmarks for thorough evaluation"/>
 <node CREATED="1333396951055" ID="ID_1178442085" MODIFIED="1333396968582" TEXT="Help developers evaluate a change"/>
