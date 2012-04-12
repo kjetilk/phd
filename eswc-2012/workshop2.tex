@@ -42,9 +42,10 @@ media-type.'' The REST \& WOA Wiki defines ``the Hypermedia
 Scale''\footnote{\url{http://restpatterns.org/Articles/The\_Hypermedia\_Scale}},
 where the categorization is based on capabilities to do CRUD (Create,
 Read, Update, Delete) operations.  Considered on their own, RDF
-serializations are hypermedia types, but only at the \textsf{LO} and
-\textsf{CL} levels (see footnotes for details on this notation), and just an R~Type
-(read) on the Hypermedia Scale. We aim at improving this situation.
+serializations are hypermedia types, but only at the \textsf{LO}
+(outbound links) and \textsf{CL} (control data for links) levels (see
+footnotes for details on this notation), and just an R~Type (read) on
+the Hypermedia Scale. We aim at improving this situation.
 
 Amundsen argues in a blog
 post\footnote{\url{http://amundsen.com/blog/archives/1083}} that the
@@ -120,10 +121,11 @@ instructive to use examples. In the following, we use Turtle syntax,
 with prefixes omitted for brevity. Also, we note that in many cases,
 we are making statements about the current resource, which given a
 reasonable base URI can be written as \texttt{<>}. We have not found
-the following factors to be relevant to RDF: \textsf{LE}, \textsf{CU},
-\textsf{CR} and \textsf{LT} (though the latter may be supported by
-RDForms\footnote{\url{http://vocab.deri.ie/rdforms}}?); and
-\textsf{LO} and \textsf{CL} are trivially supported. The remaining
+the following factors to be relevant to RDF: \textsf{LE} (embedded
+links), \textsf{CR}, \textsf{CU} (control data for read and update
+requests respectively), and \textsf{LT} (templated queries, though the latter may be
+supported by RDForms\footnote{\url{http://vocab.deri.ie/rdforms}}?);
+and \textsf{LO} and \textsf{CL} are trivially supported. The remaining
 are:
 
 
