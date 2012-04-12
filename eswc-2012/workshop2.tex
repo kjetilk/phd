@@ -3,12 +3,11 @@
 \usepackage{cite}
 
 % TODO:
-% Explain HATEOAS
-% More on new H-factors
 % References
 % POST in relation to graph store
 % Weakness of RDF
 % Reformulate something on SPARQL about enabling
+% More writing around factors?
 
 \title{The necessity of hypermedia RDF and an approach to achieve it}
 \titlerunning{A hypermedia RDF approach}
@@ -212,21 +211,36 @@ vocabulary like the above?
 
 \subsection{New H~Factors}
 
+Mike Amundsen solicits feedback on the completeness of his
+classification scheme. I suggest the following as discussion items:
+
 \begin{itemize}
+
+\item Support for self-description.
+
+The self-describing nature of RDF is an important characteristic of
+the model and arguably an important characteristic of RDF as
+hypermedia as agents may be able to infer possible interactions based
+on vocabulary definitions.
+
 \item Support for supplying control data relevant to subsequent requests.
 
+It may be useful for agents to know e.g. what formats they can send to
+a given resource before the request is made. This may require a new
+control data factor. An example of this use may be e.g.:
 
 \begin{verbatim}
 <> hm:acceptsFormat <http://www.w3.org/ns/formats/Turtle> .
 \end{verbatim}
 
-\item Support for self-description.
+\item A factor encompassing RaUL templates. 
 
-\item A factor for RaUL templates. 
-
-The RaUL\footnote{\url{http://vocab.deri.ie/raul}} goes beyond HTTP
-GET queries, but can be used to formulate templated queries similar to
-those in HTML, or indeed to generate HTML fragments for the same purpose.
+  The RaUL\footnote{\url{http://vocab.deri.ie/raul}} goes beyond HTTP
+  GET queries, which is what the \textsf{LT} factor is about, but can
+  be used to formulate templated queries similar to those in HTML, or
+  indeed to generate HTML fragments for the same purpose. This is also
+  enables useful interactions, albeit quite different from those of
+  this paper.
 
 
 \end{itemize}
