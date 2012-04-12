@@ -129,9 +129,10 @@ with prefixes omitted for brevity. Also, we note that in many cases,
 we are making statements about the current resource, which given a
 reasonable base URI can be written as \texttt{<>}. We have not found
 the following factors to be relevant to RDF: \textsf{LE} (embedded
-links), \textsf{CR} and \textsf{CU} (control data for read and update
-requests respectively); and \textsf{LO} and \textsf{CL} are trivially
-supported. The remaining are:
+links), \textsf{CR}, \textsf{CU} (control data for read and update
+requests respectively) and \textsf{LT} (templated queries); and
+\textsf{LO} and \textsf{CL} are trivially supported. The remaining
+are:
 
 
 \begin{description}
@@ -151,13 +152,6 @@ would perform a RDF merge of the payload with the current resource.
 The second triple exists to make it possible to POST an RDF payload to
 some URI and the server will itself assign a URI to the posted RDF
 payload.
-
-
-\item[\textsf{LT}] Support for templated queries (HTTP GET)
-
-The RaUL\footnote{\url{http://vocab.deri.ie/raul}} goes beyond HTTP
-GET queries, but can be used to formulate templated queries similar to
-those in HTML, or indeed to generate HTML fragments for the same purpose.
 
 \item[\textsf{LI}] Support for idempotent updates (HTTP PUT, DELETE) 
 
@@ -215,6 +209,13 @@ vocabulary like the above?
 
 \item Support for self-description.
 
+\item A factor for RaUL templates. 
+
+The RaUL\footnote{\url{http://vocab.deri.ie/raul}} goes beyond HTTP
+GET queries, but can be used to formulate templated queries similar to
+those in HTML, or indeed to generate HTML fragments for the same purpose.
+
+
 \end{itemize}
 
 
@@ -267,7 +268,7 @@ data:
 \begin{verbatim}
 <> hm:canBe hm:mergedInto, hm:replaced, hm:deleted ;
    hm:createSimilarAt <../> ;
-   hm:acceptsFormats <http://www.w3.org/ns/formats/Turtle> ;
+   hm:acceptsFormat <http://www.w3.org/ns/formats/Turtle> ;
    void:inDataset [ void:sparqlEndpoint </sparql> . ] .
 \end{verbatim}
 
