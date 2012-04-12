@@ -37,7 +37,7 @@ created with hypermedia RDF.
 
 \section{Introduction}
 
-Mike Amundsen defines hypermedia types\footnote{\url{http://amundsen.com/hypermedia/}} as 
+Mike Amundsen defines hypermedia types\cite{hypermediatypes} as 
 \begin{quote}
 Hypermedia Types are MIME media types that contain native
 hyper-linking semantics that induce application flow. For example,
@@ -46,16 +46,16 @@ HTML is a hypermedia type; XML is not.
 Furthermore, he defines a classification scheme called H~Factor as ``a
 measurement of the level of hypermedia support and sophistication of a
 media-type.'' The REST \& WOA Wiki defines ``the Hypermedia
-Scale''\footnote{\url{http://restpatterns.org/Articles/The\_Hypermedia\_Scale}},
+Scale''\cite{hypermediascale},
 where the categorization is based on capabilities to do CRUD (Create,
 Read, Update, Delete) operations.  Considered on their own, RDF
 serializations are hypermedia types, but only at the \textsf{LO}
 (outbound links) and \textsf{CL} (control data for links) levels (see
-footnotes for details on this notation), and just an R~Type (read) on
+\cite{hypermediatypes} for details on this notation), and just an R~Type (read) on
 the Hypermedia Scale. We aim at improving this situation.
 
 Amundsen argues in a blog
-post\footnote{\url{http://amundsen.com/blog/archives/1083}} that the
+post\cite{nordfapi} that the
 Semantic Web community should not pursue an API for RDF, but rather
 make RDF serializations more powerful hypermedia types. He argues that
 a key factor in the success of the Web is that messages not only
@@ -191,14 +191,13 @@ hm:replaced hm:httpMethod "PUT" .
 We see that with a simple vocabulary, RDF serializations can become a
 very powerful hypermedia types. We also note that this vocabulary
 enables agents to do the same operations as the SPARQL 1.1 Graph Store
-HTTP
-Protocol\footnote{\url{http://www.w3.org/TR/2011/WD-sparql11-http-rdf-update-20110512/}},
-while being fully RESTful. The Protocol specification is currently not
-RESTful per the discussion above as it requires extensive out-of-band
-information, even though it was a key design goal. It should also be
-possible to use this on the default (nameless) graph by assigning it a
-name in the service description rather than defining it in an
-out-of-band specification like is currently being done.
+HTTP Protocol\cite{graphstore}, while being fully RESTful. The
+Protocol specification is currently not RESTful per the discussion
+above as it requires extensive out-of-band information, even though it
+was a key design goal. It should also be possible to use this on the
+default (nameless) graph by assigning it a name in the service
+description rather than defining it in an out-of-band specification
+like is currently being done.
 
 Also note the \texttt{hm:mergedInto} term was motivated by that POST
 operations in this specification results in an RDF Merge of the
@@ -235,12 +234,11 @@ control data factor. An example of this use may be e.g.:
 
 \item A factor encompassing RaUL templates. 
 
-  The RaUL\footnote{\url{http://vocab.deri.ie/raul}} goes beyond HTTP
-  GET queries, which is what the \textsf{LT} factor is about, but can
-  be used to formulate templated queries similar to those in HTML, or
-  indeed to generate HTML fragments for the same purpose. This is also
-  enables useful interactions, albeit quite different from those of
-  this paper.
+  The RaUL\cite{raul} goes beyond HTTP GET queries, which is what the
+  \textsf{LT} factor is about, but can be used to formulate templated
+  queries similar to those in HTML, or indeed to generate HTML
+  fragments for the same purpose. This is also enables useful
+  interactions, albeit quite different from those of this paper.
 
 
 \end{itemize}
@@ -266,14 +264,14 @@ it becomes important that SPARQL can be used with Linked Data in a
 RESTful manner.
 
 In the Linked Data Design
-Issue\footnote{\url{http://www.w3.org/DesignIssues/LinkedData}} Tim
+Issue\cite{linkeddataissue} Tim
 Berners-Lee notes ``To make the data be effectively linked, someone
 who only has the URI of something must be able to find their way the
 SPARQL endpoint.'', but this is generally not possible today without
 requiring out-of-band information.
 
 The triples needed to do this are already defined in
-VoID\footnote{\url{http://vocab.deri.ie/void}} and are in use:
+VoID (see e.g. \cite{Alexander09describinglinked}) and are in use:
 \begin{verbatim}
 <> void:inDataset [ void:sparqlEndpoint </sparql> . ] .
 \end{verbatim}
@@ -302,6 +300,6 @@ data:
 \bibliographystyle{plain-csmin}
 %\bibliographystyle{jbact}
 %\bibliographystyle{splncs03}
-\bibliography{federation,webarch,webframeworks}
+\bibliography{federation,webarch,vocabs,specs,hypermedia}
 
 \end{document}
