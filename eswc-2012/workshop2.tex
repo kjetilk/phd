@@ -159,6 +159,10 @@ another resource. In a typical HTTP case, this would be achieved by
 POSTing to the current resource with an RDF payload, and the server
 would perform a RDF merge of the payload with the current resource.
 
+This term is motivated by that POST operations in \cite{graphstore} is
+specified to results in an RDF Merge of the payload into the named
+graph. Amongst other possibilities is a union of graphs.
+
 The second triple exists to make it possible to POST an RDF payload to
 some URI and the server will itself assign a URI to the posted RDF
 payload.
@@ -196,10 +200,6 @@ was a key design goal. It should also be possible to use this on the
 default (nameless) graph by assigning it a name in the service
 description rather than defining it in an out-of-band specification
 like is currently being done.
-
-Also note the \texttt{hm:mergedInto} term was motivated by that POST
-operations in this specification results in an RDF Merge of the
-payload into the named graph. 
 
 \begin{question}
 Should the SPARQL 1.1 Graph Store HTTP Protocol be replaced by a
