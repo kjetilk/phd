@@ -8,6 +8,7 @@
 % References
 % POST in relation to graph store
 % Weakness of RDF
+% Reformulate something on SPARQL about enabling
 
 \title{The necessity of hypermedia RDF and an approach to achieve it}
 \titlerunning{A hypermedia RDF approach}
@@ -85,7 +86,18 @@ constraint known as ``Hypermedia as the Engine of Application State''
 In a read-only situation, the HATEOAS constraint requires that the
 application can navigate from one resources to another using the
 hypermedia links in the present resource \emph{only}, they should not
-require any out-of-band information.
+require any out-of-band information. It is very common that
+specifications that advertise themselves as RESTful has a read-write
+API that is specified in terms of URI structure as well as HTTP
+verbs. This is not a violation of the HATEOAS constraint \textit{per
+  se}, but it would usually be superfluous as the same information
+\emph{must} be available in a hypermedia message in order to satisfy
+the HATEOAS constraint. The constraint does not require this
+information to be available in \emph{all} messages, nor does it
+require that all resources can be reached from any other resource, and
+so, it is not a very strict constraint.
+
+
 
 Since RDF is built on URIs, many of which can be dereferenced to
 obtain further links, it lends itself well to RESTful protocols, but
