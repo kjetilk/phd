@@ -73,13 +73,13 @@ extensive out-of-band information, it will be harder to use than media
 types that do not. Secondly, it requires relevant links and that the
 resulting graph can be traversed by reasonable means.
 
-While links are abundant across the Linked Open Data (LOD) cloud, this paper will
-argue that key links are missing to make it possible to traverse the
-resulting graph and to enable read-write operations. Moreover, we will
-argue that this shortcoming is due to that the community does not
-adequately take into account the constraint known as ``Hypermedia as
-the Engine of Application State'' (abbreviated HATEOAS) from
-the REST architectural style, see
+While links are abundant across the Linked Open Data (LOD) cloud, this
+paper will argue that key links are missing to make it possible to
+traverse the resulting graph and to enable read-write
+operations. Moreover, we will argue that this shortcoming is due to
+that the community does not adequately take into account the
+constraint known as ``Hypermedia as the Engine of Application State''
+(abbreviated HATEOAS) from the REST architectural style, see
 \cite{Fielding_2000_Architectural-Styles}~Chapter~5.
 
 In a read-only situation, the HATEOAS constraint requires that the
@@ -100,9 +100,9 @@ applications the protocol enables.
 \section{Required links}
 
 % TODO: rough start
-AtomPub has a single service endpoint,
-and you can navigate to what you need from there. This motivates the
-first discussion topic of this paper:
+AtomPub has a single service endpoint, and you can navigate to what
+you need from there. This motivates the first discussion topic of this
+paper:
 
 \begin{question}
 Is a single service endpoint enough for Linked Data?
@@ -165,9 +165,11 @@ those in HTML, or indeed to generate HTML fragments for the same purpose.
 <> hm:canBe hm:replaced, hm:deleted .
 \end{verbatim}
 
-The first triple says that the current resource may be replaced by PUTting an RDF payload to the resource URI. The second
-triple says that the resource may be deleted, typically by a HTTP
-DELETE on the resource URI.
+
+The first triple says that the current resource may be replaced by
+PUTting an RDF payload to the resource URI. The second triple says
+that the resource may be deleted, typically by a HTTP DELETE on the
+resource URI.
 
 
 \item[\textsf{CM}] Support for indicating the interface method for requests
@@ -185,11 +187,12 @@ very powerful hypermedia types. We also note that this vocabulary
 enables agents to do the same operations as the SPARQL 1.1 Graph Store
 HTTP
 Protocol\footnote{\url{http://www.w3.org/TR/2011/WD-sparql11-http-rdf-update-20110512/}},
-while being fully RESTful. The Protocol specification is currently not RESTful
-per the discussion above as it requires extensive out-of-band information, even though it was a key design goal. It
-should also be possible to use this on the default (nameless) graph by
-assigning it a name in the service description rather than defining it
-in an out-of-band specification like is currently being done.
+while being fully RESTful. The Protocol specification is currently not
+RESTful per the discussion above as it requires extensive out-of-band
+information, even though it was a key design goal. It should also be
+possible to use this on the default (nameless) graph by assigning it a
+name in the service description rather than defining it in an
+out-of-band specification like is currently being done.
 
 Also note the \texttt{hm:mergedInto} term was motivated by that POST
 operations in this specification results in an RDF Merge of the
