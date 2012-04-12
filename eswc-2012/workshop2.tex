@@ -120,10 +120,11 @@ instructive to use examples. In the following, we use Turtle syntax,
 with prefixes omitted for brevity. Also, we note that in many cases,
 we are making statements about the current resource, which given a
 reasonable base URI can be written as \texttt{<>}. We have not found
-the following factors to be relevant to RDF: \textsf{LE}, \textsf{CU}
-and \textsf{LT} (though the latter may be supported by
+the following factors to be relevant to RDF: \textsf{LE}, \textsf{CU},
+\textsf{CR} and \textsf{LT} (though the latter may be supported by
 RDForms\footnote{\url{http://vocab.deri.ie/rdforms}}?); and
-\textsf{LO} and \textsf{CL} are trivially supported. The remaining are:
+\textsf{LO} and \textsf{CL} are trivially supported. The remaining
+are:
 
 
 \begin{description}
@@ -156,13 +157,6 @@ triple says that the resource may be deleted, typically by a HTTP
 DELETE on the resource URI.
 
 
-\item[\textsf{CR}] Support for modifying control data for read requests
-  (e.g. HTTP Accept-* headers).
-
-\begin{verbatim}
-<> hm:acceptsFormats <http://www.w3.org/ns/formats/Turtle> .
-\end{verbatim}
-
 \item[\textsf{CM}] Support for indicating the interface method for requests
   (e.g. HTTP GET, POST, PUT, DELETE methods).
 
@@ -189,9 +183,25 @@ Should the SPARQL 1.1 Graph Store HTTP Protocol be replaced by a
 vocabulary like the above?
 \end{question}
 
+\subsection{New H~Factors}
+
+\begin{itemize}
+\item Support for supplying control data relevant to subsequent requests.
+
+
+\begin{verbatim}
+<> hm:acceptsFormat <http://www.w3.org/ns/formats/Turtle> .
+\end{verbatim}
+
+\item Support for self-description.
+
+\end{itemize}
+
+
 \begin{question}
 Can we create a better vocabulary for hypermedia RDF than the sketch above?
 \end{question}
+
 
 \section{Bridging LOD and SPARQL}
 
