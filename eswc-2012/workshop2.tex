@@ -78,23 +78,25 @@ constraint known as ``Hypermedia as the Engine of Application State''
 In a read-only situation, the HATEOAS constraint requires that the
 application can navigate from one resources to another using the
 hypermedia links in the present resource \emph{only}, they should not
-require any out-of-band information. It is very common that
-specifications that advertise themselves as RESTful has a read-write
+require any out-of-band information. Since RDF is built on URIs, many
+of which can be dereferenced to obtain further links, it will
+therefore almost always satisfy the HATEOAS constraint in the
+read-only case.
+
+Contrast the read-write situation: It is very common that
+specifications that advertise themselves as RESTful has an 
 API that is specified in terms of URI structure as well as HTTP
 verbs. This is not a violation of the HATEOAS constraint \textit{per
   se}, but it would usually be superfluous as the same information
 \emph{must} be available in a hypermedia message in order to satisfy
 the HATEOAS constraint. The constraint does not require this
-information to be available in \emph{all} messages, nor does it
-require that all resources can be reached from any other resource, and
+information to be available in \emph{all} messages, and
 so, it is not a very strict constraint.
 
-
-
-Since RDF is built on URIs, many of which can be dereferenced to
-obtain further links, it lends itself well to RESTful protocols, but
-it is debatable whether a protocol can be said to be RESTful if the
-links don't enable any useful interactions. Importantly, if there is
+It is debatable whether a protocol can be said to be RESTful if the
+links don't enable any useful interactions. Even in the read-only
+case, we must carefully add links that enable the desired interactions
+to take place, e.g. linking a SPARQL endpoint. Importantly, if there is
 to be such a thing as a RESTful read-write Semantic Web protocol,
 there must be something in the RDF itself that can be used by
 practical applications to write data. Therefore, whether the HATEOAS
