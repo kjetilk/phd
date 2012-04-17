@@ -4,13 +4,14 @@ allqueries <- read.delim("/home/kjekje/DBPediaBenchmark/data/dbpedia.aksw.org/be
 
 singleQuery <- function(queries, endpoint, runs = 5) {
   auxdata <- SPARQL(url=endpoint, query=queries$auxquery)
+  if (length(auxdata$results) < 1) stop("Auxillary query had no results")
+#  browser()
   using <- as.matrix(auxdata$results[sample((1:nrow(auxdata$results)), runs),])
   runqueries <- t(apply(using, 1, runQueries, queries$query, endpoint))
   as.data.frame(runqueries)
 }
 
 runQueries <- function(var, queryWithVar, endpoint) {
-  if (length(var) < 1) stop("Auxillary query had no results")
   if (length(var) == 1) {
     substQuery <- sub("%%var%%", paste("<", var, ">", sep="", collapse=""), queryWithVar, fixed=TRUE)
   } else {
@@ -27,7 +28,7 @@ runQueries <- function(var, queryWithVar, endpoint) {
 allQueries <- function(allqueries, endpoint, runs = 5) {
   for(queryname in row.names(allqueries)) {
    singleq <- singleQuery(allqueries[queryname,], endpoint, runs)
-   browser()
+
    singleq
  }
 }
