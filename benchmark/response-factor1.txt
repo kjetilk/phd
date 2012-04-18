@@ -1,0 +1,14 @@
+Timing Response Variables:
+
+* Total time after DNS lookup
+* Time for connection
+* Time to first byte
+* Time to transfer all data
+
+Backend system responses
+* Total RAM use for system
+* Unshared RAM based on Linux SMAPS
+* Unshared RAM on other OSes
+* Memory in swapped pages
+* CPU time
+* IO Handles used
