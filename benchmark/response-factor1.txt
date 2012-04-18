@@ -22,6 +22,7 @@ High-level dataset parameters:
 * Heterogenity of dataset
 
 Backend System categories:
+* Implementation (query engine and quad store)
 * Hardware platform (typically use two different)
 * Important configuration parameters
 
@@ -34,7 +35,7 @@ http://www.w3.org/TR/rdf-sparql-query/#sparqlGrammar)
 * Nestedness of UNIONS
 * Nestedness of GRAPH
 * Type of query
-* Presense of ORDER BY
+* Presence of ORDER BY
 * Number in LIMIT
 * Number in OFFSET
 * Functions in FILTER
