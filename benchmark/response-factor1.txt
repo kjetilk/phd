@@ -1,14 +1,41 @@
-Timing Response Variables:
+Response variables
 
+Timing Response Variables:
 * Total time after DNS lookup
 * Time for connection
 * Time to first byte
 * Time to transfer all data
 
-Backend system responses
+Backend system responses:
 * Total RAM use for system
 * Unshared RAM based on Linux SMAPS
 * Unshared RAM on other OSes
 * Memory in swapped pages
 * CPU time
 * IO Handles used
+
+
+Factors:
+
+High-level dataset parameters:
+* Number of triples in dataset
+* Heterogenity of dataset
+
+Backend System categories:
+* Hardware platform (typically use two different)
+* Important configuration parameters
+
+Language features:
+(general methodology: Follow grammar,
+http://www.w3.org/TR/rdf-sparql-query/#sparqlGrammar)
+* Number of projected variables
+* Number of triples in BGP
+* Nestedness of OPTIONALS
+* Nestedness of UNIONS
+* Nestedness of GRAPH
+* Type of query
+* Presense of ORDER BY
+* Number in LIMIT
+* Number in OFFSET
+* Functions in FILTER
+* Permutations of variables and bound terms in BGP
