@@ -1,4 +1,5 @@
-literals <- read.csv('/ifi/bifrost/a03/kjekje/Desktop/sparql')
+literals <- read.csv('/ifi/bifrost/a03/kjekje/data/literals-excerpt2.csv')
 framelit <- as.data.frame(table(literals))
 framelit$length <- sapply(levels(framelit$literals), nchar)
-plot(framelit$Freq, framelit$length, log="xy")
+plot(framelit$length, framelit$Freq, log="xy")
+litlm <- lm(framelit$Freq ~ framelit$length)
