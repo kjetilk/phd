@@ -981,6 +981,35 @@ Is there more?
 
 <div class="slide">
 
+<!-- Amundsen solicits more factors -->
+
+<h1>New H Factors</h1>
+
+<h2>Self-description</h2>
+
+<p>Key strength of RDF.</p>
+
+<pre class="incremental">
+&lt;> void:inDataset [ void:vocabulary &lt;http://purl.org/dc/terms/>, 
+                                    &lt;http://vocab/hypermedia#> . ] . 
+</pre>
+
+<p class="incremental">And then e.g.:</p>
+ 
+<pre class="incremental">
+hm:mergedInto a rdf:Property ;
+              rdfs:comment "Perform an RDF merge of payload into resource"@en ;
+	      rdfs:seeAlso [ 
+	        rdfs:label "RDF Merge" ;
+	        rdfs:isDefinedBy &lt;http://www.w3.org/TR/rdf-mt/#graphdefs> . 
+              ] .
+</pre>
+
+<p class="incremental">
+Very powerful hypermedia factor that is rather unique to RDF.
+</p>
+
+
 </div>
 
 <div class="slide">
