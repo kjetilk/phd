@@ -926,8 +926,9 @@ hm:mergedInto hm:httpMethod "POST" .
 
 
 <div class="slide">
+<h1>Summary of H Factors</h1>
 
-<table class="hfactors">
+<table style="float: none; font-size: 120%" class="hfactors">
   <thead>
     <tr>
       <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
@@ -938,7 +939,7 @@ hm:mergedInto hm:httpMethod "POST" .
       
       <td></td>
       <td></td>
-      <td class="border">CL</td>
+      <td class="border cd">CL</td>
       <td></td>
       <td></td>
     </tr>
@@ -947,22 +948,36 @@ hm:mergedInto hm:httpMethod "POST" .
       
       <td class="border">CR</td>
       <td class="border">CU</td>
-      <td class="border">CM</td>
+      <td class="border cd">CM</td>
       <td></td>
     </tr>
     <tr>
       <td class="border">LE</td>
       
-      <td class="border">LO</td>
+      <td class="border ld">LO</td>
       <td class="border">LT</td>
-      <td class="border">LN</td>
-      <td class="border">LI</td>
+      <td class="border ld">LN</td>
+      <td class="border ld">LI</td>
     </tr>
   </tbody>
 </table>
 
+<ul class="incremental">
+<li>Adding these triples to a resource and serialize it will yield hypermedia RDF</li>
+<li>Note independence of:
+  <ul>
+    <li>RDF serialization.</li>
+    <li>HTTP.</li>
+  </ul>
+</li>
+</ul>
+
+<p class="incremental">
+Is there more?
+</p>
 
 </div>
+
 
 <div class="slide">
 
@@ -992,14 +1007,12 @@ hm:mergedInto hm:httpMethod "POST" .
 </div>
 
 <!-- TODO
-* Derive the media type
 * New factors
 - Vocabulary
 * To every resource
 * Graph store bashing
 - Name the default graph
 * Effectively linked with SPARQL (timbl)
-* Note independence from HTTP
 * Weaknesses of RDF
 * Goals for a vocab
 * Bring member submission draft
