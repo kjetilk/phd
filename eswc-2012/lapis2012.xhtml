@@ -14,11 +14,11 @@
   <link rel="stylesheet" type="text/css" media="screen, projection, print" 
    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" /> 
   <link rel="stylesheet" type="text/css" media="screen, projection, print" 
-   href="kjetil-blue.css" /> 
+   href="http://dev.kjernsmo.net/talks/kjetil-blue.css" /> 
   <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" 
    charset="utf-8" type="text/javascript"></script> 
   <style type="text/css"> 
-    <!-- your custom style rules --> 
+    li .factor { padding-left : 2em; padding-right: 1em; }
   </style> 
 </head>
 <body>
@@ -185,10 +185,50 @@ Don't make developers look up the spec!
 </div>
 
 <div class="slide">
+<h1>Turning RDF into a Hypermedia Type</h1>
+
+<p>First, RDF isn't a media type, serializations are.</p>
+
+<p>Mike Amundsen defines <a href="http://amundsen.com/hypermedia/">hypermedia types</a> as:</p>
+<blockquote>
+<p>
+Hypermedia Types are MIME media types that contain native
+hyper-linking semantics that induce application flow. For example,
+HTML is a hypermedia type; XML is not.
+</p>
+</blockquote>
+
 
 </div>
 
 <div class="slide">
+<h1>Mike Amundsen's "H Factor" classification</h1>
+
+<!-- Very nice guidance -->
+
+<ol>
+  <li>Link Support</li>
+  
+  <ul>
+    <li><span class="factor">[LE]</span><a href="http://amundsen.com/hypermedia/hfactor/#le" title="Embedding">Embedding links</a></li>
+    <li><span class="factor">[LO]</span><a href="http://amundsen.com/hypermedia/hfactor/#lo" title="Outbound Links">Outbound links</a></li>
+    <li><span class="factor">[LT]</span><a href="http://amundsen.com/hypermedia/hfactor/#lt" title="Templated queries">Templated queries</a></li>
+    <li><span class="factor">[LN]</span><a href="http://amundsen.com/hypermedia/hfactor/#ln" title="Non-idempotent updates">Non-Idempotent updates</a></li>
+    
+    <li><span class="factor">[LI]</span><a href="http://amundsen.com/hypermedia/hfactor/#li" title="Idempotent updates">Idempotent updates</a></li>
+  </ul>
+  <li>Control Data Support</li>
+  <ul>
+    <li><span class="factor">[CR]</span><a href="http://amundsen.com/hypermedia/hfactor/#cr" title="Control data for reads">Control data for read requests</a></li>
+    <li><span class="factor">[CU]</span><a href="http://amundsen.com/hypermedia/hfactor/#cu" title="Control data for updates">Control data for update requests</a></li>
+    
+    <li><span class="factor">[CM]</span><a href="http://amundsen.com/hypermedia/hfactor/#cm" title="Control data for methods">Control data for interface methods</a></li>
+    <li><span class="factor">[CL]</span><a href="http://amundsen.com/hypermedia/hfactor/#cl" title="Control data for links">Control data for links</a></li>
+  </ul>
+</ol>
+
+<p>(Shameless copy'n'paste).</p>
+
 
 </div>
 
