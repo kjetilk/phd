@@ -619,12 +619,29 @@ meh...
   <p>When payload is sent to the object, the server may create a new URI for it.</p>
 </div>
 
-<!-- This would certainly be idempotent -->
+<!-- This would certainly be non-idempotent -->
 
 </div>
 
 
 <div class="slide">
+<h1>Idempotent updates</h1>
+<dl class="hfactor-values">
+  <dt><a id="li"></a>LI</dt>
+  <dd>
+    <p>
+      Support for idempotent updates (HTTP PUT, DELETE)
+    </p>
+  <pre class="code">    
+function delete(id) 
+{
+  var client = new XMLHttpRequest();
+  client.open("DELETE", "/records/"+id);
+}</pre>
+  </dd>
+</dl>
+
+
 
 <table class="hfactors">
   <thead>
@@ -652,13 +669,23 @@ meh...
     <tr>
       <td class="border">LE</td>
       
-      <td class="border">LO</td>
+      <td class="border ld">LO</td>
       <td class="border">LT</td>
-      <td class="border">LN</td>
-      <td class="border">LI</td>
+      <td class="border ld">LN</td>
+      <td class="border ld active">LI</td>
     </tr>
   </tbody>
 </table>
+
+<p class="conclusion">
+Two triples for replace and delete:
+</p>
+
+<pre class="incremental">&lt;> hm:canBe hm:replaced, hm:deleted .</pre>
+
+<p class="incremental">
+  Can we say that it is possible to <tt>PUT</tt> a resource to a new URL?
+</p>
 
 
 </div>
