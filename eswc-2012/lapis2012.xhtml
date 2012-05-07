@@ -691,6 +691,116 @@ Two triples for replace and delete:
 </div>
 
 <div class="slide">
+<h1>Control data for read requests</h1>
+
+<dl class="hfactor-values">
+  <dt><a id="cr"></a>CR</dt>
+  <dd>
+    <p>Support for modifying control data for read requests<br/> (e.g. HTTP <code>Accept-*</code> headers).</p>
+    <pre class="code">&lt;xsl:include href="http://www.exmaple.org/newsfeed" 
+  <em class="highlight">accept="application/rss"</em> /&gt;</pre>
+    
+  </dd>
+</dl>
+
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border active">CR</td>
+      <td class="border">CU</td>
+      <td class="border">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border ld">LO</td>
+      <td class="border">LT</td>
+      <td class="border ld">LN</td>
+      <td class="border ld">LI</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To tell the client to use certain header values?</p>
+
+</div>
+
+<div class="slide">
+<h1>Control data for update requests</h1>
+<dl class="hfactor-values">
+  <dt><a id="cu"></a>CU</dt>
+  <dd>
+    <p>Support for modifying control data for update requests<br/> (e. g. <code>Content-*</code> headers).</p>
+    <pre class="code">&lt;form method="post" 
+  action="http://www.example.org/my-keywords"  
+  <em class="highlight">enctype="application/x-www-form-urlencoded"</em> /&gt;
+  &lt;label&gt;Keywords:&lt;/label&gt;
+  &lt;input name="keywords" type="text" value="" /&gt;
+  &lt;input type="submit" /&gt;
+&lt;/form&gt;</pre>
+  </dd>
+</dl>
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border active">CU</td>
+      <td class="border">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border ld">LO</td>
+      <td class="border">LT</td>
+      <td class="border ld">LN</td>
+      <td class="border ld">LI</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="conclusion">Perhaps triples such as this could be added:</p>
+<pre>&lt;> hm:acceptsFormat &lt;http://www.w3.org/ns/formats/Turtle> .</pre>
+
+<p class="incremental">Somehow it seems different.</p>
+
+
+
+</div>
+
+
+<div class="slide">
 
 <table class="hfactors">
   <thead>
@@ -767,7 +877,6 @@ Two triples for replace and delete:
 
 
 </div>
-
 
 <div class="slide">
 
