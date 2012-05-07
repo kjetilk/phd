@@ -390,6 +390,16 @@ Closest I got was <tt>owl:imports</tt>, but is this really important in RDF cont
 
 
 <div class="slide">
+<h1>Outbound links</h1>
+
+<dl class="hfactor-values">
+  <dt><a id="lo"></a>LO</dt>
+  <dd>
+    <p>Support for out-bound navigational links (HTTP GET)</p>
+    
+    <pre class="code">&lt;a href="http://www.example.org/search" title="view search page"&gt;Search&lt;/a&gt;</pre>
+  </dd>
+</dl>
 
 <table class="hfactors">
   <thead>
@@ -417,7 +427,7 @@ Closest I got was <tt>owl:imports</tt>, but is this really important in RDF cont
     <tr>
       <td class="border">LE</td>
       
-      <td class="border">LO</td>
+      <td class="border active ld">LO</td>
       <td class="border">LT</td>
       <td class="border">LN</td>
       <td class="border">LI</td>
@@ -425,10 +435,27 @@ Closest I got was <tt>owl:imports</tt>, but is this really important in RDF cont
   </tbody>
 </table>
 
+<p class="conclusion">
+The usual links of RDF, trivially supported.
+</p>
 
 </div>
 
 <div class="slide">
+<h1>Templated queries</h1>
+
+  <dl class="hfactor-values">
+    <dt><a id="lt"></a>LT</dt>
+    <dd>
+      <p>Support for templated queries (HTTP GET)</p>
+      <pre class="code">
+&lt;form method="get"&gt;
+  &lt;label&gt;Search term:&lt;/label&gt;
+  &lt;input name="query" type="text" value="" /&gt;
+  &lt;input type="submit" /&gt;
+&lt;/form&gt;</pre>
+    </dd>
+  </dl>
 
 <table class="hfactors">
   <thead>
@@ -456,13 +483,21 @@ Closest I got was <tt>owl:imports</tt>, but is this really important in RDF cont
     <tr>
       <td class="border">LE</td>
       
-      <td class="border">LO</td>
-      <td class="border">LT</td>
+      <td class="border ld">LO</td>
+      <td class="border active">LT</td>
       <td class="border">LN</td>
       <td class="border">LI</td>
     </tr>
   </tbody>
 </table>
+
+<p class="conclusion">
+If you could embed SPARQL in RDF...
+</p>
+
+<p class="incremental">
+meh...
+</p>
 
 
 </div>
