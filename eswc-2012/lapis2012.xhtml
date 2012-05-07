@@ -24,6 +24,8 @@
     {
       border-collapse:collapse;
       float : right;
+      background: white;
+
     }
 
     table.hfactors thead th
@@ -56,6 +58,12 @@
       color:black;
     }
 
+    table.hfactors td.active
+    {
+      background-color:red;
+      color:black;
+    }
+
     table.hfactors td.border
     {
       border: 3px #737373 solid;
@@ -71,6 +79,14 @@
     {
       text-decoration:underline;
     }
+
+    dl.hfactor-values
+    {
+      border: 2px #95ABD0 solid;
+      clear : right;
+      float : left;
+    }
+	    
 
   </style> 
 </head>
@@ -317,12 +333,336 @@ HTML is a hypermedia type; XML is not.
 
 <p>(Shameless copy'n'paste).</p>
 
+<!-- All the following examples are taken from Amundsen -->
+
+</div>
+
+<div class="slide">
+<h1>Embedding links</h1>
+
+<dl class="hfactor-values">
+  <dt><a id="le"></a>LE</dt>
+  
+  <dd>
+    <p>Support for embedded links (HTTP GET)</p>
+    <pre class="code">&lt;img src="http://www.example.org/images/logo" title="company logo" /&gt;</pre>
+  </dd>
+</dl>
+
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border">CU</td>
+      <td class="border">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border active">LE</td>
+      
+      <td class="border">LO</td>
+      <td class="border">LT</td>
+      <td class="border">LN</td>
+      <td class="border">LI</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+Closest I got was <tt>owl:imports</tt>, but is this really important in RDF context?
+</p>
+
+</div>
+
+
+<div class="slide">
+
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border">CU</td>
+      <td class="border">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border">LO</td>
+      <td class="border">LT</td>
+      <td class="border">LN</td>
+      <td class="border">LI</td>
+    </tr>
+  </tbody>
+</table>
+
 
 </div>
 
 <div class="slide">
 
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border">CU</td>
+      <td class="border">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border">LO</td>
+      <td class="border">LT</td>
+      <td class="border">LN</td>
+      <td class="border">LI</td>
+    </tr>
+  </tbody>
+</table>
+
+
 </div>
+
+<div class="slide">
+
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border">CU</td>
+      <td class="border">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border">LO</td>
+      <td class="border">LT</td>
+      <td class="border">LN</td>
+      <td class="border">LI</td>
+    </tr>
+  </tbody>
+</table>
+
+
+</div>
+
+<div class="slide">
+
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border">CU</td>
+      <td class="border">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border">LO</td>
+      <td class="border">LT</td>
+      <td class="border">LN</td>
+      <td class="border">LI</td>
+    </tr>
+  </tbody>
+</table>
+
+
+</div>
+
+<div class="slide">
+
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border">CU</td>
+      <td class="border">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border">LO</td>
+      <td class="border">LT</td>
+      <td class="border">LN</td>
+      <td class="border">LI</td>
+    </tr>
+  </tbody>
+</table>
+
+
+</div>
+
+<div class="slide">
+
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border">CU</td>
+      <td class="border">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border">LO</td>
+      <td class="border">LT</td>
+      <td class="border">LN</td>
+      <td class="border">LI</td>
+    </tr>
+  </tbody>
+</table>
+
+
+</div>
+
+<div class="slide">
+
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border">CU</td>
+      <td class="border">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border">LO</td>
+      <td class="border">LT</td>
+      <td class="border">LN</td>
+      <td class="border">LI</td>
+    </tr>
+  </tbody>
+</table>
+
+
+</div>
+
 
 <div class="slide">
 
