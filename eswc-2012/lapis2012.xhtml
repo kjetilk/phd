@@ -502,7 +502,26 @@ meh...
 
 </div>
 
+
 <div class="slide">
+<h1>Non-Idempotent updates</h1>
+
+<!-- if you do this again and again, the result may be different from time to time -->
+
+<dl class="hfactor-values">
+  <dt><a id="ln"></a>LN</dt>
+  <dd>
+    <p>
+      Support for non-idempotent updates (HTTP POST)
+    </p>
+    <pre class="code">    
+&lt;form method="post" action="http://www.example.org/my-keywords"/&gt;
+  &lt;label&gt;Keywords:&lt;/label&gt;
+  &lt;input name="keywords" type="text" value="" /&gt;
+  &lt;input type="submit" /&gt;
+&lt;/form&gt;</pre>
+  </dd>
+</dl>
 
 <table class="hfactors">
   <thead>
@@ -530,18 +549,24 @@ meh...
     <tr>
       <td class="border">LE</td>
       
-      <td class="border">LO</td>
+      <td class="border ld">LO</td>
       <td class="border">LT</td>
-      <td class="border">LN</td>
+      <td class="border ld active">LN</td>
       <td class="border">LI</td>
     </tr>
   </tbody>
 </table>
 
+<p class="conclusion">Two cases:</p>
+<ol class="incremental">
+  <li>Add some triples to the existing resource.</li>
+  <li>Let the server decide the URI of the new resource (typically collection management)</li>
+</ol>
 
 </div>
 
 <div class="slide">
+<h1>How do we do updates?</h1>
 
 <table class="hfactors">
   <thead>
@@ -569,16 +594,35 @@ meh...
     <tr>
       <td class="border">LE</td>
       
-      <td class="border">LO</td>
+      <td class="border ld">LO</td>
       <td class="border">LT</td>
-      <td class="border">LN</td>
+      <td class="border ld active">LN</td>
       <td class="border">LI</td>
     </tr>
   </tbody>
 </table>
 
+<p class="incremental">We add triples!</p> 
+
+<h2 class="incremental">Adding triples</h2>
+<pre class="incremental">&lt;> hm:canBe hm:mergedInto .</pre>
+<p class="incremental">Indicates that an <a href="http://www.w3.org/TR/rdf-mt/#graphdefs">RDF Merge</a> of payload into the resource should be done.</p> 
+
+<p class="incremental">
+<small>Would this always be idempotent?</small>
+</p>
+
+<h2 class="incremental">Creating new resource</h2>
+
+<div class="incremental">
+  <pre>&lt;> hm:createSimilarAt &lt;../> .</pre>
+  <p>When payload is sent to the object, the server may create a new URI for it.</p>
+</div>
+
+<!-- This would certainly be idempotent -->
 
 </div>
+
 
 <div class="slide">
 
@@ -729,6 +773,7 @@ meh...
 * Derive the media type
 * New factors
 - Vocabulary
+* Note independence from HTTP
 * Weaknesses of RDF
 * Goals for a vocab
 * Bring member submission draft
