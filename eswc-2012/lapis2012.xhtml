@@ -69,7 +69,7 @@
 <h1>Motivations</h1>
 
 <ul class="incremental">
- <li>Nebulous thoughts around the developer communities TODO</li>
+ <li>Nebulous thoughts around the developer communities <small>(e.g. <a href="http://caines.ca/blog/programming/the-sun-is-setting-on-rails-style-mvc-frameworks/">The Sun is Setting on Rails-style MVC Frameworks</a>)</small></li>
  <li>Dissatisfaction with the SPARQL Graph Store specification.</li>
  <li>Linked Data needs to be more read-write.</li>
  <li>Semantic Web needs to be more fun, interesting and productive.</li>
@@ -86,8 +86,8 @@ Consider
 </p>
 
 <p>
-
-With this URI I can get a description of Knossos with links so that I can get more data and more links!
+With this URI I can get a description of Knossos with links so that I
+can get more data and more links!
 </p>
 
 <ul class="incremental">
@@ -117,7 +117,7 @@ Seriously, this is where we were at least 5 years ago!
 <h1>How can I do that?</h1>
 
 <ul class="incremental">
-  <li>Guess that the namespace URIs can be derefenced.</li>
+  <li>Guess that the namespace URIs can be derefenced (if I have them).</li>
   <li>Perhaps I can try a POST, DELETE or PUT? (what would the POST do?)</li>
   <li>Somewhere there might be a endpoint? Perhaps if I find the VoID description...</li>
 </ul>
@@ -131,7 +131,7 @@ If only it had been done RESTfully...
 <div class="slide">
 <h1>What is this REST thing?</h1>
 
-<!-- REST is har because the constraints don't map to a section -->
+<!-- REST is hard because the constraints don't map to a section -->
 
 <div class="incremental">
 <blockquote>
@@ -164,6 +164,22 @@ Don't make developers look up the spec!
 <p>Some suggest that Linked Data is inherently RESTful since RDF serializations are hypermedia types.</p>
 
 <p class="incremental">My answer: Not really, it depends...</p>
+
+<!-- No straitjacket. If all you want to do is read-only follow-your-nose navigation in data with known vocabularies, then yes -->
+
+<p class="incremental">What did I want to do?</p>
+<div  class="incremental">
+<ul>
+<li>To look up the vocabulary used to describe Knossos.</li>
+<li>To edit or augment the data.</li>
+<li>To query the data (with SPARQL).</li>
+</ul>
+</div>
+
+<!-- if it can't do this, it isn't RESTful -->
+
+<p class="incremental">RESTfulness must be judged on the basis of applications.</p>
+
 
 </div>
 
