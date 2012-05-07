@@ -801,6 +801,65 @@ Two triples for replace and delete:
 
 
 <div class="slide">
+<h1>Control data for interface methods</h1>
+
+<dl class="hfactor-values">
+  <dt><a id="cm"></a>CM</dt>
+  <dd>
+    <p>Support for indiciating the interface method for requests<br/> (e.g. HTTP <code>GET,POST,PUT,DELETE</code> methods).</p>
+    <pre class="code">&lt;form <em class="highlight">method="post"</em> action="http://www.example.org/my-keywords" /&gt;
+  &lt;label&gt;Keywords:&lt;/label&gt;
+  &lt;input name="keywords" type="text" value="" /&gt;
+  &lt;input type="submit" /&gt;
+&lt;/form&gt;</pre>
+  </dd>
+</dl>
+
+<table class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border">CU</td>
+      <td class="border active cd">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border ld">LO</td>
+      <td class="border">LT</td>
+      <td class="border ld">LN</td>
+      <td class="border ld">LI</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="conclusion">Describe e.g. HTTP methods for the predicates:</p>
+
+<pre>
+hm:replaced   hm:httpMethod "PUT" .
+hm:deleted    hm:httpMethod "DELETED" .
+hm:mergedInto hm:httpMethod "POST" .
+</pre>
+
+</div>
+
+<div class="slide">
 
 <table class="hfactors">
   <thead>
@@ -838,6 +897,7 @@ Two triples for replace and delete:
 
 
 </div>
+
 
 <div class="slide">
 
