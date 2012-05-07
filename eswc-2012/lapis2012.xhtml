@@ -1051,10 +1051,32 @@ Very powerful hypermedia factor that is rather unique to RDF.
 <!-- TODO: movies and the whole story -->
 </div>
 <div class="slide">
+<h1>To discover such things, you need either...</h1>
 
+<ul class="incremental">
+  <li>be a die-hard fan.</li>
+  <li>desperately search for a good example for a research proposal.</li>
+  <li>SPARQL federation-motivated source selection and query optimization.</li>
+</ul>
 </div>
 
 <div class="slide">
+<h1>SPARQL must be a part of Linked Data</h1>
+
+<blockquote>
+<p>
+To make the data be effectively linked, someone who only has the  URI of something must be able to find their way the SPARQL endpoint.  
+</p>
+<p class="cite">
+Tim Berners-Lee in the <a href="http://www.w3.org/DesignIssues/LinkedData">Linked Data Design Issue</a>.
+</p>
+</blockquote>
+
+<p>IOW, REST extends to linking SPARQL endpoints!</p>
+
+<pre class="incremental">
+&lt;> void:inDataset [ void:sparqlEndpoint &lt;/sparql> . ] .
+</pre>
 
 </div>
 
@@ -1067,11 +1089,9 @@ Very powerful hypermedia factor that is rather unique to RDF.
 </div>
 
 <!-- TODO
-* New factors
 * To every resource
 * Graph store bashing
 - Name the default graph
-* Effectively linked with SPARQL (timbl)
 * Weaknesses of RDF
 * Goals for a vocab
 * Bring member submission draft
