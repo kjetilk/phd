@@ -737,7 +737,8 @@ Two triples for replace and delete:
   </tbody>
 </table>
 
-<p>To tell the client to use certain header values?</p>
+
+<p style="clear:both">To tell the client to use certain header values?</p>
 
 </div>
 
@@ -775,7 +776,7 @@ Two triples for replace and delete:
       <td></td>
       
       <td class="border">CR</td>
-      <td class="border active">CU</td>
+      <td class="border active cd">CU</td>
       <td class="border">CM</td>
       <td></td>
     </tr>
@@ -793,9 +794,8 @@ Two triples for replace and delete:
 <p class="conclusion">Perhaps triples such as this could be added:</p>
 <pre>&lt;> hm:acceptsFormat &lt;http://www.w3.org/ns/formats/Turtle> .</pre>
 
-<p class="incremental">Somehow it seems different.</p>
-
-
+<!-- conflicted about this, ended up not having it in the paper, seems
+     to go well with HTML forms, but lets discuss -->
 
 </div>
 
@@ -834,7 +834,7 @@ Two triples for replace and delete:
       <td></td>
       
       <td class="border">CR</td>
-      <td class="border">CU</td>
+      <td class="border cd">CU</td>
       <td class="border active cd">CM</td>
       <td></td>
     </tr>
@@ -902,7 +902,7 @@ hm:mergedInto hm:httpMethod "POST" .
       <td></td>
       
       <td class="border">CR</td>
-      <td class="border">CU</td>
+      <td class="border cd">CU</td>
       <td class="border cd">CM</td>
       <td></td>
     </tr>
@@ -947,7 +947,7 @@ hm:mergedInto hm:httpMethod "POST" .
       <td></td>
       
       <td class="border">CR</td>
-      <td class="border">CU</td>
+      <td class="border cd">CU</td>
       <td class="border cd">CM</td>
       <td></td>
     </tr>
@@ -1008,23 +1008,6 @@ hm:mergedInto a rdf:Property ;
 <p class="incremental">
 Very powerful hypermedia factor that is rather unique to RDF.
 </p>
-
-
-</div>
-<div class="slide">
-
-<h1>New H Factors (cont.)</h1>
-
-<h2>Control data for subsequent requests</h2>
-
-<p>If this can't be done with <tt>CU</tt>:</p>
-
-<pre>&lt;> hm:acceptsFormat &lt;http://www.w3.org/ns/formats/Turtle> .</pre>
-
-
-<!-- It may be useful for agents to know e.g. what formats they can send
-to a given resource before the request is made. If this cannot be done
-with CU, it might need a new factor -->
 
 
 </div>
