@@ -1081,6 +1081,39 @@ Tim Berners-Lee in the <a href="http://www.w3.org/DesignIssues/LinkedData">Linke
 </div>
 
 <div class="slide">
+<h1>Lets return to Knossos</h1>
+
+<!-- not the place, the information resource -->
+
+<p>Linked Data has a unique problem: References may come from many different locations!</p>
+
+<ul class="incremental">
+  <li>Tourist guide data.</li>
+  <li>Mythological creatures data.</li>
+  <li>Minoan culture data.</li>
+  <li>Bronze age sites data.</li>
+  <li>etc., etc.</li>
+</ul>
+
+<!-- and they may again reference others 
+
+And not only is the number of resources huge, the number of datasets is too
+
+So, each resource may link to a big service description, but each
+crossing of dataset boundaries would result in another get, possibly
+to get much more than needed.
+-->
+
+
+<pre class="incremental">&lt;http://dbpedia.org/data/Knossos> hm:canBe hm:replaced, hm:deleted .
+&lt;http://dbpedia.org/data/Phaistos hm:canBe hm:replaced, hm:deleted .
+[...]
+</pre>
+
+<p class="conclusion incremental">
+Some triples needs to be on every resource!
+</p>
+
 
 </div>
 
