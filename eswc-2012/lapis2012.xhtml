@@ -1104,9 +1104,10 @@ crossing of dataset boundaries would result in another get, possibly
 to get much more than needed.
 -->
 
+<p class="incremental">Imagine a service description with:</p>
 
-<pre class="incremental">&lt;http://dbpedia.org/data/Knossos> hm:canBe hm:replaced, hm:deleted .
-&lt;http://dbpedia.org/data/Phaistos hm:canBe hm:replaced, hm:deleted .
+<pre class="incremental">&lt;http://dbpedia.org/data/Knossos>  hm:canBe hm:replaced, hm:deleted .
+&lt;http://dbpedia.org/data/Phaistos> hm:canBe hm:replaced, hm:deleted .
 [...]
 </pre>
 
@@ -1118,6 +1119,33 @@ Some triples needs to be on every resource!
 </div>
 
 <div class="slide">
+<h1>Question is: How many?</h1>
+
+<pre>
+&lt;> hm:canBe hm:mergedInto, hm:replaced, hm:deleted ;
+   hm:createSimilarAt &lt;../> ;
+   hm:acceptsFormat &lt;http://www.w3.org/ns/formats/Turtle> ;
+   void:inDataset [ void:sparqlEndpoint &lt;/sparql> ;
+                    void:vocabulary     &lt;http://purl.org/dc/terms/> .
+                  ] .
+</pre>
+
+<!-- acceptsformat doesn't perhaps make much sense, can be inferred?
+We really should have void description
+So, we're left with the void dataset reference and the write triples
+-->
+
+<pre class="incremental">
+&lt;> hm:canBe hm:mergedInto, hm:replaced, hm:deleted ;
+   hm:createSimilarAt &lt;../> ;
+   void:inDataset &lt;/void>
+</pre>
+
+<p class="incremental conclusion">
+We're down to 5 triples in most cases!
+</p>
+
+<!-- they don't need to be stored, just added before serialization -->
 
 </div>
 
@@ -1146,7 +1174,6 @@ Some triples needs to be on every resource!
 </div>
 
 <!-- TODO
-* To every resource
 * Graph store bashing
 - Name the default graph
 * Weaknesses of RDF
