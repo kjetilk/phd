@@ -1151,7 +1151,36 @@ We're down to 5 triples in most cases!
 </div>
 
 <div class="slide">
+<h1>What's wrong with the SPARQL 1.1 <a href="http://www.w3.org/TR/2012/WD-sparql11-http-rdf-update-20120501/">Graph Store Spec</a>?</h1>
 
+<div class="incremental">
+<p>Intention:</p>
+<blockquote>
+<p>
+This document describes the use of HTTP operations for the purpose of managing a collection of RDF graphs in the REST architectural style.
+</p>
+</blockquote>
+<!-- I helped conceive it. I didn't appreciate REST at the time and thought that was what we should be doing. It derailed on a discussion on indirect graph identification. Basically, it happens because people import other people's graphs in their store without changing the graph name. Don't like it, but that's beside the point. -->
+</div>
+
+<ul class="incremental">
+<li>First problem: Need to address the unnamed default graph.</li>
+<li>According to REST, it <strong>must</strong> be found in a message!</li>
+<!-- forcing a name in the spec is NOT an alternative -->
+
+<li><code>/rdf-graph-store?default</code></li>
+
+<li>It must be in the service description!</li>
+<li>Which is more flexible!</li>
+</ul>
+
+TODO greg
+
+<blockquote>
+<p>
+  Intuitively, the set of interpretations that satisfy [RDF-MT] the RDF graph the RDF document <em>serializes</em> can be thought of as this RDF graph content.
+</p>
+</blockquote>
 </div>
 
 <div class="slide">
