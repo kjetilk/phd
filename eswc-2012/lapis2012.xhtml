@@ -1171,6 +1171,7 @@ This document describes the use of HTTP operations for the purpose of managing a
 <li>Tied to HTTP.</li>
 <li>Addressing default unnamed graph.</li>
 <li>Superfluous URI structure definitions.</li>
+<li>Method definitions.</li>
 <li>Language that misses the audience.</li>
 
 </ul>
@@ -1203,7 +1204,7 @@ This document describes the use of HTTP operations for the purpose of managing a
 <li>According to REST, it <strong>must</strong> be found in a message!</li>
 <!-- forcing a name in the spec is NOT an alternative -->
 
-<li><code>/rdf-graph-store?default</code></li>
+<li><code>/rdf-graph-store?<b>default</b></code></li>
 
 <li>It must be in the service description!</li>
 <li>Which is more flexible!</li>
@@ -1227,6 +1228,37 @@ This document describes the use of HTTP operations for the purpose of managing a
 
 
 <div class="slide">
+<h1>URI structure</h1>
+
+<!-- more general, the spec defines default and graph query parameters -->
+
+<p><code>/rdf-graph-store?<b>graph</b>=http%3A//www.example.com/other/graph</code></p>
+
+<blockquote>
+<p>
+ A REST API must not define fixed resource names or hierarchies [...]. Servers must have the freedom to control their own namespace.
+</p>
+<p class="cite"><a href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">Roy Fielding</a></p>
+</blockquote>
+
+</div>
+
+<div class="slide">
+<h1>What methods do</h1>
+
+<p>Section <a href="http://www.w3.org/TR/sparql11-http-rdf-update/#graph-management">5 Graph Management Operations</a> is all about the use of HTTP verbs.</p>
+
+<blockquote>
+<p>
+Any effort spent describing what methods to use on what URIs of interest should be entirely defined within the scope of the processing rules for a media type
+</p>
+<p class="cite"><a href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">Roy Fielding</a></p>
+</blockquote>
+
+</div>
+
+
+<div class="slide">
 <h1>Overly academic language</h1>
 
 <p>Remember: Don't make developers look up the spec!</p>
@@ -1240,6 +1272,7 @@ This document describes the use of HTTP operations for the purpose of managing a
 
 <p class="incremental">This could have been implemented by several thousands...</p>
 
+<!-- totally missing the audience -->
 
 </div>
 
