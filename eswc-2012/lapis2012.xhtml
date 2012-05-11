@@ -1168,6 +1168,23 @@ This document describes the use of HTTP operations for the purpose of managing a
 </div>
 
 <ul class="incremental">
+<li>Addressing default unnamed graph.</li>
+<li>Superfluous URI structure definitions.</li>
+<li>Language that misses the audience.</li>
+
+</ul>
+
+</div>
+
+
+<div class="slide">
+<h1>Addressing unnamed default graph</h1>
+
+<!-- Dataset can consist of one unnamed graph and zero or more named graphs. Trouble starts when we try to address the unnamed graph. The spec forces a graph name -->
+
+<ul class="incremental">
+
+
 <li>First problem: Need to address the unnamed default graph.</li>
 <li>According to REST, it <strong>must</strong> be found in a message!</li>
 <!-- forcing a name in the spec is NOT an alternative -->
@@ -1178,20 +1195,37 @@ This document describes the use of HTTP operations for the purpose of managing a
 <li>Which is more flexible!</li>
 </ul>
 
-TODO greg
+<pre class="incremental">_:service sd:defaultDataset [
+        a sd:Dataset ;
+        sd:defaultGraph _:graph ;
+        sd:namedGraph [
+            a sd:NamedGraph ;
+            sd:name &lt;http://www.example/named-graph> ;
+            sd:graph _:graph .
+        ]
+    ] .
+</pre>
+<p class="cite">Gregory Todd Williams, <i>private communication</i></p>
 
+<!-- That is, the same graph is pointed to as the default graph, and as a named graph with a graph name. -->
+
+</div>
+
+
+<div class="slide">
+<h1>Overly academic language</h1>
+
+<p>Remember: Don't make developers look up the spec!</p>
+
+<!-- not only forces it us to look up the spec in violation of REST, but... -->
 <blockquote>
-<p>
-  Intuitively, the set of interpretations that satisfy [RDF-MT] the RDF graph the RDF document <em>serializes</em> can be thought of as this RDF graph content.
+<p class="incremental">
+  Intuitively, the set of interpretations that satisfy [RDF-MT] the RDF graph the RDF document serializes can be thought of as this RDF graph content.
 </p>
 </blockquote>
-</div>
 
-<div class="slide">
+<p class="incremental">This could have been implemented by several thousands...</p>
 
-</div>
-
-<div class="slide">
 
 </div>
 
@@ -1200,6 +1234,22 @@ TODO greg
 </div>
 
 <div class="slide">
+
+</div>
+
+<div class="slide">
+
+</div>
+
+<div class="slide">
+<h1>Acknowledgements</h1>
+
+<ul>
+  <li>Chris Prather, Tamarou LLC.</li>
+  <li>Gregory Todd Williams, Rensselaer Polytechnic Institute.</li>
+  <li>Anonymous reviewers.</li>
+</ul>
+
 
 </div>
 
