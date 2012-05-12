@@ -1157,7 +1157,6 @@ We're down to 5 triples in most cases!
 <div class="slide">
 <h1>What's wrong with the SPARQL 1.1 <a href="http://www.w3.org/TR/2012/WD-sparql11-http-rdf-update-20120501/">Graph Store Spec</a>?</h1>
 
-<div class="incremental">
 <p>Intention:</p>
 <blockquote>
 <p>
@@ -1165,7 +1164,7 @@ This document describes the use of HTTP operations for the purpose of managing a
 </p>
 </blockquote>
 <!-- I helped conceive it. I didn't appreciate REST at the time and thought that was what we should be doing. It derailed on a discussion on indirect graph identification. Basically, it happens because people import other people's graphs in their store without changing the graph name. Don't like it, but that's beside the point. -->
-</div>
+
 
 <ul class="incremental">
 <li>Tied to HTTP.</li>
@@ -1200,7 +1199,7 @@ This document describes the use of HTTP operations for the purpose of managing a
 <ul class="incremental">
 
 
-<li>First problem: Need to address the unnamed default graph.</li>
+<li>Need to address the unnamed default graph.</li>
 <li>According to REST, it <strong>must</strong> be found in a message!</li>
 <!-- forcing a name in the spec is NOT an alternative -->
 
@@ -1220,7 +1219,7 @@ This document describes the use of HTTP operations for the purpose of managing a
         ]
     ] .
 </pre>
-<p class="cite">Gregory Todd Williams, <i>private communication</i></p>
+<p class="incremental cite">Gregory Todd Williams, <i>private communication</i></p>
 
 <!-- That is, the same graph is pointed to as the default graph, and as a named graph with a graph name. -->
 
@@ -1230,7 +1229,7 @@ This document describes the use of HTTP operations for the purpose of managing a
 <div class="slide">
 <h1>URI structure</h1>
 
-<!-- more general, the spec defines default and graph query parameters -->
+<!-- more general, the spec defines default and graph query parameters. It is debateable whether this breaks the constraint, but it is certainly not necessary -->
 
 <p><code>/rdf-graph-store?<b>graph</b>=http%3A//www.example.com/other/graph</code></p>
 
