@@ -1282,7 +1282,7 @@ Any effort spent describing what methods to use on what URIs of interest should 
 
 <ul>
 <li>No <code>multipart/form-data</code> support.</li>
-<li>No analog to the use of <code>PATCH</code> method.</li>
+<li>No analog to the use of <code>PATCH</code> method.</li> <!-- which allows SPARQL Update to be sent as a patch. Important feature. -->
 </ul>
 
 <p class="incremental">In both cases, it needs to be defined in the processing rules of the MIME type.</p>
@@ -1290,10 +1290,37 @@ Any effort spent describing what methods to use on what URIs of interest should 
 </div>
 
 <div class="slide">
+<h1>How it addresses the rest</h1>
+
+<ul class="incremental">
+<li>Direct graph identification is mostly trivial.</li>
+<li>The only new thing is the specification of RDF Merge,</li>
+<li>which can happen in-band in the vocabulary.
+<pre>hm:mergedInto rdfs:comment "Perform an RDF merge of payload into resource"@en .</pre>
+</li>
+<li>It doesn't force a name in the indirect identification case, but any name may be supplied.</li>
+<!-- so the case is fully supported, but you need to get the URI from the SD first. The SD can be found from any resource, remember. 
+You could argue this is a weakness of REST, you need to get information from a resource first, you can't hardcode -->
+<li>Unnamed default graph needs to be in the Service Description if supported.</li>
+<!-- Would want it to be prettier than it is... -->
+</ul>
+
+<p class="incremental conclusion">Comprehensive replacement of SPARQL 1.1 Graph Store, but with REST.</p>
 
 </div>
 
 <div class="slide">
+<h1>Is RDF 1.0 adequate?</h1>
+
+<p>Initial design:</p>
+
+<pre>&lt;> hm:operations
+   [ a hm:Operations ;
+     hm:mergeInto &lt;> ;
+     hm:delete &lt;> ;
+[...]
+</pre>
+
 
 </div>
 
@@ -1327,8 +1354,6 @@ Any effort spent describing what methods to use on what URIs of interest should 
 </div>
 
 <!-- TODO
-* Graph store bashing
-- Name the default graph
 * Weaknesses of RDF
 * Goals for a vocab
 * Bring member submission draft
