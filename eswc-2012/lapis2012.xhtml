@@ -1310,6 +1310,21 @@ You could argue this is a weakness of REST, you need to get information from a r
 </div>
 
 <div class="slide">
+<h1>Weaknesses</h1>
+
+<ul class="incremental">
+<li>You have to <code>GET</code> something first.</li> <!-- nothing can be presumed a priori, like the graph query parameter, which doesn't necessarily exist -->
+<li>May break the expectation that when you <code>PUT</code> something, you'll <code>GET</code> the same thing back.</li> <!-- which may have implications on caching -->
+<li>Inflates responses.</li> <!-- by adding a few triples to every resource. Not that many in the read-only case. -->
+<li>Places requirements on SPARQL Service Descriptions that may not be easily handled in the current spec.</li>
+</ul>
+
+
+</div>
+
+
+
+<div class="slide">
 <h1>Is RDF 1.0 adequate?</h1>
 
 <p>Initial design:</p>
