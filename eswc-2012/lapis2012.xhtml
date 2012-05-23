@@ -167,6 +167,8 @@ can get more data and more links!
 <li>How exciting.</li>
 </ul>
 
+<!-- There's nothing here about writing, nothing about the rest of the stack -->
+
 <p class="incremental">
 Seriously, this is where we were at least 5 years ago!
 </p>
@@ -212,7 +214,7 @@ If only it had been done RESTfully...
   resources; manipulation of resources through representations;
   self-descriptive messages; and, <strong>hypermedia as the engine of
   application state</strong>.
-  </p> <cite><a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_5">Roy Fielding</a></cite>
+  </p> <p class="cite"><a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_5">Roy Fielding</a></p>
 </blockquote>
 
 <p>
@@ -220,6 +222,10 @@ My emphasis: Note the HATEOAS constraint!
 </p>
 
 </div>
+
+<!-- we trivially have part of that in Linked Data, the URIs for identification, we have RDF serializations as representations, which also can describe a lot, but...
+What can we do other than traversing the graph? Semweb is not the only interaction that occurs, we live in a ecosystem with various sources. Devs will use what's most accessible to them. And accessibility comes from it not  being hard to use the data.  
+ -->
 
 <div class="incremental">
 <h3>The take-away:</h3>
@@ -233,7 +239,7 @@ Don't make developers look up the spec!
 <div class="slide">
 <h1>Linked Data is RESTful, right?</h1>
 
-<p>Some suggest that Linked Data is inherently RESTful since RDF serializations are hypermedia types.</p>
+<p>Some suggest that Linked Data is inherently RESTful since RDF serializations are hypermedia types.</p> <!-- danja did on his blog -->
 
 <p class="incremental">My answer: Not really, it depends...</p>
 
@@ -506,7 +512,9 @@ W3C Submission <a href="http://www.w3.org/Submission/2011/SUBM-spin-sparql-20110
 <div class="slide">
 <h1>Non-Idempotent updates</h1>
 
-<!-- if you do this again and again, the result may be different from time to time -->
+<!-- if you do this again and again, the result may be different from time to time 
+It should not depend on HTTP, but lets use HTTP examples -->
+
 
 <dl class="hfactor-values">
   <dt><a id="ln"></a>LN</dt>
@@ -1324,7 +1332,7 @@ You could argue this is a weakness of REST, you need to get information from a r
 
 
 
-<div class="slide">
+<!-- div class="slide">
 <h1>Is RDF 1.0 adequate?</h1>
 
 <p>Initial design:</p>
@@ -1337,7 +1345,7 @@ You could argue this is a weakness of REST, you need to get information from a r
 </pre>
 
 
-</div>
+</div -->
 
 <div class="slide">
 <h1>Goals for the vocabulary</h1>
@@ -1354,6 +1362,7 @@ You could argue this is a weakness of REST, you need to get information from a r
 
 </div>
 
+<!-- 
 <div class="slide">
 
 </div>
@@ -1361,6 +1370,7 @@ You could argue this is a weakness of REST, you need to get information from a r
 <div class="slide">
 
 </div>
+-->
 
 <div class="slide">
 <h1>Acknowledgements</h1>
