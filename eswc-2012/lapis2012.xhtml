@@ -574,7 +574,7 @@ It should not depend on HTTP, but lets use HTTP examples -->
 </div>
 
 <div class="slide">
-<h1>How do we do updates?</h1>
+<h1>How do we indicate updates can be done?</h1>
 
 <table class="hfactors">
   <thead>
@@ -610,14 +610,14 @@ It should not depend on HTTP, but lets use HTTP examples -->
   </tbody>
 </table>
 
-<p class="incremental">We add triples!</p> 
+<p class="incremental">We add triples to the resource!</p> 
 
 <h2 class="incremental">Adding triples</h2>
 <pre class="incremental">&lt;> hm:canBe hm:mergedInto .</pre>
 <p class="incremental">Indicates that an <a href="http://www.w3.org/TR/rdf-mt/#graphdefs">RDF Merge</a> of payload into the resource should be done.</p> 
 
 <p class="incremental">
-<small>Would this always be idempotent?</small>
+<small>Might this be idempotent?</small>
 </p>
 
 <h2 class="incremental">Creating new resource</h2>
