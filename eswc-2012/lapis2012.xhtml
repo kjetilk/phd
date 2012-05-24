@@ -620,8 +620,28 @@ It should not depend on HTTP, but lets use HTTP examples -->
 <p class="incremental">
 <small>Might this be idempotent?</small>
 </p>
+</div>
 
-<h2 class="incremental">Creating new resource</h2>
+<div class="slide">
+<h1>More concrete example</h1>
+
+<p>
+Look up <a href="http://dbpedia.org/resource/Knossos"><tt>http://dbpedia.org/resource/Knossos</tt></a>, get a 303 to 
+<a href="http://dbpedia.org/data/Knossos"><tt>http://dbpedia.org/data/Knossos</tt></a>, with:
+</p>
+<pre>
+&lt;http://dbpedia.org/resource/Knossos> a yago:ArchaeologicalSitesInCrete ,
+                yago:FormerPopulatedPlacesInGreece ,
+                yago:MinoanArchaeologicalSitesInGreece .
+# [...]
+<span class="incremental">&lt;http://dbpedia.org/data/Knossos> hm:canBe hm:mergedInto .</span>
+</pre>
+
+</div>
+
+<div class="slide">
+
+<h1 class="incremental">Creating new resource</h1>
 
 <div class="incremental">
   <pre>&lt;> hm:createSimilarAt &lt;../> .</pre>
