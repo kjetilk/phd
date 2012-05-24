@@ -1213,13 +1213,14 @@ This document describes the use of HTTP operations for the purpose of managing a
 
 
 <div class="slide">
-<h1>Weaknesses</h1>
+<h1>Weaknesses of my proposal</h1>
 
 <ul class="incremental">
 <li>You have to <code>GET</code> something first.</li> <!-- nothing can be presumed a priori, like the graph query parameter, which doesn't necessarily exist -->
 <li>May break the expectation that when you <code>PUT</code> something, you'll <code>GET</code> the same thing back.</li> <!-- which may have implications on caching -->
 <li>Inflates responses.</li> <!-- by adding a few triples to every resource. Not that many in the read-only case. -->
 <li>Places requirements on SPARQL Service Descriptions that may not be easily handled in the current spec.</li>
+<li>Is RDF 1.0 a good fit?</li>
 </ul>
 
 
