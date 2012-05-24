@@ -12,6 +12,7 @@
   <meta name="copyright" 
    content="Copyright &#169; 2012 Kjetil Kjernsmo Creative Commons Attribution-Sharealike" /> 
   <meta name="duration" content="25" />
+  <meta name="robots" content="noindex"/>
   <link rel="stylesheet" type="text/css" media="screen, projection, print" 
    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" /> 
   <link rel="stylesheet" type="text/css" media="screen, projection, print" 
@@ -191,7 +192,7 @@ Seriously, this is where we were at least 5 years ago!
 <h1>How can I do that?</h1>
 
 <ul class="incremental">
-  <li>Guess that the namespace URIs can be derefenced (if I have them).</li>
+  <li>Guess that the namespace URIs can be dereferenced (if I have them).</li>
   <li>Perhaps I can try a POST, DELETE or PUT? (what would the POST do?)</li>
   <li>Somewhere there might be a endpoint? Perhaps if I find the VoID description...</li>
 </ul>
@@ -1187,6 +1188,103 @@ This document describes the use of HTTP operations for the purpose of managing a
 
 </div>
 
+
+
+<div class="slide">
+<h1>Weaknesses</h1>
+
+<ul class="incremental">
+<li>You have to <code>GET</code> something first.</li> <!-- nothing can be presumed a priori, like the graph query parameter, which doesn't necessarily exist -->
+<li>May break the expectation that when you <code>PUT</code> something, you'll <code>GET</code> the same thing back.</li> <!-- which may have implications on caching -->
+<li>Inflates responses.</li> <!-- by adding a few triples to every resource. Not that many in the read-only case. -->
+<li>Places requirements on SPARQL Service Descriptions that may not be easily handled in the current spec.</li>
+</ul>
+
+
+</div>
+
+
+
+<!-- div class="slide">
+<h1>Is RDF 1.0 adequate?</h1>
+
+<p>Initial design:</p>
+
+<pre>&lt;> hm:operations
+   [ a hm:Operations ;
+     hm:mergeInto &lt;> ;
+     hm:delete &lt;> ;
+[...]
+</pre>
+
+
+</div -->
+
+<div class="slide">
+<h1>Goals for the vocabulary</h1>
+
+<ul class="incremental">
+  <li>Uses RDF 1.0</li>
+  <li>Can easily be implemented right now.</li> <!-- perfect has to wait -->
+  <li>Serve as replacement for SPARQL 1.1 Graph Store.</li>
+  <li>Substantial input to Linked Data Basic Profile.</li>
+  <li>Triples that can be added to the serialization rather than stored.</li>
+  <li>Triples that can be inferred.</li>
+  <!-- li>Suitable as W3C Member Submission< -->
+</ul>
+
+</div>
+
+<!-- 
+<div class="slide">
+
+</div>
+
+<div class="slide">
+
+</div>
+-->
+
+<div class="slide">
+<h1>Acknowledgements</h1>
+
+<ul>
+  <li>Chris Prather, Tamarou LLC.</li>
+  <li>Martin Giese, University of Oslo.</li>
+  <li>Gregory Todd Williams, Rensselaer Polytechnic Institute.</li>
+  <li>Anonymous reviewers.</li>
+</ul>
+
+
+</div>
+
+<div class="slide">
+<h1>Questions</h1>
+
+<h2>From the paper:</h2>
+<ol>
+<li>Is a single service endpoint enough for Linked Data?</li>
+<li>Should the SPARQL 1.1 Graph Store HTTP Protocol be replaced by a
+vocabulary like the above?</li>
+<li>Can we create a better vocabulary for hypermedia RDF than the sketch above?</li>
+</ol>
+
+<h2>Additionally:</h2>
+
+<ol>
+<li>Where does hypermedia RDF and APIs such as <a href="http://code.google.com/p/linked-data-api/">linked-data-api</a> complement each other and where do they compete? 
+</li>
+</ol>
+
+</div>
+
+<!-- TODO
+* Weaknesses of RDF
+* Bring member submission draft
+* Code
+
+-->
+
 <div class="slide">
 <h1>A REST API should not be tied to HTTP</h1>
 
@@ -1317,100 +1415,6 @@ You could argue this is a weakness of REST, you need to get information from a r
 
 </div>
 
-<div class="slide">
-<h1>Weaknesses</h1>
-
-<ul class="incremental">
-<li>You have to <code>GET</code> something first.</li> <!-- nothing can be presumed a priori, like the graph query parameter, which doesn't necessarily exist -->
-<li>May break the expectation that when you <code>PUT</code> something, you'll <code>GET</code> the same thing back.</li> <!-- which may have implications on caching -->
-<li>Inflates responses.</li> <!-- by adding a few triples to every resource. Not that many in the read-only case. -->
-<li>Places requirements on SPARQL Service Descriptions that may not be easily handled in the current spec.</li>
-</ul>
-
-
-</div>
-
-
-
-<!-- div class="slide">
-<h1>Is RDF 1.0 adequate?</h1>
-
-<p>Initial design:</p>
-
-<pre>&lt;> hm:operations
-   [ a hm:Operations ;
-     hm:mergeInto &lt;> ;
-     hm:delete &lt;> ;
-[...]
-</pre>
-
-
-</div -->
-
-<div class="slide">
-<h1>Goals for the vocabulary</h1>
-
-<ul class="incremental">
-  <li>Uses RDF 1.0</li>
-  <li>Can easily be implemented right now.</li> <!-- perfect has to wait -->
-  <li>Serve as replacement for SPARQL 1.1 Graph Store.</li>
-  <li>Substantial input to Linked Data Basic Profile.</li>
-  <li>Triples that can be added to the serialization rather than stored.</li>
-  <li>Triples that can be inferred.</li>
-  <!-- li>Suitable as W3C Member Submission< -->
-</ul>
-
-</div>
-
-<!-- 
-<div class="slide">
-
-</div>
-
-<div class="slide">
-
-</div>
--->
-
-<div class="slide">
-<h1>Acknowledgements</h1>
-
-<ul>
-  <li>Chris Prather, Tamarou LLC.</li>
-  <li>Martin Giese, University of Oslo.</li>
-  <li>Gregory Todd Williams, Rensselaer Polytechnic Institute.</li>
-  <li>Anonymous reviewers.</li>
-</ul>
-
-
-</div>
-
-<div class="slide">
-<h1>Questions</h1>
-
-<h2>From the paper:</h2>
-<ol>
-<li>Is a single service endpoint enough for Linked Data?</li>
-<li>Should the SPARQL 1.1 Graph Store HTTP Protocol be replaced by a
-vocabulary like the above?</li>
-<li>Can we create a better vocabulary for hypermedia RDF than the sketch above?</li>
-</ol>
-
-<h2>Additionally:</h2>
-
-<ol>
-<li>Where does hypermedia RDF and APIs such as <a href="http://code.google.com/p/linked-data-api/">linked-data-api</a> complement each other and where do they compete? 
-</li>
-</ol>
-
-</div>
-
-<!-- TODO
-* Weaknesses of RDF
-* Bring member submission draft
-* Code
-
--->
 
 </body>
 </html>
