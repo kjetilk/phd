@@ -1,5 +1,6 @@
 \documentclass[12pt, draft]{article}
 \usepackage{cite}
+\usepackage[utf8]{inputenc}
 
 \newcommand{\rdfterm}[1]{\texttt{#1}}
 \newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
@@ -21,7 +22,7 @@ permission of the author.
   patterns in SPARQL queries. In this paper we see how the common
   assumption of independence of the selectivity of RDF terms can be
   abandoned. We proceed to extend SPLENDID\cite{splendid} using the
-  new formalism and demonstrate how the VoID data descriptions can be
+  new formalism and demonstrate how VoID data descriptions\cite{void} can be
   further exploited in the conditional regime. Finally, we will
   explore how selectivity can be determined exactly when a SPARQL
   query is executed on a fully indexed triplestore, such as
@@ -52,7 +53,7 @@ different from e.g. literals.
 
 \cite{splendid}, \cite{wodqa} \todo{write this}.
 
-\section{Conditional selectivity}
+\section{Conditional selectivity}\label{sec:cond}
 
 Previous authors have taken selectivity as analogous to the
 probability of matching a SPARQL term (RDF Term or variable) with an
@@ -120,6 +121,20 @@ We still have $sel(S) = 1$ as above, and there are still two
 predicates that match, so $sel(P | S) = 2/7$, but only half of those
 match the literal, so $sel(O | S \cap P) = 1/2$, giving us the
 expected $sel(T) = 1/7$.
+
+\section{Exploiting VoID descriptions}
+
+In SPLENDID\cite{splendid} the authors showed how statistics exposed
+using the VoID data description vocabulary\cite{void} could be
+exploited for query optimization. The authors made the assumption that
+subjects and objects were uniformly distributed and independent from
+the predicate. The present paper extends their work by relaxing these
+assumptions.
+
+In section~\ref{sec:cond}, we saw 
+
+
+
 
 \section{Exact selectivity for fully indexed stores}
 
