@@ -121,9 +121,10 @@ predicates that match, so $sel(P | S) = 2/7$, but only half of those
 match the literal, so $sel(O | S \cap P) = 1/2$, giving us the
 expected $sel(T) = 1/7$.
 
-\section{Exact selectivity for Hexastore}
+\section{Exact selectivity for fully indexed stores}
 
-The Hexastore was first described in
+Some triplestores fully index all terms. A prominent example is the
+Hexastore that was first described in
 \cite{Weiss:2008:HSI:1453856.1453965}, which sought to exploit a key
 strength of the RDF triple model by using six-way indices for
 efficient lookup.
@@ -170,6 +171,8 @@ sel(O = o_{k_{i,n_i}}^{i,n_i} |S = s_i \cap P = p_{n_i}^i) =
 With this, it should be possible to store the selectivity along with
 the indices in a Hexastore.
 
+We also note that exposing a suitable VoID description should be cheap
+using the above formalism.
 
 \section{Further work on conditional selectivity}
 
