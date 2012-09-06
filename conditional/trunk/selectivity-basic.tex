@@ -46,8 +46,13 @@ continue to use a conditional estimate for the object node.
 
 It is easy to point out cases where the independence assumption is
 unlikely to hold: If a predicate is \rdfterm{rdf:type}, then only
-classes are likely objects, and their frequency  would likely be
-different from e.g. literals.
+classes are likely objects, and their frequency would likely be
+different from e.g. literals. Moreover, it is easy to see when triples
+in a basic graph pattern are likely to be dependent: If one triple has
+\rdfterm{rdf:type} as predicate and \rdfterm{foaf:Person} as object,
+the next triple is much more likely to contain the very
+common predicate \rdfterm{foaf:name} than the esoteric
+\rdfterm{foaf:dnaChecksum}.
 
 \section{Related Work}
 
