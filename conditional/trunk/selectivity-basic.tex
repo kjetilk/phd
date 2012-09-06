@@ -136,8 +136,57 @@ subjects and objects were uniformly distributed and independent from
 the predicate. The present paper extends their work by relaxing these
 assumptions.
 
-In section~\ref{sec:cond}, we saw 
+In section~\ref{sec:cond}, we derived an equation for conditional
+selectivity, i.e. RDF terms are not independent of each
+other.
+ 
+In the follwing, we denote a bounded term with a lowercase letter, $s$
+for a subject, $p$ for a predicate and $o$ for object, and variables
+are denoted by a question mark, $?$. For example, $p =
+\rdfterm{rdf:type}$. We also adopt SPLENDIDs convention of denoting
+the number of all triples in certain data source $|d|$.
 
+
+We shall now systematically go through different triple patterns and
+see how the selectivity can be derived from VoID descriptions per the
+most recent vocabulary\cite{voidnote}:
+
+\paragraph{Subject unbound, object and predicate bound}
+
+In this case, we can use Eq.~\ref{eq:sel} directly. We again note that
+since the the unbound subject will always have selectivity of
+unity.
+Eq.~\ref{eq:sel} thus reduces to:
+
+\begin{equation}\label{eq:selsubjun}
+sel(T_{?~p~o}) = sel(O | P) \cdot sel(P) . 
+\end{equation}
+
+To relate this to VoID, we note that VoID includes the concept of
+\emph{property partitions} (see section~4.5 in \cite{voidnote}): ``A
+property-based partition contains only those triples of a dataset that
+use a particular predicate.'', and since a partition is itself a
+dataset, the same statistical properties can be applied, such as
+\rdfterm{void:triples}, \rdfterm{void:distinctSubjects} and
+\rdfterm{void:distinctObjects}. 
+
+Since property partitions detail statistics given a certain predicate,
+they can be used in the conditional case. We can therefore write:
+
+\begin{equation}\label{eq:selsubjunp}
+sel(P = p) = \frac{\rdfterm{void:propertyPartition/void:triples}}{|d|}
+\end{equation}
+and
+\begin{equation}\label{eq:selsubjunop}
+sel(O = o|P = p) =
+\frac{\rdfterm{void:propertyPartition/void:distinctObjects}}{\rdfterm{void:propertyPartition/void:triples}} .
+\end{equation}
+
+Thus,
+\begin{equation}\label{eq:selsubjunop}
+sel(T_{?~p~o}) =
+\frac{\rdfterm{void:propertyPartition/void:distinctObjects}}{|d|} .
+\end{equation}\todo{wtf}
 
 
 
