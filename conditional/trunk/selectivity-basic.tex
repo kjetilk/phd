@@ -219,9 +219,26 @@ We shall now systematically go through different triple patterns and
 see how the selectivity can be derived from VoID descriptions per the
 most recent vocabulary\cite{voidnote}:
 
+
+
+\paragraph{Subject and object unbound, predicate bound}
+
+By using Eq.~\ref{eq:sel} and swapping $S$ and $P$, we have 
+\begin{equation}\label{eq:selsuobunpb}
+\sel{T_{\{?~p~?\}}} = \sel{O = ? | P = p \cap S = ?} \cdot 
+\sel{S = ? | P = p} \cdot
+\sel{P = p} . 
+\end{equation}
+where we recognize Eqs.~\ref{eq:selSvPp}~and~\ref{eq:selPp} as the
+last two parts. The first part, $\sel{O = ? | P = p \cap S = ?}$ must
+be computed some other way, by employing heuristics or by using more
+advanced statistical methods. 
+
+
+
 \paragraph{Subject unbound, object and predicate bound}
 
-In this case, we can use Eq.~\ref{eq:sel} directly. We again note that
+From Eq.~\ref{eq:sel} directly. We again note that
 since the the unbound subject will always have selectivity of
 unity.
 Eq.~\ref{eq:sel} thus reduces to:
