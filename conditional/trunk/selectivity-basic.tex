@@ -238,48 +238,16 @@ advanced statistical methods.
 
 \paragraph{Subject unbound, object and predicate bound}
 
-From Eq.~\ref{eq:sel} directly. We again note that
-since the the unbound subject will always have selectivity of
-unity.
-Eq.~\ref{eq:sel} thus reduces to:
-
-% \begin{equation}\label{eq:selsubjun}
-% \sel{T_{\{?~p~o\}}) = \sel{O | P) \cdot \sel{P) . 
-% \end{equation}
-
-
-% Since property partitions detail statistics given a certain predicate,
-% they can be used in the conditional case. We can therefore write:
-
-% \begin{equation}\label{eq:selsubjunp}
-% \sel{P = p) = \frac{\rdfterm{void:propertyPartition/void:triples}}{|d|}
-% \end{equation}
-% and
-% \begin{equation}\label{eq:selsubjunop}
-% \sel{O = o|P = p) =
-% \frac{\rdfterm{void:propertyPartition/void:distinctObjects}}{\rdfterm{void:propertyPartition/void:triples}} .
-% \end{equation}
-% Thus,
-% \begin{equation}\label{eq:selsubjunres}
-% \sel{T_{\{?~p~o\}}) =
-% \frac{\rdfterm{void:propertyPartition/void:distinctObjects}}{|d|} ,
-% \end{equation}\todo{WRONG!}
-% where the notation is inspired by SPARQL 1.1 Property Paths,
-% for example the relevant part of a VoID description for the second
-% example in section~\ref{sec:example} would be:
-% \begin{verbatim}
-% </dataset> a void:Dataset ;
-%            void:propertyPartition [
-%                 void:property foaf:firstName;
-%                 void:distinctObjects 2 .
-%            ]
-% \end{verbatim}
-
-
-
-% there exists a \rdfterm{void:propertyPartition} predicate that
-% has an object which is again linked to a dataset subset containing the
-% property $p$ as predicate of 
+This case is similar to the above, and we can write 
+\begin{equation}\label{eq:selsuobunpb}
+\sel{T_{\{?~p~?\}}} = \sel{O = ? | P = p \cap S = s} \cdot 
+\sel{S = s | P = p} \cdot
+\sel{P = p} . 
+\end{equation}
+We note that we can't find the first two parts in the VoID
+description, but we also note with interest that the first part shows
+that only the marginal distribution of objects is needed to estimate
+this part.
 
 
 
