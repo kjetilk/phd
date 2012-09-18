@@ -23,10 +23,11 @@ permission of the author.
   patterns in SPARQL queries. In this paper we see how the common
   assumption of independence of the selectivity of RDF terms can be
   abandoned. We proceed to extend SPLENDID\cite{splendid} using the
-  new formalism and demonstrate how VoID data descriptions\cite{void} can be
-  further exploited in the conditional regime. Finally, we will
-  explore how selectivity can be determined exactly when a SPARQL
-  query is executed on a fully indexed triplestore, such as
+  new formalism and demonstrate how VoID data descriptions\cite{void}
+  can be further exploited in the conditional regime to optimize join
+  order. Finally, we will explore how selectivity can be determined
+  exactly when a SPARQL query is executed on a fully indexed
+  triplestore, such as
   Hexastore\cite{Weiss:2008:HSI:1453856.1453965}. Finally, we will
   suggest further directions for selectivity estimation in the
   conditional regime.
@@ -153,8 +154,11 @@ be found as the \rdfterm{void:triples} of the dataset).
 
 There will be a number of different equations that arises from using
 the commutative property of intersections, and some parts of these
-equations is possible to compute from VoID descriptions. We have
-already noted the most trivial case, for variables we have:
+equations is possible to compute from VoID descriptions.
+
+\subsubsection{Equalities}
+
+We have already noted the most trivial case, for variables we have:
 
 \begin{equation}\label{eq:selvar}
 \sel{S = ?} = \sel{P = ?} = \sel{O = ?} = 1 .
@@ -192,17 +196,6 @@ variable, we can use the \rdfterm{void:distinctSubjects} property:
    \frac{\rdfterm{void:propertyPartition/void:distinctSubjects}}{\rdfterm{void:propertyPartition/void:triples}} ,
 \end{equation}
 
-In the case where the object is a is a variable, there may be multiple
-objects for each predicate in the partition, so we can only say:
-\begin{equation}\label{eq:selOvPp}
- \sel{O = ? | P = p} \ge
-   \frac{\rdfterm{void:propertyPartition/void:distinctObjects}}{\rdfterm{void:propertyPartition/void:triples}} .
-\end{equation}
-We note that OWL cardinality constraints may constrain this problem
-and that \rdfterm{void:vocabulary} may be used to find the
-corresponding ontology.
-
-
 We also have in the special case of a given class, i.e. predicate
 \rdfterm{rdf:type} or $P = a$ and $O = c$, we can use
 \rdfterm{void:classPartition} (also defined in section~4.5 in
@@ -216,7 +209,23 @@ The above are the parts of the equations that can be computed directly
 from the VoID description, and in the next section we shall see how
 they can be exploited.
 
+\subsubsection{Inequalities}
 
+As noted in the abstract, the goal is to establish join order for
+optimization. For this to be successful, it is not critical to be able
+to estimate the selectivity in all cases. It may also suffice to
+establish that the selectivity of one triple pattern is greater or
+smaller than another, they can then be ordered.
+
+First, in the case where the object is a variable, there may be multiple
+objects for each predicate in the partition, so we can only say:
+\begin{equation}\label{eq:selOvPp}
+ \sel{O = ? | P = p} \ge
+   \frac{\rdfterm{void:propertyPartition/void:distinctObjects}}{\rdfterm{void:propertyPartition/void:triples}} .
+\end{equation}
+We note that OWL cardinality constraints may constrain this problem
+and that \rdfterm{void:vocabulary} may be used to find the
+corresponding ontology.
 
  
 \subsection{Triple pattern cases}
