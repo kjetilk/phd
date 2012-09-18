@@ -164,13 +164,13 @@ We note that VoID includes the concept of \emph{property partitions}
 (see section~4.5 in \cite{voidnote}): ``A property-based partition
 contains only those triples of a dataset that use a particular
 predicate.'', and since a partition is itself a dataset, the same
-statistical properties can be applied, such as \rdfterm{void:triples},
+statistical properties can be applied, such as \rdfterm{void:entities},
 \rdfterm{void:distinctSubjects} and \rdfterm{void:distinctObjects}.
 
 In the case where the predicate is known, we have
 \begin{equation}\label{eq:selPp}
  \sel{P = p} =
-   \frac{\rdfterm{void:propertyPartition/void:triples}}{|d|} ,
+   \frac{\rdfterm{void:propertyPartition/void:entities}}{|d|} ,
 \end{equation}
 where the notation is inspired by SPARQL 1.1 Property Paths, for
 example the relevant part of a VoID description for the second example
@@ -179,7 +179,7 @@ in section~\ref{sec:example} would be:
  </dataset> a void:Dataset ;
             void:propertyPartition [
                 void:property foaf:firstName;
-                void:triples 2 .
+                void:entities 2 .
             ]
 \end{verbatim}
 where $p = \rdfterm{foaf:firstName}$.
@@ -189,12 +189,12 @@ In the case where there is a given predicate but the subject is a
 variable, we can use the \rdfterm{void:distinctSubjects} property:
 \begin{equation}\label{eq:selSvPp}
  \sel{S = ? | P = p} =
-   \frac{\rdfterm{void:propertyPartition/void:distinctSubjects}}{\rdfterm{void:propertyPartition/void:triples}} ,
+   \frac{\rdfterm{void:propertyPartition/void:distinctSubjects}}{\rdfterm{void:propertyPartition/void:entities}} ,
 \end{equation}
 and similarly where the object is a variable:
 \begin{equation}\label{eq:selOvPp}
  \sel{O = ? | P = p} =
-   \frac{\rdfterm{void:propertyPartition/void:distinctObjects}}{\rdfterm{void:propertyPartition/void:triples}} .
+   \frac{\rdfterm{void:propertyPartition/void:distinctObjects}}{\rdfterm{void:propertyPartition/void:entities}} .
 \end{equation}
 
 We also have in the special case of a given class, i.e. predicate
@@ -203,7 +203,7 @@ We also have in the special case of a given class, i.e. predicate
 \cite{voidnote}):
 \begin{equation}\label{eq:selSvPaOc}
  \sel{S = ? | P = a \cap O = c } =
-    \frac{\rdfterm{void:classPartition/void:triples}}{|d|} .
+    \frac{\rdfterm{void:classPartition/void:entities}}{|d|} .
 \end{equation}
 
 The above are the parts of the equations that can be computed directly
