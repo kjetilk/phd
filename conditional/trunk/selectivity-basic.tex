@@ -260,7 +260,11 @@ this part.
 The selectivity can be found directly in the case of a given class,
 i.e. predicate \rdfterm{rdf:type} or $P = a$ and $O = c$, we can use
 \rdfterm{void:classPartition} (also defined in section~4.5 in
-\cite{voidnote}) to find the selectivity of the triple pattern:
+\cite{voidnote}) to find the selectivity of the triple
+pattern\footnote{The specification is unclear at this point, as it
+ mentions the concept of entities, in which case
+ \rdfterm{void:entities} might be used rather than
+ \rdfterm{void:triples}, but we believe that this is the correct usage}:
 \begin{equation}\label{eq:selSvPaOc}
  \sel{T_{\{?~a~c\}}} =
     \frac{\rdfterm{void:classPartition/void:triples}}{|d|} .
