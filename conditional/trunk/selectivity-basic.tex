@@ -196,15 +196,6 @@ variable, we can use the \rdfterm{void:distinctSubjects} property:
    \frac{\rdfterm{void:propertyPartition/void:distinctSubjects}}{\rdfterm{void:propertyPartition/void:triples}} ,
 \end{equation}
 
-We also have in the special case of a given class, i.e. predicate
-\rdfterm{rdf:type} or $P = a$ and $O = c$, we can use
-\rdfterm{void:classPartition} (also defined in section~4.5 in
-\cite{voidnote}) to find the selectivity of the triple pattern:
-\begin{equation}\label{eq:selSvPaOc}
- \sel{T_{\{?~a~c\}}} =
-    \frac{\rdfterm{void:classPartition/void:triples}}{|d|} .
-\end{equation}
-
 The above are the parts of the equations that can be computed directly
 from the VoID description, and in the next section we shall see how
 they can be exploited.
@@ -264,6 +255,16 @@ description\todo{2nd part smaller than a fraction of distinctSubjects?}, but we 
 that only the marginal distribution of objects is needed to estimate
 this part.
 
+\paragraph{Subject unbound, class bound}
+
+The selectivity can be found directly in the case of a given class,
+i.e. predicate \rdfterm{rdf:type} or $P = a$ and $O = c$, we can use
+\rdfterm{void:classPartition} (also defined in section~4.5 in
+\cite{voidnote}) to find the selectivity of the triple pattern:
+\begin{equation}\label{eq:selSvPaOc}
+ \sel{T_{\{?~a~c\}}} =
+    \frac{\rdfterm{void:classPartition/void:triples}}{|d|} .
+\end{equation}
 
 
 \section{Exact selectivity for fully indexed stores}
