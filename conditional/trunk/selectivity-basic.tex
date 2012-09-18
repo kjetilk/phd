@@ -206,9 +206,9 @@ corresponding ontology.
 We also have in the special case of a given class, i.e. predicate
 \rdfterm{rdf:type} or $P = a$ and $O = c$, we can use
 \rdfterm{void:classPartition} (also defined in section~4.5 in
-\cite{voidnote}):
+\cite{voidnote}) to find the selectivity of the triple pattern:
 \begin{equation}\label{eq:selSvPaOc}
- \sel{S = ? | P = a \cap O = c } =
+ \sel{T_{\{?~a~c\}}} =
     \frac{\rdfterm{void:classPartition/void:triples}}{|d|} .
 \end{equation}
 
@@ -251,7 +251,7 @@ This case is similar to the above, and we can write
 \sel{P = p} . 
 \end{equation}
 We note that we can't find the first two parts in the VoID
-description\todo{2nd part always 1?}, but we also note with interest that the first part shows
+description\todo{2nd part smaller than a fraction of distinctSubjects?}, but we also note with interest that the first part shows
 that only the marginal distribution of objects is needed to estimate
 this part.
 
