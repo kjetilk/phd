@@ -270,6 +270,23 @@ pattern\footnote{The specification is unclear at this point, as it
     \frac{\rdfterm{void:classPartition/void:triples}}{|d|} .
 \end{equation}
 
+\subsection{Interesting distributions}
+
+Uniform distributions have no impact on join order\todo{argue}.
+\todo{Use parameterized stats for datatype properties?}
+
+\subsection{Suggested additions to the VoID vocabulary}
+
+Allthough a careful estimate of the selectivity in situations where we
+have e.g. $\sel{O = ? | P = p \cap S = ?}$ would require a two
+dimensional distribution function, the most significant impacts on
+join order is when the distribution is highly skewed\todo{argue}. A
+hint to the optimizer in such cases could be achieved by the addition
+of properties like \rdfterm{void:mostFrequentObjects},
+\rdfterm{void:mostFrequentSubjects},
+\rdfterm{void:leastFrequentObjects} and 
+\rdfterm{void:leastFrequentSubjects} to property
+partitions.\todo{mention the dc:language case in Sublima?}
 
 \section{Exact selectivity for fully indexed stores}
 
