@@ -77,7 +77,8 @@ Pr(A_1 \cap A_2  \cap \ldots \cap A_n) &=&
   && \cdot Pr(A_2 | A_1) \cdot Pr(A_1) ,
 \end{eqnarray}
 where the $|$ symbol is read as ``given'', e.g. ``given a predicate
-\rdfterm{rdf:type} what is the probability that the object is \rdfterm{foaf:Person}?''
+\rdfterm{rdf:type} what is the probability that the object is
+\rdfterm{foaf:Person}?'' This is known as the ``chain rule''.
 
 Analogously\todo{anybody good at arguing this mathematically?}, the
 conditional selectivity for a triple pattern $T$ can be written as 
@@ -272,14 +273,15 @@ pattern\footnote{The specification is unclear at this point, as it
 
 \subsection{Interesting distributions}
 
-Uniform distributions have no impact on join order\todo{argue}.
+Uniform distributions have little interesting impact on join
+order\todo{argue}. \todo{fallback estimator: distinctSubjects/triples, etc?}
 \todo{Use parameterized stats for datatype properties?}
 
 \subsection{Suggested additions to the VoID vocabulary}
 
 Allthough a careful estimate of the selectivity in situations where we
 have e.g. $\sel{O = ? | P = p \cap S = ?}$ would require a two
-dimensional distribution function, the most significant impacts on
+dimensional joint distribution function, the most significant impacts on
 join order is when the distribution is highly skewed\todo{argue}. A
 hint to the optimizer in such cases could be achieved by the addition
 of properties like \rdfterm{void:mostFrequentObjects},
