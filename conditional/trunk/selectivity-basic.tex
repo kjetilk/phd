@@ -277,6 +277,17 @@ Uniform distributions have little interesting impact on join
 order\todo{argue}. \todo{fallback estimator: distinctSubjects/triples, etc?}
 \todo{Use parameterized stats for datatype properties?}
 
+\subsection{Extension to Basic Graph Patterns}
+
+The statistics of Basic Graph Patterns, especially when involving
+filters, are even more complex, and is likely to involve the use of
+Bayesian Networks, which is beyond the scope of this paper. However,
+as noted by \cite{splendid}, the intuition is that for some conjuctive
+queries, the order of triples are not influenced by the conditionality
+of separate triples. We believe the intuition is correct, but that in
+detail, there are flaws in the argument of \cite{splendid}\todo{show
+  counterexample}\todo{improve our own argument}.
+
 \subsection{Suggested additions to the VoID vocabulary}
 
 Allthough a careful estimate of the selectivity in situations where we
