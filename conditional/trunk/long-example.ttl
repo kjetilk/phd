@@ -1,0 +1,118 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix lang: <http://lexvo.org/id/iso639-1/> .
+
+@base <http://example.org/> .
+
+</doc/1> a foaf:Document ;
+	 dct:language lang:en ;
+	 dct:title "Document 1"@en ;
+	 dct:description "This is a description for document 1"@en ;
+	 dct:subject </topic/1> .
+	 
+
+</doc/2> 
+	 dct:language lang:nb ;
+	 dct:title "Document 2"@en ;
+	 dct:description "This is a description for document 2"@en ;
+	 dct:subject </topic/2>, </topic/3> .
+	 
+
+</doc/3> a foaf:Document ;
+	 dct:language lang:nb ;
+	 dct:title "Document 3"@en ;
+	 dct:subject </topic/1> .
+	 
+
+</doc/4> a foaf:Document ;
+	 dct:language lang:nb ;
+	 dct:title "Document 4"@en ;
+	 dct:subject </topic/3> .
+	 
+</doc/5> a foaf:Document ;
+	 dct:language lang:nb ;
+	 dct:title "Document 5"@en ;
+	 dct:description "This is a description for document 2 in unknown langauge" ;
+	 dct:subject </topic/1>, </topic/3>, </topic/4> .
+	 
+</doc/6> a foaf:Document ;
+	 dct:language lang:sv ;
+	 dct:title "Document 6"@en ;
+	 dct:description "This is a description for document 6"@en ;
+	 dct:subject </topic/2>, </topic/4> .
+
+</doc/7> 
+	 dct:language lang:da ;
+	 dct:title "Document 7"@en ;
+	 dct:description "This is a description for document 7"@en ;
+	 dct:subject </topic/2>, </topic/4>, </topic/5>, </topic/6> .
+
+</doc/8> a foaf:Document ;
+	 dct:language lang:da ;
+	 dct:title "Document 8"@en ;
+	 dct:description "This is a description for document 8"@en ;
+	 dct:subject </topic/1>, </topic/3>, </topic/5>, </topic/6>, </topic/7> .
+
+</doc/9> a foaf:Document ;
+	 dct:language lang:da ;
+	 dct:description "This is a description for document 9"@en ;
+	 dct:subject </topic/3>, </topic/5>, </topic/6> .
+
+</doc/10> a foaf:Document ;
+	 dct:language lang:nb ;
+	 dct:title "Document 10"@en ;
+	 dct:description "This is a description for document 10"@en ;
+	 dct:subject </topic/1>, </topic/2>, </topic/3>, </topic/5>, </topic/6>, </topic/8> .
+
+</doc/11> a foaf:Document ;
+	 dct:language lang:nb ;
+	 dct:description "This is a description for document 11"@en ;
+	 dct:subject </topic/4>, </topic/6>, </topic/8> .
+
+</doc/12> a foaf:Document ;
+	 dct:language lang:nb ;
+	 dct:title "Document 12"@en ;
+	 dct:description "This is a description for document 12"@en ;
+	 dct:subject </topic/9>, </topic/2>, </topic/10>, </topic/5> . 
+
+</doc/13> a foaf:Document ;
+	 dct:language lang:nb ;
+	 dct:title "Document 13"@en ;
+	 dct:subject </topic/11>, </topic/2>, </topic/10>, </topic/4> . 
+
+</topic/1> a skos:Concept ;
+	   skos:prefLabel "Concept 1"@en ;
+	   skos:altLabel "Thing 1" .
+
+</topic/2> a skos:Concept ;
+	   skos:prefLabel "Concept 2"@en ;
+	   skos:altLabel "Thing 2" .
+
+</topic/3> a skos:Concept ;
+	   skos:prefLabel "Concept 3"@en .
+
+</topic/4> a skos:Concept ;
+	   skos:prefLabel "Concept 4"@en .
+
+</topic/5> a skos:Concept ;
+	   skos:prefLabel "Concept 5"@en .
+
+</topic/6> a skos:Concept ;
+	   skos:prefLabel "Concept 6"@en .
+
+</topic/7> 
+	   skos:prefLabel "Concept 7"@en .
+
+</topic/8> a skos:Concept ;
+	   skos:prefLabel "Concept 8"@en .
+
+</topic/9> a skos:Concept ;
+	   skos:prefLabel "Concept 9"@en .
+
+</topic/10> a skos:Concept ;
+	   skos:prefLabel "Concept 10"@en .
+
+</topic/11> a skos:Concept ;
+	   skos:prefLabel "Concept 11"@en .
+
