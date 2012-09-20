@@ -95,7 +95,7 @@
 </topic/4> a skos:Concept ;
 	   skos:prefLabel "Concept 4"@en .
 
-</topic/5> a skos:Concept ;
+</topic/5> 
 	   skos:prefLabel "Concept 5"@en .
 
 </topic/6> a skos:Concept ;
@@ -105,7 +105,8 @@
 	   skos:prefLabel "Concept 7"@en .
 
 </topic/8> a skos:Concept ;
-	   skos:prefLabel "Concept 8"@en .
+	   skos:definition "Concept 8"@en ;
+	   skos:altLabel "Thing 8" .
 
 </topic/9> a skos:Concept ;
 	   skos:prefLabel "Concept 9"@en .
