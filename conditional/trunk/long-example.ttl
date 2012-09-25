@@ -83,18 +83,18 @@
 
 </topic/1> a skos:Concept ;
 	   skos:prefLabel "Concept 1"@en ;
-	   skos:altLabel "Thing 1" .
+	   skos:altLabel "A Thing" .
 
 </topic/2> a skos:Concept ;
 	   skos:prefLabel "Concept 2"@en ;
-	   skos:altLabel "Thing 2" .
+	   skos:altLabel "A Thing" .
 
 </topic/3> a skos:Concept ;
 	   skos:prefLabel "Concept 3"@en .
 
 </topic/4> a skos:Concept ;
 	   skos:prefLabel "Concept 4"@en ;
-	   dct:description "This is a description of concept 4"@en .
+	   dct:description "This is a description of a concept"@en .
 
 </topic/5> 
 	   skos:prefLabel "Concept 5"@en .
