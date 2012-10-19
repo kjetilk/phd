@@ -1,5 +1,31 @@
 
 \section{State of the art}
 
-The idea to use Statistical Relation Learning techniques for
+The following work serve as a starting point for the present work.
+
+\subsection{Conditional selectivity estimation in triple stores}
+
+Selectivity estimation has been a standard technique for optimization
+of query responses to databases for a long time. However, conditional
+statistics is rarely employed, as most relational systems assume both
+\emph{attribute value independence} and \emph{join uniformity}. For
+RDF databases the use of detailed statistics to relax these
+assumptions is a recent development.
+
+\cite{Lv:2009:SEC:1685170.1685590} first considered correlated
+properties for SPARQL query optimization. However, they only
+considered TBox statements, and so, no detailed statistics of ABox
+data was compiled.
+
+In SPLENDID\cite{splendid} the authors showed how statistics exposed
+using the VoID data description vocabulary\cite{void} could be
+exploited for query optimization. The authors exploited the fact that
+VoID descriptions may expose the number of distinct subjects or
+objects for a given predicate, and therefore partially used
+conditional statistics. However, they assumed that the distribution of
+subjects and objects was uniform.
+
+\subsection{Statistical Relational Learning}
+
+The idea to use Statistical Relational Learning techniques for
 selectivity estimation first originated in \cite{selectivityPRM}.
