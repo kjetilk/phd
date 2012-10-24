@@ -10,7 +10,7 @@ applications, these problems become important to solve in a Semantic
 Web context.
 
 One problem can be motivated from previous implementation experience:
-In the SUBLIMA project, described in \ref{sublima}, entries were
+In the SUBLIMA project, described in \cite{sublima}, entries were
 typically described has having a language, and in one deployment the
 vast majority were written in Norwegian, but a few in English, Danish
 or Swedish. With the SPARQL engines of the day, this heterogenity
@@ -20,11 +20,11 @@ was joined last, it would be orders of magnitude faster. For English,
 Danish or Swedish, the situation was the opposite. The lesson was
 learned and fixed on an \textit{ad hoc} basis, the most restrictive
 term must be joined first. This issue will be referred to as the
-\langcase in this text as we shall return to it.
+\langcase{} in this text as we shall return to it.
 
 In modern centralized SPARQL databases, this is less of a problem, but
 the problem re-emerges for distributed databases. In the case where
-the \fedeng has no knowledge of the data on the \indendp, it cannot
+the \fedeng{} has no knowledge of the data on the \indendp, it cannot
 optimize the join order, as such details are unavailable. For example,
 in the \langcase, if the language annotations were on a different
 endpoint than other data, the effects would be disasterous, as if the
@@ -36,11 +36,11 @@ next federation member with the bound variables would be large, which
 would incur a large communication cost as well as the cost of parsing
 the query. 
 
-Sparse statistics is not sufficient to solve the \langcase
+Sparse statistics is not sufficient to solve the \langcase{}
 generally. We require knowledge not only of the statistics of the
 predicate, but also on the object for a given predicate.
 
 This is the main motivation of the present dissertation. To investigate
 possible solutions, we explore different directions in statistics,
-ranging from simple extensions to the VoID vocabulary\ref{void} to
+ranging from simple extensions to the VoID vocabulary\cite{void} to
 advanced \SRL.
