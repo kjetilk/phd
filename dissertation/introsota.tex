@@ -8,14 +8,21 @@ The following work serve as a starting point for the present work.
 Selectivity estimation has been a standard technique for optimization
 of query responses to databases for a long time. However, conditional
 statistics is rarely employed, as most relational systems assume both
-\emph{attribute value independence} and \emph{join uniformity}. For
-RDF databases the use of detailed statistics to relax these
-assumptions is a recent development.
+\emph{attribute value independence} and \emph{join
+  uniformity}\todo{explain what this means}. These are the assumptions
+that made the \langcase{} problem so significant in the SUBLIMA
+project, as both assumptions were violated by the mere fact that only
+languages can be values (i.e. be objects) of the language attribute
+(predicate) and the highly skewed value distribution for
+languages. Therefore, these assumptions must be relaxed. For RDF
+databases the use of detailed statistics to relax these assumptions is
+a recent development and the field is very open to further progress.
 
 \cite{Lv:2009:SEC:1685170.1685590} first considered correlated
 properties for SPARQL query optimization. However, they only
 considered TBox statements, and so, no detailed statistics of ABox
-data was compiled.
+data was compiled. While this does prove valuable in some cases, it
+would do nothing to alleviate the \langcase{} problem.
 
 In SPLENDID\cite{splendid} the authors showed how statistics exposed
 using the VoID data description vocabulary\cite{void} could be
@@ -29,3 +36,16 @@ subjects and objects was uniform.
 
 The idea to use Statistical Relational Learning techniques for
 selectivity estimation was first proposed in \cite{selectivityPRM}.
+
+The procedure to do this for RDF databases is also quite clear: First,
+a network must be learned from the data, then exposed in a SPARQL
+endpoint service description so that it could be retrieved by the
+\fedeng{}, where the learned network would be looked up to the
+estimate the selectivity of a given graph pattern.
+
+Work has been published on different parts of this problem:
+\cite{Lin:2011:LRB:2063016.2063042} demonstrated learning relational
+bayesian classifiers from RDF data, while [?] \todo{lost reference}
+showed how a probabilistic  relational model could be expressed with
+OWL. Finally,  \cite{selectivityPRM} could be adapted to RDF according
+to the principles in these two papers.
