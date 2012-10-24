@@ -23,4 +23,24 @@ term must be joined first. This issue will be referred to as the
 \langcase in this text as we shall return to it.
 
 In modern centralized SPARQL databases, this is less of a problem, but
-the problem rearises for distributed databases.
+the problem re-emerges for distributed databases. In the case where
+the \fedeng has no knowledge of the data on the \indendp, it cannot
+optimize the join order, as such details are unavailable. For example,
+in the \langcase, if the language annotations were on a different
+endpoint than other data, the effects would be disasterous, as if the
+Norwegian language resources was first retrieved from one endpoint,
+the query would retrieve a large result set, and then return the
+result set over the network to the \fedeng, with the high
+communication costs incurred, and finally the query passed on to the
+next federation member with the bound variables would be large, which
+would incur a large communication cost as well as the cost of parsing
+the query. 
+
+Sparse statistics is not sufficient to solve the \langcase
+generally. We require knowledge not only of the statistics of the
+predicate, but also on the object for a given predicate.
+
+This is the main motivation of the present dissertation. To investigate
+possible solutions, we explore different directions in statistics,
+ranging from simple extensions to the VoID vocabulary\ref{void} to
+advanced \SRL.
