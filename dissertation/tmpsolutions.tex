@@ -8,3 +8,44 @@ that then can be applied to derive publishable results, vs. the
 practical time constraints of Ph.D. work. Another issue is that I'd
 like to be mindful of the realities of adoption in standards and
 adoption of standards.
+
+The SPLENDID paper provides a pretty clear path forward to really
+solve the \langcase: Certain statistics could be amended to a new
+release of VoID for cases where it very clearly would have impact. It
+would be up to the data management software to identify those case
+based on the work I publish.
+
+There are two basic classes of solutions to this problem: One is to
+allow further nesting of dataset partitions. VoID currently allow
+class and property partitions, where the class partitions are the most
+important in SPLENDID, property partitions is the most interesting for
+conditional statistics. Within property partitions, one could imagine
+a nested object partition, and the \langcase{} could be solved
+conclusively by specifying the number of triples containing each
+language. If we did the same thing with subject partitions, it would
+be a very good solution to this and similar problems. However, it
+would be a rather verbose solution. 
+
+The second option is based on what the database literature knows as
+most-frequent-values histograms. This is a technique used by
+PostgreSQL. The (over-)simplified version of this is to say in a VoID
+description: 
+
+\begin{verbatim}
+_:foo void:propertyPartition 
+  [
+    void:property dct:language ;
+    void:mostFrequentObjects lang:nb .
+].
+\end{verbatim}
+This would declare \rdfterm{lang:nb} as the most frequent object for
+\rdfterm{dct:language}, and this simple example would solve the
+\langcase. 
+
+While rare objects might more seldomly occur in queries, they may
+contribute very significantly to the performance if they are joined
+first if they do. Thus, it might be worthwhile to have a property
+\rdfterm{void:leastFrequentOjects} too, as well as corresponding
+properties for subjects.
+
+
