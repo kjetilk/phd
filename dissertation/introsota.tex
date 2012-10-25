@@ -32,6 +32,13 @@ objects for a given predicate, and therefore partially used
 conditional statistics. However, they assumed that the distribution of
 subjects and objects was uniform.
 
+We note that SPLENDID would not solve the \langcase, but since there
+were so few languages, there would be other objects that had a lot
+more distinct values. They would would be joined earlier in this
+specific case and we would be unlikely to see the worst-case
+behavior. However, this would be brittle and we seek a better
+solution.
+
 \subsection{Statistical Relational Learning}
 
 \SRL, see \cite{srlbook} for a comprehensive overview, is a relatively
@@ -72,8 +79,8 @@ x     p1 ?v1 .
 ?vn-1 pn ?vn .
 \end{verbatim}
 (for the formal definition, see
-\cite{Lin:2011:LRB:2063016.2063042}). The resulting graph is a
-directed acyclic graph.
+\cite{Lin:2011:LRB:2063016.2063042}). This makes an Attribute Graph a
+Directed Acyclic Graph (DAG).
 
 \SRL{} methodologies can be classified in two groups based on whether
 they allow cyclicity or not. Bayesian Networks, Probabilistic
