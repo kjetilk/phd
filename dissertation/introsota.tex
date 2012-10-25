@@ -34,10 +34,15 @@ subjects and objects was uniform.
 
 \subsection{Statistical Relational Learning}
 
-The idea to use Statistical Relational Learning techniques for
-selectivity estimation was first proposed in \cite{selectivityPRM}.
+\SRL, see \cite{srlbook} for a comprehensive overview, is a relatively
+new field, but encompasses well established techniques such as
+Bayesian Networks and recent developments, such as Relational Markov
+Networks.
 
-The procedure to do this for RDF databases is also quite clear: First,
+The idea to use \SRL-techniques for selectivity estimation was first
+proposed in \cite{selectivityPRM}.
+
+The procedure to use \SRL{} for RDF databases is also quite clear: First,
 a network must be learned from the data, then exposed in a SPARQL
 endpoint service description so that it could be retrieved by the
 \fedeng{}, where the learned network would be looked up to the
@@ -47,5 +52,34 @@ Work has been published on different parts of this problem:
 \cite{Lin:2011:LRB:2063016.2063042} demonstrated learning relational
 bayesian classifiers from RDF data, while [?] \todo{lost reference}
 showed how a probabilistic  relational model could be expressed with
-OWL. Finally,  \cite{selectivityPRM} could be adapted to RDF according
-to the principles in these two papers.
+OWL. Finally,  \cite{selectivityPRM} could be adapted to RDF following
+the principles in these two papers.
+
+There are, however, many problems: \SRL{} consists of many different
+but related methodologies, and so, proving compatibility between
+different methods and applicability to the problem at hand is
+important and not necessarily trivial.
+
+All methods used above is based on directed \emph{acyclic} graphs, but
+an RDF graph may be cyclic, which may present significant
+difficulties. \cite{Lin:2011:LRB:2063016.2063042} addresses this
+problem by constraining themselves to an ``Attribute Graph'', which
+they define to match a Basic Graph Pattern such as
+\begin{verbatim}
+x     p1 ?v1 .
+?v1   p2 ?v2 .
+...
+?vn-1 pn ?vn .
+\end{verbatim}
+(for the formal definition, see
+\cite{Lin:2011:LRB:2063016.2063042}). The resulting graph is a
+directed acyclic graph.
+
+\SRL{} methodologies can be classified in two groups based on whether
+they allow cyclicity or not. Bayesian Networks, Probabilistic
+Relational Models, etc. are acyclic, while e.g. Conditional Random
+Fields and Relational Markov Networks allow cyclic references. It is
+clear that to completely model statistical dependencies in an RDF
+graph, a cyclic model is required, but then a key question becomes
+whether the cyclic nature of RDF is necessary to take into account to
+satisfactorily address the optimization problem. 
