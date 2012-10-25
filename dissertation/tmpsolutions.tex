@@ -51,3 +51,24 @@ first if they do. Thus, it might be worthwhile to have a property
 properties for subjects.
 
 
+However, this isn't a histogram, it merely mentioning the objects that
+would most likely be useful. To get a histogram we would need a
+similar \rdfterm{void:frequency} attribute and both this and
+\rdfterm{void:mostFrequentObjects} would have to accept ordered
+lists. 
+
+Another option would be to do something like:
+\begin{verbatim}
+_:foo void:propertyPartition 
+  [
+    void:property dct:language ;
+    void:mostFrequentObjects 
+    [
+      void:object lang:nb ;
+      void:frequency "0.012" .
+    ]
+].
+\end{verbatim}
+but this solution would be less general but of similar complexity than
+the nested solution above.
+
