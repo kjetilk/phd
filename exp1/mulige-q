@@ -1,0 +1,87 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+
+SELECT ?s 
+FROM <http://dbpedia.org/g/1m> WHERE { 
+?s  ?p ?o1 .
+?o1 ?p2 ?o2 .
+?o2 ?p3 ?o3 .
+?s ?p4 ?o4 .
+?o4 ?p5 ?o5 .
+?s ?p6 ?o6 .
+?s ?p7 ?o7 .
+
+} 
+LIMIT 2
+
+
+PREFIX dbo: <http://dbpedia.org/ontology/>
+
+SELECT ?s 
+FROM <http://dbpedia.org/g/1m> WHERE { 
+?s  ?p1 ?o1 .
+?o1 dbo:populationTotal ?o2 .
+FILTER (?o2 > 1000000)
+FILTER langMatches( lang(?o1), "en" ) 
+} 
+
+
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+PREFIX dbpprop:	<http://dbpedia.org/property/> 
+
+CONSTRUCT {
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+} 
+FROM <http://dbpedia.org/g/1m> WHERE { 
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+FILTER (?l2 > 1000000)
+FILTER langMatches( lang(?l1), "en" ) 
+} 
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+PREFIX dbpprop:	<http://dbpedia.org/property/> 
+
+CONSTRUCT {
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+} 
+FROM <http://dbpedia.org/g/1m> WHERE { 
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+} 
+
+
+
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+PREFIX dbpprop:	<http://dbpedia.org/property/> 
+
+CONSTRUCT {
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+} 
+FROM <http://dbpedia.org/g/1m> WHERE { 
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+
+?s foaf:page ?o2 ;
+   dbpprop:title ?l3 ;
+   dbpprop:subdivisionName ?o3 .
+
+?o1 a ?c1 .
+
+FILTER (?l2 > 1000000)
+FILTER langMatches( lang(?l1), "en" ) 
+} 
+
