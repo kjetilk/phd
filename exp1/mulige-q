@@ -64,6 +64,8 @@ PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
 PREFIX dbpprop:	<http://dbpedia.org/property/> 
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+PREFIX geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#> 
 
 CONSTRUCT {
 ?s  rdfs:label ?l1 ;
@@ -76,10 +78,14 @@ FROM <http://dbpedia.org/g/1m> WHERE {
 ?o1 dbo:populationTotal ?l2 .
 
 ?s foaf:page ?o2 ;
-   dbpprop:title ?l3 ;
    dbpprop:subdivisionName ?o3 .
 
-?o1 a ?c1 .
+?o4 
+
+?o1 skos:subject ?o4 ;
+   a ?c1 .
+
+
 
 FILTER (?l2 > 1000000)
 FILTER langMatches( lang(?l1), "en" ) 
