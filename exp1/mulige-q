@@ -109,3 +109,14 @@ FROM <http://dbpedia.org/g/1m> WHERE {
 FILTER (?l2 > 1000000)
 FILTER langMatches( lang(?l1), "en" ) 
 } 
+
+
+{
+  ?o3 	dbpprop:longd	?long ;
+	dbpprop:latd	?lat .
+} UNION {
+  ?o3	geo:long ?long ;
+	geo:lat	?lat .
+
+}
+
