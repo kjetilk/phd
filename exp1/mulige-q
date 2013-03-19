@@ -80,8 +80,6 @@ FROM <http://dbpedia.org/g/1m> WHERE {
 ?s foaf:page ?o2 ;
    dbpprop:subdivisionName ?o3 .
 
-?o4 
-
 ?o1 skos:subject ?o4 ;
    a ?c1 .
 
@@ -91,3 +89,23 @@ FILTER (?l2 > 1000000)
 FILTER langMatches( lang(?l1), "en" ) 
 } 
 
+
+DESCRIBE ?o3
+FROM <http://dbpedia.org/g/1m> WHERE { 
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+
+?s foaf:page ?o2 ;
+   dbpprop:subdivisionName ?o3 .
+
+
+
+?o3 skos:subject ?o4 ;
+   a ?c1 .
+
+
+
+FILTER (?l2 > 1000000)
+FILTER langMatches( lang(?l1), "en" ) 
+} 
