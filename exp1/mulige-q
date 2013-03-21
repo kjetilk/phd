@@ -154,3 +154,68 @@ FROM <http://dbpedia.org/g/1m> WHERE {
 
 
 ============================================================================
+Language factors
+
+
+* BGP:
+
+-
+{ 
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+}
+
++
+{ 
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+
+?s foaf:page ?o2 ;
+   dbpprop:subdivisionName ?o3 .
+
+?o3 skos:subject ?o4 ;
+   dbpprop:seat ?o5 ;
+   a ?c1 .
+} 
+
+* FILTER range
+
+- 
+undef
+
++
+FILTER (?l2 > 800000)
+
+* FILTER lang
+
+- 
+undef
+
++
+FILTER langMatches( lang(?l1), "fr" ) 
+
+
+* UNION
+
+-
+undef
+
++
+{
+  ?o1 	dbpprop:longd	?long ;
+	dbpprop:latd	?lat .
+} UNION {
+  ?o1	geo:long ?long ;
+	geo:lat	?lat .
+
+}
+
+* OPTIONAL
+
+- 
+undef
+
++ 
+OPTIONAL { ?o1 foaf:homepage ?o6 . }
