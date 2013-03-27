@@ -1,0 +1,1 @@
+ --disable-krb --disable-openldap --disable-imsg --disable-rendezvous --disable-php5 --disable-mono --disable-hslookup --disable-imagemagick --disable-wbxml2 --disable-all-vads --without-iodbc --without-jdk2 --without-jdk3 --without-jdk4 --prefix=/home/kjetil/virtuoso-unmodified
