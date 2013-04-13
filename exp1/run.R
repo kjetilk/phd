@@ -18,7 +18,22 @@ loadexperiment <-  function(level, name, path) {
   filename <- paste(path, name, "-", level, sep="")
 # filename
   expfile <- readLines(filename)
-  expfile
+  query <- FALSE
+  endpoint <- FALSE
+  type <- NA
+#  browser()
+  if(!(is.na(charmatch("# SPARQL", expfile[1])))) {
+    query <- TRUE
+    type <- substr(expfile[1], 10, 20)
+  }
+  else if(!(is.na(charmatch("# ENDPOINT URL", expfile[1])))) {
+    endpoint <- TRUE
+  }
+  else {
+    stop("No valid file header (SPARQL / ENDPOINT URL) found")
+  }
+  list(content = expfile, query = query, endpoint = endpoint, type = type, level = level)
+  
 }
 
 experiment <- function(run) {
