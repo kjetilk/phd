@@ -15,7 +15,7 @@ sparqlEval <- function(design, path = "experiment/") {
 }
 
 loadexperiment <-  function(level, name, path) {
-  browser()
+  paste(path, name, level, sep="-")
 }
 
 experiment <- function(run) {
