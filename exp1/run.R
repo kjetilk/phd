@@ -4,18 +4,21 @@ sparqlEval <- function(design, path = "experiment/") {
   }
   # First get all from files
   facnames <- factor.names(design)
-  lapply(seq_along(facnames), function(i, factors, justnames) {
-           sapply(factors[[i]], loadexperiment, name=justnames[i], path=path)
-         },
-         factor=facnames, justnames=names(facnames))
-    
+  files <- lapply(seq_along(facnames), function(i, factors, justnames) {
+                    sapply(factors[[i]], loadexperiment, name=justnames[i], path=path)
+                  },
+                  factor=facnames, justnames=names(facnames))
+    files
   # Run the experiment by iterating design matrix
   #  apply(design, 1, experiment)
 
 }
 
 loadexperiment <-  function(level, name, path) {
-  paste(path, name, level, sep="-")
+  filename <- paste(path, name, "-", level, sep="")
+# filename
+  expfile <- readLines(filename)
+  expfile
 }
 
 experiment <- function(run) {
