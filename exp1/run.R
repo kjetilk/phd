@@ -33,7 +33,13 @@ loadexperiment <-  function(level, name, path) {
 }
 
 experiment <- function(run, files) {
-
+  endpointurl <- "http://localhost:PORT/sparql"
+  port <- ":8890"
+  endpointurl <- sub(":PORT", port, endpointurl, fixed=TRUE)
+  while(!(url.exists(endpointurl))) {
+    cat("Previous Endpoint URL", endpointurl, "returned error\n")
+    endpointurl <- ask("Please enter valid endpoint URL: ")
+  }
   name <- names(run)
   browser()
 }
