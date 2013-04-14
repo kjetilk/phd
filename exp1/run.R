@@ -8,20 +8,16 @@ sparqlEval <- function(design, path = "experiment/") {
                     sapply(factors[[i]], loadexperiment, name=justnames[i], path=path)
                   },
                   factor=facnames, justnames=names(facnames))
-    files
   # Run the experiment by iterating design matrix
-  #  apply(design, 1, experiment)
-
+  apply(design, 1, experiment, files=files)
 }
 
 loadexperiment <-  function(level, name, path) {
   filename <- paste(path, name, "-", level, sep="")
-# filename
   expfile <- readLines(filename)
   query <- FALSE
   endpoint <- FALSE
   type <- NA
-#  browser()
   if(!(is.na(charmatch("# SPARQL", expfile[1])))) {
     query <- TRUE
     type <- substr(expfile[1], 10, 20)
@@ -36,10 +32,10 @@ loadexperiment <-  function(level, name, path) {
   
 }
 
-experiment <- function(run) {
+experiment <- function(run, files) {
+
   name <- names(run)
-  print(run)
-  stop()
+  browser()
 }
 
 
