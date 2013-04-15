@@ -9,7 +9,7 @@ sparqlEval <- function(design, path = "experiment/") {
                   },
                   factor=facnames, justnames=names(facnames))
   # Run the experiment by iterating design matrix
-  apply(design, 1, experiment, files=files)
+  paste(apply(design, 1, experiment, files=files))
 }
 
 loadexperiment <-  function(level, name, path) {
@@ -40,8 +40,16 @@ experiment <- function(run, files) {
     cat("Previous Endpoint URL", endpointurl, "returned error\n")
     endpointurl <- ask("Please enter valid endpoint URL: ")
   }
-  name <- names(run)
+  ret <- apply(cbind(run, files), 1, compose)
   browser()
 }
 
+compose <- function(factor) {
+  file <- factor$files[,unlist(factor$files["level",]) == factor$run]
+  if(file$query) {
+    file$content
+  } else {
+    NA
+  }
+}
 
