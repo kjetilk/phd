@@ -41,13 +41,13 @@ experiment <- function(run, files) {
     endpointurl <- ask("Please enter valid endpoint URL: ")
   }
   ret <- apply(cbind(run, files), 1, compose)
-  browser()
+  paste(unlist(ret[!is.na(ret)]), collapse=" ")
 }
 
 compose <- function(factor) {
   file <- factor$files[,unlist(factor$files["level",]) == factor$run]
   if(file$query) {
-    file$content
+    file$content[-1]
   } else {
     NA
   }
