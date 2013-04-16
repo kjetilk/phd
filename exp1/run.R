@@ -42,8 +42,8 @@ experiment <- function(run, files) {
     endpointurl <- ask("Please enter valid endpoint URL: ")
   }
   ret <- apply(cbind(run, files), 1, compose)
-  list(whereclause = paste("SELECT * WHERE {", paste(unlist(ret[!is.na(ret)]), collapse=" "), "}"),
-       endpointurl = endpointurl)
+  query <- paste("PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX foaf: <http://xmlns.com/foaf/0.1/> PREFIX dbpprop: <http://dbpedia.org/property/> PREFIX skos: <http://www.w3.org/2004/02/skos/core#> PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> SELECT * WHERE {", paste(unlist(ret[!is.na(ret)]), collapse=" "), "}")
+  timeQuery(endpointurl, query)$endpoint
 }
 
 compose <- function(factor) {
