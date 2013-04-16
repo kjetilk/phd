@@ -9,7 +9,8 @@ sparqlEval <- function(design, path = "experiment/") {
                   },
                   factor=facnames, justnames=names(facnames))
   # Run the experiment by iterating design matrix
-  paste(apply(design, 1, experiment, files=files))
+  experiments <- apply(design, 1, experiment, files=files)
+  experiments
 }
 
 loadexperiment <-  function(level, name, path) {
@@ -41,7 +42,8 @@ experiment <- function(run, files) {
     endpointurl <- ask("Please enter valid endpoint URL: ")
   }
   ret <- apply(cbind(run, files), 1, compose)
-  paste(unlist(ret[!is.na(ret)]), collapse=" ")
+  list(whereclause = paste("SELECT * WHERE {", paste(unlist(ret[!is.na(ret)]), collapse=" "), "}"),
+       endpointurl = endpointurl)
 }
 
 compose <- function(factor) {
