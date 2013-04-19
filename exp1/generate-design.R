@@ -4,3 +4,10 @@ sparqltest.design <- cross.design(
                                   fac.design(nlevels = 2, nfactors = 5,
                                              factor.names = c("BGPComp", "Lang", "Range", "Union", "Optional")),
                                   randomize = F)
+
+sparqltest.sans.machine.design <- cross.design(
+                                  fac.design(nlevels = 2, nfactors = 2,
+                                             factor.names = c("Implement", "TripleC"), randomize = F),
+                                  fac.design(nlevels = 2, nfactors = 5,
+                                             factor.names = c("BGPComp", "Lang", "Range", "Union", "Optional")),
+                                  randomize = F)
