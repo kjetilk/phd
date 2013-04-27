@@ -45,9 +45,8 @@ experiment <- function(run, files) {
   querypattern <- apply(thisexperiment, 1, compose, type="query")
   ret <- apply(thisexperiment, 1, compose, type="endpointhost")
   host <- ret[!is.na(ret)]
-  while((length(host) == 0 || nchar(host) == 0)) {
-    cat("No hostname found in experiment setup. ")
-    host <- ask("Enter hostname: ")
+  if(length(host) == 0) {
+    host <- "10.72.1.180"
   }
   if(length(host) > 1) {
     stop("We need exactly one host")
