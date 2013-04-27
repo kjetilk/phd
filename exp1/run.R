@@ -60,6 +60,7 @@ experiment <- function(run, files) {
     cat("Previous Endpoint URL", endpointurl, "returned error\n")
     ask("Press <RETURN> to test again")
   }
+  cat(date(), " Sending ", run, " to ", endpointurl, "\n") 
   timeQuery(endpointurl, query)$endpoint
 }
 
