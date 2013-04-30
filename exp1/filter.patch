@@ -1,5 +1,5 @@
 --- src/frontend/filter.c	2012-06-11 11:47:24.000000000 +0200
-+++ ../../4store-filter-slow/4store-v1.1.5/src/frontend/filter.c	2013-04-29 19:27:30.308684035 +0200
++++ ../../4store-filter-slow/4store-v1.1.5/src/frontend/filter.c	2013-04-30 16:24:10.305489131 +0200
 @@ -24,6 +24,7 @@
  #include <time.h>
  #include <errno.h>
@@ -12,7 +12,7 @@
  
  fs_value fn_lang_matches(fs_query *q, fs_value l, fs_value p)
  {
-+    usleep(10); /* Inserted by Kjetil Kjernsmo for a experiment */
++    usleep(25); /* Inserted by Kjetil Kjernsmo for a experiment */
 +
      if (fs_is_error(l)) {
  	return l;
