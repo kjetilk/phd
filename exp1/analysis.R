@@ -10,13 +10,13 @@ fulllm <- function(results) {
   lm(formula = experiments ~ Implement * TripleC * BGPComp * Lang * Range * Union * Optional * Machine, data = results)
 }
 
-robust.single <- function(model, control = "Implement", noise = c("TripleC", "Lang", "Union", "Optional"), ...) {
+robust <- function(model, control = "Implement", noise = c("TripleC", "Lang", "Union", "Optional"), pairwise=TRUE, ...) {
   fm <- as.formula(paste("experiments ~", control, " * ", paste(noise, collapse=" * ")));
   allmeans <- aggregate(fm, data=model, mean)
-  t.test(
-         allmeans[allmeans[[control]] == 2,"experiments"],
-         allmeans[allmeans[[control]] == 1,"experiments"],
-         alternative="less",
-         ...)
+  oldimplement <- allmeans[allmeans[[control]] == 1,"experiments"]
+  newimplement <- allmeans[allmeans[[control]] == 2,"experiments"]
+  if(pairwise) {
+    t.test(newimplement, oldimplement, alternative="less", ...)
+  }# else {
 }
   
