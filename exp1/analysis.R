@@ -10,15 +10,10 @@ fulllm <- function(results) {
   lm(formula = experiments ~ Implement * TripleC * BGPComp * Lang * Range * Union * Optional * Machine, data = results)
 }
 
-robust <- function(model, control = "Implement", noise = c("TripleC", "Lang", "Union", "Optional"), pairwise=FALSE, ...) {
-  fm <- as.formula(paste("experiments ~", control, " * ", paste(noise, collapse=" * ")));
+robust <- function(model, control = "Implement", inactive = c("Machine", "BGPComp", "Range"), pairwise=FALSE, ...) {
+  fm <- as.formula(paste("experiments ~", control, " * ", paste(inactive, collapse=" * ")));
   allmeans <- aggregate(fm, data=model, mean)
-  oldimplement <- allmeans[allmeans[[control]] == 1,"experiments"]
-  newimplement <- allmeans[allmeans[[control]] == 2,"experiments"]
-  if(pairwise) {
-    browser()
-  } else {
-    t.test(newimplement, oldimplement, alternative="less", ...)
-  }
+  allmeans
+
 }
   
