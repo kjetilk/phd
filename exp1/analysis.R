@@ -16,6 +16,7 @@ robust <- function(model, control = "Implement", noise = c("TripleC", "Lang", "U
   oldimplement <- allmeans[allmeans[[control]] == 1,"experiments"]
   newimplement <- allmeans[allmeans[[control]] == 2,"experiments"]
   if(pairwise) {
+    browser()
   } else {
     t.test(newimplement, oldimplement, alternative="less", ...)
   }
