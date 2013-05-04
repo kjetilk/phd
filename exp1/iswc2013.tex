@@ -2,6 +2,7 @@
 \documentclass{article}
 \usepackage{cite}
 \usepackage{verbatim}
+\newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
 \title{Introducing Statistical Design of Experiments to SPARQL
   Endpoint Evaluation}
@@ -63,7 +64,11 @@ industrial benchmarking rather than scientific evaluations.
 \section{Experimental setup}
 
 As the focus of this paper is didactical, the actual measurements are
-much simpler than what has been used in benchmarking. 
+much simpler than what has been used in benchmarking. We have used the
+dataset of \cite{mxro:Morsey2011DBpedia}, but only consider the
+smallest of their datasets (that we found to me more than 15
+MTriples). Moreover, we have taken subsets of that dataset by using
+the last 1 or 2 MTriples their file.
 
 To only deal with the relatively straightforward aspects of the DoE
 formalism, we have chosen to constrain the experiment strictly to 2
@@ -91,6 +96,15 @@ and similarly,  ``Range'' is this FILTER:
 and ``Optional''
 \verbatiminput{experiment/Optional-2}
 
+These fragments has been carefully designed for illustrative utility,
+as well as suitable selectivity. When the experiment is run, they are
+combined to yield a query, which is then sent to a SPARQL
+endpoint. The SPARQL endpoint is itself set up using 4store\todo{ref}
+version 1.1.5. The ``Machine'' factor specifies a hostname, whereas
+``TripleC'' and ``Implement'' specifies a port number. On each host,
+four 4store instances runs independently on different
+ports. \todo{possible problem?}
+
 Finally, ``Implement'' is the implementation undergoing
 evaluation. Level 1 is running the new implementation, whereas Level 2
 is the old implementation. The null hypothesis $H_0$ is that the old
@@ -98,7 +112,25 @@ implementation is as good as the new, and the alternative hypothesis
 $H_1$ is that the new implementation has overall improved the
 performance of the system.
 
-We have used the dataset of \cite{mxro:Morsey2011DBpedia}, where 
+However, as a real optimization is beyond the scope of this paper, we
+have instead created a simulation of an optimization. This has also
+the advantage that we can \textit{a priori} understand the effect of
+the changes. In a real-world case, there is often the case that an
+optimization has negative side-effects, and we would need to simulate
+both the optimization and the side-effects. To do that, we degraded
+the performance of a the 4store SPARQL implementation by inserting
+\texttt{sleep} statements. Specifically we inserted the C statement
+\texttt{sleep(2)} on line~920 in \texttt{src/frontend/query.c} on
+level~1, to simulate the optimization. This has the effect of delaying
+execution for 2~seconds for every block for all kinds of joins. On
+level 2, we inserted \texttt{usleep(2000)} on line 987 in
+\texttt{src/frontend/filter.c} to simulate the negative
+side-effect. This delays execution for 2 milliseconds every time the
+\texttt{langMatches} SPARQL function is called.
+
+
+
+
 
 \section{Conclusion}
 
