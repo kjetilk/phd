@@ -61,7 +61,9 @@ Finally, we acknowledge the efforts of the Linked Data Benchmark
 Council and the SEALS project. However, they appear to focus on
 industrial benchmarking rather than scientific evaluations. 
 
-\section{Experimental setup}
+\section{Experimens}
+
+\subsection{Setup}
 
 As the focus of this paper is didactical, the actual measurements are
 much simpler than what has been used in benchmarking. We have used the
@@ -128,6 +130,26 @@ level 2, we inserted \texttt{usleep(2000)} on line 987 in
 side-effect. This delays execution for 2 milliseconds every time the
 \texttt{langMatches} SPARQL function is called.
 
+The experimentation is implemented in R\todo{ref}, which is a free
+software environment for statistical computing and graphics. Necessary
+tools for DoE has been implemented by the R community in packages
+called DoE.base, BsMD and FrF2. The experiments are run on a third
+computer in a 1 gigabit LAN with the two experiment hosts.  As
+response variable, we have chosen to use the time from the namespace
+server lookup to the data has been transferred. This choice is
+somewhat arbitrary, many other response variables could be chosen, and
+indeed, future work should explore multi-variable responses, but for
+simplicity, we think this reflects the total amount of work done by
+the SPARQL endpoint well. For the measurements, we have chosen to use
+the RCurl package, which is a thin wrapper around the curl
+library. Curl has  good facilities for timing requests, and so
+we rely on its measurements.
+
+\subsection{Full factorial experiment}
+
+\subsection{Fractional factorial experiment}
+
+\subsection{Fractional factorial experiment with more data}
 
 
 
