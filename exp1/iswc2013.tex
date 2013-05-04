@@ -1,6 +1,7 @@
 %\documentclass{llncs}
 \documentclass{article}
 \usepackage{cite}
+\usepackage{verbatim}
 
 \title{Introducing Statistical Design of Experiments to SPARQL
   Endpoint Evaluation}
@@ -59,6 +60,45 @@ Finally, we acknowledge the efforts of the Linked Data Benchmark
 Council and the SEALS project. However, they appear to focus on
 industrial benchmarking rather than scientific evaluations. 
 
+\section{Experimental setup}
+
+As the focus of this paper is didactical, the actual measurements are
+much simpler than what has been used in benchmarking. 
+
+To only deal with the relatively straightforward aspects of the DoE
+formalism, we have chosen to constrain the experiment strictly to 2
+levels. We have chosen 8 factors each having 2 levels, ``TripleC'' the number of triples in the
+dataset, 1 or 2 MTriples, ``Machine'', which is the software and hardware platform,
+where one machine runs GNU/Linux Debian Squeeze, has 16 GB RAM, an
+Intel Core2 Duo E8500 CPU and two Parallell-ATA disks in a RAID-1
+configuration. The other machine runs Debian Wheezy, has 8 GB RAM, an
+Intel Core i7-3520M CPU and a single SSD on SATA-III. 
+
+Then, we test some language features: 
+``BGPComp'', which is a Basic Graph Pattern of varying complexity. The
+first level is:
+\verbatiminput{experiment/BGPComp-1}
+and the second level is 
+\verbatiminput{experiment/BGPComp-1}
+
+The following factors tests the absence (at level 1) or presence (at level 2) of the following clauses:
+The ``Lang'' factor is this FILTER:
+\verbatiminput{experiment/Lang-2}
+and similarly,  ``Range'' is this FILTER:
+\verbatiminput{experiment/Range-2}
+``Union'' tests the following:
+\verbatiminput{experiment/Union-2}
+and ``Optional''
+\verbatiminput{experiment/Optional-2}
+
+Finally, ``Implement'' is the implementation undergoing
+evaluation. Level 1 is running the new implementation, whereas Level 2
+is the old implementation. The null hypothesis $H_0$ is that the old
+implementation is as good as the new, and the alternative hypothesis
+$H_1$ is that the new implementation has overall improved the
+performance of the system.
+
+We have used the dataset of \cite{mxro:Morsey2011DBpedia}, where 
 
 \section{Conclusion}
 
