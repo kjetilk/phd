@@ -89,7 +89,7 @@ scientific practice. We must instead tackle this problem by enhancing
 our capability of testing complex systems and to identify situations
 where our assumptions are flawed. Such constraints can only be made
 when we have very good reason to suspect that a certain parameter does
-not have influence.
+not have any influence.
 
 In this paper, we employ techniques from the well-established field in
 statistics of Design of Experiments to point out a direction that
@@ -104,7 +104,8 @@ number of runs the experiment needs, and we discuss the tradeoffs
 involved. We then continue to discuss techniques that shows our
 simplistic experiment to be flawed, yet scientifically better than the
 practice of benchmarking. Finally, we outline a roadmap to establish
-the use of these techniques in SPARQL endpoint evaluations.
+the use of these techniques in SPARQL endpoint evaluations both as a
+practical tool and as a scientific more rigorous methodology.
 
 \section{Related work}
 
@@ -143,9 +144,13 @@ smallest of their datasets (that we found to be more than 15
 MTriples). Moreover, we have taken subsets of that dataset by using
 the last 1 or 2 MTriples from their file.
 
-To only deal with the relatively straightforward aspects of the DoE
-formalism, we have chosen to constrain the experiment strictly to 2
-levels. We have chosen 8 factors each having 2 levels, ``TripleC'' the number of triples in the
+First, note that the concept of parameters as considered in the
+introduction is known as \emph{factors} in DoE. For each factor, we
+have chosen in this paper to only deal with the relatively
+straightforward aspects of the DoE formalism, and therefore 
+constrain the experiment strictly to 2 levels.
+
+We have chosen 8 factors each having 2 levels, ``TripleC'' the number of triples in the
 dataset, 1 or 2 MTriples, ``Machine'', which is the software and hardware platform,
 where one machine runs GNU/Linux Debian Squeeze, has 16 GB RAM, an
 Intel Core2 Duo E8500 CPU and two Parallell-ATA disks in a RAID-1
@@ -170,13 +175,14 @@ and ``Optional''
 \verbatiminput{experiment/Optional-2}
 
 These fragments has been carefully designed for illustrative utility,
-as well as suitable selectivity. When the experiment is run, they are
-combined to yield a query, which is then sent to a SPARQL
-endpoint. The SPARQL endpoint is itself set up using 4store\todo{ref}
-version 1.1.5. The ``Machine'' factor specifies a hostname, whereas
-``TripleC'' and ``Implement'' specifies a port number. On each host,
-four 4store instances runs independently on different
-ports. \todo{possible problem?}
+as well as suitable selectivity. They are not themselves important,
+they only serve to illustrate certain examples of possible
+factors. When the experiment is run, they are combined to yield a
+query, which is then sent to a SPARQL endpoint. The SPARQL endpoint is
+itself set up using 4store\todo{ref} version 1.1.5. The ``Machine''
+factor specifies a hostname, whereas ``TripleC'' and ``Implement''
+specifies a port number. On each host, four 4store instances runs
+independently on different ports. \todo{possible problem?}
 
 Finally, ``Implement'' is the implementation undergoing
 evaluation. Level 1 is running the new implementation, whereas Level 2
@@ -215,6 +221,12 @@ the SPARQL endpoint well. For the measurements, we have chosen to use
 the RCurl package, which is a thin wrapper around the curl
 library. Curl has well developed facilities for timing requests and
 responses, and so we rely on its measurements.
+
+Finally note that there are two common issues in benchmarking we do
+not consider: we do not allow a warm-up run, nor do we take into
+account that the server may cache all or parts of the result set. The
+reasons for this choice will be discussed later.\todo{lurking
+  variables}
 
 \subsection{Full factorial experiment}
 
