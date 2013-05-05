@@ -67,10 +67,10 @@ industrial benchmarking rather than scientific evaluations.
 
 As the focus of this paper is didactical, the actual measurements are
 much simpler than what has been used in benchmarking. We have used the
-dataset of \cite{mxro:Morsey2011DBpedia}, but only consider the
-smallest of their datasets (that we found to me more than 15
+dataset of DBPedia SPARQL Benchmark\cite{mxro:Morsey2011DBpedia}, but only consider the
+smallest of their datasets (that we found to be more than 15
 MTriples). Moreover, we have taken subsets of that dataset by using
-the last 1 or 2 MTriples their file.
+the last 1 or 2 MTriples from their file.
 
 To only deal with the relatively straightforward aspects of the DoE
 formalism, we have chosen to constrain the experiment strictly to 2
@@ -142,8 +142,8 @@ indeed, future work should explore multi-variable responses, but for
 simplicity, we think this reflects the total amount of work done by
 the SPARQL endpoint well. For the measurements, we have chosen to use
 the RCurl package, which is a thin wrapper around the curl
-library. Curl has  good facilities for timing requests, and so
-we rely on its measurements.
+library. Curl has well developed facilities for timing requests and
+responses, and so we rely on its measurements.
 
 \subsection{Full factorial experiment}
 
@@ -160,7 +160,7 @@ we rely on its measurements.
   about examining variance} \todo{Say something about drilling down in
   factors} \todo{Say something about spreading levels}
 
-
+\paragraph{Fold-over}
 
 \section{Future Work}
 
