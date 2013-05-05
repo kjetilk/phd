@@ -16,3 +16,5 @@ sparqltest.random.design <- fac.design(nlevels = 2, nfactors = 8,
                                              factor.names = c("Implement", "TripleC", "Machine", "BGPComp", "Lang", "Range", "Union", "Optional"))
 
 frac32.design <- FrF2(nruns=32, factor.names=c("Implement", "TripleC", "Machine", "BGPComp", "Lang", "Range", "Union", "Optional"), estimable=formula("~Implement + TripleC+Machine+BGPComp+Lang+Range+Union+Optional + Implement:(TripleC+Machine+BGPComp+Lang+Range+Union+Optional)"), default.levels=c(1,2))
+
+frac64.design <- FrF2(nruns=64, factor.names=c("Implement", "TripleC", "Machine", "BGPComp", "Lang", "Range", "Union", "Optional"), estimable=formula("~Implement + TripleC+Machine+BGPComp+Lang+Range+Union+Optional + Implement:(TripleC+Machine+BGPComp+Lang+Range+Union+Optional)"), default.levels=c(1,2))
