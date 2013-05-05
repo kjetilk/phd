@@ -6,18 +6,18 @@
 
 \title{Introducing Statistical Design of Experiments to SPARQL
   Endpoint Evaluation}
-\author{Kjetil Kjernsmo\inst{1}}
+%\author{Kjetil Kjernsmo\inst{1}}
 %\titlerunning{Introducing Design of Experiments to SPARQL Evaluation}
 %\institute{Department of Informatics,
 %Postboks 1080 Blindern,
 %0316 Oslo, Norway
 %\email{kjekje@ifi.uio.no}}
 
-%\maketitle
+
 
 \begin{document}
 
-
+\maketitle
 
 \begin{abstract}
 This paper argues that the common practice of benchmarking is
@@ -34,6 +34,77 @@ scientific rigor.
 \end{abstract}
 
 \section{Introduction}
+
+The practice of benchmarking is widespread, both in industry to select
+the most appropriate implementation amongst several choices, and in
+academia as means to verify or refute an assertion on the performance
+of a certain practice or system. While we could contribute to the
+industrial cases, our focus is on the latter. A benchmark typically
+consists of several microbenchmarks, which are procedures for placing
+loads on the system to measure its performance as a function of the
+load. For SPARQL benchmarks, usually the performance is measured as a
+the number of queries the SPARQL implementation is able to answer in a
+certain time (the throughput) or the time required for it to respond
+to a query.
+
+However, there are many of problems with this approach when used to
+evaluate assertions about the overall performance of a system or
+several systems: 
+\begin{itemize}
+\item As the complexity increases, the number of parameters that
+one may wish to test increases dramatically.
+\item Nothing compels anyone to find microbenchmarks that
+  can refute an assertion, and there is no structured approach to
+  investigate whether a benchmark is flawed.
+\item There is no meaningful summary of the performance as a whole, so
+  that an assertion about performance cannot be refuted as an
+  optimization may have dentrimental side effects that cannot be
+  identified, or cannot be compared to possibly positive effects in a
+  different microbenchmark.
+\end{itemize}
+
+To address some of these problems, one may try to standardize
+benchmarks, to eliminate some parameters and identify others as
+believed to be important. Also, social pressure should then prompt
+developers to use a standard benchmark so that assertions may be
+refuted.
+
+While this is an improvement which is possibly sufficient for
+industrial uses, is it still flawed as empirical
+research, as it cannot capture the full diversity of the problem: For
+example, if a vendor claims that their implementation is better if
+used on a highly capable hardware platform, then the standardization
+of a hardware platform cannot test this assertion. Moreover, to test
+this assertion, one would need a summary technique that can identify
+the interaction between implementation and hardware platform and
+possibly other parameters.
+
+One important aspect of science is the structured approach to falsify
+hypotheses, and thus is important that assertions about performance is
+formulated as hypotheses that can be falsified.
+
+Thus, attacking the complexity problem by eliminating parameters we
+think influence the outcome for simplicity is indefensible as
+scientific practice. We must instead tackle this problem by enhancing
+our capability of testing complex systems and to identify situations
+where our assumptions are flawed. Such constraints can only be made
+when we have very good reason to suspect that a certain parameter does
+not have influence.
+
+In this paper, we employ techniques from the well-established field in
+statistics of Design of Experiments to point out a direction that
+promises to address these problems. First, we design a simple
+8-parameter experiment, and then we demonstrate how a full
+factorial experiment can meaningfully provide a summary of the
+statistics. 
+
+Then, we demonstrate how a fractional factorial experiment can be used
+to maintain a structured approach to the problem while reducing the
+number of runs the experiment needs, and we discuss the tradeoffs
+involved. We then continue to discuss techniques that shows our
+simplistic experiment to be flawed, yet scientifically better than the
+practice of benchmarking. Finally, we outline a roadmap to establish
+the use of these techniques in SPARQL endpoint evaluations.
 
 \section{Related work}
 
