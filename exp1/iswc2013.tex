@@ -271,16 +271,59 @@ successfully improved the performance.
 To proceed beyond a visual judgement of significance, we may use
 Lenth's method\todo{ref Lenth}, which is a simple method for
 estimating significance in an experiment with no replicates. We plot
-the results in figure~\ref{fig:fulllenth}. Visually, this is not as
-useful, since the large number\todo{really include?} We see that we
-have very significant effects. We also note that ``Implement'' itself
-is significantly negative. We also note that the ``Implement:Lang''
-interaction is significantly positive, as expected from our setup,
-where ``Lang'' was the detrimental side-effect we simulated.
+the results in figure~\ref{fig:fulllenth}. In
+figure~\ref{fig:fullnormal}, Lenth's method is used to label the
+significant effects. Visually, this is not as useful, since the large
+number\todo{really include?} We see that we have very significant
+effects. We also note that ``Implement'' itself is significantly
+negative. We also note that the ``Implement:Lang'' interaction is
+significantly positive, as expected from our setup, where ``Lang'' was
+the detrimental side-effect we simulated.
 
 To investigate whether the detrimental side-effects cancels the
 positive effect of our simulated optimization, we have to formulate a
-hypothesis test. By inspecting the normal plot in figure~\ref{fig:fullnormal}
+hypothesis test. By inspecting the normal plot in
+figure~\ref{fig:fullnormal}, we see that only five factors are highly
+significant by either being a significant main effect or participate
+in a highly significant interaction. We say that the three factors
+``BGPComp'', ``Range'' and ``Machine'' are \emph{inactive} since they
+do not contribute significantly to the observed variation in
+performance. In practical situations, the four factors ``Lang'',
+``Optional'', ``Union'' and ``TripleC'' can be regarded as given,
+i.e. we cannot change the size of the dataset without loss of
+information, or change the query, since it gives a different
+answer. In practice, we can only control ``Implement'', i.e. we can
+only change the implementation. In this context, we call ``Implement''
+a \emph{control} factor and the other four active factors
+\emph{environmental}.
+
+\todo{finish the t-test stuff once ready} 
+
+The main objective of this paper is not to establish that the
+optimization is significant, it is merely a simulation. It is to
+establish a critical practice of evaluations. It is of critical
+importance that we understand why some effects are critical. That
+``Implement'' is significant is hardly a surprise, that is what we
+worked for. That the main effects ``Union'', ``Optional'' and ``Lang''
+are strong is also due to that these are fairly demanding things to
+evaluate. Since the delay we inserted affects all kinds of joins, it
+is also intuitive that interactions between ``Implement'' and those
+that require joins are strong. The strong ``BGPComp:Lang'' and
+``Lang:Union'' interactions might be due to that the many more triples
+needs to be searched for a language tag in one case. However, the
+positive ``Implement:TripleC'' interaction evades such explanations;
+in fact, it hints that our optimization may not work as well for
+larger databases. This should cause some alarm. It is a fundamental
+property of two-level experiments that it can only model linear
+effects. If the effect is truly linear, and the variance is small, the
+two levels can be quite close together and still yield a reasonable
+estimate for the effect. However, if the effect is non-linear, the
+choice of levels becomes critical. In this case, the experimenter
+should be concerned that they may have a non-linear effect that is not
+well represented by the sizes of datasets. Such reasoning should be
+applied to all significant effects.
+
+
 
 \subsection{Fractional factorial experiment}
 
