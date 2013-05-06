@@ -58,7 +58,7 @@ one may wish to test increases dramatically.
   investigate whether a benchmark is flawed.
 \item There is no meaningful summary of the performance as a whole, so
   that an assertion about performance cannot be refuted as an
-  optimization may have dentrimental side effects that cannot be
+  optimization may have detrimental side effects that cannot be
   identified, or cannot be compared to possibly positive effects in a
   different microbenchmark.
 \end{itemize}
@@ -84,7 +84,7 @@ hypotheses, and thus is important that assertions about performance is
 formulated as hypotheses that can be falsified.
 
 Thus, attacking the complexity problem by eliminating parameters we
-think influence the outcome for simplicity is indefensible as
+think influence the outcome for simplicity is untenable as
 scientific practice. We must instead tackle this problem by enhancing
 our capability of testing complex systems and to identify situations
 where our assumptions are flawed. Such constraints can only be made
@@ -92,20 +92,20 @@ when we have very good reason to suspect that a certain parameter does
 not have any influence.
 
 In this paper, we employ techniques from the well-established field in
-statistics of Design of Experiments to point out a direction that
-promises to address these problems. First, we design a simple
-8-parameter experiment, and then we demonstrate how a full
+statistics known as Design of Experiments (DoE) to point out a
+direction that promises to address these problems. First, we design a
+simple 8-parameter experiment, and then we demonstrate how a full
 factorial experiment can meaningfully provide a summary of the
-statistics. 
+statistics.
 
 Then, we demonstrate how a fractional factorial experiment can be used
 to maintain a structured approach to the problem while reducing the
-number of runs the experiment needs, and we discuss the tradeoffs
+number of runs the experiment needs, and we discuss the trade-offs
 involved. We then continue to discuss techniques that shows our
 simplistic experiment to be flawed, yet scientifically better than the
-practice of benchmarking. Finally, we outline a roadmap to establish
+practice of benchmarking. Finally, we outline a road-map to establish
 the use of these techniques in SPARQL endpoint evaluations both as a
-practical tool and as a scientific more rigorous methodology.
+practical tool and as a scientifically more rigorous methodology.
 
 \section{Related work}
 
@@ -148,9 +148,9 @@ constrain the scope of the study to comparing two different things.
 
 As the focus of this paper is didactical, the actual measurements are
 much simpler than what has been used in benchmarking. We have used the
-dataset of DBPedia SPARQL Benchmark\cite{mxro:Morsey2011DBpedia}, but only consider the
-smallest of their datasets (that we found to be more than 15
-MTriples). Moreover, we have taken subsets of that dataset by using
+data-set of DBPedia SPARQL Benchmark\cite{mxro:Morsey2011DBpedia}, but only consider the
+smallest of their data-sets (that we found to be more than 15
+MTriples). Moreover, we have taken subsets of that data-set by using
 the last 1 or 2 MTriples from their file.
 
 First, note that the concept of parameters as considered in the
@@ -160,9 +160,9 @@ straightforward aspects of the DoE formalism, and therefore
 constrain the experiment strictly to 2 levels.
 
 We have chosen 8 factors each having 2 levels, ``TripleC'' the number of triples in the
-dataset, 1 or 2 MTriples, ``Machine'', which is the software and hardware platform,
+data-set, 1 or 2 MTriples, ``Machine'', which is the software and hardware platform,
 where one machine runs GNU/Linux Debian Squeeze, has 16 GB RAM, an
-Intel Core2 Duo E8500 CPU and two Parallell-ATA disks in a RAID-1
+Intel Core2 Duo E8500 CPU and two Parallel-ATA disks in a RAID-1
 configuration. The other machine runs Debian Wheezy, has 8 GB RAM, an
 Intel Core i7-3520M CPU and a single SSD on SATA-III. 
 
@@ -268,7 +268,7 @@ decreases. If ``Implement'' and the sum of its interactions are
 negative, then it supports the alternative hypothesis, i.e. we have
 successfully improved the performance.
 
-To proceed beyond a visual judgement of significance, we may use
+To proceed beyond a visual judgment of significance, we may use
 Lenth's method\todo{ref Lenth}, which is a simple method for
 estimating significance in an experiment with no replicates. We plot
 the results in figure~\ref{fig:fulllenth}. In
@@ -290,7 +290,7 @@ in a highly significant interaction. We say that the three factors
 do not contribute significantly to the observed variation in
 performance. In practical situations, the four factors ``Lang'',
 ``Optional'', ``Union'' and ``TripleC'' can be regarded as given,
-i.e. we cannot change the size of the dataset without loss of
+i.e. we cannot change the size of the data-set without loss of
 information, or change the query, since it gives a different
 answer. In practice, we can only control ``Implement'', i.e. we can
 only change the implementation. In this context, we call ``Implement''
@@ -321,7 +321,7 @@ two levels can be quite close together and still yield a reasonable
 estimate for the effect. However, if the effect is non-linear, the
 choice of levels becomes critical. In this case, the experimenter
 should be concerned that they may have a non-linear effect that is not
-well represented by the sizes of datasets. Such reasoning should be
+well represented by the sizes of data-sets. Such reasoning should be
 applied to all significant effects.
 
 
@@ -329,8 +329,8 @@ applied to all significant effects.
 \subsection{Fractional factorial experiment}
 
 As mentioned, the full factorial experiment goes as $2^n$ and becomes
-prohibitivly expensive when $n$ is a large number of
-factor. As the evaluation of SPARQL endpoints is an inherently complex
+prohibitively expensive when $n$ is a large number of
+factors. As the evaluation of SPARQL endpoints is an inherently complex
 problem, a large number of factors are needed, and so full experiments
 cannot scale. However, we may reduce the size of the experiment
 significantly by sacrificing some explanatory power, in the form of
@@ -369,7 +369,7 @@ total variance is great, so no other conclusions can be drawn. Also,
 the Student's t-test we used in the previous section cannot be
 employed, as we have no additional data to use for the test.
 
-For any other purpose than a rough idea of some key influencers on the
+For any other purpose than a rough idea of some key influences on the
 overall performance of the endpoint for the given levels, this little
 experiment is insufficient.
 
@@ -377,7 +377,7 @@ We turn to the 64-run experiment and its normal plot in
 figure~\ref{fig:frac64normalalpha005}. We see that the we get more significant
 effects, and that they correspond well to those we saw in the full
 factorial experiment. They also all have an intuitive
-explanation. However, we do not see the effects that we found
+explanation as above. However, we do not see the effects that we found
 worrisome in the full factorial design. The ``Implement:TripleC''
 interaction emerges only for a level $\alpha=0.15$, see
 figure~\ref{fig:frac64normalalpha015}. To ensure that we discover such
@@ -390,8 +390,8 @@ cases will be a key challenge in further studies.
 
 The importance of finding flaws in the levels is highlighted by the
 normal plot in figure~\ref{fig:frac64hugenormal}. The smaller
-experiment made it feasible to run with a larger dataset, this
-experiment uses the original 15~MTriples dataset of
+experiment made it feasible to run with a larger data-set, this
+experiment uses the original 15~MTriples data-set of
 \cite{mxro:Morsey2011DBpedia}. The picture is now as hinted in the
 previous discussion, for larger ``TripleC'', our simulated performance
 is actually worse, as evident from the positive
@@ -407,7 +407,7 @@ significant in the other end along with its ``Machine:TripleC''
 interaction. One should take careful notice that the ``Machine''
 factor encompasses many different things, that should be different
 factors; CPU, disks, available RAM, installed software, tuning
-parameters and so on. It is advantegous to have such broad factors in
+parameters and so on. It is advantageous to have such broad factors in
 the design in early experiments, because they may point out unexpected
 effects that should be further scrutinized. The ``Machine'' factor is
 a good example of usage that also helps us manage
@@ -417,7 +417,7 @@ experiments. In this case, the cause of the performance problem was
 highly audible: It was the old P-ATA disks of the larger machine, but
 in general, such clues are not available to the experimenter.
 
-We are forced to conclude that the three preceeding experiments are
+We are forced to conclude that the three preceding experiments are
 severely flawed, as they failed to take into account the non-linear
 effects arising from larger data sizes on slow hardware. 
 
@@ -426,8 +426,8 @@ Note that we do not take advantage of the usual performance of 4store
 in this simulation, to the contrary, we chose 4store because of its
 relative simplicity to modify it to suite our needs for illustrative
 purposes, which consists of degrading it in many ways. The small
-datasets used here does not imply that the approach will not work for
-large datasets; properly configured, actual optimizations will give
+data-sets used here does not imply that the approach will not work for
+large data-sets; properly configured, actual optimization will give
 very different runtimes, and the small number of runs will make it
 possible to evaluate a very large number of factors.
 
@@ -450,7 +450,7 @@ possible to evaluate a very large number of factors.
 
 
 
-\section*{Acknowledgements}
+\section*{Acknowledgments}
 
 
 
