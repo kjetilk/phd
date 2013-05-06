@@ -171,7 +171,7 @@ Then, we test some language features:
 first level is:
 \verbatiminput{experiment/BGPComp-1}
 and the second level is 
-\verbatiminput{experiment/BGPComp-1}
+\verbatiminput{experiment/BGPComp-2}
 
 The following factors tests the absence (at level 1) or presence (at level 2) of the following clauses:
 The ``Lang'' factor is this FILTER:
@@ -237,7 +237,50 @@ account that the server may cache all or parts of the result set. The
 reasons for this choice will be discussed later.\todo{lurking
   variables}
 
+The code will be published\todo{github URL}.
+
 \subsection{Full factorial experiment}
+
+In the full factorial experiment, all combinations of the 8 factors
+are executed, in total 256 runs.\todo{concrete example?} This is
+called a $2^8$ factorial experiment, and we can see that the number of
+runs is grows exponentially with the number of factors, thus making
+large experiments prohibitively expensive. We shall nevertheless find
+the following small example instructive. Note that each combination is
+executed only once (i.e. it is \emph{unreplicated}, however, so even a
+full factorial experiment compares well to a typical benchmark in
+which each microbenchmark must be executed several times to obtain
+enough data to compute a mean with reasonable accuracy.
+
+The above experimental setup is executed across a design matrix
+generated with the DoE.base package, which returns a data frame
+consisting of the factors with a column containing the corresponding
+curl measurements. To analyze the experiment, we first generate a
+normal plot, see figure~\ref{fig:fullnormal}. In this plot, if the
+null hypothesis $H_0$ holds, all estimated effects will fall on a
+straight line, as their means would be zero. Any significant departure
+from a straight line can be interpreted as a significant effect (see
+Section~4.8 of \cite{wu2009experiments} for a detailed
+explanation). In our case, it is most important to note that any
+effect that is negative (i.e. has a negative slope) means the effect
+enhances the performance of the SPARQL endpoint, the runtime
+decreases. If ``Implement'' and the sum of its interactions are
+negative, then it supports the alternative hypothesis, i.e. we have
+successfully improved the performance.
+
+To proceed beyond a visual judgement of significance, we may use
+Lenth's method\todo{ref Lenth}, which is a simple method for
+estimating significance in an experiment with no replicates. We plot
+the results in figure~\ref{fig:fulllenth}. Visually, this is not as
+useful, since the large number\todo{really include?} We see that we
+have very significant effects. We also note that ``Implement'' itself
+is significantly negative. We also note that the ``Implement:Lang''
+interaction is significantly positive, as expected from our setup,
+where ``Lang'' was the detrimental side-effect we simulated.
+
+To investigate whether the detrimental side-effects cancels the
+positive effect of our simulated optimization, we have to formulate a
+hypothesis test. By inspecting the normal plot in figure~\ref{fig:fullnormal}
 
 \subsection{Fractional factorial experiment}
 
