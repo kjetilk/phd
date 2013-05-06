@@ -10,7 +10,7 @@ fulllm <- function(results) {
   lm(formula = experiments ~ Implement * TripleC * BGPComp * Lang * Range * Union * Optional * Machine, data = results)
 }
 
-robust <- function(model, control = "Implement",
+robust.simple <- function(model, control = "Implement",
                    noise = c("TripleC", "Lang", "Union", "Optional"), 
                    inactive = c("Machine", "BGPComp", "Range"),
                    pairwise=FALSE, ...) {
@@ -25,4 +25,12 @@ robust <- function(model, control = "Implement",
   t.test(allmeans[allmeans["Implement"] == 1,]$experiments, allmeans[allmeans["Implement"] == 2,]$experiments)
 
 }
-  
+
+robust.pairwise <- function(model, control = "Implement", 
+                            noise = c("TripleC", "Lang", "Union", "Optional")) {
+  fm <- as.formula(paste("~", paste(noise, collapse=" * ")))
+  dlply(model, fm, function(tmp) {
+    t.test(tmp[tmp["Implement"] == 1,]$experiments, tmp[tmp["Implement"] == 2,]$experiments)
+  })
+}
+ 
