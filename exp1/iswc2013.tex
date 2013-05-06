@@ -359,7 +359,7 @@ much smaller. In both cases, we have specified that all the factors
 must be clear and also all two-factor interactions where ``Implement''
 is involved must be clear. \todo{declare generators?}
 
-The resulting normal plot is in \figure{fig:frac32normal}. We see that
+The resulting normal plot is in figure~\ref{fig:frac32normal}. We see that
 only two main effects are significant on a $\alpha = 0.05$ level
 according to the Lenth criterion, ``Implement'' is again deemed a
 significant improvement, and ``Union'' is deemed significantly the
@@ -370,9 +370,67 @@ the Student's t-test we used in the previous section cannot be
 employed, as we have no additional data to use for the test.
 
 For any other purpose than a rough idea of some key influencers on the
-overall performance of the endpoint, this little experiment is insufficient.
+overall performance of the endpoint for the given levels, this little
+experiment is insufficient.
+
+We turn to the 64-run experiment and its normal plot in
+figure~\ref{fig:frac64normalalpha005}. We see that the we get more significant
+effects, and that they correspond well to those we saw in the full
+factorial experiment. They also all have an intuitive
+explanation. However, we do not see the effects that we found
+worrisome in the full factorial design. The ``Implement:TripleC''
+interaction emerges only for a level $\alpha=0.15$, see
+figure~\ref{fig:frac64normalalpha015}. To ensure that we discover such
+cases will be a key challenge in further studies.
+
+\todo{Do t-tests}
+
 
 \subsection{Fractional factorial experiment with more data}
+
+The importance of finding flaws in the levels is highlighted by the
+normal plot in figure~\ref{fig:frac64hugenormal}. The smaller
+experiment made it feasible to run with a larger dataset, this
+experiment uses the original 15~MTriples dataset of
+\cite{mxro:Morsey2011DBpedia}. The picture is now as hinted in the
+previous discussion, for larger ``TripleC'', our simulated performance
+is actually worse, as evident from the positive
+``Implement''. We also see that the interactions ``Implement:Lang''
+and ``Implement:TripleC'' is highly significant. It is clear what
+happened: For larger ``TripleC'', the delay we introduced in the
+langMatches function has a devastating effect, since it delays the
+execution for every returned triple, and thereby completely dominates
+the execution time. 
+
+Moreover, we note that the ``Machine'' factor has become highly
+significant in the other end along with its ``Machine:TripleC''
+interaction. One should take careful notice that the ``Machine''
+factor encompasses many different things, that should be different
+factors; CPU, disks, available RAM, installed software, tuning
+parameters and so on. It is advantegous to have such broad factors in
+the design in early experiments, because they may point out unexpected
+effects that should be further scrutinized. The ``Machine'' factor is
+a good example of usage that also helps us manage
+complexity: If possible, one may group many factors into one if one is
+in doubt of its relevance and break it up in subsequent
+experiments. In this case, the cause of the performance problem was
+highly audible: It was the old P-ATA disks of the larger machine, but
+in general, such clues are not available to the experimenter.
+
+We are forced to conclude that the three preceeding experiments are
+severely flawed, as they failed to take into account the non-linear
+effects arising from larger data sizes on slow hardware. 
+
+
+Note that we do not take advantage of the usual performance of 4store
+in this simulation, to the contrary, we chose 4store because of its
+relative simplicity to modify it to suite our needs for illustrative
+purposes, which consists of degrading it in many ways. The small
+datasets used here does not imply that the approach will not work for
+large datasets; properly configured, actual optimizations will give
+very different runtimes, and the small number of runs will make it
+possible to evaluate a very large number of factors.
+
 
 
 \section{Discussion}
