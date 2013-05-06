@@ -302,7 +302,8 @@ a \emph{control} factor and the other four active factors
 The main objective of this paper is not to establish that the
 optimization is significant, it is merely a simulation. It is to
 establish a critical practice of evaluations. It is of critical
-importance that we understand why some effects are critical. That
+importance that we understand why some effects are critical.\todo{add
+  table of effects} That
 ``Implement'' is significant is hardly a surprise, that is what we
 worked for. That the main effects ``Union'', ``Optional'' and ``Lang''
 are strong is also due to that these are fairly demanding things to
@@ -326,6 +327,50 @@ applied to all significant effects.
 
 
 \subsection{Fractional factorial experiment}
+
+As mentioned, the full factorial experiment goes as $2^n$ and becomes
+prohibitivly expensive when $n$ is a large number of
+factor. As the evaluation of SPARQL endpoints is an inherently complex
+problem, a large number of factors are needed, and so full experiments
+cannot scale. However, we may reduce the size of the experiment
+significantly by sacrificing some explanatory power, in the form of
+fractional factorial experiments. 
+
+We loose explanatory power due to \emph{aliasing}, for example, the
+``TripleC:BGPComp'' interaction may be aliased with the
+``Machine:Range'' interaction. That is to say, a detected increase in
+run time from larger Basic Graph Patterns for large databases, can
+also be explained by a less powerful machine evaluation FILTER clauses
+with ranges. They are indistinguishable. This may or may not cause a
+problem. In many cases, we may not be interested in these effects, we
+may only be interested in ``Implement'' and its
+interactions. Moreover, it is possible (even easy using the FrF2
+package in R) to declare which effects must not be aliased, and
+determine the size of the experiment based on that. Such a main effect
+or two-factor interaction is called \emph{clear} if none of its
+aliases are other main effects or two-factor interactions. Another
+possibility to shrink the size of the experiment is if we \textit{a
+  priori} can say that some effects are negligible. We have not found
+such assumptions to be tenable in our case.
+
+We have made two fractional factorial designs: One with 32 runs and
+one with 64 runs. Again, the number of runs is in powers of 2, but
+much smaller. In both cases, we have specified that all the factors
+must be clear and also all two-factor interactions where ``Implement''
+is involved must be clear. \todo{declare generators?}
+
+The resulting normal plot is in \figure{fig:frac32normal}. We see that
+only two main effects are significant on a $\alpha = 0.05$ level
+according to the Lenth criterion, ``Implement'' is again deemed a
+significant improvement, and ``Union'' is deemed significantly the
+hardest operation for the query engine. We see that some other points
+also deviate from the straight line, but with as few runs as this, the
+total variance is great, so no other conclusions can be drawn. Also,
+the Student's t-test we used in the previous section cannot be
+employed, as we have no additional data to use for the test.
+
+For any other purpose than a rough idea of some key influencers on the
+overall performance of the endpoint, this little experiment is insufficient.
 
 \subsection{Fractional factorial experiment with more data}
 
