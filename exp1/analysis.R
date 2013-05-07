@@ -11,19 +11,18 @@ fulllm <- function(results) {
 }
 
 robust.simple <- function(model, control = "Implement",
-                   noise = c("TripleC", "Lang", "Union", "Optional"), 
                    inactive = c("Machine", "BGPComp", "Range"),
                    pairwise=FALSE, ...) {
   fm <- as.formula(paste("experiments ~", control, " * ", paste(inactive, collapse=" * ")))
   allmeans <- aggregate(fm, data=model, mean)
-  t.test(allmeans[allmeans["Implement"] == 1,]$experiments, allmeans[allmeans["Implement"] == 2,]$experiments)
+  t.test(allmeans[allmeans[control] == 1,]$experiments, allmeans[allmeans[control] == 2,]$experiments)
 }
 
 robust.pairwise <- function(model, control = "Implement", 
                             noise = c("TripleC", "Lang", "Union", "Optional")) {
   fm <- as.formula(paste("~", paste(noise, collapse=" * ")))
-  dlply(model, fm, function(tmp) {
-    t.test(tmp[tmp["Implement"] == 1,]$experiments, tmp[tmp["Implement"] == 2,]$experiments)
+  dlply(model, fm, function(subset) {
+    t.test(subset[subset[control] == 1,]$experiments, subset[subset[control] == 2,]$experiments)
   })
 }
  
