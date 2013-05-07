@@ -15,14 +15,18 @@ robust.simple <- function(model, control = "Implement",
                    pairwise=FALSE, ...) {
   fm <- as.formula(paste("experiments ~", control, " * ", paste(inactive, collapse=" * ")))
   allmeans <- aggregate(fm, data=model, mean)
-  t.test(allmeans[allmeans[control] == 1,]$experiments, allmeans[allmeans[control] == 2,]$experiments)
+  t.test(allmeans[allmeans[control] == 2,]$experiments,
+         allmeans[allmeans[control] == 1,]$experiments,
+         alternative="less")
 }
 
 robust.pairwise <- function(model, control = "Implement", 
                             noise = c("TripleC", "Lang", "Union", "Optional")) {
   fm <- as.formula(paste("~", paste(noise, collapse=" * ")))
   dlply(model, fm, function(subset) {
-    t.test(subset[subset[control] == 1,]$experiments, subset[subset[control] == 2,]$experiments)
+    t.test(subset[subset[control] == 2,]$experiments,
+           subset[subset[control] == 1,]$experiments,
+           alternative="less")
   })
 }
  
