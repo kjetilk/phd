@@ -311,7 +311,7 @@ are equal and $H_1$ is that the vector representing the new
 implementation is smaller. In this example, we find that the available
 data supports the assertion that the new implementation is better with a
 high probability, $p=2.9 \cdot 10^{-10}$.\todo{rationale could be
-  stronger}
+  stronger}\todo{figure?}
 
 While it is interesting to test the overall hypothesis that the new
 implementation is an improvement, it is also interesting to know if
@@ -442,7 +442,14 @@ interaction emerges only for a level $\alpha=0.15$, see
 figure~\ref{fig:frac64normalalpha015}. To ensure that we discover such
 cases will be a key challenge in further studies.
 
-\todo{Do t-tests}
+Since the 64-run experiment also has 3 inactive factors, ``Machine'',
+``TripleC'' and ``Range'', we can again treat it as a $2^5$ experiment
+replicated twice. Using the same procedure as above, we find that
+again, the hypothesis test indicates that the new implementation is an
+improvement at $p = 5.9 \cdot 10^{-6}$. The comparatively higher p-value
+is due to the lower number of runs. It is also possible to perform the
+per-environmental test, but we refrain from that in the interest of
+brevity.\todo{good way to say it?}
 
 
 \subsection{Fractional factorial experiment with more data}
