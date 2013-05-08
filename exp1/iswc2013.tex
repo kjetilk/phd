@@ -307,7 +307,48 @@ and then perform a one-sided hypothesis test where $H_0$ is that they
 are equal and $H_1$ is that the vector representing the new
 implementation is smaller. In this example, we find that the available
 data supports the assertion that the new implementation is better with a
-high probability, $p=2.9 \cdot 10^{-10}$.\todo{rationale could be stronger}
+high probability, $p=2.9 \cdot 10^{-10}$.\todo{rationale could be
+  stronger}
+
+While it is interesting to test the overall hypothesis that the new
+implementation is an improvement, it is also interesting to know if
+there are cases that it fails. Again, we treat the experiment as a
+$2^5$ experiment replicated 8 times. Now, for each of the 16 resulting
+combinations of the environmental factors for each level of
+``Implement'', we extract 8 values. We may now run a t-test for each
+of the replications, as above. The results are tabulated in
+table~\ref{tab:pvaluesfull}. We see that there are significant
+improvements in most cases, one may want to further investigate the
+cases where they do not.
+
+\begin{table}[ht]
+\begin{center}
+\caption{p-values for different parts of the experiment}\label{tab:pvaluesfull}
+\begin{tabular}{ccccl}
+  \hline
+``TripleC'' & ``Lang'' & ``Union'' & ``Optional'' & $p$ \\ 
+  \hline
+  1 & 1 & 1 & 1 & 0.00032 \\ 
+  1 & 1 & 1 & 2 & $2 \cdot 10^{-14}$ \\ 
+  1 & 1 & 2 & 1 & $4.7 \cdot 10^{-14}$ \\ 
+  1 & 1 & 2 & 2 & $2 \cdot 10^{-18}$ \\ 
+  1 & 2 & 1 & 1 & $1.4 \cdot 10^{-06}$ \\ 
+  1 & 2 & 1 & 2 & $8.3 \cdot 10^{-11}$ \\ 
+  1 & 2 & 2 & 1 & 0.0017 \\ 
+  1 & 2 & 2 & 2 & $2.1 \cdot 10^{-06}$ \\ 
+  2 & 1 & 1 & 1 & 0.09 \\ 
+  2 & 1 & 1 & 2 & $1.6 \cdot 10^{-09}$ \\ 
+  2 & 1 & 2 & 1 & $8.4 \cdot 10^{-10}$ \\ 
+  2 & 1 & 2 & 2 & $2.5 \cdot 10^{-13}$ \\ 
+  2 & 2 & 1 & 1 & 0.29 \\ 
+  2 & 2 & 1 & 2 & $9.1 \cdot 10^{-07}$ \\ 
+  2 & 2 & 2 & 1 & 0.92 \\ 
+  2 & 2 & 2 & 2 & 0.071 \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
+
 
 For future larger experiments, one must investigate whether it is
 necessary to adjust the p-value due to the larger numbers of
