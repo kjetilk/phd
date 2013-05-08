@@ -5,26 +5,22 @@ load("RelevantExperiments.RData")
 
 source("analysis.R")
 
-postscript(file="fullnormal.eps")
+pdf(file="fullnormal.pdf")
 DanielPlot(runbgplangf1.lm)
 dev.off()
 
-postscript(file="fulllenth.eps")
-LenthPlot(runbgplangf1.lm)
-dev.off()
-
-postscript(file="frac32normal.eps")
+pdf(file="frac32normal.pdf")
 DanielPlot(frac32r1.lm)
 dev.off()
 
-postscript(file="frac64normalalpha005.eps")
+pdf(file="frac64normalalpha005.pdf")
 DanielPlot(frac64r3.lm)
 dev.off()
 
-postscript(file="frac64normalalpha015l.eps")
+pdf(file="frac64normalalpha015.pdf")
 DanielPlot(frac64r3.lm, alpha=0.15)
 dev.off()
 
-postscript(file="frac64hugenormal.eps")
+pdf(file="frac64hugenormal.pdf")
 DanielPlot(frac64huger1.lm)
 dev.off()
