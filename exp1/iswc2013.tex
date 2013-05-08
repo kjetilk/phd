@@ -297,7 +297,17 @@ only change the implementation. In this context, we call ``Implement''
 a \emph{control} factor and the other four active factors
 \emph{environmental}.
 
-\todo{finish the t-test stuff once ready} 
+The presence of inactive factors makes it possible to use a standard
+t-test by averaging the inactive factors for each combination of
+control and environmental factors. This enables us to treat our
+experiment as a $2^5$ experiment replicated 8 times.
+
+We then extract two vectors, one for the each of the implementations,
+and then perform a one-sided hypothesis test where $H_0$ is that they
+are equal and $H_1$ is that the vector representing the new
+implementation is smaller. In this example, we find that the available
+data supports the assertion that the new implementation is better with a
+high probability, $p=2.9 \cdot 10^{-10}$.\todo{rationale could be stronger}
 
 For future larger experiments, one must investigate whether it is
 necessary to adjust the p-value due to the larger numbers of
