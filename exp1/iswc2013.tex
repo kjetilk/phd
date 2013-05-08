@@ -115,9 +115,11 @@ relatively well cited textbook is \cite{citeulike:5190414} but we have
 not found the parts discussed in the present paper to be widely
 adopted. Recently, an comprehensive text on experimental methods have
 been published in
-\cite{Springer-2010-Experimental-Methods-for-the-Analysis-of-Optimization-Algorithms}. 
-We have chosen to turn to statistical standard texts
-\cite{wu2009experiments} for this study.
+\cite{Springer-2010-Experimental-Methods-for-the-Analysis-of-Optimization-Algorithms}
+demonstrating the broad applicability of the methodology we employ.
+We have chosen SPARQL Endpoint evaluation as an example in this study
+since SPARQL Federation is our main interest, and to turn to
+statistical standard texts \cite{wu2009experiments} for this study.
 
 The problematic sides of the benchmarking have been noted in several
 papers, notably \cite{Duan:2011:AOC:1989323.1989340} and
@@ -237,7 +239,8 @@ account that the server may cache all or parts of the result set. The
 reasons for this choice will be discussed later.\todo{lurking
   variables}
 
-The code will be published\todo{github URL}.
+All the code to reproduce this study as well as detailed instructions
+is published on Github: \texttt{https://github.com/kjetilk/doe-sparql}.
 
 \subsection{Full factorial experiment}
 
@@ -250,7 +253,7 @@ the following small example instructive. Note that each combination is
 executed only once (i.e. it is \emph{unreplicated}, however, so even a
 full factorial experiment compares well to a typical benchmark in
 which each microbenchmark must be executed several times to obtain
-enough data to compute a mean with reasonable accuracy.
+enough data to compute a mean with reasonable certainty.
 
 The above experimental setup is executed across a design matrix
 generated with the DoE.base package, which returns a data frame
