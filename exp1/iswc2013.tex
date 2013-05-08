@@ -2,6 +2,7 @@
 \documentclass{article}
 \usepackage{cite}
 \usepackage{verbatim}
+\usepackage{graphicx}
 \newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
 \title{Introducing Statistical Design of Experiments to SPARQL
@@ -259,7 +260,7 @@ The above experimental setup is executed across a design matrix
 generated with the DoE.base package, which returns a data frame
 consisting of the factors with a column containing the corresponding
 curl measurements. To analyze the experiment, we first generate a
-normal plot, see figure~\ref{fig:fullnormal}. In this plot, if the
+normal plot, see figure~\ref{fig:fullnormal}\todo{explain axes}. In this plot, if the
 null hypothesis $H_0$ holds, all estimated effects will fall on a
 straight line, as their means would be zero. Any significant departure
 from a straight line can be interpreted as a significant effect (see
@@ -271,10 +272,18 @@ decreases. If ``Implement'' and the sum of its interactions are
 negative, then it supports the alternative hypothesis, i.e. we have
 successfully improved the performance.
 
+\begin{figure}[h]
+  \includegraphics[width=\textwidth]{fullnormal.pdf}
+  \caption{A normal plot of the Full Factorial Experiment. The
+    labelled points are considered significant by using the Lenth
+    criterion at a level $\alpha=0.05$.}\label{fig:fullnormal}
+\end{figure}
+
+
 To proceed beyond a visual judgment of significance, we may use
 Lenth's method\todo{ref Lenth}, which is a simple method for
 estimating significance in an experiment with no replicates. We plot
-the results in figure~\ref{fig:fulllenth}. In
+the results in figure~\ref{fig:fulllenth}\todo{relationship level-SME/ME}. In
 figure~\ref{fig:fullnormal}, Lenth's method is used to label the
 significant effects. Visually, this is not as useful, since the large
 number\todo{really include?} We see that we have very significant
@@ -282,6 +291,14 @@ effects. We also note that ``Implement'' itself is significantly
 negative. We also note that the ``Implement:Lang'' interaction is
 significantly positive, as expected from our setup, where ``Lang'' was
 the detrimental side-effect we simulated.
+
+\begin{figure}[h]
+  \includegraphics[width=\textwidth]{fulllenth.pdf}
+  \caption{A Lenth plot of the Full Factorial Experiment. The
+    conservative Lenth criterion is indicated by the horizontal lines
+    labelled SME, the liberal criterion is labelled ME. They are at
+    ±0.90 and ±0.46 respectively. }\label{fig:fulllenth}
+\end{figure}
 
 To investigate whether the detrimental side-effects cancels the
 positive effect of our simulated optimization, we have to formulate a
@@ -418,6 +435,15 @@ much smaller. In both cases, we have specified that all the factors
 must be clear and also all two-factor interactions where ``Implement''
 is involved must be clear. \todo{declare generators?}
 
+\begin{figure}[hb]
+  \includegraphics[width=\textwidth]{frac32normal.pdf}
+  \caption{A normal plot of the Fractional Factorial Experiment with
+    32 runs. The labelled points are considered significant by using
+    the Lenth criterion at a level
+    $\alpha=0.05$.}\label{fig:frac32normal}
+\end{figure}
+
+
 The resulting normal plot is in figure~\ref{fig:frac32normal}. We see that
 only two main effects are significant on a $\alpha = 0.05$ level
 according to the Lenth criterion, ``Implement'' is again deemed a
@@ -441,6 +467,21 @@ worrisome in the full factorial design. The ``Implement:TripleC''
 interaction emerges only for a level $\alpha=0.15$, see
 figure~\ref{fig:frac64normalalpha015}. To ensure that we discover such
 cases will be a key challenge in further studies.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{frac64normalalpha005.pdf}
+  \caption{A normal plot of the Fractional Factorial Experiment with
+    64 runs. The labelled points are considered significant by using
+    the Lenth criterion at a level
+    $\alpha=0.05$.}\label{fig:frac64normalalpha005}
+\end{figure}
+\begin{figure}[hb]
+  \includegraphics[width=\textwidth]{frac64normalalpha015.pdf}
+  \caption{A normal plot of the Fractional Factorial Experiment with
+    64 runs. The labelled points are considered significant by using
+    the Lenth criterion at a level
+    $\alpha=0.15$.}\label{fig:frac64normalalpha015}
+\end{figure}
 
 Since the 64-run experiment also has 3 inactive factors, ``Machine'',
 ``TripleC'' and ``Range'', we can again treat it as a $2^5$ experiment
@@ -467,6 +508,15 @@ is highly significant. It is clear what happened: For larger
 devastating effect, since it delays the execution for every triple
 that the query engine applies the filter to, and thereby completely
 dominates the execution time.
+
+\begin{figure}[h!]
+  \includegraphics[width=\textwidth]{frac64hugenormal.pdf}
+  \caption{A normal plot of the Fractional Factorial Experiment with
+    64 runs where the level 2 of ``TripleC'' is 15 MTriples. The
+    labelled points are considered significant by using the Lenth
+    criterion at a level $\alpha=0.05$.}\label{fig:frac64hugenormal}
+\end{figure}
+
 
 Moreover, we note that the ``Machine'' factor has become highly
 significant in the other end along with its ``Machine:TripleC''
