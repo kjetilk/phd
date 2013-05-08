@@ -191,10 +191,11 @@ as well as suitable selectivity. They are not themselves important,
 they only serve to illustrate certain examples of possible
 factors. When the experiment is run, they are combined to yield a
 query, which is then sent to a SPARQL endpoint. The SPARQL endpoint is
-itself set up using 4store\todo{ref} version 1.1.5. The ``Machine''
-factor specifies a hostname, whereas ``TripleC'' and ``Implement''
-specifies a port number. On each host, four 4store instances runs
-independently on different ports. \todo{possible problem?}
+itself set up using 4store (see \cite{harris20094store}) version
+1.1.5. The ``Machine'' factor specifies a hostname, whereas
+``TripleC'' and ``Implement'' specifies a port number. On each host,
+four 4store instances runs independently on different
+ports. \todo{possible problem?}
 
 Finally, ``Implement'' is the implementation undergoing
 evaluation. Level 1 is running the new implementation, whereas Level 2
@@ -219,10 +220,10 @@ level 2, we inserted \texttt{usleep(2000)} on line 987 in
 side-effect. This delays execution for 2 milliseconds every time the
 \texttt{langMatches} SPARQL function is called.
 
-The experimentation is implemented in R\todo{ref}, which is a free
+The experimentation is implemented in R\cite{rmanual}, which is a free
 software environment for statistical computing and graphics. Necessary
 tools for DoE has been implemented by the R community in packages
-called DoE.base, BsMD and FrF2. The experiments are run on a third
+called DoE.base\cite{doebase} and FrF2\cite{frf2}. The experiments are run on a third
 computer in a 1 gigabit Ethernet LAN with the two experiment hosts.  As
 response variable, we have chosen to use the time from the namespace
 server lookup finishes to the data has been transferred. This choice is
@@ -230,7 +231,7 @@ somewhat arbitrary, many other response variables could be chosen, and
 indeed, future work should explore multi-variable responses, but for
 simplicity, we think this reflects the total amount of work done by
 the SPARQL endpoint well. For the measurements, we have chosen to use
-the RCurl package, which is a thin wrapper around the curl
+the RCurl package\cite{lang2007r}, which is a thin wrapper around the curl
 library. Curl has well developed facilities for timing requests and
 responses, and so we rely on its measurements.
 
@@ -281,11 +282,11 @@ successfully improved the performance.
 
 
 To proceed beyond a visual judgment of significance, we may use
-Lenth's method\todo{ref Lenth}, which is a simple method for
+Lenth's method\cite{lenthmethod}, which is a simple method for
 estimating significance in an experiment with no replicates. In
 figure~\ref{fig:fullnormal}, Lenth's method is used to label the
 significant effects. Visually, this is not as useful, since the large
-number\todo{really include?} We see that we have very significant
+number\todo{how to fix this...?} We see that we have very significant
 effects. We also note that ``Implement'' itself is significantly
 negative. We also note that the ``Implement:Lang'' interaction is
 significantly positive, as expected from our setup, where ``Lang'' was
@@ -566,6 +567,6 @@ possible to evaluate a very large number of factors.
 %\bibliographystyle{abbrv}
 %\bibliographystyle{jbact}
 %\bibliographystyle{splncs03}
-\bibliography{selectivity,federation,benchmarks,optimization,experimentsperformance}
+\bibliography{practical,selectivity,federation,benchmarks,optimization,experimentsperformance}
 
 \end{document}
