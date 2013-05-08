@@ -25,3 +25,6 @@ postscript(file="frac64normalalpha015l.eps")
 DanielPlot(frac64r3.lm, alpha=0.15)
 dev.off()
 
+postscript(file="frac64hugenormal.eps")
+DanielPlot(frac64huger1.lm)
+dev.off()
