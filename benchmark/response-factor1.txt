@@ -30,7 +30,7 @@ Language features:
 (general methodology: Follow grammar,
 http://www.w3.org/TR/rdf-sparql-query/#sparqlGrammar)
 * Number of projected variables
-* Number of triples in BGP
+* Number of triple patterns in BGP
 * Nestedness of OPTIONALS
 * Nestedness of UNIONS
 * Nestedness of GRAPH
