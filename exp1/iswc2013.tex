@@ -268,7 +268,7 @@ straight line, as their means would be zero. Any significant departure
 from a straight line can be interpreted as a significant effect (see
 Section~4.8 of \cite{wu2009experiments} for a detailed
 explanation). In our case, it is most important to note that any
-effect that is negative (i.e. has a negative slope) means the effect
+effect that is negative means the effect
 enhances the performance of the SPARQL endpoint, the runtime
 decreases. If ``Implement'' and the sum of its interactions are
 negative, then it supports the alternative hypothesis, i.e. we have
@@ -382,16 +382,16 @@ that require joins are strong. The strong ``BGPComp:Lang'' and
 needs to be searched for a language tag in one case. However, the
 positive ``Implement:TripleC'' interaction evades such explanations;
 in fact, it hints that our optimization may not work as well for
-larger databases. This should cause some alarm. It is a fundamental
-property of two-level experiments that it can only model linear
-effects. If the effect is truly linear, and the variance is small, the
-two levels can be quite close together and still yield a reasonable
-estimate for the effect.\todo{ikke helt god diskusjon, Ã¸ke avstand vil
-gi klarere effekter, i lineær sammenheng} However, if the effect is non-linear, the
-choice of levels becomes critical. In this case, the experimenter
-should be concerned that they may have a non-linear effect that is not
-well represented by the sizes of data-sets. Such reasoning should be
-applied to all significant effects.
+larger databases. This should cause some alarm. 
+It is a fundamental property of two-level experiments that it can only
+model linear effects. If the effect is truly linear, and the variance
+is small, the two levels can be quite close together and still yield a
+reasonable estimate for the effect, but the effect will be greater
+with greater separation. Additionally if the effect is non-linear, the
+choice of levels is critical. In this case, the experimenter should be
+concerned that the separation between levels for the sizes of the
+data-set is too small and should further investigate. Such reasoning
+should be applied to all significant effects.
 
 
 
@@ -529,8 +529,8 @@ machine, but in general, such clues are not available to the
 experimenter, therefore more factors are needed.
 
 We are forced to conclude that the three preceding experiments are
-severely flawed, as they failed to take into account the non-linear
-effects arising from larger data sizes on slow hardware. 
+severely flawed, as they failed to take into account the effects from
+larger data sizes on slow hardware.
 
 
 Note that we do not take advantage of the usual performance of 4store
@@ -594,7 +594,7 @@ for the complex problem of SPARQL endpoint evaluations.
 
 We saw that while 2 level experiments can perform well in determining
 significant effects, they do not necessarily work well to find a
-model, as exemplified by failure to identify the probable non-linear
+model, as exemplified by failure to identify the possibly non-linear
 effect of the P-ATA disks. This issue would be fixed by using an
 orthogonal array design.
 
