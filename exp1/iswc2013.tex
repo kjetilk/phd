@@ -245,7 +245,7 @@ reasons for this choice will be discussed later.\todo{lurking
 All the code to reproduce this study as well as detailed instructions
 is published on Github: \url{https://github.com/kjetilk/doe-sparql}.
 
-\subsection{Full factorial experiment}
+\subsection{Full factorial experiment}\label{sec:full}
 
 In the full factorial experiment, all combinations of the 8 factors
 are executed, in total 256 runs.\todo{concrete example?} This is
@@ -382,16 +382,10 @@ that require joins are strong. The strong ``BGPComp:Lang'' and
 needs to be searched for a language tag in one case. However, the
 positive ``Implement:TripleC'' interaction evades such explanations;
 in fact, it hints that our optimization may not work as well for
-larger databases. This should cause some alarm. 
-It is a fundamental property of two-level experiments that it can only
-model linear effects. If the effect is truly linear, and the variance
-is small, the two levels can be quite close together and still yield a
-reasonable estimate for the effect, but the effect will be greater
-with greater separation. Additionally if the effect is non-linear, the
-choice of levels is critical. In this case, the experimenter should be
-concerned that the separation between levels for the sizes of the
-data-set is too small and should further investigate. Such reasoning
-should be applied to all significant effects.
+larger databases. This is a clear indication that the separation
+between levels for the sizes of the data-set is too small and should
+be investigated further. Such reasoning should be applied to all
+significant effects.
 
 
 
@@ -547,6 +541,15 @@ possible to evaluate a very large number of factors.
 
 
 \section{Discussion}
+
+It is a fundamental property of two-level experiments that it can only
+model linear effects. Usually, it is quite sufficient to identify
+significant effects even though the underlying response may be
+non-linear. As we saw in section~\ref{sec:full}, the choice of levels
+may be critical, and if non-linearity is expected, more than two
+levels must be considered, or at the very least, attention must be
+paid to the choice of levels.\todo{this is a long discussion, how much
+  should be done?}
 
 \paragraph{Summary and hypothesis test}
 
