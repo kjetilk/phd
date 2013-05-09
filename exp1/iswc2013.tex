@@ -239,8 +239,7 @@ responses, and so we rely on its measurements.
 Finally note that there are two common issues in benchmarking we do
 not consider: we do not allow a warm-up run, nor do we take into
 account that the server may cache all or parts of the result set. The
-reasons for this choice will be discussed later.\todo{lurking
-  variables}
+reasons for this choice will be discussed later.
 
 All the code to reproduce this study as well as detailed instructions
 is published on Github: \url{https://github.com/kjetilk/doe-sparql}.
@@ -253,7 +252,7 @@ called a $2^8$ factorial experiment, and we can see that the number of
 runs is grows exponentially with the number of factors, thus making
 large experiments prohibitively expensive. We shall nevertheless find
 the following small example instructive. Note that each combination is
-executed only once (i.e. it is \emph{unreplicated}, however, so even a
+executed only once (i.e. it is \emph{unreplicated}), however, so even a
 full factorial experiment compares well to a typical benchmark in
 which each microbenchmark must be executed several times to obtain
 enough data to compute a mean with reasonable certainty.
@@ -551,13 +550,47 @@ levels must be considered, or at the very least, attention must be
 paid to the choice of levels.\todo{this is a long discussion, how much
   should be done?}
 
-\paragraph{Summary and hypothesis test}
+We have argued that fixing certain parameters is untenable, but we
+have allowed ourselves to disregard caching and warm-up runs. We are
+aware that caching may be important in 4store, as a preliminary
+experiment gave the results in \ref{tab:cacheexp}. We see that the
+response time was significantly lower when an OPTIONAL clause was
+added to the query. As this is not more restrictive query, the most
+likely explanation is that the result of the evaluation of the Basic
+Graph Pattern was cached, so only the OPTIONAL left join was necessary
+to add in the second query.
 
-\paragraph{Strategy for evaluating experiment}\todo{Say something
-  about examining variance} \todo{Say something about drilling down in
-  factors} \todo{Say something about spreading levels}
+\begin{table}[ht]
+\begin{center}
+\caption{Two experiments with and without OPTIONAL clause.}\label{tab:cacheexp}
+\begin{tabular}{ccccccccr}
+  \hline
+``Implement'' & ``TripleC'' & ``Machine'' & ``BGPComp'' & ``Lang'' & ``Range'' & ``Union'' & ``Optional'' & Time \\
+ \hline
+1   &    1  &     1  &     2 &   1 &    1   &  1  & 1 &  53.918049 \\
+1   &    1  &     1  &     2 &   1 &    1   &  1  & 2 &   1.252312 \\
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
 
-\paragraph{Fold-over}
+It is \emph{randomization} that makes this permissible, i.e. the order
+of execution is random, so the benefit of caching is likely to apply
+randomly to different runs, for example, had the run order been
+reversed in the previous example, it could have been the query without
+OPTIONAL that would have benefitted. Unless the effect of caching is
+cumulative throughout the experiment (which is possible), the
+randomization will have the effect of reversing the runs randomly. The
+end result is that the effect of so-called ``lurking variables'' such
+as caching, warm-up effects, etc, contributes to total unexplained
+variance of the experiment.
+
+As the unexplained variance of the experiment may cloud important
+effects, notably effects that indicate flaws, it should be kept to a
+minimum. Thus, lurking variables should be turned into factors
+whenever possible, is they degrade the quality of the experiment, but
+in many cases, we can live with them if their contribution to the
+variance is small.
 
 \section{Future Work}
 
