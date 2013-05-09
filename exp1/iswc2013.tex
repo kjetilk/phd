@@ -437,16 +437,18 @@ is involved must be clear. \todo{declare generators?}
 \end{figure}
 
 
-The resulting normal plot is in figure~\ref{fig:frac32normal}. We see that
-only two main effects are significant on a $\alpha = 0.05$ level
+The resulting normal plot is in figure~\ref{fig:frac32normal}. We see
+that only two main effects are significant on a $\alpha = 0.05$ level
 according to the Lenth criterion, ``Implement'' is again deemed a
 significant improvement, and ``Union'' is deemed significantly the
 hardest operation for the query engine. We see that some other points
 also deviate from the straight line, but with as few runs as this, the
-total variance is great, so no other conclusions can be drawn. Also,
-the Student's t-test we used in the previous section cannot be
-employed, as we have no additional data to use for the
-test.\todo{actually, we can}
+total variance is great, so no other conclusions can be drawn. We may
+use the t-test we used in the previous section, as we have only two
+active factors and so we may treat it as a $2^2$ experiment with 8
+repetitions, but we must expect a higher p-value due to the larger
+variance.
+
 
 For any other purpose than a rough idea of some key influences on the
 overall performance of the endpoint for the given levels, this little
