@@ -11,7 +11,7 @@ fulllm <- function(results) {
 }
 
 robust.simple <- function(model, control = "Implement",
-                   inactive = c("Machine", "BGPComp", "Range"),
+                   inactive = c("Machine", "Range"),
                    pairwise=FALSE, ...) {
   fm <- as.formula(paste("experiments ~", control, " * ", paste(inactive, collapse=" * ")))
   allmeans <- aggregate(fm, data=model, mean)
@@ -21,7 +21,7 @@ robust.simple <- function(model, control = "Implement",
 }
 
 robust.pairwise <- function(model, control = "Implement", 
-                            noise = c("TripleC", "Lang", "Union", "Optional")) {
+                            noise = c("TripleC", "BGPComp", "Lang", "Union", "Optional")) {
   fm <- as.formula(paste("~", paste(noise, collapse=" * ")))
   dlply(model, fm, function(subset) {
     t.test(subset[subset[control] == 2,]$experiments,
