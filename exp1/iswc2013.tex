@@ -277,7 +277,7 @@ the factors involved with its interactions are on their high level,
 then it supports the alternative hypothesis, i.e. we have successfully
 improved the performance.
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \includegraphics[width=\textwidth]{fullnormal.pdf}
   \caption{A normal plot of the Full Factorial Experiment. The
     labelled points are considered significant by using the Lenth
@@ -288,13 +288,46 @@ improved the performance.
 To proceed beyond a visual judgment of significance, we may use
 Lenth's method\cite{lenthmethod}, which is a simple method for
 estimating significance in an experiment with no replicates. In
+table~\ref{tab:effects}, the most important effects are listed.  In
 figure~\ref{fig:fullnormal}, Lenth's method is used to label the
-significant effects. Visually, this is not as useful, since the large
-number\todo{how to fix this...?} We see that we have many very significant
-effects. We also note that ``Implement'' itself is significantly
-negative. We also note that the ``Implement:Lang'' interaction is
-significantly positive, as expected from our setup, where ``Lang'' was
-the detrimental side-effect we simulated.
+significant effects. We see that we have many very significant effects
+(unfortunately so many some labels are illegible). We also note that
+``Implement'' itself is significantly negative. We also note that the
+``Implement:Lang'' interaction is significantly positive, as expected
+from our setup, where ``Lang'' was the detrimental side-effect we
+simulated.
+
+% latex table generated in R 2.15.1 by xtable 1.5-6 package
+% Fri May 10 16:31:49 2013
+% Modified by hand to remove 1's
+\begin{table}[hb]
+\begin{center}
+\caption{The magnitude of effects for some important main effects and interactions.}\label{tab:effects}
+\begin{tabular}{rr}
+  \hline
+Factors & Effect  \\ 
+  \hline
+Implement & -21.27 \\ 
+  Implement:Optional & -11.49 \\ 
+  Implement:Union & -6.21 \\ 
+  Implement:TripleC:Lang1 & 4.12 \\ 
+  TripleC:Lang & 4.20 \\ 
+  Implement:TripleC & 4.32 \\ 
+  Implement:BGPComp & 4.89 \\ 
+  Lang:Union & 5.16 \\ 
+  Implement:BGPComp:Lang & 5.16 \\ 
+  BGPComp:Lang & 5.25 \\ 
+  Implement:Lang:Union & 5.75 \\ 
+  TripleC & 7.06 \\ 
+  Implement:Lang & 7.73 \\ 
+  Lang & 8.62 \\ 
+  Optional & 11.30 \\ 
+  Union & 17.18 \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
+
 
 To investigate whether the detrimental side-effects cancels the
 positive effect of our simulated optimization, we have to formulate a
@@ -440,7 +473,7 @@ generators are\\
 \end{tabular}
 \\for the 32 and 64 run experiments respectively.
 
-\begin{figure}[hb]
+\begin{figure}[h!]
   \includegraphics[width=\textwidth]{frac32normal.pdf}
   \caption{A normal plot of the Fractional Factorial Experiment with
     32 runs. The labelled points are considered significant by using
