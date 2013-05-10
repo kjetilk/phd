@@ -3,8 +3,9 @@ library(plyr)
 
 load("RelevantExperiments.RData")
 
-source("analysis.R")
-
+source("FrF2-mod/remodel.R")
+source("FrF2-mod/check.R")
+source("FrF2-mod/DanielPlot.R")
 
 pdf(file="fullnormal.pdf")
 par(mai=c(0.6,0.6,0.05,0.05))
@@ -27,3 +28,10 @@ par(mai=c(0.6,0.6,0.05,0.05))
 DanielPlot(frac64huger1.lm, main="", cex.fac=0.8)
 dev.off()
 
+#sign <- LenthPlot(runbgplangf1.lm, alpha=0.05, plt=F)["ME"]
+sign <- 2 # We haven't got space for more
+coefs <- coef(runbgplangf1.lm)
+sigcoefs <- sort(coefs[abs(coefs) > sign])*2
+sigcoefs2 <- sigcoefs[names(sigcoefs) != "(Intercept)"]
+
+lapply(robust.pairwise(runbgplangf1), function(x) x$p.value) # Lots of manual work after this
