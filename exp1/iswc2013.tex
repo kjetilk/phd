@@ -12,7 +12,7 @@
 \titlerunning{Introducing Design of Experiments to SPARQL Evaluation}
 \institute{Department of Informatics,
 Postboks 1080 Blindern,
-N-0316 Oslo, Norway \email{kjekje@ifi.uio.no} \and Department of mathematical sciences,
+N-0316 Oslo, Norway \email{kjekje@ifi.uio.no} \and Department of Mathematical Sciences,
 The Norwegian Institute of Technology,
 N-7491 Trondheim,
 Norway
@@ -47,12 +47,12 @@ of a certain practice or system. While we could contribute to the
 industrial cases, our focus is on the latter. A benchmark typically
 consists of several microbenchmarks, which are procedures for placing
 loads on the system to measure its performance as a function of the
-load. For SPARQL benchmarks, usually the performance is measured as a
+load. For SPARQL benchmarks, usually the performance is measured as 
 the number of queries the SPARQL implementation is able to answer in a
 certain time (the throughput) or the time required for it to respond
 to a query.
 
-However, there are many of problems with this approach when used to
+However, there are many problems with this approach when used to
 evaluate assertions about the overall performance of a system or
 several systems: 
 \begin{itemize}
@@ -75,7 +75,7 @@ developers to use a standard benchmark so that assertions may be
 refuted.
 
 While this is an improvement which is possibly sufficient for
-industrial uses, is it still flawed as empirical
+industrial uses, it is still flawed as empirical
 research, as it cannot capture the full diversity of the problem: For
 example, if a vendor claims that their implementation is better if
 used on a highly capable hardware platform, then the standardization
@@ -118,7 +118,7 @@ A literature survey as not revealed any direct prior art, however, the
 general approach has been well established, not only in statistics. A
 relatively well cited textbook is \cite{citeulike:5190414} but we have
 not found the parts discussed in the present paper to be widely
-adopted. Recently, an comprehensive text on experimental methods have
+adopted. Recently, a comprehensive text on experimental methods have
 been published in
 \cite{Springer-2010-Experimental-Methods-for-the-Analysis-of-Optimization-Algorithms}
 demonstrating the broad applicability of the methodology we employ.
@@ -208,10 +208,10 @@ implementation is as good as the new, and the alternative hypothesis
 $H_1$ is that the new implementation has overall improved the
 performance of the system.
 
-However, as a real optimization is beyond the scope of this paper, we
-have instead created a simulation of an optimization. This has also
-the advantage that we can \textit{a priori} understand the effect of
-the changes. In a real-world case, there is often the case that an
+A real optimization is beyond the scope of this paper. Instead we have
+performed a simulation that enable us to understand the effect of the
+changes.  
+In a real-world case, there is often the case that an
 optimization has negative side-effects, and we would need to simulate
 both the optimization and the side-effects. To do that, we degraded
 the performance of a the 4store SPARQL implementation by inserting
@@ -252,7 +252,7 @@ is published on Github: \url{https://github.com/kjetilk/doe-sparql}.
 In the full factorial experiment, all combinations of the 8 factors
 are executed, in total 256 runs.\todo{concrete example?} This is
 called a $2^8$ factorial experiment, and we can see that the number of
-runs is grows exponentially with the number of factors, thus making
+runs grows exponentially with the number of factors, thus making
 large experiments prohibitively expensive. We shall nevertheless find
 the following small example instructive. Note that each combination is
 executed only once (i.e. it is \emph{unreplicated}), however, so even a
@@ -272,9 +272,10 @@ Section~4.8 of \cite{wu2009experiments} for a detailed
 explanation). In our case, it is most important to note that any
 effect that is negative means the effect
 enhances the performance of the SPARQL endpoint, the runtime
-decreases. If ``Implement'' and the sum of its interactions are
-negative, then it supports the alternative hypothesis, i.e. we have
-successfully improved the performance.
+decreases. If ``Implement'' and its interactions are negative conditional on that
+the factors involved with its interactions are on their high level,
+then it supports the alternative hypothesis, i.e. we have successfully
+improved the performance.
 
 \begin{figure}[h]
   \includegraphics[width=\textwidth]{fullnormal.pdf}
@@ -289,7 +290,7 @@ Lenth's method\cite{lenthmethod}, which is a simple method for
 estimating significance in an experiment with no replicates. In
 figure~\ref{fig:fullnormal}, Lenth's method is used to label the
 significant effects. Visually, this is not as useful, since the large
-number\todo{how to fix this...?} We see that we have very significant
+number\todo{how to fix this...?} We see that we have many very significant
 effects. We also note that ``Implement'' itself is significantly
 negative. We also note that the ``Implement:Lang'' interaction is
 significantly positive, as expected from our setup, where ``Lang'' was
@@ -315,7 +316,7 @@ a \emph{control} factor and the other four active factors
 The presence of inactive factors makes it possible to use a standard
 t-test by averaging the inactive factors for each combination of
 control and environmental factors. This enables us to treat our
-experiment as a $2^5$ experiment replicated 8 times.
+experiment as a $2^5$ experiment replicated 8 times.\todo{expand on this}
 
 We then extract two vectors, one for the each of the implementations,
 and then perform a one-sided hypothesis test where $H_0$ is that they
@@ -536,14 +537,14 @@ possible to evaluate a very large number of factors.
 
 \section{Discussion}
 
-It is a fundamental property of two-level experiments that it can only
-model linear effects. Usually, it is quite sufficient to identify
-significant effects even though the underlying response may be
-non-linear. As we saw in section~\ref{sec:full}, the choice of levels
-may be critical, and if non-linearity is expected, more than two
-levels must be considered, or at the very least, attention must be
-paid to the choice of levels.\todo{this is a long discussion, how much
-  should be done?}
+It is a fundamental property of two-level experiments that they can
+only model linear effects, however, they are usually quite sufficient
+for identifying significant effects even though the underlying
+response may be non-linear.  As we saw in section~\ref{sec:full}, the
+choice of levels may be critical, and if non-linearity is expected,
+more than two levels must be considered, or at the very least,
+attention must be paid to the choice of levels.\todo{this is a long
+  discussion, how much should be done?}
 
 We have argued that fixing certain parameters is untenable, but we
 have allowed ourselves to disregard caching and warm-up runs. We are
@@ -620,7 +621,7 @@ Finally, we have only employed the simplest parts of the DoE
 theory, what has been presented here is part of a much more general
 formalism known as Orthogonal Arrays. The use of orthogonal arrays
 allow for different numbers of levels, for much greater flexibility in
-total run size, and for irregular designs that can provide a good fit
+total run size, and for non-regular designs that can provide a good fit
 for the complex problem of SPARQL endpoint evaluations. 
 
 \section{Conclusions}
