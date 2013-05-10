@@ -83,11 +83,18 @@ function (fit, code = FALSE, autolab = TRUE, alpha=0.05,
     factor.effects <- factor.effects[!is.na(factor.effects)]
     plotmain <- paste("Normal Plot for", respnam)
     if (autolab) {
-        crit <- LenthPlot(factor.effects,alpha=alpha,plt=FALSE)["ME"]
+        crit <- sort(sapply(alpha, function(a) { LenthPlot(factor.effects,alpha=a,plt=FALSE)["ME"] }))
         if (!code)
-        faclab <- list(idx = which(crit<=abs(factor.effects)),
-               lab = names(factor.effects)[which(crit<=abs(factor.effects))])
-        plotmain <- paste(plotmain, ", ", "alpha=", alpha, sep="") 
+            idx <- which(min(crit)<=abs(factor.effects))
+            faclab <- list(idx = idx,
+                           lab = names(factor.effects)[idx])
+            if (length(alpha) > 1) {
+                pch <- rep(1, length(factor.effects))
+                for(i in 1:length(crit)) {
+                    pch[which(crit[i]<=abs(factor.effects))] <- i+1
+                }  
+            }
+            plotmain <- paste(plotmain, ", ", "alpha=", max(alpha), sep="") 
         }
     if (half) {
         tn <- list(x = qnorm(0.5 * ((rank(abs(factor.effects)) - 
