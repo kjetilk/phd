@@ -4,7 +4,6 @@
 \usepackage{cite}
 \usepackage{verbatim}
 \usepackage{graphicx}
-\newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
 \title{Introducing Statistical Design of Experiments to SPARQL
   Endpoint Evaluation}
@@ -199,7 +198,7 @@ itself set up using 4store (see \cite{harris20094store}) version
 1.1.5. The ``Machine'' factor specifies a hostname, whereas
 ``TripleC'' and ``Implement'' specifies a port number. On each host,
 four 4store instances runs independently on different
-ports. \todo{possible problem?}
+ports.
 
 Finally, ``Implement'' is the implementation undergoing
 evaluation. Level 1 is running the new implementation, whereas Level 2
@@ -250,21 +249,21 @@ is published on Github: \url{https://github.com/kjetilk/doe-sparql}.
 \subsection{Full factorial experiment}\label{sec:full}
 
 In the full factorial experiment, all combinations of the 8 factors
-are executed, in total 256 runs.\todo{concrete example?} This is
-called a $2^8$ factorial experiment, and we can see that the number of
-runs grows exponentially with the number of factors, thus making
-large experiments prohibitively expensive. We shall nevertheless find
-the following small example instructive. Note that each combination is
-executed only once (i.e. it is \emph{unreplicated}), however, so even a
-full factorial experiment compares well to a typical benchmark in
-which each microbenchmark must be executed several times to obtain
-enough data to compute a mean with reasonable certainty.
+are executed, in total 256 runs. This is called a $2^8$ factorial
+experiment, and we can see that the number of runs grows exponentially
+with the number of factors, thus making large experiments
+prohibitively expensive. We shall nevertheless find the following
+small example instructive. Note that each combination is executed only
+once (i.e. it is \emph{unreplicated}), however, so even a full
+factorial experiment compares well to a typical benchmark in which
+each microbenchmark must be executed several times to obtain enough
+data to compute a mean with reasonable certainty.
 
 The above experimental setup is executed across a design matrix
 generated with the DoE.base package, which returns a data frame
 consisting of the factors with a column containing the corresponding
 curl measurements. To analyze the experiment, we first generate a
-normal plot, see figure~\ref{fig:fullnormal}\todo{explain axes}. In this plot, if the
+normal plot, see figure~\ref{fig:fullnormal}. In this plot, if the
 null hypothesis $H_0$ holds, all estimated effects will fall on a
 straight line, as their means would be zero. Any significant departure
 from a straight line can be interpreted as a significant effect (see
@@ -362,7 +361,7 @@ We perform the test as a one-sided hypothesis test where $H_0$ is that
 the vectors are equal and $H_1$ is that the vectors representing the
 new implementation is smaller. In this example, we find that the
 available data supports the assertion that the new implementation is
-better with a high probability, $p=1.16 \cdot 10^{-07}$.\todo{figure?}
+better with a high probability, $p=1.16 \cdot 10^{-07}$.
 
 While it is interesting to test the overall hypothesis that the new
 implementation is an improvement, it is also interesting to know if
@@ -427,21 +426,20 @@ hypotheses tested.
 The main objective of this paper is not to establish that the
 optimization is significant, it is merely a simulation. It is to
 establish a critical practice of evaluations. It is of critical
-importance that we understand why some effects are
-significant.\todo{add table of effects} That ``Implement'' is
-significant is hardly a surprise, that is what we worked for. That the
-main effects ``Union'', ``Optional'' and ``Lang'' are strong is also
-due to that these are fairly demanding things to evaluate. Since the
-delay we inserted affects all kinds of joins, it is also intuitive
-that interactions between ``Implement'' and those that require joins
-are strong. The strong ``BGPComp:Lang'' and ``Lang:Union''
-interactions might be due to that the many more triples needs to be
-searched for a language tag in one case. However, the positive
-``Implement:TripleC'' interaction evades such explanations; in fact,
-it hints that our optimization may not work as well for larger
-databases. This is a clear indication that the separation between
-levels for the sizes of the data-set is too small and should be
-investigated further. Such reasoning should be applied to all
+importance that we understand why some effects are significant. That
+``Implement'' is significant is hardly a surprise, that is what we
+worked for. That the main effects ``Union'', ``Optional'' and ``Lang''
+are strong is also due to that these are fairly demanding things to
+evaluate. Since the delay we inserted affects all kinds of joins, it
+is also intuitive that interactions between ``Implement'' and those
+that require joins are strong. The strong ``BGPComp:Lang'' and
+``Lang:Union'' interactions might be due to that the many more triples
+needs to be searched for a language tag in one case. However, the
+positive ``Implement:TripleC'' interaction evades such explanations;
+in fact, it hints that our optimization may not work as well for
+larger databases. This is a clear indication that the separation
+between levels for the sizes of the data-set is too small and should
+be investigated further. Such reasoning should be applied to all
 significant effects.
 
 
@@ -614,8 +612,7 @@ for identifying significant effects even though the underlying
 response may be non-linear.  As we saw in section~\ref{sec:full}, the
 choice of levels may be critical, and if non-linearity is expected,
 more than two levels must be considered, or at the very least,
-attention must be paid to the choice of levels.\todo{this is a long
-  discussion, how much should be done?}
+attention must be paid to the choice of levels.
 
 We have argued that fixing certain parameters is untenable, but we
 have allowed ourselves to disregard caching and warm-up runs. We are
