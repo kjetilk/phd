@@ -423,7 +423,22 @@ We have made two fractional factorial designs: One with 32 runs and
 one with 64 runs. Again, the number of runs is in powers of 2, but
 much smaller. In both cases, we have specified that all the factors
 must be clear and also all two-factor interactions where ``Implement''
-is involved must be clear. \todo{declare generators?}
+is involved must be clear. The resulting experiments is returned to us
+as design matrices, but they can also be described sufficiently for
+reproducability in terms of \emph{design generators}. These also
+declare aliasing relations for some of the main effects. The design
+generators are\\
+\begin{tabular}{ccl}
+``Range'' &=& ``TripleC'' ``Machine'' ``BGPComp'' \\  
+``Union'' &=& ``TripleC'' ``Machine'' ``Lang'' \\  
+``Optional'' &=& ``TripleC'' ``BGPComp'' ``Lang'' ``Implement'' 
+\end{tabular}
+\\and\\
+\begin{tabular}{ccl}
+``Union'' &=& ``Implement''  ``TripleC''  ``Machine'' ``BGPComp'' \\
+``Optional'' &=& ``Implement''  ``TripleC'' ``Lang''  ``Range'' 
+\end{tabular}
+\\for the 32 and 64 run experiments respectively.
 
 \begin{figure}[hb]
   \includegraphics[width=\textwidth]{frac32normal.pdf}
