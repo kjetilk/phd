@@ -23,7 +23,7 @@ DanielPlot(frac64r3.lm, alpha=c(0.05, 0.15), main="", cex.fac=0.8)
 dev.off()
 
 
-pdf(file="frac64hugenormal.pdf")
+pdf(file="frac64hugenormal.pdf", height=5.5)
 par(mai=c(0.6,0.6,0.05,0.05))
 DanielPlot(frac64huger1.lm, main="", cex.fac=0.8)
 dev.off()
