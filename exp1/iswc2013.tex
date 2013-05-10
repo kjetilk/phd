@@ -46,20 +46,20 @@ of a certain practice or system. While we could contribute to the
 industrial cases, our focus is on the latter. A benchmark typically
 consists of several microbenchmarks, which are procedures for placing
 loads on the system to measure its performance as a function of the
-load. For SPARQL benchmarks, usually the performance is measured as 
+load. For SPARQL benchmarks, usually the performance is measured as
 the number of queries the SPARQL implementation is able to answer in a
 certain time (the throughput) or the time required for it to respond
 to a query.
 
 However, there are many problems with this approach when used to
 evaluate assertions about the overall performance of a system or
-several systems: 
+several systems:
 \begin{itemize}
-\item As the complexity increases, the number of parameters that
-one may wish to test increases dramatically.
-\item Nothing compels anyone to find microbenchmarks that
-  can refute an assertion, and there is no structured approach to
-  investigate whether a benchmark is flawed.
+\item As the complexity increases, the number of parameters that one
+  may wish to test increases dramatically.
+\item Nothing compels anyone to find microbenchmarks that can refute
+  an assertion, and there is no structured approach to investigate
+  whether a benchmark is flawed.
 \item There is no meaningful summary of the performance as a whole, so
   that an assertion about performance cannot be refuted as an
   optimization may have detrimental side effects that cannot be
@@ -74,26 +74,26 @@ developers to use a standard benchmark so that assertions may be
 refuted.
 
 While this is an improvement which is possibly sufficient for
-industrial uses, it is still flawed as empirical
-research, as it cannot capture the full diversity of the problem: For
-example, if a vendor claims that their implementation is better if
-used on a highly capable hardware platform, then the standardization
-of a hardware platform cannot test this assertion. Moreover, to test
-this assertion, one would need a summary technique that can identify
-the interaction between implementation and hardware platform and
-possibly other parameters.
+industrial uses, it is still flawed as empirical research, as it
+cannot capture the full diversity of the problem: For example, if a
+vendor claims that their implementation is better if used on a highly
+capable hardware platform, then the standardization of a hardware
+platform cannot test this assertion. Moreover, to test this assertion,
+one would need a summary technique that can identify the interaction
+between implementation and hardware platform and possibly other
+parameters.
 
 One important aspect of science is the structured approach to falsify
 hypotheses, and thus is important that assertions about performance is
 formulated as hypotheses that can be falsified.
 
 Thus, attacking the complexity problem by eliminating parameters we
-think influence the outcome for simplicity is untenable as
-scientific practice. We must instead tackle this problem by enhancing
-our capability of testing complex systems and to identify situations
-where our assumptions are flawed. Such constraints can only be made
-when we have very good reason to suspect that a certain parameter does
-not have any influence.
+think influence the outcome for simplicity is untenable as scientific
+practice. We must instead tackle this problem by enhancing our
+capability of testing complex systems and to identify situations where
+our assumptions are flawed. Such constraints can only be made when we
+have very good reason to suspect that a certain parameter does not
+have any influence.
 
 In this paper, we employ techniques from the well-established field in
 statistics known as Design of Experiments (DoE) to point out a
@@ -127,17 +127,17 @@ statistical standard texts \cite{wu2009experiments} for this study.
 
 The problematic sides of the benchmarking have been noted in several
 papers, notably \cite{Duan:2011:AOC:1989323.1989340} and
-\cite{MontoyaVCRA12}. We also acknowledge that great
-progress has been made to improve benchmarks, in particular, we are
-indebted to \cite{mxro:Morsey2011DBpedia}. 
+\cite{MontoyaVCRA12}. We also acknowledge that great progress has been
+made to improve benchmarks, in particular, we are indebted to
+\cite{mxro:Morsey2011DBpedia}.
 
-We believe that automatic creation of benchmark queries, as
-pioneered by \cite{goerlitz2012splodge} is a critical ingredient for
-the application of DoE to be successful as a methodology.
+We believe that automatic creation of benchmark queries, as pioneered
+by \cite{goerlitz2012splodge} is a critical ingredient for the
+application of DoE to be successful as a methodology.
 
 Finally, we acknowledge the efforts of the Linked Data Benchmark
 Council and the SEALS project. However, they appear to focus on
-industrial benchmarking rather than scientific evaluations. 
+industrial benchmarking rather than scientific evaluations.
 
 \section{Experiments}
 
@@ -154,33 +154,33 @@ constrain the scope of the study to comparing two different things.
 
 As the focus of this paper is didactical, the actual measurements are
 much simpler than what has been used in benchmarking. We have used the
-data-set of DBPedia SPARQL Benchmark\cite{mxro:Morsey2011DBpedia}, but only consider the
-smallest of their data-sets (that we found to be more than 15
-MTriples). Moreover, we have taken subsets of that data-set by using
-the last 1 or 2 MTriples from their file.
+data-set of DBPedia SPARQL Benchmark\cite{mxro:Morsey2011DBpedia}, but
+only consider the smallest of their data-sets (that we found to be
+more than 15 MTriples). Moreover, we have taken subsets of that
+data-set by using the last 1 or 2 MTriples from their file.
 
 First, note that the concept of parameters as considered in the
 introduction is known as \emph{factors} in DoE. For each factor, we
 have chosen in this paper to only deal with the relatively
-straightforward aspects of the DoE formalism, and therefore 
-constrain the experiment strictly to 2 levels.
+straightforward aspects of the DoE formalism, and therefore constrain
+the experiment strictly to 2 levels.
 
-We have chosen 8 factors each having 2 levels, ``TripleC'' the number of triples in the
-data-set, 1 or 2 MTriples, ``Machine'', which is the software and hardware platform,
-where one machine runs GNU/Linux Debian Squeeze, has 16 GB RAM, an
-Intel Core2 Duo E8500 CPU and two Parallel-ATA disks in a RAID-1
-configuration. The other machine runs Debian Wheezy, has 8 GB RAM, an
-Intel Core i7-3520M CPU and a single SSD on SATA-III. 
+We have chosen 8 factors each having 2 levels, ``TripleC'' the number
+of triples in the data-set, 1 or 2 MTriples, ``Machine'', which is the
+software and hardware platform, where one machine runs GNU/Linux
+Debian Squeeze, has 16 GB RAM, an Intel Core2 Duo E8500 CPU and two
+Parallel-ATA disks in a RAID-1 configuration. The other machine runs
+Debian Wheezy, has 8 GB RAM, an Intel Core i7-3520M CPU and a single
+SSD on SATA-III.
 
-Then, we test some language features: 
-``BGPComp'', which is a Basic Graph Pattern of varying complexity. The
-first level is:
+Then, we test some language features: ``BGPComp'', which is a Basic
+Graph Pattern of varying complexity. The first level is:
 \verbatiminput{experiment/BGPComp-1}
 and the second level is 
 \verbatiminput{experiment/BGPComp-2}
 
-The following factors tests the absence (at level 1) or presence (at level 2) of the following clauses:
-The ``Lang'' factor is this FILTER:
+The following factors tests the absence (at level 1) or presence (at
+level 2) of the following clauses: The ``Lang'' factor is this FILTER:
 \verbatiminput{experiment/Lang-2}
 and similarly,  ``Range'' is this FILTER:
 \verbatiminput{experiment/Range-2}
@@ -197,8 +197,7 @@ query, which is then sent to a SPARQL endpoint. The SPARQL endpoint is
 itself set up using 4store (see \cite{harris20094store}) version
 1.1.5. The ``Machine'' factor specifies a hostname, whereas
 ``TripleC'' and ``Implement'' specifies a port number. On each host,
-four 4store instances runs independently on different
-ports.
+four 4store instances runs independently on different ports.
 
 Finally, ``Implement'' is the implementation undergoing
 evaluation. Level 1 is running the new implementation, whereas Level 2
@@ -209,8 +208,7 @@ performance of the system.
 
 A real optimization is beyond the scope of this paper. Instead we have
 performed a simulation that enable us to understand the effect of the
-changes.  
-In a real-world case, there is often the case that an
+changes.  In a real-world case, there is often the case that an
 optimization has negative side-effects, and we would need to simulate
 both the optimization and the side-effects. To do that, we degraded
 the performance of a the 4store SPARQL implementation by inserting
@@ -226,17 +224,18 @@ side-effect. This delays execution for 2 milliseconds every time the
 The experimentation is implemented in R\cite{rmanual}, which is a free
 software environment for statistical computing and graphics. Necessary
 tools for DoE has been implemented by the R community in packages
-called DoE.base\cite{doebase} and FrF2\cite{frf2}. The experiments are run on a third
-computer in a 1 gigabit Ethernet LAN with the two experiment hosts.  As
-response variable, we have chosen to use the time from the namespace
-server lookup finishes to the data has been transferred. This choice is
-somewhat arbitrary, many other response variables could be chosen, and
-indeed, future work should explore multi-variable responses, but for
-simplicity, we think this reflects the total amount of work done by
-the SPARQL endpoint well. For the measurements, we have chosen to use
-the RCurl package\cite{lang2007r}, which is a thin wrapper around the curl
-library. Curl has well developed facilities for timing requests and
-responses, and so we rely on its measurements.
+called DoE.base\cite{doebase} and FrF2\cite{frf2}. The experiments are
+run on a third computer in a 1 gigabit Ethernet LAN with the two
+experiment hosts.  As response variable, we have chosen to use the
+time from the namespace server lookup finishes to the data has been
+transferred. This choice is somewhat arbitrary, many other response
+variables could be chosen, and indeed, future work should explore
+multi-variable responses, but for simplicity, we think this reflects
+the total amount of work done by the SPARQL endpoint well. For the
+measurements, we have chosen to use the RCurl package\cite{lang2007r},
+which is a thin wrapper around the curl library. Curl has well
+developed facilities for timing requests and responses, and so we rely
+on its measurements.
 
 Finally note that there are two common issues in benchmarking we do
 not consider: we do not allow a warm-up run, nor do we take into
@@ -269,12 +268,12 @@ straight line, as their means would be zero. Any significant departure
 from a straight line can be interpreted as a significant effect (see
 Section~4.8 of \cite{wu2009experiments} for a detailed
 explanation). In our case, it is most important to note that any
-effect that is negative means the effect
-enhances the performance of the SPARQL endpoint, the runtime
-decreases. If ``Implement'' and its interactions are negative conditional on that
-the factors involved with its interactions are on their high level,
-then it supports the alternative hypothesis, i.e. we have successfully
-improved the performance.
+effect that is negative means the effect enhances the performance of
+the SPARQL endpoint, the runtime decreases. If ``Implement'' and its
+interactions are negative conditional on that the factors involved
+with its interactions are on their high level, then it supports the
+alternative hypothesis, i.e. we have successfully improved the
+performance.
 
 \begin{figure}[h!]
   \includegraphics[width=\textwidth]{fullnormal.pdf}
@@ -447,12 +446,12 @@ significant effects.
 \subsection{Fractional factorial experiment}\label{sec:frac}
 
 As mentioned, the full factorial experiment goes as $2^n$ and becomes
-prohibitively expensive when $n$ is a large number of
-factors. As the evaluation of SPARQL endpoints is an inherently complex
-problem, a large number of factors are needed, and so full experiments
-cannot scale. However, we may reduce the size of the experiment
-significantly by sacrificing some explanatory power, in the form of
-fractional factorial experiments. 
+prohibitively expensive when $n$ is a large number of factors. As the
+evaluation of SPARQL endpoints is an inherently complex problem, a
+large number of factors are needed, and so full experiments cannot
+scale. However, we may reduce the size of the experiment significantly
+by sacrificing some explanatory power, in the form of fractional
+factorial experiments.
 
 We loose explanatory power due to \emph{aliasing}, for example, the
 ``TripleC:BGPComp'' interaction may be aliased with the
@@ -521,11 +520,11 @@ experiment is insufficient.
 We turn to the 64-run experiment and its normal plot in
 figure~\ref{fig:frac64normal}. We see that the we get more significant
 effects, and that they correspond well to those we saw in the full
-factorial experiment. They also all have an intuitive
-explanation as above. However, we do not see the effects that we found
-worrisome in the full factorial design. The ``Implement:TripleC''
-interaction emerges only for a level $\alpha=0.15$. To ensure that we discover such
-cases will be a key challenge in further studies.
+factorial experiment. They also all have an intuitive explanation as
+above. However, we do not see the effects that we found worrisome in
+the full factorial design. The ``Implement:TripleC'' interaction
+emerges only for a level $\alpha=0.15$. To ensure that we discover
+such cases will be a key challenge in further studies.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{frac64normal.pdf}
@@ -540,9 +539,9 @@ Since the 64-run experiment has 3 inactive factors, ``Machine'',
 ``TripleC'' and ``Range'', we can again treat it as a $2^5$ experiment
 replicated twice. Using the same procedure as above, we find that
 again, the hypothesis test indicates that the new implementation is an
-improvement at $p = 5.9 \cdot 10^{-6}$. Again, the comparatively higher p-value
-is due to the lower number of runs. It is also possible to perform the
-per-environmental test.
+improvement at $p = 5.9 \cdot 10^{-6}$. Again, the comparatively
+higher p-value is due to the lower number of runs. It is also possible
+to perform the per-environmental test.
 
 
 \subsection{Fractional factorial experiment with more data}\label{sec:hugefrac}
@@ -690,15 +689,15 @@ any great depth even if it is allowed by the language.
 We saw in section~\ref{sec:frac} that with a smaller experiment, fewer
 interactions are significant, and so provides us with fewer clues to
 assess the soundness of the experiment. This should be a focus of
-further research. 
+further research.
 
 
-Finally, we have only employed the simplest parts of the DoE
-theory, what has been presented here is part of a much more general
-formalism known as Orthogonal Arrays. The use of orthogonal arrays
-allow for different numbers of levels, for much greater flexibility in
-total run size, and for non-regular designs that can provide a good fit
-for the complex problem of SPARQL endpoint evaluations. 
+Finally, we have only employed the simplest parts of the DoE theory,
+what has been presented here is part of a much more general formalism
+known as Orthogonal Arrays. The use of orthogonal arrays allow for
+different numbers of levels, for much greater flexibility in total run
+size, and for non-regular designs that can provide a good fit for the
+complex problem of SPARQL endpoint evaluations.
 
 \section{Conclusions}
 
@@ -754,9 +753,8 @@ formalism can be extended to many different evaluation problems.
 \paragraph*{Acknowledgments}
 
 Kjetil Kjernsmo would like to thank his main supervisor Martin Giese
-for kind assistance. He would also like to
-thank Steve Harris for his generous support in degrading his excellent
-work on 4store.
+for kind assistance. He would also like to thank Steve Harris for his
+generous support in degrading his excellent work on 4store.
 
 
 %\bibliographystyle{plain}
