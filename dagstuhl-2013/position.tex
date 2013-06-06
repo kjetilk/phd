@@ -1,5 +1,6 @@
-%\documentclass{article}
+\documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{hyperref}
 \usepackage{cite}
 \usepackage{verbatim}
 \usepackage{graphicx}
@@ -33,3 +34,45 @@ believe that large SPARQL-driven systems would be the ``right tool for
 the job'' in only a limited, and currently unclear, set of
 cases. Further exposure to new ideas in the developer community lead
 me to develop a third interest, namely hypermedia RDF. 
+
+\section{Hypermedia RDF}
+
+In \cite{kjernsmo_lapis_2012}, examined some practical implications of
+the HATEOAS constraint of the REST architectural style, see
+\cite{Fielding_2000_Architectural-Styles}~Chapter~5., and in that
+light argued why hypermedia RDF is a practical necessity.
+
+Mike Amundsen defines hypermedia types\cite{hypermediatypes} as 
+\begin{quote}
+Hypermedia Types are MIME media types that contain native
+hyper-linking semantics that induce application flow. For example,
+HTML is a hypermedia type; XML is not.
+\end{quote}
+
+We continued to derive a powerful hypermedia type based on RDF within
+a classification suggested by Mike Amundsen. Since this publication, I
+have also noted that the embedded links factor can be achieved by
+using \texttt{data} URIs, thus satisfying all but one of the factors
+proposed by Mike Amundsen.
+
+Further, we noted that other interesting factors is the
+self-description, which is a important characteristic of the RDF
+model, and other voiced other minor concerns.
+
+To bring forward a concrete example of how to make a serialized RDF
+graph into a hypermedia type, we suggest adding some triples to every
+resource (where prefixes are omitted for brevity):
+
+\begin{verbatim}
+<> hm:canBe hm:mergedInto, hm:replaced, hm:deleted ;
+   hm:inCollection <../> ;
+   void:inDataset [ void:sparqlEndpoint </sparql> . ] .
+\end{verbatim}
+
+
+\bibliographystyle{plain}
+%\bibliographystyle{jbact}
+%\bibliographystyle{splncs03}
+\bibliography{federation,webarch,vocabs,specs,hypermedia,egne,selectivity}
+
+\end{document}
