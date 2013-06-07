@@ -35,9 +35,16 @@ the job'' in only a limited, and currently unclear, set of
 cases. Further exposure to new ideas in the developer community lead
 me to develop a third interest, namely hypermedia RDF. 
 
+Problems with SPARQL interfaces are many: They require extensive
+training of developers; it is not immediately clear what data are
+available and what may done with the data; it is easy to formulate
+queries that will cause the endpoint to become overloaded and hard to
+protect against them without also rejecting legitimate queries; it
+places heavier systems in the execution path of an application, etc.
+
 \section{Hypermedia RDF}
 
-In \cite{kjernsmo_lapis_2012}, examined some practical implications of
+In \cite{kjernsmo_lapis_2012}, I examined some practical implications of
 the HATEOAS constraint of the REST architectural style, see
 \cite{Fielding_2000_Architectural-Styles}~Chapter~5., and in that
 light argued why hypermedia RDF is a practical necessity.
@@ -57,7 +64,7 @@ proposed by Mike Amundsen.
 
 Further, we noted that other interesting factors is the
 self-description, which is a important characteristic of the RDF
-model, and other voiced other minor concerns.
+model, and other minor concerns.
 
 To bring forward a concrete example of how to make a serialised RDF
 graph into a hypermedia type, we suggest adding some triples to every
