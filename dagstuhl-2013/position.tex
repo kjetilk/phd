@@ -69,6 +69,27 @@ resource (where prefixes are omitted for brevity):
    void:inDataset [ void:sparqlEndpoint </sparql> . ] .
 \end{verbatim}
 
+\section{Possible uses}
+
+Over time, I believe that interfaces that require developers to read
+external documentation will loose to interfaces where ``View Source''
+is sufficient to learn everything that is needed. This is the essence
+of hypermedia systems, in the RDF case, everything needed to program
+is available in the RDF. It tells application what it may do next.
+
+In the above, we have included mostly create, add and delete
+primitives, but these could be refined for application scenarios if
+needed.
+
+For example a pizza baker publishes Linked Data about pizzas they
+sell, including data sufficient to create a sophisticated search and
+sales application. The Linked Data will then include triples that
+state explicitly how the order should be placed, i.e. what resources
+need updating. Moreover, the may not only want to sell pizzas, but
+also drinks. Thus, the Linked Data presented to the application should
+not only be a Symetric Concise Bounded Description, as common today,
+but careful designed to provide exactly the data needed to optimize
+sales.
 
 \bibliographystyle{plain}
 %\bibliographystyle{jbact}
