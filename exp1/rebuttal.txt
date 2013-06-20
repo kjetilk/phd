@@ -21,7 +21,8 @@ Two reviewers point out that the introduction to DoE should be
 improved. This point is very valid. We envision this paper to be a
 "first contact" with DoE for many readers, so the presentation is
 especially important, and your suggestions for improvements are very
-welcome.
+welcome. We also note that we have found no application of DoE in
+database research.
 
 Obviously, we also acknowledge that the "toy example" nature of the
 paper is a clear drawback. We are quite confident that this
