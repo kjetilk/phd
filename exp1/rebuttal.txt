@@ -1,0 +1,48 @@
+We would like to thank the anonymous reviewers for their thoughtful
+reviews. Your points are well taken and we shall work to incorporate
+your advices to the final version.
+
+First, benchmarking and designed experiments serve to answer different
+questions. Since a designed experiment requires parameterization of
+language and data "features", natural benchmarks such as the DBPedia
+Benchmark, cited in the paper, will remain a better judge of the
+performance of typical queries in some typical situations. However, it
+cannot, as we noted in the three points on the first page, answer
+scientifically relevant questions on e.g. falsifiability of more general
+assertions about performance.
+
+One reviewer notes that it will be tricky to extend the experiment to
+real federated SPARQL querying. Indeed, we believe this to be the work
+of more than one Ph.D. Thus, this paper is to encourage a collective
+effort of the community. It is not unlikely that to attain this goal,
+progress beyond the state-of-the-art in statistics is also required.
+
+Two reviewers point out that the introduction to DoE should be
+improved. This point is very valid. We envision this paper to be a
+"first contact" with DoE for many readers, so the presentation is
+especially important, and your suggestions for improvements are very
+welcome.
+
+Obviously, we also acknowledge that the "toy example" nature of the
+paper is a clear drawback. We are quite confident that this
+methodology will be a clear improvement over "constructed" benchmarks,
+like for example the now classical Berlin SPARQL Benchmark with
+relatively modest means, but we acknowledge that we have not attempted
+to prove this notion. We shall attempt to provide at least anecdotal
+evidence based on the current example for the camera ready
+version. Yet, we are of the opinion that if we had attempted a full
+replacement of the larger benchmarks in this paper, the discussion
+would have been significantly harder to follow.
+
+As an expansion of the introduction DoE requires more space, one
+reviewer's suggestion to drop Table 3 is welcome. However, Table 3 was
+not intended as a preliminary investigation, but rather an
+illustration of the concept of "lurking variables", which is
+conceptually important. We would be interested in hearing the
+reviewer's opinion on the importance of this point.
+
+In conclusion, there are no major confusion points to be cleared, the
+reviews are helpful and if the paper is accepted, we shall seek to
+incorporate their suggestions to the extent possible within the page
+limit.
+
