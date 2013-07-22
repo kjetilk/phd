@@ -181,7 +181,7 @@ Level 1 & Level 2 \\
 \verbatiminput{experiment/BGPComp-1} & \verbatiminput{experiment/BGPComp-2} \\
 \end{tabular}
 
-The following factors tests the absence (at level 1) or presence (at
+The following factors test the absence (at level 1) or presence (at
 level 2) of the following clauses:
 
 \begin{tabular}{p{0.40\textwidth}p{0.55\textwidth}}
@@ -213,11 +213,11 @@ $H_1$ is that the new implementation has overall improved the
 performance of the system.
 
 A real optimization is beyond the scope of this paper. Instead we have
-performed a simulation that enable us to understand the effect of the
+performed a simulation that enables us to understand the effect of the
 changes.  In a real-world case, there is often the case that an
 optimization has negative side-effects, and we would need to simulate
 both the optimization and the side-effects. To do that, we degraded
-the performance of a the 4store SPARQL implementation by inserting
+the performance of the 4store SPARQL implementation by inserting
 \texttt{sleep} statements. Specifically we inserted the C statement
 \texttt{sleep(2)} on line~920 in \texttt{src/frontend/query.c} on
 level~1, to simulate the optimization. This has the effect of delaying
@@ -447,7 +447,7 @@ needs to be searched for a language tag in one case. However, the
 positive ``Implement:TripleC'' interaction evades such explanations;
 in fact, it hints that our optimization may not work as well for
 larger databases. By carefully inspecting table~\ref{tab:pvaluesfull},
-we see that we see that whenever ``TripleC'' is at the low lever, the
+we see that whenever ``TripleC'' is at the low level, the
 new implementation is always best, only at the higher level, the old
 implementation may be better. This is a clear indication that the
 separation between levels for the sizes of the data-set is too small
@@ -466,7 +466,7 @@ scale. However, we may reduce the size of the experiment significantly
 by sacrificing some explanatory power, in the form of fractional
 factorial experiments.
 
-We loose explanatory power due to \emph{aliasing}, for example, the
+We lose explanatory power due to \emph{aliasing}, for example, the
 ``TripleC:BGPComp'' interaction may be aliased with the
 ``Machine:Range'' interaction. That is to say, a detected increase in
 run time from larger Basic Graph Patterns for large databases, can
@@ -595,7 +595,7 @@ a good example of usage that also helps us manage complexity: If
 possible, one may group many factors into one if one is in doubt of
 its relevance and break it up in subsequent experiments if deeper
 understanding is needed. To some extent, ``BGPComp'' is also a broad
-factor, since it encompasses many structures that is normally seen in
+factor, since it encompasses many structures that are normally seen in
 a Basic Graph Pattern. In this case, the cause of the performance
 problem was highly audible: It was the old P-ATA disks of the larger
 machine, but in general, such clues are not available to the
@@ -610,7 +610,7 @@ Note that we do not take advantage of the usual performance of 4store
 in this simulation, to the contrary, we chose 4store because of its
 relative simplicity to modify it to suite our needs for illustrative
 purposes, which consists of degrading it in several ways. The small
-data-sets used here does not imply that the approach will not work for
+data-sets used here do not imply that the approach will not work for
 large data-sets; properly configured, actual optimization will give
 very different runtimes, and the small number of runs will make it
 possible to evaluate a very large number of factors.
@@ -729,7 +729,7 @@ that could invalidate the experiment, and in
 section~\ref{sec:hugefrac} we saw that the experiment did indeed not
 hold up to scrutiny.
 
-We saw that while 2 level experiments can perform well in determining
+We saw that while two-level experiments can perform well in determining
 significant effects, they do not necessarily work well to find a
 model, as exemplified by failure to identify the possibly non-linear
 effect of the P-ATA disks in the first experiments. This issue can be
