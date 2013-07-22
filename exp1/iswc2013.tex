@@ -88,12 +88,12 @@ hypotheses, and thus is important that assertions about performance
 are formulated as hypotheses that can be falsified.
 
 Thus, attacking the complexity problem by eliminating parameters we
-think influence the outcome for simplicity is untenable as scientific
-practice. We must instead tackle this problem by enhancing our
-capability of testing complex systems and to identify situations where
-our assumptions are flawed. Such constraints can only be made when we
-have highly confident that a certain parameter does not have any
-influence.
+think influence the outcome (e.g. caching) for simplicity is untenable
+as scientific practice. We must instead tackle this problem by
+enhancing our capability of testing complex systems and to identify
+situations where our assumptions are flawed. Such constraints can only
+be made when we are highly confident that a certain parameter does not
+have any influence.
 
 In this paper, we employ techniques from the well-established field in
 statistics known as Design of Experiments (DoE) to point out a
@@ -136,9 +136,10 @@ by \cite{goerlitz2012splodge} is a critical ingredient for the
 application of DoE to be successful as a methodology.
 
 Finally, we acknowledge the efforts of the Linked Data Benchmark
-Council and the SEALS project. However, they appear to focus on
-industrial benchmarking rather than scientific evaluations.
-% TODO: skrive om til å snakke om use-case driven
+Council and the SEALS project. However, they appear to focus on cases
+where the workload is assumed to be well characterized, rather than
+scientific evaluations.
+
 
 \section{Experiments}
 
@@ -205,8 +206,10 @@ query, which is then sent to a SPARQL endpoint. The SPARQL endpoint is
 itself set up using 4store (see \cite{harris20094store}) version
 1.1.5. The ``Machine'' factor specifies a hostname, whereas
 ``TripleC'' and ``Implement'' specifies a port number. On each host,
-four 4store instances runs independently on different ports. 
-% TODO: process waiting.
+four 4store instances runs sequentially and independently on different
+ports, where processes that are not actively answering a query are
+idle.
+
 
 Finally, ``Implement'' is the implementation undergoing
 evaluation. Level 1 is running the new implementation, whereas Level 2
@@ -252,7 +255,7 @@ account that the server may cache all or parts of the result set. The
 reasons for this choice will be discussed later.
 
 All the code to reproduce this study as well as detailed instructions
-is published on Github: \url{https://github.com/kjetilk/doe-sparql}.
+have been published on Github: \url{https://github.com/kjetilk/doe-sparql}.
 
 \subsection{Full factorial experiment}\label{sec:full}
 
@@ -339,7 +342,7 @@ Implement & -21.27 \\
 \end{table}
 
 
-To investigate whether the detrimental side-effects cancels the
+To investigate whether the detrimental side-effects cancel the
 positive effect of our simulated optimization, we have to formulate a
 hypothesis test. By inspecting the normal plot in
 Figure~\ref{fig:fullnormal} and table~\ref{tab:effects}, we see that
@@ -388,7 +391,7 @@ cases where they do not.
 
 \begin{table}[ht]
 \begin{center}
-\caption{p-values for different parts of the experiment}\label{tab:pvaluesfull}
+\caption{$p$-values for different parts of the experiment}\label{tab:pvaluesfull}
 \begin{tabular}{cccccl}
   \hline
 ``TripleC'' & ``BGPComp'' & ``Lang'' & ``Union'' & ``Optional'' & $p$ \\ 
@@ -432,7 +435,7 @@ cases where they do not.
 
 
 For future larger experiments, one must investigate whether it is
-necessary to adjust the p-value due to the larger numbers of
+necessary to adjust the $p$-value due to the larger numbers of
 hypotheses tested.
 
 The main objective of this paper is not to establish that the
@@ -470,7 +473,7 @@ by sacrificing some explanatory power, in the form of fractional
 factorial experiments.
 
 We lose explanatory power due to \emph{aliasing}, for example, the
-``TripleC:BGPComp'' interaction may be aliased with the
+interaction labelled ``TripleC:BGPComp'' may be aliased with the
 ``Machine:Range'' interaction. That is to say, a detected increase in
 run time from larger Basic Graph Patterns for large databases, can
 also be explained by a less powerful machine that is worse at
@@ -557,7 +560,7 @@ Since the 64-run experiment has 3 inactive factors, ``Machine'',
 replicated twice. Using the same procedure as above, we find that
 again, the hypothesis test indicates that the new implementation is an
 improvement at $p = 5.9 \cdot 10^{-6}$. Again, the comparatively
-higher p-value is due to the lower number of runs. It is also possible
+higher $p$-value is due to the lower number of runs. It is also possible
 to perform the per-environmental factors test.
 
 
@@ -611,7 +614,7 @@ larger data sizes on slow hardware.
 
 Note that we do not take advantage of the usual performance of 4store
 in this simulation, to the contrary, we chose 4store because of its
-relative simplicity to modify it to suite our needs for illustrative
+relative simplicity to modify it to suit our needs for illustrative
 purposes, which consists of degrading it in several ways. The small
 data-sets used here do not imply that the approach will not work for
 large data-sets; properly configured, actual optimization will give
@@ -669,7 +672,7 @@ should not skew the results to invalidate the estimated effects.
 As the unexplained variance of the experiment may cloud important
 effects, notably effects that indicate flaws, it should be kept to a
 minimum. Thus, lurking variables should be turned into factors
-whenever possible, is they degrade the quality of the experiment, but
+whenever possible, as they degrade the quality of the experiment, but
 in many cases, we can live with them if their contribution to the
 variance is small.
 
