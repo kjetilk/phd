@@ -84,16 +84,16 @@ between implementation and hardware platform and possibly other
 parameters.
 
 One important aspect of science is the structured approach to falsify
-hypotheses, and thus is important that assertions about performance is
-formulated as hypotheses that can be falsified.
+hypotheses, and thus is important that assertions about performance
+are formulated as hypotheses that can be falsified.
 
 Thus, attacking the complexity problem by eliminating parameters we
 think influence the outcome for simplicity is untenable as scientific
 practice. We must instead tackle this problem by enhancing our
 capability of testing complex systems and to identify situations where
 our assumptions are flawed. Such constraints can only be made when we
-have very good reason to suspect that a certain parameter does not
-have any influence.
+have highly confident that a certain parameter does not have any
+influence.
 
 In this paper, we employ techniques from the well-established field in
 statistics known as Design of Experiments (DoE) to point out a
@@ -117,7 +117,7 @@ A literature survey has not revealed any direct prior art, however, the
 general approach has been well established, not only in statistics. A
 relatively well cited textbook is \cite{citeulike:5190414} but we have
 not found the parts discussed in the present paper to be widely
-adopted. Recently, a comprehensive text on experimental methods have
+adopted. Recently, a comprehensive text on experimental methods has
 been published in
 \cite{Springer-2010-Experimental-Methods-for-the-Analysis-of-Optimization-Algorithms}
 demonstrating the broad applicability of the methodology we employ.
@@ -138,6 +138,7 @@ application of DoE to be successful as a methodology.
 Finally, we acknowledge the efforts of the Linked Data Benchmark
 Council and the SEALS project. However, they appear to focus on
 industrial benchmarking rather than scientific evaluations.
+% TODO: skrive om til å snakke om use-case driven
 
 \section{Experiments}
 
@@ -148,7 +149,8 @@ change has been made, typically with the intention to enhance the
 performance of the system. There are two reasons for this: One is that
 there are currently many SPARQL implementations available, also Free
 Software ones that can be modified by anyone, and the other is to
-constrain the scope of the study to comparing two different things.
+constrain the scope of the study to comparing just two different
+things.
 
 \subsection{Setup}
 
@@ -203,7 +205,8 @@ query, which is then sent to a SPARQL endpoint. The SPARQL endpoint is
 itself set up using 4store (see \cite{harris20094store}) version
 1.1.5. The ``Machine'' factor specifies a hostname, whereas
 ``TripleC'' and ``Implement'' specifies a port number. On each host,
-four 4store instances runs independently on different ports.
+four 4store instances runs independently on different ports. 
+% TODO: process waiting.
 
 Finally, ``Implement'' is the implementation undergoing
 evaluation. Level 1 is running the new implementation, whereas Level 2
