@@ -301,7 +301,7 @@ performance.
 To proceed beyond a visual judgment of significance, we may use
 Lenth's method\cite{lenthmethod}, which is a simple method for
 estimating significance in an experiment with no replicates. In
-table~\ref{tab:effects}, the most important effects are listed.  In
+Table~\ref{tab:effects}, the most important effects are listed.  In
 Figure~\ref{fig:fullnormal}, Lenth's method is used to label the
 significant effects. We see that we have many very significant effects
 (unfortunately so many that some labels are illegible). We also note that
@@ -345,7 +345,7 @@ Implement & -21.27 \\
 To investigate whether the detrimental side-effects cancel the
 positive effect of our simulated optimization, we have to formulate a
 hypothesis test. By inspecting the normal plot in
-Figure~\ref{fig:fullnormal} and table~\ref{tab:effects}, we see that
+Figure~\ref{fig:fullnormal} and Table~\ref{tab:effects}, we see that
 six factors are highly significant by either being a significant main
 effect or participate in a highly significant interaction. We say that
 the two factors ``Range'' and ``Machine'' are \emph{inactive} since
@@ -385,7 +385,7 @@ $2^6$ experiment replicated 4 times. Now, for each of the 32 resulting
 combinations of the environmental factors for each level of
 ``Implement'', we extract 4 values. We may now run a t-test for each
 of the replications, as above. The results are tabulated in
-table~\ref{tab:pvaluesfull}. We see that there are significant
+Table~\ref{tab:pvaluesfull}. We see that there are significant
 improvements in most cases, one may want to further investigate the
 cases where they do not.
 
@@ -452,7 +452,7 @@ that require joins are strong. The strong ``BGPComp:Lang'' and
 needs to be searched for a language tag in one case. However, the
 positive ``Implement:TripleC'' interaction evades such explanations;
 in fact, it hints that our optimization may not work as well for
-larger databases. By carefully inspecting table~\ref{tab:pvaluesfull},
+larger databases. By carefully inspecting Table~\ref{tab:pvaluesfull},
 we see that whenever ``TripleC'' is at the low level, the
 new implementation is always best, only at the higher level, the old
 implementation may be better. This is a clear indication that the
@@ -636,7 +636,7 @@ attention must be paid to the choice of levels.
 We have argued that fixing certain parameters is untenable, but we
 have allowed ourselves to disregard caching and warm-up runs. We are
 aware that caching may be important in 4store, as a preliminary
-experiment gave the results in table~\ref{tab:cacheexp}. We see that the
+experiment gave the results in Table~\ref{tab:cacheexp}. We see that the
 response time was significantly lower when an OPTIONAL clause was
 added to the query. As this is not more restrictive query, the most
 likely explanation is that the result of the evaluation of the Basic
