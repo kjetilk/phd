@@ -182,14 +182,18 @@ Level 1 & Level 2 \\
 \end{tabular}
 
 The following factors tests the absence (at level 1) or presence (at
-level 2) of the following clauses: The ``Lang'' factor is this FILTER:
-\verbatiminput{experiment/Lang-2}
-and similarly,  ``Range'' is this FILTER:
-\verbatiminput{experiment/Range-2}
-``Union'' tests the following:
-\verbatiminput{experiment/Union-2}
-and ``Optional''
+level 2) of the following clauses:
+
+\begin{tabular}{p{0.40\textwidth}p{0.55\textwidth}}
+
+``Union'' & ``Lang'' \\
+\verbatiminput{experiment/Union-2} &
+\verbatiminput{experiment/Lang-2} \\
+
+``Range'' & ``Optional'' \\
+\verbatiminput{experiment/Range-2} & 
 \verbatiminput{experiment/Optional-2}
+\end{tabular}
 
 These fragments has been carefully designed for illustrative utility,
 as well as suitable selectivity. They are not themselves important,
