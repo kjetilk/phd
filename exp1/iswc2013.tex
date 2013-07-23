@@ -121,11 +121,15 @@ known as \emph{factors} in DoE. For each factor, one may make a
 measurement of a \emph{response variable} at certain
 \emph{levels}. For example, one may measure the response time of a
 SPARQL endpoint by measuring it when it contains 1 or 2 million
-triples. Then, the response time is the response variable, the factor
-is the number of triples and there are two levels, 1 or 2 million
-triples. We have chosen in this paper to only deal with the relatively
-straightforward aspects of the DoE formalism, and therefore constrain
-the experiment strictly to 2 levels.
+triples. Levels are not constrained to be continous variables, they
+can be discrete, or even two different instances of a class. The
+ordering is not essential, but it may contribute to how easy it is to
+understand the results, as we shall see. Then, the response time is
+the response variable, the factor is the number of triples and there
+are two levels, 1 or 2 million triples. We have chosen in this paper
+to only deal with the relatively straightforward aspects of the DoE
+formalism, and therefore constrain the experiment strictly to 2
+levels.
 
 In an experiment, there are several factors, and one may run the
 experiment by measuring the response variable for every combination of
@@ -167,7 +171,8 @@ range in the $y$-axis is dictated by the number of runs.
 
 \section{Related work}
 
-A literature survey has not revealed any direct prior art, however, the
+A literature survey has not revealed any direct prior art, neither in
+the Semantic Web field nor more generally in database research. However, the
 general approach has been well established, not only in statistics. A
 relatively well cited textbook is \cite{citeulike:5190414} but we have
 not found the parts discussed in the present paper to be widely
