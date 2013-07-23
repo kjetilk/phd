@@ -99,20 +99,19 @@ have any influence.
 In this paper, we employ techniques from the well-established field in
 statistics known as Design of Experiments (DoE) to point out a
 direction that promises to address these problems. First, we design a
-simple 8-parameter experiment, and then we demonstrate how a full
-factorial experiment can meaningfully provide a summary of the
-statistics.
+simple 8-parameter experiment, and then we detail an experiment that
+can meaningfully provide a summary of the statistics.
 
-Then, we demonstrate how a fractional factorial experiment can be used
-to maintain a structured approach to the problem while reducing the
-number of runs the experiment needs, and we discuss the trade-offs
-involved. We then continue to discuss techniques that show our
-simplistic experiment to be flawed, yet scientifically better than the
-practice of benchmarking. Finally, we outline a road-map to establish
-the use of these techniques in SPARQL endpoint evaluations both as a
-practical tool and as a scientifically more rigorous methodology.
+Then, we demonstrate how the number of runs required in the experiment
+can be reduced while maintaining a structured approach to the problem,
+and we discuss the trade-offs involved. We then continue to discuss
+techniques that show our simplistic experiment to be flawed, yet
+scientifically better than the practice of benchmarking. Finally, we
+outline a road-map to establish the use of these techniques in SPARQL
+endpoint evaluations both as a practical tool and as a scientifically
+more rigorous methodology.
 
-\subsection{Design of Experiments Concepts}
+\subsection{Key concepts of Design of Experiments}
 
 We expect DoE to be new to most readers, but some familiarity with
 hypothesis testing is assumed.
@@ -128,16 +127,43 @@ this paper to only deal with the relatively straightforward aspects of
 the DoE formalism, and therefore constrain the experiment strictly to
 2 levels.
 
+In an experiment, there are several factors, and one may run the
+experiment by measuring the response variable for every combination of
+levels. In a two-level experiment, this will result in $2^n$ runs,
+where $n$ is the number of factors. This is called a \emph{full
+  factorial experiment}. This is done in Section~\ref{sec:full}.
 
-% TODO: 
-% 1) what are effects
-%% 2) what are levels
-%% 3) what are factors 
-%% 4) Can run 2^8 experiments, call full factorial
-%% 5) What are normal plots
-%% 6) explain interaction effects
+In many fields of science, experimental economy is extremely
+important, and so, DoE offers extensive methodology to run a certain
+fraction of the runs at the price of explanatory power. Such
+experiments are called \emph{fractional factorial experiments} and is
+covered in Section~\ref{sec:frac}.
 
+After measurements are done, we seek to estimate \emph{effects}. To
+see how the \emph{main effects} can be estimated, consider a factor
+$A$. We proceed to find the averages $a_1$ and $a_2$ of all measurements at level~1 and
+on level~2 respectively. Then the main effect of $A$ is $a_2 - a_1$.
 
+Similarly, \emph{interaction effects} for 2 factors $AB$ are defined
+by comparing averages for equal versus non-equal levels of $A$ and
+$B$.
+
+This can be generalized to larger combinations of factors, but in
+practice, this analysis is done by fitting a linear model to the data
+with all factors and their interactions. It is shown in
+\cite{wu2009experiments} that the effect is twice the coefficients of
+the fit.
+
+The next step is to understand which factors are important or
+significant.  One approach is to plot the sorted effects against the
+normal distribution. To understand why, note that if there is nothing
+of interest, the measurements have a certain normal distribution
+purely due to noise. When plotted against a normal distribution, the
+plot would be a straight line. If there are any deviations from the
+straight line, it implies that they may be significant. Such plots can
+be found in
+figures~\ref{fig:fullnormal},~\ref{fig:frac32normal}~and~\ref{fig:frac64normal}. The
+range in the $y$-axis is dictated by the number of runs.
 
 \section{Related work}
 
@@ -303,10 +329,7 @@ data to compute a mean with reasonable certainty.
 The above experimental setup is executed across a design matrix
 generated with the DoE.base package, which returns a data frame
 consisting of the factors with a column containing the corresponding
-curl measurements. To analyze the experiment, we start by fitting a
-linear model to the data with all factors and their interactions. It
-is shown in \cite{wu2009experiments} that the effect, i.e. the change
-from level 1 to 2 is twice the coefficients of the fit. Then, we
+curl measurements. Then, we
 generate a normal plot, see Figure~\ref{fig:fullnormal}. In this plot,
 if the null hypothesis $H_0$ holds, all estimated effects will fall on
 a straight line, as their means would be zero. Any significant
