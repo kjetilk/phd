@@ -179,25 +179,32 @@ SSD on SATA-III.
 Then, we test some language features: ``BGPComp'', which is a Basic
 Graph Pattern of varying complexity. 
 
-\begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
-Level 1 & Level 2 \\ 
-\verbatiminput{experiment/BGPComp-1} & \verbatiminput{experiment/BGPComp-2} \\
-\end{tabular}
+  \begin{center}\small
+    \begin{tabular}{|@{~~}p{0.40\textwidth}|@{~~}p{0.53\textwidth}|}
+      \hline
+      \textbf{Level 1} & \textbf{Level 2} \\[-2ex] 
+      \verbatiminput{experiment/BGPComp-1}
+      & \verbatiminput{experiment/BGPComp-2}\\
+      \hline
+    \end{tabular}
+  \end{center}
 
 The following factors test the absence (at level 1) or presence (at
 level 2) of the following clauses:
 
-\begin{tabular}{p{0.40\textwidth}p{0.55\textwidth}}
-
-``Union'' & ``Lang'' \\
-\verbatiminput{experiment/Union-2} &
-\verbatiminput{experiment/Lang-2} \\
-
-``Range'' & ``Optional'' \\
-\verbatiminput{experiment/Range-2} & 
-\verbatiminput{experiment/Optional-2}
-\end{tabular}
-
+\begin{center}\small
+  \begin{tabular}{|@{~~}p{0.40\textwidth}|@{~~}p{0.53\textwidth}|}
+    \hline
+    \textbf{``Union''} & \textbf{``Lang''} \\[-2ex]
+    \verbatiminput{experiment/Union-2} &
+    \verbatiminput{experiment/Lang-2} \\
+    \hline
+    \textbf{``Range''} & \textbf{``Optional''} \\[-2ex]
+    \verbatiminput{experiment/Range-2} & 
+    \verbatiminput{experiment/Optional-2}\\
+    \hline
+  \end{tabular}
+\end{center}
 These fragments has been carefully designed for illustrative utility,
 as well as suitable selectivity. They are not themselves important,
 they only serve to illustrate certain examples of possible
