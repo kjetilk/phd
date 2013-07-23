@@ -112,6 +112,33 @@ practice of benchmarking. Finally, we outline a road-map to establish
 the use of these techniques in SPARQL endpoint evaluations both as a
 practical tool and as a scientifically more rigorous methodology.
 
+\subsection{Design of Experiments Concepts}
+
+We expect DoE to be new to most readers, but some familiarity with
+hypothesis testing is assumed.
+
+First, note that the concept of parameters as considered above is
+known as \emph{factors} in DoE. For each factor, one may make a
+measurement of a \emph{response variable} at certain \emph{levels},
+e.g. one may measure the response time of a SPARQL endpoint by
+measuring it when it contains 1 or 2 million triples. Then, the
+response time is the response variable, the factor is the number of
+triples and there are two levels, 1 or 2 million triples. We have chosen in
+this paper to only deal with the relatively straightforward aspects of
+the DoE formalism, and therefore constrain the experiment strictly to
+2 levels.
+
+
+% TODO: 
+% 1) what are effects
+%% 2) what are levels
+%% 3) what are factors 
+%% 4) Can run 2^8 experiments, call full factorial
+%% 5) What are normal plots
+%% 6) explain interaction effects
+
+
+
 \section{Related work}
 
 A literature survey has not revealed any direct prior art, however, the
@@ -163,11 +190,6 @@ only consider the smallest of their data-sets (that we found to be
 more than 15 MTriples). Moreover, we have taken subsets of that
 data-set by using the last 1 or 2 MTriples from their file.
 
-First, note that the concept of parameters as considered in the
-introduction is known as \emph{factors} in DoE. For each factor, we
-have chosen in this paper to only deal with the relatively
-straightforward aspects of the DoE formalism, and therefore constrain
-the experiment strictly to 2 levels.
 
 We have chosen 8 factors each having 2 levels, ``TripleC'' the number
 of triples in the data-set, 1 or 2 MTriples, ``Machine'', which is the
