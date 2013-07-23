@@ -265,12 +265,7 @@ they only serve to illustrate certain examples of possible
 factors. When the experiment is run, they are combined to yield a
 query, which is then sent to a SPARQL endpoint. The SPARQL endpoint is
 itself set up using 4store (see \cite{harris20094store}) version
-1.1.5. The ``Machine'' factor specifies a hostname, whereas
-``TripleC'' and ``Implement'' specifies a port number. On each host,
-four 4store instances runs sequentially and independently on different
-ports, where processes that are not actively answering a query are
-idle.
-
+1.1.5. 
 
 Finally, ``Implement'' is the implementation undergoing
 evaluation. Level 1 is running the new implementation, whereas Level 2
@@ -299,8 +294,14 @@ software environment for statistical computing and graphics. Necessary
 tools for DoE has been implemented by the R community in packages
 called DoE.base\cite{doebase} and FrF2\cite{frf2}. The experiments are
 run on a third computer in a 1 gigabit Ethernet LAN with the two
-experiment hosts.  As response variable, we have chosen to use the
-time from the namespace server lookup finishes to the data has been
+experiment hosts. On the experiment hosts, four 4store instances runs
+sequentially and independently on different ports, where processes
+that are not actively answering a query are idle. Practically, the
+``Machine'' factor specifies a hostname, whereas ``TripleC'' and
+``Implement'' specifies a port number. On each host,
+
+As response variable, we have chosen to use the time from the
+namespace server lookup finishes to the data has been
 transferred. This choice is somewhat arbitrary, many other response
 variables could be chosen, and indeed, future work should explore
 multi-variable responses, but for simplicity, we think this reflects
