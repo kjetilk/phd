@@ -118,14 +118,14 @@ hypothesis testing is assumed.
 
 First, note that the concept of parameters as considered above is
 known as \emph{factors} in DoE. For each factor, one may make a
-measurement of a \emph{response variable} at certain \emph{levels},
-e.g. one may measure the response time of a SPARQL endpoint by
-measuring it when it contains 1 or 2 million triples. Then, the
-response time is the response variable, the factor is the number of
-triples and there are two levels, 1 or 2 million triples. We have chosen in
-this paper to only deal with the relatively straightforward aspects of
-the DoE formalism, and therefore constrain the experiment strictly to
-2 levels.
+measurement of a \emph{response variable} at certain
+\emph{levels}. For example, one may measure the response time of a
+SPARQL endpoint by measuring it when it contains 1 or 2 million
+triples. Then, the response time is the response variable, the factor
+is the number of triples and there are two levels, 1 or 2 million
+triples. We have chosen in this paper to only deal with the relatively
+straightforward aspects of the DoE formalism, and therefore constrain
+the experiment strictly to 2 levels.
 
 In an experiment, there are several factors, and one may run the
 experiment by measuring the response variable for every combination of
@@ -162,7 +162,7 @@ purely due to noise. When plotted against a normal distribution, the
 plot would be a straight line. If there are any deviations from the
 straight line, it implies that they may be significant. Such plots can
 be found in
-figures~\ref{fig:fullnormal},~\ref{fig:frac32normal}~and~\ref{fig:frac64normal}. The
+figures~\ref{fig:fullnormal},~\ref{fig:frac32normal},~\ref{fig:frac64normal}~and~\ref{fig:frac64hugenormal}. The
 range in the $y$-axis is dictated by the number of runs.
 
 \section{Related work}
@@ -317,24 +317,22 @@ have been published on Github: \url{https://github.com/kjetilk/doe-sparql}.
 
 In the full factorial experiment, all combinations of the 8 factors
 are executed, in total 256 runs. This is called a $2^8$ factorial
-experiment, and we can see that the number of runs grows exponentially
-with the number of factors, thus making large experiments
-prohibitively expensive. We shall nevertheless find the following
-small example instructive. Note that each combination is executed only
-once (i.e. it is \emph{unreplicated}), however, so even a full
-factorial experiment compares well to a typical benchmark in which
-each microbenchmark must be executed several times to obtain enough
-data to compute a mean with reasonable certainty.
+experiment, and while it quickly becomes infeasible for many factors,
+we shall nevertheless find the following small example
+instructive. Note that each combination is executed only once (i.e. it
+is \emph{unreplicated}), however, so even a full factorial experiment
+compares well to a typical benchmark in which each microbenchmark must
+be executed several times to obtain enough data to compute a mean with
+reasonable certainty.
 
 The above experimental setup is executed across a design matrix
 generated with the DoE.base package, which returns a data frame
 consisting of the factors with a column containing the corresponding
-curl measurements. Then, we
-generate a normal plot, see Figure~\ref{fig:fullnormal}. In this plot,
-if the null hypothesis $H_0$ holds, all estimated effects will fall on
-a straight line, as their means would be zero. Any significant
-departure from a straight line can be interpreted as a significant
-effect (see Section~4.8 of \cite{wu2009experiments} for a detailed
+curl measurements. With that, we do as described in the introduction
+and fit a linear model with all factors. Then, we generate a normal
+plot, see Figure~\ref{fig:fullnormal}.  Any significant departure from
+a straight line can be interpreted as a significant effect (see
+Section~4.8 of \cite{wu2009experiments} for a detailed
 explanation). In our case, it is most important to note that any
 effect that is negative means the effect enhances the performance of
 the SPARQL endpoint, the runtime decreases. If ``Implement'' and its
