@@ -4,6 +4,7 @@
 \usepackage{cite}
 \usepackage{verbatim}
 \usepackage{graphicx}
+\usepackage{wrapfig}
 
 \title{Introducing Statistical Design of Experiments to SPARQL
   Endpoint Evaluation}
@@ -297,8 +298,9 @@ with its interactions are on their high level, then it supports the
 alternative hypothesis, i.e. we have successfully improved the
 performance.
 
-\begin{figure}[h!]
-  \includegraphics[width=\textwidth]{fullnormal.pdf}
+\begin{figure}[t]
+  \centerline{%
+  \includegraphics[width=.9\textwidth]{fullnormal.pdf}}
   \caption{A normal plot of the Full Factorial Experiment. The
     labelled points are considered significant by using the Lenth
     criterion at a level $\alpha=0.05$.}\label{fig:fullnormal}
@@ -320,16 +322,16 @@ simulated.
 % latex table generated in R 2.15.1 by xtable 1.5-6 package
 % Fri May 10 16:31:49 2013
 % Modified by hand to remove 1's
-\begin{table}[hb]
-\begin{center}
+\begin{wraptable}{l}{0.5\textwidth}
 \caption{The magnitude of effects for some important main effects and interactions.}\label{tab:effects}
+\medskip
 \begin{tabular}{rr}
   \hline
 Factors & Effect  \\ 
   \hline
-Implement & -21.27 \\ 
-  Implement:Optional & -11.49 \\ 
-  Implement:Union & -6.21 \\ 
+Implement & $-$21.27 \\ 
+  Implement:Optional & $-$11.49 \\ 
+  Implement:Union & $-$6.21 \\ 
   Implement:TripleC:Lang1 & 4.12 \\ 
   TripleC:Lang & 4.20 \\ 
   Implement:TripleC & 4.32 \\ 
@@ -345,9 +347,7 @@ Implement & -21.27 \\
   Union & 17.18 \\ 
    \hline
 \end{tabular}
-\end{center}
-\end{table}
-
+\end{wraptable}
 
 To investigate whether the detrimental side-effects cancel the
 positive effect of our simulated optimization, we have to formulate a
@@ -396,7 +396,7 @@ Table~\ref{tab:pvaluesfull}. We see that there are significant
 improvements in most cases, one may want to further investigate the
 cases where they do not.
 
-\begin{table}[ht]
+\begin{table}[h!]
 \begin{center}
 \caption{$p$-values for different parts of the experiment}\label{tab:pvaluesfull}
 \begin{tabular}{cccccl}
@@ -519,11 +519,13 @@ generators are\\
 \\for the 32 and 64 run experiments respectively.
 
 \begin{figure}[h!]
-  \includegraphics[width=\textwidth]{frac32normal.pdf}
+  \centerline{%
+    \includegraphics[width=.9\textwidth]{frac32normal.pdf}}
   \caption{A normal plot of the Fractional Factorial Experiment with
     32 runs. The labelled points are considered significant by using
     the Lenth criterion at a level
-    $\alpha=0.05$.}\label{fig:frac32normal}
+    $\alpha=0.05$.}
+  \label{fig:frac32normal}
 \end{figure}
 
 
@@ -553,8 +555,9 @@ the full factorial design. The ``Implement:TripleC'' interaction
 emerges only for a level $\alpha=0.15$. To ensure that we discover
 such cases will be a key challenge in further studies.
 
-\begin{figure}[ht]
-  \includegraphics[width=\textwidth]{frac64normal.pdf}
+\begin{figure}[h!]
+  \centerline{%
+    \includegraphics[width=0.9\textwidth]{frac64normal.pdf}}
   \caption{A normal plot of the Fractional Factorial Experiment with
     64 runs. The labelled points are considered significant by using
     the Lenth criterion. Triangles correspond to a level $\alpha=0.15$
@@ -588,7 +591,8 @@ that the query engine applies the filter to, and thereby completely
 dominates the execution time.
 
 \begin{figure}[h!]
-  \includegraphics[width=\textwidth]{frac64hugenormal.pdf}
+  \centerline{%
+  \includegraphics[width=.9\textwidth]{frac64hugenormal.pdf}}
   \caption{A normal plot of the Fractional Factorial Experiment with
     64 runs where the level 2 of ``TripleC'' is 15 MTriples. The
     labelled points are considered significant by using the Lenth
