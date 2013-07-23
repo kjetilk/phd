@@ -698,26 +698,12 @@ attention must be paid to the choice of levels.
 We have argued that fixing certain parameters is untenable, but we
 have allowed ourselves to disregard caching and warm-up runs. We are
 aware that caching may be important in 4store, as a preliminary
-experiment gave the results in Table~\ref{tab:cacheexp}. We see that the
-response time was significantly lower when an OPTIONAL clause was
-added to the query. As this is not more restrictive query, the most
-likely explanation is that the result of the evaluation of the Basic
-Graph Pattern was cached, so only the OPTIONAL left join was necessary
-to add in the second query.
-
-\begin{table}[ht]
-\begin{center}
-\caption{Two experiments with and without OPTIONAL clause.}\label{tab:cacheexp}
-\begin{tabular}{ccccccccr}
-  \hline
-``Implement'' & ``TripleC'' & ``Machine'' & ``BGPComp'' & ``Lang'' & ``Range'' & ``Union'' & ``Optional'' & Time \\
- \hline
-1   &    1  &     1  &     2 &   1 &    1   &  1  & 1 &  53.918049 \\
-1   &    1  &     1  &     2 &   1 &    1   &  1  & 2 &   1.252312 \\
-   \hline
-\end{tabular}
-\end{center}
-\end{table}
+experiment gave a response time of 53.9~s of a query with ``BGPComp''
+at level~2 but other factors at level~1. When an OPTIONAL clause was
+added, the response time dropped to 1.25~s. As this is not more
+restrictive query, the most likely explanation is that the result of
+the evaluation of the Basic Graph Pattern was cached, so only the
+OPTIONAL left join was necessary to add in the second query.
 
 We did this to illustrate \emph{randomization} as this is what that
 makes it permissible, i.e. the order of execution is random, so the
