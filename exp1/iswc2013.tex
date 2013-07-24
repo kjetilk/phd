@@ -144,20 +144,17 @@ fraction of the runs at the price of explanatory power. Such
 experiments are called \emph{fractional factorial experiments} and is
 covered in Section~\ref{sec:frac}.
 
-After measurements are done, we seek to estimate \emph{effects}. To
-see how the \emph{main effects} can be estimated, consider a factor
-$A$. We proceed to find the averages $a_1$ and $a_2$ of all measurements at level~1 and
-on level~2 respectively. Then the main effect of $A$ is $a_2 - a_1$.
+We describe the influence of the choice of levels on the response in
+terms of \emph{effects}.  For a factor $A$ with two levels, we let
+$a_1$ and $a_2$ be the average response of all $2^{n-1}$ measurements
+with $A$ at level 1, and 2, respectively.  The main effect of $A$ is
+then defined as $a_2 - a_1$.
 
 Similarly, \emph{interaction effects} for 2 factors $AB$ are defined
 by comparing averages for equal versus non-equal levels of $A$ and
-$B$.
-
-This can be generalized to larger combinations of factors, but in
-practice, this analysis is done by fitting a linear model to the data
-with all factors and their interactions. It is shown in
-\cite{wu2009experiments} that the effect is twice the coefficients of
-the fit.
+$B$.  Details of this theory, and how to compute the effects in
+practice, using linear regression, are found in
+\cite{wu2009experiments}.
 
 The next step is to understand which factors are important or
 significant.  One approach is to plot the sorted effects against the
@@ -167,7 +164,7 @@ purely due to noise. When plotted against a normal distribution, the
 plot would be a straight line. If there are any deviations from the
 straight line, it implies that they may be significant. Such plots can
 be found in
-figures~\ref{fig:fullnormal},~\ref{fig:frac32normal},~\ref{fig:frac64normal}~and~\ref{fig:frac64hugenormal}. The
+Figs.~\ref{fig:fullnormal} to~\ref{fig:frac64hugenormal}. The
 range in the $y$-axis is dictated by the number of runs.
 
 \section{Related work}
@@ -300,7 +297,7 @@ experiment hosts. On the experiment hosts, four 4store instances runs
 sequentially and independently on different ports, where processes
 that are not actively answering a query are idle. Practically, the
 ``Machine'' factor specifies a hostname, whereas ``TripleC'' and
-``Implement'' specifies a port number. On each host,
+``Implement'' specifies a port number.
 
 As response variable, we have chosen to use the time from the
 namespace server lookup finishes to the data has been
