@@ -116,20 +116,22 @@ more rigorous methodology.
 We expect DoE to be new to most readers, but some familiarity with
 hypothesis testing is assumed.
 
-First, note that the concept of parameters as considered above is
-known as \emph{factors} in DoE. For each factor, one may make a
-measurement of a \emph{response variable} at certain
-\emph{levels}. For example, one may measure the response time of a
-SPARQL endpoint by measuring it when it contains 1 or 2 million
-triples. Levels are not constrained to be continous variables, they
-can be discrete, or even two different instances of a class. The
-ordering is not essential, but it may contribute to how easy it is to
-understand the results, as we shall see. Then, the response time is
-the response variable, the factor is the number of triples and there
-are two levels, 1 or 2 million triples. We have chosen in this paper
-to only deal with the relatively straightforward aspects of the DoE
-formalism, and therefore constrain the experiment strictly to 2
-levels.
+In the experiments DoE is concerned with, a \emph{response variable}
+is measured under a various combinations of parameters.  These
+parameters are known as \emph{factors}.  For each factor, a range of
+possible values is fixed.  These values are known as \emph{levels} for
+this factor.  Levels are not constrained to be continuous variables, they
+can be discrete, or even two different instances of a class.
+Experiments are run by choosing a combination of levels
+for the factors.
+
+For example, one may measure the execution time of a SPARQL endpoint
+by measuring it when it contains 1 or 2 million triples.  Then, the
+execution time is the response variable, the factor is the number of
+triples and it has two levels, 1 or 2 million triples. We have chosen
+in this paper to only deal with the relatively straightforward aspects
+of the DoE formalism, and therefore constrain the experiment strictly
+to two levels.
 
 In an experiment, there are several factors, and one may run the
 experiment by measuring the response variable for every combination of
@@ -150,7 +152,7 @@ $a_1$ and $a_2$ be the average response of all $2^{n-1}$ measurements
 with $A$ at level 1, and 2, respectively.  The main effect of $A$ is
 then defined as $a_2 - a_1$.
 
-Similarly, \emph{interaction effects} for 2 factors $AB$ are defined
+Similarly, \emph{interaction effects} for two factors $AB$ are defined
 by comparing averages for equal versus non-equal levels of $A$ and
 $B$.  Details of this theory, and how to compute the effects in
 practice, using linear regression, are found in
