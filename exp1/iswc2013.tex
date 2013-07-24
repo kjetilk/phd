@@ -367,12 +367,42 @@ significant effects. We see that we have many very significant effects
 from our setup, where ``Lang'' was the detrimental side-effect we
 simulated.
 
+
+To investigate whether the detrimental side-effects cancel the
+positive effect of our simulated optimization, we have to formulate a
+hypothesis test. By inspecting the normal plot in
+Figure~\ref{fig:fullnormal} and Table~\ref{tab:effects}, we see that
+six factors are highly significant by either being a significant main
+effect or participate in a highly significant interaction. We say that
+the two factors ``Range'' and ``Machine'' are \emph{inactive} since
+they do not contribute significantly to the observed variation in
+performance. ``Machine'' is marginally significant, but the effect is
+so little, it will be of greater use for us in the following procedure. In
+practical situations, the five factors ``BGPComp'', ``Lang'',
+``Optional'', ``Union'' and ``TripleC'' can be regarded as given,
+i.e. we cannot change the size of the data-set without loss of
+information, or change the query, since it gives a different
+answer. In practice, we can only control ``Implement'', i.e. we can
+only change the implementation. In this context, we call ``Implement''
+a \emph{control} factor and the other five active factors
+\emph{environmental}.
+
+
+We would like an overall test to see whether the new implementation is
+better than the old, and the presence of inactive factors makes it
+possible to average the performance of the new and the old
+implementations into two distinct vectors. We do this by creating an
+average over all the 32 level-combinations of the five active
+environmental factors. This leaves us with 4 values for each of the
+two levels of ``Implement'' and a two-sample t-test can be
+performed. Effectively, we treat our experiment as a $2^6$ experiment
+replicated 4 times.
 % latex table generated in R 2.15.1 by xtable 1.5-6 package
 % Fri May 10 16:31:49 2013
 % Modified by hand to remove 1's
-\begin{wraptable}{l}{0.5\textwidth}
+\begin{wraptable}{l}{0.48\textwidth}
 \caption{The magnitude of effects for some important main effects and interactions.}\label{tab:effects}
-\medskip
+\bigskip\bigskip
 \begin{tabular}{rr}
   \hline
 Factors & Effect  \\ 
@@ -396,35 +426,6 @@ Implement & $-$21.27 \\
    \hline
 \end{tabular}
 \end{wraptable}
-
-To investigate whether the detrimental side-effects cancel the
-positive effect of our simulated optimization, we have to formulate a
-hypothesis test. By inspecting the normal plot in
-Figure~\ref{fig:fullnormal} and Table~\ref{tab:effects}, we see that
-six factors are highly significant by either being a significant main
-effect or participate in a highly significant interaction. We say that
-the two factors ``Range'' and ``Machine'' are \emph{inactive} since
-they do not contribute significantly to the observed variation in
-performance. ``Machine'' is marginally significant, but the effect is
-so little, it will be of greater use for us in the following procedure. In
-practical situations, the five factors ``BGPComp'', ``Lang'',
-``Optional'', ``Union'' and ``TripleC'' can be regarded as given,
-i.e. we cannot change the size of the data-set without loss of
-information, or change the query, since it gives a different
-answer. In practice, we can only control ``Implement'', i.e. we can
-only change the implementation. In this context, we call ``Implement''
-a \emph{control} factor and the other five active factors
-\emph{environmental}.
-
-We would like an overall test to see whether the new implementation is
-better than the old, and the presence of inactive factors makes it
-possible to average the performance of the new and the old
-implementations into two distinct vectors. We do this by creating an
-average over all the 32 level-combinations of the five active
-environmental factors. This leaves us with 4 values for each of the
-two levels of ``Implement'' and a two-sample t-test can be
-performed. Effectively, we treat our experiment as a $2^6$ experiment
-replicated 4 times.
 
 We perform the test as a one-sided hypothesis test where $H_0$ is that
 the mean of the vectors are equal and $H_1$ is that mean of the
