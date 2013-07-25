@@ -227,7 +227,7 @@ of triples in the data-set, 1 or 2 MTriples, ``Machine'', which is the
 software and hardware platform, one larger with slower
 disks\footnote{Running GNU/Linux Debian Squeeze, has 16 GB RAM, an
   Intel Core2 Duo E8500 CPU and two Parallel-ATA disks in a RAID-1
-  configuration} and one smaller with faster disk\footnote{Running
+  configuration} and one smaller with a faster disk\footnote{Running
   Debian Wheezy, has 8 GB RAM, an Intel Core i7-3520M CPU and a single
   SSD on SATA-III}.
 
@@ -286,7 +286,7 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }\end{verbatim}
 \\    \hline
   \end{tabular}
 \end{center}
-These fragments has been carefully designed for illustrative utility,
+These fragments have been carefully designed for illustrative utility,
 as well as suitable selectivity. They are not themselves important,
 they only serve to illustrate certain examples of possible
 factors. When the experiment is run, they are combined to yield a
@@ -390,7 +390,7 @@ Table~\ref{tab:effects}, the most important effects are listed.  In
 Figure~\ref{fig:fullnormal}, Lenth's method is used to label the
 significant effects. We see that we have many very significant effects
 (unfortunately so many that some labels are illegible). We also note that
-``Implement'' itself is significantly negative. We also note that the
+``Implement'' itself is significantly negative and that the
 ``Implement:Lang'' interaction is significantly positive, as expected
 from our setup, where ``Lang'' was the detrimental side-effect we
 simulated.
@@ -524,8 +524,8 @@ hypotheses tested.
 
 The main objective of this paper is not to establish that the
 optimization is significant, it is merely a simulation. It is to
-establish a critical practice of evaluations. It is of critical
-importance that we understand why some effects are significant. That
+establish a critical practice of evaluations. We must therefore
+understand why some effects are significant. That
 ``Implement'' is significant is hardly a surprise, that is what we
 worked for. That the main effects ``Union'', ``Optional'' and ``Lang''
 are strong is also due to that these are fairly demanding things to
@@ -556,7 +556,7 @@ scale. However, we may reduce the size of the experiment significantly
 by sacrificing some explanatory power, in the form of fractional
 factorial experiments.
 
-We lose explanatory power due to \emph{aliasing}, for example, the
+We lose explanatory power due to \emph{aliasing}; for example, the
 interaction labelled ``TripleC:BGPComp'' may be aliased with the
 ``Machine:Range'' interaction. That is to say, a detected increase in
 run time from larger Basic Graph Patterns for large databases, can
