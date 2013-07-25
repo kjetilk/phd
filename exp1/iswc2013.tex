@@ -238,9 +238,22 @@ Graph Pattern of varying complexity.
     \begin{tabular}{|@{~~}p{0.40\textwidth}|@{~~}p{0.53\textwidth}|}
       \hline
       \textbf{Level 1} & \textbf{Level 2} \\[-2ex] 
-      \verbatiminput{experiment/BGPComp-1}
-      & \verbatiminput{experiment/BGPComp-2}\\
-      \hline
+      \begin{verbatim}
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+      \end{verbatim}
+      & 
+      \begin{verbatim}
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+?s foaf:page ?o2 ;
+   dbpprop:subdivisionName ?o3 .
+?o3 skos:subject ?o4 ;
+   dbpprop:seat ?o5 ;
+   a ?c1 .\end{verbatim} 
+\\      \hline
     \end{tabular}
   \end{center}
 
@@ -251,13 +264,26 @@ level 2) of the following clauses:
   \begin{tabular}{|@{~~}p{0.40\textwidth}|@{~~}p{0.53\textwidth}|}
     \hline
     \textbf{``Union''} & \textbf{``Lang''} \\[-2ex]
-    \verbatiminput{experiment/Union-2} &
-    \verbatiminput{experiment/Lang-2} \\
-    \hline
+    \begin{verbatim}
+{
+  ?o1 dbpprop:longd ?long ;
+      dbpprop:latd  ?lat .
+} UNION {
+  ?o1 geo:long ?long ;
+      geo:lat ?lat .
+}\end{verbatim} 
+&
+\begin{verbatim}
+FILTER langMatches( lang(?l1), "fr" ) 
+\end{verbatim} 
+\\    \hline
     \textbf{``Range''} & \textbf{``Optional''} \\[-2ex]
-    \verbatiminput{experiment/Range-2} & 
-    \verbatiminput{experiment/Optional-2}\\
-    \hline
+    \begin{verbatim}
+FILTER (?l2 > 800000)\end{verbatim} 
+ & 
+    \begin{verbatim}
+OPTIONAL { ?o1 foaf:homepage ?o6 . }\end{verbatim} 
+\\    \hline
   \end{tabular}
 \end{center}
 These fragments has been carefully designed for illustrative utility,
