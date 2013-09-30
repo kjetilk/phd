@@ -1,0 +1,63 @@
+%\documentclass[english,aspectratio=169]]{ifislide}
+\documentclass[english,print,aspectratio=169]{ifislide}
+%\documentclass[english,handout,aspectratio=169]{ifislide}
+
+\usepackage[utf8]{inputenc}
+% Packages used specific for this lecture:
+\usepackage{tikz}
+%\usepackage{bussproofs}
+%\usepackage{textpos}
+
+\EnableBpAbbreviations
+
+
+
+\usetikzlibrary{arrows,shapes,mindmap}
+\usetikzlibrary{decorations.pathmorphing}
+\tikzstyle{resource}=[ellipse,draw=black!40,fill=blue!20,thick, font=\ttfamily]
+\tikzstyle{blank}=[ellipse,draw=black!40,fill=white!40,thick, font=\ttfamily]
+\tikzstyle{literal}=[rectangle,text centered,draw=black!40,fill=black!20,thick]
+\tikzstyle{predicate}=[sloped,above,text centered,midway,font={\scriptsize\ttfamily}]
+\tikzstyle{predicateb}=[left,midway,font={\scriptsize\ttfamily}]
+\tikzstyle{class}=[rectangle,text centered,draw=black!40,fill=white,thick]
+\usetikzlibrary{arrows,automata}
+
+
+\newcommand{\typed}{\char`\^\char`\^}
+\newcommand{\blank}{\char`\_}
+
+\newcommand{\tuple}[1]{\left<#1\right>}
+\newcommand{\inter}{\mathcal{I}}
+\newcommand{\domain}{\mathop{\mathsf{dom}}}
+\newcommand{\range}{\mathop{\mathsf{rg}}}
+
+% set lecture number, date, title:
+%\LectureNumber{13}
+\LectureDate{23.10.2013}
+\LectureTitle{Introducing Statistical Design of Experiments to SPARQL Endpoint Evaluation}
+% set name of lecturer:
+\author{Kjetil Kjernsmo}
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\IfiTitleSlide     % inserts title frame
+
+\IfiTOCSlide       % inserts today's plan frame
+
+
+\section{Introduction} 
+
+\begin{frame}{Experimental tradition}
+
+Teh Tycho
+
+\end{frame}
+
+\end{document}
