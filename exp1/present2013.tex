@@ -66,12 +66,105 @@ Teh Tycho
   made}
 
 \begin{frame}{Problems with benchmarking}
+
+\begin{itemize}
+\item Large number of parameters to test for complex scenarios.
+\item No structured approach to investigate flaws.
+\item No meaningful summary of the overall performance.
+\item Standardized benchmarks cannot test assertions outside of the
+  standard.
+\item Attempting to neutralize the effect of certain optimization
+  techniques oversimplifies the test.
+\end{itemize}
 \end{frame}
 \note{If you standardize hardware, you can't test claims about
   improved hardware. You'd need interactions too}
 \note{Cache-buster is evil}
 
 \begin{frame}{Design of Experiments}
+
+  \begin{itemize}
+  \item Pioneered by Fischer in the 1930-ties.
+  \item Well-established in many fields of engineering, agriculture,
+    medicine.
+  \item Well-suited to manage very complex experiments.
+  \item Requires parameterization of experiments.
+  \end{itemize}
+\end{frame}
+\note{How many is familiar with DoE?}
+
+\subsection{Key Concepts Design of Experiments}
+
+\begin{frame}{Response variable}
+
+% TODO Format well
+   A \emph{response variable} is measured under various
+    combinations of parameters.
+
+For example:
+\begin{itemize}
+\item Throughput
+\item Query execution time
+\item Response time
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Factor}
+
+Such parameters are called \emph{factor}s. 
+
+For example:
+\begin{itemize}
+\item Hardware platform
+\item Data heterogeneity
+\item Number of triples in the store
+\item Absence or presence of certain language features
+\item Order of experiments
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Levels}
+
+For each factor, a range of possible values are fixed. These values
+are called \emph{levels}.
+
+For example:
+\begin{itemize}
+\item For number of triples, the levels could be 1 or 2 MTriples.
+\item For language features, the levels could be absence or presence
+  of an \texttt{OPTIONAL} pattern. 
+\end{itemize}
+
+Levels may be continuous, discrete, two different instances of a
+class, etc.
+
+\end{frame}
+
+\begin{frame}{Design Matrix}
+% latex table generated in R 2.15.1 by xtable 1.5-6 package
+% Fri Oct  4 22:47:01 2013
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{r|rrrrrrrr}
+  \hline
+ & ``Implement'' & ``TripleC'' & ``Machine'' & ``BGPComp'' & ``Lang'' & ``Range'' & ``Union'' & ``Optional'' \\ 
+  \hline
+1 & 2 & 2 & 1 & 2 & 1 & 2 & 2 & 2 \\ 
+  2 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+  3 & 1 & 2 & 1 & 2 & 2 & 2 & 1 & 2 \\ 
+  4 & 1 & 1 & 2 & 1 & 2 & 2 & 1 & 1 \\ 
+  5 & 1 & 1 & 1 & 2 & 1 & 2 & 2 & 2 \\ 
+  6 & 1 & 2 & 1 & 2 & 2 & 1 & 1 & 1 \\ 
+  7 & 1 & 1 & 2 & 2 & 1 & 2 & 2 & 1 \\ 
+  8 & 2 & 1 & 2 & 2 & 2 & 2 & 1 & 2 \\ 
+ ...  \\
+  256 & 1 & 1 & 2 & 2 & 1 & 1 & 1 & 1 \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
 \end{frame}
 
 
