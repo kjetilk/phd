@@ -53,11 +53,25 @@
 
 \section{Introduction} 
 
+\begin{frame}{Objective}
+
+To introduce a path to critical practice of evaluations, that makes
+use of contemporary statistical techniques, to establish a practice
+that can be used to refute assertions on performance.
+
+The focus is didactical, and the experiment we present is a toy
+example.
+
+\end{frame}
+
+
 \begin{frame}{Experimental tradition}
 
 Teh Tycho
 
 \end{frame}
+
+
 
 \begin{frame}{What's a benchmark?}
 \end{frame}
@@ -224,6 +238,57 @@ In practice, Quite Easily Done using linear regression.
   better on CONSTRUCT queries, on small datasets}
 \note{We still need to understand which effects are important and
   significant, we do that in the discussion of our experiment]
+
+
+% SECTION
+
+\section{Experiments}
+
+\begin{frame}{Constraints on scope of experiment}
+
+Above all: Easy to understand for newcomers to DoE!
+
+\begin{itemize}
+\item Just 2 levels.
+\item Handful of illustrative factors.
+\item Analysis that illustrates key concepts.
+\item Straightforward to program and reproduce.
+\item No actual optimization under study.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Choices to meet these constraints}
+
+  \begin{itemize}
+  \item Response variable: Time from DNS lookup finishes to endpoint
+    has delivered a full response, measured by \texttt{curl}.
+  \item We don't compare different implementions, we compare the
+    performance before and after some change.
+  \item Query engine: \texttt{4store} where we insert \textsf{sleep}
+    statements in the join function on one level and language matching
+    function on the other. 
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Factors and levels}
+  \begin{itemize}
+  \item [``Implement''] The implementation under evaluation.
+  \item [``TripleC''] 1 or 2 MTriples from the DBPedia SPARQL
+    Benchmark.
+  \item [``Machine''] Software and hardware platform, one smaller
+    machine with fast SSD and one larger with slower disks in RAID1.
+  \item [``BGPComp''] Two different basic graph patterns with varying
+    complexity.
+  \item [``Union''] Presence or absence of a \textsf{UNION} pattern.
+  \item [``Lang''] Presence or absence of a \textsf{langMatches}
+    filter.
+  \item [``Range''] Presence or absence of a filter with a larger-than
+    operator.
+  \item [``Optional''] Presence or absence of an \textsf{OPTIONAL} pattern.
+  \end{itemize}
+\end{frame}
 
 \begin{frame}{Full normal plot}
 \begin{figure}[t]
