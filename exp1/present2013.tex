@@ -358,7 +358,10 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
 \note{Implemented in R, using packages \texttt{DoE.base} and \texttt{FrF2}.}
 \note{Two experiment machines, one machine running queries}
 \note{No warm-up, no cache busting}
+\note{256 experiments in full factorial, no replications, compare
+  favorably to benchmarks}
 
+\subsection{Full Factorial Experiment}
 
 \begin{frame}{Full normal plot}
 \begin{figure}[t]
@@ -400,54 +403,68 @@ Implement & $-$21.27 \\
 \note{Yes, the Implementation is better, we knew that, joins are
   naturally strong}
 \note{``Union'', ``Optional'' and ``Lang'' demanding things}
+\note{``BGPComp:Lang'' and ``Lang:Union'' interactions might be due to
+  that many more triples need to be searched for a language tag in one
+  of the levels of the interacting factors.}
+\note{But what about ``Implement::TripleC''?}
+\note{We want to do a hypothesis test}
+\note{Two factors do not contribute significantly to the variation
+  ``Range'' and ``Machine''}
 
+\begin{frame}{Hypothesis tests}
 
-\begin{frame}
-\begin{table}[ht!]
+Hypothesis formulation:
+  \begin{itemize}
+  \item $H_0$: The new implementation is no better than the old.
+  \item $H_1$: The new implementation is better than the old.
+  \end{itemize}
+
+Classifying factors:
+  \begin{itemize}
+  \item ``Range'' and ``Machine'' are called \emph{inactive factors}.
+  \item ``BGPComp'', ``Lang'', ``Optional'', ``Union'' and ``TripleC''
+    are called \emph{environmental factors}.
+  \item ``Implement'' is called a \emph{control factor}.
+  \end{itemize}
+
+\end{frame}
+\begin{frame}{Hypothesis tests}
+
+\begin{itemize}
+\item Average over all the 32 level-combinations of the environmental
+  factors. 
+
+% latex table generated in R 2.15.1 by xtable 1.5-6 package
+% Tue Oct  8 14:51:28 2013
+\begin{table}[ht]
 \begin{center}
-\caption{$p$-values for different parts of the experiment}\label{tab:pvaluesfull}
-\begin{tabular}{cccccl}
+\begin{tabular}{rlll|r}
   \hline
-``TripleC'' & ``BGPComp'' & ``Lang'' & ``Union'' & ``Optional'' & $p$ \\ 
+ & Implement & Machine & Range & Response \\ 
   \hline
-  1 & 1 & 1 & 1 & 1 & 0.012 \\ 
-  1 & 1 & 1 & 1 & 2 & $1.4 \cdot 10^{-09}$ \\ 
-  1 & 1 & 1 & 2 & 1 & $3.1 \cdot 10^{-09}$ \\ 
-  1 & 1 & 1 & 2 & 2 & $6.1 \cdot 10^{-11}$ \\ 
-  1 & 1 & 2 & 1 & 1 & $3.3 \cdot 10^{-06}$ \\ 
-  1 & 1 & 2 & 1 & 2 & $2.7 \cdot 10^{-09}$ \\ 
-  1 & 1 & 2 & 2 & 1 & $2 \cdot 10^{-06}$ \\ 
-  1 & 1 & 2 & 2 & 2 & $3.6 \cdot 10^{-10}$ \\ 
-  1 & 2 & 1 & 1 & 1 & 0.014 \\ 
-  1 & 2 & 1 & 1 & 2 & $1.2 \cdot 10^{-10}$ \\ 
-  1 & 2 & 1 & 2 & 1 & $2.8 \cdot 10^{-14}$ \\ 
-  1 & 2 & 1 & 2 & 2 & $4.1 \cdot 10^{-15}$ \\ 
-  1 & 2 & 2 & 1 & 1 & $2.1 \cdot 10^{-05}$ \\ 
-  1 & 2 & 2 & 1 & 2 & $2.7 \cdot 10^{-07}$ \\ 
-  1 & 2 & 2 & 2 & 1 & 0.0072 \\ 
-  1 & 2 & 2 & 2 & 2 & $1.6 \cdot 10^{-05}$ \\ 
-  2 & 1 & 1 & 1 & 1 & 0.28 \\ 
-  2 & 1 & 1 & 1 & 2 & $3 \cdot 10^{-07}$ \\ 
-  2 & 1 & 1 & 2 & 1 & $3.3 \cdot 10^{-07}$ \\ 
-  2 & 1 & 1 & 2 & 2 & $1.7 \cdot 10^{-08}$ \\ 
-  2 & 1 & 2 & 1 & 1 & 0.0023 \\ 
-  2 & 1 & 2 & 1 & 2 & $6.5 \cdot 10^{-07}$ \\ 
-  2 & 1 & 2 & 2 & 1 & 0.00032 \\ 
-  2 & 1 & 2 & 2 & 2 & $1.3 \cdot 10^{-06}$ \\ 
-  2 & 2 & 1 & 1 & 1 & 0.013 \\ 
-  2 & 2 & 1 & 1 & 2 & $1 \cdot 10^{-11}$ \\ 
-  2 & 2 & 1 & 2 & 1 & $3.8 \cdot 10^{-11}$ \\ 
-  2 & 2 & 1 & 2 & 2 & $4.1 \cdot 10^{-15}$ \\ 
-  2 & 2 & 2 & 1 & 1 &   1 \\ 
-  2 & 2 & 2 & 1 & 2 & $2.3 \cdot 10^{-05}$ \\ 
-  2 & 2 & 2 & 2 & 1 &   1 \\ 
-  2 & 2 & 2 & 2 & 2 & 0.99 \\ 
+1 & 1 & 1 & 1 & 33.47 \\ 
+  2 & 2 & 1 & 1 & 11.82 \\ 
+  3 & 1 & 2 & 1 & 32.16 \\ 
+  4 & 2 & 2 & 1 & 11.56 \\ 
+  5 & 1 & 1 & 2 & 33.97 \\ 
+  6 & 2 & 1 & 2 & 12.46 \\ 
+  7 & 1 & 2 & 2 & 32.90 \\ 
+  8 & 2 & 2 & 2 & 11.60 \\ 
    \hline
 \end{tabular}
 \end{center}
 \end{table}
 
+\item May create a one-sided two-sample t-test with 4 values for each of the levels.
+\item Lends support to $H_1$ with a high probability, $p=1.16 \cdot
+10^{-07}$.
+
+\end{itemize}
+
 \end{frame}
+\note{The paper shows how similar testing can be done to investigate
+  when the new implementation fails.} % TODO: Add more on this?
+
 
 
 \begin{frame}{Thank you!}
