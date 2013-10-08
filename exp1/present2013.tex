@@ -465,6 +465,91 @@ Classifying factors:
 \note{The paper shows how similar testing can be done to investigate
   when the new implementation fails.} % TODO: Add more on this?
 
+\subsection{Fractional Factorial Experiments}
+
+\begin{frame}{Experimental Economy}
+
+  \begin{itemize}
+  \item Full factorial experimental goes as $2^n$.
+  \item SPARQL Endpoint evaluation is inherently complex, with many
+    possible factors.
+  \item May reduce the size of the experiment with Fractional
+    Factorial Experiments.
+  \item The cost is explanatory power due to \emph{aliasing}.
+  \item E.g. we cannot tell the difference of an effect of
+    ``TripleC::BGPComp'' from ``Machine::Range''
+  \item Easy in R to declare which effects must not be aliased.
+  \item We have made two designs: One 32-run and one 64-run.
+  \end{itemize}
+  
+\end{frame}
+\note{ That is to say, a detected increase in
+run time from larger Basic Graph Patterns for large databases, can
+also be explained by a less powerful machine that is worse at
+evaluating FILTER clauses with ranges. }
+
+\begin{frame}{32-run experiment}
+\begin{figure}[ht!]
+  \centerline{%
+    \includegraphics[height=0.85\textheight,width=.9\textwidth]{frac32normal.pdf}}
+  \label{fig:frac32normal}
+\end{figure}
+ 
+\end{frame}
+\note{The total variance is great, due to few runs, so few conclusions
+  can be drawn}
+\note{Implementation is good, and Union is hard}
+\note{In the paper, we also do a hypothesis test that returns  $p =
+  0.00098$. Still very low}
+\note{Very rough conclusions; useful in a CI system}
+
+\begin{frame}{64-run experiment}
+\begin{figure}[ht!]
+  \centerline{%
+    \includegraphics[height=0.85\textheight,width=0.96\textwidth]{frac64normal.pdf}}
+\end{figure}
+
+
+\end{frame}
+\note{Have two Lenth criterions, $\alpha=0.15$ and crosses at
+  $\alpha=0.05$. ($\alpha$ is the probability of rejecting $H_0$ when
+  it is true)}
+
+\begin{frame}{Analysis of 64-run experiment}
+
+  \begin{itemize}
+  \item Find most of the same significant effects as the full experiment.
+  \item However, we see that ``Implement:TripleC'' emerges only for
+  $\alpha=0.15$.
+  \item ``Machine'', ``TripleC'' and ``Range'' are inactive, we can
+    perform hypothesis test as above, and find $p = 5.9 \cdot 10^{-6}$.
+  \end{itemize}
+\end{frame}
+\note{We see that ``Implement:TripleC'' emerges only for
+  $\alpha=0.15$, which is important to better in real studies.}
+\note{We have shown that how the experiment could be set up, we have
+  shown the analysis and a hypothesis test.}
+\note{Should this simplistic experiment stand up to scrutiny?}
+
+\subsection{Tearing it all down}
+
+\begin{frame}{Fractional experiment with more data}
+\begin{figure}[ht!]
+  \centerline{%
+  \includegraphics[height=0.85\textheight,width=.9\textwidth]{frac64hugenormal.pdf}}
+\end{figure}
+  
+\end{frame}
+\note{``Machine'' is a broad factor, good idea to group to manage
+  complexity, can be broken down later}
+\note{``TripleC:Machine'' and ``TripleC'' highly significant, implies
+  the factors were wrongly set.}
+\note{This invalidates the three preceeding experiments. We got strong
+indications early on.}
+
+\section{Conclusion}
+
+
 
 
 \begin{frame}{Thank you!}
