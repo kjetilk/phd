@@ -38,13 +38,6 @@
 \LectureTitle{Introducing Statistical Design of Experiments to SPARQL Endpoint Evaluation}
 % set name of lecturer:
 \author{Kjetil Kjernsmo}
-\AtBeginSection[]
-{
-  \begin{frame}
-    \frametitle{Outline}
-    \tableofcontents[currentsection]
-  \end{frame}
-}
 
 \begin{document}
 
@@ -582,7 +575,37 @@ features, such as solution modifiers.}
 
 \section{Future Work}
 
+\begin{frame}{Choice of factors}
+
+  \begin{itemize}
+  \item Different strategies must be tried, open field.
+  \item Parameterization is very important.
+    \begin{itemize}
+    \item Data heterogeneity, skewed distributions, etc.
+    \item Parameterizing SPARQL queries, see e.g. SPLODGE by Görlitz
+      et al.
+    \item Parameterizing SPARQL queries using the grammar pragmatically?
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Other important issues}
+
+  \begin{itemize}
+  \item Ensuring that small and efficient experiments provide enough
+    details to assess the soundness of the experiment.
+  \item This paper scratches the surface of DoE, Orthogonal Arrays is
+    a more general formalism.
+  \item This topic is also interesting for progress beyond the
+    state-of-the-art in statistics.
+  \end{itemize}
+  
+\end{frame}
+
 \section{Conclusion}
+
+
 
 \begin{frame}{Rules of Thumb}
 
