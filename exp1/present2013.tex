@@ -547,9 +547,57 @@ evaluating FILTER clauses with ranges. }
 \note{This invalidates the three preceeding experiments. We got strong
 indications early on.}
 
+\section{Discussion}
+
+\begin{frame}{Linearity and choice of levels}
+  \begin{itemize}
+  \item 2-level experiments can only model linear effects.
+  \item Choice of levels may be critical.
+  \item If response is known to be non-linear, using more levels must be considered.
+  \end{itemize}
+  
+\end{frame}
+\note{2-level good enough for identifying effects, insufficient as
+  statistical model}
+
+\begin{frame}{The role of randomization}
+  \begin{itemize}
+  \item We have allowed us to disregard the effect of caching,
+    warm-up-runs, etc.
+  \item This is different from neutralizing the effect!
+  \item They are now ``lurking variables''.
+  \item They contribute to the overall unexplained variance.
+  \item Unexplained variance should be kept to a minimum.
+  \item Time-dependent or order-dependent factors may be required.
+  \end{itemize}
+\end{frame}
+\note{Even though we know caching is important}
+\note{Caching is good practice, shouldn't be neutralized. Warm-up may
+  not be permissible in real-time scenarios}
+\note{Variance can obscure problems like ``Implement:TripleC''}
+\note{most problematic cases are those that are
+covered neither by the broad factors, nor the lurking variables, or
+any of the specific factors. Invalidated by absence of language
+features, such as solution modifiers.}
+
+\section{Future Work}
+
 \section{Conclusion}
 
+\begin{frame}{Rules of Thumb}
 
+\begin{enumerate}
+\item Are there factors that cover all realistic features?
+\item If not, are they adequately covered by randomization?
+\item If so, would the variance resulting from randomization obscure
+  factors that could provide clues that the levels are wrongly set?
+\item By carefully examining interactions with ``Implement'', are
+  there any that are unaccounted for, and that could point out wrongly
+  set levels?
+\end{enumerate}
+
+  
+\end{frame}
 
 
 \begin{frame}{Thank you!}
