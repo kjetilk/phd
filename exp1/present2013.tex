@@ -2,6 +2,7 @@
 %\documentclass[english,print,aspectratio=169]{ifislide}
 \documentclass[english,handout,aspectratio=169]{ifislide}
 \usepackage{verbatim}
+\usepackage{wrapfig}
 
 \usepackage[utf8]{inputenc}
 % Packages used specific for this lecture:
@@ -362,14 +363,43 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
 \begin{frame}{Full normal plot}
 \begin{figure}[t]
   \centerline{%
-  \includegraphics[width=.9\textwidth]{fullnormal.pdf}}
-  \caption{A normal plot of the Full Factorial Experiment. The
-    labelled points are considered significant by using the Lenth
-    criterion at a level $\alpha=0.05$.}\label{fig:fullnormal}
+  \includegraphics[height=0.85\textheight]{fullnormal.pdf}}
 \end{figure}
+% TODO side by side
+% latex table generated in R 2.15.1 by xtable 1.5-6 package
+% Fri May 10 16:31:49 2013
+% Modified by hand to remove 1's
+\begin{wraptable}{l}{0.2\textwidth}
+\begin{tabular}{rr}
+  \hline
+Factors & Effect  \\ 
+  \hline
+Implement & $-$21.27 \\ 
+  Implement:Optional & $-$11.49 \\ 
+  Implement:Union & $-$6.21 \\ 
+  Implement:TripleC:Lang1 & 4.12 \\ 
+  TripleC:Lang & 4.20 \\ 
+  Implement:TripleC & 4.32 \\ 
+  Implement:BGPComp & 4.89 \\ 
+  Lang:Union & 5.16 \\ 
+  Implement:BGPComp:Lang & 5.16 \\ 
+  BGPComp:Lang & 5.25 \\ 
+  Implement:Lang:Union & 5.75 \\ 
+  TripleC & 7.06 \\ 
+  Implement:Lang & 7.73 \\ 
+  Lang & 8.62 \\ 
+  Optional & 11.30 \\ 
+  Union & 17.18 \\ 
+   \hline
+\end{tabular}
+\end{wraptable}
 
 \end{frame}
+% TODO explain Lenth
 \note{Don't worry about the axes}
+\note{Yes, the Implementation is better, we knew that, joins are
+  naturally strong}
+\note{``Union'', ``Optional'' and ``Lang'' demanding things}
 
 
 \begin{frame}
