@@ -59,15 +59,6 @@ example.
 
 \end{frame}
 
-
-\begin{frame}{Experimental tradition}
-
-Teh Tycho
-
-\end{frame}
-
-
-
 \begin{frame}{What's a benchmark?}
 \end{frame}
 \note{If your queries are all fully known, by all means, run them}
@@ -131,6 +122,8 @@ For example:
 \item Number of triples in the store
 \item Absence or presence of certain language features
 \item Order of experiments
+\item Tuning parameters
+\item Concurrency
 \end{itemize}
 
 \end{frame}
@@ -589,10 +582,12 @@ features, such as solution modifiers.}
   \end{itemize}
   
 \end{frame}
+\note{Optimization parameters, hardware characteristics}
 
 \begin{frame}{Other important issues}
 
   \begin{itemize}
+  \item Comparing completely different SPARQL implementations.
   \item Ensuring that small and efficient experiments provide enough
     details to assess the soundness of the experiment.
   \item This paper scratches the surface of DoE, Orthogonal Arrays is
@@ -605,9 +600,22 @@ features, such as solution modifiers.}
 
 \section{Conclusion}
 
+\begin{frame}
+We saw
+  \begin{itemize}
+  \item ... an experimental setup using DoE.
+  \item ... how the analysis pointed out the important effects.
+  \item ... how we got a comprehensive view of the experiment.
+  \item ... how hypothesis tests could be formulated.
+  \item ... how 2-level experiments can determine significant effects,
+    even though it is not good enough for modelling.
+  \item ... how more economic experiments can be designed, and noted
+    their limitations.
+  \item ... finally how the experiment could be shown to be flawed.
+  \end{itemize}
+\end{frame}
 
-
-\begin{frame}{Rules of Thumb}
+\begin{frame}{Questions to ask}
 
 \begin{enumerate}
 \item Are there factors that cover all realistic features?
@@ -620,6 +628,18 @@ features, such as solution modifiers.}
 \end{enumerate}
 
   
+\end{frame}
+
+\begin{frame}{What's a worthy result?}
+  \begin{itemize}
+  \item I have not made this a primary focus of my work.
+  \item Even though I think I should.
+  \item 3000 full-time researchers to construct the ATLAS experiment
+    at CERN.
+  \item Improvement in experimental methodology should be a worthy result.
+  \end{itemize}
+
+
 \end{frame}
 
 
