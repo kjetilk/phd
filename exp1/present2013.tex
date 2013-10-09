@@ -272,17 +272,17 @@ Above all: Easy to understand for newcomers to DoE!
 \end{frame}
 
 \begin{frame}{Factors and levels}
-  \begin{itemize}
+  \begin{description}
   \item [``Implement''] The implementation under evaluation.
   \item [``TripleC''] 1 or 2 MTriples from the DBPedia SPARQL
     Benchmark.
   \item [``Machine''] Software and hardware platform, one smaller
     machine with fast SSD and one larger with slower disks in RAID1.
-  \end{itemize}
+  \end{description}
 \end{frame}
 
 \begin{frame}[fragile]{The Basic Graph pattern factor}
-  \begin{itemize}
+  \begin{description}
 
   \item [``BGPComp''] Two different basic graph patterns with varying
     complexity.
@@ -312,13 +312,13 @@ Above all: Easy to understand for newcomers to DoE!
   \end{center}
 
 
-  \end{itemize}
+  \end{description}
 
 
 \end{frame}
 
 \begin{frame}[fragile]{Absence or presence factors}
-  \begin{itemize}
+  \begin{description}
   \item [``Union''] Absence or presence of a \textsf{UNION} pattern.
 
     \begin{verbatim}
@@ -350,7 +350,7 @@ FILTER (?l2 > 800000)
 OPTIONAL { ?o1 foaf:homepage ?o6 . }
 \end{verbatim} 
 
-  \end{itemize}
+  \end{description}
 \end{frame}
 \note{Implemented in R, using packages \texttt{DoE.base} and \texttt{FrF2}.}
 \note{Two experiment machines, one machine running queries}
