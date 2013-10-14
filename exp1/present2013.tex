@@ -42,7 +42,7 @@
 
 %\IfiTOCSlide       % inserts today's plan frame
 
-\title[DoE in SPARQL Evaluation]{Introducing Statistical Design of Experiments to SPARQL Endpoint Evaluation}
+\title[DoE in SPARQL Evaluations]{Introducing Statistical Design of Experiments to SPARQL Endpoint Evaluation}
 \subtitle{}
 \author{Kjetil Kjernsmo and John Tyssedal}
 \maketitle
@@ -112,43 +112,51 @@ example.
 
 \begin{frame}{Response variable}
 
-% TODO Format well
+ \Large
    A \emph{response variable} is measured under various
     combinations of parameters.
+ \normalsize
+      
 
-For example:
-\begin{itemize}
-\item Throughput
-\item Query execution time
-\item Response time
-\end{itemize}
+    \begin{block}{Examples}
+      \begin{itemize}
+      \item Throughput
+      \item Query execution time
+      \item Response time
+      \end{itemize}
+    \end{block}
 
 \end{frame}
 
 \begin{frame}{Factor}
 
+\Large
 Such parameters are called \emph{factor}s. 
+\normalsize
 
-For example:
-\begin{itemize}
-\item A concrete implementation
-\item Hardware platform
-\item Data heterogeneity
-\item Number of triples in the store
-\item Absence or presence of certain language features
-\item Order of experiments
-\item Tuning parameters
-\item Concurrency
-\end{itemize}
+\begin{block}{Examples}
+  \begin{itemize}
+  \item A concrete implementation
+  \item Hardware platform
+  \item Data heterogeneity
+  \item Number of triples in the store
+  \item Absence or presence of certain language features
+  \item Order of experiments
+  \item Tuning parameters
+  \item Concurrency
+  \end{itemize}
+\end{block}
 
 \end{frame}
 
 \begin{frame}{Levels}
 
+\Large
 For each factor, a range of possible values are fixed. These values
 are called \emph{levels}.
+\normalsize
 
-\begin{block}{Example}
+\begin{block}{Examples}
   \begin{itemize}
   \item For implementation, 4store or Virtuoso.
   \item For number of triples, the levels could be 1 or 2 MTriples.
