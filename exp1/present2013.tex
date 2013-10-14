@@ -3,7 +3,7 @@
 \documentclass[english,handout,aspectratio=169]{ifislide}
 \usepackage{verbatim}
 \usepackage{wrapfig}
-%\setbeameroption{show notes}
+\setbeameroption{show notes}
 \usepackage[utf8]{inputenc}
 % Packages used specific for this lecture:
 
@@ -72,12 +72,17 @@ example.
   \end{itemize}
 
 \end{frame}
-\note{Natural benchmarks, query log-derived, DBPedia SPARQL Benchmark}
-\note{If your queries are all fully known, by all means, run them}
-\note{In most scientific relevant cases, no such assumptions can be
-  made}
-\note{What I will present will likely create artifical workloads}
-\note{Use-case driven will seem artificial for everything else}
+\note{
+  \begin{itemize}
+  \item Natural benchmarks, query log-derived, DBPedia SPARQL
+    Benchmark
+  \item If your queries are all fully known, by all means, run them
+  \item In most scientific relevant cases, no such assumptions can be
+    made
+  \item What I will present will likely create artifical workloads
+  \item Use-case driven will seem artificial for everything else
+  \end{itemize}
+}
 
 
 \begin{frame}{Problems with benchmarking}
@@ -92,9 +97,14 @@ example.
   techniques oversimplifies the test.
 \end{itemize}
 \end{frame}
-\note{If you standardize hardware, you can't test claims about
-  improved hardware. You'd need interactions too}
-\note{Cache-buster is evil}
+\note{  
+  \begin{itemize}
+  \item If you standardize hardware, you can't test claims about
+  improved hardware. You'd need interactions too
+  \item Cache-buster is evil
+\end{itemize}
+
+}
 
 \begin{frame}{Design of Experiments}
 
@@ -230,12 +240,16 @@ class, etc.
 \end{itemize}
 
 \end{frame}
-\note{Interaction effects may be complex, like one implementation is
-  better on CONSTRUCT queries, on small datasets}
-\note{We still need to understand which effects are important and
-  significant, we do that in the discussion of our experiment}
 
+\note{
 
+  \begin{itemize}
+  \item Interaction effects may be complex, like one implementation is
+    better on CONSTRUCT queries, on small datasets
+\item We still need to understand which effects are important and
+  significant, we do that in the discussion of our experiment
+\end{itemize}
+}
 % SECTION
 
 \section{Experiments}
@@ -346,11 +360,18 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
 
   \end{description}
 \end{frame}
-\note{Implemented in R, using packages \texttt{DoE.base} and \texttt{FrF2}.}
-\note{Two experiment machines, one machine running queries}
-\note{No warm-up, no cache busting}
-\note{256 experiments in full factorial, no replications, compare
-  favorably to benchmarks}
+
+\note{
+
+  \begin{itemize}
+  \item Implemented in R, using packages \texttt{DoE.base} and
+    \texttt{FrF2}.
+  \item Two experiment machines, one machine running queries
+  \item No warm-up, no cache busting
+  \item 256 experiments in full factorial, no replications, compare
+    favorably to benchmarks
+  \end{itemize}
+}
 
 \subsection{Full Factorial Experiment}
 
@@ -386,20 +407,24 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
   \end{minipage}
 \end{frame}
 
-\note{Unreplicated, so we don't have a standard error, so Lenth used
-  a restricted subset the median of the effects to create a Pseudo
-  Standard Error}
-\note{Don't worry about the axes}
-\note{Yes, the Implementation is better, we knew that, joins are
-  naturally strong}
-\note{``Union'', ``Optional'' and ``Lang'' demanding things}
-\note{``BGPComp:Lang'' and ``Lang:Union'' interactions might be due to
-  that many more triples need to be searched for a language tag in one
-  of the levels of the interacting factors.}
-\note{But what about ``Implement::TripleC''?}
-\note{We want to do a hypothesis test}
-\note{Two factors do not contribute significantly to the variation
-  ``Range'' and ``Machine''}
+\note{
+  \begin{itemize}
+  \item Unreplicated, so we don't have a standard error, so Lenth used
+    a restricted subset the median of the effects to create a Pseudo
+    Standard Error
+  \item Don't worry about the axes
+  \item Yes, the Implementation is better, we knew that, joins are
+    naturally strong
+  \item ``Union'', ``Optional'' and ``Lang'' demanding things
+  \item ``BGPComp:Lang'' and ``Lang:Union'' interactions might be due
+    to that many more triples need to be searched for a language tag
+    in one of the levels of the interacting factors.
+  \item But what about ``Implement::TripleC''?
+  \item We want to do a hypothesis test
+  \item Two factors do not contribute significantly to the variation
+    ``Range'' and ``Machine''
+  \end{itemize}
+}
 
 \begin{frame}{Hypothesis tests}
 
@@ -486,12 +511,17 @@ evaluating FILTER clauses with ranges. }
 \end{figure}
  
 \end{frame}
-\note{The total variance is great, due to few runs, so few conclusions
-  can be drawn}
-\note{Implementation is good, and Union is hard}
-\note{In the paper, we also do a hypothesis test that returns  $p =
-  0.00098$. Still very low}
-\note{Very rough conclusions; useful in a CI system}
+\note{
+
+  \begin{itemize}
+  \item The total variance is great, due to few runs, so few
+    conclusions can be drawn
+  \item Implementation is good, and Union is hard
+  \item In the paper, we also do a hypothesis test that returns $p =
+    0.00098$. Still very low
+  \item Very rough conclusions; useful in a CI system
+  \end{itemize}
+}
 
 \begin{frame}{64-run experiment}
 \begin{figure}[ht!]
@@ -515,11 +545,15 @@ evaluating FILTER clauses with ranges. }
     perform hypothesis test as above, and find $p = 5.9 \cdot 10^{-6}$.
   \end{itemize}
 \end{frame}
-\note{We see that ``Implement:TripleC'' emerges only for
-  $\alpha=0.15$, which is important to better in real studies.}
-\note{We have shown that how the experiment could be set up, we have
-  shown the analysis and a hypothesis test.}
-\note{Should this simplistic experiment stand up to scrutiny?}
+\note{
+  \begin{itemize}
+  \item We see that ``Implement:TripleC'' emerges only for
+    $\alpha=0.15$, which is important to better in real studies.
+  \item We have shown that how the experiment could be set up, we have
+    shown the analysis and a hypothesis test.
+  \item Should this simplistic experiment stand up to scrutiny?
+  \end{itemize}
+}
 
 \subsection{Tearing it all down}
 
@@ -530,12 +564,16 @@ evaluating FILTER clauses with ranges. }
 \end{figure}
   
 \end{frame}
-\note{``Machine'' is a broad factor, good idea to group to manage
-  complexity, can be broken down later}
-\note{``TripleC:Machine'' and ``TripleC'' highly significant, implies
-  the factors were wrongly set.}
-\note{This invalidates the three preceeding experiments. We got strong
-indications early on.}
+\note{
+  \begin{itemize}
+  \item ``Machine'' is a broad factor, good idea to group to manage
+    complexity, can be broken down later
+  \item ``TripleC:Machine'' and ``TripleC'' highly significant,
+    implies the factors were wrongly set.
+  \item This invalidates the three preceeding experiments. We got
+    strong indications early on.
+  \end{itemize}
+}
 
 \section{Discussion}
 
@@ -561,14 +599,18 @@ indications early on.}
   \item Time-dependent or order-dependent factors may be required.
   \end{itemize}
 \end{frame}
-\note{Even though we know caching is important}
-\note{Caching is good practice, shouldn't be neutralized. Warm-up may
-  not be permissible in real-time scenarios}
-\note{Variance can obscure problems like ``Implement:TripleC''}
-\note{most problematic cases are those that are
-covered neither by the broad factors, nor the lurking variables, or
-any of the specific factors. Invalidated by absence of language
-features, such as solution modifiers.}
+\note{
+  \begin{itemize}
+  \item Even though we know caching is important
+  \item Caching is good practice, shouldn't be neutralized. Warm-up
+    may not be permissible in real-time scenarios
+  \item Variance can obscure problems like ``Implement:TripleC''
+  \item most problematic cases are those that are covered neither by
+    the broad factors, nor the lurking variables, or any of the
+    specific factors. Invalidated by absence of language features,
+    such as solution modifiers.
+  \end{itemize}
+}
 
 \section{Future Work}
 
