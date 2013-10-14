@@ -3,7 +3,7 @@
 \documentclass[english,handout,aspectratio=169]{ifislide}
 \usepackage{verbatim}
 
-\setbeameroption{show notes}
+%\setbeameroption{show only notes}
 \usepackage[utf8]{inputenc}
 
 
@@ -40,27 +40,6 @@ example.
 
 \end{frame}
 
-\begin{frame}{Not all benchmarks are created equal}
-
-  \begin{itemize}
-  \item Natural benchmarks.
-  \item Benchmarking with broad and well-known workloads. 
-  \item Artificial use-case driven benchmarks.
-  \end{itemize}
-
-\end{frame}
-\note{
-  \begin{itemize}
-  \item Natural benchmarks, query log-derived, DBPedia SPARQL
-    Benchmark
-  \item If your queries are all fully known, by all means, run them
-  \item In most scientific relevant cases, no such assumptions can be
-    made
-  \item What I will present will likely create artifical workloads
-  \item Use-case driven will seem artificial for everything else
-  \end{itemize}
-}
-
 
 \begin{frame}{Problems with benchmarking}
 
@@ -78,7 +57,10 @@ example.
   \begin{itemize}
   \item If you standardize hardware, you can't test claims about
   improved hardware. You'd need interactions too
-  \item Cache-buster is evil
+  \item Caching is a good practice, and its effect need to be a part
+    of the test, not gotten rid of.
+  \item That said benchmarking is still nice to have if you know what
+    queries you will run, it can't replace that.
 \end{itemize}
 
 }
@@ -86,7 +68,7 @@ example.
 \begin{frame}{Design of Experiments}
 
   \begin{itemize}
-  \item Pioneered by Fischer in the 1930s.
+  \item Pioneered by Fischer in the 1920s.
   \item Well-established in many fields of engineering, agriculture,
     medicine.
   \item Well-suited to manage very complex experiments.
@@ -182,26 +164,6 @@ class, etc.
 \end{frame}
 \note{There are 3 factors, 8 experiments, which is $2^3$}
 
-\begin{frame}{Factorial experiments}
-
-  \begin{itemize}
-  \item Full factorial experiments:
-    \begin{itemize}
-    \item 2 levels give $2^n$ combinations (\emph{runs}), where $n$ is
-      the number of factors.
-    \item 3 levels give $3^n$ runs, etc.
-    \end{itemize}
-  \item Fractional factorial experiments:
-
-    \begin{itemize}
-    \item When experimental economy is important,
-    \item DoE theory offers extensive facilities for running a
-      fraction of the runs ($2^{n-1}$ etc).
-    \item The price is of smaller experiments is explanatory power.
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
 \begin{frame}{Effects}
 
 \Large
@@ -227,6 +189,28 @@ class, etc.
   significant, we do that in the discussion of our experiment
 \end{itemize}
 }
+
+\begin{frame}{Factorial experiments}
+
+  \begin{itemize}
+  \item Full factorial experiments:
+    \begin{itemize}
+    \item 2 levels give $2^n$ combinations (\emph{runs}), where $n$ is
+      the number of factors.
+    \item 3 levels give $3^n$ runs, etc.
+    \end{itemize}
+  \item Fractional factorial experiments:
+
+    \begin{itemize}
+    \item When experimental economy is important,
+    \item DoE theory offers extensive facilities for running a
+      fraction of the runs ($2^{n-1}$ etc).
+    \item The price is of smaller experiments is explanatory power.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
 % SECTION
 
 \section{Experiments}
@@ -258,6 +242,8 @@ Above all: Easy to understand for newcomers to DoE!
   \end{itemize}
 
 \end{frame}
+\note{Go through very quickly}
+
 
 \begin{frame}{Factors and levels}
   \begin{description}
@@ -338,17 +324,7 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
   \end{description}
 \end{frame}
 
-\note{
-
-  \begin{itemize}
-  \item Implemented in R, using packages \texttt{DoE.base} and
-    \texttt{FrF2}.
-  \item Two experiment machines, one machine running queries
-  \item No warm-up, no cache busting
-  \item 256 experiments in full factorial, no replications, compare
-    favorably to benchmarks
-  \end{itemize}
-}
+\note{Implemented in R, system for statistics.}
 
 \subsection{Full Factorial Experiment}
 
@@ -390,20 +366,22 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
     a restricted subset the median of the effects to create a Pseudo
     Standard Error
   \item Don't worry about the axes
-  \item Yes, the Implementation is better, we knew that, joins are
+  \item Yes, the Implementation is better, we knew that, 
+  \item Interactions with Implement with joins are
     naturally strong
   \item ``Union'', ``Optional'' and ``Lang'' demanding things
   \item ``BGPComp:Lang'' and ``Lang:Union'' interactions might be due
     to that many more triples need to be searched for a language tag
     in one of the levels of the interacting factors.
-  \item But what about ``Implement::TripleC''?
+  \item But what about ``Implement::TripleC''? Leave that hanging for
+    a bit.
   \item We want to do a hypothesis test
   \item Two factors do not contribute significantly to the variation
     ``Range'' and ``Machine''
   \end{itemize}
 }
 
-\begin{frame}{Hypothesis tests}
+\begin{frame}{Preparing hypothesis tests}
 
 Hypothesis formulation:
   \begin{itemize}
@@ -447,9 +425,10 @@ Classifying factors:
 \end{center}
 \end{table}
 
-\item May create a one-sided two-sample t-test with 4 values for each of the levels.
+\item May create a one-sided two-sample t-test with 4 values for each
+  of the levels of ``Implement''.
 \item Lends support to $H_1$ with a high probability, $p=1.16 \cdot
-10^{-07}$.
+10^{-7}$.
 
 \end{itemize}
 
@@ -525,7 +504,8 @@ evaluating FILTER clauses with ranges. }
 \note{
   \begin{itemize}
   \item We see that ``Implement:TripleC'' emerges only for
-    $\alpha=0.15$, which is important to better in real studies.
+    $\alpha=0.15$, which is important to improve when designing a
+    study for actual tests.
   \item We have shown that how the experiment could be set up, we have
     shown the analysis and a hypothesis test.
   \item Should this simplistic experiment stand up to scrutiny?
@@ -553,17 +533,6 @@ evaluating FILTER clauses with ranges. }
 }
 
 \section{Discussion}
-
-\begin{frame}{Linearity and choice of levels}
-  \begin{itemize}
-  \item 2-level experiments can only model linear effects.
-  \item Choice of levels may be critical.
-  \item If response is known to be non-linear, using more levels must be considered.
-  \end{itemize}
-  
-\end{frame}
-\note{2-level good enough for identifying effects, insufficient as
-  statistical model}
 
 \begin{frame}{The role of randomization}
   \begin{itemize}
