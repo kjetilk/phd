@@ -215,35 +215,20 @@ class, etc.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Main effects}
+\begin{frame}{Effects}
 
+\Larger 
 \emph{Effects} describe the influence of the levels on the response.
+\normalsize
 
-The the \emph{main effect}: For a factor $A$ with two levels, we let
-$a_1$ and $a_2$ be the average response of all $2^{n-1}$ measurements
-with $A$ at level 1, and 2, respectively.  The main effect of $A$ is
-then defined as $a_2 - a_1$.
+\begin{itemize}
+\item Similarities to regression.
+\item \emph{Main effects} consider the factors on their own.
+\item \emph{Interaction effects} consider factors given levels of
+  other factors.
+\item In practice done with linear regression routines.
+\end{itemize}
 
-For example: 
-
-For each implementation, average all the responses. Then, the main
-effect of the implementation is the difference between them.
-
-\end{frame}
-
-\begin{frame}{Interaction effects}
-
-\emph{Interaction effects} for two factors $AB$ are defined
-by comparing averages for equal versus non-equal levels of $A$ and
-$B$. 
-
-For example:
-
-For each implementation, find the averages for each dataset size, the
-interaction effect is % TODO: Clear example.
-
-
-In practice, Quite Easily Done using linear regression.
 \end{frame}
 \note{Interaction effects may be complex, like one implementation is
   better on CONSTRUCT queries, on small datasets}
