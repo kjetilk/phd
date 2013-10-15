@@ -247,31 +247,18 @@ class, etc.
 
 \section{Experiments}
 
-\begin{frame}{Constraints on scope of experiment}
+\begin{frame}{The experiments}
 
-Above all: Easy to understand for newcomers to DoE!
+\textbf{Main goal}: Easy to understand for newcomers to DoE!
 
-\begin{itemize}
-\item Just 2 levels.
-\item Handful of illustrative factors.
-\item Analysis that illustrates key concepts.
-\item Straightforward to program and reproduce.
-\item Artificial performance differences.
-\end{itemize}
+\begin{block}{Description}
+  Experiment with 8 factors, 2 levels where we compare a single SPARQL
+  implementation before and after some change. We used \texttt{4store}
+  where we insert \textsf{sleep} statements in the join function on
+  one level and language matching function on the other, to simulate
+  an optimization that may have detrimental side-effects.
 
-\end{frame}
-
-\begin{frame}{Choices to meet these constraints}
-
-  \begin{itemize}
-  \item Response variable: Time from DNS lookup finishes to endpoint
-    has delivered a full response, measured by \texttt{curl}.
-  \item We don't compare different implementions, we compare the
-    performance before and after some change.
-  \item Query engine: \texttt{4store} where we insert \textsf{sleep}
-    statements in the join function on one level and language matching
-    function on the other. 
-  \end{itemize}
+\end{block}
 
 \end{frame}
 \note{Go through very quickly}
@@ -364,11 +351,8 @@ Hypothesis formulation:
 Tests to run:
 \begin{itemize}
 
-\item Average over all the 32 level-combinations of the environmental
-  factors. 
-
 \item May create a one-sided two-sample t-test with 4 values for each
-  of the levels of ``Implement''.
+  of the levels of ``Implement'' based on averages of other factors.
 \item Lends support to $H_1$ with a high probability, $p=1.16 \cdot
 10^{-7}$.
 
