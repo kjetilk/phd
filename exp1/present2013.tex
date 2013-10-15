@@ -36,6 +36,12 @@ example.
 
   \end{itemize}
 
+  \begin{block}{Message for the takeaway}
+    If you develop techniques for performance enhancements of complex
+    systems, you need to think carefully about how you prove that 
+    you've achieved something of general validity. 
+  \end{block}
+
 \end{frame}
 
 
@@ -115,7 +121,7 @@ Such parameters are called \emph{factor}s.
 \begin{block}{Examples}
   \begin{itemize}
   \item Which concrete implementation
-  \item Which Hardware platform
+  \item Which hardware platform
   \item Number of triples in the store
   \item Absence or presence of certain language features
   \item Order of experiments
@@ -124,8 +130,9 @@ Such parameters are called \emph{factor}s.
 \end{block}
 
 \begin{block}{For the mathematically inclined}
-  The response variable is itself a function $R \( a, b, c, \ldots
-  \)$, where $a$, $b$, $c$ are factors.
+  The response variable is itself a function 
+  $R ( A, B, C, \ldots ) $, 
+  where $A$, $B$, $C$ etc. are factors.
 \end{block}
 
 
@@ -186,6 +193,13 @@ class, etc.
 \begin{itemize}
 \item Similarities to regression.
 \item \emph{Main effects} consider the factors on their own.
+\begin{block}{For the mathematically inclined}
+  $ME(A) = \bar{z}(A_2) - \bar{z}(A_1)$ where $\bar{z}(A_n)$ is the
+  average of all values observed for factor $A$ at level $n$.
+\end{block}
+
+
+
 \item \emph{Interaction effects} consider factors given levels of
   other factors.
 \item In practice done with linear regression routines.
@@ -577,6 +591,7 @@ evaluating FILTER clauses with ranges. }
 
   \begin{itemize}
   \item Different strategies must be tried, open field.
+  \item Formal methods from AI?
   \item Parameterization is very important.
     \begin{itemize}
     \item Data heterogeneity, skewed distributions, etc.
