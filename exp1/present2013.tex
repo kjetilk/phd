@@ -1,14 +1,22 @@
 %\documentclass[english,aspectratio=196]]{ifislide}
 %\documentclass[english,print,aspectratio=169]{ifislide}
 %\documentclass[english,handout,aspectratio=169]{ifislide}
-\documentclass[english,usenames,dvipsnames,aspectratio=169]{beamer}
+\documentclass[english,usenames,dvipsnames,aspectratio=169,handout]{beamer}
 \usepackage{verbatim}
 \usepackage{config}
+\usepackage{pgf}
+\usepackage{pgfpages}
+
+%
+%  Load other packages you may need here
+% 
+% \pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm
+\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
 
 \usetheme{ifi_en}
 
 
-%\setbeameroption{show only notes}
+\setbeameroption{show notes}
 \usepackage[utf8]{inputenc}
 
 
@@ -187,7 +195,6 @@ class, etc.
 
 
 \end{frame}
-\note{There are 3 factors, 8 experiments, which is $2^3$}
 
 \begin{frame}{Effects}
 
@@ -215,6 +222,9 @@ class, etc.
 \note{
 
   \begin{itemize}
+  \item The main effect of a 2-level factor is the average of the
+    observed values on the second level minus the corresponding
+    average of the first.
   \item Interaction effects may be complex, like one implementation is
     better on CONSTRUCT queries, on small datasets
 \end{itemize}
@@ -239,8 +249,15 @@ class, etc.
     \end{itemize}
   \end{itemize}
 \end{frame}
-\note{We first study a full factorial, in the paper we have three
-  fractional, we shall see the final fractional}
+\note{
+  \begin{itemize}
+  \item These are called fractional experiments, and come in two
+    shapes, full, as we have seen a design matrix of, and fractional. 
+  \item With fractional, we trade explanatory power for economy.
+  \item We first study a full factorial, in the paper we have three
+    fractional, we shall see the final fractional
+  \end{itemize}
+}
 
 
 
@@ -388,7 +405,9 @@ Tests to run:
   \item This invalidates the preceeding experiments. We got
     strong indications early on. This is one of the strategies for
     falsification we outline.
-  \end{itemize}
+  \item This experiment is also invalidated by the absence of certain
+    features, such as language modifiers.
+\end{itemize}
 }
 
 \section{Discussion}
@@ -423,18 +442,17 @@ Tests to run:
 
   \begin{itemize}
   \item Different strategies must be tried, open field.
-  \item Formal methods from AI?
   \item Parameterization is very important.
     \begin{itemize}
     \item Data heterogeneity, skewed distributions, etc.
     \item Parameterizing SPARQL queries, see e.g. SPLODGE by Görlitz
       et al.
     \item Parameterizing SPARQL queries using the grammar pragmatically?
+    \item Formal methods from AI?
     \end{itemize}
   \end{itemize}
   
 \end{frame}
-\note{Optimization parameters, hardware characteristics}
 
 \begin{frame}{Future work: Other important issues}
 
@@ -454,7 +472,7 @@ Tests to run:
 \section{Conclusions}
 
 \begin{frame}{Conclusion}
-We saw
+We saw (and the paper details):
   \begin{itemize}
   \item ... an experimental setup using DoE.
   \item ... how the analysis pointed out the important effects.
