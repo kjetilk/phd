@@ -85,7 +85,9 @@ example.
 \note{
 
   \begin{itemize}
-  \item There are problems, but time doesn't allow discussion, more in paper.
+  \item The query can be thought of as a parameter, problem is that it
+    is actually an infinite amount of parameters. An important
+    challenge is to break it down to a constrained set of parameters.
   \item How many are familiar with DoE?
   \end{itemize}
 }
@@ -215,8 +217,6 @@ class, etc.
   \begin{itemize}
   \item Interaction effects may be complex, like one implementation is
     better on CONSTRUCT queries, on small datasets
-\item We still need to understand which effects are important and
-  significant, we do that in the discussion of our experiment
 \end{itemize}
 }
 
@@ -262,7 +262,6 @@ class, etc.
 \end{block}
 
 \end{frame}
-\note{Go through very quickly}
 
 
 \begin{frame}{Factors and levels}
@@ -336,7 +335,9 @@ class, etc.
     a bit.
   \item We want to do a hypothesis test
   \item Two factors do not contribute significantly to the variation
-    ``Range'' and ``Machine''
+    ``Range'' and ``Machine'', in the paper we describe how this
+    enables us to average over certain factors and look upon the rest
+    as a replicated experiment.
   \end{itemize}
 }
 
@@ -449,6 +450,7 @@ Tests to run:
   
 \end{frame}
 
+\section{Conclusion}
 
 \begin{frame}{Conclusion}
 We saw
