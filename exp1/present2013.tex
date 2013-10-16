@@ -64,7 +64,8 @@ example.
   \item If you standardize hardware, you can't test claims about
   improved hardware. You'd need interactions too
   \item Caching is a good practice, and its effect need to be a part
-    of the test, not gotten rid of.
+    of the test, not gotten rid of. If something is too complex, we
+    need to enhance our ability to deal with complexity, not oversimplify.
   \item That said benchmarking is still nice to have if you know what
     queries you will run, it can't replace that.
 \end{itemize}
@@ -416,7 +417,7 @@ Tests to run:
 
 \section{Future Work}
 
-\begin{frame}{Choice of factors}
+\begin{frame}{Future work: Choice of factors}
 
   \begin{itemize}
   \item Different strategies must be tried, open field.
@@ -433,12 +434,13 @@ Tests to run:
 \end{frame}
 \note{Optimization parameters, hardware characteristics}
 
-\begin{frame}{Other important issues}
+\begin{frame}{Future work: Other important issues}
 
   \begin{itemize}
   \item Comparing completely different SPARQL implementations.
   \item Ensuring that small and efficient experiments provide enough
     details to assess the soundness of the experiment.
+  \item Multiresponse experiments (e.g. both response time and throughput)
   \item This paper scratches the surface of DoE, Orthogonal Arrays is
     a more general formalism.
   \item This topic is also interesting for progress beyond the
