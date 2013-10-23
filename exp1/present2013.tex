@@ -1,7 +1,8 @@
 %\documentclass[english,aspectratio=196]]{ifislide}
 %\documentclass[english,print,aspectratio=169]{ifislide}
 %\documentclass[english,handout,aspectratio=169]{ifislide}
-\documentclass[english,usenames,dvipsnames,aspectratio=169,handout]{beamer}
+%\documentclass[english,usenames,dvipsnames,aspectratio=169,handout]{beamer}
+\documentclass[english,usenames,dvipsnames,aspectratio=169]{beamer}
 \usepackage{verbatim}
 \usepackage{config}
 \usepackage{pgf}
@@ -11,12 +12,12 @@
 %  Load other packages you may need here
 % 
 % \pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm
-\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
 
 \usetheme{ifi_en}
 
 
-\setbeameroption{show notes}
+%\setbeameroption{show notes}
 \usepackage[utf8]{inputenc}
 
 
@@ -345,9 +346,9 @@ class, etc.
   \item Interactions with Implement with joins are
     naturally strong
   \item ``Union'', ``Optional'' and ``Lang'' demanding things
-  \item ``BGPComp:Lang'' and ``Lang:Union'' interactions might be due
-    to that many more triples need to be searched for a language tag
-    in one of the levels of the interacting factors.
+%  \item ``BGPComp:Lang'' and ``Lang:Union'' interactions might be due
+%    to that many more triples need to be searched for a language tag
+%    in one of the levels of the interacting factors.
   \item But what about ``Implement::TripleC''? Leave that hanging for
     a bit.
   \item We want to do a hypothesis test
@@ -400,7 +401,7 @@ Tests to run:
   \begin{itemize}
   \item ``Machine'' is a broad factor, good idea to group to manage
     complexity, can be broken down later
-  \item ``TripleC:Machine'' and ``TripleC'' highly significant,
+  \item ``Implement:TripleC'' and ``TripleC'' highly significant,
     implies the factors were wrongly set.
   \item This invalidates the preceeding experiments. We got
     strong indications early on. This is one of the strategies for
