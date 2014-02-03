@@ -22,6 +22,7 @@
 <node CREATED="1391261238723" ID="ID_827792471" MODIFIED="1391261244993" TEXT="Near-uniform"/>
 <node CREATED="1391261245827" ID="ID_1453575060" MODIFIED="1391261516214" TEXT="Principle of consistent sloppiness "/>
 <node CREATED="1391261738316" ID="ID_1580215109" MODIFIED="1391261750193" TEXT="Just one triple in the pattern might be important"/>
+<node CREATED="1391276855115" ID="ID_1237699790" MODIFIED="1391276883953" TEXT="Patterns with high cohesion (e.g. functional dependencies)"/>
 </node>
 </node>
 </map>
