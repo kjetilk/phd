@@ -34,5 +34,75 @@ N-0316 Oslo, Norway \email{\magnudae,kjekje\}@ifi.uio.no}
 
 \end{abstract}
 
+\section{Introduction}
+
+The retrieval of information from different sources and then combine
+them to allow a user to find a certain combination of properties that
+suit their purpose is an archetypical Semantic Web use case. We have
+chosen to focus on a product selection use case, specifically on cars,
+since some car makers have embraced the Semantic Web vision and chosen
+to share detailed data on their products.
+
+The findings, we assert, have a broader validity, given the generic
+nature of the problem they are trying to solve, and so our
+recommendations should have broad relevance to similar use cases.
+
+We present two different approaches, one promoted by Renault, see
+\cite{SemWebAppRes} and \cite{ren1}, and another made by Martin~Hepp
+in collaboration with Volkswagen resulting in amongst other things,
+the Car Options Ontology~\cite{COO}. We shall compare them to find
+their strengths and weaknesses. Each approach contains an ontology and
+has its own way of representing data.  To make this comparison we have
+used data about the same domain, data about car models and their
+component constraints.  The first approach is a generic ontology. By
+generic it means that it can be used to represent any product model
+with component constraints. The second approach is a domain specific
+ontology which as the name implies, is only applicable with one
+particular domain. In this thesis that domain is about car models.
+
+We will also show how to create a viable web application which
+utilizes such complex data, mainly for the purpose of conducting
+performance tests to determine the weaknesses of each approach. This
+will be done with complex data found on the web today from different
+car manufacturers.  With performance we mean the response time between
+a HTTP~\cite{http}} post operation against the application and when
+the application presents the user with an answer. The application will
+contain the possibility to do HTTP posts against both approaches.
+
+There will be several options on how to query the data because of all
+the different specifications.  That is why we have chosen to use the
+testing approach \textit{Design of Experiments} (DoE). This approach
+will be further explained alongside the results in
+Section~\ref{Results}. The evaluation will be based on four
+experiments testing several aspects of the approaches. They will help
+us determine what kind of factors are significant to the performance.
+
+\section{Related work}
+Complex products and specifying configurations has been a research
+topic for over a decade.  The possibility to personalize more and more
+products is why several research articles have proposed different
+approaches on how to handle these configurations. Most of the research
+are around finding the ultimate solution with a specification
+system. In 1999, M. Aldanondo et. al proposed how to structure a
+system to handle configurations and their constraints. This included
+proposed definitions for products, configurations and
+configurators. The paper focused on making a generic solution to fit
+several manufacturers.~\cite{OldConf} In a newer article,
+H. Afsarmanesh and M. Shafahi (2013) proposed a complex product
+specification system.~\cite{NewConf} This include object modelling and
+a user interface. They have focused on supporting stakeholders in the
+specification process.
+
+Unfortunately these articles do not present any research done with
+semantic technologies. The use of semantic technologies on complex
+products is a young field of research. The only thing done here is
+what Renault and Volkswagen have presented. Both of these car
+manufacturers have presented the public with two different
+solutions. They have also shown how to present the data on the web and
+the complexity around their solutions.
+
+
 
 \end{document}
+
+
