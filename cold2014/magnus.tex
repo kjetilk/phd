@@ -24,13 +24,13 @@ N-0316 Oslo, Norway \email{\{magnudae,kjekje\}@ifi.uio.no} }
   literature and in practice by different groups publishing metadata
   about cars when consumed by a prototype application. These
   approaches are characterized by a generic vs. domain specific
-  ontology; by a constrained API vs. openly queryable data % TODO:
-                                % Magnus, what else
-  We have implemented a prototype application where a potential user
-  may query selected properties of cars, and we investigate how the
-  different choices made by the original designers influence the
-  performance of the application. For the evaluation, we employ
-  the statistical disipline of Design of Experiments. 
+  ontology; by a constrained tree-oriented API vs. openly queryable
+  data; encouraging vs discouraging reasoning, etc.  We have
+  implemented a prototype application where a potential user may query
+  selected properties of cars, and we investigate how the different
+  choices made by the original designers influence the performance of
+  the application. For the evaluation, we employ the statistical
+  disipline of Design of Experiments.
 
 \end{abstract}
 
@@ -71,7 +71,7 @@ contain the possibility to do HTTP posts against both approaches.
 
 There will be several options on how to query the data because of all
 the different specifications.  That is why we have chosen to use the
-testing approach \textit{Design of Experiments} (DoE). This approach
+testing approach \emph{Design of Experiments} (DoE). This approach
 will be further explained alongside the results in
 Section~\ref{Results}. The evaluation will be based on four
 experiments testing several aspects of the approaches. They will help
@@ -173,6 +173,7 @@ user with the name of each car model, not just the URI. We will also
 describe more in depth how the car model search is done later on.
 
 % TODO differences between Daimler and Renault
+% TODO Alignment
 
 \section{Experiments}\label{Results}
 
@@ -181,7 +182,7 @@ from statistics known as Design of Experiments (DoE). For an
 introduction to the use of DoE in Semantic Web research, see~\cite{Kjern}.
 
 \subsection{Planning the experiment}
-As other approaches, there are several steps in doing experiments with
+Like other approaches, there are several steps in doing experiments with
 DoE.  First one has to state an objective which is important to give
 the experiment a purpose.  The next step is to choose a response. The
 response is the experimental outcome or observation. There may be
@@ -197,20 +198,19 @@ actual experiment.  The third step in planning an experiment is
 choosing factors and levels. This is a key part of DoE. A factor is a
 variable that is studied in the experiment, and to be able to study
 this factor it is needed to use two or more values of this
-factor. These values are referred to as levels.  This varies from
-benchmarking because often these levels are not required to do proper
-benchmarking.  The levels will allow us the check each factor for its
-significance. It is important to identify the key factors in the
-planning stage. This is to get the maximum effect out of the
-experiment.  Factors may be \textit{quantitative} or
-\textit{qualitative}. Quantitative factors are often numerical values
-that represent an interval. For instance the weight of a car is
-considered a Quantitative value. Qualitative factors are predefined
-values within a known set of values.  In our case a Qualitative factor
-can be the type of fuel, for instance Diesel.
+factor. These values are referred to as levels.  The levels will allow
+us to examine the influence of each factor. It is important to
+identify the key factors in the planning stage. This is to get the
+maximum effect out of the experiment.  Factors may be
+\emph{quantitative} or \emph{qualitative}. Quantitative factors
+are often numerical values that represent an interval. For instance
+the weight of a car is considered a Quantitative value. Qualitative
+factors are predefined values within a known set of values.  In our
+case a Qualitative factor can be the type of fuel, for instance
+Diesel.
 
 The fourth step in planning is to choose the experimental plan. Here
-we will use one specific approach. The approach is called \textit{full
+we will use one specific approach. The approach is called \emph{full
   factorial experiment} which we will go into more detail about in the
 next sub-section. There are other approaches like fractional factorial
 experiment, but they were not applicable or relevant to this thesis.
@@ -222,37 +222,17 @@ experiment.~\cite{PlanExp}
 
 \subsection{Full factorial experiment}
 A full factorial experiment is when one got $k$ factors and $n$ amount
-of levels. This means that there is $n^k$ \textit{factorial designs}
+of levels. This means that there is $n^k$ \emph{factorial designs}
 which result in $n^k$ designs to execute.  In the thesis every
 experiment will only have two levels, but the factors may vary. This
 means that we will use a $2^k$ full factorial design for every
 experiment. The experiments consist of $2^k$ combinations with $k$
 factors. For instance if we have three factors where every factor got
-two levels we get $2^3$ designs, also called \textit{runs}. In Table
-\ref{designs} we can see all the possible runs we get from 3
-factors. The + and - represent the level for each factor.  When
-running the actual experiment one should use a \textit{planning
-  matrix} to display the actual runs in the experiment. In Table
-\ref{designsspec} we can see the same table as before, just that now
-it is filled out with actual factors and their different levels.
+two levels we get $2^3$ designs, also called \emph{runs}. This results
+in a \emph{planning matrix} that shows the actual runs in the
+experiment as tabulated in Table~\ref{designsspec}. This contains the
+chosen factors and their levels.
 
-\begin{table}
-\begin{center}
-    \begin{tabular}{ | l  l  l |}
-    \hline
-    {\bf Factor 1} & {\bf Factor 2} & {\bf Factor 3} \\ \hline
-	 + & + & + \\ \hline
-	  - & + & + \\ \hline
-	 + & - & + \\ \hline
-	  - & - & + \\ \hline
-	 + & + & - \\ \hline
-	  - & + & - \\ \hline
-	 + & - & - \\ \hline
-	  - & - &  - \\ \hline
-    \end{tabular}
-\end{center}
-\caption{$2^3$ possible runs}\label{designs}
-\end{table}
 
 \begin{table}
 \begin{center}
@@ -272,33 +252,8 @@ it is filled out with actual factors and their different levels.
 \caption{A filled planning matrix with 3 factors}\label{designsspec}
 \end{table}
 
-Two key properties of full factorial designs are \textit{balance} and
-\textit{orthogonality}.  Balance means that each factor level appears
-the same amount of times in all the runs. For instance that the factor
-Diesel appears the same amount of runs as Petrol. Orthogonal means
-that two factors level combinations will appear in the same number of
-runs. As an example will Diesel fuel combined with Automatic
-transmission appear in the same number of runs as Petrol fuel with
-manual transmission. We can see in Table \ref{designsspec} that both
-these level combinations appear two times. Diesel and automatic
-appears in run 1 and 5, while Petrol and manual appears in run 4 and
-8.
 
-Experiments like this can also be replicated, which just means that
-the experimental plan is run more than one time.  It is not always
-efficient to replicate an experiment. Sometimes it can be too
-expensive to run it more than one time.  According to Wu and
-Hamada(2009) replication is unnecessary for computer experiments
-because repeated computer runs with the same input give the same
-output.  If it is replicated the plan should be randomized to get the
-best result. One reason for randomizing is to identify and get rid of
-\textit{lurking variables}. A lurking variable is a factor that is not
-taken into account when doing an experiment and that might affect the
-outcome of the experiment. For instance if one is doing an experiment
-outside. The outdoor temperature might be a affecting the experiment
-if not taken into account.~\cite{FullFac}
-
-\section{Experiments}
+\subsection{Running the experiments}
 In this section we will present several experiments with different
 amount of factors.  The objective is to find out how the ontologies
 will perform in comparison and identifying which factors affect the
@@ -306,10 +261,10 @@ outcome of each experiment. We did the ontology alignment and
 development of the application to prevent the loss of precision with
 either ontology.
 
-In the experiments the definition for VSO/COO is \textit{-vso} and for
-CO is \textit{-co}.  These two definitions stand for which ontology
+In the experiments the definition for VSO/COO is \emph{-vso} and for
+CO is \emph{-co}.  These two definitions stand for which ontology
 are tested in a particular run. In practice this means that when we
-send in the keyword \textit{-vso} we only run the specification search
+send in the keyword \emph{-vso} we only run the specification search
 against the car models represented by VSO/COO, in our case the data
 from Daimler. This is referred to as the ontology factor in each
 experiment and is a factor in all the experiments which are presented
@@ -328,14 +283,14 @@ Before starting on the experiment we had to find a way to do the
 actual experiment. We wanted to first create the planning matrix and
 then execute each run as a HTTP post. To do this we needed to make a
 small script to calculate the $2^k$ runs and perform the HTTP
-posts. We chose to use the programming language \textit{python} to do
+posts. We chose to use the programming language \emph{python} to do
 this. That was because python was a familiar language and it also had
 a package for DoE\footnote{http://pythonhosted.org/pyDOE/}. With the
 DoE package we just declared the amount of factors and the matrix was
 created. At that point the matrix looked more like Table
 \ref{designs}, which meant that we had to substitute the + and - with
 the levels of each factor.  Further in the script we used the package
-\textit{request}\footnote{http://requests.readthedocs.org/en/latest/}
+\emph{request}\footnote{http://requests.readthedocs.org/en/latest/}
 to do the HTTP posts in python. Below one can see the line of code
 executing the request.
 
@@ -345,19 +300,19 @@ executing the request.
 \end{lstlisting}
 \normalsize
 
-The \textit{payload} is a dictionary of all the values to post to the
+The \emph{payload} is a dictionary of all the values to post to the
 application.  After the request we saved the response which contained
 the response time of a run. After each request we saved the run plus
 the response time and wrote it to file on CSV format. To evaluate the
 result we used the programming language R with the packages
-\textit{DoE.base}~\cite{DoEBase}, \textit{FrF2}~\cite{FrF2} and
-\textit{BsMD}~\cite{BsMD}. R allowed us to parse the CSV files created
+\emph{DoE.base}~\cite{DoEBase}, \emph{FrF2}~\cite{FrF2} and
+\emph{BsMD}~\cite{BsMD}. R allowed us to parse the CSV files created
 from the experiments and output them in two types of graphs.  A
 similarity with all the experiments were that they all contained at
 least the factors ontology, transmission and fuel type.
 
-To evaluate the graphs we have used a method in the \textit{FrF2} R
-package called \textit{DanielPlot}. This method assumes that the
+To evaluate the graphs we have used a method in the \emph{FrF2} R
+package called \emph{DanielPlot}. This method assumes that the
 estimated effects are normally distributed with means equal to the
 effects. The means of all estimated effects are zero. Resulting in a
 plot where the estimated effect would end up on a straight line. This
@@ -381,7 +336,7 @@ half-normal score. This is to avoid visual misleading scores because
 with the normal scores, deviations from the line on negative scores
 might confuse the reader who are evaluating the charts.  The scores
 them selves are a measure for which factor that is the most
-significant.  We have also set the \textit{alpha} to $0.05$ which
+significant.  We have also set the \emph{alpha} to $0.05$ which
 means that we will tolerate a false percentage of $5\%$.
 
 All of the planning matrices, graphs and results will be presented
@@ -471,7 +426,7 @@ we can see the time effects from largest to smallest.  We see that the
 ontology factor has the largest effect on approximately 2.2 seconds
 which means that one of the ontologies overall is 2.2 seconds
 faster. By reading the results from the linear model it is the factor
-level \textit{-vso} which has an overall faster response time.
+level \emph{-vso} which has an overall faster response time.
 
 
 \begin{figure}
@@ -502,8 +457,8 @@ was to see which factors would be deemed significant in a complete car
 model search. With the results from this experiment we could discuss
 several aspects of using the different ontologies.  Here we added 4
 new factors in comparison to the six factor experiment. The newly
-added factors were \textit{weight}, \textit{nr. of doors},
-\textit{nr. of seats} and \textit{fuel consumption}. We used the same
+added factors were \emph{weight}, \emph{nr. of doors},
+\emph{nr. of seats} and \emph{fuel consumption}. We used the same
 approach here as in the previous experiments to calculate the average
 value for the new factors. The average values can be seen in the
 planning matrix in appendix \ref{appB}. With 10 factors the amount of
@@ -532,8 +487,8 @@ group.  We can see that emission also here are present in a lot of the
 entries, but so is ontology as well. The new thing here is the fuel
 consumption has entered the most significant factors, and is by itself
 higher than emission. The linear model again tells us that the option
-\textit{-vso} has a significantly lower response time than
-\textit{-co}
+\emph{-vso} has a significantly lower response time than
+\emph{-co}
 
 When we accumulated the results from all the runs we ended up with the
 total amount of response time to be approximately 30095 seconds, which
