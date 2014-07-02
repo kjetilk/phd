@@ -47,16 +47,44 @@ The findings, we assert, have a broader validity, given the generic
 nature of the problem they are trying to solve, and so our
 recommendations should have broad relevance to similar use cases.
 
-We present two different approaches, one promoted by Renault, see
-\cite{SemWebAppRes} and \cite{ren1}, and another made by Martin~Hepp
-in collaboration with Volkswagen resulting in amongst other things,
-the Car Options Ontology~\cite{COO}. We shall compare them to find
-their strengths and weaknesses. Each approach contains an ontology and
-has its own way of representing data.  To make this comparison we have
-used data about the same domain, data about car models and their
-component constraints.  The first approach is a generic ontology. By
-generic it means that it can be used to represent any product model
-with component constraints. The second approach is a domain specific
+We present two different approaches. One is promoted by Renault, see
+\cite{SemWebAppRes} and \cite{ren1}. They have developed the
+Configuration Ontology (CO) \cite{confOnt}, and developed an API to allow
+users to traverse the RDF graph to find a smaller result set of cars.
+The ontology focuses on building an RDF graph to represent all valid
+configurations for a product model with component constraints.  It is
+also made so that it is not needed to do any reasoning to get a valid
+result set.  They call it a traversal of \textit{Configurations} which
+will end up with a \textit{Partially Defined Products}
+(PDP)\footnote{Partially Defined Product is a way of defining a
+  product without using all of the features. For instance a car which
+  may have many features, but we describe it as a car with mp3 and
+  sunroof.}.  Their method insists there is a starting point, which is
+a car model. From there, there is a \emph{lexicon} which can be used
+to choose different specifications which may lead to a valid
+configuration. There are also stated if some specifications are
+impossible in the current configuration.  These are represented by
+either the \textit{co:possible} or \textit{co:impossible}
+property. Furthermore, string comparison must be used to check if a
+certain specification is representing for instance fuel type.
+
+
+The other approach was made by Martin~Hepp in collaboration with
+Volkswagen resulting in the Car Options Ontology (COO) \cite{COO} and
+the Vehicle Sales Ontology (VSO). They are designed to be used in
+combination with GoodRelations, also designed by Hepp. When using COO,
+one defines a base car model, and a \emph{trim} is defined on the
+base, while a derivative car model should specify compatibilities and
+constraints between configurations, e.g. an electrical car does not
+have a conventional gear box.
+
+We shall compare them to find their strengths and
+weaknesses. Each approach contains an ontology and has its own way of
+representing data.  To make this comparison we have used data about
+the same domain, data about car models and their component
+constraints.  The first approach is a generic ontology. By generic it
+means that it can be used to represent any product model with
+component constraints. The second approach is a domain specific
 ontology which as the name implies, is only applicable with one
 particular domain. In this thesis that domain is about car models.
 
@@ -114,16 +142,17 @@ detailed information about products to be sold online.
 
 We set out to evaluate different approaches based on a real use case
 where a user is seeking to buy a new car based on detailed data
-published by car manufacturers. Today only Renault, of all the car
-manufacturers, has opened their data using semantic
-technologies. Volkswagen had their data published until the start of
-2013, but unfortunately they canceled their Semantic Web project and
-the data were removed.  Fortunately, their ontologies are still open
-for the community to use. Eventually, we found Daimler very
-forthcoming, as they offered data about their A- and B-class cars.
-The Daimler data used a custom XML-based format, so we lifted the data
-using a Python script into the ontologies developed by Martin Hepp and
-Volkswagen.
+published by car manufacturers. Note that the implementation is not
+itself an important contribution, it is the evaluation that is the key
+contribution. Today only Renault, of all the car manufacturers, has
+opened their data using semantic technologies. Volkswagen had their
+data published until the start of 2013, but unfortunately they
+canceled their Semantic Web project and the data were removed.
+Fortunately, their ontologies are still open for the community to
+use. Eventually, we found Daimler very forthcoming, as they offered
+data about their A- and B-class cars.  The Daimler data used a custom
+XML-based format, so we lifted the data using a Python script into the
+ontologies developed by Martin Hepp and Volkswagen.
 
 To be able to put large stress on the application, which again would
 allow us to bring out key strengths and weaknesses of the two
