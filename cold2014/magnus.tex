@@ -65,7 +65,7 @@ a car model. From there, there is a \emph{lexicon} which can be used
 to choose different specifications which may lead to a valid
 configuration. There are also stated if some specifications are
 impossible in the current configuration.  These are represented by
-either the \emph{co:possible} or \emph{co:impossible}
+either the \textsf{co:possible} or \textsf{co:impossible}
 property. Furthermore, string comparison must be used to check if a
 certain specification is representing for instance fuel type.
 
@@ -308,10 +308,10 @@ outcome of each experiment. We did the ontology alignment and
 development of the application to prevent the loss of precision with
 either ontology.
 
-In the experiments the definition for VSO/COO is \emph{-vso} and for
-CO is \emph{-co}.  These two definitions stand for which ontology
+In the experiments the definition for VSO/COO is \textsf{-vso} and for
+CO is \textsf{-co}.  These two definitions stand for which ontology
 are tested in a particular run. In practice this means that when we
-send in the keyword \emph{-vso} we only run the specification search
+send in the keyword \textsf{-vso} we only run the specification search
 against the car models represented by VSO/COO, in our case the data
 from Daimler. This is referred to as the ontology factor in each
 experiment and is a factor in all the experiments which are presented
@@ -337,7 +337,7 @@ DoE package we just declared the amount of factors and the matrix was
 created. At that point the matrix looked more like Table
 \ref{designs}, which meant that we had to substitute the + and - with
 the levels of each factor.  Further in the script we used the package
-\emph{request}\footnote{http://requests.readthedocs.org/en/latest/}
+\textsf{request}\footnote{http://requests.readthedocs.org/en/latest/}
 to do the HTTP posts in python. Below one can see the line of code
 executing the request.
 
@@ -352,14 +352,14 @@ application.  After the request we saved the response which contained
 the response time of a run. After each request we saved the run plus
 the response time and wrote it to file on CSV format. To evaluate the
 result we used the programming language R with the packages
-\emph{DoE.base}~\cite{DoEBase}, \emph{FrF2}~\cite{FrF2} and
-\emph{BsMD}~\cite{BsMD}. R allowed us to parse the CSV files created
+\textsf{DoE.base}~\cite{DoEBase}, \textsf{FrF2}~\cite{FrF2} and
+\textsf{BsMD}~\cite{BsMD}. R allowed us to parse the CSV files created
 from the experiments and output them in two types of graphs.  A
 similarity with all the experiments were that they all contained at
 least the factors ontology, transmission and fuel type.
 
-To evaluate the graphs we have used a method in the \emph{FrF2} R
-package called \emph{DanielPlot}. This method assumes that the
+To evaluate the graphs we have used a method in the \textsf{FrF2} R
+package called \textsf{DanielPlot}. This method assumes that the
 estimated effects are normally distributed with means equal to the
 effects. The means of all estimated effects are zero. Resulting in a
 plot where the estimated effect would end up on a straight line. This
@@ -383,8 +383,9 @@ half-normal score. This is to avoid visual misleading scores because
 with the normal scores, deviations from the line on negative scores
 might confuse the reader who are evaluating the charts.  The scores
 them selves are a measure for which factor that is the most
-significant.  We have also set the \emph{alpha} to $0.05$ which
-means that we will tolerate a false percentage of $5\%$.
+significant.  We have also set  the significance level at $\alpha =
+0.05$, where \textsf{DanielPlot} is using Lenth's method for the
+analysis of unreplicated factorials. % TODO: Need a citation here.
 
 All of the planning matrices, graphs and results will be presented
 with each experiment later on in this section.  The discussion and
@@ -475,7 +476,7 @@ we can see the time effects from largest to smallest.  We see that the
 ontology factor has the largest effect on approximately 2.2 seconds
 which means that one of the ontologies overall is 2.2 seconds
 faster. By reading the results from the linear model it is the factor
-level \emph{-vso} which has an overall faster response time.
+level \textsf{-vso} which has an overall faster response time.
 
 
 \begin{figure}
@@ -536,8 +537,8 @@ group.  We can see that emission also here are present in a lot of the
 entries, but so is ontology as well. The new thing here is the fuel
 consumption has entered the most significant factors, and is by itself
 higher than emission. The linear model again tells us that the option
-\emph{-vso} has a significantly lower response time than
-\emph{-co}
+\textsf{-vso} has a significantly lower response time than
+\textsf{-co}
 
 When we accumulated the results from all the runs we ended up with the
 total amount of response time to be approximately 30095 seconds, which
@@ -706,7 +707,7 @@ explanation is that we chose an average value to be an upper and lower
 limit of a factor. We used these as factor levels to avoid an
 unrealistic high number of levels. This could have opened for more new
 specifications to check on one level of the factor.  As we see in the
-Table \ref{10factorEffect}, \emph{E:WT} is higher than \emph{WT}
+Table \ref{10factorEffect}, \textsf{E:WT} is higher than \textsf{WT}
 itself. This might indicate that one of the levels of E will open up
 for more values to traverse in one of the levels of WT. This is a
 complex matter which will depend on each product model as well as the
@@ -730,16 +731,16 @@ structure of CO in conjunction of the data representation, is made for
 one particular scenario. That is to specify one specification after
 another, not all at once. Here CO has several tools at disposal to
 make it easier trimming down the result sets. The property
-\emph{co:impossible} was to no use in our application due that our
+\textsf{co:impossible} was to no use in our application due that our
 application specified all specifications before searching. This
 property lets the application remove possibilities if a user have
 chosen some specifications. One would still has to use the lexicon as
 reference, but could eliminate further possibilities. The property
-\emph{co:impliedSpec} does something similar and gives the user a
+\textsf{co:impliedSpec} does something similar and gives the user a
 list of specifications that are implied and do not need to be searched
 for.  COO have some of the same functions and possibilities, but some
 of these has to be reasoned over to be useful. One can produce the
-same functionality by using \emph{coo:incompatibleWith} with
+same functionality by using \textsf{coo:incompatibleWith} with
 reasoning.
 
 From the performance tests and programming, the product specific
