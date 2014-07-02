@@ -78,6 +78,22 @@ base, while a derivative car model should specify compatibilities and
 constraints between configurations, e.g. an electrical car does not
 have a conventional gear box.
 
+A central difference with these ontologies is that CO allows the
+configuration to be defined in terms of classes, whereas VSO
+represents them with properties, for example:
+\begin{lstlisting}[basicstyle=\tiny, frame=single]
+#CO representation of fuel type
+:var_PT1628  a           co:ConfigurationVariable , owl:Class ;
+        rdfs:label       "Fuel Type"@en ;
+        co:confVarId   "PT1628" ;
+        co:hasValue    <http://uk.co.rplug.renault.com/product/gen/spec/PT1628_diesel/-#this> .
+
+#VSO representation of fuel type
+daim:A200CDI vso:fuelType daim:A200CDI_fuelType_Diesel_fuel .
+\end{lstlisting}
+
+
+
 We shall compare them to find their strengths and
 weaknesses. Each approach contains an ontology and has its own way of
 representing data.  To make this comparison we have used data about
@@ -93,7 +109,7 @@ utilizes such complex data, mainly for the purpose of conducting
 performance tests to determine the weaknesses of each approach. This
 will be done with complex data found on the web today from different
 car manufacturers.  With performance we mean the response time between
-a HTTP~\cite{http}} post operation against the application and when
+a HTTP post operation against the application and when
 the application presents the user with an answer. The application will
 contain the possibility to do HTTP posts against both approaches.
 
