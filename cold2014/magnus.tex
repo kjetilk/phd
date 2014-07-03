@@ -194,20 +194,10 @@ comprises it into another format that can easily be used later on. The
 next step begins in the search module. Here it starts a thread for
 each possible car model to execute each individual search. In the end
 the user is presented with a set of valid models to choose from, which
-contain the chosen specifications. In Figure \ref{afterSearch}, we
-can see what the user is presented with after a successful query
-execution, in this case seventeen different models. In this run, the
-user have searched for a model with diesel fuel, automatic
-transmission, four or more gears and a maximum of six seats. We also
-have the values and URIs for each of these valid models, which means
-that the application could present the user with more information than
-it does today.
+contain the chosen specifications, e.g. the user have searched for a
+model with diesel fuel, automatic transmission, four or more gears and
+a maximum of six seats. 
 
-\begin{figure}
-  \centering
-      \includegraphics[width=12cm]{afterSearch.png}
-  \caption{The view after a search}\label{afterSearch}
-\end{figure}
 There are done some pre-computations to make the application a little
 more effective. This includes extracting all the model names from both
 ontologies, initiate all possible partially defined products as a
