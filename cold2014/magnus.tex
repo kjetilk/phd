@@ -41,7 +41,7 @@ The retrieval of information from different sources and then combine
 them to allow a user to find a certain combination of properties that
 suit their purpose is an archetypical Semantic Web use case. We have
 chosen to focus on a product selection use case, specifically on cars,
-since some car makers have embraced the Semantic Web vision and chosen
+since some car manufacturers have embraced the Semantic Web vision and chosen
 to share detailed data on their products.
 
 The findings, we assert, have a broader validity, given the generic
@@ -87,7 +87,8 @@ represents them with properties, for example:
 :var_PT1628  a           co:ConfigurationVariable , owl:Class ;
         rdfs:label       "Fuel Type"@en ;
         co:confVarId   "PT1628" ;
-        co:hasValue    <http://uk.co.rplug.renault.com/product/gen/spec/PT1628_diesel/-#this> .
+        co:hasValue    
+	    <http://uk.co.rplug.renault.com/product/gen/spec/PT1628_diesel/-#this> .
 
 #VSO representation of fuel type
 daim:A200CDI vso:fuelType daim:A200CDI_fuelType_Diesel_fuel .
@@ -168,7 +169,7 @@ canceled their Semantic Web project and the data were removed.
 Fortunately, their ontologies are still open for the community to
 use. Eventually, we found Daimler very forthcoming, as they offered
 data about their A- and B-class cars.  The Daimler data used a custom
-XML-based format, so we lifted the data using a Python script into the
+XML-based format, so we lifted the data using a \textit{python} script into the
 ontologies developed by Martin Hepp and Volkswagen.
 
 To be able to put large stress on the application, which again would
@@ -420,10 +421,8 @@ the different factors and their levels. We chose to start with a small
 experiment using only simple factors which had few possible
 values. That is why we chose transmission and fuel type as factors as
 well as the ontology factor. With these three factors we got $2^3$
-number of runs.  This meant that we had 8 runs to execute against our
-application. This experiment was also replicated four times to get the
-most accurate results. The experiment was small so the replication did
-not cause any issues.  The results were calculated by finding the
+number of runs. This experiment was also replicated four times to get the
+most accurate results.  The results were calculated by finding the
 average response time for each run between all four replications.
 
 \begin{table}[H]
@@ -440,8 +439,7 @@ average response time for each run between all four replications.
 \end{table}
 
 The next step was to create the planning matrix for this
-experiment. As mention in the beginning of this section we used a
-package in python to create and fill out the planning matrix. Table
+experiment. Table
 \ref{3factor} shows all the 8 runs for the experiment with three
 factors. We also ran a randomized version the experiment to check
 whether the randomization would influence the experiment. The results
@@ -512,8 +510,7 @@ added factors were \emph{weight}, \emph{nr. of doors},
 approach here as in the previous experiments to calculate the average
 value for the new factors. The average values can be seen in the
 planning matrix in appendix \ref{appB}. With 10 factors the amount of
-runs were $2^{10}$. This results in 1024 number of runs which made the
-planning matrix too big to show here.
+runs were $2^{10}$, which made the planning matrix too big to show here.
 
 In the graph \ref{10factorGraph} we can see the results from running
 all the 1024 runs.  We can see that there are a lot of significant
@@ -521,19 +518,8 @@ effects present here. There are more than any of the previous
 experiments, but it is also more factors and factor interactions.
 Unfortunately there are so many significant factors that there are
 some of them that are illegible, but most of them have a low impact on
-the significance graph. Like the six factor experiment we also see
-here that there are three groups of significant factors. The first
-group where most of them are placed range from around 2 seconds effect
-to 11. Here there are a lot of factor interactions and why they are
-there will be explained in the discussion.  The second group is very
-like the second group we saw in the six factor experiment, the only
-difference is that the total weight (WT) factor is substituted with
-fuel consumption (FC). The last group is the same for all the
-experiments, except the two factor experiment. Here we find the
-ontology factor.  In Table \ref{10factorEffect} we can see the top
-twenty absolute effects. This includes all the significant factors
-from the last group and the second one, but also 5 from the first
-group.  We can see that emission also here are present in a lot of the
+the significance graph.  In Table \ref{10factorEffect} we can see the top
+twenty absolute effects. We can see that emission also here are present in a lot of the
 entries, but so is ontology as well. The new thing here is the fuel
 consumption has entered the most significant factors, and is by itself
 higher than emission. The linear model again tells us that the option
@@ -641,16 +627,15 @@ transmissions. This is not a lot, but can account for some delay in
 the response time.
 
 \subsection{The large scale experiments}
-The last two experiments we define as large scale experiments. This is
+The last experiment we define as a large scale experiment. This is
 because the workload and time consumption were significantly larger
-than the two previous experiments. Both of these experiments were done
+than the previous experiment. This experiment were done
 to simulate a workload for an application were one could define all
 the specifications at once. Defining all specifications means that a
 user can query for all specifications that may be present in a product
 model.
 
-The last experiment done was the one with ten factors. This experiment
-had four more factors than the six factor experiment.  We chose to add
+This experiment had seven more factors than the three factor experiment.  We chose to add
 factors which represented specifications that were present in every
 car model in each RDF graph. That was because some specifications like
 height was not always declared in a car model and then would skew the
@@ -816,9 +801,7 @@ need for reasoning to be effective, which is opposite of what Renault
 proposed. If the compatibility issue is solved we believe the
 performance can be feasible for almost every scenario. It will demand
 more from the third party user, but can utilize more than just data
-about car models. To make it even more effective, there should be done
-several other alterations to both the representation and the ontology
-as discussed in Section \ref{Alterations}.
+about car models. 
 
 Our recommendation is based on giving the user freedom to query the
 data in several ways.  A future goal would be to do a more thorough
