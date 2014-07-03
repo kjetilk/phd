@@ -184,21 +184,20 @@ To align the above ontologies, we used SPARQL CONSTRUCT statements
 from the lexicon to each specification.
 
 The application present users with a web interface where they can
-input values for any specification they might want to search for.  In
-Figure~\ref{initialView} we can see how the application initially
-looks for a user. Here the user can input values for the different
-specifications, for instance fuel type or CO$_2$ emission. After a
-user is done choosing specifications he can execute the actual car
-model search. The application extracts the data from the form and
-comprises it into another format that can easily be used later on. The
-next step begins in the search module. Here it starts a thread for
-each possible car model to execute each individual search. In the end
-the user is presented with a set of valid models to choose from, which
-contain the chosen specifications, e.g. the user have searched for a
-model with diesel fuel, automatic transmission, four or more gears and
-a maximum of six seats. 
+input values for any specification they might want to search
+for. There the user can input values for the different specifications,
+for instance fuel type or CO$_2$ emission. After a user is done
+choosing specifications he can execute the actual car model
+search. The application extracts the data from the form and comprises
+it into another format that can easily be used later on. The next step
+begins in the search module. Here it starts a thread for each possible
+car model to execute each individual search. In the end the user is
+presented with a set of valid models to choose from, which contain the
+chosen specifications, e.g. the user have searched for a model with
+diesel fuel, automatic transmission, four or more gears and a maximum
+of six seats.
 
-There are done some pre-computations to make the application a little
+Some pre-computations are done to make the application a little
 more effective. This includes extracting all the model names from both
 ontologies, initiate all possible partially defined products as a
 PartialCar object and creating some internal structure. These
@@ -255,34 +254,16 @@ experiment.~\cite{PlanExp}
 \subsection{Full factorial experiment}
 A full factorial experiment is when one got $k$ factors and $n$ amount
 of levels. This means that there is $n^k$ \emph{factorial designs}
-which result in $n^k$ designs to execute.  In the thesis every
-experiment will only have two levels, but the factors may vary. This
+which result in $n^k$ designs to execute.  We have chosen only
+two-level experiments for this research, but the factors may vary. This
 means that we will use a $2^k$ full factorial design for every
 experiment. The experiments consist of $2^k$ combinations with $k$
 factors. For instance if we have three factors where every factor got
 two levels we get $2^3$ designs, also called \emph{runs}. This results
 in a \emph{planning matrix} that shows the actual runs in the
-experiment as tabulated in Table~\ref{designsspec}. This contains the
-chosen factors and their levels.
+experiment.
 
 
-%\begin{wraptable}
-%\begin{center}
-%    \begin{tabular}{ | l | l  l  l |}
-%    \hline
-%    {\bf Run} &  {\bf Fuel type} & {\bf Transmission} & {\bf Speed} \\ \hline
-%	 1 & Diesel & Automatic & 100 \\ \hline
-%	 2 & Petrol & Automatic & 100 \\ \hline
-%	 3 & Diesel & Manual & 100 \\ \hline
-%	 4 & Petrol & Manual & 100 \\ \hline
-%	 5 & Diesel & Automatic & 200 \\ \hline
-%	 6 & Petrol & Automatic & 200 \\ \hline
-%	 7 & Diesel & Manual & 200 \\ \hline
-%	 8 & Petrol & Manual &  200 \\ \hline
-%    \end{tabular}
-%\end{center}
-%\caption{A filled planning matrix with 3 factors}\label{designsspec}
-%\end{wraptable}
 
 
 \subsection{Running the experiments}
@@ -456,8 +437,8 @@ new factors in comparison to the six factor experiment. The newly
 added factors were \emph{weight}, \emph{nr. of doors},
 \emph{nr. of seats} and \emph{fuel consumption}. We used the same
 approach here as in the previous experiments to calculate the average
-value for the new factors. The average values can be seen in the
-planning matrix in appendix~\ref{appB}. With 10 factors the amount of
+value for the new factors. % TODO: Explain more how the levels were set?
+With 10 factors the amount of
 runs were $2^{10}$, which made the planning matrix too big to show here.
 
 In the graph~\ref{10factorGraph} we can see the results from running
@@ -542,16 +523,16 @@ with CO we had to move to a new configuration URI after each
 specification choice.
 
 In the Figure~\ref{3factorGraph} we can see that only one significant
-effects, the O factor. In the results data found in appendix
-\ref{appD} we can see that the Configuration Ontology was almost two
-seconds slower than the VSO/COO runs.  Three out of four CO runs kept
-the response time around two seconds, but one run had to use
-approximately 3.5 seconds which resulted in an average run time of
-$\approx2.3$ seconds.  In a study done to research the amount of time
-a user would be willing to wait, they found out that the tolerable
-waiting time for any information retrieval was approximately 2
-seconds.~\cite{waitTime} This means that with three factors we were
-still within the time frame for a good user experience.
+effects, the O factor. We saw in Table~\ref{3factorEffect} that the
+Configuration Ontology was almost two seconds slower than the VSO/COO
+runs.  Three out of four CO runs kept the response time around two
+seconds, but one run had to use approximately 3.5 seconds which
+resulted in an average run time of $\approx2.3$ seconds.  In a study
+done to research the amount of time a user would be willing to wait,
+they found out that the tolerable waiting time for any information
+retrieval was approximately 2 seconds.~\cite{waitTime} This means that
+with three factors we were still within the time frame for a good user
+experience.
 
 One reason that CO was slower than VSO/COO for this experiment is that
 all the car models represented with CO is placed in a separate RDF
@@ -567,9 +548,7 @@ experiment was so small, it had a higher impact than in the later
 experiments.
 
 Another factor that would influence the results is the amount of
-values the search has to iterate over.  In Table~\ref{averages}, we
-presented all the average values and the average number of values
-present in the Daimler and Renault data. We can see that CO have
+values the search has to iterate over.  We have found that CO have
 $0.54$ more fuel types on average to iterate over and $0.3$ more
 transmissions. This is not a lot, but can account for some delay in
 the response time.
