@@ -307,23 +307,11 @@ performance.  We have programmed the application so that the querying
 of the ontologies are done as similar as possible on both levels. This
 was done to eliminate any interference from the application.
 
-First we wanted to create the planning matrix and
-then execute each run as a HTTP post. To do this we needed to make a
-small script to calculate the $2^k$ runs and perform the HTTP
-posts. We chose to use the programming language \emph{python} to do
-this. That was because python was a familiar language and it also had
-a package for DoE\footnote{http://pythonhosted.org/pyDOE/}. With the
-DoE package we just declared the amount of factors and the matrix was
-created.  Further in the script we used the package
-\textsf{request}\footnote{http://requests.readthedocs.org/en/latest/}
-to do the HTTP posts in python. Below one can see the line of code
-executing the request.
-
-\scriptsize\begin{lstlisting}
- r = requests.post('http://localhost:8080/linkedopendata-magnudae/index', 
-		  data=payload)
-\end{lstlisting}
-\normalsize
+First, we created the planning matrix and then executed each run as a
+HTTP post. To do this we needed to make a small script to calculate
+the $2^k$ runs and perform the HTTP posts. We used the programming
+language \emph{Python} with the
+DoE\footnote{http://pythonhosted.org/pyDOE/} package.
 
 The \emph{payload} is a dictionary of all the values to post to the
 application.  After the request we saved the response which contained
@@ -367,20 +355,27 @@ analysis of unreplicated factorials. % TODO: Need a citation here.
 
 Before starting the experiments we will present
 abbreviations for each factor because their full name made the graphs
-totally illegible. The results from all the
-experiments can be found in appendix \ref{appD}. %TODO: What to do with the appendix?
-\begin{itemize}
-  \item Ontology = O
-  \item Fuel Type = FT
-  \item Transmission = T
-  \item Weight = W
-  \item Total Weight = WT
-  \item Emission = E
-  \item Nr. of Gears = G
-  \item Seating Capacity = SC
-  \item Fuel Consumption = FC
-  \item Doors = D
-\end{itemize}
+totally illegible. 
+
+\begin{wraptable}{l}{0.35\textwidth}
+    \begin{tabular}{ | l | l |}
+    \hline
+    {\bf Factor} & {\bf Abbrev} \\ \hline
+   Ontology & \textsf{O} \\
+   Fuel Type & \textsf{FT} \\
+   Transmission & \textsf{T} \\
+   Weight & \textsf{W} \\
+   Total Weight & \textsf{WT} \\
+   Emission & \textsf{E} \\
+   Nr. of Gears & \textsf{G} \\
+   Seating Capacity & \textsf{SC} \\
+   Fuel Consumption & \textsf{FC} \\
+   Doors & \textsf{D} \\
+\hline
+    \end{tabular}
+\caption{Factors and their abbreviation}\label{facandabbrev}
+\end{wraptable}
+
 
 We ran several experiments, both randomized and unrandomized
 experiments, with 3, 4, 6 and 10 factors. Here, we report on the
@@ -446,7 +441,7 @@ which means that one of the ontologies overall is 2.2 seconds
 faster. By reading the results from the linear model it is the factor
 level \textsf{-vso} which has an overall faster response time.
 
-\begin{wraptable}{l}{0.35\textwidth}
+\begin{wraptable}{r}{0.35\textwidth}
 \vspace{-25pt}
     \begin{tabular}{ | l l |}
     \hline
@@ -460,14 +455,14 @@ level \textsf{-vso} which has an overall faster response time.
 	  FT     &0.1189629 \\ \hline
     \end{tabular}
 \caption{Table of effects for the three factor experiment}\label{3factorEffect}
-\vspace{-65pt}
+\vspace{-25pt}
 \end{wraptable} 
 
 
-\begin{figure}
- \includegraphics[width=12cm, height=8cm]{2factorfinal.pdf}
+\begin{wrapfigure}{l}{0.65\textwidth}
+ \includegraphics[width=8.5cm, height=7cm]{2factorfinal.pdf}
   \caption{Resulting graph for the three factor experiment}\label{3factorGraph}
-\end{figure}
+\end{wrapfigure}
 
 
 \subsubsection{Experiment with ten factors}
