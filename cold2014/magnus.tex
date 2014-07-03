@@ -185,7 +185,7 @@ from the lexicon to each specification.
 
 The application present users with a web interface where they can
 input values for any specification they might want to search for.  In
-Figure \ref{initialView} we can see how the application initially
+Figure~\ref{initialView} we can see how the application initially
 looks for a user. Here the user can input values for the different
 specifications, for instance fuel type or CO$_2$ emission. After a
 user is done choosing specifications he can execute the actual car
@@ -353,9 +353,7 @@ significant.  We have also set  the significance level at $\alpha =
 0.05$, where \textsf{DanielPlot} is using Lenth's method for the
 analysis of unreplicated factorials. % TODO: Need a citation here.
 
-Before starting the experiments we will present
-abbreviations for each factor because their full name made the graphs
-totally illegible. 
+For brevity, we will use abbreviations given in Figure~\ref{facandabbrev}.
 
 \begin{wraptable}{l}{0.35\textwidth}
     \begin{tabular}{ | l | l |}
@@ -393,7 +391,7 @@ results.  The results were calculated by finding the average response
 time for each run between all four replications.
 
 The next step was to create the planning matrix for this
-experiment. Table \ref{3factor} shows all the 8 runs for the
+experiment. Table~\ref{3factor} shows all the 8 runs for the
 experiment with three factors.  After each run the response time were
 logged to that particular run. The response time were then used to
 check for significant effect when the experiment were evaluated
@@ -416,9 +414,9 @@ check for significant effect when the experiment were evaluated
 
 
 Like the rest of the experiments we used DanielPlot to evaluate and a
-package in R to visualize the result. Figure \ref{3factorGraph}
+package in R to visualize the result. Figure~\ref{3factorGraph}
 shows only one significant factor, namely the \textsf{O} factor in the
-upper right corner. In Table \ref{3factorEffect}
+upper right corner. In Table~\ref{3factorEffect}
 we can see the time effects from largest to smallest.  We see that the
 ontology factor has the largest effect on approximately 2.2 seconds
 which means that one of the ontologies overall is 2.2 seconds
@@ -459,16 +457,16 @@ added factors were \emph{weight}, \emph{nr. of doors},
 \emph{nr. of seats} and \emph{fuel consumption}. We used the same
 approach here as in the previous experiments to calculate the average
 value for the new factors. The average values can be seen in the
-planning matrix in appendix \ref{appB}. With 10 factors the amount of
+planning matrix in appendix~\ref{appB}. With 10 factors the amount of
 runs were $2^{10}$, which made the planning matrix too big to show here.
 
-In the graph \ref{10factorGraph} we can see the results from running
+In the graph~\ref{10factorGraph} we can see the results from running
 all the 1024 runs.  We can see that there are a lot of significant
 effects present here. There are more than any of the previous
 experiments, but it is also more factors and factor interactions.
 Unfortunately there are so many significant factors that there are
 some of them that are illegible, but most of them have a low impact on
-the significance graph.  In Table \ref{10factorEffect} we can see the top
+the significance graph.  In Table~\ref{10factorEffect} we can see the top
 twenty absolute effects. We can see that emission also here are present in a lot of the
 entries, but so is ontology as well. The new thing here is the fuel
 consumption has entered the most significant factors, and is by itself
@@ -543,7 +541,7 @@ possible.  The only difference from a programming perspective was that
 with CO we had to move to a new configuration URI after each
 specification choice.
 
-In the Figure \ref{3factorGraph} we can see that only one significant
+In the Figure~\ref{3factorGraph} we can see that only one significant
 effects, the O factor. In the results data found in appendix
 \ref{appD} we can see that the Configuration Ontology was almost two
 seconds slower than the VSO/COO runs.  Three out of four CO runs kept
@@ -569,7 +567,7 @@ experiment was so small, it had a higher impact than in the later
 experiments.
 
 Another factor that would influence the results is the amount of
-values the search has to iterate over.  In Table \ref{averages}, we
+values the search has to iterate over.  In Table~\ref{averages}, we
 presented all the average values and the average number of values
 present in the Daimler and Renault data. We can see that CO have
 $0.54$ more fuel types on average to iterate over and $0.3$ more
@@ -591,7 +589,7 @@ car model in each RDF graph. That was because some specifications like
 height was not always declared in a car model and then would skew the
 results. These incidents were present in CO's RDF graphs.
 
-In Figure \ref{10factorGraph} we can see the results from this
+In Figure~\ref{10factorGraph} we can see the results from this
 experiment. There are unfortunately a lot of illegible significant
 factors, but these are the less significant ones. In Table
 \ref{10factorEffect} we see the top twenty absolute effects and
@@ -626,7 +624,7 @@ greater impact on the amount of values checked later.
 		\item Seating Capacity (SC)
 \end{enumerate}
 
-If we take another look at Table \ref{10factorEffect} we see that
+If we take another look at Table~\ref{10factorEffect} we see that
 there are only three single factors except O that are in the top 15
 significant factors.  After the 15 significant factor the absolute
 effect drops significantly. The three factors are E, FC and T. E and T
@@ -642,7 +640,7 @@ explanation is that we chose an average value to be an upper and lower
 limit of a factor. We used these as factor levels to avoid an
 unrealistic high number of levels. This could have opened for more new
 specifications to check on one level of the factor.  As we see in the
-Table \ref{10factorEffect}, \textsf{E:WT} is higher than \textsf{WT}
+Table~\ref{10factorEffect}, \textsf{E:WT} is higher than \textsf{WT}
 itself. This might indicate that one of the levels of E will open up
 for more values to traverse in one of the levels of WT. This is a
 complex matter which will depend on each product model as well as the
