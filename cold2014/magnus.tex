@@ -382,38 +382,21 @@ experiments, with 3, 4, 6 and 10 factors. Here, we report on the
 unrandomized 3 and 10 full factorial experiments:
   
 \subsubsection{Experiment with three factors}
-The first experiment that was done, was the experiment with only three
-factors. The goal here was to see how the ontologies behave with a
-small amount of querying and factors.  Table \ref{facandlevExp1} show
-the different factors and their levels. We chose to start with a small
-experiment using only simple factors which had few possible
-values. That is why we chose transmission and fuel type as factors as
-well as the ontology factor. With these three factors we got $2^3$
-number of runs. This experiment was also replicated four times to get the
-most accurate results.  The results were calculated by finding the
-average response time for each run between all four replications.
-
-\begin{wraptable}{l}{0.67\textwidth}
-    \begin{tabular}{ | l | l l |}
-    \hline
-    {\bf Factor} & {\bf Level 1} & {\bf Level 2} \\ \hline
-	Ontology & -vso & -co \\ \hline 
-	Fuel type & Diesel & Unleaded Petrol \\ \hline 
-	Transmission & Manual Gearbox & Automatic Gearbox \\ \hline 
-    \end{tabular}
-\caption{Factors and levels for experiment 1}\label{facandlevExp1}
-\end{wraptable}
+We first made a very simple three factor experiment. The main goal here was
+to see how the ontologies behave with a small amount of querying and
+factors. We chose to start with a small experiment using only
+simple factors which had few possible values. That is why we chose
+transmission and fuel type as factors as well as the ontology
+factor. With these three factors we got $2^3$ number of runs. This
+experiment was also replicated four times to get the most accurate
+results.  The results were calculated by finding the average response
+time for each run between all four replications.
 
 The next step was to create the planning matrix for this
-experiment. Table
-\ref{3factor} shows all the 8 runs for the experiment with three
-factors. We also ran a randomized version the experiment to check
-whether the randomization would influence the experiment. The results
-were almost equal which eliminated randomization as a factor.  Both
-results can be found in appendix \ref{appD}. After each run the
-response time were logged to that particular run. The response time
-were then used to check for significant effect when the experiment
-were evaluated
+experiment. Table \ref{3factor} shows all the 8 runs for the
+experiment with three factors.  After each run the response time were
+logged to that particular run. The response time were then used to
+check for significant effect when the experiment were evaluated
 \begin{wraptable}{l}{0.67\textwidth}
     \begin{tabular}{ | l | l l l |}
     \hline
@@ -427,7 +410,8 @@ were evaluated
 	7 & -vso & Unleaded Petrol & Manual Gearbox \\ \hline 
 	8 & -co & Unleaded Petrol & Manual Gearbox \\ \hline 
     \end{tabular}
-\caption{Planning matrix for experiment with three factors}\label{3factor}
+    \caption{Planning matrix for experiment with three factors and
+      their levels.}\label{3factor}
 \end{wraptable}
 
 
