@@ -147,10 +147,10 @@ manufacturers have presented the public with two different
 solutions. They have also shown how to present the data on the web and
 the complexity around their solutions.
 
-The Volkswagen solution builds upon GoodRelations, which is a web
-vocabulary for e-commerce and was launched in 2008 and is now
-widespread. GoodRelations.~\cite{GR} GoodRelations can be used for
-detailed information about products to be sold online.
+The Volkswagen solution builds upon GoodRelations\cite{GRQual}, which
+is a web vocabulary for e-commerce and was launched in 2008 and is now
+widespread.  GoodRelations can be used for detailed information about
+products to be sold online.
 
 % TODO: Har litt på følelsen at dette blir for tynt for et paper,
 % mulig det burde vært mer generelt om Goodrelations, etc. Vi kan jo
@@ -213,14 +213,15 @@ from statistics known as Design of Experiments (DoE). For an
 introduction to the use of DoE in Semantic Web research, see~\cite{Kjern}.
 
 \subsection{Planning the experiment}
-Like other approaches, there are several steps in doing experiments with
-DoE.  First one has to state an objective which is important to give
-the experiment a purpose.  The next step is to choose a response. The
-response is the experimental outcome or observation. There may be
-multiple responses in an experiment. In this experiment there will be
-one response and that is the response time on a HTTP post against the
-application.  These first two steps are the same for all the
-experiments in this thesis.
+Like other approaches, there are several steps in doing experiments
+with DoE. A good textbook on the subject is \cite{PlanExp}. First one
+has to state an objective which is important to give the experiment a
+purpose.  The next step is to choose a response. The response is the
+experimental outcome or observation. There may be multiple responses
+in an experiment. In this experiment there will be one response and
+that is the response time on a HTTP post against the application.
+These first two steps are the same for all the experiments in this
+thesis.
 
 The next two steps of planning an experiment is specific to each
 experiment itself. This means that these steps will be described more
@@ -248,7 +249,7 @@ experiment, but they were not applicable or relevant to this thesis.
 The last three steps of planning the experiment are performing the
 experiment, analyzing the output and in the end drawing
 conclusions. More about these steps will be taken individually at each
-experiment.~\cite{PlanExp}
+experiment. 
 
 
 \subsection{Full factorial experiment}
@@ -316,23 +317,12 @@ significant factor. In our results we have used the absolute value of
 the effects, also called a half-normal plot. The advantages of using
 the half-normal plot is that all large estimated effects will end up
 in the top right corner. This means that the highest performance
-significance will end up in
-the top right corner.~\cite{Plotting} \\
-Here is a quick explanation of the axes shown in each graph.  The X
-axis will show the absolute effect of each factor, shown in time. The
-values on the X axis is represented in seconds which means that the a
-plot will have a significance measured in seconds.  The Y axis shows
-the half-normal scores. There are two way of representing the graph
-and that is with either half-normal plots or normal plots. With
-half-normal the effects on the X axis are shown with the absolute
-effect. This means that all factors are placed with a positive
-half-normal score. This is to avoid visual misleading scores because
-with the normal scores, deviations from the line on negative scores
-might confuse the reader who are evaluating the charts.  The scores
-them selves are a measure for which factor that is the most
-significant.  We have also set  the significance level at $\alpha =
+significance will end up in the top right corner. The
+axes themselves are not important to understand the plot nor the
+results, refer to \cite{PlanExp} for details.
+We have also set  the significance level at $\alpha =
 0.05$, where \textsf{DanielPlot} is using Lenth's method for the
-analysis of unreplicated factorials. % TODO: Need a citation here.
+analysis of unreplicated factorials.
 
 For brevity, we will use abbreviations given in Figure~\ref{facandabbrev}.
 
@@ -748,6 +738,11 @@ Based on these investigations we conclude:
  \item Reasoning over the product models should be applied to increase efficiency and versatility.
 \end{itemize}
 
+\bibliographystyle{plain}
+%\bibliographystyle{abbrv}
+%\bibliographystyle{jbact}
+%\bibliographystyle{splncs03}
+\bibliography{bibliography}
 
 
 \end{document}
