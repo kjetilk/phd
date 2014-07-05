@@ -414,26 +414,21 @@ level \textsf{-vso} which has an overall faster response time.
 The last experiment we did was a ten factor experiment. The goal here
 was to see which factors would be deemed significant in a complete car
 model search. With the results from this experiment we could discuss
-several aspects of using the different ontologies.  Here we added 4
-new factors in comparison to the six factor experiment. The newly
-added factors were \emph{weight}, \emph{\# of doors},
-\emph{\# of seats} and \emph{fuel consumption}. We used the same
-approach here as in the previous experiments to calculate the average
-value for the new factors. % TODO: Explain more how the levels were set?
+several aspects of using the different ontologies.   % TODO: Explain more how the levels were set?
 With 10 factors the amount of
-runs were $2^{10}$, which made the planning matrix too big to show here.
+runs were $2^{10}$, which made the planning matrix too big to show here. 
+To determine the levels of each factor, we calculated the average value 
+of each factor present in the data sets. 
 
 In the graph~\ref{10factorGraph} we can see the results from running
 all the 1024 runs.  We can see that there are a lot of significant
-effects present here. There are more than any of the previous
-experiments, but it is also more factors and factor interactions.
+effects present here. 
 Unfortunately there are so many significant factors that there are
 some of them that are illegible, but most of them have a low impact on
 the significance graph.  In Table~\ref{10factorEffect} we can see the top
-twenty absolute effects. We can see that emission also here are present in a lot of the
-entries, but so is ontology as well. The new thing here is the fuel
-consumption has entered the most significant factors, and is by itself
-higher than emission. The linear model again tells us that the option
+fifteen absolute effects. We can see that emission and fuel consumption are 
+the most significant factors besides the ontology factor.
+The linear model again tells us that the option
 \textsf{-vso} has a significantly lower response time than
 \textsf{-co}
 
@@ -469,13 +464,8 @@ why we did not do experiments with more factors.
       T:FC & 28.23\\ \hline
       O:T:E & 25.31\\ \hline
       T:E & 25.30\\ \hline
-      WT:E & 11.92\\ \hline
-      O:WT:E & 11.89\\ \hline
-      O:WT:FC & 11.72\\ \hline
-      WT:FC & 11.71\\ \hline
-      O:D:E & 10.12\\ \hline
     \end{tabular}
-\caption{The top twenty significant absolute effects of the ten factor graph}\label{10factorEffect}
+\caption{The top fifteen significant absolute effects of the ten factor graph}\label{10factorEffect}
 %      \vspace{-25pt}
 \end{wraptable}
 
@@ -496,13 +486,9 @@ represented with each ontology. For instance, how the fuel type
 \subsection{The small scale experiments}
 The first experiment, using only three factors, was done to simulate a
 small workload on the ontologies. This can represent an application
-that present the user for a specification one at the time. The
-configurator Renault has on their web page does exactly
-that.\footnote{\url{http://www.semanlink.net/2012/cold/configurator.html}}
+that present the user for a specification one at the time. 
 Our application made the workload on both ontologies to be as equal as
-possible.  The only difference from a programming perspective was that
-with CO we had to move to a new configuration URI after each
-specification choice.
+possible. 
 
 In the Figure~\ref{3factorGraph} we can see that only one significant
 effects, the O factor. We saw in Table~\ref{3factorEffect} that the
@@ -544,15 +530,8 @@ the specifications at once. Defining all specifications means that a
 user can query for all specifications that may be present in a product
 model.
 
-This experiment had seven more factors than the three factor experiment.  We chose to add
-factors which represented specifications that were present in every
-car model in each RDF graph. That was because some specifications like
-height was not always declared in a car model and then would skew the
-results. These incidents were present in CO's RDF graphs.
-
 In Figure~\ref{10factorGraph} we can see the results from this
-experiment. There are unfortunately a lot of illegible significant
-factors, but these are the less significant ones. In Table
+experiment. In Table
 \ref{10factorEffect} we see the top twenty absolute effects and
 similar to all the other experiments, O is on top of the list. The
 average response time of a run done against CO was $\approx58.5$
