@@ -287,16 +287,12 @@ the $2^k$ runs and perform the HTTP posts. We used the programming
 language \emph{Python} with the
 DoE\footnote{http://pythonhosted.org/pyDOE/} package.
 
-The \emph{payload} is a dictionary of all the values to post to the
-application.  After the request we saved the response which contained
-the response time of a run. After each request we saved the run plus
+After each request we saved the run plus
 the response time and wrote it to file on CSV format. To evaluate the
 result we used the programming language R with the packages
 \textsf{DoE.base}~\cite{DoEBase}, \textsf{FrF2}~\cite{FrF2} and
 \textsf{BsMD}~\cite{BsMD}. R allowed us to parse the CSV files created
-from the experiments and output them in two types of graphs.  A
-similarity with all the experiments were that they all contained at
-least the factors ontology, transmission and fuel type.
+from the experiments and output them in two types of graphs. 
 
 To evaluate the graphs we have used a method in the \textsf{FrF2} R
 package called \textsf{DanielPlot}. This method assumes that the
@@ -549,7 +545,7 @@ list, but when we take a look at when FC is queried it becomes more
 clear. The order each specification is queried in this experiment 
 from first to last is: G - T - FC - E - D - WT - FT - W - SC.  We can
 see that FC comes right before E which means that it will have a
-greater impact on the amount of values checked later.
+greater impact on the amount of values checked later. 
 
 If we take another look at Table~\ref{10factorEffect} we see that
 there are only three single factors except O that are in the top 15
