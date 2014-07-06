@@ -292,7 +292,7 @@ the response time and wrote it to file on CSV format. To evaluate the
 result we used the programming language R with the packages
 \textsf{DoE.base}~\cite{DoEBase}, \textsf{FrF2}~\cite{FrF2} and
 \textsf{BsMD}~\cite{BsMD}. R allowed us to parse the CSV files created
-from the experiments and output them in two types of graphs. 
+from the experiments and output them in two types of graphs.  
 
 To evaluate the graphs we have used a method in the \textsf{FrF2} R
 package called \textsf{DanielPlot}. This method assumes that the
@@ -372,8 +372,7 @@ check for significant effect when the experiment were evaluated
 \end{wraptable}
 
 
-Like the rest of the experiments we used DanielPlot to evaluate and a
-package in R to visualize the result. Figure~\ref{3factorGraph}
+Figure~\ref{3factorGraph}
 shows only one significant factor, namely the \textsf{O} factor in the
 upper right corner. In Table~\ref{3factorEffect}
 we can see the time effects from largest to smallest.  We see that the
@@ -410,7 +409,7 @@ level \textsf{-vso} which has an overall faster response time.
 The last experiment we did was a ten factor experiment. The goal here
 was to see which factors would be deemed significant in a complete car
 model search. With the results from this experiment we could discuss
-several aspects of using the different ontologies.   % TODO: Explain more how the levels were set?
+several aspects of using the different ontologies.  
 With 10 factors the amount of
 runs were $2^{10}$, which made the planning matrix too big to show here. 
 To determine the levels of each factor, we calculated the average value 
@@ -426,18 +425,7 @@ fifteen absolute effects. We can see that emission and fuel consumption are
 the most significant factors besides the ontology factor.
 The linear model again tells us that the option
 \textsf{-vso} has a significantly lower response time than
-\textsf{-co}
-
-When we accumulated the results from all the runs we ended up with the
-total amount of response time to be approximately 30095 seconds, which
-is 8 hours, 21 minutes and 35 seconds.  This were the total response
-time after running all the runs. This did not take into account all
-the other steps during the experiments which took time, like writing
-results to file and initiating the application.  This discouraged the
-replication of the experiment due to the size and was also a reason
-why we did not do experiments with more factors.
-
-
+\textsf{-co}. 
 
 
 \begin{wraptable}{l}{0.25\textwidth}
