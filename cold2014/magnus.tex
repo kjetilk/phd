@@ -105,14 +105,14 @@ represent any product model with component constraints. The second
 approach is a domain specific ontology which as the name implies, is
 only applicable with one particular domain. 
 
-We will also show how to create a viable web application which
-utilizes such complex data, mainly for the purpose of conducting
-performance tests to determine the weaknesses of each approach. This
-will be done with complex data found on the web today from different
-car manufacturers.  With performance we mean the response time between
-a HTTP post operation against the application and when
-the application presents the user with an answer. The application will
-contain the possibility to do HTTP posts against both approaches.
+We have created a web application prototype which uses such complex
+data, mainly for the purpose of conducting performance tests to
+determine the weaknesses of each approach. This will be done with
+complex data found on the web today from different car manufacturers.
+With performance we mean the response time between a HTTP post
+operation against the application and when the application presents
+the user with an answer. The application will contain the possibility
+to do HTTP posts against both approaches.
 
 There will be several options on how to query the data because of all
 the different specifications.  That is why we have chosen to use the
@@ -159,7 +159,7 @@ where a user is seeking to buy a new car based on detailed data
 published by car manufacturers. Note that the implementation is not
 itself important, it is the evaluation that is the key
 contribution. Today only Renault, of all the car manufacturers, has
-opened their data using semantic technologies. Volkswagen had their
+opened their data using Semantic Web technologies. Volkswagen had their
 data published until the start of 2013, but unfortunately they
 canceled their Semantic Web project and the data were removed.
 Fortunately, their ontologies are still open for the community to
@@ -240,8 +240,8 @@ experiment.
 
 
 \subsection{Full factorial experiment}
-A full factorial experiment is when one got $k$ factors and $n$ amount
-of levels. This means that there is $n^k$ \emph{factorial designs}
+A full factorial experiment is when one got $k$ factors and the number
+of levels is $n$. This means that there is $n^k$ \emph{factorial designs}
 which result in $n^k$ designs to execute.  We have chosen only
 two-level experiments for this research, but the factors may
 vary. This means that we will use a $2^k$ full factorial design for
@@ -250,15 +250,11 @@ $k$ factors. This results in a \emph{planning matrix} that shows the
 actual runs in the experiment.
 
 
-
-
 \subsection{Running the experiments}
 In this section we will present several experiments with different
 number of factors.  The objective is to find out how the two approaches
 will perform in comparison and identifying which factors affect the
-outcome of each experiment. Although the ontology is not the
-only issue that distinguishes these approaches, it is the key feature,
-and therefore, we will shall refer to that as a factor.
+outcome of each experiment.
 
 In the experiments the definition for VSO/COO is \textsf{-vso} and for
 CO is \textsf{-co}.  These two definitions stand for which ontology
@@ -266,7 +262,7 @@ are tested in a particular run. In practice this means that when we
 send in the keyword \textsf{-vso} we only run the specification search
 against the car models represented by VSO/COO, in our case the data
 from Daimler. This is referred to as the ontology factor in each
-experiment and is a factor in all the experiments which are presented
+experiment, and is a factor in all the experiments which are presented
 in this paper. The ontology factor represents the difference in how
 the data are represented and how the ontologies are structures, and
 with this factor we want to determine how this affects the overall
@@ -288,7 +284,7 @@ result we used the programming language R with the packages
 from the experiments and output them in two types of graphs.  
 
 To evaluate the graphs we have used a method in the \textsf{FrF2} R
-package called \textsf{DanielPlot}. This method assumes that the
+package called \textsf{DanielPlot}. This method assumes that the % TODO: Dette må forbedres
 estimated effects are normally distributed with means equal to the
 effects. The means of all estimated effects are zero. Resulting in a
 plot where the estimated effect would end up on a straight line. This
