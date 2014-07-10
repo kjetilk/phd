@@ -289,18 +289,13 @@ intuition behind this is simple: If errors are normally distributed,
 which is a conservative assumption, and there are no significant
 effects they will also be normally distributed, and so the estimated
 effects would end up on a straight line. Any significant deviations
-from a straight line indicates a significant factor. That we use a
+from a straight line indicates a significant factor.  That we use a
 half-normal plot (rather than a normal plot) means that
 the most significant effects will end up in the top right
-corner. The axes themselves are not important to understand the plot
-nor the results, refer to \cite{PlanExp} for details.  We have also
-set the significance level at $\alpha = 0.05$, where
-\textsf{DanielPlot} is using Lenth's method for the analysis of
-unreplicated factorials.
-
-For brevity, we will use abbreviations given in Table~\ref{facandabbrev}.
-
-\begin{wraptable}{l}{0.35\textwidth}
+corner. 
+%
+\begin{wraptable}{r}{0.35\textwidth}
+\vspace{-35pt}
     \begin{tabular}{ | l | l |}
     \hline
     {\bf Factor} & {\bf Abbrev} \\ \hline
@@ -317,8 +312,16 @@ For brevity, we will use abbreviations given in Table~\ref{facandabbrev}.
 \hline
     \end{tabular}
 \caption{Factors and their abbreviation}\label{facandabbrev}
+\vspace{-45pt}
 \end{wraptable}
+%
+The axes themselves are not important to understand the plot
+nor the results, refer to \cite{PlanExp} for details.  We have also
+set the significance level at $\alpha = 0.05$, where
+\textsf{DanielPlot} is using Lenth's method for the analysis of
+unreplicated factorials.
 
+For brevity, we will use abbreviations given in Table~\ref{facandabbrev}.
 
 We ran several experiments, both randomized and unrandomized
 experiments, with 3, 4, 6 and 10 factors. Here, we report on the
