@@ -284,22 +284,19 @@ result we used the programming language R with the packages
 from the experiments and output them in two types of graphs.  
 
 To evaluate the graphs we have used a method in the \textsf{FrF2} R
-package called \textsf{DanielPlot}. This method assumes that the % TODO: Dette må forbedres
-estimated effects are normally distributed with means equal to the
-effects. The means of all estimated effects are zero. Resulting in a
-plot where the estimated effect would end up on a straight line. This
-plot is then testing whether all the estimated effects have the same
-distribution. All deviations of the straight line indicates a
-significant factor. In our results we have used the absolute value of
-the effects, also called a half-normal plot. The advantages of using
-the half-normal plot is that all large estimated effects will end up
-in the top right corner. This means that the highest performance
-significance will end up in the top right corner. The
-axes themselves are not important to understand the plot nor the
-results, refer to \cite{PlanExp} for details.
-We have also set  the significance level at $\alpha =
-0.05$, where \textsf{DanielPlot} is using Lenth's method for the
-analysis of unreplicated factorials.
+package called \textsf{DanielPlot} to create half-normal plots. The
+intuition behind this is simple: If errors are normally distributed,
+which is a conservative assumption, and there are no significant
+effects they will also be normally distributed, and so the estimated
+effects would end up on a straight line. Any significant deviations
+from a straight line indicates a significant factor. That we use a
+half-normal plot (rather than a normal plot) means that
+the most significant effects will end up in the top right
+corner. The axes themselves are not important to understand the plot
+nor the results, refer to \cite{PlanExp} for details.  We have also
+set the significance level at $\alpha = 0.05$, where
+\textsf{DanielPlot} is using Lenth's method for the analysis of
+unreplicated factorials.
 
 For brevity, we will use abbreviations given in Table~\ref{facandabbrev}.
 
