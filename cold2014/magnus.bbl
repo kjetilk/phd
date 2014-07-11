@@ -1,0 +1,77 @@
+\begin{thebibliography}{10}
+
+\bibitem{NewConf}
+H.~Afsarmanesh and M.~Shafahi.
+\newblock Specification and configuration of customized complex products.
+\newblock 2013.
+
+\bibitem{BsMD}
+Ernesto~Barrios based~on Daniel Meyer's~code.
+\newblock {\em BsMD: Bayes Screening and Model Discrimination}, 2013.
+\newblock R package version 2013.0718.
+
+\bibitem{publication-9417}
+Abraham Bernstein and Natasha Noy.
+\newblock Is this really science? the semantic webber’s guide to evaluating
+  research contributions.
+\newblock Technical report, 2014.
+
+\bibitem{confOnt}
+Edouard~Chevalier Francois-Paul~Servant.
+\newblock {\em Configuration Ontology: Modeling Product Customization as Linked
+  Data}.
+
+\bibitem{SemWebAppRes}
+Edouard~Chevalier Francois-Paul~Servant.
+\newblock {\em Product Customization as Linked Data}.
+\newblock Springer, 2012.
+
+\bibitem{ren1}
+Edouard~Chevalier Francois-Paul~Servant.
+\newblock Describing customizable products on the web of data.
+\newblock 2013.
+
+\bibitem{DoEBase}
+Ulrike Groemping.
+\newblock {\em DoE.base: Full factorials, orthogonal arrays and base utilities
+  for DoE packages}, 2013.
+\newblock R package version 0.25-3.
+
+\bibitem{FrF2}
+Ulrike Gromping.
+\newblock {R} package {FrF2} for creating and analyzing fractional factorial
+  2-level designs.
+\newblock {\em Journal of Statistical Software}, 56(1):1--56, 2014.
+
+\bibitem{COO}
+Martin Hepp.
+\newblock {\em Car Options Ontology}, 2010.
+
+\bibitem{GRQual}
+Martin Hepp.
+\newblock {\em GoodRelations Language Reference}, 2011.
+
+\bibitem{Kjern}
+Kjetil Kjernsmo and John~S. Tyssedal.
+\newblock Introducing statistical design of experiments to sparql endpoint
+  evaluation.
+\newblock 2013.
+
+\bibitem{OldConf}
+M.~V\'{e}ron M.~Aldanondo and H.~Fargier.
+\newblock Configuration in manufacturing industry requirements, problems and
+  definitions.
+\newblock 1999.
+
+\bibitem{waitTime}
+Fiona Fui-Hoon Nah.
+\newblock A study on tolerable waiting time: How long are web users willing to
+  wait?
+\newblock 2004.
+
+\bibitem{PlanExp}
+C.~F.~Jeff Wu and M.~S. Hamada.
+\newblock {\em Experiments: Planning, Analysis, and Optimization}.
+\newblock John Wiley and Sons, Inc., 2 edition, 2009.
+
+\end{thebibliography}
