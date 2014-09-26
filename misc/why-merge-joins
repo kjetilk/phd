@@ -1,0 +1,19 @@
+[22:46] <KjetilK> kasei, got the point about grouping triple patterns to create a left deep tree
+[22:47] <KjetilK> and I also see that people tend to prefer merge joins, the intermedia results need to grow pretty big in RDF-3X before the optimizers switch to a hash join
+[22:47] <KjetilK> still, I don't quite understand why...
+[22:48] <KjetilK> and then the next question is why it is so important that the merge joins are done in close succession, why isn you just have a bushy tree where merge joins are done for each pair
+[22:48] <KjetilK> err
+[22:49] <KjetilK> why isn't having a bushy tree where merge joins for each pair independently of the other joins as good
+[22:49] <KjetilK> ?
+[22:49] <KjetilK> was a better formulation :-)
+[23:19] <kasei> if it's a deep plan, you have the opportunity to drop intermediate results earlier if they won't lead to a final result
+[23:20] <kasei> in a left deep plan, you have a single pipeline of intermediate results where each join is basically filtering results from the deep left part, and joining with new data from the single right part.
+[23:22] <kasei> if you have a bush plan like (A ⋈ B) ⋈ (C ⋈ D), you might end up materializing intermeidate results for both (A ⋈ B) and for (C ⋈ D) that won't ever join to produce a final result
+[23:22] <KjetilK> right, good point
+[23:23] <kasei> whereas (((A ⋈ B) ⋈ C) ⋈ D) might drop intermediate results (A ⋈ B) when you merge with C, so that you don't ever have to do the join with D.
+[23:23] <KjetilK> and in addition, merge joins will keep the sort order, so you will only need to sort each array once
+[23:24] <kasei> yeah. ideally you won't have to sort at all if your access methods for each triple produce sorted results natively (reading off disk, for example)
+[23:25] * KjetilK nods
+[23:25] <kasei> the biggest point is to avoid doing any unnecessary sorting or materialization
+[23:25] * KjetilK nods
+[23:25] <KjetilK> ok, thanks a lot, then it is much clearer!
