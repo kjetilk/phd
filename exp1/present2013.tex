@@ -220,8 +220,6 @@ class, etc.
 
 \end{frame}
 
-% TODO: My factors
-
 \note{
 
   \begin{itemize}
@@ -260,8 +258,7 @@ class, etc.
   \item These are called fractional experiments, and come in two
     shapes, full, as we have seen a design matrix of, and fractional. 
   \item With fractional, we trade explanatory power for economy.
-  \item We first study a full factorial, in the paper we have three
-    fractional, we shall see the final fractional
+  \item We first study a full factorial, then three fractional 
   \end{itemize}
 }
 
@@ -431,7 +428,10 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
 
 \note{
   \begin{itemize}
-% TODO: Lenth
+  \item Significance is based on Lenth's method, where he computes a
+    pseudo-standard error, since we have only one replicate. This is
+    based on computing the median of the absolute effects, and then
+    again the median of the smallest effects.
   \item Those that are deemed significant are labelled.
   \item Don't worry about the axes
   \item Yes, the Implementation is better, we knew that, 
@@ -583,7 +583,6 @@ evaluating FILTER clauses with ranges. }
   \end{itemize}
 }
 
-% Experimental economy
 
 \subsection{Tearing it all down}
 
