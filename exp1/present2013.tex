@@ -428,6 +428,7 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
 
 \note{
   \begin{itemize}
+% TODO: Lenth
   \item Those that are deemed significant are labelled.
   \item Don't worry about the axes
   \item Yes, the Implementation is better, we knew that, 
@@ -447,7 +448,7 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
   \end{itemize}
 }
 
-\begin{frame}{Hypothesis tests}
+\begin{frame}{Preparing hypothesis tests}
 
 Hypothesis formulation:
   \begin{itemize}
@@ -455,9 +456,43 @@ Hypothesis formulation:
   \item $H_1$: The new implementation is better than the old.
   \end{itemize}
 
-% TODO: Much around the hypothesis test
+Classifying factors:
+  \begin{itemize}
+  \item ``Range'' and ``Machine'' are called \emph{inactive factors}.
+  \item ``BGPComp'', ``Lang'', ``Optional'', ``Union'' and ``TripleC''
+    are called \emph{environmental factors}.
+  \item ``Implement'' is called a \emph{control factor}.
+  \end{itemize}
 
-Tests to run:
+\end{frame}
+\begin{frame}{Hypothesis tests}
+
+\begin{itemize}
+\item Average over all the 32 level-combinations of the environmental
+  factors. 
+\end{itemize}
+
+% latex table generated in R 2.15.1 by xtable 1.5-6 package
+% Tue Oct  8 14:51:28 2013
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{rlll|r}
+  \hline
+ & Implement & Machine & Range & Response \\ 
+  \hline
+1 & 1 & 1 & 1 & 33.47 \\ 
+  2 & 2 & 1 & 1 & 11.82 \\ 
+  3 & 1 & 2 & 1 & 32.16 \\ 
+  4 & 2 & 2 & 1 & 11.56 \\ 
+  5 & 1 & 1 & 2 & 33.97 \\ 
+  6 & 2 & 1 & 2 & 12.46 \\ 
+  7 & 1 & 2 & 2 & 32.90 \\ 
+  8 & 2 & 2 & 2 & 11.60 \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
+
 \begin{itemize}
 
 \item May create a one-sided two-sample t-test with 4 values for each
