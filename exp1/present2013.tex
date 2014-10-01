@@ -17,7 +17,7 @@
 \usetheme{ifi_en}
 
 
-%\setbeameroption{show notes}
+\setbeameroption{show notes}
 \usepackage[utf8]{inputenc}
 
 
@@ -425,11 +425,11 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
 \end{frame}
 
 \note{
+  \vskip -18pt
   \begin{itemize}
-  \item Significance is based on Lenth's method, where he computes a
-    pseudo-standard error, since we have only one replicate. This is
-    based on computing the median of the absolute effects, and then
-    again the median of the smallest effects.
+  \item Lenth's method, one replicate: computes a pseudo-standard
+    error, median of the absolute effects, and then median of the
+    smallest effects.
   \item Those that are deemed significant are labelled.
   \item Don't worry about the axes
   \item Yes, the Implementation is better, we knew that, 
@@ -440,8 +440,7 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
     to that many more triples need to be searched for a language tag
     in one of the levels of the interacting factors.
   \item But what about ``Implement::TripleC''? Leave that hanging for
-    a bit.
-  \item We want to do a hypothesis test
+    a bit. Do a hypothesis test
   \item Two factors do not contribute significantly to the variation
     ``Range'' and ``Machine''.
   \end{itemize}
