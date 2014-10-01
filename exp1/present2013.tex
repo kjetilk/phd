@@ -318,15 +318,74 @@ class, etc.
     Benchmark.
   \item [``Machine''] Software and hardware platform, one smaller
     machine with fast SSD and one larger with slower disks in RAID1.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{The Basic Graph pattern factor}
+  \begin{description}
+
   \item [``BGPComp''] Two different basic graph patterns with varying
     complexity.
+  \end{description}
+
+  \begin{center}\small
+    \begin{tabular}{|@{~~}p{0.40\textwidth}|@{~~}p{0.40\textwidth}|}
+      \hline
+      \textbf{Level 1} & \textbf{Level 2} \\[-2ex] 
+      \begin{verbatim}
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+      \end{verbatim}
+      & 
+      \begin{verbatim}
+?s  rdfs:label ?l1 ;
+    ?p1 ?o1 .
+?o1 dbo:populationTotal ?l2 .
+?s foaf:page ?o2 ;
+   dbpprop:subdivisionName ?o3 .
+?o3 skos:subject ?o4 ;
+   dbpprop:seat ?o5 ;
+   a ?c1 .
+\end{verbatim} 
+\\      \hline
+    \end{tabular}
+  \end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]{Absence or presence factors}
+  \begin{description}
   \item [``Union''] Absence or presence of a \textsf{UNION} pattern.
+
+    \begin{verbatim}
+{ ?o1 dbpprop:longd ?long ;
+      dbpprop:latd  ?lat .
+} UNION {
+  ?o1 geo:long ?long ;
+      geo:lat ?lat . }
+\end{verbatim} 
+
   \item [``Lang''] Absence or presence of a \textsf{langMatches}
     filter.
+
+\begin{verbatim}
+FILTER langMatches( lang(?l1), "fr" ) 
+\end{verbatim} 
+
+
   \item [``Range''] Absence or presence of a filter with a larger-than
     operator.
+
+    \begin{verbatim}
+FILTER (?l2 > 800000)
+\end{verbatim} 
+
   \item [``Optional''] Absence or presence of an \textsf{OPTIONAL}
     pattern.
+    \begin{verbatim}
+OPTIONAL { ?o1 foaf:homepage ?o6 . }
+\end{verbatim} 
 
   \end{description}
 \end{frame}
