@@ -272,6 +272,33 @@ class, etc.
 
 \textbf{Main goal}: Easy to understand for newcomers to DoE!
 
+\begin{itemize}
+\item Just 2 levels.
+\item Handful of illustrative factors.
+\item Analysis that illustrates key concepts.
+\item Straightforward to program and reproduce.
+\item Artificial performance differences.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Choices to meet these constraints}
+
+  \begin{itemize}
+  \item Response variable: Time from DNS lookup finishes to endpoint
+    has delivered a full response, measured by \texttt{curl}.
+  \item We don't compare different implementions, we compare the
+    performance before and after some change.
+  \item Query engine: \texttt{4store} where we insert \textsf{sleep}
+    statements in the join function on one level and language matching
+    function on the other. 
+  \end{itemize}
+
+
+
+
+
 \begin{block}{Description}
   Experiment with 8 factors, 2 levels where we compare a single SPARQL
   implementation before and after some change. We used \texttt{4store}
