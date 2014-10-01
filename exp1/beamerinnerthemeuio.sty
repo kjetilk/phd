@@ -1,0 +1,28 @@
+\ProvidesPackage{beamerinnerthemeuio}
+  [2010/10/17 'uio' beamer inner theme]
+
+\mode<presentation>
+
+%
+% See
+%   http://www.uio.no/om/designmanual/
+%
+
+% paragraph spacing
+\RequirePackage{parskip}
+
+% remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% use slightly bigger bullets, similar to colon in logo
+\setbeamertemplate{itemize item}{$\bullet$}
+\setbeamertemplate{itemize subitem}{$\bullet$}
+\setbeamertemplate{itemize subsubitem}{$\bullet$}
+
+% reduce spacing in blocks
+\addtobeamertemplate{block begin}{\parskip4pt}{\parskip0pt}
+\addtobeamertemplate{block example begin}{\parskip4pt}{\parskip0pt}
+
+\setbeamertemplate{theorems}[ams style]
+
+\mode<all>

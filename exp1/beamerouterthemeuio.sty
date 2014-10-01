@@ -1,0 +1,100 @@
+\ProvidesPackage{beamerouterthemeifi}
+  [2010/10/17 'ifi' beamer outer theme]
+
+\mode<presentation>
+
+\RequirePackage{tikz}
+
+% See
+%   http://www.uio.no/om/designmanual/
+%   http://www.uio.no/om/designmanual/nedlastinger/
+%   http://www.uio.no/om/designmanual/grunnelementer/logo-uio/
+
+
+% images
+\pgfdeclareimage[width=\logoheaderimagewidth]{uio-logo-header}{\logoheaderimage}
+\pgfdeclareimage[width=30mm]{uio-logo-footer}{\uiologofooterimage}
+\pgfdeclareimage[width=15mm]{uio-logo-seal}{img/UiO-seal.pdf}
+
+% titlepage
+\defbeamertemplate*{title page}{uio theme}[1][]
+{
+  \frametitle{%
+    \pgfputat{\pgfxy(0.15,0.3)}{%
+      \pgfbox[left,top]{%
+        \pgfuseimage{uio-logo-header}}}\logoheaderimagehack}
+  \vbox{}
+  \vfill\vfill\vfill
+  \begin{centering}
+    \begin{beamercolorbox}[center,#1]{}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+      \vskip0.10em%
+      {
+        \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+      }%
+      \fi%     
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[center,#1]{}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \ifx\insertinstitute\@empty%
+    \else%
+      {%
+        \begin{beamercolorbox}[center,#1]{}%
+          \usebeamerfont{institute}\insertinstitute%
+        \end{beamercolorbox}%
+      }%
+    \fi%     
+    \begin{beamercolorbox}[center,#1]{}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}
+  \end{centering}
+  \vfill
+}
+
+% footline titlepage
+\defbeamertemplate{footline}{uio theme titlepage}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,left]{}%
+    \pgfputat{\pgfxy(0.8,0.6)}{%
+      \pgfbox[left,bottom]{%
+        \pgfuseimage{uio-logo-seal}}}%
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% footline for pages beyond titlepage
+\defbeamertemplate*{footline}{uio theme}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=0.30\paperwidth,ht=2.25ex,dp=1ex,left]{}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.40\paperwidth,ht=2.25ex,dp=1ex,center]{}%
+    \usebeamerfont{footertext}\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.30\paperwidth,ht=2.25ex,dp=1ex,right]{}%
+    \pgfputat{\pgfxy(-0.1,0.18)}{%
+      \pgfbox[right,top]{%
+        \pgfuseimage{uio-logo-footer}}}%
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% titlepage with titlepage footline
+\let\orig@maketitle=\maketitle
+\renewcommand{\maketitle}{%
+  {%
+    \setbeamertemplate{footline}[uio theme titlepage]
+    \begin{frame}%
+      \orig@maketitle%
+    \end{frame}%
+  }%
+}
+
+\mode<all>

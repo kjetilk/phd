@@ -1,0 +1,47 @@
+\ProvidesPackage{beamerfontthemeuio}
+  [2010/10/17 'uio' beamer font theme]
+
+\mode<presentation>
+
+%\RequirePackage{helvet}
+
+%
+% Fonts collected from
+%   http://www.uio.no/om/designmanual/grunnelementer/fonter/
+%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+% NOTE: the font should be
+%   \usepackage[scaled]{uarial}
+% but is, I think, not installed on standard distributions.
+
+% titleframe
+\setbeamerfont{title}{series=\bfseries,size=\LARGE}
+\setbeamerfont{subtitle}{size=\Large}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\footnotesize}
+\setbeamerfont{date}{size=\footnotesize}
+
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+\setbeamerfont{framesubtitle}{series=\mdseries,size=\normalsize}
+\setbeamerfont{section}{series=\bfseries}
+
+\setbeamerfont{block title}{series=\bfseries}
+
+\setbeamerfont{footer text}{size=\footnotesize}
+
+\mode<all>
+
+% Possible sizes :
+%    1. \tiny
+%    2. \scriptsize
+%    3. \footnotesize
+%    4. \small
+%    5. \normalsize
+%    6. \large
+%    7. \Large
+%    8. \LARGE
+%    9. \huge
+%   10. \Huge

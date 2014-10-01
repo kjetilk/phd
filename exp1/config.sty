@@ -1,0 +1,158 @@
+
+%%%% TEXT, SYMBOLS
+
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{amsmath, amssymb}%,amssymb,mstmaryrd,amscd,mathrsfs}
+\usepackage{microtype}
+
+%\usepackage[font=small,justification=centerlast]{caption,subcaption}
+%\usepackage{subcaption}
+
+
+%%% FONTS
+
+%\usepackage{times}
+%\usepackage{bm}
+%\renewcommand{\ttdefault}{cmtt}
+
+%\usepackage{relsize} % smaller[1]
+%\newcommand{\abv}[1]{{\relscale{.85} #1}}
+
+% make verbatim font smaller
+\makeatletter
+\g@addto@macro\@verbatim\small
+\makeatother
+
+
+%%% REF, CITE, BIB
+
+\usepackage{hyperref}
+ \hypersetup{
+     colorlinks,%
+     citecolor=black,%
+     filecolor=red,%
+     linkcolor=black,%
+     urlcolor=black%
+ }
+
+%\newcommand{\cautoref}[1]{(\autoref{#1})}
+ 
+% Bibliography
+\usepackage[
+  citestyle=numeric-comp, 
+  hyperref,
+  firstinits
+  ]{biblatex}
+\bibliography{../transformation}
+\DeclareFieldFormat{labelnumberwidth}{#1.} % changing bibstyle to fit
+                                           % example in author guide.
+\renewcommand*{\bibfont}{\small}
+
+
+%%%% OTHER PACKAGES
+
+%\usepackage[vlined,algo2e]{algorithm2e}
+
+\usepackage{fancyvrb}
+\usepackage{wrapfig}
+
+%% load xcolor before tikz
+%\usepackage[usenames,dvipsnames]{xcolor}
+
+\colorlet{cSource}{BurntOrange!30}
+\colorlet{cTarget}{LimeGreen!50}
+
+\colorlet{cNew}{LimeGreen!200}
+\colorlet{cOld}{BurntOrange!140}
+
+\newcommand{\new}{\textcolor{cNew}{\mathsf{n}}}
+\newcommand{\old}{\textcolor{cOld}{\mathsf{a}}}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,patterns}
+\usetikzlibrary{positioning}
+
+\tikzstyle{->}=[-latex]
+\tikzstyle{<-}=[latex-]
+\tikzstyle{db}=
+  [draw,
+  cylinder,
+  shape border rotate=90,
+  aspect=0.3,
+  minimum size=5mm,
+  ]
+\tikzstyle{schema}=
+  [draw,
+  trapezium,
+  trapezium left angle=70,
+  trapezium right angle=-70,
+  minimum size=5mm
+  ]
+\tikzstyle{rdf}=
+  [draw,
+  ellipse,
+  minimum width=10mm,
+  minimum height=5mm
+  ]
+
+
+%%%% HACKS
+
+%% http://www-h.eng.cam.ac.uk/help/tpl/textprocessing/squeeze.html
+%% More figures on a page?
+% \renewcommand\floatpagefraction{.9}
+% \renewcommand\topfraction{.9}
+% \renewcommand\bottomfraction{.9}
+% \renewcommand\textfraction{.1}
+% \setcounter{totalnumber}{50}
+% \setcounter{topnumber}{50}
+% \setcounter{bottomnumber}{50}
+
+\setlength{\abovecaptionskip}{2ex}
+\setlength{\belowcaptionskip}{-1ex}
+%\setlength{\floatsep}{2ex}
+%\setlength{\textfloatsep}{2ex}
+\setlength{\intextsep}{3ex}
+%\def\baselinestretch{0.9981}
+
+
+%% NEWCOMMANDS
+
+\newcommand{\eat}[1]{}
+
+\newcommand{\tuple}[1]{\left\langle #1 \right\rangle}
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\qset}[2]{\set{ #1 \:|\; #2 }}
+
+\newcommand{\mc}{\mathcal}
+\newcommand{\mathword}[1]{\mathsf{#1}}
+
+\newcommand{\subj}{\mathword{S}}
+\newcommand{\pred}{\mathword{P}}
+\newcommand{\obj}{\mathword{O}}
+\newcommand{\bn}[1]{{\small \ensuremath{#1}}}
+\newcommand{\ont}{\mc{O}}
+\newcommand{\sig}{\mathword{sig}}
+\newcommand{\dom}{\mathword{dom}}
+\newcommand{\RDF}{{\small \mathword{RDF}}}
+
+\newcommand{\stexttt}[1]{{\small\texttt{#1}}}
+\newcommand{\surl}[1]{{\small\url{#1}}}
+\newcommand{\shref}[2]{{\small\texttt{\href{#1}{#2}}}}
+
+\newcommand{\mtt}[1]{\text{\normalfont\small{\texttt{#1}}}}
+\newcommand{\mttuple}[3]{\tuple{\mtt{#1}, \:\mtt{#2}, \:\mtt{#3}}}
+
+%%%% REMOVE BEFORE SUBMIT
+
+%\overfullrule=2pt
+
+%\usepackage[absolute]{textpos}
+%\textblockorigin{10mm}{5mm}
+%% NB! remember to remove svn Id.
+
+% \usepackage{watermark}
+% \usepackage{ncccropmark}
+% \watermark{\cropmark{0mm}{0mm}{0mm}{0mm}{100pt}
+%            \cropmark{0mm}{0mm}{0mm}{0mm}{-10pt}}

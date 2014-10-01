@@ -1,0 +1,49 @@
+\ProvidesPackage{beamercolorthemeuio}
+  [2010/10/17 'uio' beamer color theme]
+
+\mode<presentation>
+
+%
+% Colors collected from 
+%   http://www.uio.no/om/designmanual/grunnelementer/farger/
+%
+%% TODO: get proper values for grey1--4
+\definecolor{uio-red}{cmyk}{0,1,1,0}
+\definecolor{uio-white}{cmyk}{0,0,0,0}
+\definecolor{uio-black}{cmyk}{0,0,0,1}
+\definecolor{uio-warmgrey5}{cmyk}{0,0.05,0.10,0.29}
+
+\definecolor{uio-warmgrey4}{cmyk}{0,0.04,0.08,0.25}
+\definecolor{uio-warmgrey3}{cmyk}{0,0.03,0.06,0.20}
+\definecolor{uio-warmgrey2}{cmyk}{0,0.02,0.04,0.15}
+\definecolor{uio-warmgrey1}{cmyk}{0,0.01,0.04,0.10}
+\definecolor{uio-warmgrey0}{cmyk}{0,0.01,0.03,0.05}
+
+% text
+\setbeamercolor{normal text}{fg=uio-black}
+\setbeamercolor{alerted text}{fg=uio-red}
+\setbeamercolor{example text}{fg=uio-black}
+\setbeamercolor{structure}{fg=uio-black}
+
+% block
+\setbeamercolor{block title}{fg=uio-black,bg=uio-warmgrey2}
+\setbeamercolor{block body}{parent=normal text,bg=uio-warmgrey1}
+
+% example
+\setbeamercolor{block title example}{parent=block title}
+\setbeamercolor{block body example}{parent=block body}
+
+% titleframe
+\setbeamercolor{title}{fg=uio-black}
+\setbeamercolor{subtitle}{fg=uio-black}
+\setbeamercolor{author}{fg=uio-black}
+\setbeamercolor{institute}{fg=uio-black}
+\setbeamercolor{date}{fg=uio-black}
+
+% frame elements
+\setbeamercolor{frametitle}{fg=uio-white,bg=uio-black}
+\setbeamercolor{framesubtitle}{fg=uio-warmgrey5,bg=uio-black}
+\setbeamercolor{item}{fg=uio-warmgrey5}
+\setbeamercolor{pagenumber}{fg=uio-warmgrey5}
+
+\mode<all>
