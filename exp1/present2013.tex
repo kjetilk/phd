@@ -435,9 +435,9 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
   \item Interactions with Implement with joins are
     naturally strong
   \item ``Union'', ``Optional'' and ``Lang'' demanding things
-%  \item ``BGPComp:Lang'' and ``Lang:Union'' interactions might be due
-%    to that many more triples need to be searched for a language tag
-%    in one of the levels of the interacting factors.
+  \item ``BGPComp:Lang'' and ``Lang:Union'' interactions might be due
+    to that many more triples need to be searched for a language tag
+    in one of the levels of the interacting factors.
   \item But what about ``Implement::TripleC''? Leave that hanging for
     a bit.
   \item We want to do a hypothesis test
@@ -503,11 +503,81 @@ Classifying factors:
 \end{itemize}
 
 \end{frame}
-\note{  
-  \begin{itemize}
-  \item The paper shows how similar testing can be done to investigate
-  when the new implementation fails.
+\note{The paper shows how similar testing can be done to investigate
+  when the new implementation fails.} 
 
+\subsection{Fractional Factorial Experiments}
+
+\begin{frame}{Experimental Economy}
+
+  \begin{itemize}
+  \item Full factorial experimental goes as $2^n$.
+  \item SPARQL Endpoint evaluation is inherently complex, with many
+    possible factors.
+  \item May reduce the size of the experiment with Fractional
+    Factorial Experiments.
+  \item The cost is explanatory power due to \emph{aliasing}.
+  \item E.g. we cannot tell the difference of an effect of
+    ``TripleC::BGPComp'' from ``Machine::Range''
+  \item Easy in R to declare which effects must not be aliased.
+  \item We have made two designs: One 32-run and one 64-run.
+  \end{itemize}
+  
+\end{frame}
+\note{ That is to say, a detected increase in
+run time from larger Basic Graph Patterns for large databases, can
+also be explained by a less powerful machine that is worse at
+evaluating FILTER clauses with ranges. }
+
+\begin{frame}{32-run experiment}
+\begin{figure}[ht!]
+  \centerline{%
+    \includegraphics[height=0.85\textheight,width=.9\textwidth]{frac32normal.pdf}}
+  \label{fig:frac32normal}
+\end{figure}
+ 
+\end{frame}
+\note{
+
+  \begin{itemize}
+  \item The total variance is great, due to few runs, so few
+    conclusions can be drawn
+  \item Implementation is good, and Union is hard
+  \item In the paper, we also do a hypothesis test that returns $p =
+    0.00098$. Still very low
+  \item Very rough conclusions; useful in a CI system
+  \end{itemize}
+}
+
+\begin{frame}{64-run experiment}
+\begin{figure}[ht!]
+  \centerline{%
+    \includegraphics[height=0.85\textheight,width=0.96\textwidth]{frac64normal.pdf}}
+\end{figure}
+
+
+\end{frame}
+\note{Have two Lenth criterions, $\alpha=0.15$ and crosses at
+  $\alpha=0.05$. ($\alpha$ is the probability of rejecting $H_0$ when
+  it is true)}
+
+\begin{frame}{Analysis of 64-run experiment}
+
+  \begin{itemize}
+  \item Find most of the same significant effects as the full experiment.
+  \item However, we see that ``Implement:TripleC'' emerges only for
+  $\alpha=0.15$.
+  \item ``Machine'', ``TripleC'' and ``Range'' are inactive, we can
+    perform hypothesis test as above, and find $p = 5.9 \cdot 10^{-6}$.
+  \end{itemize}
+\end{frame}
+\note{
+  \begin{itemize}
+  \item We see that ``Implement:TripleC'' emerges only for
+    $\alpha=0.15$, which is important to improve when designing a
+    study for actual tests.
+  \item We have shown that how the experiment could be set up, we have
+    shown the analysis and a hypothesis test.
   \item Should this simplistic experiment stand up to scrutiny?
   \end{itemize}
 }
@@ -624,6 +694,18 @@ We saw (and the paper details):
   there any that are unaccounted for, and that could point out wrongly
   set levels?
 \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{What's a worthy result?}
+  \begin{itemize}
+  \item I have not made this a primary focus of my work.
+  \item Even though I think I should.
+  \item 3000 full-time researchers to construct the ATLAS experiment
+    at CERN.
+  \item Improvement in experimental methodology should be a worthy result.
+  \end{itemize}
+
 
 \end{frame}
 
