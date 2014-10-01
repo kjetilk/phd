@@ -230,6 +230,9 @@ class, etc.
     average of the first.
   \item Interaction effects may be complex, like one implementation is
     better on CONSTRUCT queries, on small datasets
+  \item We still need to understand which effects are important and
+    significant, we do that in the discussion of our experiment
+
 \end{itemize}
 }
 
@@ -268,7 +271,7 @@ class, etc.
 
 \section{Experiments}
 
-\begin{frame}{The experiments}
+\begin{frame}{Constraints on scope of experiment}
 
 \textbf{Main goal}: Easy to understand for newcomers to DoE!
 
@@ -442,9 +445,7 @@ OPTIONAL { ?o1 foaf:homepage ?o6 . }
     a bit.
   \item We want to do a hypothesis test
   \item Two factors do not contribute significantly to the variation
-    ``Range'' and ``Machine'', in the paper we describe how this
-    enables us to average over certain factors and look upon the rest
-    as a replicated experiment.
+    ``Range'' and ``Machine''.
   \end{itemize}
 }
 
