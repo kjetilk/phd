@@ -4,11 +4,12 @@
    => Workshop paper
 
 2. Cache results and prefetch
-   * Only safe queries (BNODE hell, unprojected variables, FILTERs)
-   * triple / BGP + ServiceURI  Wildcards? 
-     	    => (workshop paper recommending hash?)
+   * Simplifying assumption: Single remote source
+   * !!! Only safe queries (BNODE hell, unprojected variables, FILTERs)
+   * Key: triple / BGP + ServiceURI  Wildcards? 
+     	    => (workshop paper recommending checksum/hash?)
 
-   * Value : RDF binary serialization (to RAM or disk) 
+   * !!! Value : RDF binary? serialization (to RAM or disk) 
    * Metadata : 
      	      * The query, 
 	      * frequency counts, 
@@ -16,13 +17,23 @@
 	      * content-length, 
 	      * triple-count?
 
-3. What kind of query processing in CDN / Forward proxy
+3. What kind of query processing in CDN / Forward proxy?
+   * Single-server, many clients, clients reuse the cache of others
 
 => Conference paper
 
 4. Subquery pattern mining
 
 5. Cost model
+   * Incorporate the costs of 
+     - examining service descriptions/hypermedia
+     - slurping data dumps
+     - Using LDF queries
+     - Using LD
+     - Using local cache
+     - Using remote SPARQL endpoint
    * Simplifying assumption: Rely on HTTP headers to asses freshness
+     (i.e. take RFC 7234 as axiomatic truth, meaning it is fresh
+     unless the remote source is down, in which case we use it anyway)
 
 => Conference paper
