@@ -1,7 +1,7 @@
 1. Reality check 
    * Spider SPARQL endpoints to check caching features
    * Spider other RDF sources?
-   => Workshop paper
+   => Workshop paper (ASAP)
 
 2. Cache results and prefetch
    * Simplifying assumption: Single remote source
@@ -20,7 +20,7 @@
 3. What kind of query processing in CDN / Forward proxy?
    * Single-server, many clients, clients reuse the cache of others
 
-=> Conference paper
+=> Conference paper (ESWC: Deadline 17. Jan 2015)
 
 4. Subquery pattern mining
 
@@ -36,4 +36,4 @@
      (i.e. take RFC 7234 as axiomatic truth, meaning it is fresh
      unless the remote source is down, in which case we use it anyway)
 
-=> Conference paper
+=> Paper (whereever, submit 10. Aug 2015, or ISWC if ready)
