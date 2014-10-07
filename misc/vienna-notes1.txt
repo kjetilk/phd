@@ -1,0 +1,28 @@
+1. Reality check 
+   * Spider SPARQL endpoints to check caching features
+   * Spider other RDF sources?
+   => Workshop paper
+
+2. Cache results and prefetch
+   * Only safe queries (BNODE hell, unprojected variables, FILTERs)
+   * triple / BGP + ServiceURI  Wildcards? 
+     	    => (workshop paper recommending hash?)
+
+   * Value : RDF binary serialization (to RAM or disk) 
+   * Metadata : 
+     	      * The query, 
+	      * frequency counts, 
+	      * last-modified?,
+	      * content-length, 
+	      * triple-count?
+
+3. What kind of query processing in CDN / Forward proxy
+
+=> Conference paper
+
+4. Subquery pattern mining
+
+5. Cost model
+   * Simplifying assumption: Rely on HTTP headers to asses freshness
+
+=> Conference paper
