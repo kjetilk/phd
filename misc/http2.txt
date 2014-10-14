@@ -1,0 +1,5 @@
+Flow control
+Server push (PUSH Promise (control information follows?)
+ENHANCE_YOUR_CALM
+stream priority
+Extension mechanism
