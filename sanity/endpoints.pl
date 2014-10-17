@@ -7,6 +7,8 @@ use Data::Dumper;
 use URI::Escape;
 use URI;
 use Web::Scraper;
+use LWP::UserAgent;
+
 
 my $rows = scraper {
   process "tr", "rows[]" => scraper {
@@ -22,21 +24,45 @@ my $res = $rows->scrape( URI->new("file:///home/kjetil/Projects/SemWeb/PhD/sanit
 
 #die Dumper($res);
 
-my $total = 0;
-my $skipped = 0;
-my $timedout = 0;
+my %counts = (total => 0, 
+				  skipped => 0, 
+				  failed => 0,
+				  expires => 0,
+				  control => 0
+				 );
+
+my $query = "select reduced ?Concept where {[] a ?Concept} LIMIT 2";
+
 foreach my $row (@{$res->{rows}}) {
 	next unless ($row->{'status'});
-	$total++;
-	warn Dumper($row);
+	$counts{total}++;
+#	warn Dumper($row);
 	if ($row->{'status'}->as_string =~ m/gray/) {
-		$skipped++;
+		$counts{skipped}++;
 		next;
 	}
 	my ($raw) = $row->{'link'}->as_string =~ m!^http://sparqles.okfn.org/endpoint/(\S+)$!;
 	my $url = uri_unescape($raw);
-	print $url . "\n";
-	die "Finished" if ($total>5);
+	print STDERR $url . "\t";
+	my $ua = LWP::UserAgent->new;
+	$ua->timeout(30);
+	my $response = $ua->get($url . '?query=' . uri_escape_utf8($query));
+	if ($response->is_success) {
+		#warn $response->content;
+		if ($response->header('Expires')) {
+			print STDERR $response->header('Expires') . "\t";
+			$counts{expires}++;
+		}
+		if ($response->header('Cache-Control')) {
+			print STDERR $response->header('Cache-Control') . "\t";
+			$counts{control}++;
+		}
+	} else {
+		$counts{failed}++;
+	}
+	print STDERR "\n";
 }
+
+print Dumper(\%counts);
 
 1;
