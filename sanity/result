@@ -1,0 +1,322 @@
+$VAR1 = {
+          'failed' => 30,
+          'total' => 549,
+          'control' => 106,
+          'expires' => 61,
+          'skipped' => 235
+        };
+
+http://visualdataweb.infor.uva.es/sparql
+http://biolit.rkbexplorer.com/sparql    Fri, 17 Oct 2014 19:13:16 GMT   max-age=300
+http://aemet.linkeddata.es/sparql
+http://sparql.jesandco.org:8890/sparql
+http://sparql.linkedopendata.it/grrp
+http://sparql.linkedopendata.it/grrt
+http://adl-gazetteer.geog.ucsb.edu:3030/adl/sparql      no-cache
+http://data.allie.dbcls.jp/sparql
+http://vocabulary.semantic-web.at/PoolParty/sparql/AustrianSkiTeam
+http://semanticweb.cs.vu.nl/europeana/sparql/
+http://opendata.aragon.es/sparql
+http://data.archiveshub.ac.uk/sparql
+http://www.auth.gr/sparql       Sun, 19 Nov 1978 05:00:00 GMT   public, max-age=3600
+http://acm.rkbexplorer.com/sparql/      Fri, 17 Oct 2014 19:13:23 GMT   max-age=300
+http://abs.270a.info/sparql     no-cache
+http://lab.environment.data.gov.au/sparql
+http://lod.b3kat.de/sparql
+http://bis.270a.info/sparql     no-cache
+http://biocyc.bio2rdf.org/sparql
+http://affymetrix.bio2rdf.org/sparql
+http://biomodels.bio2rdf.org/sparql
+http://bioportal.bio2rdf.org/sparql
+http://ctd.bio2rdf.org/sparql
+http://clinicaltrials.bio2rdf.org/sparql
+http://drugbank.bio2rdf.org/sparql
+http://go.bio2rdf.org/sparql
+http://goa.bio2rdf.org/sparql
+http://genage.bio2rdf.org/sparql
+http://gendr.bio2rdf.org/sparql
+http://hgnc.bio2rdf.org/sparql
+http://homologene.bio2rdf.org/sparql
+http://inoh.bio2rdf.org/sparql
+http://iproclass.bio2rdf.org/sparql
+http://interpro.bio2rdf.org/sparql
+http://biopax.kegg.bio2rdf.org/sparql
+http://lsr.bio2rdf.org/sparql
+http://linkedspl.bio2rdf.org/sparql
+http://mgi.bio2rdf.org/sparql
+http://mesh.bio2rdf.org/sparql
+http://ncbigene.bio2rdf.org/sparql
+http://ndc.bio2rdf.org/sparql
+http://omim.bio2rdf.org/sparql
+http://orphanet.bio2rdf.org/sparql
+http://panther.bio2rdf.org/sparql
+http://pathwaycommons.bio2rdf.org/sparql
+http://pharmgkb.bio2rdf.org/sparql
+http://reactome.bio2rdf.org/sparql
+http://sider.bio2rdf.org/sparql
+http://sabiork.bio2rdf.org/sparql
+http://taxonomy.bio2rdf.org/sparql
+http://wormbase.bio2rdf.org/sparql
+http://dbsnp.bio2rdf.org/sparql
+http://irefindex.bio2rdf.org/sparql
+https://www.ebi.ac.uk/rdf/services/biomodels/sparql
+https://www.ebi.ac.uk/rdf/services/biosamples/sparql
+http://helheim.deusto.es/bizkaisense/sparql
+http://bnb.data.bl.uk/sparql
+http://budapest.rkbexplorer.com/sparql/ Fri, 17 Oct 2014 19:14:19 GMT   max-age=300
+http://bfs.270a.info/sparql     no-cache
+http://opendata-bundestag.de/sparql
+http://dydra.com/wilbert/prod/sparql    public
+http://zaire.dimis.fim.uni-passau.de:8890/sparql
+http://data.colinda.org/endpoint.php
+http://purl.org/weso/sparql
+http://crtm.linkeddata.es/sparql
+http://data.fundacionctic.org/sparql
+https://www.ebi.ac.uk/rdf/services/chembl/sparql
+http://chebi.bio2rdf.org/sparql
+http://citeseer.rkbexplorer.com/sparql/ Fri, 17 Oct 2014 19:14:23 GMT   max-age=300
+http://cordis.rkbexplorer.com/sparql/   Fri, 17 Oct 2014 19:14:24 GMT   max-age=300
+http://semantic.ckan.net/sparql/
+http://vocabulary.wolterskluwer.de/PoolParty/sparql/court
+http://cultura.linkeddata.es/sparql
+http://dblp.rkbexplorer.com/sparql/     Fri, 17 Oct 2014 19:14:26 GMT   max-age=300
+http://dblp.l3s.de/d2r/sparql   no-cache
+http://dbtune.org/jamendo/sparql/
+http://dbtune.org/musicbrainz/sparql    no-cache
+http://dbpedia.org/sparql
+http://eudbpedia.deusto.es/sparql
+http://nl.dbpedia.org/sparql
+http://fr.dbpedia.org/sparql
+http://de.dbpedia.org/sparql
+http://el.dbpedia.org/sparql
+http://ja.dbpedia.org/sparql
+http://pt.dbpedia.org/sparql
+http://live.dbpedia.org/sparql
+http://deploy.rkbexplorer.com/sparql/   Fri, 17 Oct 2014 19:14:31 GMT   max-age=300
+http://data.ox.ac.uk/sparql/
+http://www.zaragoza.es/datosabiertos/sparql     Fri, 17 Oct 2014 19:14:31 GMT   max-age=60
+http://datos.bcn.cl/sparql
+http://deepblue.rkbexplorer.com/sparql/ Fri, 17 Oct 2014 19:14:34 GMT   max-age=300
+http://dewey.info/sparql.php
+http://rdf.disgenet.org/sparql/
+http://italy.rkbexplorer.com/sparql     Fri, 17 Oct 2014 19:14:36 GMT   max-age=300
+http://linkeddata.finki.ukim.mk/sparql
+http://dutchshipsandsailors.nl/data/sparql/
+http://semanticweb.cs.vu.nl/dss/sparql/
+http://www.eclap.eu/sparql
+http://cr.eionet.europa.eu/sparql
+http://era.rkbexplorer.com/sparql/      Fri, 17 Oct 2014 19:14:38 GMT   max-age=300
+http://agencies.publicdata.eu/sparql
+http://fintrans.publicdata.eu/sparql
+http://eur-lex.publicdata.eu/sparql
+http://kent.zpr.fer.hr:8080/educationalProgram/sparql   no-cache
+http://webenemasuno.linkeddata.es/sparql
+http://www.ida.liu.se/projects/semtech/openrdf-sesame/repositories/energy
+http://heritagedata.org/live/sparql
+http://enipedia.tudelft.nl/sparql
+http://environment.data.gov.uk/sparql/bwq/query Fri, 17 Oct 2014 20:09:40 GMT   no-cache, max-age=3600
+http://ecb.270a.info/sparql     no-cache
+http://semantic.eea.europa.eu/sparql
+http://epo.publicdata.eu/sparql
+http://lod.euscreen.eu/sparql   no-cache
+http://europeana.ontotext.com/sparql
+http://eventmedia.eurecom.fr/sparql
+http://data.linkedu.eu/forge/query      no-cache
+http://factforge.net/sparql
+http://logd.tw.rpi.edu/sparql
+http://frb.270a.info/sparql     no-cache
+http://fao.270a.info/sparql     no-cache
+http://ft.rkbexplorer.com/sparql/       Fri, 17 Oct 2014 19:14:47 GMT   max-age=300
+http://lisbon.rkbexplorer.com/sparql    Fri, 17 Oct 2014 19:14:48 GMT   max-age=300
+http://www.ebi.ac.uk/rdf/services/atlas/sparql
+http://geo.linkeddata.es/sparql
+http://resource.geolba.ac.at/PoolParty/sparql/GeologicTimeScale
+http://resource.geolba.ac.at/PoolParty/sparql/GeologicUnit
+http://resource.geolba.ac.at/PoolParty/sparql/lithology
+http://resource.geolba.ac.at/PoolParty/sparql/tectonicunit
+http://vocabulary.wolterskluwer.de/PoolParty/sparql/arbeitsrecht
+http://extbi.lab.aau.dk/sparql
+http://wordnet.okfn.gr:8890/sparql/
+http://lod.hebis.de/sparql
+http://healthdata.tw.rpi.edu/sparql
+http://helheim.deusto.es/hedatuz/sparql
+http://greek-lod.auth.gr/fire-brigade/sparql    no-cache
+http://greek-lod.auth.gr/police/sparql  no-cache
+http://setaria.oszk.hu/sparql
+http://semanticweb.cs.vu.nl/iati/sparql/
+http://ibm.rkbexplorer.com/sparql/      Fri, 17 Oct 2014 19:14:54 GMT   max-age=300
+http://www.icane.es/opendata/sparql     no-cache
+http://ieee.rkbexplorer.com/sparql/     Fri, 17 Oct 2014 19:14:55 GMT   max-age=300
+http://ieeevis.tw.rpi.edu/sparql
+http://156.35.82.103/sparql
+http://www.imagesnippets.com/sparql/images      no-cache
+http://opendatacommunities.org/sparql   Fri, 17 Oct 2014 19:09:54 GMT   no-cache
+http://purl.org/twc/hub/sparql
+http://eurecom.rkbexplorer.com/sparql/  Fri, 17 Oct 2014 19:14:58 GMT   max-age=300
+http://imf.270a.info/sparql     no-cache
+http://www.rechercheisidore.fr/sparql
+http://sparql.linkedopendata.it/musei
+http://sparql.linkedopendata.it/scuole
+http://sparql.kupkb.org/sparql
+http://kisti.rkbexplorer.com/sparql/    Fri, 17 Oct 2014 19:14:59 GMT   max-age=300
+http://lod.kaist.ac.kr/sparql
+http://laas.rkbexplorer.com/sparql/     Fri, 17 Oct 2014 19:15:01 GMT   max-age=300
+http://lod.ac/bdls/sparql       Fri, 17 Oct 2014 19:19:58 GMT   public, must-revalidate, max-age=600
+http://data.uni-muenster.de/sparql
+http://data.linkededucation.org/request/lak-conference/sparql
+http://www.linklion.org:8890/sparql
+http://sparql.reegle.info/
+http://sparql.linkedfood.org
+http://linkedlifedata.com/sparql
+http://data.linkedmdb.org/sparql        no-cache
+http://data.aalto.fi/sparql     no-cache
+http://sparql.linkedopendata.it/loc
+http://dati.camera.it/sparql
+http://ecowlim.tfri.gov.tw/sparql/query Thu, 01 Jan 1970 08:00:00 GMT   no-cache
+http://sparql.linkedopendata.it/los
+http://lov.okfn.org/endpoint/lov
+http://dbmi-icode-01.dbmi.pitt.edu/linkedSPLs/sparql    no-cache
+http://linkedgeodata.org/sparql/
+http://linkedspending.aksw.org/sparql
+http://linkedu.eu/catalogue/sparql/     no-cache
+http://id.sgcb.mcu.es/sparql
+http://onto.mondis.cz/openrdf-sesame/repositories/mondis-record-owlim
+http://sparql.msc2010.org
+http://doc.metalex.eu:8000/sparql/
+http://rdf.muninn-project.org/sparql
+http://n-lex.publicdata.eu/sparql
+http://lod.sztaki.hu/sparql
+http://nsf.rkbexplorer.com/sparql/      Fri, 17 Oct 2014 19:15:41 GMT   max-age=300
+http://data.nature.com/query
+http://data.nobelprize.org/sparql       no-cache
+http://data.lenka.no/sparql     Sat, 18 Oct 2014 19:10:41 GMT   max-age=86400
+http://spatial.ucd.ie/lod/sparql
+http://data.oceandrilling.org/sparql
+http://onto.beef.org.pl/sparql  no-cache
+http://oai.rkbexplorer.com/sparql/      Fri, 17 Oct 2014 19:15:44 GMT   max-age=300
+http://data.linkedu.eu/ocw/query        no-cache
+http://opendata.ccd.uniroma2.it/LMF/sparql/select
+http://vocabulary.semantic-web.at/PoolParty/sparql/OpenData
+http://data.cnr.it/sparql-proxy/
+http://data.utpl.edu.ec/ecuadorresearch/lod/sparql
+http://en.openei.org/sparql     Thu, 01 Jan 1970 00:00:00 GMT
+http://lod.openlinksw.com/sparql
+http://sparql.openmobilenetwork.org
+http://apps.ideaconsult.net:8080/ontology
+http://gov.tso.co.uk/coins/sparql
+http://gov.tso.co.uk/dclg/sparql
+http://os.services.tso.co.uk/geo/sparql
+http://gov.tso.co.uk/legislation/sparql
+http://gov.tso.co.uk/transport/sparql
+http://os.rkbexplorer.com/sparql/       Fri, 17 Oct 2014 19:15:49 GMT   max-age=300
+http://data.organic-edunet.eu/sparql    no-cache
+http://oecd.270a.info/sparql    no-cache
+https://data.ox.ac.uk/sparql/
+http://pdb.bio2rdf.org/sparql
+http://data.linkedu.eu/prod/query       no-cache
+http://prosite.bio2rdf.org/sparql
+http://ld.panlex.org/sparql
+http://pfam.bio2rdf.org/sparql
+http://linked-data.org/sparql
+http://mlode.nlp2rdf.org/sparql/
+http://sparql.linkedopendata.it/cap
+http://prelex.publicdata.eu/sparql
+http://prodom.bio2rdf.org/sparql
+http://pubchem.bio2rdf.org/sparql
+http://pubmed.bio2rdf.org/sparql
+http://linked.opendata.cz/sparql
+http://linkeddata4.dia.fi.upm.es:8907/sparql
+http://risks.rkbexplorer.com/sparql/    Fri, 17 Oct 2014 19:15:58 GMT   max-age=300
+http://curriculum.rkbexplorer.com/sparql/       Fri, 17 Oct 2014 19:15:59 GMT   max-age=300
+http://wiki.rkbexplorer.com/sparql/     Fri, 17 Oct 2014 19:15:59 GMT   max-age=300
+http://resex.rkbexplorer.com/sparql/    Fri, 17 Oct 2014 19:16:00 GMT   max-age=300
+https://www.ebi.ac.uk/rdf/services/reactome/sparql
+http://lod.xdams.org/sparql
+http://rae2001.rkbexplorer.com/sparql/  Fri, 17 Oct 2014 19:16:02 GMT   max-age=300
+http://courseware.rkbexplorer.com/sparql/       Fri, 17 Oct 2014 19:16:02 GMT   max-age=300
+http://link.informatics.stonybrook.edu/sparql/
+http://biordf.net/sparql
+http://seek.rkbexplorer.com/sparql/     Fri, 17 Oct 2014 19:16:03 GMT   max-age=300
+http://zbw.eu/beta/sparql/stw/query     no-cache
+http://sgd.bio2rdf.org/sparql
+http://southampton.rkbexplorer.com/sparql/      Fri, 17 Oct 2014 19:16:06 GMT   max-age=300
+http://data.semanticweb.org/sparql
+http://serendipity.utpl.edu.ec/lod/sparql
+http://data.linkedu.eu/slidewiki/query  no-cache
+http://smartlink.open.ac.uk/smartlink/sparql
+http://socialarchive.iath.virginia.edu/sparql/eac       Wed, 31 Dec 1969 19:00:00 EST   no-cache
+http://socialarchive.iath.virginia.edu/sparql/snac-viaf Wed, 31 Dec 1969 19:00:00 EST   no-cache
+http://vocabulary.semantic-web.at/PoolParty/sparql/semweb
+http://linguistic.linkeddata.es/sparql
+http://crime.rkbexplorer.com/sparql/    Fri, 17 Oct 2014 19:16:10 GMT   max-age=300
+http://symbolicdata.org:8890/sparql
+http://agalpha.mathbiol.org/repositories/tcga   max-age=0, must-revalidate
+http://data-observatory.org/lod-profiles/sparql
+http://data.linkededucation.org/request/ted/sparql
+http://lod.apc.gov.tw/sparql
+http://pomelo.iis.sinica.edu.tw:2020/sparql     no-cache
+http://lsd.taxonconcept.org/sparql
+http://darmstadt.rkbexplorer.com/sparql/        Fri, 17 Oct 2014 19:16:47 GMT   max-age=300
+http://linguistic.linkeddata.es/terminesp/sparql-editor
+http://academia6.poolparty.biz/PoolParty/sparql/Tesauro-Materias-BUPM
+http://linkeddata.ge.imati.cnr.it:8890/sparql
+http://lod.gesis.org/thesoz/sparql
+http://tour-pedia.org/sparql    no-cache
+http://tkm.kiom.re.kr/ontology/sparql   Thu, 01 Jan 1970 09:00:00 KST   no-cache
+http://transparency.270a.info/sparql    no-cache
+http://www.zaragoza.es/turruta/sparql
+http://jisc.rkbexplorer.com/sparql/     Fri, 17 Oct 2014 19:17:05 GMT   max-age=300
+http://unlocode.rkbexplorer.com/sparql/ Fri, 17 Oct 2014 19:17:06 GMT   max-age=300
+http://uis.270a.info/sparql     no-cache
+http://skos.um.es/sparql/
+http://data.linkedu.eu/kis1112/query    no-cache
+http://data.linkedu.eu/kis/query        no-cache
+http://unodc.publicdata.eu/sparql
+http://linkeddata.uriburner.com/sparql
+http://beta.sparql.uniprot.org/ no-cache
+http://beta.sparql.uniprot.org  no-cache
+http://data.utpl.edu.ec/utpl/lod/sparql
+http://resrev.ilrt.bris.ac.uk/data-server-workshop/sparql       Thu, 01 Jan 1970 01:00:00 GMT   no-cache
+http://data.linkedu.eu/hud/query        no-cache
+http://newcastle.rkbexplorer.com/sparql/        Fri, 17 Oct 2014 19:17:14 GMT   max-age=300
+http://roma.rkbexplorer.com/sparql/     Fri, 17 Oct 2014 19:17:15 GMT   max-age=300
+http://pisa.rkbexplorer.com/sparql/     Fri, 17 Oct 2014 19:17:15 GMT   max-age=300
+http://ulm.rkbexplorer.com/sparql/      Fri, 17 Oct 2014 19:17:15 GMT   max-age=300
+http://irit.rkbexplorer.com/sparql/     Fri, 17 Oct 2014 19:17:15 GMT   max-age=300
+http://semanticweb.cs.vu.nl/verrijktkoninkrijk/sparql/
+http://kaunas.rkbexplorer.com/sparql    Fri, 17 Oct 2014 19:17:16 GMT   max-age=300
+http://webscience.rkbexplorer.com/sparql        Fri, 17 Oct 2014 19:17:18 GMT   max-age=300
+http://sparql.wikipathways.org/
+http://www.opmw.org/sparql
+http://wordnet.rkbexplorer.com/sparql/  Fri, 17 Oct 2014 19:17:20 GMT   max-age=300
+http://worldbank.270a.info/sparql
+http://mlode.nlp2rdf.org/sparql
+http://ldf.fi/ww1lod/sparql     no-cache
+http://aksw.org/sparql
+http://nextprot.bio2rdf.org/sparql
+http://crm.rkbexplorer.com/sparql
+http://data.open.ac.uk/query    no-cache
+http://sparql.data.southampton.ac.uk/
+http://datos.bne.es/sparql
+http://kaiko.getalp.org/sparql
+http://digitaleconomy.rkbexplorer.com/sparql    Fri, 17 Oct 2014 19:17:54 GMT   max-age=300
+http://dotac.rkbexplorer.com/sparql/    Fri, 17 Oct 2014 19:17:56 GMT   max-age=300
+http://foreign.rkbexplorer.com/sparql/  Fri, 17 Oct 2014 19:17:56 GMT   max-age=300
+http://eprints.rkbexplorer.com/sparql/  Fri, 17 Oct 2014 19:17:56 GMT   max-age=300
+http://services.data.gov.uk/education/sparql    Fri, 17 Oct 2014 20:12:56 GMT   no-cache, max-age=3600
+http://epsrc.rkbexplorer.com/sparql     Fri, 17 Oct 2014 19:17:58 GMT   max-age=300
+http://iserve.kmi.open.ac.uk/iserve/sparql
+http://ichoose.tw.rpi.edu/sparql
+http://babelnet.org:8084/sparql/
+http://lobid.org/sparql/
+http://lofd.tw.rpi.edu/sparql
+http://www.morelab.deusto.es/joseki/articles    no-cache
+http://provenanceweb.org/sparql
+http://services.data.gov.uk/reference/sparql    no-cache
+http://foreign.rkbexplorer.com/sparql   Fri, 17 Oct 2014 19:18:01 GMT   max-age=300
+http://services.data.gov.uk/statistics/sparql   no-cache
+http://services.data.gov.uk/transport/sparql    Fri, 17 Oct 2014 20:13:00 GMT   no-cache, max-age=3600
+http://opendap.tw.rpi.edu/sparql
+http://webconf.rkbexplorer.com/sparql   Fri, 17 Oct 2014 19:18:07 GMT   max-age=300
+http://wiktionary.dbpedia.org/sparql
+http://diwis.imis.athena-innovation.gr:8181/sparql      no-cache
