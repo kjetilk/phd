@@ -1,13 +1,11 @@
 The HTTP protocol has some good features for caching, defined in
 RFC7234 and RFC7232. Both specifications note that the performance
 gains from supporting them can be substantial. Caching can be done in
-several places in the Internet. Server-side caching resembles database
-caching, and is already well studied. There exists also Content
-Delivery Networks, capacity that is usually rented by large content
-providers to place proxies close to consumers. These caching proxies
-often exists at large ISPs. Furthermore, large institutions
-can deploy caches in their own infrastructure. Finally, clients can
-have their own cache.
+several places in the Internet. Besides server-side caching, there
+exists Content Delivery Networks, a capacity that is usually rented by
+large content providers to place proxies close to consumers. Furthermore, large
+institutions can deploy caches in their own infrastructure. Finally,
+clients can have their own cache.
 
 If content changes seldomly, the request doesn't need to be handled 
 by the server, or handled much more lightly than answering a query. 
@@ -18,7 +16,7 @@ results to common queries.
 
 We recently did a survey of the presence of RFC7234 headers in the
 responses from SPARQL Endpoints. We utilized the SPARQLES survey,
-where we found 549 endpoints. Out of these, we skipped the ones that
+where we found 549 endpoints. Out of these, we skipped 235 that
 have been deemed by them "dead". We executed a SPARQL query on the 
 remaining. Out of those, 30 returned no response. Out of the remaining, 
 106 responded with a Cache-Control header, and 61 with a Expires header.
@@ -29,14 +27,13 @@ and sets a maximum age for the cache to 300s. Data.gov.uk
 displays a complete misunderstanding of the caching system as they
 set a maximum age of 3600s, but also prohibit caching.
 
-It is unlikely that the data in SPARQL endpoints have substantially
+It is unlikely that the data in SPARQL endpoints have very
 different dynamicity than the data surveyed by the Observatory, 
 and therefore, it is very likely that the benefit from
 adopting practices that are common in the Web at large will be
 substantial. A case in point is DBPedia, which exposes caching headers
 for the LOD part, but not for the SPARQL endpoint, even though the
-data is the same, and changes with the same frequency, i.e. almost
-annually. 
+data is the same, and changes roughly annually.
 
 We are committed to further research in this area, but it would help
 if the community started adding caching headers to their SPARQL
