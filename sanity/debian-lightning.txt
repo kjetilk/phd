@@ -1,0 +1,43 @@
+We would like to ask the community to commit to take the extra effort
+to get our software into the state where it is suitable for packaging
+in Linux distributions, and if possible, sponsor efforts to make sure
+they enter released versions of such distributions.
+
+The value of these distributions isn't just ease of installation and
+deployment. In our opinion, this is not even the chief value. The
+distribution provides a long-term software stack for a stable
+production environment with security support. 
+
+That is, the community around the distribution, whether commercial,
+such as Red Hat or based on volunteers, such as Debian, is committed
+to monitor appropriate fora where security problems are discussed and
+announced, and to follow up on any issues that may occur within the
+lifetime of the distribution.
+
+Without this support, those wishing to use a package will have to
+monitor the package themselves, or to blindly deploy any new
+version. If doing the latter, they loose the stable base for the
+production environment, and will also have to deal with any other bugs
+that may be introduced. If they choose to monitor the package, in SME
+environments, this would usually steal valueable developer resources
+from actually develop new services. 
+
+Therefore, for SME's, the service done by Linux distributions are
+invaluable. Unfortunately, little Semantic Web software is available
+in Linux distributions. There are certain exceptions, and we have
+worked with Debian to include many of the PerlRDF community packages. 
+
+Virtuoso and 4store has previously been available, but it seems highly
+unlikely that Debian will release with Virtuoso 7, and 4store will
+most likely not be included at all. Packagers require that the
+software is well maintained, so that backporting any security fixes
+can be done with little effort if they should occur within the 3-4
+years of lifetime that is typical, and also that it fits in the
+ecosystem of the distribution. This require extra effort on the part
+of the Semantic Web community.
+
+I think that the lack of a stable production environment is, and
+continues to be a serious impediment to the adoption of Semantic Web
+technologies. I would therefore encourage the community to enhance
+their appreciation of the importance of Linux distributions, and to
+pursue the inclusion of our software as a goal.
