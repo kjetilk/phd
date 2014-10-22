@@ -1,0 +1,66 @@
+%\documentclass[english,aspectratio=196]]{ifislide}
+%\documentclass[english,print,aspectratio=169]{ifislide}
+%\documentclass[english,handout,aspectratio=169]{ifislide}
+%\documentclass[english,usenames,dvipsnames,handout]{beamer}
+\documentclass[english,usenames,dvipsnames,aspectratio=169]{beamer}
+%\usepackage{verbatim}
+%\usepackage{config}
+%\usepackage{pgf}
+%\usepackage{pgfpages}
+
+%
+%  Load other packages you may need here
+% 
+% \pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+\usetheme{ifi_en}
+
+
+%\pgfpagesuselayout{resize to}[a4paper]
+%\setbeameroption{show only notes}
+\usepackage[utf8]{inputenc}
+
+
+
+
+\begin{document}
+
+\title[Enable caching!]{The prevalence of HTTP caching headers on SPARQL Endpoint}
+\subtitle{You should enable them!}
+\author{Kjetil Kjernsmo}
+\date{23.10.2014}
+\maketitle
+
+
+\begin{frame}{What does HTTP have?}
+
+The server can tell...:
+
+\begin{itemize}
+
+\item When you cannot cache.
+\item How long the server thinks the response will be fresh.
+\item How to revalidate without downloading the response again.
+\item Under what circumstances a stale response can be served.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Surveying SPARQLES endpoints}
+
+\begin{itemize}
+
+\item Total: 549,
+\item Skipped: 235,
+\item Failed: 30,
+\item \textbf{\texttt{Cache-Control}}: 106,
+\item \textbf{\texttt{Expires}}: 61
+
+\end{itemize}
+
+\end{frame}
+
+
+
+\end{document}
