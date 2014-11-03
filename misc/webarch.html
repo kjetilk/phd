@@ -88,11 +88,12 @@
 	      RFC1945</a> in 1996.</li>
 	      <li>HTTP 1.1 had several rounds of clarification:
 	      <ul>
-		<li>RFC2068 in 1997</li>
-		<li>RFC2616 in 1999</li>
+		<li>RFC2068-2069 in 1997</li>
+		<li>RFC2616-2617 in 1999</li>
 		<li>RFC7230-7237 in 2014</li>
 	      </ul>
 	      </li>
+	      <li>HTTP/2 in 2015</li>
 	    </ul>
 	    </li>
 	  </ul>
@@ -102,6 +103,7 @@
 	</section>
 	    
 	<section>
+	  <h2>Current HTTP specifications</h2>
 	  <ul>
 	    <li><a href="//tools.ietf.org/html/rfc7230">RFC 7230</a> - HTTP/1.1: Message Syntax and Routing</li>
 	    <li><a href="//tools.ietf.org/html/rfc7231">RFC 7231</a> - HTTP/1.1: Semantics and Content</li>
@@ -111,6 +113,52 @@
 	    <li><a href="//tools.ietf.org/html/rfc7235">RFC 7235</a> - HTTP/1.1: Authentication</li>
 	  </ul>
 	</section>
+
+	<section>
+	  <h2>HTTP Methods</h2>
+	  <ul>
+	    <li>GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS,
+	    TRACE</li>
+	    <li>Methods are also defined elsewhere (e.g. WebDAV)</li>
+	    <li>Methods are classified as
+	    <ul>
+	      <li>Safe,</li>
+	      <li>Idempotent,</li>
+	      <li>Cachable.</li>
+	    </ul>
+	    </li>
+	  </ul>
+	</section>
+
+	<section>
+	<h2>HTTP Response codes</h2>
+	<p>From the spec:</p>
+	<ul>
+	  <li>1xx (Informational): The request was received, continuing process</li>
+	  <li>2xx (Successful): The request was successfully received,
+      understood, and accepted</li>
+      <li>3xx (Redirection): Further action needs to be taken in order to
+      complete the request</li>
+
+   <li>4xx (Client Error): The request contains bad syntax or cannot be
+      fulfilled</li>
+<li>5xx (Server Error): The server failed to fulfill an apparently
+      valid request
+</li>
+	</ul>
+	</section>
+
+	<section>
+	  <h2>Some useful features</h2>
+	  <ul>
+	    <li>Content negotiation</li>
+	    <li>Conditional requests</li>
+	    <li>Cache treatment</li>
+	    <li>Authentication</li>
+	  </ul>
+	</section>
+
+
 
 	<section>
 	  <h2>Hypermedia</h2>
