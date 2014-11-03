@@ -158,7 +158,52 @@
 	  </ul>
 	</section>
 
+	<section>
+	<h2>HTTP/2</h2>
 
+	<ul>
+	  <li>Keep the semantics of HTTP/1.1</li>
+	  <li>(Re)define how HTTP messages is transmitted over TCP</li>
+	  <li>...because there are now many more messages transmitted
+	  than it used to.</li>
+	  <li>Adopted a Google proposal named SPDY is a starting point.</li>
+	</ul>
+
+	</section>
+
+	<section>
+	  <h2>What's new?</h2>
+	  <p>From the <a
+	  href="https://http2.github.io/faq/#what-are-the-key-differences-to-http1x">FAQ</a>:
+	  
+	  <ul>
+	    <li>is binary, instead of textual</li>
+	    <li>is fully multiplexed, instead of ordered and blocking</li>
+	    <li>can therefore use one connection for parallelism</li>
+	    <li>uses header compression to reduce overhead</li>
+	    <li>allows servers to “push” responses proactively into client caches</li>
+	  </ul>
+	  </p>
+	</section>
+
+	<section>
+	  <h2>Opening future directions</h2>
+	  
+	  <ul>
+	    <li><em>Binary protocol</em>: Binary serializations of RDF and SPARQL.</li>
+	    <li><em>Flow control and stream priority</em>: Control the
+	    intermediate results</li>
+	    <li><em>Extension mechanisms</em>: Error code <code>ENHANCE_YOUR_CALM</code>.</li>
+	    <li><em>Server push</em>:
+	    <ul>
+	      <li>Server can help populate caches</li>
+	      <li>Send information the client may have (e.g. control
+	      information)</li>
+	    </ul></li>
+	    <li>Triple Pattern Fragments make even more sense</li>
+	  </ul>
+
+	</section>
 
 	<section>
 	  <h2>Hypermedia</h2>
