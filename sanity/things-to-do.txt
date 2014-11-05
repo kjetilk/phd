@@ -1,0 +1,38 @@
+HTTP straight:
+
+Cache-Control
+Pragma
+Expires
+Surrogates
+Etag
+Last-Modified
+Retry Etag and mtime
+
+Heuristics:
+VoID
+Vary hostnames
+
+
+Extras:
+
+X-Cache
+
+
+Spider:
+
+Vocabs 
+- prefix.cc
+- lov
+- Check <> a owl:Ontology
+
+SPARQL Endpoints
+- SPARQLES
+- Look in Void
+- Look for sd:endpoint
+
+Triple Pattern Fragments
+- Look in Void
+
+LOD cloud
+- Sample
+- CommonCrawl
