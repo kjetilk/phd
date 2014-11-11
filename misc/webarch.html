@@ -260,9 +260,20 @@
 	  <ul>
 	    <li>Can be done very cheaply with materializing
 	      views.</li>
-	    <li>Then you 
+	    <li>Then you can rely on the web-server's modification
+	      time tracking.</li>
 	    <li>...but I'm not so sure you want to do that...</li>
-	    <li>
+	</section>
+
+
+	<section>
+	  <h2>Cardinality and modification time tracking</h2>
+	  <ul>
+	    <li>Cardinality must be cheap.</li>
+	    <li>Modification time must be cheap too (for
+	    caching).</li>
+	    <li>Much the same problems for SPARQL to scale.</li>
+	  </ul>
 	</section>
 	
       </div>
