@@ -2,4 +2,4 @@ Flow control -- use to control if you need something joined first
 stream priority -- use to control if you need something joined first
 Server push (PUSH Promise (control information follows?)
 ENHANCE_YOUR_CALM -- Use to create a "query too hard for me" error?
-Extension mechanism
+Extension mechanism (section 5.5)

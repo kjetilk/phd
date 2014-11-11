@@ -8,6 +8,8 @@
    * !!! Only safe queries (BNODE hell, unprojected variables, FILTERs)
    * Key: triple / BGP + ServiceURI  Wildcards? 
      	    => (workshop paper recommending checksum/hash?)
+	    * Depth first search lexical graphical order?
+
 
    * !!! Value : RDF binary? serialization (to RAM or disk) 
    * Metadata : 
@@ -37,3 +39,8 @@
      unless the remote source is down, in which case we use it anyway)
 
 => Paper (whereever, submit 10. Aug 2015, or ISWC if ready)
+
+
+Notes:
+
+Same query doesn't always give the same result
