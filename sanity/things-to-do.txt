@@ -24,6 +24,7 @@ Vocabs
 - prefix.cc
 - lov
 - Check <> a owl:Ontology
+- Check void:vocabularies
 
 SPARQL Endpoints
 - SPARQLES
@@ -36,3 +37,8 @@ Triple Pattern Fragments
 LOD cloud
 - Sample
 - CommonCrawl
+- BTC-2014
+
+
+
+Replay USEWOD access log
