@@ -68,30 +68,30 @@ my @files = (
           # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-13',
           # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-14',
           # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-15',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-2',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-3',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-4',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-5',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-6',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-7',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-8',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-9',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/03/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/04/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/05/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/05/headers.nx-1',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/06/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-1',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-2',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-3',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/08/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/09/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/09/headers.nx-1',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-1',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-2',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-3',
+          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-2',
+          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-3',
+          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-4',
+          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-5',
+          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-6',
+          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-7',
+          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-8',
+          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-9',
+          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/03/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/04/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/05/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/05/headers.nx-1',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/06/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-1',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-2',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-3',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/08/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/09/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/09/headers.nx-1',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-1',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-2',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-3',
           # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-0',
           # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-1',
           # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-2',
@@ -109,7 +109,7 @@ my @files = (
 foreach my $filename (@files) {
 	open (my $file, "<", $filename) or die $!;
 	flock ($file, LOCK_EX) or next;
-	print STDERR "Starting on file $filename";
+	print STDERR "Starting on file $filename\n";
 	while (<$file>) { # Need to do groundwork ourselves due to invalid data
 		my $line = $_;
 		$counts{total}++;
@@ -124,7 +124,7 @@ foreach my $filename (@files) {
 		};
 		print STDERR $counts{total} ."\n" if ($counts{total} % 10000 == 0);
 	}
-	print STDERR "Finished file $filename";
+	print STDERR "Finished file $filename\n";
 	close $file;
 }
 
