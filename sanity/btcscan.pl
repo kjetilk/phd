@@ -17,6 +17,8 @@ my $store = RDF::Trine::Store::DBI->new( 'btc', $dbh );
 
 my $model = RDF::Trine::Model->new($store);
 
+$model->begin_bulk_ops;
+
 #use Module::Load::Conditional qw[can_load];
 #
 #print STDERR can_load( modules => 'RDF::Trine::Node::Literal::XML' )
@@ -56,7 +58,7 @@ my @files = glob "/home/kjetil/Projects/SemWeb/data/btc-2014/headers/*/headers.n
 
 foreach my $filename (@files) {
 	open (my $file, "<", $filename) or die $!;
-
+	print STDERR "Starting on file $filename";
 	while (<$file>) { # Need to do groundwork ourselves due to invalid data
 		my $line = $_;
 		$counts{total}++;
@@ -69,9 +71,13 @@ foreach my $filename (@files) {
 			$counts{failures}++;
 			next;
 		};
+		print STDERR $counts{initial} if ($counts{initial} % 1000 == 0);
 	}
+	print STDERR "Finished file $filename";
+	close $file;
 }
 
+$model->end_bulk_ops;
 
 print Dumper(\%counts);
 print $model->size . "\n";
