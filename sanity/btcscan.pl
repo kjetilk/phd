@@ -3,12 +3,19 @@
 use strict;
 use warnings;
 use Try::Tiny;
+use Data::Dumper;
 
 use RDF::Trine qw(iri);
 use RDF::Trine::Parser::NQuads;
 use RDF::Trine::Namespace;
+use RDF::Trine::Store::DBI;
 
-my $model = RDF::Trine::Model->temporary_model;
+my $dsn = "DBI:Pg:database=sanity";
+my $dbh = DBI->connect( $dsn, 'kjetil');
+
+my $store = RDF::Trine::Store::DBI->new( 'btc', $dbh );
+
+my $model = RDF::Trine::Model->new($store);
 
 #use Module::Load::Conditional qw[can_load];
 #
@@ -19,8 +26,6 @@ my $model = RDF::Trine::Model->temporary_model;
 
 #use PerlIO::gzip;
 #open (my $zipfile, "<:gzip", "/home/kjetil/Projects/SemWeb/data/btc-2014/data/01/data.nq-0.gz") or die $!;
-
-open (my $file, "<", "/home/kjetil/Projects/SemWeb/data/btc-2014/headers/01/headers.nx-0") or die $!;
 
 my $parser     = RDF::Trine::Parser::NQuads->new(canonicalize => 0) ;
 my $httpo = RDF::Trine::Namespace->new('http://www.w3.org/2006/http#');
@@ -47,23 +52,27 @@ my $handler = sub {
 	#}
 };
 
-while (<$file>) { # Need to do groundwork ourselves due to invalid data
-	my $line = $_;
-	$counts{total}++;
-	next unless $line =~ m/expires|etag|last-modified|turtle|rdf\+xml|rdf\+n3/i;
-	$counts{initial}++;
-	try {
-		$parser->parse( 'http://robin:5000', $line, $handler);
-	} catch {
-#		warn "Parse failed for $line: $_";
-		$counts{failures}++;
-		next;
-	};
+my @files = glob "/home/kjetil/Projects/SemWeb/data/btc-2014/headers/*/headers.nx*";
+
+foreach my $filename (@files) {
+	open (my $file, "<", $filename) or die $!;
+
+	while (<$file>) { # Need to do groundwork ourselves due to invalid data
+		my $line = $_;
+		$counts{total}++;
+		next unless $line =~ m/expires|etag|last-modified|turtle|rdf\+xml|rdf\+n3/i;
+		$counts{initial}++;
+		try {
+			$parser->parse( 'http://robin:5000', $line, $handler);
+		} catch {
+			#		warn "Parse failed for $line: $_";
+			$counts{failures}++;
+			next;
+		};
+	}
 }
 
 
-
-use Data::Dumper;
 print Dumper(\%counts);
 print $model->size . "\n";
 
