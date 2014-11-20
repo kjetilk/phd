@@ -11,10 +11,11 @@ use RDF::Trine::Parser::NQuads;
 use RDF::Trine::Namespace;
 use RDF::Trine::Store::DBI;
 
-my $dsn = "DBI:Pg:database=sanity";
-my $dbh = DBI->connect( $dsn, 'kjetil');
+#my $dsn = "DBI:Pg:database=sanity";
+#my $dbh = DBI->connect( $dsn, 'kjetil');
 
-my $store = RDF::Trine::Store::DBI->new( 'btc', $dbh );
+#my $store = RDF::Trine::Store::DBI->new( 'btc', $dbh );
+my $store = RDF::Trine::Store::File::Quad->new_with_string( 'File::Quad;/mnt/ssdstore/data/btc-processed/headers.nq' );
 
 my $model = RDF::Trine::Model->new($store);
 
@@ -58,51 +59,51 @@ my $handler = sub {
 my @files = (
           # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/01/headers.nx-6',
           '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/01/headers.nx-7',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/01/headers.nx-8',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/01/headers.nx-9',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-1',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-10',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-11',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-12',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-13',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-14',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-15',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-2',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-3',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-4',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-5',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-6',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-7',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-8',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-9',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/03/headers.nx-0',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/04/headers.nx-0',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/05/headers.nx-0',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/05/headers.nx-1',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/06/headers.nx-0',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-0',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-1',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-2',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-3',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/08/headers.nx-0',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/09/headers.nx-0',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/09/headers.nx-1',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-0',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-1',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-2',
-          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-3',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-1',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-2',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-3',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-4',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-5',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-6',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-7',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/12/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/13/headers.nx-0',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/14/headers.nx-0'
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/01/headers.nx-8',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/01/headers.nx-9',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-1',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-10',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-11',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-12',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-13',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-14',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-15',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-2',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-3',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-4',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-5',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-6',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-7',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-8',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/02/headers.nx-9',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/03/headers.nx-0',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/04/headers.nx-0',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/05/headers.nx-0',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/05/headers.nx-1',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/06/headers.nx-0',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-0',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-1',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-2',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/07/headers.nx-3',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/08/headers.nx-0',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/09/headers.nx-0',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/09/headers.nx-1',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-0',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-1',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-2',
+          # # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/10/headers.nx-3',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-1',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-2',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-3',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-4',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-5',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-6',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/11/headers.nx-7',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/12/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/13/headers.nx-0',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/headers/14/headers.nx-0'
         );
 
 
