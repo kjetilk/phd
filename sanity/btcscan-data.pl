@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+no warnings "exiting";
 use Try::Tiny;
 use Data::Dumper;
 use PerlIO::gzip;
@@ -16,7 +17,7 @@ use RDF::Trine::Store::File::Quad;
 #my $dbh = DBI->connect( $dsn, 'kjetil');
 
 #my $store = RDF::Trine::Store::DBI->new( 'btc', $dbh );
-my $store = RDF::Trine::Store::File::Quad->new_with_string( 'File::Quad;/mnt/ssdstore/data/btc-processed/headers.nq' );
+my $store = RDF::Trine::Store::File::Quad->new_with_string( 'File::Quad;/mnt/ssdstore/data/btc-processed/data1.nq' );
 
 my $model = RDF::Trine::Model->new($store);
 
@@ -45,17 +46,26 @@ my %counts = ( failures => 0,
 
 my $handler = sub {
 	my $st = shift;
-	if($st->predicate->equal(iri('http://www.w3.org/ns/sparql-service-description#endpoint')) ||
-		 $st->object->equal(iri('http://vocab.deri.ie/cogs#Endpoint')) ||
-		 $st->object->equal(iri('http://www.w3.org/2002/07/owl#Ontology')) ||
-		($st->predicate =~ m/sparql/i) ||
-		($st->predicate =~ m/vocabular/i)
+	if (
+		 ($st->predicate->equal(iri('http://www.w3.org/ns/sparql-service-description#endpoint'))
+		  && $st->object->is_resource) ||
+		 ($st->object->equal(iri('http://vocab.deri.ie/cogs#Endpoint')) 
+		  && $st->subject->is_resource) ||
+		 ($st->object->equal(iri('http://www.w3.org/2002/07/owl#Ontology'))		  
+		  && $st->subject->is_resource) ||
+		 (($st->predicate =~ m/sparql/i) && ($st->predicate !~ m/sparql-service-description/i) && 
+		  $st->subject->is_resource && $st->object->is_resource) ||
+		 (($st->predicate->equal(iri('http://rdfs.org/ns/void#vocabulary')) && $st->object->is_resource)) ||
+		 (($st->predicate->equal(iri('http://www.w3.org/ns/rdfa#vocabulary')) && $st->object->is_resource)) ||
+		 (($st->predicate->equal(iri('http://purl.org/linked-data/api/vocab#vocabulary')) && $st->object->is_resource)) ||
+		 ($st->object->equal(iri('http://purl.org/vocommons/voaf#Vocabulary'))
+		  && $st->subject->is_resource)
 	  ) {
 		$counts{added}++;
 		$model->add_statement($st);
-	} else {
-		warn "Didn't add " . $st->as_string;
-	}
+	} #else {
+		#warn "Didn't add " . $st->as_string;
+	#}
 };
 
 my @files = (
@@ -71,14 +81,14 @@ foreach my $filename (@files) {
 		$counts{total}++;
 		next unless $line =~ m/ontology|endpoint|sparql|vocabular/i;
 		$counts{initial}++;
+		print STDERR $counts{initial} ."\n" if ($counts{initial} % 10000 == 0);
 		try {
 			$parser->parse( 'http://robin:5000', $line, $handler);
 		} catch {
-			#		warn "Parse failed for $line: $_";
-			$counts{failures}++;
-			next;
+#					warn "Parse failed for $line: $_";
+					$counts{failures}++;
+					next;
 		};
-		print STDERR $counts{total} ."\n" if ($counts{total} % 10000 == 0);
 	}
 	print STDERR "Finished file $filename\n";
 	close $file;
