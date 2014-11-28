@@ -11,7 +11,7 @@ Retry Etag and mtime
 Heuristics:
 VoID
 Vary hostnames
-
+dct:modified and issued
 
 Extras:
 
@@ -20,7 +20,7 @@ X-Cache
 
 Spider:
 
-Vocabs 
+Vocabs
 - prefix.cc
 - lov
 - Check <> a owl:Ontology
