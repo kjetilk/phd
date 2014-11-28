@@ -9,6 +9,7 @@ use RDF::Query::Client;
 use URI;
 use RDF::Trine qw(statement iri literal);
 use URI::NamespaceMap;
+use Scalar::Util qw(blessed);
 
 my $nm = URI::NamespaceMap->new(['dct', 'rdfs', 'void']);
 my $dct = $nm->namespace_uri('dct');
@@ -20,7 +21,23 @@ my %known_vocabs;
 my %known_endpoints;
 my %known_datasets;
 
-if (0) {
+sub normalize_uri {
+	my $url = shift;
+	my $uri;
+	if (blessed($url)) {
+		if ($url->isa('RDF::Trine::Node::Resource')) {
+			$uri = URI->new($url->uri_value);
+		}
+		elsif ($url->isa('URI')) {
+			$uri = $url;
+		}
+	}
+	$uri = URI->new($url);
+	$uri = $uri->canonical;
+	return iri($uri->scheme . $uri->opaque);
+}
+
+#if (0) {
 print STDERR "Reading prefix.cc URLs\n";
 
 my $csv = Text::CSV->new ( { binary => 1 } )  # should set binary attribute.
@@ -28,10 +45,10 @@ my $csv = Text::CSV->new ( { binary => 1 } )  # should set binary attribute.
 
 open my $fh, "<:encoding(utf8)", "/home/kjetil/Projects/SemWeb/data/all.file.csv" or die "all.file.csv: $!";
 while ( my $row = $csv->getline( $fh ) ) {
-	my $url = $row->[1];
-	$known_vocabs{$url} = 1; # To speed things up later
-	$om->add_statement(statement(iri($url), iri($dct->source), iri('http://prefix.cc/')));
-	$om->add_statement(statement(iri($url), iri($dct->type), literal('vocabulary')));
+	my $url = normalize_uri($row->[1]);
+	$known_vocabs{$url->uri_value} = 1; # To speed things up later
+	$om->add_statement(statement($url, iri($dct->source), iri('http://prefix.cc/')));
+	$om->add_statement(statement($url, iri($dct->type), literal('vocabulary')));
 }
 
 $csv->eof or $csv->error_diag();
@@ -44,17 +61,18 @@ my $query = RDF::Query::Client->new('SELECT DISTINCT ?vocabURI ?nsURI WHERE { ?v
 my $iterator = $query->execute('http://lov.okfn.org/endpoint/lov');
 
 while (my $row = $iterator->next) {
-   my $url1 = URI->new($row->{vocabURI}->as_string);
-   my $url2 = URI->new($row->{nsURI}->as_string);
-	$known_vocabs{$url2} = 1; # To speed things up later
-	$om->add_statement(statement(iri($url2), iri($dct->source), iri('http://lov.okfn.org/')));
-	$om->add_statement(statement(iri($url2), iri($dct->type), literal('vocabulary')));
-	my $url3 = URI->new($url1->as_string . '#');
-	unless ($url2->eq($url1) || $url2->eq($url3)) {
-		$known_vocabs{$url1} = 1; # To speed things up later
-		$om->add_statement(statement(iri($url2), iri($dct->identifier), iri($url1)));
+   my $vocaburi = $row->{vocabURI};
+	my $vocaburinorm = normalize_uri($vocaburi);
+   my $nsURI = $row->{nsURI};
+   my $nsURInorm = normalize_uri($row->{nsURI});
+
+	$known_vocabs{$nsURInorm->uri_value} = 1; # To speed things up later
+	$om->add_statement(statement($nsURInorm, iri($dct->source), iri('http://lov.okfn.org/')));
+	$om->add_statement(statement($nsURInorm, iri($dct->type), literal('vocabulary')));
+	unless ($nsURInorm->equal($vocaburinorm) || $nsURI->equal($vocaburi)) {
+		$known_vocabs{$vocaburinorm->uri_value} = 1; # To speed things up later
+		$om->add_statement(statement($nsURInorm, iri($dct->identifier), $vocaburinorm));
 	}
-}
 }
 
 sub datahandler {
