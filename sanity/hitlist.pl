@@ -145,12 +145,12 @@ foreach my $filename (glob "/mnt/ssdstore/data/btc-processed/data*.nq") {
 }
 
 
-print STDERR "Serializing the results\n";
-open ($fh, ">", "/mnt/ssdstore/data/btc-processed/hitlist-data.ttl") or die "Couldn't open file for write";
-my $ser = RDF::Trine::Serializer->new('turtle', namespaces => { 'dct' => $dct->uri->as_string,
-																				    'owl' => 'http://www.w3.org/2002/07/owl#',
-																					 'void' => 'http://rdfs.org/ns/void#'
-																				  });
-print $ser->serialize_model_to_file($fh, $om);
-close $fh;
+# print STDERR "Serializing the results\n";
+# open ($fh, ">", "/mnt/ssdstore/data/btc-processed/hitlist-data.ttl") or die "Couldn't open file for write";
+# my $ser = RDF::Trine::Serializer->new('turtle', namespaces => { 'dct' => $dct->uri->as_string,
+# 																				    'owl' => 'http://www.w3.org/2002/07/owl#',
+# 																					 'void' => 'http://rdfs.org/ns/void#'
+# 																				  });
+# print $ser->serialize_model_to_file($fh, $om);
+# close $fh;
 print STDERR "Finished\n";
