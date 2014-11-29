@@ -10,13 +10,23 @@ use URI;
 use RDF::Trine qw(statement iri literal);
 use URI::NamespaceMap;
 use Scalar::Util qw(blessed);
+use RDF::Trine::Store::DBI;
+
+my $dsn = "DBI:Pg:database=sanity";
+my $dbh = DBI->connect( $dsn, 'kjetil');
+
+my $store = RDF::Trine::Store::DBI->new( 'hitlist', $dbh );
+#my $store = RDF::Trine::Store::File::Quad->new_with_string( 'File::Quad;/mnt/ssdstore/data/btc-processed/headers.nq' );
+
+my $om = RDF::Trine::Model->new($store);
+
 
 my $nm = URI::NamespaceMap->new(['dct', 'rdfs', 'void', 'rdf']);
 my $dct = $nm->namespace_uri('dct');
 my $rdfs = $nm->namespace_uri('rdfs');
 my $rdf = $nm->namespace_uri('rdf');
 my $void = $nm->namespace_uri('void');
-my $om = RDF::Trine::Model->temporary_model;
+#my $om = RDF::Trine::Model->temporary_model;
 
 my %known_vocabs = ('http://invalid/' => 1);
 my %known_endpoints = ('http://localhost:8890/sparql' => 1, 
@@ -138,7 +148,7 @@ foreach my $filename (glob "/mnt/ssdstore/data/btc-processed/data*.nq") {
 print STDERR "Serializing the results\n";
 open ($fh, ">", "/mnt/ssdstore/data/btc-processed/hitlist-data.ttl") or die "Couldn't open file for write";
 my $ser = RDF::Trine::Serializer->new('turtle', namespaces => { 'dct' => $dct->uri->as_string,
-																				    'owl' => 'http://www.w3.org/2002/07/owl',
+																				    'owl' => 'http://www.w3.org/2002/07/owl#',
 																					 'void' => 'http://rdfs.org/ns/void#'
 																				  });
 print $ser->serialize_model_to_file($fh, $om);
