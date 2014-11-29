@@ -11,14 +11,17 @@ use RDF::Trine qw(statement iri literal);
 use URI::NamespaceMap;
 use Scalar::Util qw(blessed);
 
-my $nm = URI::NamespaceMap->new(['dct', 'rdfs', 'void']);
+my $nm = URI::NamespaceMap->new(['dct', 'rdfs', 'void', 'rdf']);
 my $dct = $nm->namespace_uri('dct');
 my $rdfs = $nm->namespace_uri('rdfs');
+my $rdf = $nm->namespace_uri('rdf');
 my $void = $nm->namespace_uri('void');
 my $om = RDF::Trine::Model->temporary_model;
 
 my %known_vocabs;
-my %known_endpoints;
+my %known_endpoints = ('http://localhost:8890/sparql' => 1, 
+							  'http://localhost:8890/sparql-auth/' => 1,
+							  'http://10.0.0.61:8890/sparql' => 1);
 my %known_datasets;
 
 sub normalize_uri {
@@ -37,7 +40,7 @@ sub normalize_uri {
 	return iri($uri->scheme . $uri->opaque);
 }
 
-#if (0) {
+if (0) {
 print STDERR "Reading prefix.cc URLs\n";
 
 my $csv = Text::CSV->new ( { binary => 1 } )  # should set binary attribute.
@@ -74,28 +77,53 @@ while (my $row = $iterator->next) {
 		$om->add_statement(statement($nsURInorm, iri($dct->identifier), $vocaburinorm));
 	}
 }
-
+}
 sub datahandler {
 	my $st = shift;
-	if	($st->predicate->equal(iri('http://www.w3.org/ns/sparql-service-description#endpoint'))) {
-		my $uri = $st->object;
+	if	(
+		 $st->predicate->equal(iri('http://logd.tw.rpi.edu/node#field_sparqlendpoint')) ||
+		 $st->predicate->equal(iri('http://purl.org/openorg/sparql')) ||
+		 $st->predicate->equal(iri('http://www.w3.org/ns/sparql-service-description#endpoint'))) {
+		my $uri = normalize_uri($st->object);
 		unless ($known_endpoints{$uri->uri_value}) {
 			$known_endpoints{$uri->uri_value} = 1;
 			$om->add_statement(statement($uri, iri($dct->source), $st->predicate));
 			$om->add_statement(statement($uri, iri($dct->type), literal('endpoint')));
 		}
 	} elsif ($st->predicate->equal(iri('http://rdfs.org/ns/void#vocabulary'))) {
-		my $vocab = $st->object;
+		my $vocab = normalize_uri($st->object);
 		unless ($known_vocabs{$vocab->uri_value}) {
 			$known_vocabs{$vocab->uri_value} = 1;
 			$om->add_statement(statement($vocab, iri($dct->source), $st->predicate));
 			$om->add_statement(statement($vocab, iri($dct->type), literal('vocabulary')));
 		}
-		
-#		my $dataset = $st->subject;
+		my $dataset = normalize_uri($st->subject);
+		unless ($known_datasets{$dataset->uri_value}) {
+			$known_datasets{$dataset->uri_value} = 1;
+			$om->add_statement(statement($dataset, iri($dct->source), $st->predicate));
+			$om->add_statement(statement($dataset, iri($dct->type), literal('dataset')));
+		}
+	} elsif ($st->predicate->equal(iri('http://rdfs.org/ns/void#sparqlEndpoint'))) {
+		my $endpoint = normalize_uri($st->object);
+		unless ($known_endpoints{$endpoint->uri_value}) {
+			$known_endpoints{$endpoint->uri_value} = 1;
+			$om->add_statement(statement($endpoint, iri($dct->source), $st->predicate));
+			$om->add_statement(statement($endpoint, iri($dct->type), literal('endpoint')));
+		}
+		my $dataset = normalize_uri($st->subject);
+		unless ($known_datasets{$dataset->uri_value}) {
+			$known_datasets{$dataset->uri_value} = 1;
+			$om->add_statement(statement($dataset, iri($dct->source), $st->predicate));
+			$om->add_statement(statement($dataset, iri($dct->type), literal('dataset')));
+		}
+	} elsif ($st->predicate->equal(iri($rdf->type))) {
+		my $vocab = normalize_uri($st->subject);
+		if ((! $known_vocabs{$vocab->uri_value}) && ($st->object->equal(iri('http://purl.org/vocommons/voaf#Vocabulary'))) || $st->object->equal(iri('http://www.w3.org/2002/07/owl#Ontology'))) {
+			$known_vocabs{$vocab->uri_value} = 1;
+			$om->add_statement(statement($vocab, iri($dct->source), $st->object));
+			$om->add_statement(statement($vocab, iri($dct->type), literal('vocabulary')));
+		}
 	}
-#	die $om->as_string if $om->size > 5;
-
 }
 			
 
