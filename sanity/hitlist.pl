@@ -17,7 +17,6 @@ use Progress::Any;
 
 my $progress = Progress::Any->get_indicator(
         task => "scanning", target=>1460000);
-);
 
 $progress->update(message => "Setting up");
 
@@ -85,7 +84,7 @@ my $query = RDF::Query::Client->new('SELECT DISTINCT ?vocabURI ?nsURI WHERE { ?v
 
 my $iterator = $query->execute('http://lov.okfn.org/endpoint/lov');
 
-$pos=+10;
+$pos+=10;
 $progress->pos($pos);
 
 while (my $row = $iterator->next) {
@@ -169,7 +168,7 @@ my $ser = RDF::Trine::Serializer->new('turtle', namespaces => { 'dct' => $dct->u
  																				    'owl' => 'http://www.w3.org/2002/07/owl#',
  																					 'void' => 'http://rdfs.org/ns/void#'
  																				  });
-$pos=+5;
+$pos+=5;
 $progress->pos($pos);
 print $ser->serialize_model_to_file($fh, $om);
 close $fh;
