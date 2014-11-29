@@ -40,7 +40,6 @@ sub normalize_uri {
 	return iri($uri->scheme . $uri->opaque);
 }
 
-if (0) {
 print STDERR "Reading prefix.cc URLs\n";
 
 my $csv = Text::CSV->new ( { binary => 1 } )  # should set binary attribute.
@@ -77,7 +76,7 @@ while (my $row = $iterator->next) {
 		$om->add_statement(statement($nsURInorm, iri($dct->identifier), $vocaburinorm));
 	}
 }
-}
+
 sub datahandler {
 	my $st = shift;
 	if	(
@@ -125,7 +124,6 @@ sub datahandler {
 		}
 	}
 }
-			
 
 
 my $nqparser = RDF::Trine::Parser::NQuads->new;
@@ -136,5 +134,11 @@ foreach my $filename (glob "/mnt/ssdstore/data/btc-processed/data*.nq") {
 
 
 print STDERR "Serializing the results\n";
-my $ser = RDF::Trine::Serializer->new('turtle', namespaces => { 'dct' => $dct->uri->as_string });
-print $ser->serialize_model_to_string($om);
+open ($fh, ">", "/mnt/ssdstore/data/btc-processed/hitlist-data.ttl") or die "Couldn't open file for write";
+my $ser = RDF::Trine::Serializer->new('turtle', namespaces => { 'dct' => $dct->uri->as_string,
+																				    'owl' => 'http://www.w3.org/2002/07/owl',
+																					 'void' => 'http://rdfs.org/ns/void#'
+																				  });
+print $ser->serialize_model_to_file($fh, $om);
+close $fh;
+print STDERR "Finished\n";
