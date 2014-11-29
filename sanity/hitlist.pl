@@ -18,11 +18,12 @@ my $rdf = $nm->namespace_uri('rdf');
 my $void = $nm->namespace_uri('void');
 my $om = RDF::Trine::Model->temporary_model;
 
-my %known_vocabs;
+my %known_vocabs = ('http://invalid/' => 1);
 my %known_endpoints = ('http://localhost:8890/sparql' => 1, 
 							  'http://localhost:8890/sparql-auth/' => 1,
+							  'http://invalid/' => 1,
 							  'http://10.0.0.61:8890/sparql' => 1);
-my %known_datasets;
+my %known_datasets = ('http://invalid/' => 1);
 
 sub normalize_uri {
 	my $url = shift;
@@ -37,7 +38,8 @@ sub normalize_uri {
 	}
 	$uri = URI->new($url);
 	$uri = $uri->canonical;
-	return iri($uri->scheme . $uri->opaque);
+	return iri('http://invalid/') unless ($uri->scheme eq 'http' || $uri->scheme eq 'https');
+	return iri($uri->scheme ':'. $uri->opaque);
 }
 
 print STDERR "Reading prefix.cc URLs\n";
