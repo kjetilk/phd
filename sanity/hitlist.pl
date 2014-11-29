@@ -11,6 +11,14 @@ use RDF::Trine qw(statement iri literal);
 use URI::NamespaceMap;
 use Scalar::Util qw(blessed);
 use RDF::Trine::Store::DBI;
+use Progress::Any::Output;
+Progress::Any::Output->set('TermProgressBarColor');
+use Progress::Any;   
+
+my $progress = Progress::Any->get_indicator(
+        task => "scanning", target=>undef);
+
+$progress->update(message => "Setting up");
 
 my $dsn = "DBI:Pg:database=sanity";
 my $dbh = DBI->connect( $dsn, 'kjetil');
@@ -49,10 +57,10 @@ sub normalize_uri {
 	$uri = URI->new($url);
 	$uri = $uri->canonical;
 	return iri('http://invalid/') unless ($uri->scheme eq 'http' || $uri->scheme eq 'https');
-	return iri($uri->scheme ':'. $uri->opaque);
+	return iri($uri->scheme .':'. $uri->opaque);
 }
 
-print STDERR "Reading prefix.cc URLs\n";
+$progress->update(message => "Reading prefix.cc URLs");
 
 my $csv = Text::CSV->new ( { binary => 1 } )  # should set binary attribute.
                 or die "Cannot use CSV: ".Text::CSV->error_diag ();
@@ -68,7 +76,7 @@ while ( my $row = $csv->getline( $fh ) ) {
 $csv->eof or $csv->error_diag();
 close $fh;
 
-print STDERR "Querying LOV for vocabs\n";
+$progress->update(message => "Querying LOV for vocabs");
 
 my $query = RDF::Query::Client->new('SELECT DISTINCT ?vocabURI ?nsURI WHERE { ?vocabURI a <http://purl.org/vocommons/voaf#Vocabulary> ; <http://purl.org/vocab/vann/preferredNamespaceUri> ?nsURI . }');
 
@@ -89,8 +97,12 @@ while (my $row = $iterator->next) {
 	}
 }
 
+my $i = 0;
+
 sub datahandler {
 	my $st = shift;
+	$i++;
+	$progress->pos($i);
 	if	(
 		 $st->predicate->equal(iri('http://logd.tw.rpi.edu/node#field_sparqlendpoint')) ||
 		 $st->predicate->equal(iri('http://purl.org/openorg/sparql')) ||
@@ -137,10 +149,10 @@ sub datahandler {
 	}
 }
 
-
+$progress->target(1451234);
 my $nqparser = RDF::Trine::Parser::NQuads->new;
 foreach my $filename (glob "/mnt/ssdstore/data/btc-processed/data*.nq") {
-	print STDERR "Parsing $filename\n";
+	$progress->update(message => "Parsing $filename");
 	$nqparser->parse_file( '', $filename, \&datahandler);
 }
 
@@ -153,4 +165,5 @@ foreach my $filename (glob "/mnt/ssdstore/data/btc-processed/data*.nq") {
 # 																				  });
 # print $ser->serialize_model_to_file($fh, $om);
 # close $fh;
-print STDERR "Finished\n";
+$progress->finish;
+
