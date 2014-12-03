@@ -50,6 +50,7 @@ sub normalize_uri {
 		}
 	}
 	$uri = URI->new($url);
+	return iri('http://invalid/') unless (defined($uri->scheme) && defined($uri->host));
 	return iri('http://invalid/') unless ($uri->scheme eq 'http' || $uri->scheme eq 'https');
 	return iri('http://invalid/') if ($uri->host eq 'localhost' || 
 													  $uri->host =~ m/^(?:10\.|192\.168\.|172\.|127\.)/);
@@ -164,7 +165,7 @@ sub datahandler {
 	}
 }
 
-#$progress->target(1451234);
+$progress->target(1451234);
 my $nqparser = RDF::Trine::Parser::NQuads->new;
 foreach my $filename (glob "/mnt/ssdstore/data/btc-processed/data*.nq") {
 	$progress->update(message => "Parsing $filename");
@@ -172,7 +173,7 @@ foreach my $filename (glob "/mnt/ssdstore/data/btc-processed/data*.nq") {
 }
 
 $progress->update(message => "Sampling ontologies per host");
-$progress->target(1460000 + scalar keys @{$onts});
+$progress->target(1460000 + scalar keys %{$onts});
 $pos+=5;
 $progress->pos($pos);
 
