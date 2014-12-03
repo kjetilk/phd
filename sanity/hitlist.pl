@@ -186,7 +186,7 @@ while ((my $host, my $vocabs) = each(%{$onts})) {
 }
 
 
-print STDERR "Serializing the results\n";
+$progress->update(message => "Serializing the results");
 open ($fh, ">", "/mnt/ssdstore/data/btc-processed/hitlist-data.ttl") or die "Couldn't open file for write";
 my $ser = RDF::Trine::Serializer->new('turtle', namespaces => { 'dct' => $dct->uri->as_string,
  																				    'owl' => 'http://www.w3.org/2002/07/owl#',
