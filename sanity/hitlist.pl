@@ -104,8 +104,7 @@ while (my $row = $iterator->next) {
 	}
 }
 
-my $prevhost = '';
-my @onts;
+my $onts;
 
 sub datahandler {
 	my $st = shift;
@@ -151,17 +150,8 @@ sub datahandler {
 		my $vocab = normalize_uri($st->subject);
 		if (! $known_vocabs{$vocab->uri_value}) {
 			if ($st->object->equal(iri('http://www.w3.org/2002/07/owl#Ontology'))) {
-				my $vocaburi = URI->new($vocab->uri_value);
-				if (($vocaburi->host eq $prevhost) or (! $prevhost)) {
-					push (@onts, $vocab);
-				} else {
-					my $rvocab = $onts[int(rand(scalar @onts))];
-					$known_vocabs{$rvocab->uri_value} = 1;
-					$om->add_statement(statement($rvocab, iri($dct->source), $st->object));
-					$om->add_statement(statement($rvocab, iri($dct->type), literal('vocabulary')));
-					$prevhost = $vocaburi->host;
-					@onts = ();
-				}
+				my $vocabhost = URI->new($vocab->uri_value)->host;
+				push (@{$onts->{$vocabhost}}, $vocab);
 			}
 			elsif ($st->object->equal(iri('http://purl.org/vocommons/voaf#Vocabulary'))) {
 				$known_vocabs{$vocab->uri_value} = 1;
@@ -179,6 +169,20 @@ my $nqparser = RDF::Trine::Parser::NQuads->new;
 foreach my $filename (glob "/mnt/ssdstore/data/btc-processed/data*.nq") {
 	$progress->update(message => "Parsing $filename");
 	$nqparser->parse_file( '', $filename, \&datahandler);
+}
+
+$progress->update(message => "Sampling ontologies per host");
+$progress->target(1460000 + scalar keys @{$onts});
+$pos+=5;
+$progress->pos($pos);
+
+while ((my $host, my $vocabs) = each(%{$onts})) {
+	$pos++;
+	$progress->pos($pos);
+	my @onts = @{$vocabs};
+	my $rvocab = $onts[int(rand(scalar @onts))];
+	$om->add_statement(statement($rvocab, iri($dct->source), iri('http://www.w3.org/2002/07/owl#Ontology')));
+	$om->add_statement(statement($rvocab, iri($dct->type), literal('vocabulary')));
 }
 
 
