@@ -35,10 +35,7 @@ my $void = $nm->namespace_uri('void');
 my $om = RDF::Trine::Model->temporary_model;
 
 my %known_vocabs = ('http://invalid/' => 1);
-my %known_endpoints = ('http://localhost:8890/sparql' => 1, 
-							  'http://localhost:8890/sparql-auth/' => 1,
-							  'http://invalid/' => 1,
-							  'http://10.0.0.61:8890/sparql' => 1);
+my %known_endpoints = ('http://invalid/' => 1);
 my %known_datasets = ('http://invalid/' => 1);
 
 sub normalize_uri {
@@ -54,7 +51,7 @@ sub normalize_uri {
 	}
 	$uri = URI->new($url);
 	return iri('http://invalid/') unless ($uri->scheme eq 'http' || $uri->scheme eq 'https');
-	return iri('http://invalid/') unless ($uri->host eq 'localhost' || 
+	return iri('http://invalid/') if ($uri->host eq 'localhost' || 
 													  $uri->host =~ m/^(?:10\.|192\.168\.|172\.|127\.)/);
 
 	$uri = $uri->canonical;
@@ -107,6 +104,9 @@ while (my $row = $iterator->next) {
 	}
 }
 
+my $prevhost = '';
+my @onts;
+
 sub datahandler {
 	my $st = shift;
 	$pos++;
@@ -149,10 +149,27 @@ sub datahandler {
 		}
 	} elsif ($st->predicate->equal(iri($rdf->type))) {
 		my $vocab = normalize_uri($st->subject);
-		if ((! $known_vocabs{$vocab->uri_value}) && ($st->object->equal(iri('http://purl.org/vocommons/voaf#Vocabulary'))) || $st->object->equal(iri('http://www.w3.org/2002/07/owl#Ontology'))) {
-			$known_vocabs{$vocab->uri_value} = 1;
-			$om->add_statement(statement($vocab, iri($dct->source), $st->object));
-			$om->add_statement(statement($vocab, iri($dct->type), literal('vocabulary')));
+		if (! $known_vocabs{$vocab->uri_value}) {
+			if ($st->object->equal(iri('http://www.w3.org/2002/07/owl#Ontology'))) {
+				my $vocaburi = URI->new($vocab->uri_value);
+				if (($vocaburi->host eq $prevhost) or (! $prevhost)) {
+					push (@onts, $vocab);
+				} else {
+					my $rvocab = $onts[int(rand(scalar @onts))];
+					$known_vocabs{$rvocab->uri_value} = 1;
+					$om->add_statement(statement($rvocab, iri($dct->source), $st->object));
+					$om->add_statement(statement($rvocab, iri($dct->type), literal('vocabulary')));
+					$prevhost = $vocaburi->host;
+					@onts = ();
+				}
+			}
+			elsif ($st->object->equal(iri('http://purl.org/vocommons/voaf#Vocabulary'))) {
+				$known_vocabs{$vocab->uri_value} = 1;
+				$om->add_statement(statement($vocab, iri($dct->source), $st->object));
+				$om->add_statement(statement($vocab, iri($dct->type), literal('vocabulary')));
+			}
+				
+
 		}
 	}
 }
