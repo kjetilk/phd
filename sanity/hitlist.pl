@@ -53,8 +53,11 @@ sub normalize_uri {
 		}
 	}
 	$uri = URI->new($url);
-	$uri = $uri->canonical;
 	return iri('http://invalid/') unless ($uri->scheme eq 'http' || $uri->scheme eq 'https');
+	return iri('http://invalid/') unless ($uri->host eq 'localhost' || 
+													  $uri->host =~ m/^(?:10\.|192\.168\.|172\.|127\.)/);
+
+	$uri = $uri->canonical;
 	return iri($uri->scheme .':'. $uri->opaque);
 }
 
