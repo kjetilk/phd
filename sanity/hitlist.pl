@@ -50,7 +50,7 @@ sub normalize_uri {
 		}
 	}
 	$uri = URI->new($url);
-	return iri('http://invalid/') unless (defined($uri->scheme) && defined($uri->host));
+	return iri('http://invalid/') unless defined($uri->scheme);
 	return iri('http://invalid/') unless ($uri->scheme eq 'http' || $uri->scheme eq 'https');
 	return iri('http://invalid/') if ($uri->host eq 'localhost' || 
 													  $uri->host =~ m/^(?:10\.|192\.168\.|172\.|127\.)/);
