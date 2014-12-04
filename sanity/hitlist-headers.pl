@@ -45,7 +45,7 @@ use RDF::Trine qw(iri);
 use RDF::Trine::Parser::NQuads;
 my $qp = RDF::Trine::Parser::NQuads->new;
 use RDF::Trine::Store::File::Quad;
-my $store = RDF::Trine::Store::File::Quad->new_with_string( 'File::Quad;/mnt/ssdstore/data/btc-processed/hitlist-headers.nq' );
+my $store = RDF::Trine::Store::File::Quad->new_with_string( 'File::Quad;/mnt/ssdstore/data/btc-processed/hitlist-justheaders.nq' );
 my $model = RDF::Trine::Model->new($store);
 my $httpo = RDF::Trine::Namespace->new('http://www.w3.org/2006/http#');
 my $urllist;
