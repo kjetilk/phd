@@ -1,0 +1,14 @@
+In many common use cases, ontologies are not relevant to query
+answering since they usually occur in bound terms. It is interesting
+to understand caching when this is not the case. Moreover, many
+ontologies are maintained by a small group of humans and change
+seldomly. We found in the data a large number of ontologies that
+consist of many information resources with just a few triples in
+each. Since they appear to be produced by the same software, usually
+Semantic Mediawiki, we assume that they are configured with a single
+setup, and thus we will merely sample these resources.
+
+The main motivation for scanning ontologies is to find 
+
+The assumption is that URIs in prefix.cc is used in this way, however,
+it is not always the case as timbl's FOAF is in there.
