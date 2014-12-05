@@ -9,6 +9,8 @@ use Progress::Any::Output;
 Progress::Any::Output->set('TermProgressBarColor');
 use Progress::Any;   
 
+use Mozilla::PublicSuffix qw(public_suffix);
+
 my $progress = Progress::Any->get_indicator(
         task => "scanning", target => 31000000);
 
@@ -25,10 +27,17 @@ while (<$fh>) {
 	my $resource = URI->new($2);
 	my %entry = (filename => $filename,
 					 resource => "$resource");
-	push(@{$hosts->{$resource->host}}, \%entry);
+	my $domain = $resource->host;
+	my $prefix = public_suffix($domain);
+	next unless defined($prefix);
+	$domain =~ s/(?:[\w-]*\.)*?([\w-]*\.?$prefix)/$1/;
+
+	push(@{$hosts->{$domain}}, \%entry);
+	last if $pos>100;
 }
 close $fh;
 
+die Dumper($hosts);
 $progress->target($pos + scalar keys %{$hosts});
 my $files;
 
