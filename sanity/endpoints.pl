@@ -23,46 +23,22 @@ my $rows = scraper {
 my $res = $rows->scrape( URI->new("file:///home/kjetil/Projects/SemWeb/PhD/sanity/SPARQL\ Endpoints\ Status.html") );
 
 #die Dumper($res);
+use RDF::Trine qw(statement iri literal);
 
-my %counts = (total => 0, 
-				  skipped => 0, 
-				  failed => 0,
-				  expires => 0,
-				  control => 0
-				 );
+use RDF::Trine::Store::File::Quad;
+my $store = RDF::Trine::Store::File::Quad->new_with_string( 'File::Quad;/mnt/ssdstore/data/btc-processed/hitlist-sparqles.nq' );
+my $dct = RDF::Trine::Namespace->new('http://purl.org/dc/terms/');
 
-my $query = "select reduced ?Concept where {[] a ?Concept} LIMIT 2";
-
+my $om = RDF::Trine::Model->new($store);
 foreach my $row (@{$res->{rows}}) {
 	next unless ($row->{'status'});
-	$counts{total}++;
-#	warn Dumper($row);
 	if ($row->{'status'}->as_string =~ m/gray/) {
-		$counts{skipped}++;
 		next;
 	}
 	my ($raw) = $row->{'link'}->as_string =~ m!^http://sparqles.okfn.org/endpoint/(\S+)$!;
-	my $url = uri_unescape($raw);
-	print STDERR $url . "\t";
-	my $ua = LWP::UserAgent->new;
-	$ua->timeout(30);
-	my $response = $ua->get($url . '?query=' . uri_escape_utf8($query));
-	if ($response->is_success) {
-		#warn $response->content;
-		if ($response->header('Expires')) {
-			print STDERR $response->header('Expires') . "\t";
-			$counts{expires}++;
-		}
-		if ($response->header('Cache-Control')) {
-			print STDERR $response->header('Cache-Control') . "\t";
-			$counts{control}++;
-		}
-	} else {
-		$counts{failed}++;
-	}
-	print STDERR "\n";
+	my $url = iri(uri_unescape($raw));
+	$om->add_statement(statement($url, $dct->source, iri('http://sparqles.okfn.org/')));
+	$om->add_statement(statement($url, $dct->type, literal('endpoint')));
 }
-
-print Dumper(\%counts);
 
 1;

@@ -54,6 +54,7 @@ my $pm = Parallel::ForkManager->new(4);
 
 use LWP::UserAgent;
 use HTTP::Request;
+use URI::Escape::XS qw/uri_escape/;
 
 my $ua = LWP::UserAgent->new;
 $ua->agent('Semweb cache project (see http://folk.uio.no/kjekje/ ) ');
@@ -73,13 +74,46 @@ foreach my $host (@hosts) {
   while ((my $uri, my $details) = each(%{$data->{$host}})) {
 	  my $request = HTTP::Request->new(GET => $uri);
 	  if ($details->{type} eq 'endpoint') {
-		  $request->uri( $uri . 'SELECT DISTINCT * WHERE {	?s a ?class . } LIMIT 10');
+		  $request->uri( $uri . '?query=' . uri_escape('select reduced ?Concept where {[] a ?Concept} LIMIT 2'));
 		  $request->header( Accept => '*/*' );
+	  } elsif ($details->{type} eq 'conditionals') {
+		  $request->header( Accept => RDF::Trine::Parser::default_accept_header );
+#		  $request->header( 'If-Modified-Since' =>  );
+#		  $request->header( 'If-None-Matches' =>  );
 	  } else {
 		  $request->header( Accept => RDF::Trine::Parser::default_accept_header );
 	  }
 	  my $firstresponse = $ua->request( $request );
 	  if ($firstresponse->is_success) {
+		  if ($details->{type} eq 'endpoint') {
+			  # Get the relevant headers
+			  # If conditional, try them
+			  # Check if we got any results
+		  } elsif ($details->{type} eq 'dataset') {
+			  # Get the relevant headers
+			  # If conditional, try them
+			  # Look for dct dates
+			  # Look for endpoints, if so, do as in endpoint
+			  # Look for vocabularies, if so, do as in vocabulary
+		  } elsif ($details->{type} eq 'vocabulary') {
+			  # Get the relevant headers
+			  # If conditional, try them
+			  # Look for dct dates
+		  } elsif ($details->{type} eq 'inforesources') {
+			  # Get the relevant headers
+			  # If conditional, try them
+			  # Look for dct dates
+			  # Look for endpoints, if so, do as in endpoint
+			  # Look for vocabularies, if so, do as in vocabulary
+		  } elsif ($details->{type} eq 'conditionals') {
+			  # Check if still fresh
+			  # Get the relevant headers
+			  # If 304, try without
+			  # Get the relevant headers
+			  # Look for dct dates
+			  # Look for endpoints, if so, do as in endpoint
+			  # Look for vocabularies, if so, do as in vocabulary
+		  }
 		  my $etag = $firstresponse->header('ETag');
 		  print $fh $uri . "\t" . $etag . "\n" if ($etag);
 	  }
