@@ -45,6 +45,8 @@ foreach my $filename (@files) {
 	$tp->parse_file('http://invalid/', $filename, $thandler);
 }
 
+$prparse->finish;
+
 $prfetch->update(message => "Initializing UA");
 
 use Parallel::ForkManager;
@@ -81,11 +83,10 @@ foreach my $host (@hosts) {
 		  my $etag = $firstresponse->header('ETag');
 		  print $fh $uri . "\t" . $etag . "\n" if ($etag);
 	  }
-	  close $fh;
 	  sleep 5 if ($uricount > 1);
   }
+  close $fh;
   $pm->finish; # Terminates the child process
 }
 
 $prfetch->finish;
-$prparse->finish;
