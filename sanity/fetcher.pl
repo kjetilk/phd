@@ -78,7 +78,7 @@ foreach my $host (@hosts) {
 		  $request->header( Accept => '*/*' );
 	  } elsif ($details->{type} eq 'conditionals') {
 		  $request->header( Accept => RDF::Trine::Parser::default_accept_header );
-#		  $request->header( 'If-Modified-Since' =>  );
+#		  $request->header( 'If-Modified-Since' =>  ); TODO
 #		  $request->header( 'If-None-Matches' =>  );
 	  } else {
 		  $request->header( Accept => RDF::Trine::Parser::default_accept_header );
