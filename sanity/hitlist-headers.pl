@@ -28,12 +28,11 @@ while (<$fh>) {
 	my %entry = (filename => $filename,
 					 resource => "$resource");
 	my $domain = $resource->host;
-	my $prefix = public_suffix($domain);
-	next unless defined($prefix);
-	$domain =~ s/(?:[\w-]*\.)*?([\w-]*\.?$prefix)/$1/;
+	my $suffix = public_suffix($domain);
+	next unless defined($suffix);
+	$domain =~ s/(?:[\w-]*\.)*?([\w-]*\.?$suffix)/$1/;
 
 	push(@{$hosts->{$domain}}, \%entry);
-	last if $pos>100;
 }
 close $fh;
 
