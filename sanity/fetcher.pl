@@ -86,26 +86,31 @@ foreach my $host (@hosts) {
 	  my $firstresponse = $ua->request( $request );
 	  if ($firstresponse->is_success) {
 		  if ($details->{type} eq 'endpoint') {
+			  # TODO
 			  # Get the relevant headers
 			  # If conditional, try them
 			  # Check if we got any results
 		  } elsif ($details->{type} eq 'dataset') {
+			  # TODO
 			  # Get the relevant headers
 			  # If conditional, try them
 			  # Look for dct dates
 			  # Look for endpoints, if so, do as in endpoint
 			  # Look for vocabularies, if so, do as in vocabulary
 		  } elsif ($details->{type} eq 'vocabulary') {
+			  # TODO
 			  # Get the relevant headers
 			  # If conditional, try them
 			  # Look for dct dates
 		  } elsif ($details->{type} eq 'inforesources') {
+			  # TODO
 			  # Get the relevant headers
 			  # If conditional, try them
 			  # Look for dct dates
 			  # Look for endpoints, if so, do as in endpoint
 			  # Look for vocabularies, if so, do as in vocabulary
 		  } elsif ($details->{type} eq 'conditionals') {
+			  # TODO
 			  # Check if still fresh
 			  # Get the relevant headers
 			  # If 304, try without
@@ -116,6 +121,8 @@ foreach my $host (@hosts) {
 		  }
 		  my $etag = $firstresponse->header('ETag');
 		  print $fh $uri . "\t" . $etag . "\n" if ($etag);
+	  } else {
+		  # TODO: Examine the failure and record
 	  }
 	  sleep 5 if ($uricount > 1);
   }
