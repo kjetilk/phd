@@ -7,7 +7,7 @@ use URI;
 use Data::Dumper;
 use Progress::Any::Output;
 Progress::Any::Output->set('TermProgressBarColor');
-use Progress::Any;   
+use Progress::Any;
 
 use Mozilla::PublicSuffix qw(public_suffix);
 
