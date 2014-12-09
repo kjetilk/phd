@@ -75,6 +75,10 @@ foreach my $host (@hosts) {
   my $store = RDF::Trine::Store::File::Quad->new_with_string( "File::Quad;$writedir$host.nq" );
   my $model = RDF::Trine::Model->new($store);
   while ((my $uri, my $details) = each(%{$data->{$host}})) {
+	  my $context = iri($uri);
+	  $model->add_statement(statement(iri($uri), $dct->source, iri($details->{source}), $context));
+	  $model->add_statement(statement(iri($uri), $dct->type, literal($details->{type}), $context));
+
 	  my $request = HTTP::Request->new(GET => $uri);
 	  if ($details->{type} eq 'endpoint') {
 		  $uri .= '?query=' . uri_escape('select reduced ?Concept where {[] a ?Concept} LIMIT 2');
