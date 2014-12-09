@@ -7,8 +7,9 @@ use Progress::Any::Output;
 Progress::Any::Output->set('TermProgressBarColor');
 use Progress::Any;
 
-use RDF::Trine;
+use RDF::Trine qw(iri);
 use RDF::Trine::Store::File::Quad;
+use RDF::Generator::HTTP;
 
 my $prfetch = Progress::Any->get_indicator(
         task => "fetching");
@@ -90,16 +91,16 @@ foreach my $host (@hosts) {
 	  if ($firstresponse->is_success) {
 		  # Get the relevant headers
 		  my $hhg = RDF::Generator::HTTP->new(message => $firstresponse,
-														  whitelist => \qw(Age
-																				 Cache-Control
-																				 Expires
-																				 Pragma
-																				 Warning
-																				 Last-Modified
-																				 ETag
-																				 X-Cache
-																				 Date
-																				 Surrogates),
+														  whitelist => ['Age',
+																			 'Cache-Control',
+																			 'Expires',
+																			 'Pragma',
+																			 'Warning',
+																			 'Last-Modified',
+																			 'ETag',
+																			 'X-Cache',
+																			 'Date',
+																			 'Surrogates'],
 														  graph => iri($uri));
 		  $hhg->generate($model);
 
@@ -114,11 +115,13 @@ foreach my $host (@hosts) {
 			  }
 			  sleep 5;
 			  my $condresponse = $ua->request( $condrequest );
-			  my $condhhg = RDF::Generator::HTTP->new(message => $firstresponse,
-																	whitelist => \qw(Warning
-																						  Last-Modified
-																						  ETag
-																						  Date),
+			  my $condhhg = RDF::Generator::HTTP->new(message => $condresponse,
+																	whitelist => ['Warning',
+																					  'If-None-Match',
+																					  'If-Modified-Since',
+																					  'Last-Modified',
+																					  'ETag',
+																					  'Date'],
 																	graph => iri($uri));
 			  $condhhg->generate($model);
 		  }
