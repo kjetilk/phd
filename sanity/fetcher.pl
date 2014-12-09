@@ -8,6 +8,7 @@ Progress::Any::Output->set('TermProgressBarColor');
 use Progress::Any;
 
 use RDF::Trine;
+use RDF::Trine::Store::File::Quad;
 
 my $prfetch = Progress::Any->get_indicator(
         task => "fetching");
@@ -70,11 +71,13 @@ foreach my $host (@hosts) {
   $prfetch->update(message => "Fetching $uricount resources from $host");
   # Forks and returns the pid for the child:
   my $pid = $pm->start and next DATA_LOOP;
-  open (my $fh, '>>', $writedir . $host) || die "Couldn't open $writedir for writing";
+  my $store = RDF::Trine::Store::File::Quad->new_with_string( "File::Quad;$writedir$host.nq" );
+  my $model = RDF::Trine::Model->new($store);
   while ((my $uri, my $details) = each(%{$data->{$host}})) {
 	  my $request = HTTP::Request->new(GET => $uri);
 	  if ($details->{type} eq 'endpoint') {
-		  $request->uri( $uri . '?query=' . uri_escape('select reduced ?Concept where {[] a ?Concept} LIMIT 2'));
+		  $uri .= '?query=' . uri_escape('select reduced ?Concept where {[] a ?Concept} LIMIT 2');
+		  $request->uri( $uri );
 		  $request->header( Accept => '*/*' );
 	  } elsif ($details->{type} eq 'conditionals') {
 		  $request->header( Accept => RDF::Trine::Parser::default_accept_header );
@@ -85,27 +88,54 @@ foreach my $host (@hosts) {
 	  }
 	  my $firstresponse = $ua->request( $request );
 	  if ($firstresponse->is_success) {
+		  # Get the relevant headers
+		  my $hhg = RDF::Generator::HTTP->new(message => $firstresponse,
+														  whitelist => \qw(Age
+																				 Cache-Control
+																				 Expires
+																				 Pragma
+																				 Warning
+																				 Last-Modified
+																				 ETag
+																				 X-Cache
+																				 Date
+																				 Surrogates),
+														  graph => iri($uri));
+		  $hhg->generate($model);
+
+		  # If conditional, try them
+		  if ($firstresponse->headers->header('ETag') || $firstresponse->headers->header('Last-Modified')) {
+			  my $condrequest = HTTP::Request->new(GET => $uri);
+			  if ($firstresponse->headers->header('Last-Modified')) {
+				  $condrequest->header( 'If-Modified-Since' => $firstresponse->headers->header('Last-Modified'));
+			  }
+			  if ($firstresponse->headers->header('ETag')) {
+				  $condrequest->header( 'If-None-Match' => $firstresponse->headers->header('ETag'));
+			  }
+			  sleep 5;
+			  my $condresponse = $ua->request( $condrequest );
+			  my $condhhg = RDF::Generator::HTTP->new(message => $firstresponse,
+																	whitelist => \qw(Warning
+																						  Last-Modified
+																						  ETag
+																						  Date),
+																	graph => iri($uri));
+			  $condhhg->generate($model);
+		  }
+
 		  if ($details->{type} eq 'endpoint') {
 			  # TODO
-			  # Get the relevant headers
-			  # If conditional, try them
 			  # Check if we got any results
 		  } elsif ($details->{type} eq 'dataset') {
 			  # TODO
-			  # Get the relevant headers
-			  # If conditional, try them
 			  # Look for dct dates
 			  # Look for endpoints, if so, do as in endpoint
 			  # Look for vocabularies, if so, do as in vocabulary
 		  } elsif ($details->{type} eq 'vocabulary') {
 			  # TODO
-			  # Get the relevant headers
-			  # If conditional, try them
 			  # Look for dct dates
 		  } elsif ($details->{type} eq 'inforesources') {
 			  # TODO
-			  # Get the relevant headers
-			  # If conditional, try them
 			  # Look for dct dates
 			  # Look for endpoints, if so, do as in endpoint
 			  # Look for vocabularies, if so, do as in vocabulary
@@ -119,14 +149,11 @@ foreach my $host (@hosts) {
 			  # Look for endpoints, if so, do as in endpoint
 			  # Look for vocabularies, if so, do as in vocabulary
 		  }
-		  my $etag = $firstresponse->header('ETag');
-		  print $fh $uri . "\t" . $etag . "\n" if ($etag);
 	  } else {
 		  # TODO: Examine the failure and record
 	  }
 	  sleep 5 if ($uricount > 1);
   }
-  close $fh;
   $pm->finish; # Terminates the child process
 }
 
