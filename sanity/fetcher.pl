@@ -105,7 +105,7 @@ foreach my $host (@hosts) {
 																			 'X-Cache',
 																			 'Date',
 																			 'Surrogates'],
-														  graph => iri($uri));
+														  graph => $context);
 		  $hhg->generate($model);
 
 		  # If conditional, try them
@@ -126,7 +126,7 @@ foreach my $host (@hosts) {
 																					  'Last-Modified',
 																					  'ETag',
 																					  'Date'],
-																	graph => iri($uri));
+																	graph => $context);
 			  $condhhg->generate($model);
 		  }
 
