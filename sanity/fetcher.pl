@@ -23,7 +23,9 @@ my $dct = RDF::Trine::Namespace->new('http://purl.org/dc/terms/');
 
 my $writedir = '/mnt/ssdstore/data/btc-processed/crawl/';
 
-my @files = ('/mnt/ssdstore/data/btc-processed/hitlist-test.ttl');
+#my @files = ('/mnt/ssdstore/data/btc-processed/hitlist-test.ttl');
+my @files = qw(/mnt/ssdstore/data/btc-processed/hitlist-data.ttl /mnt/ssdstore/data/btc-processed/hitlist-uris.nq /mnt/ssdstore/data/btc-processed/hitlist-sparqles.nq);
+
 
 my $tp = RDF::Trine::Parser->new('turtle');
 
@@ -47,7 +49,38 @@ foreach my $filename (@files) {
 	$tp->parse_file('http://invalid/', $filename, $thandler);
 }
 
+my $qhandler = sub {
+	my $st = shift;
+	my $suri = URI->new($st->graph->uri_value);
+	my $host = $suri->host;
+	unless ($data->{$host}->{$suri}) {
+		$data->{$host}->{$suri}->{type} = 'inforesources';
+	}
+	if ($st->predicate->equal(iri('http://www.w3.org/2006/http#expires'))) {
+		$data->{$host}->{$suri}->{expires} = $st->object->literal_value;
+	}
+	if ($st->predicate->equal(iri('http://www.w3.org/2006/http#etag'))) {
+		$data->{$host}->{$suri}->{etag} = $st->object->literal_value;
+	}
+	if ($st->predicate->equal(iri('http://www.w3.org/2006/http#last-modified'))) {
+		$data->{$host}->{$suri}->{mtime} = $st->object->literal_value;
+	}
+};
+
+my $filename='/mnt/ssdstore/data/btc-processed/hitlist-headers.nq';
+my $qp = RDF::Trine::Parser->new('nquads');
+$prparse->update(message => "Parsing $filename");
+$qp->parse_file('http://invalid/', $filename, $qhandler);
+
 $prparse->finish;
+
+foreach my $host (keys %{$data}) {
+	foreach my $suri (keys %{$data->{$host}}) {
+		print "$suri\t" . join ("\t", @{$data->{$host}->{$suri}->{type}}) . "\n" if scalar @{$data->{$host}->{$suri}->{type}} > 1;
+	}
+}
+
+die "OMG";
 
 $prfetch->update(message => "Initializing UA");
 
