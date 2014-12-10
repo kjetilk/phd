@@ -7,7 +7,7 @@ use Progress::Any::Output;
 Progress::Any::Output->set('TermProgressBarColor');
 use Progress::Any;
 
-use RDF::Trine qw(iri);
+use RDF::Trine qw(iri statement literal);
 use RDF::Trine::Store::File::Quad;
 use RDF::Generator::HTTP;
 
@@ -75,8 +75,11 @@ foreach my $host (@hosts) {
   my $store = RDF::Trine::Store::File::Quad->new_with_string( "File::Quad;$writedir$host.nq" );
   my $model = RDF::Trine::Model->new($store);
   while ((my $uri, my $details) = each(%{$data->{$host}})) {
+	  die Dumper($details);
 	  my $context = iri($uri);
-	  $model->add_statement(statement(iri($uri), $dct->source, iri($details->{source}), $context));
+	  foreach my $source (@{$details->{source}}) {
+		  $model->add_statement(statement(iri($uri), $dct->source, iri($source), $context));
+	  }
 	  $model->add_statement(statement(iri($uri), $dct->type, literal($details->{type}), $context));
 
 	  my $request = HTTP::Request->new(GET => $uri);
@@ -130,25 +133,33 @@ foreach my $host (@hosts) {
 			  $condhhg->generate($model);
 		  }
 
+		  my @todos;
+
 		  if ($details->{type} eq 'endpoint') {
 			  # TODO
 			  # Check if we got any results
+			  push(@todos, ('firstresponse', 'check_conditionals', 'check_sparql_results'));
 		  } elsif ($details->{type} eq 'dataset') {
 			  # TODO
 			  # Look for dct dates
+			  push(@todos, ('firstresponse', 'check_conditionals', 'check_dates', 'check_endpoints', 'check_vocabs'));
 			  # Look for endpoints, if so, do as in endpoint
 			  # Look for vocabularies, if so, do as in vocabulary
 		  } elsif ($details->{type} eq 'vocabulary') {
 			  # TODO
 			  # Look for dct dates
+			  push(@todos, ('firstresponse', 'check_conditionals', 'check_dates', 'check_alternate'));
+			  # Check alternate
 		  } elsif ($details->{type} eq 'inforesources') {
 			  # TODO
 			  # Look for dct dates
+			  push(@todos, ('firstresponse', 'check_conditionals', 'check_dates','check_endpoints', 'check_vocabs'));
 			  # Look for endpoints, if so, do as in endpoint
 			  # Look for vocabularies, if so, do as in vocabulary
 		  } elsif ($details->{type} eq 'conditionals') {
 			  # TODO
-			  # Check if still fresh
+			  push(@todos, ('check_expires', 'check_conditionals', 'firstresponse', 'check_dates','check_endpoints', 'check_vocabs'));
+					 # Check if still fresh
 			  # Get the relevant headers
 			  # If 304, try without
 			  # Get the relevant headers
