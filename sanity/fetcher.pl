@@ -31,6 +31,8 @@ my $tp = RDF::Trine::Parser->new('turtle');
 
 my $data;
 
+my %typepref = ( endpoint => 3, vocabulary => 2, dataset => 1, inforesources => 0 );
+
 my $thandler = sub {
 	my $st = shift;
 	my $suri = URI->new($st->subject->uri_value);
@@ -38,7 +40,15 @@ my $thandler = sub {
 	if ($st->predicate->equal($dct->source)) {
 		push(@{$data->{$host}->{$suri}->{source}}, $st->object->uri_value);
 	} elsif ($st->predicate->equal($dct->type)) {
-		push(@{$data->{$host}->{$suri}->{type}}, $st->object->literal_value);
+		if ($data->{$host}->{$suri}->{type}) {
+			# Precedence: endpoint > vocabulary > dataset > inforesources
+			# For this purpose, datasets are just inforesources
+			if ($typepref{$st->object->literal_value} > $typepref{$data->{$host}->{$suri}->{type}}) {
+				$data->{$host}->{$suri}->{type} = $st->object->literal_value;
+			}
+		} else {
+			$data->{$host}->{$suri}->{type} = $st->object->literal_value;
+		}
 	} elsif ($st->predicate->equal($dct->identifier)) {
 		$data->{$host}->{$suri}->{alternate} = $st->object->uri_value;
 	}
@@ -56,6 +66,7 @@ my $qhandler = sub {
 	unless ($data->{$host}->{$suri}) {
 		$data->{$host}->{$suri}->{type} = 'inforesources';
 	}
+	push(@{$data->{$host}->{$suri}->{source}}, 'file:///home/kjetil/Projects/SemWeb/data/btc-2014/headers/');
 	if ($st->predicate->equal(iri('http://www.w3.org/2006/http#expires'))) {
 		$data->{$host}->{$suri}->{expires} = $st->object->literal_value;
 	}
@@ -73,14 +84,6 @@ $prparse->update(message => "Parsing $filename");
 $qp->parse_file('http://invalid/', $filename, $qhandler);
 
 $prparse->finish;
-
-foreach my $host (keys %{$data}) {
-	foreach my $suri (keys %{$data->{$host}}) {
-		print "$suri\t" . join ("\t", @{$data->{$host}->{$suri}->{type}}) . "\n" if scalar @{$data->{$host}->{$suri}->{type}} > 1;
-	}
-}
-
-die "OMG";
 
 $prfetch->update(message => "Initializing UA");
 
