@@ -211,16 +211,11 @@ foreach my $host (@hosts) {
 		  if ($details->{type} eq 'endpoint') {
 			  # TODO
 			  # Check if we got any results
-		  } elsif ($details->{type} eq 'dataset') {
-			  # TODO
-			  # Look for dct dates
-			  # Look for endpoints, if so, do as in endpoint
-			  # Look for vocabularies, if so, do as in vocabulary
 		  } elsif ($details->{type} eq 'vocabulary') {
 			  # TODO
 			  # Look for dct dates
 			  # Check alternate
-		  } elsif ($details->{type} eq 'inforesources') {
+		  } else {
 			  # TODO
 			  # Look for dct dates
 			  # Look for endpoints, if so, do as in endpoint
