@@ -131,12 +131,14 @@ foreach my $host (@hosts) {
 		  $uri .= '?query=' . uri_escape('select reduced ?Concept where {[] a ?Concept} LIMIT 2');
 		  $request->uri( $uri );
 		  $request->header( Accept => '*/*' );
-	  } elsif ($details->{type} eq 'conditionals') {
-		  $request->header( Accept => RDF::Trine::Parser::default_accept_header );
-#		  $request->header( 'If-Modified-Since' =>  ); TODO
-#		  $request->header( 'If-None-Matches' =>  );
 	  } else {
 		  $request->header( Accept => RDF::Trine::Parser::default_accept_header );
+		  if ($details->{mtime}) {
+			  $request->header( 'If-Modified-Since' => $details->{mtime} );
+		  }
+		  if ($details->{etag}) {
+			  $request->header( 'If-None-Match' => $details->{etag} );
+		  }
 	  }
 	  my $firstresponse = $ua->request( $request );
 	  if ($firstresponse->is_success) {
@@ -147,6 +149,8 @@ foreach my $host (@hosts) {
 																			 'Expires',
 																			 'Pragma',
 																			 'Warning',
+																			 'If-None-Match',
+																			 'If-Modified-Since',
 																			 'Last-Modified',
 																			 'ETag',
 																			 'X-Cache',
@@ -154,28 +158,56 @@ foreach my $host (@hosts) {
 																			 'Surrogates'],
 														  graph => $context);
 		  $hhg->generate($model);
+		  my $content = $firstresponse->decoded_content;
+		  my $prevresponse = $firstresponse;
 
-		  # If conditional, try them
-		  if ($firstresponse->headers->header('ETag') || $firstresponse->headers->header('Last-Modified')) {
+		  # What to do if data for conditional requests was available in BTC
+		  if ($firstresponse->status == 304) {
 			  my $condrequest = HTTP::Request->new(GET => $uri);
-			  if ($firstresponse->headers->header('Last-Modified')) {
-				  $condrequest->header( 'If-Modified-Since' => $firstresponse->headers->header('Last-Modified'));
-			  }
-			  if ($firstresponse->headers->header('ETag')) {
-				  $condrequest->header( 'If-None-Match' => $firstresponse->headers->header('ETag'));
-			  }
 			  sleep 5;
 			  my $condresponse = $ua->request( $condrequest );
 			  my $condhhg = RDF::Generator::HTTP->new(message => $condresponse,
 																	whitelist => ['Warning',
-																					  'If-None-Match',
-																					  'If-Modified-Since',
 																					  'Last-Modified',
 																					  'ETag',
 																					  'Date'],
 																	graph => $context);
 			  $condhhg->generate($model);
+			  $content = $condresponse->decoded_content;
+			  $prevresponse = $condresponse;
 		  }
+
+		  # Now, if there were conditional headers, we try again to see if it is really supported
+		  my $ya = 0;
+		  my $cond2request = HTTP::Request->new(GET => $uri);
+		  if ($prevresponse->header('Last-Modified')) {
+			  $ya = 1;
+			  $cond2request->header( 'If-Modified-Since' => $prevresponse->header('Last-Modified') );
+		  }
+		  if ($prevresponse->header('ETag')) {
+			  $ya = 1;
+			  $cond2request->header( 'If-None-Match' => $prevresponse->header('ETag') );
+		  }
+		  if ($ya) {
+			  sleep 5;
+			  my $cond2response = $ua->request( $cond2request );
+			  my $cond2hhg = RDF::Generator::HTTP->new(message => $cond2response,
+																	 whitelist => ['Warning',
+																						'If-None-Match',
+																						'If-Modified-Since',
+																						'Last-Modified',
+																						'ETag',
+																						'Date'],
+																	 graph => $context);
+			  $cond2hhg->generate($model);
+			  if (($cond2response->status == 200) &&
+					(($prevresponse->header('ETag') eq $cond2response->header('ETag')) ||
+					 ($prevresponse->header('Last-Modified') eq $cond2response->header('Last-Modified')))) {
+				  # We should have gotten 304
+				  $model->add_statement(statement(iri($uri), iri('urn:app:conditional'), literal("Got all"), $context));
+			  }
+		  }
+
 
 		  my @todos;
 
@@ -198,16 +230,6 @@ foreach my $host (@hosts) {
 			  # TODO
 			  # Look for dct dates
 			  push(@todos, ('firstresponse', 'check_conditionals', 'check_dates','check_endpoints', 'check_vocabs'));
-			  # Look for endpoints, if so, do as in endpoint
-			  # Look for vocabularies, if so, do as in vocabulary
-		  } elsif ($details->{type} eq 'conditionals') {
-			  # TODO
-			  push(@todos, ('check_expires', 'check_conditionals', 'firstresponse', 'check_dates','check_endpoints', 'check_vocabs'));
-					 # Check if still fresh
-			  # Get the relevant headers
-			  # If 304, try without
-			  # Get the relevant headers
-			  # Look for dct dates
 			  # Look for endpoints, if so, do as in endpoint
 			  # Look for vocabularies, if so, do as in vocabulary
 		  }
