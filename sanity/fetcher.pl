@@ -93,6 +93,8 @@ my $pm = Parallel::ForkManager->new(4);
 use LWP::UserAgent;
 use HTTP::Request;
 use URI::Escape::XS qw/uri_escape/;
+use DateTime;
+use DateTime::Format::Mail;
 
 my $ua = LWP::UserAgent->new;
 $ua->agent('Semweb cache project (see http://folk.uio.no/kjekje/ ) ');
@@ -117,6 +119,12 @@ foreach my $host (@hosts) {
 		  $model->add_statement(statement(iri($uri), $dct->source, iri($source), $context));
 	  }
 	  $model->add_statement(statement(iri($uri), $dct->type, literal($details->{type}), $context));
+	  if ($details->{expires}) {
+		  my $oldtime = DateTime::Format::Mail->parse_datetime($details->{expires});
+		  if (DateTime->compare( $oldtime, DateTime->now ) >= 0) {
+			  $model->add_statement(statement(iri($uri), iri('urn:app:stillfresh'), literal($details->{expires}), $context));
+		  }
+	  }
 
 	  my $request = HTTP::Request->new(GET => $uri);
 	  if ($details->{type} eq 'endpoint') {
