@@ -208,28 +208,21 @@ foreach my $host (@hosts) {
 			  }
 		  }
 
-
-		  my @todos;
-
 		  if ($details->{type} eq 'endpoint') {
 			  # TODO
 			  # Check if we got any results
-			  push(@todos, ('firstresponse', 'check_conditionals', 'check_sparql_results'));
 		  } elsif ($details->{type} eq 'dataset') {
 			  # TODO
 			  # Look for dct dates
-			  push(@todos, ('firstresponse', 'check_conditionals', 'check_dates', 'check_endpoints', 'check_vocabs'));
 			  # Look for endpoints, if so, do as in endpoint
 			  # Look for vocabularies, if so, do as in vocabulary
 		  } elsif ($details->{type} eq 'vocabulary') {
 			  # TODO
 			  # Look for dct dates
-			  push(@todos, ('firstresponse', 'check_conditionals', 'check_dates', 'check_alternate'));
 			  # Check alternate
 		  } elsif ($details->{type} eq 'inforesources') {
 			  # TODO
 			  # Look for dct dates
-			  push(@todos, ('firstresponse', 'check_conditionals', 'check_dates','check_endpoints', 'check_vocabs'));
 			  # Look for endpoints, if so, do as in endpoint
 			  # Look for vocabularies, if so, do as in vocabulary
 		  }
