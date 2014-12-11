@@ -223,8 +223,9 @@ foreach my $host (@hosts) {
 			  my $anyres = has_sparql_results($content, $prevresponse->header('Content-Type')) ? "Has results" : "No results";
 			  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), $context));
 		  } else { # All RDF resources
-			  my $parser = RDF::Trine::Parser->parser_by_media_type($prevresponse->header('Content-Type'));
-			  if ($parser) {
+			  my $parsertype = RDF::Trine::Parser->parser_by_media_type($prevresponse->header('Content-Type'));
+			  if ($parsertype) {
+				  my $parser = $parsertype->new;
 				  # Then it is likely we get RDF
 				  my $size = 0;
 
