@@ -285,7 +285,10 @@ foreach my $host (@hosts) {
 																								 ],
 																				graph => iri($endpoint));
 							  $ehhg->generate($model);
+							  warn $eresponse->content_type;
+
 							  if ($eresponse->is_success) {
+								  warn "BAR";
 								  my $anyres = has_sparql_results($eresponse->decoded_content, $eresponse->header('Content-Type')) ? "Has results" : "No results";
 								  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), $endpoint));
 							  }
