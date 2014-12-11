@@ -88,7 +88,7 @@ $prparse->finish;
 $prfetch->update(message => "Initializing UA");
 
 use Parallel::ForkManager;
-my $pm = Parallel::ForkManager->new(4);
+my $pm = Parallel::ForkManager->new(6);
 
 use LWP::UserAgent;
 use HTTP::Request;
@@ -230,6 +230,7 @@ foreach my $host (@hosts) {
 				  my $size = 0;
 
 				  try {
+					  no warnings;
 					  $parser->parse('http://invalid/', $content, 
 										  sub {
 											  my $st = shift;
@@ -282,7 +283,7 @@ foreach my $host (@hosts) {
 																								  'Client-Aborted',
 																								  'Client-Warning'
 																								 ],
-																				graph => $endpoint);
+																				graph => iri($endpoint));
 							  $ehhg->generate($model);
 							  if ($eresponse->is_success) {
 								  my $anyres = has_sparql_results($eresponse->decoded_content, $eresponse->header('Content-Type')) ? "Has results" : "No results";
