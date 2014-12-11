@@ -189,13 +189,11 @@ foreach my $host (@hosts) {
 			  $prevresponse = $condresponse;
 		  }
 
-		  if ($prevresponse->header('Expires') || $prevresponse->header('Cache-Control')) {
-			  # Add freshness triples
-			  if ($prevresponse->freshness_lifetime(heuristic_expiry => 0)) {
-				  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:hard'), literal($prevresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
-			  } elsif ($prevresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0 )) {
-				  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:heuristic'), literal($prevresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
-			  }
+		  # Add freshness triples
+		  if ($prevresponse->freshness_lifetime(heuristic_expiry => 0)) {
+			  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:hard'), literal($prevresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
+		  } elsif ($prevresponse->headers->last_modified) {
+			  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:heuristic'), literal($prevresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
 		  }
 
 		  my $content = $prevresponse->decoded_content;
