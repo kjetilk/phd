@@ -105,6 +105,14 @@ $ua->timeout( 20 );
 
 my $accept_header = RDF::Trine::Parser::default_accept_header;
 
+$accept_header =~ s|application/xhtml\+xml;q=0.9,||;
+$accept_header =~ s|application/json;q=0.9,||;
+$accept_header =~ s|text/plain;q=0.9,||;
+$accept_header =~ s|application/octet-stream;q=0.9,||;
+$accept_header =~ s|,text/html;q=0.9||;
+
+die $accept_header;
+
 my @hosts = keys %{$data};
 $prfetch->target(scalar @hosts);
 
@@ -262,11 +270,7 @@ foreach my $host (@hosts) {
 					  $pm->finish;
 				  };
 
-				  if ($details->{type} eq 'vocabulary') {
-					  # TODO
-					  
-					  # Check alternate
-				  } else { # All other RDF resources
+				  unless ($details->{type} eq 'vocabulary') {
 					  # Look for endpoints, if so, do as in endpoint
 					  foreach my $endpoint (@endpoints) {
 						  my $euri = URI->new($endpoint);
@@ -308,6 +312,27 @@ foreach my $host (@hosts) {
 	  } else {
 		  $model->add_statement(statement(iri($uri), iri('http://www.w3.org/2007/ont/http#status_line'), literal($prevresponse->status_line), $context));
 		  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Non-successful response'), $context));
+		  if ($details->{alternate}) {
+			  my $aresponse = $ua->get($details->{alternate}, Accept => $accept_header);
+			  # Get the relevant headers
+			  my $ahhg = RDF::Generator::HTTP->new(message => $aresponse,
+																whitelist => ['Age',
+																				  'Cache-Control',
+																				  'Expires',
+																				  'Pragma',
+																				  'Warning',
+																				  'Content-Type',
+																				  'Last-Modified',
+																				  'ETag',
+																				  'X-Cache',
+																				  'Date',
+																				  'Surrogates',
+																				  'Client-Aborted',
+																				  'Client-Warning'
+																				 ],
+																graph => $context);
+			  $ahhg->generate($model);
+		  }
 	  }
 	  sleep 5 if ($uricount > 1);
   }
