@@ -182,7 +182,7 @@ foreach my $host (@hosts) {
 			  $condhhg->generate($model);
 			  $prevresponse = $condresponse;
 		  }
-
+		  # TODO: Add freshness triples
 		  my $content = $prevresponse->decoded_content;
 
 		  # Now, if there were conditional headers, we try again to see if it is really supported
@@ -258,7 +258,6 @@ foreach my $host (@hosts) {
 					  
 					  # Check alternate
 				  } else { # All other RDF resources
-					  # TODO
 					  # Look for endpoints, if so, do as in endpoint
 					  foreach my $endpoint (@endpoints) {
 						  my $euri = URI->new($endpoint);
@@ -285,16 +284,14 @@ foreach my $host (@hosts) {
 																								 ],
 																				graph => iri($endpoint));
 							  $ehhg->generate($model);
-							  warn $eresponse->content_type;
-
 							  if ($eresponse->is_success) {
-								  warn "BAR";
 								  my $anyres = has_sparql_results($eresponse->decoded_content, $eresponse->header('Content-Type')) ? "Has results" : "No results";
-								  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), $endpoint));
+								  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), iri($endpoint)));
 							  }
 						  }
 					  }
 				  }
+				  # TODO: say if we got here?
 			  } else {
 				  # TODO: No valid parser could be found
 			  }
