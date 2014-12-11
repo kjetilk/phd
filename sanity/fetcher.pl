@@ -182,7 +182,16 @@ foreach my $host (@hosts) {
 			  $condhhg->generate($model);
 			  $prevresponse = $condresponse;
 		  }
-		  # TODO: Add freshness triples
+
+		  if ($prevresponse->header('Expires') || $prevresponse->header('Cache-Control')) {
+			  # Add freshness triples
+			  if ($prevresponse->freshness_lifetime(heuristic_expiry => 0)) {
+				  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:hard'), literal($prevresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
+			  } elsif ($prevresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0 )) {
+				  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:heuristic'), literal($prevresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
+			  }
+		  }
+
 		  my $content = $prevresponse->decoded_content;
 
 		  # Now, if there were conditional headers, we try again to see if it is really supported
