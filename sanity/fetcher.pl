@@ -23,8 +23,8 @@ my $dct = RDF::Trine::Namespace->new('http://purl.org/dc/terms/');
 
 my $writedir = '/mnt/ssdstore/data/btc-processed/crawl/';
 
-#my @files = ('/mnt/ssdstore/data/btc-processed/hitlist-test.ttl');
-my @files = qw(/mnt/ssdstore/data/btc-processed/hitlist-data.ttl /mnt/ssdstore/data/btc-processed/hitlist-uris.nq /mnt/ssdstore/data/btc-processed/hitlist-sparqles.nq);
+my @files = ('/mnt/ssdstore/data/btc-processed/hitlist-test.ttl');
+#my @files = qw(/mnt/ssdstore/data/btc-processed/hitlist-data.ttl /mnt/ssdstore/data/btc-processed/hitlist-uris.nq /mnt/ssdstore/data/btc-processed/hitlist-sparqles.nq);
 
 
 my $tp = RDF::Trine::Parser->new('turtle');
@@ -81,7 +81,7 @@ my $qhandler = sub {
 my $filename='/mnt/ssdstore/data/btc-processed/hitlist-headers.nq';
 my $qp = RDF::Trine::Parser->new('nquads');
 $prparse->update(message => "Parsing $filename");
-$qp->parse_file('http://invalid/', $filename, $qhandler);
+#$qp->parse_file('http://invalid/', $filename, $qhandler);
 
 $prparse->finish;
 
@@ -95,11 +95,15 @@ use HTTP::Request;
 use URI::Escape::XS qw/uri_escape/;
 use DateTime;
 use DateTime::Format::Mail;
+use Try::Tiny;
+use RDF::Trine::Iterator;
 
 my $ua = LWP::UserAgent->new;
 $ua->agent('Semweb cache project (see http://folk.uio.no/kjekje/ ) ');
 $ua->max_size( 1000000 );
 $ua->timeout( 20 );
+
+my $accept_header = RDF::Trine::Parser::default_accept_header;
 
 my @hosts = keys %{$data};
 $prfetch->target(scalar @hosts);
@@ -113,7 +117,6 @@ foreach my $host (@hosts) {
   my $store = RDF::Trine::Store::File::Quad->new_with_string( "File::Quad;$writedir$host.nq" );
   my $model = RDF::Trine::Model->new($store);
   while ((my $uri, my $details) = each(%{$data->{$host}})) {
-	  die Dumper($details);
 	  my $context = iri($uri);
 	  foreach my $source (@{$details->{source}}) {
 		  $model->add_statement(statement(iri($uri), $dct->source, iri($source), $context));
@@ -130,9 +133,9 @@ foreach my $host (@hosts) {
 	  if ($details->{type} eq 'endpoint') {
 		  $uri .= '?query=' . uri_escape('select reduced ?Concept where {[] a ?Concept} LIMIT 2');
 		  $request->uri( $uri );
-		  $request->header( Accept => '*/*' );
+		  $request->header( Accept => 'application/sparql-results+xml,application/sparql-results+json;q=0.9' );
 	  } else {
-		  $request->header( Accept => RDF::Trine::Parser::default_accept_header );
+		  $request->header( Accept => $accept_header );
 		  if ($details->{mtime}) {
 			  $request->header( 'If-Modified-Since' => $details->{mtime} );
 		  }
@@ -141,28 +144,32 @@ foreach my $host (@hosts) {
 		  }
 	  }
 	  my $firstresponse = $ua->request( $request );
-	  if ($firstresponse->is_success) {
 		  # Get the relevant headers
-		  my $hhg = RDF::Generator::HTTP->new(message => $firstresponse,
-														  whitelist => ['Age',
-																			 'Cache-Control',
-																			 'Expires',
-																			 'Pragma',
-																			 'Warning',
-																			 'If-None-Match',
-																			 'If-Modified-Since',
-																			 'Last-Modified',
-																			 'ETag',
-																			 'X-Cache',
-																			 'Date',
-																			 'Surrogates'],
-														  graph => $context);
-		  $hhg->generate($model);
-		  my $content = $firstresponse->decoded_content;
-		  my $prevresponse = $firstresponse;
+	  my $hhg = RDF::Generator::HTTP->new(message => $firstresponse,
+													  whitelist => ['Age',
+																		 'Cache-Control',
+																		 'Expires',
+																		 'Pragma',
+																		 'Warning',
+																		 'Content-Type',
+																		 'If-None-Match',
+																		 'If-Modified-Since',
+																		 'Last-Modified',
+																		 'ETag',
+																		 'X-Cache',
+																		 'Date',
+																		 'Surrogates',
+																		 'Client-Aborted',
+																		 'Client-Warning'
+																		],
+													  graph => $context);
+	  $hhg->generate($model);
+	  my $prevresponse = $firstresponse;
+
+	  if ($firstresponse->is_success) {
 
 		  # What to do if data for conditional requests was available in BTC
-		  if ($firstresponse->status == 304) {
+		  if ($firstresponse->code == 304) {
 			  my $condrequest = HTTP::Request->new(GET => $uri);
 			  sleep 5;
 			  my $condresponse = $ua->request( $condrequest );
@@ -173,9 +180,10 @@ foreach my $host (@hosts) {
 																					  'Date'],
 																	graph => $context);
 			  $condhhg->generate($model);
-			  $content = $condresponse->decoded_content;
 			  $prevresponse = $condresponse;
 		  }
+
+		  my $content = $prevresponse->decoded_content;
 
 		  # Now, if there were conditional headers, we try again to see if it is really supported
 		  my $ya = 0;
@@ -189,6 +197,7 @@ foreach my $host (@hosts) {
 			  $cond2request->header( 'If-None-Match' => $prevresponse->header('ETag') );
 		  }
 		  if ($ya) {
+			  no warnings 'uninitialized';
 			  sleep 5;
 			  my $cond2response = $ua->request( $cond2request );
 			  my $cond2hhg = RDF::Generator::HTTP->new(message => $cond2response,
@@ -200,26 +209,90 @@ foreach my $host (@hosts) {
 																						'Date'],
 																	 graph => $context);
 			  $cond2hhg->generate($model);
-			  if (($cond2response->status == 200) &&
-					(($prevresponse->header('ETag') eq $cond2response->header('ETag')) ||
-					 ($prevresponse->header('Last-Modified') eq $cond2response->header('Last-Modified')))) {
+			  if (($cond2response->code == 200) &&
+					($prevresponse->header('ETag') eq $cond2response->header('ETag')) &&
+					($prevresponse->header('Last-Modified') eq $cond2response->header('Last-Modified'))) {
 				  # We should have gotten 304
 				  $model->add_statement(statement(iri($uri), iri('urn:app:conditional'), literal("Got all"), $context));
 			  }
 		  }
+		  my @endpoints;
 
 		  if ($details->{type} eq 'endpoint') {
-			  # TODO
 			  # Check if we got any results
-		  } elsif ($details->{type} eq 'vocabulary') {
-			  # TODO
-			  # Look for dct dates
-			  # Check alternate
-		  } else {
-			  # TODO
-			  # Look for dct dates
-			  # Look for endpoints, if so, do as in endpoint
-			  # Look for vocabularies, if so, do as in vocabulary
+			  my $anyres = has_sparql_results($content, $prevresponse->header('Content-Type')) ? "Has results" : "No results";
+			  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), $context));
+		  } else { # All RDF resources
+			  my $parser = RDF::Trine::Parser->parser_by_media_type($prevresponse->header('Content-Type'));
+			  if ($parser) {
+				  # Then it is likely we get RDF
+				  my $size = 0;
+
+				  try {
+					  $parser->parse('http://invalid/', $content, 
+										  sub {
+											  my $st = shift;
+											  $size++;
+											  # Look for dct dates
+											  if ($st->predicate->equal($dct->date) ||
+													$st->predicate->equal($dct->accrualPeriodicity) ||
+													$st->predicate->equal($dct->created) ||
+													$st->predicate->equal($dct->issued) ||
+													$st->predicate->equal($dct->modified) ||
+													$st->predicate->equal($dct->valid)) {
+												  $model->add_statement(statement($st->subject, $st->predicate, $st->object, $context));
+											  } elsif ($st->predicate->equal(iri('http://www.w3.org/ns/sparql-service-description#endpoint')) ||
+														  $st->predicate->equal(iri(('http://rdfs.org/ns/void#sparqlEndpoint')))) {
+												  push(@endpoints, $st->object->uri_value);
+											  }
+										  });
+				  } catch {
+					  $model->add_statement(statement(iri($uri), iri('urn:app:parseerror'), literal($_), $context));
+					  $pm->finish;
+				  };
+
+				  if ($details->{type} eq 'vocabulary') {
+					  # TODO
+					  
+					  # Check alternate
+				  } else { # All other RDF resources
+					  # TODO
+					  # Look for endpoints, if so, do as in endpoint
+					  foreach my $endpoint (@endpoints) {
+						  my $euri = URI->new($endpoint);
+						  unless ($data->{$euri->host}->{$endpoint}) {
+							  $uri = $endpoint . '?query=' . uri_escape('select reduced ?Concept where {[] a ?Concept} LIMIT 2');	  
+							  my $erequest = HTTP::Request->new(GET => $uri);
+							  $erequest->header( Accept => 'application/sparql-results+xml,application/sparql-results+json;q=0.9' );
+							  my $eresponse = $ua->request( $erequest );
+							  # Get the relevant headers
+							  my $ehhg = RDF::Generator::HTTP->new(message => $eresponse,
+																				whitelist => ['Age',
+																								  'Cache-Control',
+																								  'Expires',
+																								  'Pragma',
+																								  'Warning',
+																								  'Content-Type',
+																								  'Last-Modified',
+																								  'ETag',
+																								  'X-Cache',
+																								  'Date',
+																								  'Surrogates',
+																								  'Client-Aborted',
+																								  'Client-Warning'
+																								 ],
+																				graph => $endpoint);
+							  $ehhg->generate($model);
+							  if ($eresponse->is_success) {
+								  my $anyres = has_sparql_results($eresponse->decoded_content, $eresponse->header('Content-Type')) ? "Has results" : "No results";
+								  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), $endpoint));
+							  }
+						  }
+					  }
+				  }
+			  } else {
+				  # TODO: No valid parser could be found
+			  }
 		  }
 	  } else {
 		  # TODO: Examine the failure and record
@@ -228,5 +301,22 @@ foreach my $host (@hosts) {
   }
   $pm->finish; # Terminates the child process
 }
+
+
+sub has_sparql_results {
+	my ($content, $ct) = @_;
+	my $iter = try {
+		if ($ct =~ /json/) { 
+			RDF::Trine::Iterator->from_json($content); 
+		} else { 
+			RDF::Trine::Iterator->from_string($content); 
+		}
+	} catch {
+		return 0;
+	};
+	return 1 if ($iter->next);
+	return 0;
+}
+
 
 $prfetch->finish;
