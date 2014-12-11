@@ -306,7 +306,8 @@ foreach my $host (@hosts) {
 			  }
 		  }
 	  } else {
-		  # TODO: Examine the failure and record
+		  $model->add_statement(statement(iri($uri), iri('http://www.w3.org/2007/ont/http#status_line'), literal($prevresponse->status_line), $context));
+		  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Non-successful response'), $context));
 	  }
 	  sleep 5 if ($uricount > 1);
   }
