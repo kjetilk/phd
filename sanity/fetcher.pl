@@ -111,8 +111,6 @@ $accept_header =~ s|text/plain;q=0.9,||;
 $accept_header =~ s|application/octet-stream;q=0.9,||;
 $accept_header =~ s|,text/html;q=0.9||;
 
-die $accept_header;
-
 my @hosts = keys %{$data};
 $prfetch->target(scalar @hosts);
 
@@ -237,10 +235,10 @@ foreach my $host (@hosts) {
 
 		  if ($details->{type} eq 'endpoint') {
 			  # Check if we got any results
-			  my $anyres = has_sparql_results($content, $prevresponse->header('Content-Type')) ? "Has results" : "No results";
+			  my $anyres = has_sparql_results($content, $prevresponse->content_type) ? "Has results" : "No results";
 			  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), $context));
 		  } else { # All RDF resources
-			  my $parsertype = RDF::Trine::Parser->parser_by_media_type($prevresponse->header('Content-Type'));
+			  my $parsertype = RDF::Trine::Parser->parser_by_media_type($prevresponse->content_type);
 			  if ($parsertype) {
 				  my $parser = $parsertype->new;
 				  # Then it is likely we get RDF
@@ -298,7 +296,7 @@ foreach my $host (@hosts) {
 																				graph => iri($endpoint));
 							  $ehhg->generate($model);
 							  if ($eresponse->is_success) {
-								  my $anyres = has_sparql_results($eresponse->decoded_content, $eresponse->header('Content-Type')) ? "Has results" : "No results";
+								  my $anyres = has_sparql_results($eresponse->decoded_content, $eresponse->content_type) ? "Has results" : "No results";
 								  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), iri($endpoint)));
 							  }
 						  }
