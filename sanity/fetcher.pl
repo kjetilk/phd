@@ -300,7 +300,7 @@ foreach my $host (@hosts) {
 						  }
 					  }
 				  }
-				  # TODO: say if we got here?
+				  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('OK'), $context));
 			  } else {
 				  # TODO: No valid parser could be found
 			  }
