@@ -302,7 +302,7 @@ foreach my $host (@hosts) {
 				  }
 				  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('OK'), $context));
 			  } else {
-				  # TODO: No valid parser could be found
+				  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Invalid media type'), $context));
 			  }
 		  }
 	  } else {
