@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use URI;
+use IRI;
 use Data::Dumper;
 use Progress::Any::Output;
 Progress::Any::Output->set('TermProgressBarColor');
@@ -22,7 +22,7 @@ while (<$fh>) {
 	$progress->update(message => "Scanning file");
 	m!^(\S+?):\S+? \S+? \".+?\" <([^<>" {}|\\^`]+?)> .$!;
 	my $filename = $1;
-	my $resource = URI->new($2);
+	my $resource = IRI->new($2);
 	my %entry = (filename => $filename,
 					 resource => "$resource");
 	my $host = $resource->host;
