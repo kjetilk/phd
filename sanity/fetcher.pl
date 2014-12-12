@@ -127,6 +127,7 @@ foreach my $host (@hosts) {
   my $model = RDF::Trine::Model->new($store);
   while ((my $uri, my $details) = each(%{$data->{$host}})) {
 	  my $context = iri($uri);
+	  my $promise = '';
 	  foreach my $source (@{$details->{source}}) {
 		  $model->add_statement(statement(iri($uri), $dct->source, iri($source), $context));
 	  }
@@ -195,8 +196,10 @@ foreach my $host (@hosts) {
 		  # Add freshness triples
 		  if ($prevresponse->freshness_lifetime(heuristic_expiry => 0)) {
 			  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:hard'), literal($prevresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
+			  $promise = 'hard';
 		  } elsif ($prevresponse->headers->last_modified) {
 			  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:heuristic'), literal($prevresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
+			  $promise = 'heuristic';
 		  }
 
 		  my $content = $prevresponse->decoded_content;
@@ -230,6 +233,8 @@ foreach my $host (@hosts) {
 					($prevresponse->header('Last-Modified') eq $cond2response->header('Last-Modified'))) {
 				  # We should have gotten 304
 				  $model->add_statement(statement(iri($uri), iri('urn:app:conditional'), literal("Got all"), $context));
+			  } else {
+				  $promise = 'not-modified';
 			  }
 		  }
 		  my @endpoints;
@@ -259,6 +264,7 @@ foreach my $host (@hosts) {
 													$st->predicate->equal($dct->modified) ||
 													$st->predicate->equal($dct->valid)) {
 												  $model->add_statement(statement($st->subject, $st->predicate, $st->object, $context));
+												  $promise = 'predicate';
 											  } elsif ($st->predicate->equal(iri('http://www.w3.org/ns/sparql-service-description#endpoint')) ||
 														  $st->predicate->equal(iri(('http://rdfs.org/ns/void#sparqlEndpoint')))) {
 												  push(@endpoints, $st->object->uri_value);
@@ -302,6 +308,9 @@ foreach my $host (@hosts) {
 							  }
 						  }
 					  }
+				  }
+				  if ($promise) {
+					  $model->add_statement(statement(iri($uri), iri('urn:app:promising'), literal($promise), $context));
 				  }
 				  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('OK'), $context));
 			  } else {
