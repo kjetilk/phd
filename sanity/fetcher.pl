@@ -309,8 +309,10 @@ foreach my $host (@hosts) {
 			  }
 		  }
 	  } else {
-		  $model->add_statement(statement(iri($uri), iri('http://www.w3.org/2007/ont/http#status_line'), literal($prevresponse->status_line), $context));
-		  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Non-successful response'), $context));
+		  unless ($firstresponse->code == 304) {
+			  $model->add_statement(statement(iri($uri), iri('http://www.w3.org/2007/ont/http#status_line'), literal($prevresponse->status_line), $context));
+			  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Unsuccessful response'), $context));
+		  }
 		  if ($details->{alternate}) {
 			  my $aresponse = $ua->get($details->{alternate}, Accept => $accept_header);
 			  # Get the relevant headers
