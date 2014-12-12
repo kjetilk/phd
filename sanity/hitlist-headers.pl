@@ -25,7 +25,11 @@ while (<$fh>) {
 	my $resource = URI->new($2);
 	my %entry = (filename => $filename,
 					 resource => "$resource");
-	push(@{$hosts->{$resource->host}}, \%entry);
+	my $host = $resource->host;
+	if ($host =~ m/.*(livejournal.com|sapo.pt)/) {
+		$host = $1;
+	}
+	push(@{$hosts->{$host}}, \%entry);
 }
 close $fh;
 
