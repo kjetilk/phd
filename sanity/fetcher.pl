@@ -22,10 +22,12 @@ $prparse->update(message => "Setting up");
 
 my $dct = RDF::Trine::Namespace->new('http://purl.org/dc/terms/');
 
-my $writedir = '/mnt/ssdstore/data/btc-processed/crawl/';
+my $basedir = '/home/kjetil/data/sanity/';
 
-my @files = ('/mnt/ssdstore/data/btc-processed/hitlist-test.ttl');
-#my @files = qw(/mnt/ssdstore/data/btc-processed/hitlist-data.ttl /mnt/ssdstore/data/btc-processed/hitlist-uris.nq /mnt/ssdstore/data/btc-processed/hitlist-sparqles.nq);
+my $writedir = $basedir . 'crawl/';
+
+#my @files = ($basedir . 'hitlist-test.ttl');
+my @files = ($basedir . 'hitlist-data.ttl', $basedir . 'hitlist-uris.nq', $basedir . 'hitlist-sparqles.nq');
 
 
 my $tp = RDF::Trine::Parser->new('turtle');
@@ -79,10 +81,10 @@ my $qhandler = sub {
 	}
 };
 
-my $filename='/mnt/ssdstore/data/btc-processed/hitlist-headers.nq';
+my $filename=$basedir . 'hitlist-headers.nq';
 my $qp = RDF::Trine::Parser->new('nquads');
 $prparse->update(message => "Parsing $filename");
-#$qp->parse_file('http://invalid/', $filename, $qhandler);
+$qp->parse_file('http://invalid/', $filename, $qhandler);
 
 $prparse->finish;
 
