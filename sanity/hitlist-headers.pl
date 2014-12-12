@@ -29,8 +29,14 @@ while (<$fh>) {
 }
 close $fh;
 
-$progress->target($pos + scalar keys %{$hosts});
+$progress->finish;
+
+my $progser = Progress::Any->get_indicator(
+        task => "serializing", target => 3+(scalar keys %{$hosts}));
 my $files;
+
+$progser->update(message => "Starting reorg");
+
 
 use RDF::Trine qw(iri literal statement);
 use RDF::Trine::Parser::NQuads;
@@ -42,7 +48,7 @@ my $dct = RDF::Trine::Namespace->new('http://purl.org/dc/terms/');
 
 
 while ((my $host, my $entries) = each(%{$hosts})) {
-	$progress->update(message => "Reorganizing");
+	$progser->update(message => "Reorganizing");
 	my $winningentry = ${$entries}[int(rand(scalar @{$entries}))];
 	$model->add_statement(statement(iri($winningentry->{resource}), $dct->source, iri('file:///home/kjetil/Projects/SemWeb/data/btc-2014/headers/' . $winningentry->{filename})));
 	$model->add_statement(statement(iri($winningentry->{resource}), $dct->type, literal('inforesources')));
@@ -50,7 +56,7 @@ while ((my $host, my $entries) = each(%{$hosts})) {
 }
 
 
-$progress->finish;
+$progser->finish;
 
 
 
