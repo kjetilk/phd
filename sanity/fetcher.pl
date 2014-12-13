@@ -22,7 +22,8 @@ $prparse->update(message => "Setting up");
 
 my $dct = RDF::Trine::Namespace->new('http://purl.org/dc/terms/');
 
-my $basedir = '/home/kjetil/data/sanity/';
+#my $basedir = '/home/kjetil/data/sanity/';
+my $basedir = '/mnt/ssdstore/data/btc-processed/';
 
 my $writedir = $basedir . 'crawl/';
 
@@ -91,7 +92,7 @@ $prparse->finish;
 $prfetch->update(message => "Initializing UA");
 
 use Parallel::ForkManager;
-my $pm = Parallel::ForkManager->new(30);
+my $pm = Parallel::ForkManager->new(25);
 
 use LWP::UserAgent;
 use HTTP::Request;
