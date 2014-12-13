@@ -8,6 +8,7 @@ use Data::Dumper;
 use Progress::Any::Output;
 Progress::Any::Output->set('TermProgressBarColor');
 use Progress::Any;
+use Try::Tiny;
 
 my $progress = Progress::Any->get_indicator(
         task => "scanning", target => 31000000);
@@ -22,9 +23,15 @@ while (<$fh>) {
 	$progress->update(message => "Scanning file");
 	m!^(\S+?):\S+? \S+? \".+?\" <([^<>" {}|\\^`]+?)> .$!;
 	my $filename = $1;
-	my $resource = IRI->new($2);
+	my $resource = try {
+		IRI->new(value => $2);
+	} catch {
+		warn "Skipping $2";
+		undef;
+	};
+	next unless defined($resource);
 	my %entry = (filename => $filename,
-					 resource => "$resource");
+					 resource => $resource->as_string);
 	my $host = $resource->host;
 	if ($host =~ m/.*(livejournal.com|sapo.pt)/) {
 		$host = $1;
