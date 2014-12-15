@@ -19,18 +19,16 @@ add_type( 'text/json' => qw(json) );
 add_type( 'text/html' => qw(html xhtml htm) );
 
 my $config	= {
-		store	=> "Memory;file://$abs",
-		endpoint	=> {
-				embed_images	=> 1,
-				image_width		=> 200,
-				resource_links	=> 1,
-			},
-			load_data	=> 1,
-			update		=> 0,
-        }
-    };
+					endpoint	=> {
+									 embed_images	=> 1,
+									 image_width		=> 200,
+									 resource_links	=> 1,
+									},
+					load_data	=> 1,
+					update		=> 0,
+				  };
 
-$config->{store} = 'Memory'.join(';file://', glob('/mnt/ssdstore/data/btc-processed/run2/crawl/*'));
+$config->{store} = 'Memory;file://'.join(';file://', glob('/mnt/ssdstore/data/btc-processed/run2/crawl/*'));
 
 
 my $end		= RDF::Endpoint->new( $config );
