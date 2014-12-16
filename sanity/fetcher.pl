@@ -183,7 +183,7 @@ foreach my $host (@hosts) {
 		  # What to do if data for conditional requests was available in BTC
 		  if ($firstresponse->code == 304) {
 			  my $condrequest = HTTP::Request->new(GET => $uri);
-			  sleep 5;
+			  sleep 10;
 			  my $condresponse = $ua->request( $condrequest );
 			  my $condhhg = RDF::Generator::HTTP->new(message => $condresponse,
 																	whitelist => ['Warning',
@@ -220,7 +220,7 @@ foreach my $host (@hosts) {
 		  }
 		  if ($ya) {
 			  no warnings 'uninitialized';
-			  sleep 5;
+			  sleep 10;
 			  my $cond2response = $ua->request( $cond2request );
 			  my $cond2hhg = RDF::Generator::HTTP->new(message => $cond2response,
 																	 whitelist => ['Warning',
@@ -350,7 +350,7 @@ foreach my $host (@hosts) {
 			  $model->add_statement(iri($uri), iri('urn:app:hasrequest'), $ahhg->request_subject, $context);
 		  }
 	  }
-	  sleep 5 if ($uricount > 1);
+	  sleep 10 if ($uricount > 1);
   }
   $pm->finish; # Terminates the child process
 }
