@@ -23,7 +23,7 @@ $prparse->update(message => "Setting up");
 my $dct = RDF::Trine::Namespace->new('http://purl.org/dc/terms/');
 
 #my $basedir = '/home/kjetil/data/sanity/';
-my $basedir = '/mnt/ssdstore/data/btc-processed/run3';
+my $basedir = '/mnt/ssdstore/data/btc-processed/run3/';
 
 my $writedir = $basedir . 'crawl/';
 
