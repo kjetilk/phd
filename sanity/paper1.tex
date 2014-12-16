@@ -81,5 +81,38 @@ answer if the resource has changed less expensively than serving the
 entire response. These two approaches can be combined, as a client may
 ask if a response is fresh after it has expired.
 
+\section{Related work}
+
+We are not aware of any surveys of this type. Although the database
+literature is rich with query cache literature, it is mostly relevant
+to what would happen within the server or between the server and a
+reverse proxy, which is opaque to the Internet, and therefore not of
+our concern.
+
+LDF\todo{ref paper1} claims to take advantage of caching and contrasts
+this with the inavailabilty of SPARQL query caches, and claims this is
+an architectural problem.
+
+The implications of HTTP for query caches has been discussed by
+\todo{ref kasei}. In \todo{marin, Auer} the authors implemented a
+reverse proxy that controlled the changes to the dataset, and
+therefore could 
+
+A general caching approach is given in \todo{Caching intermediate
+  result of sparql queries}. 
+
+\todo{fast vs. fresh} didn't consider caching in the sense we do, they
+rather prefetch an entire dataset to a local store and based on
+heuristics tried to determine which parts of the query should be
+evaluated remotely and locally.
+
+\todo{cache or not} explored when caching had a positive effect on
+complex SPARQL queries.
+
+In the broader Web literature, \todo{Revisiting Cacheability
+in Times of User Generated Content} analysed the value of caching
+based anonymized traces of actual Web usage at a major Internet
+Service Provider.
+
 
 \end{document}
