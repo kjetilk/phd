@@ -69,17 +69,18 @@ implement a private cache for its user at the client side.
 
 Caching, as defined in RFC7234, requires that the server declares how
 long into the future it expects the information resource in the
-response to remain valid. Based on this, the client need not contact
-the server at all to reuse a cached response, but this requires a
-commitment from the content provider. The standard also gives the
-client an opportunity to heuristically determine a time to
-live. RFC7232, on the other hand, defines a protocol for asking the
-server if the cached response is still fresh using conditional
-requests. This doesn't burden the content provider with the task of
-estimating the time to live beforehand, but then, it must be able to
-answer if the resource has changed less expensively than serving the
-entire response. These two approaches can be combined, as a client may
-ask if a response is fresh after it has expired.
+response to remain fresh, i.e. how long it is permissible to use
+it. Based on this, the client need not contact the server at all to
+reuse a cached response, but this requires a commitment from the
+content provider. The standard also gives the client an opportunity to
+heuristically determine a time to live. RFC7232, on the other hand,
+defines a protocol for asking the server if the cached response is
+still fresh using conditional requests. This doesn't burden the
+content provider with the task of estimating the time to live
+beforehand, but then, it must be able to answer if the resource has
+changed less expensively than serving the entire response. These two
+approaches can be combined, as a client may ask if a response is fresh
+after it has expired.
 
 \section{Related work}
 
@@ -113,6 +114,58 @@ In the broader Web literature, \todo{Revisiting Cacheability
 in Times of User Generated Content} analysed the value of caching
 based anonymized traces of actual Web usage at a major Internet
 Service Provider.
+
+\section{Methodology}
+
+We want to find information resources on the Web, and examine HTTP
+headers that may allow caching. We record headers recommended by
+current standards, as well as obsoleted and non-standard
+headers. Additionally, we examine the triples in the returned
+information resources to see if there is information there that may be
+used to calculate heuristic freshness.
+
+However, as the community has both spidered the Web as well as
+recorded lists of relevant resources, we need not do that ourselves. 
+
+The SPARQLES survey\todo{ref} has recorded the availability of SPARQL
+endpoints registered in the datahub.io portal, and found that many of
+them have ceased to operate. We used their list of SPARQL endpoints as
+of 2014-11-17, and filtered out those deemed unresponsive by
+them. This resulted in a list of 312 endpoints.
+
+To compile a list of Web ontologies, we first queried the Linked Open
+Vocabularies \todo{ref} SPARQL endpoint to retrieve all registered
+ontologies. Then, we took the full list of URIs registered with
+prefix.cc. The assumption that they all identify an ontology is
+clearly false, as we found that for example Tim Berners-Lee's FOAF
+profile has a registered URI, but it is unlikely to introduce
+significant bias.
+
+Then, we retrieved the dataset of the Billion Triple Challenge
+2014\todo{ref}, a 4~GTriple corpus of spidered Web data. To compile a
+list of interesting candidates to further examine, we performed a
+series of data reduction steps. Due to the presence of invalid RDF, we
+iterated through the NQuad files on a line-by-line basis. First, we
+matched each line against a regular expression were lines matching
+\texttt{ontology|endpoint|sparql|vocabular} passed the filter. Then,
+the Perl framework \text{RDF::Trine}\todo{footnote} was used to parse
+the line. Lines that failed to parse was discarded. We have not
+investigated whether this could introduce biases. Statements were then
+accepted into a new NQuad file if they had a predicate that matched
+the \texttt{sd:endpoint}\todo{footnote} or matched a case-insensitive
+regular expression \texttt{sparql} if the subject and objects were
+both resources, or the predicates \texttt{void:vocabulary},
+\texttt{rdfa:vocabulary} or \texttt{api:vocabulary} \todo{footnotes
+  for all}, as well as having an resource as object. Finally,
+statements with the the classes \texttt{cogs:Endpoint},
+\texttt{owl:Ontology} and \texttt{voaf:Vocabulary} \todo{footnotes for
+  all} in the object position were also accepted. More classes and
+properties were considered, but not used in the data reduction if they
+did not occur in the original data.
+
+In the next step, we filtered out statements with URIs that were
+invalid or irrelevant, e.g. URIs that didn't have a scheme or where
+the scheme wasn't HTTP(S), or they were referring to private IP addresses.
 
 
 \end{document}
