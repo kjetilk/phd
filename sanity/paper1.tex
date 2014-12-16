@@ -1,0 +1,85 @@
+\documentclass{llncs}
+%\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+\title{A survey of HTTP caching options on the open Web}
+\author{Kjetil Kjernsmo\inst{1}}
+\institute{Department of Informatics,
+Postboks 1080 Blindern,
+N-0316 Oslo, Norway \email{kjetil@kjernsmo.net}
+
+\subtitle{---Unpublished Working Draft, do not circulate---}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\end{abstract}
+
+\section{Introduction}
+
+Caching has been given a prominent place in the foundational documents
+of the World Wide Web. Out of the 6 documents that make up the HTTP
+1.1 standard, RFC7234 \todo{ref} is entirely devoted to the topic, and
+RFC7232 defines conditional requests, which is also important when
+constructing caches. As the former notes:
+\begin{quote} 
+  The goal of caching in HTTP/1.1 is to significantly improve
+  performance by reusing a prior response message to satisfy a current
+  request.
+\end{quote}
+Furthermore, the Architecture of the World Wide Web \todo{ref}
+discusses caching throughout, and the definition of the
+Representational State Transfer (REST) architectural style \todo{ref}
+is partly motivated from the requirement to implement efficient
+caching. We also note that caching in the Internet infrastructure,
+through so-called Content Delivery Networks, is both a large business
+area and something that could provide great value to the Semantic Web
+community.
+
+In spite of this, we have not seen it in widespread use, and therefore
+we decided to conduct a survey to investigate the actual compliance to
+RFC7234 and RFC7232. Our reasons to do this include
+\begin{enumerate}
+\item Understand the actual usage rather than rely on anecdotal
+  conceptions.
+\item Encourage the implementation of these mechanisms in Semantic Web
+  infrastructure.
+\item Point out future research directions.
+\end{enumerate}
+
+We note that caching is not only useful for long-living information
+resources, even though that may be the most important. If a resource
+is frequently requested, it may make sense to cache it even though it
+may be fresh for only a very short period.
+
+Caching may be deployed at several different levels: A HTTP cache may
+be in a reverse proxy close to the server, in which case it may have
+much in common with a conventional database cache. It may also be
+anywhere between a server and a client, in which case it may be
+shared, i.e. it may cache responses from several servers served to
+several clients. Another example is an institutional forward proxy,
+which are close to several users. Finally, the User Agent may
+implement a private cache for its user at the client side.
+
+Caching, as defined in RFC7234, requires that the server declares how
+long into the future it expects the information resource in the
+response to remain valid. Based on this, the client need not contact
+the server at all to reuse a cached response, but this requires a
+commitment from the content provider. The standard also gives the
+client an opportunity to heuristically determine a time to
+live. RFC7232, on the other hand, defines a protocol for asking the
+server if the cached response is still fresh using conditional
+requests. This doesn't burden the content provider with the task of
+estimating the time to live beforehand, but then, it must be able to
+answer if the resource has changed less expensively than serving the
+entire response. These two approaches can be combined, as a client may
+ask if a response is fresh after it has expired.
+
+
+\end{document}
