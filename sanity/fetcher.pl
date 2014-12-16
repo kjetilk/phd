@@ -276,7 +276,6 @@ foreach my $host (@hosts) {
 										  });
 				  } catch {
 					  $model->add_statement(statement(iri($uri), iri('urn:app:parseerror'), literal($_), $context));
-					  $pm->finish;
 				  };
 
 				  unless ($details->{type} eq 'vocabulary') {
