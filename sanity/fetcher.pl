@@ -92,7 +92,7 @@ $prparse->finish;
 $prfetch->update(message => "Initializing UA");
 
 use Parallel::ForkManager;
-my $pm = Parallel::ForkManager->new(25);
+my $pm = Parallel::ForkManager->new(30);
 
 use LWP::UserAgent;
 use HTTP::Request;
