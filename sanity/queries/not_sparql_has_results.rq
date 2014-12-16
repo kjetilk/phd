@@ -1,0 +1,15 @@
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT ?endpoint ?source WHERE {
+  GRAPH ?g {
+    ?g dct:source ?source ;
+              dct:type "endpoint" .
+    MINUS { 
+      ?g dct:source <http://sparqles.okfn.org/> ;
+    }
+  }
+  GRAPH ?g {
+    ?query <urn:app:endpoint> "Has results" .
+  } 
+}
+
+# Total: 24
