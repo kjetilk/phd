@@ -23,7 +23,7 @@ $prparse->update(message => "Setting up");
 my $dct = RDF::Trine::Namespace->new('http://purl.org/dc/terms/');
 
 #my $basedir = '/home/kjetil/data/sanity/';
-my $basedir = '/mnt/ssdstore/data/btc-processed/run3/';
+my $basedir = '/mnt/ssdstore/data/btc-processed/';
 
 my $writedir = $basedir . 'crawl/';
 
@@ -175,7 +175,8 @@ foreach my $host (@hosts) {
 																		],
 													  graph => $context);
 	  $hhg->generate($model);
-	  $model->add_statement(iri($uri), iri('urn:app:hasrequest'), $hhg->request_subject, $context);
+	  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $hhg->request_subject, $context));
+
 	  my $prevresponse = $firstresponse;
 
 	  if ($firstresponse->is_success) {
@@ -192,7 +193,7 @@ foreach my $host (@hosts) {
 																					  'Date'],
 																	graph => $context);
 			  $condhhg->generate($model);
-			  $model->add_statement(iri($uri), iri('urn:app:hasrequest'), $condhhg->request_subject, $context);
+			  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $condhhg->request_subject, $context));
 			  $prevresponse = $condresponse;
 		  }
 
@@ -231,7 +232,7 @@ foreach my $host (@hosts) {
 																						'Date'],
 																	 graph => $context);
 			  $cond2hhg->generate($model);
-			  $model->add_statement(iri($uri), iri('urn:app:hasrequest'), $cond2hhg->request_subject, $context);
+			  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $cond2hhg->request_subject, $context));
 			  if (($cond2response->code == 200) &&
 					($prevresponse->header('ETag') eq $cond2response->header('ETag')) &&
 					($prevresponse->header('Last-Modified') eq $cond2response->header('Last-Modified'))) {
@@ -305,7 +306,7 @@ foreach my $host (@hosts) {
 																								 ],
 																				graph => iri($endpoint));
 							  $ehhg->generate($model);
-							  $model->add_statement(iri($uri), iri('urn:app:hasrequest'), $ehhg->request_subject, $context);
+							  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $ehhg->request_subject, $context));
 							  if ($eresponse->is_success) {
 								  my $anyres = has_sparql_results($eresponse->decoded_content, $eresponse->content_type) ? "Has results" : "No results";
 								  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), iri($endpoint)));
@@ -346,7 +347,7 @@ foreach my $host (@hosts) {
 																				 ],
 																graph => $context);
 			  $ahhg->generate($model);
-			  $model->add_statement(iri($uri), iri('urn:app:hasrequest'), $ahhg->request_subject, $context);
+			  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $ahhg->request_subject, $context));
 		  }
 	  }
 	  sleep 10 if ($uricount > 1);
