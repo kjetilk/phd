@@ -179,23 +179,28 @@ foreach my $host (@hosts) {
 
 	  my $prevresponse = $firstresponse;
 
-	  if ($firstresponse->is_success) {
-
-		  # What to do if data for conditional requests was available in BTC
-		  if ($firstresponse->code == 304) {
-			  my $condrequest = HTTP::Request->new(GET => $uri);
-			  sleep 10;
-			  my $condresponse = $ua->request( $condrequest );
-			  my $condhhg = RDF::Generator::HTTP->new(message => $condresponse,
-																	whitelist => ['Warning',
-																					  'Last-Modified',
-																					  'ETag',
-																					  'Date'],
-																	graph => $context);
-			  $condhhg->generate($model);
-			  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $condhhg->request_subject, $context));
-			  $prevresponse = $condresponse;
+	  # What to do if data for conditional requests was available in BTC
+	  if ($firstresponse->code == 304) {
+		  my $condrequest = HTTP::Request->new(GET => $uri);
+		  sleep 5;
+		  my $condresponse = $ua->request( $condrequest );
+		  my $condhhg = RDF::Generator::HTTP->new(message => $condresponse,
+																whitelist => ['Warning',
+																				  'Last-Modified',
+																				  'ETag',
+																				  'Date'],
+																graph => $context);
+		  $condhhg->generate($model);
+		  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $condhhg->request_subject, $context));
+		  if ($condrequest->is_success) {
+			  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('OK'), $context));
+		  } else {
+			  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Second conditional failed'), $context));
 		  }
+
+		  $prevresponse = $condresponse;
+
+	  } elsif ($firstresponse->is_success) {
 
 		  # Add freshness triples
 		  if ($prevresponse->freshness_lifetime(heuristic_expiry => 0)) {
@@ -323,10 +328,8 @@ foreach my $host (@hosts) {
 			  }
 		  }
 	  } else {
-		  unless ($firstresponse->code == 304) {
-			  $model->add_statement(statement(iri($uri), iri('http://www.w3.org/2007/ont/http#status_line'), literal($prevresponse->status_line), $context));
-			  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Unsuccessful response'), $context));
-		  }
+		  $model->add_statement(statement(iri($uri), iri('http://www.w3.org/2007/ont/http#status_line'), literal($prevresponse->status_line), $context));
+		  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Unsuccessful response'), $context));
 		  if ($details->{alternate}) {
 			  my $aresponse = $ua->get($details->{alternate}, Accept => $accept_header);
 			  # Get the relevant headers
