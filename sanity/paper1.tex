@@ -6,6 +6,10 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 
+\newcommand{\rdfterm}[1]{\texttt{#1}}
+\newcommand{\httph}[1]{\texttt{#1}}
+\newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
+
 \title{A survey of HTTP caching options on the open Web}
 \author{Kjetil Kjernsmo\inst{1}}
 \institute{Department of Informatics,
@@ -82,6 +86,14 @@ changed less expensively than serving the entire response. These two
 approaches can be combined, as a client may ask if a response is fresh
 after it has expired.
 
+LDF\todo{ref} asserted that SPARQL query caching is only possible on a
+per-query basis, but future research should challenge this
+assumption. With this in mind, if reasoning is not involved, we note
+that ontologies are not relevant to query answering since they usually
+occur in bound terms. It is interesting to understand caching when
+this is not the case. Moreover, many ontologies are maintained by a
+small group of humans and change seldomly.
+
 \section{Related work}
 
 We are not aware of any surveys of this type. Although the database
@@ -144,7 +156,8 @@ significant bias.
 Then, we retrieved the dataset of the Billion Triple Challenge
 2014\todo{ref}, a 4~GTriple corpus of spidered Web data. To compile a
 list of interesting candidates to further examine, we performed a
-series of data reduction steps. Due to the presence of invalid RDF, we
+series of data reduction steps, manually inspecting the result between
+each step. Due to the presence of invalid RDF, we
 iterated through the NQuad files on a line-by-line basis. First, we
 matched each line against a regular expression were lines matching
 \texttt{ontology|endpoint|sparql|vocabular} passed the filter. Then,
@@ -152,13 +165,13 @@ the Perl framework \text{RDF::Trine}\todo{footnote} was used to parse
 the line. Lines that failed to parse was discarded. We have not
 investigated whether this could introduce biases. Statements were then
 accepted into a new NQuad file if they had a predicate that matched
-the \texttt{sd:endpoint}\todo{footnote} or matched a case-insensitive
+the \rdfterm{sd:endpoint}\todo{footnote} or matched a case-insensitive
 regular expression \texttt{sparql} if the subject and objects were
-both resources, or the predicates \texttt{void:vocabulary},
-\texttt{rdfa:vocabulary} or \texttt{api:vocabulary} \todo{footnotes
+both resources, or the predicates \rdfterm{void:vocabulary},
+\rdfterm{rdfa:vocabulary} or \rdfterm{api:vocabulary} \todo{footnotes
   for all}, as well as having an resource as object. Finally,
-statements with the the classes \texttt{cogs:Endpoint},
-\texttt{owl:Ontology} and \texttt{voaf:Vocabulary} \todo{footnotes for
+statements with the the classes \rdfterm{cogs:Endpoint},
+\rdfterm{owl:Ontology} and \rdfterm{voaf:Vocabulary} \todo{footnotes for
   all} in the object position were also accepted. More classes and
 properties were considered, but not used in the data reduction if they
 did not occur in the original data.
@@ -166,6 +179,41 @@ did not occur in the original data.
 In the next step, we filtered out statements with URIs that were
 invalid or irrelevant, e.g. URIs that didn't have a scheme or where
 the scheme wasn't HTTP(S), or they were referring to private IP addresses.
+
+We then sought to classify resources into the categories ``endpoint''
+for SPARQL endpoints, ``vocabulary'' for ontologies, ``dataset'' for
+datasets that may contain further descriptions of several resources,
+or simply ``inforesources'' for those that did not fit in the above
+classes. To do so, we classified based on certain predicates and
+classes, see table\todo{create table}. Additionally, URIs derived from
+prefix.cc were classified as ``vocabulary'' and those from SPARQLES as
+``endpoint''.
+
+Since we blatantly violated URI opacity with our regular expression
+matching in the first step, we needed to further filter candidates for
+SPARQL endpoints. This step therefore included filtering as well as
+classification.
+
+We found in the data a large number of ontologies that consist of many
+information resources with just a few triples in each. Since they
+appear to be produced by the same software, usually Semantic
+Mediawiki, we assume that they are configured with a single setup, and
+thus we will merely sample these resources.
+
+We continued to also sample the HTTP headers gathered in the BTC2014
+dataset. 
+%as they had recorded some of the relevant headers,
+%\httph{Expires}, \httph{Last-Modified} and \httph{ETag}. 
+First, we traversed the files with a simple UNIX \texttt{grep} to find
+the resources that had reported one of the RDF serializations as
+content type. We then traversed this list, first discarded the
+resources that did not have a valid IRI (this amounted to just 3273
+resources). For the resources we found, as well as for the resources
+that was of \rdfterm{rdf:type owl:Ontology} above, we kept one
+resource per hostname, with the exception of the popular blogging
+platforms Livejournal and SAPO, where each blog has their own host and
+they expose FOAF data. For those, we only kept one hostname. 
+
 
 
 \end{document}
