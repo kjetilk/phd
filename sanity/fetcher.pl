@@ -192,7 +192,7 @@ foreach my $host (@hosts) {
 																graph => $context);
 		  $condhhg->generate($model);
 		  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $condhhg->request_subject, $context));
-		  if ($condrequest->is_success) {
+		  if ($condresponse->is_success) {
 			  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('OK'), $context));
 		  } else {
 			  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Second conditional failed'), $context));
