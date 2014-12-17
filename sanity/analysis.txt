@@ -1,0 +1,11 @@
+* Number of endpoints not in SPARQLES we found with results
+* Distribution of TTL
+  - Hard headers
+  - Heuristics
+  - Using DCT properties
+* Separate statistics for 
+  - LOV
+  - SPARQLES
+* Does the ones that have DCT properties have headers? Are they consistent?
+* Complete counts for all caching aspects TODO detail
+* Check if distributions of parameters with and without error are the same
