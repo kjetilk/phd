@@ -5,6 +5,7 @@
 \usepackage{verbatim}
 \usepackage{graphicx}
 %\usepackage{wrapfig}
+\usepackage{appendix}
 
 \newcommand{\rdfterm}[1]{\texttt{#1}}
 \newcommand{\httph}[1]{\texttt{#1}}
@@ -128,7 +129,7 @@ in Times of User Generated Content} analysed the value of caching
 based anonymized traces of actual Web usage at a major Internet
 Service Provider.
 
-\section{Implementation}
+\section{Methodology}
 
 We want to find information resources on the Web, and examine HTTP
 headers that may allow caching. We record headers recommended by
@@ -155,15 +156,25 @@ profile has a registered URI, but it is unlikely to introduce
 significant bias.
 
 To examine as many different implementations and hosts as possible, we
-noted that the Billion Triple Challenge
-2014\todo{ref} dataset consisted of a 4~GTriple corpus of spidered Web data. To compile a
+noted that the Billion Triple Challenge 2014\todo{ref} dataset
+consisted of a 4~GTriple corpus of spidered Web data. To compile a
 list of interesting candidates to further examine, we performed a
 series of data reduction steps, manually inspecting the result between
-each step. The details of this process is given in Appendix~\ref{app:reduction}.
+each step. The details of this process is given in
+Appendix~\ref{app:reduction}.
 
+The end result of this process is a list of 3117 unique hosts, for
+each several resources would be visited, some several times, as they
+may host SPARQL Endpoints, ontologies, or other information resources,
+by a spider detailed in Appendix~\ref{app:fetcher}
 
+This results in an NQuads file per host, which is then loaded into a
+SPARQL Endpoint\todo{which} for analysis by using the statistics
+system R.
 
-\section{Implementation details\todo{proper formatting}}\label{app:reduction}
+\begin{appendices}
+
+\section{Implementation of data reduction}\label{app:reduction}
 
 The Billion Triple Challenge 2014 dataset provided data in the form of
 NQuad files. Due to the presence of invalid RDF, we iterated through
@@ -223,11 +234,13 @@ resource per hostname, with the exception of the popular blogging
 platforms Livejournal and SAPO, where each blog has their own host and
 they expose FOAF data. For those, we only kept one hostname. 
 
-We then developed a fairly elaborate parallel spider to get the
-resources found on 3117 unique hosts in the previous steps using the
-Perl frameworks RDF::Trine and libwww. The spider operated with a
-timeout of 20 seconds and a maximum message size it would accept of 1
-MB. 
+\section{Implementation of spider}\label{app:fetcher}
+
+We then developed a fairly elaborate parallel spider to examine the
+resources found on hosts that the previous steps deemed interesting
+using the Perl frameworks RDF::Trine and libwww. The spider operated
+with a timeout of 20 seconds and a maximum message size it would
+accept of 1 MB.
 
 The parallel spider would then launch a process per host, but each
 request to one host would be delayed by 10 seconds. For each host, the
@@ -323,5 +336,6 @@ Finally, if the LOV SPARQL endpoint used a URI for the vocabulary that
 was different from the namespace URI (after a normalization step),
 another request would be made to record the selected HTTP headers from
 that as well.
+\end{appendices}
 
 \end{document}
