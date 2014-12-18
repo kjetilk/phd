@@ -157,7 +157,8 @@ foreach my $host (@hosts) {
 	  my $firstresponse = $ua->request( $request );
 		  # Get the relevant headers
 	  my $hhg = RDF::Generator::HTTP->new(message => $firstresponse,
-													  whitelist => ['Age', # TODO : Server
+													  whitelist => ['Age',
+																		 'Server',
 																		 'Cache-Control',
 																		 'Expires',
 																		 'Pragma',
@@ -186,6 +187,7 @@ foreach my $host (@hosts) {
 		  my $condresponse = $ua->request( $condrequest );
 		  my $condhhg = RDF::Generator::HTTP->new(message => $condresponse,
 																whitelist => ['Warning',
+																				  'Server',
 																				  'Last-Modified',
 																				  'ETag',
 																				  'Date'],
@@ -230,6 +232,7 @@ foreach my $host (@hosts) {
 			  my $cond2response = $ua->request( $cond2request );
 			  my $cond2hhg = RDF::Generator::HTTP->new(message => $cond2response,
 																	 whitelist => ['Warning',
+																						'Server',
 																						'If-None-Match',
 																						'If-Modified-Since',
 																						'Last-Modified',
@@ -296,6 +299,7 @@ foreach my $host (@hosts) {
 							  # Get the relevant headers
 							  my $ehhg = RDF::Generator::HTTP->new(message => $eresponse,
 																				whitelist => ['Age',
+																								  'Server',
 																								  'Cache-Control',
 																								  'Expires',
 																								  'Pragma',
@@ -335,6 +339,7 @@ foreach my $host (@hosts) {
 			  # Get the relevant headers
 			  my $ahhg = RDF::Generator::HTTP->new(message => $aresponse,
 																whitelist => ['Age',
+																				  'Server',
 																				  'Cache-Control',
 																				  'Expires',
 																				  'Pragma',
