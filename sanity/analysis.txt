@@ -7,5 +7,11 @@
   - LOV
   - SPARQLES
 * Does the ones that have DCT properties have headers? Are they consistent?
-* Complete counts for all caching aspects TODO detail
+* Complete counts for all caching aspects
+  - Table on top servers
+
+ TODO detail
 * Check if distributions of parameters with and without error are the same
+* Stats and correlation based on Server header
+* Say something more about bias
+* Sammenlikne med SPARQLES survey på bias

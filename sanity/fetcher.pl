@@ -157,7 +157,7 @@ foreach my $host (@hosts) {
 	  my $firstresponse = $ua->request( $request );
 		  # Get the relevant headers
 	  my $hhg = RDF::Generator::HTTP->new(message => $firstresponse,
-													  whitelist => ['Age',
+													  whitelist => ['Age', # TODO : Server
 																		 'Cache-Control',
 																		 'Expires',
 																		 'Pragma',

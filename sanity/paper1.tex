@@ -154,16 +154,24 @@ clearly false, as we found that for example Tim Berners-Lee's FOAF
 profile has a registered URI, but it is unlikely to introduce
 significant bias.
 
-Then, we retrieved the dataset of the Billion Triple Challenge
-2014\todo{ref}, a 4~GTriple corpus of spidered Web data. To compile a
+To examine as many different implementations and hosts as possible, we
+noted that the Billion Triple Challenge
+2014\todo{ref} dataset consisted of a 4~GTriple corpus of spidered Web data. To compile a
 list of interesting candidates to further examine, we performed a
 series of data reduction steps, manually inspecting the result between
-each step. Due to the presence of invalid RDF, we
-iterated through the NQuad files on a line-by-line basis. First, we
-matched each line against a regular expression were lines matching
+each step. The details of this process is given in Appendix~\ref{app:reduction}.
+
+
+
+\section{Implementation details\todo{proper formatting}}\label{app:reduction}
+
+The Billion Triple Challenge 2014 dataset provided data in the form of
+NQuad files. Due to the presence of invalid RDF, we iterated through
+the NQuad files on a line-by-line basis. First, we matched each line
+against a regular expression were lines matching
 \texttt{ontology|endpoint|sparql|vocabular} passed the filter. Then,
-the Perl framework RDF::Trine\todo{footnote} was used to parse
-the line. Lines that failed to parse was discarded. We have not
+the Perl framework RDF::Trine\todo{footnote} was used to parse the
+line. Lines that failed to parse was discarded. We have not
 investigated whether this could introduce biases. Statements were then
 accepted into a new NQuad file if they had a predicate that matched
 the \rdfterm{sd:endpoint}\todo{footnote} or matched a case-insensitive
@@ -172,8 +180,8 @@ both resources, or the predicates \rdfterm{void:vocabulary},
 \rdfterm{rdfa:vocabulary} or \rdfterm{api:vocabulary} \todo{footnotes
   for all}, as well as having an resource as object. Finally,
 statements with the the classes \rdfterm{cogs:Endpoint},
-\rdfterm{owl:Ontology} and \rdfterm{voaf:Vocabulary} \todo{footnotes for
-  all} in the object position were also accepted. More classes and
+\rdfterm{owl:Ontology} and \rdfterm{voaf:Vocabulary} \todo{footnotes
+  for all} in the object position were also accepted. More classes and
 properties were considered, but not used in the data reduction if they
 did not occur in the original data.
 
