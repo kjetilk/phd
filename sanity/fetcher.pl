@@ -155,6 +155,7 @@ foreach my $host (@hosts) {
 		  }
 	  }
 	  my $firstresponse = $ua->request( $request );
+	  $model->add_statement(statement(iri($uri), iri('urn:app:whichrequest'), literal('firstresponse'), $context));
 		  # Get the relevant headers
 	  my $hhg = RDF::Generator::HTTP->new(message => $firstresponse,
 													  whitelist => ['Age',
@@ -185,6 +186,7 @@ foreach my $host (@hosts) {
 		  my $condrequest = HTTP::Request->new(GET => $uri);
 		  sleep 5;
 		  my $condresponse = $ua->request( $condrequest );
+		  $model->add_statement(statement(iri($uri), iri('urn:app:whichrequest'), literal('condresponse'), $context));
 		  my $condhhg = RDF::Generator::HTTP->new(message => $condresponse,
 																whitelist => ['Warning',
 																				  'Server',
@@ -230,6 +232,7 @@ foreach my $host (@hosts) {
 			  no warnings 'uninitialized';
 			  sleep 10;
 			  my $cond2response = $ua->request( $cond2request );
+			  $model->add_statement(statement(iri($uri), iri('urn:app:whichrequest'), literal('cond2response'), $context));
 			  my $cond2hhg = RDF::Generator::HTTP->new(message => $cond2response,
 																	 whitelist => ['Warning',
 																						'Server',
@@ -296,6 +299,7 @@ foreach my $host (@hosts) {
 							  my $erequest = HTTP::Request->new(GET => $uri);
 							  $erequest->header( Accept => 'application/sparql-results+xml,application/sparql-results+json;q=0.9' );
 							  my $eresponse = $ua->request( $erequest );
+							  $model->add_statement(statement(iri($uri), iri('urn:app:whichrequest'), literal('eresponse'), $context));
 							  # Get the relevant headers
 							  my $ehhg = RDF::Generator::HTTP->new(message => $eresponse,
 																				whitelist => ['Age',
@@ -336,6 +340,7 @@ foreach my $host (@hosts) {
 		  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Unsuccessful response'), $context));
 		  if ($details->{alternate}) {
 			  my $aresponse = $ua->get($details->{alternate}, Accept => $accept_header);
+			  $model->add_statement(statement(iri($uri), iri('urn:app:whichrequest'), literal('aresponse'), $context));
 			  # Get the relevant headers
 			  my $ahhg = RDF::Generator::HTTP->new(message => $aresponse,
 																whitelist => ['Age',
