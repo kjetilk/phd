@@ -28,7 +28,7 @@ my $config	= {
 					update		=> 0,
 				  };
 
-$config->{store} = 'Memory;file://'.join(';file://', glob('/mnt/ssdstore/data/btc-processed/run4/crawl/*'));
+$config->{store} = 'Memory;file://'.join(';file://', glob('/mnt/ssdstore/data/btc-processed/run6/crawl/*'));
 
 
 my $end		= RDF::Endpoint->new( $config );
