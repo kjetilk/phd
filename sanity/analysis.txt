@@ -1,3 +1,9 @@
+* Is Server string of any likely importance?
+  - For each server string, check:
+    + Proportion of Hard
+    + Proportion of Promising
+  - Repeat for substrings
+
 * Number of endpoints not in SPARQLES we found with results
 * Distribution of TTL
   - Hard headers
