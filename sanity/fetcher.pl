@@ -259,6 +259,7 @@ foreach my $host (@hosts) {
 		  if ($details->{type} eq 'endpoint') {
 			  # Check if we got any results
 			  my $anyres = has_sparql_results($content, $prevresponse->content_type) ? "Has results" : "No results";
+			  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('OK'), $context));
 			  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), $context));
 		  } else { # All RDF resources
 			  my $parsertype = RDF::Trine::Parser->parser_by_media_type($prevresponse->content_type);
