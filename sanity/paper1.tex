@@ -330,7 +330,9 @@ recorded any statements containing the predicates \rdfterm{dct:date},
 For resource types other than ``vocabulary'', we look for SPARQL
 endpoints in the response, using the predicates \rdfterm{sd:endpoint}
 and \rdfterm{void:sparqlEndpoint}. We then do the same query as above
-and record the relevant headers.
+and record the relevant headers. Unfortunately, we found early that
+this only turns up misconfigured endpoints that point to localhost,
+and was removed from the spider for the final analysis.
 
 Finally, if the LOV SPARQL endpoint used a URI for the vocabulary that
 was different from the namespace URI (after a normalization step),
