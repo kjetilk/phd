@@ -293,55 +293,6 @@ foreach my $host (@hosts) {
 					  $parseerror = 1;
 				  };
 
-				  unless ($details->{type} eq 'vocabulary') {
-					  # Look for endpoints, if so, do as in endpoint
-					  foreach my $endpoint (@endpoints) {
-						  my $euri = URI->new($endpoint);
-						  unless ($data->{$euri->host}->{$endpoint}) {
-							  $uri = $endpoint . '?query=' . uri_escape('select reduced ?Concept where {[] a ?Concept} LIMIT 2');	  
-							  my $erequest = HTTP::Request->new(GET => $uri);
-							  $erequest->header( Accept => 'application/sparql-results+xml,application/sparql-results+json;q=0.9' );
-							  my $eresponse = $ua->request( $erequest );
-							  $model->add_statement(statement(iri($uri), iri('urn:app:whichrequest'), literal('eresponse'), $context));
-							  # Get the relevant headers
-							  my $ehhg = RDF::Generator::HTTP->new(message => $eresponse,
-																				whitelist => ['Age',
-																								  'Server',
-																								  'Cache-Control',
-																								  'Expires',
-																								  'Pragma',
-																								  'Warning',
-																								  'Content-Type',
-																								  'Last-Modified',
-																								  'ETag',
-																								  'X-Cache',
-																								  'Date',
-																								  'Surrogates',
-																								  'Client-Aborted',
-																								  'Client-Warning'
-																								 ],
-																				graph => iri($endpoint));
-							  $ehhg->generate($model);
-							  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $ehhg->request_subject, $context));
-							  if ($eresponse->is_success) {
-								  my $anyres = has_sparql_results($eresponse->decoded_content, $eresponse->content_type) ? "Has results" : "No results";
-								  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), iri($endpoint)));
-								  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('OK'), $context));
-
-								  # Add freshness triples
-								  if ($eresponse->freshness_lifetime(heuristic_expiry => 0)) {
-									  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:hard'), literal($eresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
-									  $promise = 'hard';
-								  } elsif ($eresponse->headers->last_modified) {
-									  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:heuristic'), literal($eresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
-									  $promise = 'heuristic';
-								  }
-
-							  }
-						  }
-					  }
-				  }
-
 				  if ($parseerror) {
 					  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('parseerror'), $context));
 				  } else {
