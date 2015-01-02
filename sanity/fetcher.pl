@@ -143,7 +143,7 @@ foreach my $host (@hosts) {
 
 	  my $request = HTTP::Request->new(GET => $uri);
 	  if ($details->{type} eq 'endpoint') {
-		  $uri .= '?query=' . uri_escape('select reduced ?Concept where {[] a ?Concept} LIMIT 2');
+		  $uri .= '?query=' . uri_escape('SELECT DISTINCT ?Concept WHERE {[] a ?Concept} LIMIT 2');
 		  $request->uri( $uri );
 		  $request->header( Accept => 'application/sparql-results+xml,application/sparql-results+json;q=0.9' );
 	  } else {
