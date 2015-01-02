@@ -265,6 +265,7 @@ foreach my $host (@hosts) {
 				  my $parser = $parsertype->new;
 				  # Then it is likely we get RDF
 				  my $size = 0;
+				  my $parseerror;
 
 				  try {
 					  no warnings;
@@ -288,6 +289,7 @@ foreach my $host (@hosts) {
 										  });
 				  } catch {
 					  $model->add_statement(statement(iri($uri), iri('urn:app:parseerror'), literal($_), $context));
+					  $parseerror = 1;
 				  };
 
 				  unless ($details->{type} eq 'vocabulary') {
@@ -327,10 +329,12 @@ foreach my $host (@hosts) {
 						  }
 					  }
 				  }
-				  if ($promise) {
-					  $model->add_statement(statement(iri($uri), iri('urn:app:promising'), literal($promise), $context));
+
+				  if ($parseerror) {
+					  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('parseerror'), $context));
+				  } else {
+					  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('OK'), $context));
 				  }
-				  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('OK'), $context));
 			  } else {
 				  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Invalid media type'), $context));
 			  }
@@ -362,6 +366,9 @@ foreach my $host (@hosts) {
 			  $ahhg->generate($model);
 			  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $ahhg->request_subject, $context));
 		  }
+	  }
+	  if ($promise) {
+		  $model->add_statement(statement(iri($uri), iri('urn:app:promising'), literal($promise), $context));
 	  }
 	  sleep 10 if ($uricount > 1);
   }
