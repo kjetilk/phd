@@ -210,10 +210,10 @@ foreach my $host (@hosts) {
 		  # Add freshness triples
 		  if ($prevresponse->freshness_lifetime(heuristic_expiry => 0)) {
 			  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:hard'), literal($prevresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
-			  $promise = 'hard';
+			  $promise .= ' hard';
 		  } elsif ($prevresponse->headers->last_modified) {
 			  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:heuristic'), literal($prevresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
-			  $promise = 'heuristic';
+			  $promise .= ' heuristic';
 		  }
 
 		  my $content = $prevresponse->decoded_content;
@@ -251,7 +251,7 @@ foreach my $host (@hosts) {
 				  # We should have gotten 304
 				  $model->add_statement(statement(iri($uri), iri('urn:app:conditional'), literal("Got all"), $context));
 			  } else {
-				  $promise = 'not-modified';
+				  $promise .= ' not-modified';
 			  }
 		  }
 		  my @endpoints;
@@ -283,7 +283,7 @@ foreach my $host (@hosts) {
 													$st->predicate->equal($dct->modified) ||
 													$st->predicate->equal($dct->valid)) {
 												  $model->add_statement(statement($st->subject, $st->predicate, $st->object, $context));
-												  $promise = 'predicate';
+												  $promise .= ' predicate';
 											  } elsif ($st->predicate->equal(iri('http://www.w3.org/ns/sparql-service-description#endpoint')) ||
 														  $st->predicate->equal(iri(('http://rdfs.org/ns/void#sparqlEndpoint')))) {
 												  push(@endpoints, $st->object->uri_value);
@@ -336,10 +336,10 @@ foreach my $host (@hosts) {
 				  # Add freshness triples
 				  if ($aresponse->freshness_lifetime(heuristic_expiry => 0)) {
 					  $model->add_statement(statement($alturi, iri('urn:app:freshtime:hard'), literal($aresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
-					  $promise = 'hard';
+					  $promise .= ' hard';
 				  } elsif ($aresponse->headers->last_modified) {
 					  $model->add_statement(statement($alturi, iri('urn:app:freshtime:heuristic'), literal($aresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
-					  $promise = 'heuristic';
+					  $promise .= ' heuristic';
 				  }
 			  } else {
 				  $model->add_statement(statement($alturi, iri('urn:app:status'), literal('Alternate failed'), $context));
