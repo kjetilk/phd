@@ -1,0 +1,21 @@
+PREFIX dct: <http://purl.org/dc/terms/> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> PREFIX httph: <http://www.w3.org/2007/ont/httph#> PREFIX http: <http://www.w3.org/2007/ont/http#>
+
+SELECT ?server ?promise ?hard
+WHERE { GRAPH ?g {
+  ?ir <urn:app:hasrequest> ?req ;
+      <urn:app:status> "OK" ; 
+      <urn:app:whichrequest> "firstresponse" .
+  FILTER NOT EXISTS { 
+    ?ir <urn:app:parseerror> ?err .
+  }
+  ?req http:hasResponse ?res .
+  ?res httph:server ?server .
+  OPTIONAL {
+    ?ir <urn:app:promising> ?promise .
+  }
+  OPTIONAL {
+    ?ir <urn:app:freshtime:hard> ?hard .
+    FILTER ( xsd:integer(?hard) > 0 ) 
+  }
+}
+} 
