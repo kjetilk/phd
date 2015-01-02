@@ -93,7 +93,7 @@ $prparse->finish;
 $prfetch->update(message => "Initializing UA");
 
 use Parallel::ForkManager;
-my $pm = Parallel::ForkManager->new(30);
+my $pm = Parallel::ForkManager->new(50);
 
 use LWP::UserAgent;
 use HTTP::Request;
@@ -326,6 +326,8 @@ foreach my $host (@hosts) {
 							  if ($eresponse->is_success) {
 								  my $anyres = has_sparql_results($eresponse->decoded_content, $eresponse->content_type) ? "Has results" : "No results";
 								  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), iri($endpoint)));
+								  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('OK'), $context));
+
 								  # Add freshness triples
 								  if ($eresponse->freshness_lifetime(heuristic_expiry => 0)) {
 									  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:hard'), literal($eresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
@@ -333,7 +335,7 @@ foreach my $host (@hosts) {
 								  } elsif ($eresponse->headers->last_modified) {
 									  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:heuristic'), literal($eresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
 									  $promise = 'heuristic';
-		  }
+								  }
 
 							  }
 						  }
@@ -354,7 +356,8 @@ foreach my $host (@hosts) {
 		  $model->add_statement(statement(iri($uri), iri('urn:app:status'), literal('Unsuccessful response'), $context));
 		  if ($details->{alternate}) {
 			  my $aresponse = $ua->get($details->{alternate}, Accept => $accept_header);
-			  $model->add_statement(statement(iri($uri), iri('urn:app:whichrequest'), literal('aresponse'), $context));
+			  my $alturi = iri($details->{alternate});
+			  $model->add_statement(statement($alturi, iri('urn:app:whichrequest'), literal('aresponse'), $context));
 			  # Get the relevant headers
 			  my $ahhg = RDF::Generator::HTTP->new(message => $aresponse,
 																whitelist => ['Age',
@@ -374,16 +377,21 @@ foreach my $host (@hosts) {
 																				 ],
 																graph => $context);
 			  $ahhg->generate($model);
-			  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $ahhg->request_subject, $context));
-			  # Add freshness triples
-			  if ($aresponse->freshness_lifetime(heuristic_expiry => 0)) {
-				  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:hard'), literal($aresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
-				  $promise = 'hard';
-			  } elsif ($aresponse->headers->last_modified) {
-				  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:heuristic'), literal($aresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
-				  $promise = 'heuristic';
-		  }
+			  $model->add_statement(statement($alturi, iri('urn:app:hasrequest'), $ahhg->request_subject, $context));
+			  if ($aresponse->is_success) {
+				  $model->add_statement(statement($alturi, iri('urn:app:status'), literal('OK'), $context));
 
+				  # Add freshness triples
+				  if ($aresponse->freshness_lifetime(heuristic_expiry => 0)) {
+					  $model->add_statement(statement($alturi, iri('urn:app:freshtime:hard'), literal($aresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
+					  $promise = 'hard';
+				  } elsif ($aresponse->headers->last_modified) {
+					  $model->add_statement(statement($alturi, iri('urn:app:freshtime:heuristic'), literal($aresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
+					  $promise = 'heuristic';
+				  }
+			  } else {
+				  $model->add_statement(statement($alturi, iri('urn:app:status'), literal('Alternate failed'), $context));
+			  }
 		  }
 	  }
 	  if ($promise) {
