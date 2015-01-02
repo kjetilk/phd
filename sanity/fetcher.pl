@@ -325,6 +325,15 @@ foreach my $host (@hosts) {
 							  if ($eresponse->is_success) {
 								  my $anyres = has_sparql_results($eresponse->decoded_content, $eresponse->content_type) ? "Has results" : "No results";
 								  $model->add_statement(statement(iri($uri), iri('urn:app:endpoint'), literal($anyres), iri($endpoint)));
+								  # Add freshness triples
+								  if ($eresponse->freshness_lifetime(heuristic_expiry => 0)) {
+									  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:hard'), literal($eresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
+									  $promise = 'hard';
+								  } elsif ($eresponse->headers->last_modified) {
+									  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:heuristic'), literal($eresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
+									  $promise = 'heuristic';
+		  }
+
 							  }
 						  }
 					  }
@@ -365,6 +374,15 @@ foreach my $host (@hosts) {
 																graph => $context);
 			  $ahhg->generate($model);
 			  $model->add_statement(statement(iri($uri), iri('urn:app:hasrequest'), $ahhg->request_subject, $context));
+			  # Add freshness triples
+			  if ($aresponse->freshness_lifetime(heuristic_expiry => 0)) {
+				  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:hard'), literal($aresponse->freshness_lifetime(heuristic_expiry => 0)), $context));
+				  $promise = 'hard';
+			  } elsif ($aresponse->headers->last_modified) {
+				  $model->add_statement(statement(iri($uri), iri('urn:app:freshtime:heuristic'), literal($aresponse->freshness_lifetime(h_min => 1, h_max => 31536001, h_default =>0)), $context));
+				  $promise = 'heuristic';
+		  }
+
 		  }
 	  }
 	  if ($promise) {
