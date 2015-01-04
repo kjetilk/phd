@@ -8,6 +8,7 @@
 \usepackage{appendix}
 
 \newcommand{\rdfterm}[1]{\texttt{#1}}
+\newcommand{\pvalue}{\textit{p}-value}
 \newcommand{\httph}[1]{\texttt{#1}}
 \newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
@@ -173,6 +174,59 @@ by a spider detailed in Appendix~\ref{app:fetcher}
 This results in an NQuads file per host, which is then loaded into a
 SPARQL Endpoint\todo{which} for analysis by using the statistics
 system R\todo{ref}.
+
+\section{Analytics}
+
+\subsection{Different server implementations}
+
+First, we investigated whether certain servers provided better support
+for caching than others. To do this, we formulated SPARQL queries to
+examine the \httph{Server} headers of successful responses, with
+optional clauses matching the standard-compliant computed freshness
+time (which is the ideal) as well as whether the response had other
+promising features that could assist caching, such as \httph{ETag}s,
+modification time, certain predicates, etc.
+
+For each unique \httph{Server} header, we found the ones where
+\emph{all} responses had a freshness time or a promising feature. For
+the former, this amounted to 22 servers, tabulated in~\todo{include
+  table}. 70 servers always responded with promising features. As we
+can see, apart from well-known Virtuoso and Callimachus servers, as
+well as the Perl modules RDF::LinkedData and RDF::Endpoint, which is
+partly developed by and runs on a server operated by this author, most
+headers tells very little about the RDF-specific parts of the
+underlying server implementation.
+
+For a more systematic approach, we wish to test the hypothesis that
+some servers are better configured to support caching than others. To
+test this hypothesis, we create two so-called \emph{contigency
+  tables}\todo{ref}. This formalism is suited to see if the
+distribution of  \httph{Server} headers are different for those implementations that
+offer caching headers from those that don't. Intuitively, we expect
+these distributions to be similar, ``long-tail'' distributions, i.e. a
+handful of servers are used by a large number of projects, and then it
+falls off rapidly, and so, some servers are used only by very
+few. Likewise, it is only to be expected that only a few projects have
+given caching enough attention, but that they account for the majority
+of the support. The question is if the presence of caching headers is
+merely a matter of proportion, or if there are some that have given it
+more attention, but still is in relatively little use.
+
+Using the statistics system R\todo{ref}, we use a statistical test,
+namely Pearson's $\chi^2$ test with simulated \pvalue (based on 10000
+replicates). The simulation is done using a Monte Carlo method to
+compensate for the fact that many servers will not expose caching
+headers at all.
+
+In both the cases of standard-compliant freshness time and for the
+other promising features, the test reports \pvalue = 0.0001. We can
+conclude that it is highly likely that some servers are better at
+exposing cache headers than others. Unfortunately, since most
+\httph{Server} headers only report generic values, little can be
+learnt about these implementations. We note, however, that DBPedia
+exposes standards-compliant freshness time of 604800 seconds (i.e. 1
+week) for both LOD and SPARQL endpoints. \todo{do this specifically
+  for SPARQLES endpoints?}
 
 \section{Recommendations}\todo{write}
 
