@@ -11,4 +11,5 @@ chisq.test(checkserver$results$server, respromisebin, simulate.p.value=T, B = 10
 
 checkservercount <- sparqlfile("check-server-count.rq")
 serverratio <- data.frame(name=checkservercount$results$server, promise=checkservercount$results$pc/checkservercount$results$sc, hard=checkservercount$results$hc/checkservercount$results$sc, pc=checkservercount$results$pc, hc=checkservercount$results$hc)
-xtable(serverratio[which(serverratio$hard == 1), ]$name)
+xtable(as.matrix(serverratio[which(serverratio$hard == 1), ]$name))
+
