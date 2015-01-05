@@ -217,7 +217,8 @@ Using the statistics system R\todo{ref}, we use a statistical test,
 namely Pearson's $\chi^2$ test with simulated \pvalue (based on 10000
 replicates). The simulation is done using a Monte Carlo method to
 compensate for the fact that many servers will not expose caching
-headers at all.
+headers at all, an issue that would otherwise violate the underlying
+assumptions of the test.
 
 In both the cases of standard-compliant freshness time and for the
 other promising features, the test reports \pvalue = 0.0001. We can
@@ -353,7 +354,7 @@ Agent to give details about problems with the download \\ \hline
 
 For endpoints, we made the following SPARQL query:
 \begin{verbatim}
-SELECT REDUCED ?Concept WHERE {[] a ?Concept} LIMIT 2
+SELECT DISTINCT ?Concept WHERE {[] a ?Concept} LIMIT 2
 \end{verbatim}
 which should be quite light, yet likely yield results.
 
@@ -380,7 +381,9 @@ previous result can be reused), then the server does most probably not
 support it.
 
 For endpoints, we examined the response message, to see if there are
-any results to our query, and recorded that if there are.
+any results to our query, and recorded that if there are. In addition
+to the endpoints registered in the SPARQLES survey, our process found
+18~endpoints that responded with results.
 
 For all others, we parsed the response, and recorded any errors if the
 parser concluded the content were invalid. We noted that the Dublin Core
