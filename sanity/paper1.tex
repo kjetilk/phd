@@ -177,6 +177,8 @@ system R\todo{ref}.
 
 \section{Analytics}
 
+A\todo{Do I need details on how to compute the freshness lifetime?}
+
 \subsection{Different server implementations}
 
 First, we investigated whether certain servers provided better support
@@ -267,6 +269,44 @@ learnt about these implementations. We note, however, that DBPedia
 exposes standards-compliant freshness time of 604800 seconds (i.e. 1
 week) for both LOD and SPARQL endpoints. \todo{do this specifically
   for SPARQLES endpoints?}
+
+\subsection{Distribution of freshness time}
+
+We next examine the freshness lifetime of the 2965 information
+resources that returned a successful response, either with SPARQL
+results or RDF data. 405 returned valid headers, but 114 did so to
+\emph{prohibit} caching of the response, and 3 contained conflicting
+headers, i.e. set an freshness lifetime, but also prohibited
+caching. Additionally, 269 resources had a \httph{Cache-Control}
+header to control other aspects of caching than lifetime, i.e. to say
+that only private caches may use the response, that the cache must be
+revalidated, or to prohibit caching.
+
+Caching may prohibited by setting a non-positive freshness
+lifetime. Common practice is to set the \httph{Expires} header to a
+date far back in time, which has also been done in large parts of the
+present dataset. For the following, we have set any non-positive
+lifetime to 0, as that is semantically equivalent. With that, we
+obtain the summary statistics in Table~\ref{tab:summaryhard}. In
+figure\todo{add figure}, we have included a histogram with the counts
+of the resources that had 0 lifetime, and then boxes of varying length.
+
+\begin{table}[ht]
+\begin{center}
+\caption{Summary statistics for standards-compliant freshness lifetime}\label{tab:summaryhard}
+\begin{tabular}{lr}
+Min.   &       0   \\ 
+1st Qu.&       0   \\ 
+Median &     600   \\ 
+Mean   &  583003   \\ 
+3rd Qu.&  172800   \\ 
+Max.   & 52702521   \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
 
 \section{Future work}
 
