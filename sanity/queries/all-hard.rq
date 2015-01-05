@@ -1,0 +1,6 @@
+SELECT ?g (xsd:integer(?hard) as ?fresh)
+WHERE { GRAPH ?g {
+  ?ir <urn:app:status> "OK" ; 
+      <urn:app:freshtime:hard> ?hard .
+}
+} 
