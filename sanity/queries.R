@@ -27,10 +27,22 @@ text(bphard, hardhist$counts, labels=hardhist$counts, pos=1)
 
 otherhard <- sparqlfile("other-hard.rq")
 
-lapply(unique(otherhard$results$type), function(type) {
+mybreaks <- timebuckets(otherhard$results$fresh)$points
+types <- unique(otherhard$results$type)
+
+allhists <- lapply(types, function(type) {
     times <- otherhard$results[which(otherhard$results$type == type),3]
     times[times <= 0] <- 0
-    myhist <- hist(times, breaks=timebuckets(times)$points, plot=F)
+    myhist <- hist(times, breaks=mybreaks, plot=F)
     myhist$xname <- type
     myhist
 })
+
+tmp <- NULL # It feels wrong to do this this way...
+tmpm <- sapply(allhists, function(thishist) {
+    tmp <- c(tmp, thishist$counts)
+})
+colnames(tmpm) <- types
+rownames(tmpm) <- timebuckets(otherhard$results$fresh)$names
+alltable <- as.table(tmpm)
+rm(tmp, tmpm)
