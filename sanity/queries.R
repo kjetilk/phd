@@ -18,9 +18,6 @@ timebuckets <- function(data) {
          names = c("Off","Seconds","Minutes","Hours","Days","Weeks","Months","Years"))
 }
 
-hardhist <- hist(fresh, breaks=timebuckets(fresh)$points, plot=F)
-
-
 lifetimetable <- function(filename) {
     data <- sparqlfile(filename)
     
