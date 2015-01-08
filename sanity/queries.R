@@ -50,3 +50,10 @@ bphard <- barplot(hardall, col="white", xlab="Standards-compliant freshness life
 text(bphard, hardall, labels=hardall, pos=1)
 
 mosaicplot(hardtable)
+
+heuristictable <- lifetimetable("other-heuristic.rq")
+heuristicall <- apply(heuristictable, 1, sum)
+bpheuristic <- barplot(heuristicall, col="white", xlab="Simple heuristic freshness lifetime", ylab="Frequency", main='')
+text(bpheuristic, heuristicall, labels=heuristicall, pos=1)
+
+mosaicplot(heuristictable)
