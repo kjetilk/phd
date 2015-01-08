@@ -345,6 +345,37 @@ We also note that prohibition of SPARQL results caching is rare,
 amongst the servers that expose caching headers, it is common
 that the result may be cached for some minutes.\todo{more to point out?}
 
+We next consider the simple heuristic freshness lifetime. This is
+implemented as suggested in RFC7234, section~4.2.2. This is based on a
+fraction of the time lapsed between the current time and the
+modification time given in the \httph{Last-Modified} header. This
+approach therefore still requires the Web server to be cooperative to
+be successful, but commonly, Web servers can track this, based e.g. on
+the file modification time of the underlying file system.
+
+We were able to compute a heuristic lifetime for 554 resources, a
+larger number than standards-compliant resources. In Figure\todo{add all
+  heuristics figure}, we see that the distribution of lifetimes are
+radically different from the case in Figure\todo{ref fig:allhard}. In
+this case, we may cache many resources for months. Only a handful of
+resources had changed in the last minutes. Since this is based
+on actual times since last modifications, this suggests that many
+resources should have had explicit cache headers with very long
+lifetimes. \todo{compare Jürgen and LD observatory}
+
+Moreover, by inspecting Figure\todo{add heuristic table figure}, we
+note that the difference between different types of resources is much
+smaller. This is confirmed by a $\chi^2$ test that yields \pvalue =
+0.02.
+
+We find that only one SPARQL Endpoint yields a heuristic lifetime, on
+closer inspection, we find this to be hosted by Dydra\todo{ref?}. We
+speculate that this is due to that few underlying DBMS systems help
+track modification times in a way that can be used on a SPARQL result
+basis.
+
+
+
 
 \section{Future work}
 
@@ -355,6 +386,7 @@ correctness of caching headers.
 
 \section{Recommendations}\todo{write}
 
+\todo{ref kasei on mtime}.
 
 \begin{appendices}
 
