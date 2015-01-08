@@ -24,3 +24,13 @@ fresh[fresh <= 0] <- 0
 hardhist <- hist(fresh, breaks=timebuckets(fresh)$points, plot=F)
 bphard <- barplot(hardhist$count, col="white", names.arg=timebuckets(fresh)$name, xlab="Standards-compliant freshness lifetime", ylab="Frequency", main='')
 text(bphard, hardhist$counts, labels=hardhist$counts, pos=1)
+
+otherhard <- sparqlfile("other-hard.rq")
+
+lapply(unique(otherhard$results$type), function(type) {
+    times <- otherhard$results[which(otherhard$results$type == type),3]
+    times[times <= 0] <- 0
+    myhist <- hist(times, breaks=timebuckets(times)$points, plot=F)
+    myhist$xname <- type
+    myhist
+})
