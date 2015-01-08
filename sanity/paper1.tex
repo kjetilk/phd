@@ -270,6 +270,17 @@ exposes standards-compliant freshness time of 604800 seconds (i.e. 1
 week) for both LOD and SPARQL endpoints. \todo{do this specifically
   for SPARQLES endpoints?}
 
+\subsection{Other caching headers}
+
+The two most important headers to control caching are \httph{Expires}
+and \httph{Cache-Control}. As shown in Table~\ref{tab:headers}, there
+are also others. We found \httph{Pragma} in 287 responses, but except
+for two hosts, where they were superflous, they were only used to
+prohibit caching. \httph{Surrogates} were not observed.
+
+
+
+
 \subsection{Distribution of freshness time}
 
 We next examine the freshness lifetime of the 2965 information
@@ -277,12 +288,14 @@ resources that returned a successful response, either with SPARQL
 results or RDF data. 405 returned valid headers, but 114 did so to
 \emph{prohibit} caching of the response, and 3 contained conflicting
 headers, i.e. set an freshness lifetime, but also prohibited
-caching. Additionally, 269 resources had a \httph{Cache-Control}
-header to control other aspects of caching than lifetime, i.e. to say
-that only private caches may use the response, that the cache must be
-revalidated, or to prohibit caching.
+caching. In most cases, \httph{Cache-Control} and \httph{Expires} both
+occured, but the former is more common than the latter in the cases
+where only one of them occur.  Additionally, 269 resources had a
+\httph{Cache-Control} header to control other aspects of caching than
+lifetime, i.e. to say that only private caches may use the response,
+that the cache must be revalidated, or to prohibit caching.
 
-Caching may prohibited by setting a non-positive freshness
+Caching may also be prohibited by setting a non-positive freshness
 lifetime. Common practice is to set the \httph{Expires} header to a
 date far back in time, which has also been done in large parts of the
 present dataset. For the following, we have set any non-positive
@@ -306,6 +319,31 @@ Max.   & 52702521   \\
 \end{center}
 \end{table}
 
+In Figure\todo{figure with over freshness}, there is a barplot where
+the freshness lifetime is grouped in bins, where the first bin are the
+cases where caching is explicitly prohibited. The next bins are for
+lifetimes, where the values are grouped if they are on the order of
+seconds, minutes, hours, etc, i.e. the second bin counts the lifetimes
+in the interval \[1,59\] seconds, etc. We see that in these
+categories, the most common is to prohibit caching. Nevertheless, many
+also declare a standards compliant freshness lifetime in minutes to
+days.
+
+In Figure\todo{figure with freshness breakdown}, we have broken this
+up by the type of resource that was accessed, i.e. SPARQL endpoints,
+vocabularies, dataset descriptions or unclassified information
+resources. First, we note that it seems like the distribution of
+freshness lifetime is quite different for the different types, an
+observation that is also supported by a similar hypothesis test as
+above, with a \pvalue = 0.00001. We also note that it is often
+prohibited to cache dataset descriptions. This is odd, since
+statistics about datasets is usually costly to compute and should be
+cached. The VoID specification\todo{ref} also notes that the
+statistics are considered estimates.
+
+We also note that prohibition of SPARQL results caching is rare,
+amongst the servers that expose caching headers, it is common
+that the result may be cached for some minutes.\todo{more to point out?}
 
 
 \section{Future work}
@@ -396,7 +434,7 @@ corresponding \httph{If-Modified-Since} and \httph{If-None-Match}
 headers for a conditional initial request.
 
 \begin{table}
-\caption{Recorded HTTP headers}
+\caption{Recorded HTTP headers}\label{tab:headers}
  \begin{tabular}{ | l |  p{3cm} | p{5cm} |}
     \hline
     Header & Reference & Description \\ \hline
@@ -481,7 +519,7 @@ and was removed from the spider for the final analysis.
 Finally, if the LOV SPARQL endpoint used a URI for the vocabulary that
 was different from the namespace URI (after a normalization step),
 another request would be made to record the selected HTTP headers from
-that as well.
+that as well.\todo{say how many requests failed? It was a lot}
 \end{appendices}
 
 \end{document}
