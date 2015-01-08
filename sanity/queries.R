@@ -18,31 +18,35 @@ timebuckets <- function(data) {
          names = c("Off","Seconds","Minutes","Hours","Days","Weeks","Months","Years"))
 }
 
-allhard <- sparqlfile("all-hard.rq")
-fresh <-  allhard$results$fresh
-fresh[fresh <= 0] <- 0
 hardhist <- hist(fresh, breaks=timebuckets(fresh)$points, plot=F)
-bphard <- barplot(hardhist$count, col="white", names.arg=timebuckets(fresh)$name, xlab="Standards-compliant freshness lifetime", ylab="Frequency", main='')
-text(bphard, hardhist$counts, labels=hardhist$counts, pos=1)
 
-otherhard <- sparqlfile("other-hard.rq")
 
-mybreaks <- timebuckets(otherhard$results$fresh)$points
-types <- unique(otherhard$results$type)
+lifetimetable <- function(filename) {
+    data <- sparqlfile(filename)
+    
+    mybreaks <- timebuckets(data$results$fresh)$points
+    types <- unique(data$results$type)
+    
+    allhists <- lapply(types, function(type) {
+        times <- data$results[which(data$results$type == type),3]
+        times[times <= 0] <- 0
+        myhist <- hist(times, breaks=mybreaks, plot=F)
+        myhist$xname <- type
+        myhist
+    })
+    
+    tmp <- NULL # It feels wrong to do this this way...
+    tmpm <- sapply(allhists, function(thishist) {
+        tmp <- c(tmp, thishist$counts)
+    })
+    colnames(tmpm) <- types
+    rownames(tmpm) <- timebuckets(data$results$fresh)$names
+    as.table(tmpm)
+}
 
-allhists <- lapply(types, function(type) {
-    times <- otherhard$results[which(otherhard$results$type == type),3]
-    times[times <= 0] <- 0
-    myhist <- hist(times, breaks=mybreaks, plot=F)
-    myhist$xname <- type
-    myhist
-})
+hardtable <- lifetimetable("other-hard.rq")
+hardall <- apply(hardtable, 1, sum)
+bphard <- barplot(hardall, col="white", xlab="Standards-compliant freshness lifetime", ylab="Frequency", main='')
+text(bphard, hardall, labels=hardall, pos=1)
 
-tmp <- NULL # It feels wrong to do this this way...
-tmpm <- sapply(allhists, function(thishist) {
-    tmp <- c(tmp, thishist$counts)
-})
-colnames(tmpm) <- types
-rownames(tmpm) <- timebuckets(otherhard$results$fresh)$names
-alltable <- as.table(tmpm)
-rm(tmp, tmpm)
+mosaicplot(hardtable)
