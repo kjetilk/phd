@@ -394,7 +394,13 @@ this case, we may cache many resources for months. Only a handful of
 resources had changed in the last minutes. Since this is based
 on actual times since last modifications, this suggests that many
 resources should have had explicit cache headers with very long
-lifetimes. \todo{compare Jürgen and LD observatory}
+lifetimes. This is supported by DyLDO\todo{ref}, which concludes that:
+\begin{quote}
+[...] We found that 62.2\% of documents didn’t change over the six
+months and found that 51.9\% of domains were considered static.
+\end{quote}
+This agrees well with that 60\% of the simple heuristic lifetimes are
+in the month range. 
 
 Moreover, by inspecting Figure\todo{add heuristic table figure}, we
 note that the difference between different types of resources is much
