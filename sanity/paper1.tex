@@ -169,7 +169,8 @@ Appendix~\ref{app:reduction}.
 The end result of this process is a list of 3117 unique hosts, for
 each several resources would be visited, some several times, as they
 may host SPARQL Endpoints, ontologies, or other information resources,
-by a spider detailed in Appendix~\ref{app:fetcher}
+by a spider detailed in Appendix~\ref{app:fetcher}, resulting in 7745
+requests.
 
 This results in an NQuads file per host, which is then loaded into a
 SPARQL Endpoint\todo{which} for analysis by using the statistics
@@ -283,9 +284,28 @@ prohibit caching. \httph{Surrogates} were not observed.
 
 \subsection{Distribution of freshness time}
 
-We next examine the freshness lifetime of the 2965 information
-resources that returned a successful response, either with SPARQL
-results or RDF data. 
+We obtained a successful response from a total 2965 information
+resources, either with SPARQL results or RDF data. A successful
+response is rather tightly defined, not only must there be a
+successful HTTP response after redirects are resolved, the response must also
+return a valid RDF media type (unless it is a SPARQL result) and the
+RDF must parse into an RDF model.
+
+Since web servers may be configured to instruct clients and proxies to
+cache errors differently from successfully served requests, we should
+first investigate whether we can simply use all cache headers in the
+analysis, or if we should remove unsuccessful responses to avoid
+introducing bias to the analysis of valid responses.
+
+For a visual inspection, we may use a quantile-quantile plot to plot
+the freshness lifetimes of successful responses versus requests that
+failed for some reason. If the distribution of both variables are the
+same, these points will draw a straight line. In Figure\todo{include
+  qqplot}, we see successful responses vs. the most common parse
+error, and it is clear that these are so different that no further
+formal analysis is necessary, we must filter unsuccessful requests in
+the following analysis.
+
 
 \subsubsection{Standards-compliant caching headers}
 
