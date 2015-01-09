@@ -44,14 +44,14 @@ lifetimetable <- function(filename) {
 hardtable <- lifetimetable("other-hard.rq")
 hardall <- apply(hardtable, 1, sum)
 bphard <- barplot(hardall, col="white", xlab="Standards-compliant freshness lifetime", ylab="Frequency", main='')
-text(bphard, hardall, labels=hardall, pos=1)
+text(bphard, hardall, labels=paste0(signif(hardall*100/sum(hardall),2),'%'), pos=1)
 
 mosaicplot(hardtable)
 
 heuristictable <- lifetimetable("other-heuristic.rq")
 heuristicall <- apply(heuristictable, 1, sum)
 bpheuristic <- barplot(heuristicall, col="white", xlab="Simple heuristic freshness lifetime", ylab="Frequency", main='')
-text(bpheuristic, heuristicall, labels=heuristicall, pos=1)
+text(bpheuristic, heuristicall, labels=paste0(signif(heuristicall*100/sum(heuristicall),2),'%'), pos=1)
 
 mosaicplot(heuristictable)
 
