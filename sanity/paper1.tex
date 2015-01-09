@@ -347,7 +347,8 @@ statistics are considered estimates.
 
 We also note that prohibition of SPARQL results caching is rare,
 amongst the servers that expose caching headers, it is common
-that the result may be cached for some minutes.\todo{more to point out?}
+that the result may be cached for some minutes.\todo{more to point
+  out?}
 
 \subsubsection{Simple heuristic freshness estimates}
 
@@ -423,6 +424,11 @@ could be useful in further analysis.
 \section{Future work}
 
 Identify implementations that expose suitable caching headers.
+
+Investigate whether curated collections such as LOV or SPARQLES
+contain resources that has different characteristics. Since the
+different sources we surveyed overlap, this cannot be done with
+Pearson's $\chi^2$ test, but requires more sophisticated statistics.
 
 Monitor the change frequency and use a contingency table to assess the
 correctness of caching headers.
