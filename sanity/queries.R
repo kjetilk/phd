@@ -54,3 +54,9 @@ bpheuristic <- barplot(heuristicall, col="white", xlab="Simple heuristic freshne
 text(bpheuristic, heuristicall, labels=heuristicall, pos=1)
 
 mosaicplot(heuristictable)
+
+harderrordata <- sparqlfile("failed-hard.rq")
+harderrordata$results$fresh[harderrordata$results$fresh <0] <- 0
+errorok <- harderrordata$results$fresh[which(harderrordata$results$status == "OK")]
+errorparse <- harderrordata$results$fresh[which(harderrordata$results$status == "parseerror")]
+qqplot(errorok,errorparse)
