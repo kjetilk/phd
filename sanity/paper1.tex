@@ -173,7 +173,7 @@ by a spider detailed in Appendix~\ref{app:fetcher}, resulting in 7745
 requests.
 
 This results in an NQuads file per host, which is then loaded into a
-SPARQL Endpoint\todo{which} for analysis by using the statistics
+Virtuoso-based SPARQL Endpoint for analysis by using the statistics
 system R\todo{ref}.
 
 \section{Analytics}
@@ -187,8 +187,8 @@ for caching than others. To do this, we formulated SPARQL queries to
 examine the \httph{Server} headers of successful responses, with
 optional clauses matching the standard-compliant computed freshness
 time (which is the ideal) as well as whether the response had other
-promising features that could assist caching, such as \httph{ETag}s,
-modification time, certain predicates, etc.
+promising features that could assist caching, modification time,
+certain predicates, etc.
 
 For each unique \httph{Server} header, we found the ones where
 \emph{all} responses had a freshness time or a promising feature. For
@@ -348,7 +348,7 @@ the freshness lifetime is grouped in bins, where the first bin are the
 cases where caching is explicitly prohibited. The next bins are for
 lifetimes, where the values are grouped if they are on the order of
 seconds, minutes, hours, etc, i.e. the second bin counts the lifetimes
-in the interval \[1,59\] seconds, etc. We see that in these
+in the interval [1,59] seconds, etc. We see that in these
 categories, the most common is to prohibit caching. Nevertheless, many
 also declare a standards compliant freshness lifetime in minutes to
 days.
