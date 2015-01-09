@@ -285,7 +285,11 @@ prohibit caching. \httph{Surrogates} were not observed.
 
 We next examine the freshness lifetime of the 2965 information
 resources that returned a successful response, either with SPARQL
-results or RDF data. 405 returned valid headers, but 114 did so to
+results or RDF data. 
+
+\subsubsection{Standards-compliant caching headers}
+
+Of these resources, 405 returned valid headers, but 114 did so to
 \emph{prohibit} caching of the response, and 3 contained conflicting
 headers, i.e. set an freshness lifetime, but also prohibited
 caching. In most cases, \httph{Cache-Control} and \httph{Expires} both
@@ -345,6 +349,8 @@ We also note that prohibition of SPARQL results caching is rare,
 amongst the servers that expose caching headers, it is common
 that the result may be cached for some minutes.\todo{more to point out?}
 
+\subsubsection{Simple heuristic freshness estimates}
+
 We next consider the simple heuristic freshness lifetime. This is
 implemented as suggested in RFC7234, section~4.2.2. This is based on a
 fraction of the time lapsed between the current time and the
@@ -374,7 +380,44 @@ speculate that this is due to that few underlying DBMS systems help
 track modification times in a way that can be used on a SPARQL result
 basis.
 
+\subsubsection{Heuristic freshness from Dublin Core properties}
 
+We noted that the Dublin Core Metadata terms vocabulary has a number
+of predicates that may become useful in determining heuristic
+freshness in the future, so we recorded any statements containing the
+predicates \rdfterm{dct:date}, \rdfterm{dct:accrualPeriodicity},
+\rdfterm{dct:created}, \rdfterm{dct:issued}, \rdfterm{dct:modified} or
+\rdfterm{dct:valid}.
+
+First, we compare dates given in \rdfterm{dct:modified} to dates given
+in \httph{Last-Modified} when both are available for a resource. They
+are often not the same, but it appears that dates in the former are
+further back in time than the latter. We speculate that this may be
+due to that the webserver tracks semantically insignificant changes
+through the filesystem, while authors of RDF only update timestamp
+when significant changes are made, or it may be that authors forget to
+update their timestamps.
+
+\rdfterm{dct:modified} occurs in 2687 triples, but 2487 of these does
+not have the Request-URI of the information resource as their subject,
+i.e. it gives the last modification time of some subgraph of the
+returned RDF. Nevertheless, given its prevalence, it is highly likely
+that the presence of \rdfterm{dct:modified} will be useful in
+determining a heuristic freshness lifetime, as the latest date may be
+used.\todo{Actually calculate lifetimes based on this and compare}
+
+\rdfterm{dct:valid} occurred 21 times, and could be used in lieu of an
+\httph{Expires} header, but none of these occurences had a date in the
+future.
+
+\rdfterm{dct:accrualPeriodicity} occurred only twice, and in neither
+case contained machine readable data.
+
+\rdfterm{dct:date}, \rdfterm{dct:created} and \rdfterm{dct:issued}
+were present in 36, 389 and 1475 triples respectively. They correspond
+roughly to the \httph{Date} header, which is present in all requests,
+and they are therefore not important, but given their prevalence they
+could be useful in further analysis.
 
 
 \section{Future work}
@@ -384,9 +427,13 @@ Identify implementations that expose suitable caching headers.
 Monitor the change frequency and use a contingency table to assess the
 correctness of caching headers.
 
+Further investigate the correctness of the \rdfterm{dct:modified} property.
+
 \section{Recommendations}\todo{write}
 
 \todo{ref kasei on mtime}.
+
+A change periodicity predicate should be standardized in Void.
 
 \begin{appendices}
 
@@ -538,12 +585,7 @@ to the endpoints registered in the SPARQLES survey, our process found
 18~endpoints that responded with results.
 
 For all others, we parsed the response, and recorded any errors if the
-parser concluded the content were invalid. We noted that the Dublin Core
-Metadata terms vocabulary has a number of predicates that may become
-useful in determining heuristic freshness in the future, so we
-recorded any statements containing the predicates \rdfterm{dct:date},
-\rdfterm{dct:accrualPeriodicity}, \rdfterm{dct:created},
-\rdfterm{dct:issued}, \rdfterm{dct:modified} or \rdfterm{dct:valid}.
+parser concluded the content were invalid.
 
 For resource types other than ``vocabulary'', we look for SPARQL
 endpoints in the response, using the predicates \rdfterm{sd:endpoint}
