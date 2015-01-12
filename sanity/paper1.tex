@@ -31,22 +31,22 @@ N-0316 Oslo, Norway \email{kjetil@kjernsmo.net}
 
 Caching has been given a prominent place in the foundational documents
 of the World Wide Web. Out of the 6 documents that make up the HTTP
-1.1 standard, RFC7234 \todo{ref} is entirely devoted to the topic, and
-RFC7232 defines conditional requests, which is also important when
-constructing caches. As the former notes:
+1.1 standard, RFC7234 \cite{rfc7234} is entirely devoted to the topic,
+and RFC7232 \cite{rfc7232} defines conditional requests, which is also
+important when constructing caches. As the former notes:
 \begin{quote} 
   The goal of caching in HTTP/1.1 is to significantly improve
   performance by reusing a prior response message to satisfy a current
   request.
 \end{quote}
-Furthermore, the Architecture of the World Wide Web \todo{ref}
-discusses caching throughout, and the definition of the
-Representational State Transfer (REST) architectural style \todo{ref}
-is partly motivated from the requirement to implement efficient
-caching. We also note that caching in the Internet infrastructure,
-through so-called Content Delivery Networks, is both a large business
-area and something that could provide great value to the Semantic Web
-community.
+Furthermore, the Architecture of the World Wide Web
+\cite{Jacobs:04:AWW} discusses caching throughout, and the definition
+of the Representational State Transfer (REST) architectural style
+\cite{Fielding_2000_Architectural-Styles} is partly motivated from the
+requirement to implement efficient caching. We also note that caching
+in the Internet infrastructure, through so-called Content Delivery
+Networks, is both a large business area and something that could
+provide great value to the Semantic Web community.
 
 In spite of this, we have not seen it in widespread use in the
 Semantic Web, and therefore we decided to conduct a survey to
@@ -89,13 +89,13 @@ changed less expensively than serving the entire response. These two
 approaches can be combined, as a client may ask if a response is fresh
 after it has expired.
 
-LDF\todo{ref} asserted that SPARQL query caching is only possible on a
-per-query basis, but future research should challenge this
-assumption. With this in mind, if reasoning is not involved, we note
-that ontologies are not relevant to query answering since they usually
-occur in bound terms. It is interesting to understand caching when
-this is not the case. Moreover, many ontologies are maintained by a
-small group of humans and change seldomly.
+In \cite{ldf1}, it was asserted that SPARQL query caching is only
+possible on a per-query basis, but future research should challenge
+this assumption. With this in mind, if reasoning is not involved, we
+note that ontologies are not relevant to query answering since they
+usually occur in bound terms. It is interesting to understand caching
+when this is not the case. Moreover, many ontologies are maintained by
+a small group of humans and change seldomly.\todo{not particularly clear}
 
 Key contributions of this paper are:\todo{write}
 
@@ -107,36 +107,33 @@ to what would happen within the server or between the server and a
 reverse proxy, which is opaque to the Internet, and therefore not of
 our concern.
 
-The \todo{ref dyldo} Dynamic Linked Data Observatory (DyLDO)
+The \cite{dyldo2} Dynamic Linked Data Observatory (DyLDO)
 performed, and continue to do so, of parts of the Linked Open Data
 Cloud to determine dynamicity characteristics of Linked Data. Caching
 is one of their motivations, but they have not published statistics on
 HTTP headers.
 
-LDF\todo{ref paper1} claims to take advantage of caching and contrasts
-this with the unavailability of SPARQL query caches, and claims this is
-an architectural problem.
+Linked Data Fragments \cite{ldf1} claims to take advantage of caching
+and contrasts this with the unavailability of SPARQL query caches, and
+claims this is an architectural problem.
 
 The implications of HTTP for query caches has been discussed by
-\todo{ref kasei}. In \todo{marin, Auer} the authors implemented a
+\cite{kaseicache}. In \cite{sparqlproxy} the authors implemented a
 reverse proxy that controlled the changes to the dataset, and
-therefore could 
+therefore could make sure the proxy had all the information needed to
+determine freshness. We are interested in the situation where the
+changes cannot be controlled.
 
-A general caching approach is given in \todo{Caching intermediate
-  result of sparql queries}. 
+A general caching approach is given in \cite{yang2011caching}.  In
+\cite{umbrich2012hybrid}, the term caching was used in a different
+sense than we do, they rather prefetch an entire dataset to a local
+store and based on heuristics tried to determine which parts of the
+query should be evaluated remotely and locally. \cite{lampo2011cache}
+explored when caching had a positive effect on complex SPARQL queries.
 
-\todo{fast vs. fresh} didn't consider caching in the sense we do, they
-rather prefetch an entire dataset to a local store and based on
-heuristics tried to determine which parts of the query should be
-evaluated remotely and locally.
-
-\todo{cache or not} explored when caching had a positive effect on
-complex SPARQL queries.
-
-In the broader Web literature, \todo{Revisiting Cacheability
-in Times of User Generated Content} analysed the value of caching
-based anonymized traces of actual Web usage at a major Internet
-Service Provider.
+In the broader Web literature, \cite{ager2010revisiting} analysed the
+value of caching based anonymized traces of actual Web usage at a
+major Internet Service Provider.
 
 \section{Methodology}
 
@@ -248,7 +245,7 @@ further detail.
 For a more systematic approach, we wish to test the hypothesis that
 some servers are better configured to support caching than others. To
 test this hypothesis, we create two so-called \emph{contigency
-  tables}\todo{ref}. This formalism is suited to see if the
+  tables}\cite{kn:bj}. This formalism is suited to see if the
 distribution of  \httph{Server} headers are different for those implementations that
 offer caching headers from those that don't. Intuitively, we expect
 these distributions to be similar, ``long-tail'' distributions, i.e. a
@@ -260,7 +257,7 @@ of the support. The question is if the presence of caching headers is
 merely a matter of proportion, or if there are some that have given it
 more attention, but still is in relatively little use.
 
-Using the statistics system R\todo{ref}, we use a statistical test,
+Using the statistics system R\cite{kn:r}, we use a statistical test,
 namely Pearson's $\chi^2$ test with simulated \pvalue (based on 10000
 replicates). The simulation is done using a Monte Carlo method to
 compensate for the fact that many servers will not expose caching
