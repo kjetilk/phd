@@ -373,7 +373,7 @@ amongst the servers that expose caching headers, it is common
 that the result may be cached for some minutes.\todo{more to point
   out?}
 
-\subsubsection{Simple heuristic freshness estimates}
+\subsubsection{Simple heuristic freshness estimates}\label{sec:simplefresh}
 
 We next consider the simple heuristic freshness lifetime. This is
 implemented as suggested in RFC7234, section~4.2.2. This is based on a
@@ -462,6 +462,30 @@ so in the \httph{Cache-Control} header, responses must be
 revalidated. In this case, RFC7232 defines the behaviour, with
 \httph{ETag} and \httph{Last-Modified} as the relevant response
 headers.
+
+The BTC had recorded these headers in their data, where 1733 had the
+\httph{ETag} header and 690 had \httph{Last-Modified} with a great
+overlap. For the resources where either or both were available, we
+made our initial request conditional, and 911 responses were verified
+as still fresh. 
+
+In total, 1260 successful initial responses contained
+an \httph{ETag}, 606 for vocabularies, 117 for datasets, just 12 for
+endpoints and 525 for unclassified information resources.
+
+To see if the server actually supported conditional requests, and not
+just merely set the response headers, we made another 1822 requests to
+the resources that had these headers. Then, we checked if the response
+code was 200, and the conditional headers had not changed since our
+initial requests. In 85 cases, conditional requests were not supported
+according to the standard, no cases for endpoints, 3 for datasets and
+23 for vocabularies, 59 for generic information resources.\todo{table instead?}
+
+
+We already used \httph{Last-Modified} to compute heuristic lifetime
+in Section~\ref{sec:simplefresh} for 554 resources.\todo{really needed?}
+
+
 
 \section{Future work}
 
