@@ -147,11 +147,11 @@ used to calculate heuristic freshness.
 However, as the community has both spidered the Web as well as
 recorded lists of relevant resources, we need not do that ourselves. 
 
-The SPARQLES survey\todo{ref} has recorded the availability of SPARQL
-endpoints registered in the datahub.io portal, and found that many of
-them have ceased to operate. We used their list of SPARQL endpoints as
-of 2014-11-17, and filtered out those deemed unresponsive by
-them. This resulted in a list of 312 endpoints.
+The SPARQLES survey\cite{buil2013sparql} has recorded the availability
+of SPARQL endpoints registered in the datahub.io portal, and found
+that many of them have ceased to operate. We used their list of SPARQL
+endpoints as of 2014-11-17, and filtered out those deemed unresponsive
+by them. This resulted in a list of 312 endpoints.
 
 To compile a list of Web ontologies, we first queried the Linked Open
 Vocabularies \todo{ref} SPARQL endpoint to retrieve all registered
@@ -162,7 +162,7 @@ profile has a registered URI, but it is unlikely to introduce
 significant bias.
 
 To examine as many different implementations and hosts as possible, we
-noted that the Billion Triple Challenge 2014\todo{ref} dataset
+noted that the Billion Triple Challenge 2014 \cite{btc-2014} dataset
 consisted of a 4~GTriple corpus of spidered Web data. To compile a
 list of interesting candidates to further examine, we performed a
 series of data reduction steps, manually inspecting the result between
@@ -177,7 +177,7 @@ requests.
 
 This results in an NQuads file per host, which is then loaded into a
 Virtuoso-based SPARQL Endpoint for analysis by using the statistics
-system R\todo{ref}.
+system R\cite{kn:r}.
 
 \section{Analytics}
 
@@ -362,7 +362,7 @@ observation that is also supported by a similar hypothesis test as
 above, with a \pvalue = 0.00001. We also note that it is often
 prohibited to cache dataset descriptions. This is odd, since
 statistics about datasets is usually costly to compute and should be
-cached. The VoID specification\todo{ref} also notes that the
+cached. The VoID specification \cite{voidnote} also notes that the
 statistics are considered estimates.
 
 We also note that prohibition of SPARQL results caching is rare,
@@ -388,7 +388,7 @@ this case, we may cache many resources for months. Only a handful of
 resources had changed in the last minutes. Since this is based
 on actual times since last modifications, this suggests that many
 resources should have had explicit cache headers with very long
-lifetimes. This is supported by DyLDO\todo{ref}, which concludes that:
+lifetimes. This is supported by DyLDO\cite{dyldo2}, which concludes that:
 \begin{quote}
 [...] We found that 62.2\% of documents didn’t change over the six
 months and found that 51.9\% of domains were considered static.
@@ -514,13 +514,21 @@ To allow generation and validation of \httph{Last-Modified} and
 to retrieve the modification time of any subgraph, than to retrieve
 the subgraph itself. This would be a great improvement for
 RFC7232-based caching, when revalidation is required. It would also
-help simple heuristic based caching.\todo{ref kasei on mtime}.
+help simple heuristic based caching. Research in that direction has
+been published in \cite{kaseicache}.
 
 A change periodicity predicate should be standardized in Void.
 
 All Web cache implementations we have studied have cached responses in
 the form of a key that identifies a serialized object. For short-term
 impact, future work should accept this as an architectural constraint.
+
+\bibliographystyle{plain}
+%\bibliographystyle{abbrv}
+%\bibliographystyle{jbact}
+%\bibliographystyle{splncs03}
+\bibliography{webarch,data,rfc,hypermedia,dynamicity}
+
 
 \begin{appendices}
 
@@ -626,7 +634,7 @@ has changed  \\ \hline
 \httph{X-Cache} &  & Inserted by some caches to indicate cache status \\ \hline
 \httph{Date} & RFC7231 & The time of the message. Used in conditional requests
 and heuristics \\ \hline
-\httph{Surrogates} & Edge Architecture Specification\todo{ref} & Draft
+\httph{Surrogates} & Edge Architecture Specification\cite{edgearch} & Draft
 to allow more fine-grained control for proxies. \\ \hline
 \httph{Client-Aborted} & libwww\todo{ref}  & Header inserted by User
 Agent to indicate that it aborted the download \\ \hline
@@ -686,5 +694,7 @@ was different from the namespace URI (after a normalization step),
 another request would be made to record the selected HTTP headers from
 that as well.\todo{say how many requests failed? It was a lot}
 \end{appendices}
+
+
 
 \end{document}
