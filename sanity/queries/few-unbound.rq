@@ -1,0 +1,13 @@
+PREFIX dct: <http://purl.org/dc/terms/> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> PREFIX httph: <http://www.w3.org/2007/ont/httph#> PREFIX http: <http://www.w3.org/2007/ont/http#>
+
+SELECT ?endpoint ?promise WHERE {
+GRAPH ?g {
+?endpoint dct:source ?source  ;
+          dct:type "endpoint" .
+  ?ir httph:etag ?etag
+OPTIONAL {
+    ?ir httph:expires ?promise .
+
+}
+}
+}

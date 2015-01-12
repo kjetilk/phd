@@ -1,0 +1,16 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX http: <http://www.w3.org/2007/ont/http#>
+PREFIX httph: <http://www.w3.org/2007/ont/httph#>
+
+SELECT ?type count(?type)
+WHERE { GRAPH ?g {
+  ?ir <urn:app:status> "OK" ; 
+      <urn:app:whichrequest>  "firstresponse" ;
+      <urn:app:promising> ?promise ;
+      <urn:app:hasrequest> ?req .
+  ?req http:hasResponse ?res .
+  ?res httph:etag ?etag .
+  ?g dct:type ?type .
+}
+} GROUP BY ?type

@@ -1,0 +1,20 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX http: <http://www.w3.org/2007/ont/http#>
+PREFIX httph: <http://www.w3.org/2007/ont/httph#>
+
+SELECT ?g ?type ?promise ?heuristic ?datamtime
+WHERE { GRAPH ?g {
+  ?ir <urn:app:status> "OK" ; 
+      dct:modified ?datamtime
+      <urn:app:promising> ?promise ;
+      <urn:app:hasrequest> ?req .
+      ?req http:hasResponse ?res .
+      ?res httph:last_modified ?headmtime .
+  ?g  dct:type ?type .
+  FILTER regex(str(?promise), "predicate")
+  FILTER regex(str(?promise), "heuristic")
+  FILTER regex(str(?promise), "not-modified")
+
+}
+} 
