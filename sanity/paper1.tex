@@ -285,9 +285,6 @@ are also others. We found \httph{Pragma} in 287 responses, but except
 for two hosts, where they were superflous, they were only used to
 prohibit caching. \httph{Surrogates} were not observed.
 
-
-
-
 \subsection{Distribution of freshness time}
 
 We obtained a successful response from a total 2965 information
@@ -452,6 +449,19 @@ roughly to the \httph{Date} header, which is present in all requests,
 and they are therefore not important, but given their prevalence they
 could be useful in further analysis.
 
+\subsection{Cache validation}
+
+Hitherto, we have considered the case where the client or proxy does
+not send a HTTP request to the server when a resource that is present
+in the cache is requested. This is desireable if the client can be
+sufficiently confident that the response is fresh, either by having a
+standards-compliant freshness lifetime or a heuristic to determine
+it. At the end of this period, or if the previous response had no
+lifetime, due to lack of information, or to that the server has stated
+so in the \httph{Cache-Control} header, responses must be
+revalidated. In this case, RFC7232 defines the behaviour, with
+\httph{ETag} and \httph{Last-Modified} as the relevant response
+headers.
 
 \section{Future work}
 
