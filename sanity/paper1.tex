@@ -663,11 +663,11 @@ which should be quite light, yet likely yield results.
 Then, the first request would be made, and a selection of the
 resulting HTTP headers recorded in an per-host NQuads file. For this
 purpose, we developed and released a module
-RDF::Generator::HTTP\todo{footnote} to the Comprehensive Perl Archive
-Network. We recorded whether the conditional request showed that the
-BTC data were still fresh, and if it was, we retrieved the current
-data, as we had not couple the headers to the body in our original
-retrieval.
+RDF::Generator::HTTP\footnote{https://metacpan.org/release/KJETILK/RDF-Generator-HTTP-0.003}
+to the Comprehensive Perl Archive Network. We recorded whether the
+conditional request showed that the BTC data were still fresh, and if
+it was, we retrieved the current data, as we had not couple the
+headers to the body in our original retrieval.
 
 Based on the resulting headers, we first let libwww calculate the
 freshness lifetime in seconds if it was possible, and recorded
