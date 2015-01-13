@@ -59,4 +59,8 @@ harderrordata <- sparqlfile("failed-hard.rq")
 harderrordata$results$fresh[harderrordata$results$fresh <0] <- 0
 errorok <- harderrordata$results$fresh[which(harderrordata$results$status == "OK")]
 errorparse <- harderrordata$results$fresh[which(harderrordata$results$status == "parseerror")]
-qqplot(errorok,errorparse)
+pdf(file="errorsqq.pdf", height=4,width=4)
+par(mai=c(1,1,0.2,0.05))
+qqplot(errorok,errorparse, xlab="Lifetime when no errors", ylab="Lifetime with parse errors")
+dev.off()
+

@@ -271,8 +271,7 @@ exposing cache headers than others. Unfortunately, since most
 \httph{Server} headers only report generic values, little can be
 learnt about these implementations. We note, however, that DBPedia
 exposes standards-compliant freshness time of 604800 seconds (i.e. 1
-week) for both LOD and SPARQL endpoints. \todo{do this specifically
-  for SPARQLES endpoints?}
+week) for both LOD and SPARQL endpoints.
 
 \subsection{Other caching headers}
 
@@ -300,11 +299,20 @@ introducing bias to the analysis of valid responses.
 For a visual inspection, we may use a quantile-quantile plot to plot
 the freshness lifetimes of successful responses versus requests that
 failed for some reason. If the distribution of both variables are the
-same, these points will draw a straight line. In Figure\todo{include
-  qqplot}, we see successful responses vs. the most common parse
-error, and it is clear that these are so different that no further
-formal analysis is necessary, we must filter unsuccessful requests in
-the following analysis.
+same, these points will lie on a straight line. In
+Figure~\ref{fig:errorsqq}, we see successful responses vs. the most
+common parse error, and it is clear that these are so different that
+no further formal analysis is necessary, we must filter unsuccessful
+requests in the following analysis.
+
+
+\begin{figure}[ht!]
+  \centerline{%
+    \includegraphics[width=.5\textwidth]{errorsqq.pdf}}
+  \caption{A quantile-quantile plot of freshness lifetimes for
+    standard compliant headers with and without errors.}
+  \label{fig:errorsqq}
+\end{figure}
 
 
 \subsubsection{Standards-compliant caching headers}
