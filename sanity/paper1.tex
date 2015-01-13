@@ -369,7 +369,7 @@ days.
 
 
 
-In Figure\todo{figure with freshness breakdown}, we have broken this
+In Figure~\ref{fig:hardtable}, we have broken this
 up by the type of resource that was accessed, i.e. SPARQL endpoints,
 vocabularies, dataset descriptions or unclassified information
 resources. First, we note that it seems like the distribution of
@@ -380,6 +380,16 @@ prohibited to cache dataset descriptions. This is odd, since
 statistics about datasets is usually costly to compute and should be
 cached. The VoID specification \cite{voidnote} also notes that the
 statistics are considered estimates.
+
+\begin{figure}[ht!]
+  \centerline{%
+    \includegraphics[width=.9\textwidth]{hardtable.pdf}}
+  \caption{Mosaic Plot. Divided by type of resource on the vertical
+    axis and by the same bins as in Figure~\ref{fig:hardall} on the
+    horizontal axis. }
+  \label{fig:hardtable}
+\end{figure}
+
 
 We also note that prohibition of SPARQL results caching is rare,
 amongst the servers that expose caching headers, it is common

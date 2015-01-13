@@ -43,13 +43,16 @@ lifetimetable <- function(filename) {
 
 hardtable <- lifetimetable("other-hard.rq")
 hardall <- apply(hardtable, 1, sum)
-pdf(file="hardall.pdf", height=5.3,width=8)
+pdf(file="hardall.pdf", height=5.2,width=8)
 par(mai=c(1,1,0.2,0.05))
 bphard <- barplot(hardall, col="white", xlab="Standards-compliant freshness lifetime", ylab="Frequency", main='')
 text(bphard, hardall, labels=paste0(signif(hardall*100/sum(hardall),2),'%'), pos=1)
 dev.off()
 
-mosaicplot(hardtable)
+pdf(file="hardtable.pdf", height=5.2,width=8)
+par(mai=c(0.6,0.6,0.05,0.05))
+mosaicplot(hardtable, main='', xlab="Standards-compliant freshness lifetime", ylab="Frequency of resource types")
+dev.off()
 
 heuristictable <- lifetimetable("other-heuristic.rq")
 heuristicall <- apply(heuristictable, 1, sum)
