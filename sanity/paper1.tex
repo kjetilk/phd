@@ -154,7 +154,7 @@ endpoints as of 2014-11-17, and filtered out those deemed unresponsive
 by them. This resulted in a list of 312 endpoints.
 
 To compile a list of Web ontologies, we first queried the Linked Open
-Vocabularies (LOV) \cite{doi:10.1108/LHT-03-2013-0027} SPARQL endpoint
+Vocabularies (LOV) \cite{lov2} SPARQL endpoint
 to retrieve all registered ontologies. Then, we took the full list of
 URIs registered with prefix.cc. The assumption that they all identify
 an ontology is clearly false, as we found that for example Tim
@@ -527,7 +527,7 @@ impact, future work should accept this as an architectural constraint.
 %\bibliographystyle{abbrv}
 %\bibliographystyle{jbact}
 %\bibliographystyle{splncs03}
-\bibliography{webarch,data,rfc,hypermedia,dynamicity,stat1,specs}
+\bibliography{webarch,data,rfc,hypermedia,dynamicity,stat1,specs,vocabs}
 
 
 \begin{subappendices}
@@ -546,18 +546,18 @@ to parse the line. Lines that failed to parse was discarded. We have
 not investigated whether this could introduce biases. Statements were
 then accepted into a new NQuad file if they had a predicate that
 matched the
-\rdfterm{sd:endpoint}\footnote{http://www.w3.org/TR/sparql11-service-description/#sd-endpoint}
+\rdfterm{sd:endpoint}\footnote{http://www.w3.org/TR/sparql11-service-description/\#sd-endpoint}
 or matched a case-insensitive regular expression \texttt{sparql} if
 the subject and objects were both resources, or the predicates
-\rdfterm{void:vocabulary}\footnote{http://www.w3.org/TR/void/#vocabularies},
-\rdfterm{rdfa:vocabulary}\footnote{http://www.w3.org/TR/rdfa-core/#term-prefix-definitions-vocabulary}
+\rdfterm{void:vocabulary}\footnote{http://www.w3.org/TR/void/\#vocabularies},
+\rdfterm{rdfa:vocabulary}\footnote{http://www.w3.org/TR/rdfa-core/\#term-prefix-definitions-vocabulary}
 or
-\rdfterm{api:vocabulary}\footnote{http://purl.org/linked-data/api/vocab#vocabulary},
+\rdfterm{api:vocabulary}\footnote{http://purl.org/linked-data/api/vocab\#vocabulary},
 as well as having an resource as object. Finally, statements with the
 the classes
-\rdfterm{cogs:Endpoint}\footnote{http://vocab.deri.ie/cogs#Endpoint},
+\rdfterm{cogs:Endpoint}\footnote{http://vocab.deri.ie/cogs\#Endpoint},
 \rdfterm{owl:Ontology} and
-\rdfterm{voaf:Vocabulary}\footnote{http://lov.okfn.org/vocab/voaf/v2.3/index.html#Vocabulary}
+\rdfterm{voaf:Vocabulary}\footnote{http://lov.okfn.org/vocab/voaf/v2.3/index.html\#Vocabulary}
 in the object position were also accepted. More classes and properties
 were considered, but not used in the data reduction if they did not
 occur in the original data.
