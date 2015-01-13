@@ -332,9 +332,7 @@ lifetime. Common practice is to set the \httph{Expires} header to a
 date far back in time, which has also been done in large parts of the
 present dataset. For the following, we have set any non-positive
 lifetime to 0, as that is semantically equivalent. With that, we
-obtain the summary statistics in Table~\ref{tab:summaryhard}. In
-figure\todo{add figure}, we have included a histogram with the counts
-of the resources that had 0 lifetime, and then boxes of varying length.
+obtain the summary statistics in Table~\ref{tab:summaryhard}. 
 
 \begin{table}[ht]
 \begin{center}
@@ -351,15 +349,25 @@ Max.   & 52702521   \\
 \end{center}
 \end{table}
 
-In Figure\todo{figure with over freshness}, there is a barplot where
-the freshness lifetime is grouped in bins, where the first bin are the
-cases where caching is explicitly prohibited. The next bins are for
-lifetimes, where the values are grouped if they are on the order of
-seconds, minutes, hours, etc, i.e. the second bin counts the lifetimes
-in the interval [1,59] seconds, etc. We see that in these
+In Figure~\ref{fig:hardall}, there is a barplot where
+the freshness lifetime is grouped in bins. We see that in these
 categories, the most common is to prohibit caching. Nevertheless, many
 also declare a standards compliant freshness lifetime in minutes to
 days.
+
+\begin{figure}[ht!]
+  \centerline{%
+    \includegraphics[width=.9\textwidth]{hardall.pdf}}
+  \caption{Barplot of all standard-compliant freshness lifetimes
+    found. The first bin are the cases where caching is explicitly
+    prohibited. The next bins are for lifetimes, where the values are
+    grouped if they are on the order of seconds, minutes, hours, etc,
+    i.e. the second bin counts the lifetimes in the interval [1,59]
+    seconds, etc.}
+  \label{fig:hardall}
+\end{figure}
+
+
 
 In Figure\todo{figure with freshness breakdown}, we have broken this
 up by the type of resource that was accessed, i.e. SPARQL endpoints,

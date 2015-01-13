@@ -43,8 +43,11 @@ lifetimetable <- function(filename) {
 
 hardtable <- lifetimetable("other-hard.rq")
 hardall <- apply(hardtable, 1, sum)
+pdf(file="hardall.pdf", height=5.3,width=8)
+par(mai=c(1,1,0.2,0.05))
 bphard <- barplot(hardall, col="white", xlab="Standards-compliant freshness lifetime", ylab="Frequency", main='')
 text(bphard, hardall, labels=paste0(signif(hardall*100/sum(hardall),2),'%'), pos=1)
+dev.off()
 
 mosaicplot(hardtable)
 
