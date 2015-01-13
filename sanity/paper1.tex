@@ -16,7 +16,7 @@
 \author{Kjetil Kjernsmo\inst{1}}
 \institute{Department of Informatics,
 Postboks 1080 Blindern,
-N-0316 Oslo, Norway \email{kjetil@kjernsmo.net}
+N-0316 Oslo, Norway \email{kjetil@kjernsmo.net}}
 
 \subtitle{---Unpublished Working Draft, do not circulate---}
 
@@ -527,10 +527,11 @@ impact, future work should accept this as an architectural constraint.
 %\bibliographystyle{abbrv}
 %\bibliographystyle{jbact}
 %\bibliographystyle{splncs03}
-\bibliography{webarch,data,rfc,hypermedia,dynamicity}
+\bibliography{webarch,data,rfc,hypermedia,dynamicity,stat1,specs}
 
 
-\begin{appendices}
+\begin{subappendices}
+\renewcommand{\thesection}{\Alph{section}}%
 
 \section{Implementation of data reduction}\label{app:reduction}
 
@@ -693,7 +694,7 @@ Finally, if the LOV SPARQL endpoint used a URI for the vocabulary that
 was different from the namespace URI (after a normalization step),
 another request would be made to record the selected HTTP headers from
 that as well.\todo{say how many requests failed? It was a lot}
-\end{appendices}
+\end{subappendices}
 
 
 
