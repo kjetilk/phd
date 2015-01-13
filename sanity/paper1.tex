@@ -355,7 +355,7 @@ categories, the most common is to prohibit caching. Nevertheless, many
 also declare a standards compliant freshness lifetime in minutes to
 days.
 
-\begin{figure}[ht!]
+\begin{figure}[ht]
   \centerline{%
     \includegraphics[width=.9\textwidth]{hardall.pdf}}
   \caption{Barplot of all standard-compliant freshness lifetimes
@@ -381,7 +381,7 @@ statistics about datasets is usually costly to compute and should be
 cached. The VoID specification \cite{voidnote} also notes that the
 statistics are considered estimates.
 
-\begin{figure}[ht!]
+\begin{figure}[ht]
   \centerline{%
     \includegraphics[width=.9\textwidth]{hardtable.pdf}}
   \caption{Mosaic Plot. Divided by type of resource on the vertical
@@ -406,15 +406,25 @@ approach therefore still requires the Web server to be cooperative to
 be successful, but commonly, Web servers can track this, based e.g. on
 the file modification time of the underlying file system.
 
+
+\begin{figure}[th!]
+  \centerline{%
+    \includegraphics[width=.9\textwidth]{heuristicall.pdf}}
+  \caption{Barplot of all simple heuristic freshness lifetimes
+    found. Bins as in Figure~\ref{fig:hardall}.}
+  \label{fig:heuristicall}
+\end{figure}
+
 We were able to compute a heuristic lifetime for 554 resources, a
-larger number than standards-compliant resources. In Figure\todo{add all
-  heuristics figure}, we see that the distribution of lifetimes are
-radically different from the case in Figure\todo{ref fig:allhard}. In
-this case, we may cache many resources for months. Only a handful of
-resources had changed in the last minutes. Since this is based
-on actual times since last modifications, this suggests that many
-resources should have had explicit cache headers with very long
-lifetimes. This is supported by DyLDO\cite{dyldo2}, which concludes that:
+larger number than standards-compliant resources. In
+Figure~\ref{fig:heuristicall}, we see that the distribution of
+lifetimes are radically different from the case in
+Figure~\ref{fig:hardall}. In this case, we may cache many resources
+for months. Only a handful of resources had changed in the last
+minutes. Since this is based on actual times since last modifications,
+this suggests that many resources should have had explicit cache
+headers with very long lifetimes. This is supported by
+DyLDO\cite{dyldo2}, which concludes that:
 \begin{quote}
 [...] We found that 62.2\% of documents didn’t change over the six
 months and found that 51.9\% of domains were considered static.
@@ -422,10 +432,20 @@ months and found that 51.9\% of domains were considered static.
 This agrees well with that 60\% of the simple heuristic lifetimes are
 in the month range. 
 
-Moreover, by inspecting Figure\todo{add heuristic table figure}, we
+Moreover, by inspecting Figure~\ref{fig:heuristictable}, we
 note that the difference between different types of resources is much
 smaller. This is confirmed by a $\chi^2$ test that yields \pvalue =
 0.02.
+
+\begin{figure}[hb!]
+  \centerline{%
+    \includegraphics[width=.9\textwidth]{heuristictable.pdf}}
+  \caption{Mosaic Plot. Divided by type of resource on the vertical
+    axis and by the same bins as in Figure~\ref{fig:hardall} on the
+    horizontal axis. }
+  \label{fig:heuristictable}
+\end{figure}
+
 
 We find that only one SPARQL Endpoint yields a heuristic lifetime, on
 closer inspection, we find this to be hosted by

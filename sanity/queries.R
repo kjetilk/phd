@@ -56,10 +56,16 @@ dev.off()
 
 heuristictable <- lifetimetable("other-heuristic.rq")
 heuristicall <- apply(heuristictable, 1, sum)
+pdf(file="heuristicall.pdf", height=5.2,width=8)
+par(mai=c(1,1,0.2,0.05))
 bpheuristic <- barplot(heuristicall, col="white", xlab="Simple heuristic freshness lifetime", ylab="Frequency", main='')
 text(bpheuristic, heuristicall, labels=paste0(signif(heuristicall*100/sum(heuristicall),2),'%'), pos=1)
+dev.off()
 
-mosaicplot(heuristictable)
+pdf(file="heuristictable.pdf", height=5.2,width=8)
+par(mai=c(0.6,0.6,0.05,0.05))
+mosaicplot(heuristictable, main='', xlab="Heuristic freshness lifetime", ylab="Frequency of resource types")
+dev.off()
 
 harderrordata <- sparqlfile("failed-hard.rq")
 harderrordata$results$fresh[harderrordata$results$fresh <0] <- 0
