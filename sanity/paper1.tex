@@ -402,10 +402,10 @@ smaller. This is confirmed by a $\chi^2$ test that yields \pvalue =
 0.02.
 
 We find that only one SPARQL Endpoint yields a heuristic lifetime, on
-closer inspection, we find this to be hosted by Dydra\todo{ref?}. We
-speculate that this is due to that few underlying DBMS systems help
-track modification times in a way that can be used on a SPARQL result
-basis.
+closer inspection, we find this to be hosted by
+Dydra\footnote{http://dydra.com/}. We speculate that this is due to
+that few underlying DBMS systems help track modification times in a
+way that can be used on a SPARQL result basis.
 
 \subsubsection{Heuristic freshness from Dublin Core properties}
 
@@ -540,20 +540,27 @@ NQuad files. Due to the presence of invalid RDF, we iterated through
 the NQuad files on a line-by-line basis. First, we matched each line
 against a regular expression were lines matching
 \texttt{ontology|endpoint|sparql|vocabular} passed the filter. Then,
-the Perl framework RDF::Trine\todo{footnote} was used to parse the
-line. Lines that failed to parse was discarded. We have not
-investigated whether this could introduce biases. Statements were then
-accepted into a new NQuad file if they had a predicate that matched
-the \rdfterm{sd:endpoint}\todo{footnote} or matched a case-insensitive
-regular expression \texttt{sparql} if the subject and objects were
-both resources, or the predicates \rdfterm{void:vocabulary},
-\rdfterm{rdfa:vocabulary} or \rdfterm{api:vocabulary} \todo{footnotes
-  for all}, as well as having an resource as object. Finally,
-statements with the the classes \rdfterm{cogs:Endpoint},
-\rdfterm{owl:Ontology} and \rdfterm{voaf:Vocabulary} \todo{footnotes
-  for all} in the object position were also accepted. More classes and
-properties were considered, but not used in the data reduction if they
-did not occur in the original data.
+the Perl framework
+RDF::Trine\footnote{https://metacpan.org/release/GWILLIAMS/RDF-Trine-1.011} was used
+to parse the line. Lines that failed to parse was discarded. We have
+not investigated whether this could introduce biases. Statements were
+then accepted into a new NQuad file if they had a predicate that
+matched the
+\rdfterm{sd:endpoint}\footnote{http://www.w3.org/TR/sparql11-service-description/#sd-endpoint}
+or matched a case-insensitive regular expression \texttt{sparql} if
+the subject and objects were both resources, or the predicates
+\rdfterm{void:vocabulary}\footnote{http://www.w3.org/TR/void/#vocabularies},
+\rdfterm{rdfa:vocabulary}\footnote{http://www.w3.org/TR/rdfa-core/#term-prefix-definitions-vocabulary}
+or
+\rdfterm{api:vocabulary}\footnote{http://purl.org/linked-data/api/vocab#vocabulary},
+as well as having an resource as object. Finally, statements with the
+the classes
+\rdfterm{cogs:Endpoint}\footnote{http://vocab.deri.ie/cogs#Endpoint},
+\rdfterm{owl:Ontology} and
+\rdfterm{voaf:Vocabulary}\footnote{http://lov.okfn.org/vocab/voaf/v2.3/index.html#Vocabulary}
+in the object position were also accepted. More classes and properties
+were considered, but not used in the data reduction if they did not
+occur in the original data.
 
 In the next step, we filtered out statements with URIs that were
 invalid or irrelevant, e.g. URIs that didn't have a scheme or where
@@ -637,9 +644,9 @@ has changed  \\ \hline
 and heuristics \\ \hline
 \httph{Surrogates} & Edge Architecture Specification\cite{edgearch} & Draft
 to allow more fine-grained control for proxies. \\ \hline
-\httph{Client-Aborted} & libwww\todo{ref}  & Header inserted by User
+\httph{Client-Aborted} & libwww\footnote{https://metacpan.org/release/GAAS/libwww-perl-6.04}  & Header inserted by User
 Agent to indicate that it aborted the download \\ \hline
-\httph{Client-Warning} & libwww\todo{ref}  & Header inserted by User
+\httph{Client-Warning} & libwww  & Header inserted by User
 Agent to give details about problems with the download \\ \hline
 
     \hline
