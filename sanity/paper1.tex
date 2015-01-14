@@ -141,9 +141,9 @@ some potential.
 While these studies have little overlap with the present paper, they
 underline the importance of understanding the current deployment and
 future potential. In some of the related work, it is shown that
-caching does not necessarily give tanglible benefits. Yet, we shall
-assume that sharing the metadata required for caching outside of the
-server is desireable, and that it is possible in most cases. We shall
+caching does not necessarily give tangible benefits. Yet, we shall
+assume that sharing the meta data required for caching outside of the
+server is desirable, and that it is possible in most cases. We shall
 see that it most likely will be beneficial in cases that do not
 benefit from caching today.
 
@@ -288,7 +288,7 @@ week) for both LOD and SPARQL endpoints.\todo{hall of fame?}
 The two most important headers to control caching are \httph{Expires}
 and \httph{Cache-Control}. As shown in Table~\ref{tab:headers}, there
 are also others. We found \httph{Pragma} in 287 responses, but except
-for two hosts, where they were superflous, they were only used to
+for two hosts, where they were superfluous, they were only used to
 prohibit caching. \httph{Surrogates} were not observed.
 
 \subsection{Distribution of freshness lifetime}
@@ -331,7 +331,7 @@ Of these resources, 405 returned valid headers, but 114 did so to
 \emph{prohibit} caching of the response, and 3 contained conflicting
 headers, i.e. set an freshness lifetime, but also prohibited
 caching. In most cases, \httph{Cache-Control} and \httph{Expires} both
-occured, but the former is more common than the latter in the cases
+occurred, but the former is more common than the latter in the cases
 where only one of them occur.  Additionally, 269 resources had a
 \httph{Cache-Control} header to control other aspects of caching than
 lifetime, i.e. to say that only private caches may use the response,
@@ -476,8 +476,8 @@ First, we compare dates given in \rdfterm{dct:modified} to dates given
 in \httph{Last-Modified} when both are available for a resource. They
 are often not the same, but it appears that dates in the former are
 further back in time than the latter. We speculate that this may be
-due to that the webserver tracks semantically insignificant changes
-through the filesystem, while authors of RDF only update timestamp
+due to that the web-server tracks semantically insignificant changes
+through the file system, while authors of RDF only update timestamp
 when significant changes are made, or it may be that authors forget to
 update their timestamps.
 
@@ -490,7 +490,7 @@ determining a heuristic freshness lifetime, as the latest date may be
 used.\todo{Actually calculate lifetimes based on this and compare}
 
 \rdfterm{dct:valid} occurred 21 times, and could be used in lieu of an
-\httph{Expires} header, but none of these occurences had a date in the
+\httph{Expires} header, but none of these occurrences had a date in the
 future.
 
 \rdfterm{dct:accrualPeriodicity} occurred only twice, and in neither
@@ -506,7 +506,7 @@ could be useful in further analysis.
 
 Hitherto, we have considered the case where the client or proxy does
 not send a HTTP request to the server when a resource that is present
-in the cache is requested. This is desireable if the client can be
+in the cache is requested. This is desirable if the client can be
 sufficiently confident that the response is fresh, either by having a
 standards-compliant freshness lifetime or a heuristic to determine
 it. At the end of this period, or if the previous response had no
@@ -538,9 +538,34 @@ according to the standard, no cases for endpoints, 3 for datasets and
 We already used \httph{Last-Modified} to compute heuristic lifetime
 in Section~\ref{sec:simplefresh} for 554 resources.\todo{really needed?}
 
+\section{Conclusions and outlook}
 
+We found that support for HTTP caching and conditional requests are
+occurring regularly in the Semantic Web, but they are not
+commonplace. We found, in agreement with DyLDO\cite{dyldo2}, that many
+resources change at a very slow pace, but also that this is not
+reflected in the standards-compliant freshness lifetimes advertized by
+servers.
 
-\section{Future work}
+We found that errors are commonplace, but that they does not usually
+pertain to the caching headers. We found a small number of
+self-contradictory \httph{Cache-Control} headers, and some servers
+that set conditional request response headers, that could not support
+conditional requests.
+
+It is possible in a substantial number of cases to compute a heuristic
+freshness lifetime, either from the \httph{Last-Modified} header, or
+from Dublin Core properties. 
+
+For SPARQL endpoints, we found that conditional requests are 
+seldomly supported, but standards-compliant freshness lifetimes have
+been seen, and since it is supported by DBPedia, benefits from caching
+may be realized already.
+
+In spite of this, most of the Semantic Web is unhelpful in spite of
+being slowly changing.
+
+\subsection{Future work}
 
 Identify implementations that expose suitable caching headers.
 
@@ -554,10 +579,10 @@ correctness of caching headers.
 
 Further investigate the correctness of the \rdfterm{dct:modified} property.
 
-\section{Recommendations}\todo{write}
+\subsection{Recommendations}\todo{write}
 
 Based on the results of DyLDO, it is highly likely that most cache
-prohibitions are misguided, and server administrators are adviced to
+prohibitions are misguided, and server administrators are advised to
 turn them off unless they are sure they are required.
 
 Data owners should seek to understand their change frequency, and
