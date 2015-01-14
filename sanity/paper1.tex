@@ -50,8 +50,8 @@ provide great value to the Semantic Web community.
 
 In spite of this, we have not seen it in widespread use in the
 Semantic Web, and therefore we decided to conduct a survey to
-investigate the actual compliance to RFC7234 and RFC7232. Our reasons
-to do this include\todo{formulate as contributions?}
+investigate the actual compliance to RFC7234 and RFC7232. 
+With this paper, we hope to achieve the following:
 \begin{enumerate}
 \item Understand the actual usage rather than rely on anecdotal
   conceptions.
@@ -77,17 +77,19 @@ implement a private cache for its user at the client side.
 Caching, as defined in RFC7234, requires that the server declares how
 long into the future it expects the information resource in the
 response to remain fresh, i.e. how long it is permissible to use
-it. Based on this, the client need not contact the server at all to
-reuse a cached response, but this requires a commitment from the
-content provider. The standard also gives the client an opportunity to
-heuristically determine a time to live. RFC7232, on the other hand,
-defines a protocol for asking the server if the cached response is
-still fresh using conditional requests. This doesn't burden the
-content provider with the task of estimating the time to live
-beforehand, but then, it must be able to answer if the resource has
-changed less expensively than serving the entire response. These two
-approaches can be combined, as a client may ask if a response is fresh
-after it has expired.
+it. Based on this, the client doesn't need to contact the server at
+all to reuse a cached response, but this requires a commitment from
+the content provider. The standard also gives the client an
+opportunity to heuristically determine a time to live. RFC7232, on the
+other hand, defines a protocol for asking the server if the cached
+response is still fresh using conditional requests. This doesn't
+burden the content provider with the task of estimating the time to
+live beforehand, but then, it must be able to answer if the resource
+has changed less expensively than serving the entire response. These
+two approaches can be combined, as a client may ask if a response is
+fresh after it has expired. A number of headers are relevant to the
+problem, we recorded those in Table~\ref{tab:headers} in
+Appendix~\ref{app:fetcher} but they were not all used in this analysis. 
 
 In \cite{ldf1}, it was asserted that SPARQL query caching is only
 possible on a per-query basis, but future research should challenge
@@ -97,8 +99,6 @@ usually occur in bound terms. It is interesting to understand caching
 when this is not the case. Moreover, many ontologies are maintained by
 a small group of humans and change seldomly.\todo{not particularly clear}
 
-Key contributions of this paper are:\todo{write}
-
 \section{Related work}
 
 We are not aware of any surveys of this type. Although the database
@@ -107,8 +107,8 @@ to what would happen within the server or between the server and a
 reverse proxy, which is opaque to the Internet, and therefore not of
 our concern.
 
-The \cite{dyldo2} Dynamic Linked Data Observatory (DyLDO)
-performed, and continue to do so, of parts of the Linked Open Data
+The \cite{dyldo2} Dynamic Linked Data Observatory (DyLDO) performed,
+and continue to do so, monitoring of parts of the Linked Open Data
 Cloud to determine dynamicity characteristics of Linked Data. Caching
 is one of their motivations, but they have not published statistics on
 HTTP headers.
@@ -129,11 +129,23 @@ A general caching approach is given in \cite{yang2011caching}.  In
 sense than we do, they rather prefetch an entire dataset to a local
 store and based on heuristics tried to determine which parts of the
 query should be evaluated remotely and locally. \cite{lampo2011cache}
-explored when caching had a positive effect on complex SPARQL queries.
+explored when caching had a positive effect on complex SPARQL
+queries.
 
 In the broader Web literature, \cite{ager2010revisiting} analysed the
 value of caching based anonymized traces of actual Web usage at a
-major Internet Service Provider.
+major Internet Service Provider. They find that while caching often
+yields little benefit when content is user-generated, they still find
+some potential.
+
+While these studies have little overlap with the present paper, they
+underline the importance of understanding the current deployment and
+future potential. In some of the related work, it is shown that
+caching does not necessarily give tanglible benefits. Yet, we shall
+assume that sharing the metadata required for caching outside of the
+server is desireable, and that it is possible in most cases. We shall
+see that it most likely will be beneficial in cases that do not
+benefit from caching today.
 
 \section{Methodology}
 
