@@ -567,17 +567,37 @@ being slowly changing.
 
 \subsection{Future work}
 
-Identify implementations that expose suitable caching headers.
+In this work, we have only explored the cases where the server is
+cooperative, in the sense that message data or metadata provides at
+least a hint of a resource's cacheability. We also noted that the
+majority of the Semantic Web is unhelpful. Therefore, an interesting
+direction is to learn the change frequency of resources to use in a
+heuristic freshness lifetime estimation. However, such work should
+operate within the loose constraints of RFC7234, Section~4.2.2, and
+should find it niche when the other techniques described in this paper
+are unavailable. Once this is done, the correctness of caching headers
+should be assessed, possibly using contingency tables.
 
 Investigate whether curated collections such as LOV or SPARQLES
 contain resources that has different characteristics. Since the
 different sources we surveyed overlap, this cannot be done with
 Pearson's $\chi^2$ test, but requires more sophisticated statistics.
 
-Monitor the change frequency and use a contingency table to assess the
-correctness of caching headers.
+We found that some implementations are likely better than others, but
+further understanding of these differences are impeded by the fact
+that most \httph{Server} headers contained very little
+information. Future work could seek more sophisticated fingerprinting
+and understanding of the nature of these differences.
 
-Further investigate the correctness of the \rdfterm{dct:modified} property.
+Further investigate the suitability of the \rdfterm{dct:modified}
+property for estimating heuristic freshness.
+
+For SPARQL Endpoints, it is interesting to examine the queries in a
+shared proxy, e.g. an institutional cache or a Content
+Delivery Network for frequent subpatterns, and prefetch and cache such
+intermediate results so that subsequent queries can be answered in
+part by the proxy.
+
 
 \subsection{Recommendations}\todo{write}
 
