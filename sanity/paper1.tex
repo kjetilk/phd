@@ -8,7 +8,7 @@
 \usepackage{appendix}
 
 \newcommand{\rdfterm}[1]{\texttt{#1}}
-\newcommand{\pvalue}{\textit{p}-value}
+\newcommand{\pvalue}{\textit{p}-value\ }
 \newcommand{\httph}[1]{\texttt{#1}}
 \newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
@@ -207,8 +207,8 @@ certain predicates, etc.
 
 For each unique \httph{Server} header, we found the ones where
 \emph{all} responses had a freshness time or a promising feature. For
-the former, this amounted to 22 servers, tabulated
-in~\ref{tab:servers}. 70 servers always responded with promising
+the former, this amounted to 22 servers, see 
+Table~\ref{tab:servers}. 70 servers always responded with promising
 features. As we can see, apart from well-known Virtuoso and
 Callimachus servers, as well as the Perl modules RDF::LinkedData and
 RDF::Endpoint, which is partly developed by and runs on a server
@@ -225,14 +225,12 @@ further detail.
 \begin{center}
 \begin{tabular}{rl}
   \hline
- & x \\ 
-  \hline
 1 & DFE/largefile \\ 
   2 & git\_frontend \\ 
   3 & nginx/1.3.9 \\ 
   4 & thin 1.6.0 codename Greek Yogurt \\ 
-  5 & Oracle-Application-Server-10g/10.1.3.4.0 Oracle-HTTP-Server OracleAS-Web-Cache-10g/10.1.2.3.1 (N;ecid=72058133508068653,0) \\ 
-  6 & Oracle-Application-Server-10g/10.1.3.4.0 Oracle-HTTP-Server OracleAS-Web-Cache-10g/10.1.2.3.1 (N;ecid=72057948824487974,0) \\ 
+  5 & Oracle-Application-Server-10g/10.1.3.4.0 Oracle-HTTP-Server [\ldots]\\
+  6 & Oracle-Application-Server-10g/10.1.3.4.0 Oracle-HTTP-Server [\ldots]\\
   7 & TwistedWeb/8.2.0 \\ 
   8 & RDF::Endpoint/0.07 \\ 
   9 & Jetty(6.1.26) \\ 
@@ -280,10 +278,10 @@ In both the cases of standard-compliant freshness time and for the
 other promising features, the test reports \pvalue = 0.0001. We can
 conclude that it is highly likely that some servers are better at
 exposing cache headers than others. Unfortunately, since most
-\httph{Server} headers only report generic values, little can be
+\httph{Server} headers only contain generic values, little can be
 learnt about these implementations. We note, however, that DBPedia
 exposes standards-compliant freshness time of 604800 seconds (i.e. 1
-week) for both LOD and SPARQL endpoints.
+week) for both LOD and SPARQL endpoints.\todo{hall of fame?}
 
 \subsection{Other caching headers}
 
@@ -293,14 +291,14 @@ are also others. We found \httph{Pragma} in 287 responses, but except
 for two hosts, where they were superflous, they were only used to
 prohibit caching. \httph{Surrogates} were not observed.
 
-\subsection{Distribution of freshness time}
+\subsection{Distribution of freshness lifetime}
 
 We obtained a successful response from a total 2965 information
 resources, either with SPARQL results or RDF data. A successful
-response is rather tightly defined, not only must there be a
-successful HTTP response after redirects are resolved, the response must also
-return a valid RDF media type (unless it is a SPARQL result) and the
-RDF must parse into an RDF model.
+response is rather strictly defined, not only must there be a
+successful HTTP response after redirects are resolved, the response
+must also return a valid RDF media type (unless it is a SPARQL result)
+and the response must parse into an RDF model.
 
 Since web servers may be configured to instruct clients and proxies to
 cache errors differently from successfully served requests, we should
@@ -411,7 +409,7 @@ that the result may be cached for some minutes.\todo{more to point
 \subsubsection{Simple heuristic freshness estimates}\label{sec:simplefresh}
 
 We next consider the simple heuristic freshness lifetime. This is
-implemented as suggested in RFC7234, section~4.2.2. This is based on a
+implemented as suggested in RFC7234, Section~4.2.2. This is based on a
 fraction of the time lapsed between the current time and the
 modification time given in the \httph{Last-Modified} header. This
 approach therefore still requires the Web server to be cooperative to
@@ -438,7 +436,7 @@ this suggests that many resources should have had explicit cache
 headers with very long lifetimes. This is supported by
 DyLDO\cite{dyldo2}, which concludes that:
 \begin{quote}
-[...] We found that 62.2\% of documents didn’t change over the six
+[\ldots] We found that 62.2\% of documents didn’t change over the six
 months and found that 51.9\% of domains were considered static.
 \end{quote}
 This agrees well with that 60\% of the simple heuristic lifetimes are
@@ -730,7 +728,7 @@ headers to the body in our original retrieval.
 Based on the resulting headers, we first let libwww calculate the
 freshness lifetime in seconds if it was possible, and recorded
 that. Then, we also let it calculate a \emph{heuristic} freshness
-time based on a suggestion in RFC7234, section~4.2.2, and recorded that.
+time based on a suggestion in RFC7234, Section~4.2.2, and recorded that.
 
 If the initial response had RFC7232 headers, we make another
 request to see if the server just included the headers but does not
