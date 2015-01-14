@@ -592,6 +592,12 @@ and understanding of the nature of these differences.
 Further investigate the suitability of the \rdfterm{dct:modified}
 property for estimating heuristic freshness.
 
+Estimating the freshness lifetime is a challenging problem for data
+owners. It must necessarily involve the human users involved in the
+publishing cycle since they are making a committment about future
+changes. Designing user support systems as well as interfaces that fit
+the publisher's workflow, is an important problem.
+
 For SPARQL Endpoints, it is interesting to examine the queries in a
 shared proxy, e.g. an institutional cache or a Content
 Delivery Network for frequent subpatterns, and prefetch and cache such
@@ -605,10 +611,9 @@ Based on the results of DyLDO, it is highly likely that most cache
 prohibitions are misguided, and server administrators are advised to
 turn them off unless they are sure they are required.
 
-Data owners should seek to understand their change frequency, and
-adjust cache headers accordingly. Framework authors should make it
-easy to set the expected lifetime, and manage changes to the
-publishing schedule.
+In many cases, setting a reasonable cache headers is straightforward,
+and should be done by data owners. Framework authors should make it
+easy to set the expected lifetime.
 
 To allow generation and validation of \httph{Last-Modified} and
 \httph{ETag} headers, DBMS authors should make sure it is much cheaper
