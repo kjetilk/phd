@@ -185,13 +185,13 @@ The end result of this process is a list of 3117 unique hosts, for
 each several resources would be visited, some several times, as they
 may host SPARQL Endpoints, ontologies, or other information resources,
 by a spider detailed in Appendix~\ref{app:fetcher}, resulting in 7745
-requests.
+requests, done on 2015-01-02.
 
 This results in an NQuads file per host, which is then loaded into a
 Virtuoso-based SPARQL Endpoint for analysis by using the statistics
 system R\cite{kn:r}.
 
-\section{Analytics}
+\section{Analysis}
 
 A\todo{Do I need details on how to compute the freshness lifetime?}
 
@@ -413,8 +413,8 @@ implemented as suggested in RFC7234, Section~4.2.2. This is based on a
 fraction of the time lapsed between the current time and the
 modification time given in the \httph{Last-Modified} header. This
 approach therefore still requires the Web server to be cooperative to
-be successful, but commonly, Web servers can track this, based e.g. on
-the file modification time of the underlying file system.
+be successful, but commonly, Web servers can track this, for example
+if RDF is served from a file system, the file modification time is used.
 
 
 \begin{figure}[th!]
@@ -570,7 +570,7 @@ To allow generation and validation of \httph{Last-Modified} and
 to retrieve the modification time of any subgraph, than to retrieve
 the subgraph itself. This would be a great improvement for
 RFC7232-based caching, when revalidation is required. It would also
-help simple heuristic based caching. Research in that direction has
+help simple heuristics based caching. Research in that direction has
 been published in \cite{kaseicache}.
 
 A change periodicity predicate should be standardized in Void.
