@@ -13,7 +13,7 @@
 \newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
 \title{A survey of HTTP caching options on the open Web}
-\author{Kjetil Kjernsmo\inst{1}}
+\author{Kjetil Kjernsmo}
 \institute{Department of Informatics,
 Postboks 1080 Blindern,
 N-0316 Oslo, Norway \email{kjetil@kjernsmo.net}}
@@ -113,9 +113,9 @@ Cloud to determine dynamicity characteristics of Linked Data. Caching
 is one of their motivations, but they have not published statistics on
 HTTP headers.
 
-Linked Data Fragments \cite{ldf1} claims to take advantage of caching
+Linked Data Fragments \cite{ldf1} is said to take advantage of caching
 and contrasts this with the unavailability of SPARQL query caches, and
-claims this is an architectural problem.
+it is claimed that this is an architectural problem.
 
 The implications of HTTP for query caches has been discussed by
 \cite{kaseicache}. In \cite{sparqlproxy} the authors implemented a
@@ -212,14 +212,14 @@ Table~\ref{tab:servers}. 70 servers always responded with promising
 features. As we can see, apart from well-known Virtuoso and
 Callimachus servers, as well as the Perl modules RDF::LinkedData and
 RDF::Endpoint, which is partly developed by and runs on a server
-operated by this author, most headers tells very little about the
+operated by this author, most headers tell very little about the
 RDF-specific parts of the underlying server implementation. A quick
 inspection of all \httph{Server} headers confirmed that few reveal any
 further detail.
 
 % latex table generated in R 2.15.1 by xtable 1.5-6 package
 % Mon Jan  5 11:27:35 2015
-\begin{table}[ht]
+\begin{table}[hb]
   \caption{\httph{Server} headers for hosts that enabled a freshness
     lifetime to be computed for all requests.}\label{tab:servers}
 \begin{center}
@@ -298,7 +298,11 @@ resources, either with SPARQL results or RDF data. A successful
 response is rather strictly defined, not only must there be a
 successful HTTP response after redirects are resolved, the response
 must also return a valid RDF media type (unless it is a SPARQL result)
-and the response must parse into an RDF model.
+and the response must parse into an RDF model. We have given priority
+to survey many hosts since configuration usually doesn't differ much
+across a host, especially since it also captures different types of
+resources. It is therefore acceptable that the number of resources is
+relatively small.
 
 Since web servers may be configured to instruct clients and proxies to
 cache errors differently from successfully served requests, we should
@@ -576,7 +580,7 @@ heuristic freshness lifetime estimation. However, such work should
 operate within the loose constraints of RFC7234, Section~4.2.2, and
 should find it niche when the other techniques described in this paper
 are unavailable. Once this is done, the correctness of caching headers
-should be assessed, possibly using contingency tables.
+should be assessed, possibly using contigency tables.
 
 Investigate whether curated collections such as LOV or SPARQLES
 contain resources that has different characteristics. Since the
