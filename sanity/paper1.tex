@@ -105,14 +105,6 @@ fresh after it has expired. A number of headers are relevant to the
 problem, we recorded those in Table~\ref{tab:headers} in
 Appendix~\ref{app:fetcher} but they were not all used in this analysis. 
 
-In \cite{ldf1}, it was asserted that SPARQL query caching is only
-possible on a per-query basis, but future research should challenge
-this assumption. With this in mind, if reasoning is not involved, we
-note that ontologies are not relevant to query answering since they
-usually occur in bound terms. It is interesting to understand caching
-when this is not the case. Moreover, many ontologies are maintained by
-a small group of humans and change seldomly.\todo{not particularly clear}
-
 \section{Related work}
 
 We are not aware of any surveys of this type. Although the database
@@ -359,23 +351,7 @@ Caching may also be prohibited by setting a non-positive freshness
 lifetime. Common practice is to set the \httph{Expires} header to a
 date far back in time, which has also been done in large parts of the
 present dataset. For the following, we have set any non-positive
-lifetime to 0, as that is semantically equivalent. With that, we
-obtain the summary statistics in Table~\ref{tab:summaryhard}. 
-
-\begin{table}[ht]
-\begin{center}
-\caption{Summary statistics for standards-compliant freshness lifetime}\label{tab:summaryhard}
-\begin{tabular}{lr}
-Min.   &       0   \\ 
-1st Qu.&       0   \\ 
-Median &     600   \\ 
-Mean   &  583003   \\ 
-3rd Qu.&  172800   \\ 
-Max.   & 52702521   \\ 
-   \hline
-\end{tabular}
-\end{center}
-\end{table}
+lifetime to 0, as that is semantically equivalent.
 
 In Figure~\ref{fig:hardall}, there is a barplot where
 the freshness lifetime is grouped in bins. We see that in these
@@ -751,7 +727,7 @@ headers for a conditional initial request.
 
 \begin{table}
 \caption{Recorded HTTP headers}\label{tab:headers}
- \begin{tabular}{ | l |  p{2.3cm} | p{6.8cm} |}
+ \begin{tabular}{ | l |  p{1.4cm} | p{6.8cm} |}
     \hline
     Header & Reference & Description \\ \hline
 \httph{Age} & RFC7234 & When obtaining response from a cache, the number of
