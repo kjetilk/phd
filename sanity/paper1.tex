@@ -12,7 +12,7 @@
 \newcommand{\httph}[1]{\texttt{#1}}
 \newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
-\title{A survey of HTTP caching options on the open Web}
+\title{A survey of HTTP caching options on the open Semantic Web}
 \author{Kjetil Kjernsmo}
 \institute{Department of Informatics,
 Postboks 1080 Blindern,
@@ -25,12 +25,20 @@ N-0316 Oslo, Norway \email{kjetil@kjernsmo.net}}
 \maketitle
 
 \begin{abstract}
-We have surveyed RDF resources on the Semantic Web for the use of HTTP
-cache and conditional request headers. We find that while they are
-prevalent enough to be used in some cases, they are not commonly used
-even on relatively static data, and when they are given, they are very
-conservatively set. We point out future directions and give
-recommendations for the enhanced use of caching in the Semantic Web.
+Scalability of the data access architecture in the Semantic Web is
+dependent on the establishment of caching mechanisms to take the load
+off of servers.  Unfortunately, there is a chicken and egg problem
+here: research, implementation, and evaluation of caching
+infrastructure is uninteresting as long as data providers do not
+publish relevant metadata.  And publishing metadata is useless as long
+as there is no infrastructure that uses it.
+
+We show by means of a survey of live RDF data sources that caching
+metadata is prevalent enough already to be used in some cases.  On the
+other hand, they are not commonly used even on relatively static data,
+and when they are given, they are very conservatively set. We point
+out future directions and give recommendations for the enhanced use of
+caching in the Semantic Web.
 \end{abstract}
 
 \section{Introduction}
