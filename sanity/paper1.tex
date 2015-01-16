@@ -60,7 +60,7 @@ of the Representational State Transfer (REST) architectural style
 requirement to implement efficient caching. We also note that caching
 in the Internet infrastructure, through so-called Content Delivery
 Networks, is both a large business area and something that could
-provide great value to the Semantic Web community.
+provide great value to the Semantic Web.
 
 In spite of this, we have not seen it in widespread use in the
 Semantic Web, and therefore we decided to conduct a survey to
@@ -75,11 +75,11 @@ With this paper, we hope to achieve the following:
 \end{enumerate}
 
 We note that caching is not only useful for long-living information
-resources, even though that may be the most important. If a resource
+resources, even though that may be the most important use. If a resource
 is frequently requested, it may make sense to cache it even though it
 may be fresh for only a very short period.
 
-Caching may be deployed at several different levels: A HTTP cache may
+Caching may be deployed at several different levels: An HTTP cache may
 be in a reverse proxy close to the server, in which case it may have
 much in common with a conventional database cache. It may also be
 anywhere between a server and a client, in which case it may be
@@ -114,14 +114,14 @@ reverse proxy, which is opaque to the Internet, and therefore not of
 our concern.
 
 The \cite{dyldo2} Dynamic Linked Data Observatory (DyLDO) performed,
-and continue to do so, monitoring of parts of the Linked Open Data
+and continues to do so, monitoring of parts of the Linked Open Data
 Cloud to determine dynamicity characteristics of Linked Data. Caching
 is one of their motivations, but they have not published statistics on
 HTTP headers.
 
-Linked Data Fragments \cite{ldf1} is said to take advantage of caching
-and contrasts this with the unavailability of SPARQL query caches, and
-it is claimed that this is an architectural problem.
+Linked Data Fragments is claimed in \cite{ldf1} to take advantage of
+caching and contrasts this with the unavailability of SPARQL query
+caches, and it is claimed that this is an architectural problem.
 
 The implications of HTTP for query caches has been discussed by
 \cite{kaseicache}. In \cite{sparqlproxy} the authors implemented a
@@ -132,7 +132,7 @@ changes cannot be controlled.
 
 A general caching approach is given in \cite{yang2011caching}.  In
 \cite{umbrich2012hybrid}, the term caching was used in a different
-sense than we do, they rather prefetch an entire dataset to a local
+sense than we do, they rather prefetched an entire dataset to a local
 store and based on heuristics tried to determine which parts of the
 query should be evaluated remotely and locally. \cite{lampo2011cache}
 explored when caching had a positive effect on complex SPARQL
@@ -203,7 +203,7 @@ A\todo{Do I need details on how to compute the freshness lifetime?}
 
 \subsection{Different server implementations}
 
-First, we investigated whether certain servers provided better support
+First, we investigated whether certain server implementations provided better support
 for caching than others. To do this, we formulated SPARQL queries to
 examine the \httph{Server} headers of successful responses, with
 optional clauses matching the standard-compliant computed freshness
@@ -267,7 +267,7 @@ offer caching headers from those that don't. Intuitively, we expect
 these distributions to be similar, ``long-tail'' distributions, i.e. a
 handful of servers are used by a large number of projects, and then it
 falls off rapidly, and so, some servers are used only by very
-few. Likewise, it is only to be expected that only a few projects have
+few. Likewise, it is to be expected that only a few projects have
 given caching enough attention, but that they account for the majority
 of the support. The question is if the presence of caching headers is
 merely a matter of proportion, or if there are some that have given it
@@ -534,10 +534,9 @@ in Section~\ref{sec:simplefresh} for 554 resources.\todo{really needed?}
 
 \section{Conclusions and outlook}
 
-We found that support for HTTP caching and conditional requests are
-occurring regularly in the Semantic Web, but they are not
-commonplace. We found, in agreement with DyLDO\cite{dyldo2}, that many
-resources change at a very slow pace, but also that this is not
+We found moderate uptake for HTTP caching and conditional requests in
+the Semantic Web. We found, in agreement with DyLDO\cite{dyldo2}, that
+many resources change at a very slow pace, but also that this is not
 reflected in the standards-compliant freshness lifetimes advertized by
 servers.
 
@@ -659,7 +658,7 @@ the subject and objects were both resources, or the predicates
 \rdfterm{rdfa:vocabulary}\footnote{http://www.w3.org/TR/rdfa-core/\#term-prefix-definitions-vocabulary}
 or
 \rdfterm{api:vocabulary}\footnote{http://purl.org/linked-data/api/vocab\#vocabulary},
-as well as having an resource as object. Finally, statements with the
+as well as having a resource as object. Finally, statements with the
 the classes
 \rdfterm{cogs:Endpoint}\footnote{http://vocab.deri.ie/cogs\#Endpoint},
 \rdfterm{owl:Ontology} and
