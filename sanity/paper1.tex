@@ -103,7 +103,10 @@ has changed less expensively than serving the entire response. These
 two approaches can be combined, as a client may ask if a response is
 fresh after it has expired. A number of headers are relevant to the
 problem, we recorded those in Table~\ref{tab:headers} in
-Appendix~\ref{app:fetcher} but they were not all used in this analysis. 
+Appendix~\ref{app:fetcher} but they were not all used in this
+analysis.\todo{Structured walkthrough}
+
+
 
 \section{Related work}
 
@@ -199,8 +202,6 @@ system R\cite{kn:r}.
 
 \section{Analysis}
 
-A\todo{Do I need details on how to compute the freshness lifetime?}
-
 \subsection{Different server implementations}
 
 First, we investigated whether certain server implementations provided better support
@@ -258,7 +259,7 @@ further detail.
 \end{center}
 \end{table}
 
-For a more systematic approach, we wish to test the hypothesis that
+For a more systematic approach\todo{Move most to appendix}, we wish to test the hypothesis that
 some servers are better configured to support caching than others. To
 test this hypothesis, we create two so-called \emph{contigency
   tables} (see e.g. \cite{kn:bj}). This formalism is suited to see if the
@@ -311,10 +312,11 @@ resources. It is therefore acceptable that the number of resources is
 relatively small.
 
 Since web servers may be configured to instruct clients and proxies to
-cache errors differently from successfully served requests, we should
-first investigate whether we can simply use all cache headers in the
-analysis, or if we should remove unsuccessful responses to avoid
-introducing bias to the analysis of valid responses.
+cache errors differently\todo{cut most to just state stuff} from
+successfully served requests, we should first investigate whether we
+can simply use all cache headers in the analysis, or if we should
+remove unsuccessful responses to avoid introducing bias to the
+analysis of valid responses.
 
 For a visual inspection, we may use a quantile-quantile plot to plot
 the freshness lifetimes of successful responses versus requests that
@@ -373,7 +375,7 @@ days.
 
 
 
-In Figure~\ref{fig:hardtable}, we have broken this
+In Figure~\ref{fig:hardtable}\todo{look for others or explain, colors}, we have broken this
 up by the type of resource that was accessed, i.e. SPARQL endpoints,
 vocabularies, dataset descriptions or unclassified information
 resources. First, we note that it seems like the distribution of
