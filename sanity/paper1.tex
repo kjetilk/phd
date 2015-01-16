@@ -751,7 +751,7 @@ headers for a conditional initial request.
 
 \begin{table}
 \caption{Recorded HTTP headers}\label{tab:headers}
- \begin{tabular}{ | l |  p{3cm} | p{5cm} |}
+ \begin{tabular}{ | l |  p{2.3cm} | p{6.8cm} |}
     \hline
     Header & Reference & Description \\ \hline
 \httph{Age} & RFC7234 & When obtaining response from a cache, the number of
@@ -772,8 +772,8 @@ has changed  \\ \hline
 \httph{X-Cache} &  & Inserted by some caches to indicate cache status \\ \hline
 \httph{Date} & RFC7231 & The time of the message. Used in conditional requests
 and heuristics \\ \hline
-\httph{Surrogates} & Edge Architecture Specification\cite{edgearch} & Draft
-to allow more fine-grained control for proxies. \\ \hline
+\httph{Surrogates} & Edge \cite{edgearch} & Draft
+to allow fine-grained control for proxies. \\ \hline
 \httph{Client-Aborted} & libwww\footnote{https://metacpan.org/release/GAAS/libwww-perl-6.04}  & Header inserted by User
 Agent to indicate that it aborted the download \\ \hline
 \httph{Client-Warning} & libwww  & Header inserted by User
