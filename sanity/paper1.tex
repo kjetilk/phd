@@ -60,7 +60,7 @@ of the Representational State Transfer (REST) architectural style
 requirement to implement efficient caching. We also note that caching
 in the Internet infrastructure, through so-called Content Delivery
 Networks, is both a large business area and something that could
-provide great value to the Semantic Web.
+provide great value to the Semantic Web.\todo{pitch it}
 
 In spite of this, we have not seen it in widespread use in the
 Semantic Web, and therefore we decided to conduct a survey to
@@ -104,7 +104,7 @@ two approaches can be combined, as a client may ask if a response is
 fresh after it has expired. A number of headers are relevant to the
 problem, we recorded those in Table~\ref{tab:headers} in
 Appendix~\ref{app:fetcher} but they were not all used in this
-analysis.\todo{Structured walkthrough}
+analysis.\todo{Structured walkthrough}\todo{Impact}
 
 
 
@@ -133,13 +133,13 @@ therefore could make sure the proxy had all the information needed to
 determine freshness. We are interested in the situation where the
 changes cannot be controlled.
 
-A general caching approach is given in \cite{yang2011caching}.  In
+A general caching approach is given in \cite{yang2011caching}\todo{explain} . In
 \cite{umbrich2012hybrid}, the term caching was used in a different
 sense than we do, they rather prefetched an entire dataset to a local
 store and based on heuristics tried to determine which parts of the
 query should be evaluated remotely and locally. \cite{lampo2011cache}
 explored when caching had a positive effect on complex SPARQL
-queries.
+queries\todo{explain} .
 
 In the broader Web literature, \cite{ager2010revisiting} analysed the
 value of caching based anonymized traces of actual Web usage at a
@@ -157,7 +157,7 @@ see that it most likely will be beneficial in cases that do not
 benefit from caching today.
 
 \section{Methodology}
-
+\todo{Improve, big}
 We want to find information resources on the Web, and examine HTTP
 headers that may allow caching. We record headers recommended by
 current standards, as well as obsoleted and non-standard
@@ -288,15 +288,16 @@ exposing cache headers than others. Unfortunately, since most
 \httph{Server} headers only contain generic values, little can be
 learnt about these implementations. We note, however, that DBPedia
 exposes standards-compliant freshness time of 604800 seconds (i.e. 1
-week) for both LOD and SPARQL endpoints.\todo{hall of fame?}
+week) for both LOD and SPARQL endpoints.\todo{Where and how}
 
 \subsection{Other caching headers}
 
 The two most important headers to control caching are \httph{Expires}
-and \httph{Cache-Control}. As shown in Table~\ref{tab:headers}, there
-are also others. We found \httph{Pragma} in 287 responses, but except
-for two hosts, where they were superfluous, they were only used to
-prohibit caching. \httph{Surrogates} were not observed.
+and \httph{Cache-Control}\todo{move to intro}. As shown in Table~\ref{tab:headers}, there
+are also others. We found \httph{Pragma} (archaic HTTP 1.0 header) in
+287 responses, but except for two hosts, where they were superfluous,
+they were only used to prohibit caching. \httph{Surrogates} were not
+observed.
 
 \subsection{Distribution of freshness lifetime}
 
@@ -355,7 +356,7 @@ date far back in time, which has also been done in large parts of the
 present dataset. For the following, we have set any non-positive
 lifetime to 0, as that is semantically equivalent.
 
-In Figure~\ref{fig:hardall}, there is a barplot where
+In Figure~\ref{fig:hardall}\todo{axis and labels}, there is a barplot where
 the freshness lifetime is grouped in bins. We see that in these
 categories, the most common is to prohibit caching. Nevertheless, many
 also declare a standards compliant freshness lifetime in minutes to
