@@ -18,7 +18,7 @@
 Postboks 1080 Blindern,
 N-0316 Oslo, Norway \email{kjetil@kjernsmo.net}}
 
-\subtitle{---Unpublished Working Draft, do not circulate---}
+%\subtitle{---Unpublished Working Draft, do not circulate---}
 
 
 \begin{document}
@@ -640,26 +640,21 @@ the NQuad files on a line-by-line basis. First, we matched each line
 against a regular expression were lines matching
 \texttt{ontology|endpoint|sparql|vocabular} passed the filter. Then,
 the Perl framework
-RDF::Trine\footnote{https://metacpan.org/release/GWILLIAMS/RDF-Trine-1.011} was used
-to parse the line. Lines that failed to parse was discarded. We have
-not investigated whether this could introduce biases. Statements were
-then accepted into a new NQuad file if they had a predicate that
-matched the
-\rdfterm{sd:endpoint}\footnote{http://www.w3.org/TR/sparql11-service-description/\#sd-endpoint}
-or matched a case-insensitive regular expression \texttt{sparql} if
-the subject and objects were both resources, or the predicates
-\rdfterm{void:vocabulary}\footnote{http://www.w3.org/TR/void/\#vocabularies},
-\rdfterm{rdfa:vocabulary}\footnote{http://www.w3.org/TR/rdfa-core/\#term-prefix-definitions-vocabulary}
-or
-\rdfterm{api:vocabulary}\footnote{http://purl.org/linked-data/api/vocab\#vocabulary},
-as well as having a resource as object. Finally, statements with the
-the classes
-\rdfterm{cogs:Endpoint}\footnote{http://vocab.deri.ie/cogs\#Endpoint},
-\rdfterm{owl:Ontology} and
-\rdfterm{voaf:Vocabulary}\footnote{http://lov.okfn.org/vocab/voaf/v2.3/index.html\#Vocabulary}
-in the object position were also accepted. More classes and properties
-were considered, but not used in the data reduction if they did not
-occur in the original data.
+RDF::Trine\footnote{https://metacpan.org/release/GWILLIAMS/RDF-Trine-1.011}
+was used to parse the line. Lines that failed to parse were
+discarded. We have not investigated whether this could introduce
+biases. Statements were then accepted into a new NQuad file if they
+had a predicate that matched the \rdfterm{sd:endpoint} or matched a
+case-insensitive regular expression \texttt{sparql} if the subject and
+objects were both resources, or the predicates
+\rdfterm{void:vocabulary}, \rdfterm{rdfa:vocabulary}, or
+\rdfterm{api:vocabulary}, as well as having a resource as
+object. Finally, statements with the the classes
+\rdfterm{cogs:Endpoint}, \rdfterm{owl:Ontology} and
+\rdfterm{voaf:Vocabulary} in the object position were also
+accepted\footnote{LOV may be used to resolve these prefixed
+  names}. More classes and properties were considered, but not used in
+the data reduction if they did not occur in the original data.
 
 In the next step, we filtered out statements with URIs that were
 invalid or irrelevant, e.g. URIs that didn't have a scheme or where
