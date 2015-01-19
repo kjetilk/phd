@@ -628,6 +628,10 @@ Delivery Network for frequent subpatterns, and prefetch and cache such
 intermediate results so that subsequent queries can be answered in
 part by the proxy.
 
+Even though it is clear that other parts of the Web benefit greatly
+from caching, and that the potential for HTTP metadata to better
+reflect actual update practices in the Semantic Web is great,
+estimating the actual impact of doing so should be done.
 
 \subsection{Recommendations}
 
@@ -637,7 +641,11 @@ turn them off unless they are sure they are required.
 
 In many cases, setting a reasonable cache headers is straightforward,
 and should be done by data owners. Framework authors should make it
-easy to set the expected lifetime.
+easy to set the expected lifetime, heeding the metadata association
+good practice recommendation of \cite{Jacobs:04:AWW}. If the author is
+unable to influence HTTP headers, they should set a
+\rdfterm{dct:valid} time into the future and make use of
+\rdfterm{dct:modified}.
 
 To allow generation and validation of \httph{Last-Modified} and
 \httph{ETag} headers, DBMS authors should make sure it is much cheaper
