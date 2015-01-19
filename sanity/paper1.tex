@@ -151,19 +151,19 @@ caching and contrasts this with the unavailability of SPARQL query
 caches, and it is claimed that this is an architectural problem.
 
 The implications of HTTP for query caches has been discussed by
-\cite{kaseicache}. In \cite{sparqlproxy} the authors implemented a
-reverse proxy that controlled the changes to the dataset, and
-therefore could make sure the proxy had all the information needed to
-determine freshness. We are interested in the situation where the
-changes cannot be controlled.
+\cite{kaseicache}, where it is shown how changes can be tracked
+efficiently using different data structures. In \cite{sparqlproxy} the
+authors implemented a reverse proxy that controlled the changes to the
+dataset, and therefore could make sure the proxy had all the
+information needed to determine freshness. We are interested in the
+situation where the changes cannot be controlled.
 
-A general caching approach is given in \cite{yang2011caching}\todo{explain} . In
-\cite{umbrich2012hybrid}, the term caching was used in a different
+In \cite{umbrich2012hybrid}, the term caching was used in a different
 sense than we do, they rather prefetched an entire dataset to a local
 store and based on heuristics tried to determine which parts of the
 query should be evaluated remotely and locally. \cite{lampo2011cache}
 explored when caching had a positive effect on complex SPARQL
-queries\todo{explain} .
+queries.
 
 In the broader Web literature, \cite{ager2010revisiting} analysed the
 value of caching based anonymized traces of actual Web usage at a
