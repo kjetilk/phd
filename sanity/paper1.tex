@@ -206,7 +206,7 @@ we augment these data with spidered data from the Billion Triple
 Challenge 2014 \cite{btc-2014} dataset.
 
 We used SPARQLES survey list of SPARQL endpoints as of 2014-11-17, and
-filtered out those deemed unresponsive by them. This resulted in a
+filtered out those deemed unresponsive. This resulted in a
 list of 312 endpoints.
 
 To examine as many different implementations and hosts as possible, we
@@ -281,11 +281,7 @@ resources, either with SPARQL results or RDF data. A successful
 response is rather strictly defined, not only must there be a
 successful HTTP response after redirects are resolved, the response
 must also return a valid RDF media type (unless it is a SPARQL result)
-and the response must parse into an RDF model. We have given priority
-to survey many hosts since configuration usually doesn't differ much
-across a host, especially since it also captures different types of
-resources. It is therefore acceptable that the number of resources is
-relatively small.
+and the response must parse into an RDF model. 
 
 Since we are interested in the properties of valid response, including
 examining some of the RDF contained in them, and that web servers may
@@ -435,7 +431,7 @@ used.
 
 \rdfterm{dct:valid} occurred 21 times, and could be used in lieu of an
 \httph{Expires} header, but none of these occurrences had a date in the
-future.
+future. 
 
 \rdfterm{dct:accrualPeriodicity} occurred only twice, and in neither
 case contained machine readable data.
@@ -716,31 +712,28 @@ Then, the first request would be made, and a selection of the
 resulting HTTP headers recorded in an per-host NQuads file. For this
 purpose, we developed and released a module
 RDF::Generator::HTTP\footnote{https://metacpan.org/release/KJETILK/RDF-Generator-HTTP-0.003}
-to the Comprehensive Perl Archive Network. We recorded whether the
-conditional request showed that the BTC data were still fresh, and if
-it was, we retrieved the current data, as we had not coupled the
-headers to the body in our original retrieval.
-
-Based on the resulting headers, we let
+to CPAN. We recorded whether the conditional request showed that the
+BTC data were still fresh, and if it was, we retrieved the current
+data, as we had not coupled the headers to the body in our original
+retrieval.  Based on the resulting headers, we let
 libwww\footnote{https://metacpan.org/release/GAAS/libwww-perl-6.04}
 calculate both standards-compliant and simple heuristic freshness
 lifetime.
 
-If the initial response had RFC7232 headers, we make another
-request to see if the server just included the headers but does not
-actually support conditional requests. The heuristic we employed is
+If the initial response had RFC7232 headers, we made another
+request to see if the server included the headers but does not
+support conditional requests. The heuristic we employed is
 that if the headers remain the same, but the result was returned,
 rather than just a response code \httph{304} (which indicates that the
-previous result can be reused), then the server does most probably not
+previous result can be reused), the server does most probably not
 support it.
 
 For endpoints, we examined the response message, to see if there are
 any results to our query, and recorded that if there are. In addition
 to the endpoints registered in the SPARQLES survey, our process found
-18~endpoints that responded with results.
-
-For all others, we parsed the response, and recorded any errors if the
-parser concluded the content were invalid.
+18~endpoints that responded with results. For all others, we parsed
+the response, and recorded any errors if the parser concluded the
+content were invalid.
 
 For resource types other than ``vocabulary'', we look for SPARQL
 endpoints in the response, using the predicates \rdfterm{sd:endpoint}
