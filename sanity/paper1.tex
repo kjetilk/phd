@@ -303,13 +303,8 @@ occurred, but the former is more common than the latter in the cases
 where only one of them occur.  Additionally, 269 resources had a
 \httph{Cache-Control} header to control other aspects of caching than
 lifetime, i.e. to say that only private caches may use the response,
-that the cache must be revalidated, or to prohibit caching.
-
-% todo: kill this?
-Common practice when prohibiting caching is to set the \httph{Expires}
-header to a date far back in time, which has also been done in large
-parts of the present dataset. For the following, we have set any
-non-positive lifetime to 0, as that is semantically equivalent.
+that the cache must be revalidated, or to prohibit caching. Note that the
+freshness lifetime is 0 whenever caching is prohibited.
 
 In Figure~\ref{fig:hardall}\todo{axis and labels}, there is a barplot where
 the freshness lifetime is grouped in bins. We see that in these
