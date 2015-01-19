@@ -324,7 +324,7 @@ exposing cache headers than others. Unfortunately, since most
 \httph{Server} headers only contain generic values, little can be
 learnt about these implementations. We note, however, that DBPedia
 exposes standards-compliant freshness time of 604800 seconds (i.e. 1
-week) for both LOD and SPARQL endpoints.\todo{Where and how}
+week) for both LOD and SPARQL endpoints.
 
 \subsection{Other caching headers}
 
@@ -434,8 +434,7 @@ statistics are considered estimates.
 
 We also note that prohibition of SPARQL results caching is rare,
 amongst the servers that expose caching headers, it is common
-that the result may be cached for some minutes.\todo{more to point
-  out?}
+that the result may be cached for some minutes.
 
 \subsubsection{Simple heuristic freshness estimates}\label{sec:simplefresh}
 
@@ -558,10 +557,6 @@ code was 200, and the conditional headers had not changed since our
 initial requests. In 85 cases, conditional requests were not supported
 according to the standard, no cases for endpoints, 3 for datasets and
 23 for vocabularies, 59 for generic information resources.\todo{table instead?}
-
-
-We already used \httph{Last-Modified} to compute heuristic lifetime
-in Section~\ref{sec:simplefresh} for 554 resources.\todo{really needed?}
 
 \section{Conclusions and outlook}
 
@@ -715,9 +710,8 @@ for SPARQL endpoints, ``vocabulary'' for ontologies, ``dataset'' for
 datasets that may contain further descriptions of several resources,
 or simply ``inforesources'' for those that did not fit in the above
 classes. To do so, we classified based on certain predicates and
-classes, see table\todo{create table}. Additionally, URIs derived from
-prefix.cc were classified as ``vocabulary'' and those from SPARQLES as
-``endpoint''.
+classes. Additionally, URIs derived from prefix.cc were classified as
+``vocabulary'' and those from SPARQLES as ``endpoint''.
 
 Since we blatantly violated URI opacity with our regular expression
 matching in the first step, we needed to further filter candidates for
@@ -844,7 +838,7 @@ and was removed from the spider for the final analysis.
 Finally, if the LOV SPARQL endpoint used a URI for the vocabulary that
 was different from the namespace URI (after a normalization step),
 another request would be made to record the selected HTTP headers from
-that as well.\todo{say how many requests failed? It was a lot}
+that as well.
 \end{subappendices}
 
 
