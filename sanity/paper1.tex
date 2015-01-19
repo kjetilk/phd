@@ -264,7 +264,7 @@ further detail.
 % Mon Jan  5 11:27:35 2015
 \begin{table}[h]
   \caption{\httph{Server} headers for hosts that enabled a freshness
-    lifetime to be computed for all requests.}\label{tab:servers}
+    lifetime to be computed for \emph{all} requests.}\label{tab:servers}
 \begin{center}
 \begin{tabular}{rl}
   \hline
@@ -295,36 +295,17 @@ further detail.
 \end{center}
 \end{table}
 
-For a more systematic approach\todo{Move most to appendix}, we wish to test the hypothesis that
-some servers are better configured to support caching than others. To
-test this hypothesis, we create two so-called \emph{contigency
-  tables} (see e.g. \cite{kn:bj}). This formalism is suited to see if the
-distribution of  \httph{Server} headers are different for those implementations that
-offer caching headers from those that don't. Intuitively, we expect
-these distributions to be similar, ``long-tail'' distributions, i.e. a
-handful of servers are used by a large number of projects, and then it
-falls off rapidly, and so, some servers are used only by very
-few. Likewise, it is to be expected that only a few projects have
-given caching enough attention, but that they account for the majority
-of the support. The question is if the presence of caching headers is
-merely a matter of proportion, or if there are some that have given it
-more attention, but still is in relatively little use.
-
-Using the statistics system R\cite{kn:r}, we use a statistical test,
-namely Pearson's $\chi^2$ test with simulated \pvalue (based on 10000
-replicates). The simulation is done using a Monte Carlo method to
-compensate for the fact that many servers will not expose caching
-headers at all, an issue that would otherwise violate the underlying
-assumptions of the test.
-
-In both the cases of standard-compliant freshness time and for the
-other promising features, the test reports \pvalue = 0.0001. We can
-conclude that it is highly likely that some servers are better at
-exposing cache headers than others. Unfortunately, since most
-\httph{Server} headers only contain generic values, little can be
-learnt about these implementations. We note, however, that DBPedia
-exposes standards-compliant freshness time of 604800 seconds (i.e. 1
-week) for both LOD and SPARQL endpoints.
+For a more systematic approach, we wish to test the hypothesis that
+some servers are better configured to support caching than others.
+Using the methodology given in Appendix~\ref{app:stats}, we find in
+both the cases of standard-compliant freshness time and for the other
+promising features, the test reports \pvalue = 0.0001. We can conclude
+that it is highly likely that some servers are better at exposing
+cache headers than others. Unfortunately, since most \httph{Server}
+headers only contain generic values, little can be learnt about these
+implementations. We note, however, that DBPedia exposes
+standards-compliant freshness time of 604800 seconds (i.e. 1 week) for
+both LOD and SPARQL endpoints.
 
 \subsection{Other caching headers}
 
@@ -347,31 +328,11 @@ across a host, especially since it also captures different types of
 resources. It is therefore acceptable that the number of resources is
 relatively small.
 
-Since web servers may be configured to instruct clients and proxies to
-cache errors differently\todo{cut most to just state stuff} from
-successfully served requests, we should first investigate whether we
-can simply use all cache headers in the analysis, or if we should
-remove unsuccessful responses to avoid introducing bias to the
-analysis of valid responses.
-
-For a visual inspection, we may use a quantile-quantile plot to plot
-the freshness lifetimes of successful responses versus requests that
-failed for some reason. If the distribution of both variables are the
-same, these points will lie on a straight line. In
-Figure~\ref{fig:errorsqq}, we see successful responses vs. the most
-common parse error, and it is clear that these are so different that
-no further formal analysis is necessary, we must filter unsuccessful
-requests in the following analysis.
-
-
-\begin{figure}[ht!]
-  \centerline{%
-    \includegraphics[width=.5\textwidth]{errorsqq.pdf}}
-  \caption{A quantile-quantile plot of freshness lifetimes for
-    standard compliant headers with and without errors.}
-  \label{fig:errorsqq}
-\end{figure}
-
+Since we are interested in the properties of valid response, including
+examining some of the RDF contained in them, and that web servers may
+be configured to instruct clients and proxies to cache errors
+differently, we will study the statistical properties of valid
+responses.
 
 \subsubsection{Standards-compliant caching headers}
 
@@ -839,6 +800,29 @@ Finally, if the LOV SPARQL endpoint used a URI for the vocabulary that
 was different from the namespace URI (after a normalization step),
 another request would be made to record the selected HTTP headers from
 that as well.
+
+\section{Statistical method}\label{app:stats}
+
+The hypothesis tests in this paper is implemented using \emph{contigency
+  tables} (see e.g. \cite{kn:bj}). This formalism is suited to see if the
+distribution of  \httph{Server} headers are different for those implementations that
+offer caching headers from those that don't. Intuitively, we expect
+these distributions to be similar, ``long-tail'' distributions, i.e. a
+handful of servers are used by a large number of projects, and then it
+falls off rapidly, and so, some servers are used only by very
+few. Likewise, it is to be expected that only a few projects have
+given caching enough attention, but that they account for the majority
+of the support. The question is if the presence of caching headers is
+merely a matter of proportion, or if there are some that have given it
+more attention, but still is in relatively little use.
+
+Using the statistics system R\cite{kn:r}, we use a statistical test,
+namely Pearson's $\chi^2$ test with simulated \pvalue (based on 10000
+replicates). The simulation is done using a Monte Carlo method to
+compensate for the fact that many servers will not expose caching
+headers at all, an issue that would otherwise violate the underlying
+assumptions of the test.
+
 \end{subappendices}
 
 
