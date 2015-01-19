@@ -49,12 +49,15 @@ bphard <- barplot(hardall, col="white", xlab="Standards-compliant freshness life
 text(bphard, hardall, labels=paste0(signif(hardall*100/sum(hardall),2),'%'), pos=1)
 dev.off()
 
+heuristictable <- lifetimetable("other-heuristic.rq")
+hardtable2 <- cbind(hardtable[,3], hardtable[,1], hardtable[,4], hardtable[,2])
+colnames(hardtable2) <- colnames(heuristictable)
+
 pdf(file="hardtable.pdf", height=5.2,width=8)
 par(mai=c(0.6,0.6,0.05,0.05))
-mosaicplot(hardtable, main='', xlab="Standards-compliant freshness lifetime", ylab="Frequency of resource types")
+mosaicplot(hardtable2, main='', xlab="Standards-compliant freshness lifetime", ylab="Frequency of resource types", color=c("red", "blue", "green", "yellow"))
 dev.off()
 
-heuristictable <- lifetimetable("other-heuristic.rq")
 heuristicall <- apply(heuristictable, 1, sum)
 pdf(file="heuristicall.pdf", height=5.2,width=8)
 par(mai=c(1,1,0.2,0.05))
@@ -64,7 +67,7 @@ dev.off()
 
 pdf(file="heuristictable.pdf", height=5.2,width=8)
 par(mai=c(0.6,0.6,0.05,0.05))
-mosaicplot(heuristictable, main='', xlab="Heuristic freshness lifetime", ylab="Frequency of resource types")
+mosaicplot(heuristictable, main='', xlab="Heuristic freshness lifetime", ylab="Frequency of resource types", color=c("red", "blue", "green", "yellow"))
 dev.off()
 
 harderrordata <- sparqlfile("failed-hard.rq")
