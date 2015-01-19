@@ -134,8 +134,7 @@ or \httph{Last-Modified} which gives the time and date of the last
 modification of the resource. Clients may use these values to retrieve
 the updated response only if the resource has changed. Other relevant
 headers are described in Table~\ref{tab:headers}
-in Appendix~\ref{app:fetcher} but they were not all used in this
-analysis.
+in Appendix~\ref{app:fetcher}.
 
 RFC7234 provides detailed control of caching, and caching may also be
 prohibited by the server, either by setting a non-positive freshness
@@ -191,48 +190,45 @@ see that it most likely will be beneficial in cases that do not
 benefit from caching today.
 
 \section{Methodology}
-\todo{Improve, big}
 We want to find information resources on the Web, and examine HTTP
-headers that may allow caching. We record headers recommended by
-current standards, as well as obsoleted and non-standard
-headers. Additionally, we examine the triples in the returned
-information resources to see if there is information there that may be
-used to calculate heuristic freshness.
+headers that may allow caching. To do this, we perform GET requests on
+SPARQL endpoints, vocabularies, dataset descriptions and other
+resources and record headers recommended by current standards, as well
+as obsoleted and non-standard headers. Additionally, we examine the
+triples in the returned information resources to see if there is
+information there that may be used to calculate heuristic freshness.
 
-However, as the community has both spidered the Web as well as
-recorded lists of relevant resources, we need not do that ourselves. 
+We make several approaches to ensure that we visit a large and
+representative section of the open Semantic Web. We take SPARQL
+Endpoints from the SPARQLES survey \cite{buil2013sparql}, vocabularies
+from Linked Open Vocabularies (LOV) \cite{lov2} and prefix.cc, and
+we augment these data with spidered data from the Billion Triple
+Challenge 2014 \cite{btc-2014} dataset.
 
-The SPARQLES survey\cite{buil2013sparql} has recorded the availability
-of SPARQL endpoints registered in the datahub.io portal, and found
-that many of them have ceased to operate. We used their list of SPARQL
-endpoints as of 2014-11-17, and filtered out those deemed unresponsive
-by them. This resulted in a list of 312 endpoints.
-
-To compile a list of Web ontologies, we first queried the Linked Open
-Vocabularies (LOV) \cite{lov2} SPARQL endpoint
-to retrieve all registered ontologies. Then, we took the full list of
-URIs registered with prefix.cc. The assumption that they all identify
-an ontology is clearly false, as we found that for example Tim
-Berners-Lee's FOAF profile has a registered URI, but it is unlikely to
-introduce significant bias.
+We used SPARQLES survey list of SPARQL endpoints as of 2014-11-17, and
+filtered out those deemed unresponsive by them. This resulted in a
+list of 312 endpoints.
 
 To examine as many different implementations and hosts as possible, we
 noted that the Billion Triple Challenge 2014 \cite{btc-2014} dataset
 consisted of a 4~GTriple corpus of spidered Web data. To compile a
-list of interesting candidates to further examine, we performed a
+list of candidates to further examine, we performed a
 series of data reduction steps, manually inspecting the result between
 each step. The details of this process is given in
 Appendix~\ref{app:reduction}.
 
 The end result of this process is a list of 3117 unique hosts, for
 each several resources would be visited, some several times, as they
-may host SPARQL Endpoints, ontologies, or other information resources,
-by a spider detailed in Appendix~\ref{app:fetcher}, resulting in 7745
-requests, done on 2015-01-02.
+may host SPARQL Endpoints, vocabularies, or other information
+resources, by a spider detailed in Appendix~\ref{app:fetcher},
+resulting in 7745 requests, done on 2015-01-02. Although this is not a
+very large number, we assume that caching headers are usually set on a
+per-host basis, and so the number of hosts is more important than the
+number of resources.
 
 This results in an NQuads file per host, which is then loaded into a
 Virtuoso-based SPARQL Endpoint for analysis by using the statistics
-system R\cite{kn:r}.
+system R\cite{kn:r} in the following section.
 
 \section{Analysis}
 
@@ -242,22 +238,21 @@ First, we investigated whether certain server implementations provided better su
 for caching than others. To do this, we formulated SPARQL queries to
 examine the \httph{Server} headers of successful responses, with
 optional clauses matching the standard-compliant computed freshness
-time (which is the ideal) as well as whether the response had other
-promising features that could assist caching, modification time,
-certain predicates, etc.
+lifetime (which is the ideal) as well as whether the response had other
+features that may assist caching such as modification time,
+certain predicates, etc.\todo{promising}
 
 For each unique \httph{Server} header, we found the ones where
-\emph{all} responses had a freshness time or a promising\todo{what are
-  they} feature. For the former, this amounted to 22 servers. 70
-servers always responded with promising features. Inspecting the
-values we find the well-known Virtuoso and Callimachus servers, as
-well as the Perl modules RDF::LinkedData and RDF::Endpoint, which is
-partly developed by and runs on a server operated by this
-author. Apart from those, a typical server string is
-e.g. \httph{Apache/2.2.22 (Fedora)}, which reveals very little about
-the RDF-specific parts of the underlying server implementation. A
-quick inspection of all \httph{Server} headers confirmed that few
-reveal any further detail.
+\emph{all} responses had a freshness time or a promising feature. For
+the former, this amounted to 22 servers. 70 servers always responded
+with promising features. Inspecting the values we find the well-known
+Virtuoso and Callimachus servers, as well as the Perl modules
+RDF::LinkedData and RDF::Endpoint, which is partly developed by and
+runs on a server operated by this author. Apart from those, a typical
+server string is e.g. \httph{Apache/2.2.22 (Fedora)}, which reveals
+very little about the RDF-specific parts of the underlying server
+implementation. A quick inspection of all \httph{Server} headers
+confirmed that few reveal any further detail.
 
 For a more systematic approach, we wish to test the hypothesis that
 some servers are better configured to support caching than others.
@@ -300,7 +295,7 @@ responses.
 
 \subsubsection{Standards-compliant caching headers}
 
-Of these resources, 405 returned valid headers, but 114 did so to
+Of the 2965 resources, 405 returned valid headers, but 114 did so to
 prohibit caching of the response, and 3 contained conflicting
 headers, i.e. set an freshness lifetime, but also prohibited
 caching. In most cases, \httph{Cache-Control} and \httph{Expires} both
@@ -310,6 +305,7 @@ where only one of them occur.  Additionally, 269 resources had a
 lifetime, i.e. to say that only private caches may use the response,
 that the cache must be revalidated, or to prohibit caching.
 
+% todo: kill this?
 Common practice when prohibiting caching is to set the \httph{Expires}
 header to a date far back in time, which has also been done in large
 parts of the present dataset. For the following, we have set any
@@ -625,12 +621,13 @@ invalid or irrelevant, e.g. URIs that didn't have a scheme or where
 the scheme wasn't HTTP(S), or they were referring to private IP addresses.
 
 We then sought to classify resources into the categories ``endpoint''
-for SPARQL endpoints, ``vocabulary'' for ontologies, ``dataset'' for
+for SPARQL endpoints, ``vocabulary'' for vocabularies, ``dataset'' for
 datasets that may contain further descriptions of several resources,
 or simply ``inforesources'' for those that did not fit in the above
 classes. To do so, we classified based on certain predicates and
 classes. Additionally, URIs derived from prefix.cc were classified as
-``vocabulary'' and those from SPARQLES as ``endpoint''.
+``vocabulary'' (even if we found several that were not) and those from
+SPARQLES as ``endpoint''.
 
 Since we blatantly violated URI opacity with our regular expression
 matching in the first step, we needed to further filter candidates for
