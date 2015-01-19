@@ -782,7 +782,7 @@ has changed  \\ \hline
 and heuristics \\ \hline
 \httph{Surrogates} & Edge \cite{edgearch} & Draft
 to allow fine-grained control for proxies. \\ \hline
-\httph{Client-Aborted} & libwww\footnote{https://metacpan.org/release/GAAS/libwww-perl-6.04}  & Header inserted by User
+\httph{Client-Aborted} & libwww  & Header inserted by User
 Agent to indicate that it aborted the download \\ \hline
 \httph{Client-Warning} & libwww  & Header inserted by User
 Agent to give details about problems with the download \\ \hline
@@ -807,10 +807,10 @@ conditional request showed that the BTC data were still fresh, and if
 it was, we retrieved the current data, as we had not couple the
 headers to the body in our original retrieval.
 
-Based on the resulting headers, we first let libwww calculate the
-freshness lifetime in seconds if it was possible, and recorded
-that. Then, we also let it calculate a \emph{heuristic} freshness
-time based on a suggestion in RFC7234, Section~4.2.2, and recorded that.
+Based on the resulting headers, we let
+libwww\footnote{https://metacpan.org/release/GAAS/libwww-perl-6.04}
+calculate both standards-compliant and simple heuristic freshness
+lifetime.
 
 If the initial response had RFC7232 headers, we make another
 request to see if the server just included the headers but does not
