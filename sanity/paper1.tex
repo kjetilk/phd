@@ -112,8 +112,16 @@ used from the time of the request. \httph{max-age} takes precedence
 over \httph{Expires}. In the following \emph{freshness lifetime} is
 understood as the number of seconds that the response may be used
 without contacting the origin server. Ideally, the calculation of the
-freshness lifetime should be based of the above, but it can also be
-based on heuristics, see Section~\ref{sec:simplefresh}.
+freshness lifetime should be based of the above, we therefore shall
+refer to this as ``standards-compliant caching''. However it can also
+be based on heuristics, and RFC7234, Section~4.2.2 provides some loose
+constraints for such practice, as well as a suggestion for a useful
+heuristic. This heuristic is based on a fraction of the time lapsed
+between the current time and the modification time given in the
+\httph{Last-Modified} header. This approach therefore still requires
+the Web server to be cooperative to be successful, but commonly, Web
+servers can track this, for example if RDF is served from a file
+system, the file modification time is used.
 
 RFC7232, on the other hand, defines a protocol for asking the server
 if the cached response is still fresh using conditional requests. This
@@ -127,7 +135,11 @@ modification of the resource. Clients may use these values to retrieve
 the updated response only if the resource has changed. Other relevant
 headers are described in Table~\ref{tab:headers}
 in Appendix~\ref{app:fetcher} but they were not all used in this
-analysis.\todo{Structured walkthrough}\todo{Impact}
+analysis.
+
+RFC7234 provides detailed control of caching, and caching may also be
+prohibited by the server, either by setting a non-positive freshness
+lifetime or explicitly using a \httph{no-store} control field.
 
 In this paper, we study to what extent SPARQL Endpoints, vocabulary
 and data publishers support these standards.
@@ -316,12 +328,11 @@ week) for both LOD and SPARQL endpoints.\todo{Where and how}
 
 \subsection{Other caching headers}
 
-The two most important headers to control caching are \httph{Expires}
-and \httph{Cache-Control}\todo{move to intro}. As shown in Table~\ref{tab:headers}, there
-are also others. We found \httph{Pragma} (archaic HTTP 1.0 header) in
-287 responses, but except for two hosts, where they were superfluous,
-they were only used to prohibit caching. \httph{Surrogates} were not
-observed.
+As shown in Table~\ref{tab:headers}, there are also other caching
+headers than those mentioned in the introduction. We found
+\httph{Pragma} (archaic HTTP 1.0 header) in 287 responses, but except
+for two hosts, where they were superfluous, they were only used to
+prohibit caching. \httph{Surrogates} were not observed.
 
 \subsection{Distribution of freshness lifetime}
 
@@ -365,7 +376,7 @@ requests in the following analysis.
 \subsubsection{Standards-compliant caching headers}
 
 Of these resources, 405 returned valid headers, but 114 did so to
-\emph{prohibit} caching of the response, and 3 contained conflicting
+prohibit caching of the response, and 3 contained conflicting
 headers, i.e. set an freshness lifetime, but also prohibited
 caching. In most cases, \httph{Cache-Control} and \httph{Expires} both
 occurred, but the former is more common than the latter in the cases
@@ -374,11 +385,10 @@ where only one of them occur.  Additionally, 269 resources had a
 lifetime, i.e. to say that only private caches may use the response,
 that the cache must be revalidated, or to prohibit caching.
 
-Caching may also be prohibited by setting a non-positive freshness
-lifetime. Common practice is to set the \httph{Expires} header to a
-date far back in time, which has also been done in large parts of the
-present dataset. For the following, we have set any non-positive
-lifetime to 0, as that is semantically equivalent.
+Common practice when prohibiting caching is to set the \httph{Expires}
+header to a date far back in time, which has also been done in large
+parts of the present dataset. For the following, we have set any
+non-positive lifetime to 0, as that is semantically equivalent.
 
 In Figure~\ref{fig:hardall}\todo{axis and labels}, there is a barplot where
 the freshness lifetime is grouped in bins. We see that in these
@@ -429,14 +439,8 @@ that the result may be cached for some minutes.\todo{more to point
 
 \subsubsection{Simple heuristic freshness estimates}\label{sec:simplefresh}
 
-We next consider the simple heuristic freshness lifetime. This is
-implemented as suggested in RFC7234, Section~4.2.2. This is based on a
-fraction of the time lapsed between the current time and the
-modification time given in the \httph{Last-Modified} header. This
-approach therefore still requires the Web server to be cooperative to
-be successful, but commonly, Web servers can track this, for example
-if RDF is served from a file system, the file modification time is used.
-
+We next consider the simple heuristic freshness lifetime as suggested
+RFC7234, Section~4.2.2 and detailed in the introduction.
 
 \begin{figure}[th!]
   \centerline{%
@@ -508,7 +512,7 @@ i.e. it gives the last modification time of some subgraph of the
 returned RDF. Nevertheless, given its prevalence, it is highly likely
 that the presence of \rdfterm{dct:modified} will be useful in
 determining a heuristic freshness lifetime, as the latest date may be
-used.\todo{Actually calculate lifetimes based on this and compare}
+used.
 
 \rdfterm{dct:valid} occurred 21 times, and could be used in lieu of an
 \httph{Expires} header, but none of these occurrences had a date in the
