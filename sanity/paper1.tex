@@ -162,13 +162,11 @@ Linked Data Fragments is claimed in \cite{ldf1} to take advantage of
 caching and contrasts this with the unavailability of SPARQL query
 caches, and it is claimed that this is an architectural problem.
 
-The implications of HTTP for query caches has been discussed by
-\cite{kaseicache}, where it is shown how changes can be tracked
-efficiently using different data structures. In \cite{sparqlproxy} the
-authors implemented a reverse proxy that controlled the changes to the
-dataset, and therefore could make sure the proxy had all the
-information needed to determine freshness. We are interested in the
-situation where the changes cannot be controlled.
+In \cite{sparqlproxy} the authors implemented a reverse proxy that
+controlled the changes to the dataset, and therefore could make sure
+the proxy had all the information needed to determine freshness. We
+are interested in the situation where the changes cannot be
+controlled.
 
 In \cite{umbrich2012hybrid}, the term caching was used in a different
 sense than we do, they rather prefetched an entire dataset to a local
@@ -400,7 +398,7 @@ that the result may be cached for some minutes.
 \subsubsection{Simple heuristic freshness estimates}\label{sec:simplefresh}
 
 We next consider the simple heuristic freshness lifetime as suggested
-RFC7234, Section~4.2.2 and detailed in the introduction.
+RFC7234, Section~4.2.2 and mentioned in the introduction.
 
 \begin{figure}[th!]
   \centerline{%
