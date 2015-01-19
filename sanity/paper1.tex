@@ -306,7 +306,7 @@ lifetime, i.e. to say that only private caches may use the response,
 that the cache must be revalidated, or to prohibit caching. 
 Note that the freshness lifetime is 0 whenever caching is prohibited.
 
-In Figure~\ref{fig:hardall}\todo{axis and labels}, there is a barplot where
+In Figure~\ref{fig:hardall}, there is a barplot where
 the freshness lifetime is grouped in bins. We see that in these
 categories, the most common is to prohibit caching. Nevertheless, many
 also declare a standards compliant freshness lifetime in minutes to
@@ -315,8 +315,9 @@ days.
 \begin{figure}[ht]
   \centerline{%
     \includegraphics[width=.9\textwidth]{hardall.pdf}}
-  \caption{Barplot of all standard-compliant freshness lifetimes
-    found. The first bin are the cases where caching is explicitly
+  \caption{Barplot counting all standard-compliant freshness lifetimes
+    found, with the percentage of occurances indicated on the
+    bars. The first bin are the cases where caching is explicitly
     prohibited. The next bins are for lifetimes, where the values are
     grouped if they are on the order of seconds, minutes, hours, etc,
     i.e. the second bin counts the lifetimes in the interval [1,59]
@@ -360,7 +361,7 @@ RFC7234, Section~4.2.2 and mentioned in the introduction.
 \begin{figure}[th!]
   \centerline{%
     \includegraphics[width=.9\textwidth]{heuristicall.pdf}}
-  \caption{Barplot of all simple heuristic freshness lifetimes
+  \caption{Barplot counting all simple heuristic freshness lifetimes
     found. Bins as in Figure~\ref{fig:hardall}.}
   \label{fig:heuristicall}
 \end{figure}
