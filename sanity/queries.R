@@ -55,7 +55,7 @@ colnames(hardtable2) <- colnames(heuristictable)
 
 pdf(file="hardtable.pdf", height=5.2,width=8)
 par(mai=c(0.6,0.6,0.05,0.05))
-mosaicplot(hardtable2, main='', xlab="Standards-compliant freshness lifetime", ylab="Frequency of resource types", color=c("red", "blue", "green", "yellow"))
+mosaicplot(hardtable2, main='', xlab="Standards-compliant freshness lifetime", ylab="Relative abundance of resource types", color=c("red", "blue", "green", "yellow"))
 dev.off()
 
 heuristicall <- apply(heuristictable, 1, sum)
@@ -67,7 +67,7 @@ dev.off()
 
 pdf(file="heuristictable.pdf", height=5.2,width=8)
 par(mai=c(0.6,0.6,0.05,0.05))
-mosaicplot(heuristictable, main='', xlab="Heuristic freshness lifetime", ylab="Frequency of resource types", color=c("red", "blue", "green", "yellow"))
+mosaicplot(heuristictable, main='', xlab="Heuristic freshness lifetime", ylab="Relative abundance of resource types", color=c("red", "blue", "green", "yellow"))
 dev.off()
 
 harderrordata <- sparqlfile("failed-hard.rq")
