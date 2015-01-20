@@ -61,7 +61,7 @@ dev.off()
 heuristicall <- apply(heuristictable, 1, sum)
 pdf(file="heuristicall.pdf", height=5.2,width=8)
 par(mai=c(1,1,0.2,0.05))
-bpheuristic <- barplot(heuristicall, col="white", xlab="Simple heuristic freshness lifetime", ylab="Number of occurances", main='')
+bpheuristic <- barplot(heuristicall, col="white", xlab="Simple heuristic freshness lifetime", ylab="Number of occurrences", main='')
 text(bpheuristic, heuristicall, labels=paste0(signif(heuristicall*100/sum(heuristicall),2),'%'), pos=1)
 dev.off()
 
