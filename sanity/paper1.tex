@@ -1,10 +1,11 @@
 \documentclass{llncs}
+\usepackage[english,british]{babel}
 %\documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{cite}
 \usepackage{verbatim}
 \usepackage{graphicx}
-%\usepackage{wrapfig}
+\usepackage{hyperref}
 \usepackage{appendix}
 
 \newcommand{\rdfterm}[1]{\texttt{#1}}
@@ -119,9 +120,9 @@ constraints for such practice, as well as a suggestion for a useful
 heuristic. This heuristic is based on a fraction of the time lapsed
 between the current time and the modification time given in the
 \httph{Last-Modified} header. This approach therefore still requires
-the Web server to be cooperative to be successful, but commonly, Web
+the Web server to be cooperative to be successful. Commonly, Web
 servers can track this, for example if RDF is served from a file
-system, the file modification time is used.
+system the file modification time is used.
 
 RFC7232, on the other hand, defines a protocol for asking the server
 if the cached response is still fresh using conditional requests. This
@@ -184,7 +185,7 @@ While these studies have little overlap with the present paper, they
 underline the importance of understanding the current deployment and
 future potential. In some of the related work, it is shown that
 caching does not necessarily give tangible benefits. Yet, we shall
-assume that sharing the meta data required for caching outside of the
+assume that sharing the metadata required for caching outside of the
 server is desirable, and that it is possible in most cases. We shall
 see that it most likely will be beneficial in cases that do not
 benefit from caching today.
@@ -203,7 +204,7 @@ representative section of the open Semantic Web. We take SPARQL
 Endpoints from the SPARQLES survey \cite{buil2013sparql}, vocabularies
 from Linked Open Vocabularies (LOV) \cite{lov2} and prefix.cc, and
 we augment these data with spidered data from the Billion Triple
-Challenge 2014 \cite{btc-2014} dataset.
+Challenge (BTC) 2014 \cite{btc-2014} dataset.
 
 We used SPARQLES survey list of SPARQL endpoints as of 2014-11-17, and
 filtered out those deemed unresponsive. This resulted in a
@@ -238,7 +239,7 @@ system R\cite{kn:r} in the following section.
 First, we investigated whether certain server implementations provided
 better support for caching than others. To do this, we formulated
 SPARQL queries to examine the \httph{Server} headers of successful
-responses, with optional clauses matching the standard-compliant
+responses, with optional clauses matching the standards-compliant
 computed freshness lifetime (which is the ideal) as well as whether
 the response had other promising features that may assist caching such
 as modification time, certain predicates, etc.%\todo{promising}
@@ -258,7 +259,7 @@ confirmed that few reveal any further detail.
 For a more systematic approach, we wish to test the hypothesis that
 some servers are better configured to support caching than others.
 Using the methodology given in Appendix~\ref{app:stats}, we find in
-both the cases of standard-compliant freshness lifetime and for the other
+both the cases of standards-compliant freshness lifetime and for the other
 promising features, the test reports \pvalue = 0.0001. We can conclude
 that it is highly likely that some servers are better at exposing
 cache headers than others. Unfortunately, since most \httph{Server}
@@ -294,7 +295,7 @@ responses.
 
 Of the 2965 resources, 405 returned valid headers, but 114 did so to
 prohibit caching of the response, and 3 contained conflicting
-headers, i.e. set an freshness lifetime, but also prohibited
+headers, i.e. set a freshness lifetime, but also prohibited
 caching. In most cases, \httph{Cache-Control} and \httph{Expires} both
 occurred, but the former is more common than the latter in the cases
 where only one of them occur.  Additionally, 269 resources had a
@@ -312,7 +313,7 @@ days.
 \begin{figure}[ht]
   \centerline{%
     \includegraphics[width=.9\textwidth]{hardall.pdf}}
-  \caption{Barplot counting all standard-compliant freshness lifetimes
+  \caption{Barplot counting all standards-compliant freshness lifetimes
     found, with the percentage of occurrences indicated on the
     bars. The first bin are the cases where caching is explicitly
     prohibited. The next bins are for lifetimes, where the values are
@@ -350,13 +351,13 @@ statistics are considered estimates.
 \end{figure}
 
 
-We also note that prohibition of SPARQL results caching is rare,
-amongst the servers that expose caching headers, it is common
+We also note that prohibition of SPARQL results caching is rare.
+Amongst the servers that expose caching headers it is common
 that the result may be cached for some minutes.
 
 \subsubsection{Simple heuristic freshness estimates}\label{sec:simplefresh}
 
-We next consider the simple heuristic freshness lifetime as suggested
+We next consider the simple heuristic freshness lifetime as suggested in
 RFC7234, Section~4.2.2 and mentioned in the introduction.
 
 \begin{figure}[th!]
@@ -483,10 +484,10 @@ many resources change at a very slow pace, but also that this is not
 reflected in the standards-compliant freshness lifetimes advertised by
 servers.
 
-We found that errors are commonplace, but that they does not usually
+We found that errors are commonplace, but that they do not usually
 pertain to the caching headers. We found a small number of
 self-contradictory \httph{Cache-Control} headers, and some servers
-that set conditional request response headers, that could not support
+that set conditional request response headers, but could not support
 conditional requests.
 
 It is possible in a substantial number of cases to compute a heuristic
@@ -498,8 +499,8 @@ seldomly supported, but standards-compliant freshness lifetimes have
 been seen, and since it is supported by DBPedia, benefits from caching
 may be realised already.
 
-In spite of this, most of the Semantic Web is unhelpful in spite of
-being slowly changing.
+In spite of this, most of the Semantic Web is unhelpful in even
+though it is changing slowly.
 
 \subsection{Future work}
 
@@ -512,7 +513,7 @@ heuristic freshness lifetime estimation. However, such work should
 operate within the loose constraints of RFC7234, Section~4.2.2, and
 should find its niche when the other techniques described in this paper
 are unavailable. Once this is done, the correctness of caching headers
-should be assessed, possibly using contigency tables similar to those
+should be assessed, possibly using contingency tables similar to those
 in Appendix~\ref{app:stats}.
 
 Investigate whether curated collections such as LOV or SPARQLES
@@ -553,7 +554,7 @@ Based on the results of DyLDO, it is highly likely that most cache
 prohibitions are misguided, and server administrators are advised to
 turn them off unless they are sure they are required.
 
-In many cases, setting a reasonable cache headers is straightforward,
+In many cases, setting reasonable cache headers is straightforward,
 and should be done by data owners. Framework authors should make it
 easy to set the expected lifetime, heeding the metadata association
 good practice recommendation of \cite{Jacobs:04:AWW}. If the author is
@@ -578,7 +579,8 @@ impact, future work should accept this as an architectural constraint.
 \paragraph*{Acknowledgements} The author would like to thank Jürgen
 Umbrich and Martin Giese for careful review and critical comments, and
 Gregory Todd Williams for promptly solving issues in the underlying
-libraries used in this study, and Axel Polleres for encouraging comments.
+libraries used in this study, Axel Polleres for encouraging comments
+and Jonas Smedegaard for proofreading.
 
 \bibliographystyle{plain}
 %\bibliographystyle{abbrv}
@@ -636,7 +638,7 @@ We found in the data a large number of ontologies that consist of many
 information resources with just a few triples in each. Since they
 appear to be produced by the same software, usually Semantic
 Mediawiki, we assume that they are configured with a single setup, and
-thus we will merely sample these resources.
+thus we merely sampled these resources.
 
 We continued to also sample the HTTP headers gathered in the BTC2014
 dataset. 
@@ -650,7 +652,8 @@ resources). For the resources we found, as well as for the resources
 that was of \rdfterm{rdf:type owl:Ontology} above, we kept one
 resource per hostname, with the exception of the popular blogging
 platforms Livejournal and SAPO, where each blog has their own host and
-they expose FOAF data. For those, we only kept one hostname. 
+they expose FOAF data. For those, we only kept one hostname, since
+they are likely configured similarly. 
 
 \section{Implementation of spider}\label{app:fetcher}
 
@@ -716,7 +719,7 @@ resulting HTTP headers recorded in an per-host NQuads file. For this
 purpose, we developed and released a module
 RDF::Generator::HTTP\footnote{https://metacpan.org/release/KJETILK/RDF-Generator-HTTP-0.003}
 to CPAN. We recorded whether the conditional request showed that the
-BTC data were still fresh, and if it was, we retrieved the current
+BTC2014 data were still fresh, and if it was, we retrieved the current
 data, as we had not coupled the headers to the body in our original
 retrieval.  Based on the resulting headers, we let
 libwww\footnote{https://metacpan.org/release/GAAS/libwww-perl-6.04}
@@ -752,7 +755,7 @@ that as well.
 
 \section{Statistical method}\label{app:stats}
 
-The hypothesis tests in this paper is implemented using \emph{contigency
+The hypothesis tests in this paper is implemented using \emph{contingency
   tables} (see e.g. \cite{kn:bj}). This formalism is suited to see if the
 distribution of  \httph{Server} headers are different for those implementations that
 offer caching headers from those that don't. Intuitively, we expect
