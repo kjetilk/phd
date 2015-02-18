@@ -1,0 +1,24 @@
+I would like to thank the reviewers for their extensive reviews. 
+
+I would first like to address the main point of critisism voiced
+mainly by Review 4 but also by Review 2, that the survey is of a very
+limited "Semantic Web" and so is unlikely to be generalizeable. 
+
+This critisism is very valid and taken to heart. Indeed, this survey
+is not meant to be generalizeable beyond the current state of the art,
+as I find it quite likely that the current state must change in order
+for the Semantic Web to be successful. The scope of the survey is a
+snapshot, confined to what this community can reasonably do something
+about, and currently, we are such a tiny fraction of the Web, that we
+have to understand the Web better to succeed.
+
+This survey is not intended as means to understand what the rest of
+the Web is doing right and wrong, that wisdom is available elsewhere
+in the broader literature, but as I tried not to pass judgement,
+except in a small number of cases where current practice is clearly
+severely flawed, it was not within my scope, nor the pagelimit, to
+cite.
+
+The intention is mostly to have empirical research to counter
+statements like "it is no point in using caches when evaluating SPARQL
+queries, since no endpoints are exposing them". 
