@@ -4,21 +4,44 @@ I would first like to address the main point of critisism voiced
 mainly by Review 4 but also by Review 2, that the survey is of a very
 limited "Semantic Web" and so is unlikely to be generalizeable. 
 
-This critisism is very valid and taken to heart. Indeed, this survey
-is not meant to be generalizeable beyond the current state of the art,
-as I find it quite likely that the current state must change in order
-for the Semantic Web to be successful. The scope of the survey is a
-snapshot, confined to what this community can reasonably do something
-about, and currently, we are such a tiny fraction of the Web, that we
-have to understand the Web better to succeed.
+This critisism is very valid and taken to heart. To understand the
+constraints of the study, it is first important to note that it is
+directed at the community that convenes at ESWC. Also, such a paper
+could address what this community does, what it can do, and what it
+should do. We have consciously avoided strong "should do"
+recommendations, except in the case where current practice is clearly
+misguided. Most recommendations are therefore of the much softer "can
+do" type, but the overall focus of the paper is on what the community
+does.
+
+Consequently, this survey is not meant to be generalizeable beyond the
+current state of the art. I find it quite likely that the current
+state must change in order for the Semantic Web to be successful, and
+if the Semantic Web succeeds, the current conclusions will most
+certainly not hold. The scope of the survey is a snapshot, confined to
+what this community can reasonably do something about, and currently,
+we are such a tiny fraction of the Web, that we have to understand the
+Web better to succeed.
 
 This survey is not intended as means to understand what the rest of
 the Web is doing right and wrong, that wisdom is available elsewhere
-in the broader literature, but as I tried not to pass judgement,
-except in a small number of cases where current practice is clearly
-severely flawed, it was not within my scope, nor the pagelimit, to
-cite.
+in the broader literature, but since I believe a survey paper should
+focus mostly on "does", it was not within my scope, nor the pagelimit,
+to cite. This wisdom was therefore only cited from the standards.
 
-The intention is mostly to have empirical research to counter
+The intention is mostly to have empirical research to see if 
 statements like "it is no point in using caches when evaluating SPARQL
-queries, since no endpoints are exposing them". 
+queries, since no endpoints are exposing them" have merit.
+
+Review 1 asked us to discuss the importance of caching metadata for
+query processing. We believe this is inappropriate for two reasons,
+one is the "does" focus of the paper, but more importantly, this is
+largely unknown at present. The study by Lampo et al, cited among
+related work, provides a sobering account, and cautions us to not
+oversell the importance of caching for query processing.
+
+
+Review 4 pointed out a flaw in that the Surrogates header was
+wrong. We acknowledge the error, and reran the spider recording the
+Surrogate-Capability header instead, but it was not found, and thus
+does not influence the conclusions.
