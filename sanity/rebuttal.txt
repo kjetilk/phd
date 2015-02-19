@@ -78,11 +78,16 @@ expansions of other points. I'll try my best, but it does not seem
 straightforward to include all the elaborations requested by the
 reviewers within the page limit.
 
+I'm not sure how to address the comment of Review 1 that the survey is
+weak because it is based on only two documents. I assume they refer to
+the two RFCs. First, it is not entirely true, it also references other
+documents, only to show it is not widely used. Moreover, the two
+documents defines the entire standards-based caching infrastructure of
+the Web, as such, the survey is exhaustive.
 
+Review 6 requests data to be published. I shall publish the data and
+the code in a tar archive.
 
-
-
-Details:
-
-Review 6 requests data published. I shall publish the data and the
-code in a tar archive. 
+The reviewers provided detailed editorial comments that I shall take
+into account when creating a camera ready version. I'll try to find a
+native English writer to review the paper.
