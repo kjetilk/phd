@@ -18,10 +18,12 @@ Consequently, this survey is not meant to be generalizeable beyond the
 current state of the art. I find it quite likely that the current
 state must change in order for the Semantic Web to be successful, and
 if the Semantic Web succeeds, the current conclusions will most
-certainly not hold. The scope of the survey is a snapshot, confined to
-what this community can reasonably do something about, and currently,
-we are such a tiny fraction of the Web, that we have to understand the
-Web better to succeed.
+certainly not hold. In particular, there is nothing on the Web today
+that supports query evaluation in the way that a large-scale
+deployment of federated SPARQL would. The scope of the survey is a
+snapshot, confined to what this community can reasonably do something
+about, and currently, we are such a tiny fraction of the Web, that we
+have to understand the Web better to succeed.
 
 This survey is not intended as means to understand what the rest of
 the Web is doing right and wrong, that wisdom is available elsewhere
