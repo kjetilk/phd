@@ -8,7 +8,7 @@ This critisism is very valid and taken to heart. To understand the
 constraints of the study, it is first important to note that it is
 directed at the community that convenes at ESWC. Also, such a paper
 could address what this community does, what it can do, and what it
-should do. We have consciously avoided strong "should do"
+should do. I have consciously avoided strong "should do"
 recommendations, except in the case where current practice is clearly
 misguided. Most recommendations are therefore of the much softer "can
 do" type, but the overall focus of the paper is on what the community
@@ -34,14 +34,18 @@ statements like "it is no point in using caches when evaluating SPARQL
 queries, since no endpoints are exposing them" have merit.
 
 Review 1 asked us to discuss the importance of caching metadata for
-query processing. We believe this is inappropriate for two reasons,
+query processing. I believe this is inappropriate for two reasons,
 one is the "does" focus of the paper, but more importantly, this is
 largely unknown at present. The study by Lampo et al, cited among
 related work, provides a sobering account, and cautions us to not
 oversell the importance of caching for query processing.
 
+As this is an broad area of critisism from several reviews, I
+shall attempt to condense the above discussion into a concise
+clarification in the paper.
+
 
 Review 4 pointed out a flaw in that the Surrogates header was
-wrong. We acknowledge the error, and reran the spider recording the
+wrong. I acknowledge the error, and reran the spider recording the
 Surrogate-Capability header instead, but it was not found, and thus
-does not influence the conclusions.
+does not influence the conclusions, but I'll fix this. 
