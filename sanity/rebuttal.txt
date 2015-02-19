@@ -49,3 +49,39 @@ Review 4 pointed out a flaw in that the Surrogates header was
 wrong. I acknowledge the error, and reran the spider recording the
 Surrogate-Capability header instead, but it was not found, and thus
 does not influence the conclusions, but I'll fix this. 
+
+I note that the paper is very close to the page limit, so I would have
+to remove parts of the paper to be able to expand on other parts. In
+fact, I removed discussions relevant to the questions raised by Review
+3 from the initial draft as they felt to deviate from the focus too
+much.
+
+Another example of things I removed was a list of the contributions,
+as requested by Review 6, as I felt it was merely a reiteration of the
+objectives that didn't not serve to clarify the paper, for any other
+reason than convention.
+
+Review 6 suggests that I use a logarithmic scale in some of the
+figures. I initially did this, but felt that they didn't effectively
+convey the essence, and that the problem is that our time and calendar
+doesn't follow linear progression either. Therefore, one is left with
+the choice of a classification that doesn't make intuitively sense or
+one that doesn't make sense mathematically. I'll try out the
+suggestion of combining the two.
+
+I'll discuss these issues with local faculty to find a good solution.
+
+Review 6 also suggests that I restructure the paper, and focus the
+discussion. With a focused discussion, it may be room to do some
+expansions of other points. I'll try my best, but it does not seem
+straightforward to include all the elaborations requested by the
+reviewers within the page limit.
+
+
+
+
+
+Details:
+
+Review 6 requests data published. I shall publish the data and the
+code in a tar archive. 
