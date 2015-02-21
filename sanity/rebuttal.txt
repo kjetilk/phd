@@ -1,22 +1,20 @@
-I would like to thank the reviewers for their extensive reviews. 
+I would like to thank the reviewers for their extensive reviews. The
+many editorial advices will certainly be taken into account without
+further comment.
 
-I would first like to address the main point of critisism voiced
-mainly by Review 4 but also by Review 2, that the survey is of a very
-limited "Semantic Web" and so is unlikely to be generalizeable. 
-
-This critisism is very valid and taken to heart, and I should strive
-to make it clearer why this is the scope I chose to work within.
-Indeed, this Semantic Web is a mere fraction of the open data web,
-where e.g. JSON APIs are common. Coffee break discussions around
-caching have often stranded on the lack of data around what the
-community as a whole actually does, and therefore, that is the main
-focus of this paper. What it can do is given some space, but a
-discussion of what it should do is consciously avoided, except in the
-case where current practice is clearly misguided. Since the paper
-already fills the pagelimit, I have only cited the foundational
-documents for wisdom on what is thought to be important for the Web, a
-further discussion would be beyond the available space, and probably
-also be better suited for a different conference.
+The critisism that I only surveyed a small part of the Web and so, the
+conclusions are not generalizeable is valid, and I should strive to
+make it clearer why this is the scope I chose to work within. Indeed,
+this Semantic Web is a mere fraction of the open data web, where
+e.g. JSON APIs are common. Coffee break discussions around caching
+have often stranded on the lack of data around what the community as a
+whole actually does, and therefore, that is the main focus of this
+paper. What it can do is given some space, but a discussion of what it
+should do is consciously avoided, except in the case where current
+practice is clearly misguided. Since the paper already fills the
+pagelimit, I have only cited the foundational documents for wisdom on
+what is thought to be important for the Web, a further discussion
+would be beyond the available space.
 
 Review 1 asked us to discuss the importance of caching metadata for
 query processing. This is the focus our research, but this is
@@ -26,7 +24,7 @@ sobering account, and cautions us to not oversell the importance of
 caching for query processing.
 
 Review 4 pointed out a flaw in that the Surrogates header was wrong. I
-acknowledge the error, and will rerun the spider.
+acknowledge the error, and have rerun the spider.
 
 I note that the paper is very close to the page limit, and amongst the
 things that were removed from the initial draft are discussions of the
@@ -40,18 +38,12 @@ I initially used logarithmic scale as suggested by Review 6, for the
 reasons they mention. I found the intuitive interpretation of the
 figures to be very difficult, since the time and calendar scale is as
 it is. The suggestion to combine the two is interesting, and I will
-see if provides any benefit if the paper is accepted.
+see if it provides any benefit if the paper is accepted.
 
 I'm not sure how to address the comment of Review 1 that the survey is
 weak because it is based on only two documents. I assume they refer to
-the two RFCs. First, it is not entirely true, it also references other
-documents, only to show that they are not widely used. Moreover, the
-two documents defines the entire standards-based caching
+the two RFCs. First, it is not entirely true, see Table 1. Moreover,
+the two documents define the entire standards-based caching
 infrastructure of the Web, as such, the survey is exhaustive.
 
-Review 6 requests data to be published. I shall publish the data and
-the code in a tar archive.
 
-The reviewers provided detailed editorial comments that I shall take
-into account when creating a camera ready version. I'll try to find a
-native English writer to review the paper.
