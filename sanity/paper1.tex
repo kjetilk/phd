@@ -141,7 +141,7 @@ RFC7234 provides detailed control of caching, and caching may also be
 prohibited by the server, either by setting a non-positive freshness
 lifetime or explicitly using a \httph{no-store} control field.
 
-In this paper, we study to what extent SPARQL Endpoints, vocabulary
+In this paper, we study to what extent SPARQL endpoints, vocabulary
 and data publishers support these standards.
 
 \section{Related work}
@@ -220,7 +220,7 @@ Appendix~\ref{app:reduction}.
 
 The end result of this process is a list of 3117 unique hosts, for
 each several resources would be visited, some several times, as they
-may host SPARQL Endpoints, vocabularies, or other information
+may host SPARQL endpoints, vocabularies, or other information
 resources, by a spider detailed in Appendix~\ref{app:fetcher},
 resulting in 7745 requests, done on 2015-01-02. Although this is not a
 very large number, we assume that caching headers are usually set on a
@@ -229,7 +229,7 @@ types, and so the number of hosts is more important than the
 number of resources.
 
 This results in an NQuads file per host, which is then loaded into a
-Virtuoso-based SPARQL Endpoint for analysis by using the statistics
+Virtuoso-based SPARQL endpoint for analysis by using the statistics
 system R\cite{kn:r} in the following section.
 
 \section{Analysis}
@@ -344,7 +344,7 @@ statistics are considered estimates.
     are determined by the fraction of the types of resources. On the
     horizontal axis the width of the boxes is proportional to the
     total counts, using the same bins as in
-    Figure~\ref{fig:hardall}. Yellow boxes denote SPARQL Endpoints,
+    Figure~\ref{fig:hardall}. Yellow boxes denote SPARQL endpoints,
     green dataset descriptions, blue generic information resources and
     red vocabularies.}
   \label{fig:hardtable}
@@ -399,7 +399,7 @@ smaller. This is confirmed by a hypothesis test that yields \pvalue =
 \end{figure}
 
 
-We find that only one SPARQL Endpoint yields a heuristic lifetime, on
+We find that only one SPARQL endpoint yields a heuristic lifetime, on
 closer inspection, we find this to be hosted by
 Dydra\footnote{http://dydra.com/}. We speculate that this is due to
 that few underlying DBMS systems help track modification times in a
@@ -537,7 +537,7 @@ publishing cycle since they are making a commitment about future
 changes. Designing user support systems as well as interfaces that fit
 the publisher's workflow, is an important problem.
 
-For SPARQL Endpoints, it is interesting to examine the queries in a
+For SPARQL endpoints, it is interesting to examine the queries in a
 shared proxy, e.g. an institutional cache or a Content
 Delivery Network for frequent subpatterns, and prefetch and cache such
 intermediate results so that subsequent queries can be answered in
