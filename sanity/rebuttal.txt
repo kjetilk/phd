@@ -83,9 +83,9 @@ reviewers within the page limit.
 I'm not sure how to address the comment of Review 1 that the survey is
 weak because it is based on only two documents. I assume they refer to
 the two RFCs. First, it is not entirely true, it also references other
-documents, only to show it is not widely used. Moreover, the two
-documents defines the entire standards-based caching infrastructure of
-the Web, as such, the survey is exhaustive.
+documents, only to show that they are not widely used. Moreover, the
+two documents defines the entire standards-based caching
+infrastructure of the Web, as such, the survey is exhaustive.
 
 Review 6 requests data to be published. I shall publish the data and
 the code in a tar archive.
