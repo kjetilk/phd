@@ -4,81 +4,43 @@ I would first like to address the main point of critisism voiced
 mainly by Review 4 but also by Review 2, that the survey is of a very
 limited "Semantic Web" and so is unlikely to be generalizeable. 
 
-This critisism is very valid and taken to heart. To understand the
-constraints of the study, it is first important to note that it is
-directed at the community that convenes at ESWC. Also, such a paper
-could address what this community does, what it can do, and what it
-should do. I have consciously avoided strong "should do"
-recommendations, except in the case where current practice is clearly
-misguided. Most recommendations are therefore of the much softer "can
-do" type, but the overall focus of the paper is on what the community
-does.
-
-Consequently, this survey is not meant to be generalizeable beyond the
-current state of the art. I find it quite likely that the current
-state must change in order for the Semantic Web to be successful, and
-if the Semantic Web succeeds, the current conclusions will most
-certainly not hold. In particular, there is nothing on the Web today
-that supports query evaluation in the way that a large-scale
-deployment of federated SPARQL would. The scope of the survey is a
-snapshot, confined to what this community can reasonably do something
-about, and currently, we are such a tiny fraction of the Web, that we
-have to understand the Web better to succeed.
-
-This survey is not intended as means to understand what the rest of
-the Web is doing right and wrong, that wisdom is available elsewhere
-in the broader literature, but since I believe a survey paper should
-focus mostly on "does", it was not within my scope, nor the pagelimit,
-to cite. This wisdom was therefore only cited from the standards.
-
-The intention is mostly to have empirical research to see if 
-statements like "it is no point in using caches when evaluating SPARQL
-queries, since no endpoints are exposing them" have merit.
+This critisism is very valid and taken to heart, and I should strive
+to make it clearer why this is the scope I chose to work within.
+Indeed, this Semantic Web is a mere fraction of the open data web,
+where e.g. JSON APIs are common. Coffee break discussions around
+caching have often stranded on the lack of data around what the
+community as a whole actually does, and therefore, that is the main
+focus of this paper. What it can do is given some space, but a
+discussion of what it should do is consciously avoided, except in the
+case where current practice is clearly misguided. Since the paper
+already fills the pagelimit, I have only cited the foundational
+documents for wisdom on what is thought to be important for the Web, a
+further discussion would be beyond the available space, and probably
+also be better suited for a different conference.
 
 Review 1 asked us to discuss the importance of caching metadata for
-query processing. I believe this is inappropriate for two reasons, one
-is the "does" focus of the paper, but more importantly, this is
+query processing. This is the focus our research, but this is
 largely unknown at present, and it cannot be inferred from a survey
 alone. The study by Lampo et al, cited among related work, provides a
 sobering account, and cautions us to not oversell the importance of
 caching for query processing.
 
-As this is an broad area of critisism from several reviews, I
-shall attempt to condense the above discussion into a concise
-clarification in the paper.
-
-
 Review 4 pointed out a flaw in that the Surrogates header was wrong. I
-acknowledge the error, and reran the spider recording the
-Surrogate-Capability header instead. It was not found, and therefore
-the flaw does not influence the conclusions, but I'll fix this.
+acknowledge the error, and will rerun the spider.
 
-I note that the paper is very close to the page limit, so I would have
-to remove parts of the paper to be able to expand on other parts. In
-fact, I removed discussions relevant to the questions raised by Review
-3 from the initial draft as they felt to deviate from the focus too
-much.
+I note that the paper is very close to the page limit, and amongst the
+things that were removed from the initial draft are discussions of the
+questions raised by Review 3 and a list of the contributions, as
+requested by Review 6. Review 6 suggest that I focus the discussion,
+which could reduce the length somewhat, but I would welcome
+suggestions on what else could be trimmed, to make room for
+elaborations suggested in the reviews.
 
-Another example of things I removed was a list of the contributions,
-as requested by Review 6, as I felt it was merely a reiteration of the
-objectives that didn't not serve to clarify the paper, for any other
-reason than convention.
-
-Review 6 suggests that I use a logarithmic scale in some of the
-figures. I initially did this, but felt that they didn't effectively
-convey the essence, and that the problem is that our time and calendar
-doesn't follow linear progression either. Therefore, one is left with
-the choice of a classification that doesn't make intuitively sense or
-one that doesn't make sense mathematically. I'll try out the
-suggestion of combining the two.
-
-I'll discuss these issues with local faculty to find a good solution.
-
-Review 6 also suggests that I restructure the paper, and focus the
-discussion. With a focused discussion, it may be room to do some
-expansions of other points. I'll try my best, but it does not seem
-straightforward to include all the elaborations requested by the
-reviewers within the page limit.
+I initially used logarithmic scale as suggested by Review 6, for the
+reasons they mention. I found the intuitive interpretation of the
+figures to be very difficult, since the time and calendar scale is as
+it is. The suggestion to combine the two is interesting, and I will
+see if provides any benefit if the paper is accepted.
 
 I'm not sure how to address the comment of Review 1 that the survey is
 weak because it is based on only two documents. I assume they refer to
