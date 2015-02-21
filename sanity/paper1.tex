@@ -115,7 +115,7 @@ understood as the number of seconds that the response may be used
 without contacting the origin server. Ideally, the calculation of the
 freshness lifetime should be based of the above, we therefore shall
 refer to this as ``standards-compliant caching''. However it can also
-be based on heuristics, and RFC7234, Section~4.2.2 provides some loose
+be based on heuristics, and Section~4.2.2 in RFC7234 provides some loose
 constraints for such practice, as well as a suggestion for a useful
 heuristic. This heuristic is based on a fraction of the time lapsed
 between the current time and the modification time given in the
@@ -241,13 +241,13 @@ better support for caching than others. To do this, we formulated
 SPARQL queries to examine the \httph{Server} headers of successful
 responses, with optional clauses matching the standards-compliant
 computed freshness lifetime (which is the ideal) as well as whether
-the response had other promising features that may assist caching such
-as modification time, certain predicates, etc.%\todo{promising}
+the response had other indications of caching-related metadata that
+may assist caching such as modification time, certain predicates, etc.
 
 For each unique \httph{Server} header, we found the ones where
-\emph{all} responses had a freshness lifetime or a promising feature. For
+\emph{all} responses had a freshness lifetime or other usable metadata. For
 the former, this amounted to 22 servers. 70 servers always responded
-with promising features. Inspecting the values we find the well-known
+with usable metadata. Inspecting the values we find the well-known
 Virtuoso and Callimachus servers, as well as the Perl modules
 RDF::LinkedData and RDF::Endpoint, which is partly developed by and
 runs on a server operated by this author. Apart from those, a typical
@@ -260,7 +260,7 @@ For a more systematic approach, we wish to test the hypothesis that
 some servers are better configured to support caching than others.
 Using the methodology given in Appendix~\ref{app:stats}, we find in
 both the cases of standards-compliant freshness lifetime and for the other
-promising features, the test reports \pvalue = 0.0001. We can conclude
+usable metadata, the test reports \pvalue = 0.0001. We can conclude
 that it is highly likely that some servers are better at exposing
 cache headers than others. Unfortunately, since most \httph{Server}
 headers only contain generic values, little can be learnt about these
@@ -358,7 +358,7 @@ that the result may be cached for some minutes.
 \subsubsection{Simple heuristic freshness estimates}\label{sec:simplefresh}
 
 We next consider the simple heuristic freshness lifetime as suggested in
-RFC7234, Section~4.2.2 and mentioned in the introduction.
+Section~4.2.2 in RFC7234 and mentioned in the introduction.
 
 \begin{figure}[th!]
   \centerline{%
@@ -510,7 +510,7 @@ least a hint of a resource's cacheability. We also noted that the
 majority of the Semantic Web is unhelpful. Therefore, an interesting
 direction is to learn the change frequency of resources to use in a
 heuristic freshness lifetime estimation. However, such work should
-operate within the loose constraints of RFC7234, Section~4.2.2, and
+operate within the loose constraints of Section~4.2.2 in RFC7234, and
 should find its niche when the other techniques described in this paper
 are unavailable. Once this is done, the correctness of caching headers
 should be assessed, possibly using contingency tables similar to those
