@@ -172,7 +172,7 @@ foreach my $host (@hosts) {
 																		 'ETag',
 																		 'X-Cache',
 																		 'Date',
-																		 'Surrogates',
+																		 'Surrogate-Capability',
 																		 'Client-Aborted',
 																		 'Client-Warning'
 																		],
@@ -323,7 +323,7 @@ foreach my $host (@hosts) {
 																				  'ETag',
 																				  'X-Cache',
 																				  'Date',
-																				  'Surrogates',
+																				  'Surrogate-Capability',
 																				  'Client-Aborted',
 																				  'Client-Warning'
 																				 ],
