@@ -6,15 +6,16 @@ The critisism that I only surveyed a small part of the Web and so, the
 conclusions are not generalizeable is valid, and I should strive to
 make it clearer why this is the scope I chose to work within. Indeed,
 this Semantic Web is a mere fraction of the open data web, where
-e.g. JSON APIs are common. Coffee break discussions around caching
-have often stranded on the lack of data around what the community as a
-whole actually does, and therefore, that is the main focus of this
-paper. What it can do is given some space, but a discussion of what it
-should do is consciously avoided, except in the case where current
-practice is clearly misguided. Since the paper already fills the
-pagelimit, I have only cited the foundational documents for wisdom on
-what is thought to be important for the Web, a further discussion
-would be beyond the available space.
+e.g. JSON APIs are common. ISWC/ESWC coffee break discussions around
+caching have often stranded on the lack of data around what the
+community as a whole actually does, and therefore, that is the main
+focus of this paper. The recommendations are meant as suggestions on
+what the community may do, but a discussion of what it should do is
+consciously avoided, except in the case where current practice is
+clearly misguided. Since the paper already fills the pagelimit, I have
+only cited the foundational documents for wisdom on what is thought to
+be important for the Web, a further discussion would be beyond the
+available space.
 
 Review 1 asked us to discuss the importance of caching metadata for
 query processing. This is the focus our research, but this is
@@ -35,9 +36,9 @@ suggestions on what else could be trimmed, to make room for
 elaborations suggested in the reviews.
 
 I initially used logarithmic scale as suggested by Review 6, for the
-reasons they mention. I found the intuitive interpretation of the
-figures to be very difficult, since the time and calendar scale is as
-it is. The suggestion to combine the two is interesting, and I will
+reasons they mention. Then, I found the intuitive interpretation of
+the figures to be very difficult, since the time and calendar scale is
+as it is. The suggestion to combine the two is interesting, and I will
 see if it provides any benefit if the paper is accepted.
 
 I'm not sure how to address the comment of Review 1 that the survey is
@@ -45,5 +46,4 @@ weak because it is based on only two documents. I assume they refer to
 the two RFCs. First, it is not entirely true, see Table 1. Moreover,
 the two documents define the entire standards-based caching
 infrastructure of the Web, as such, the survey is exhaustive.
-
 
