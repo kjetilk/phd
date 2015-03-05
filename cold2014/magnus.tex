@@ -282,18 +282,11 @@ the response time and wrote it to file on CSV format. To evaluate the
 result we used the programming language R with the packages
 \textsf{DoE.base}~\cite{DoEBase}, \textsf{FrF2}~\cite{FrF2} and
 \textsf{BsMD}~\cite{BsMD}. R allowed us to parse the CSV files created
-from the experiments and output them in two types of graphs.  
-
-To evaluate the graphs we have used a method in the \textsf{FrF2} R
-package called \textsf{DanielPlot} to create half-normal plots. The
-intuition behind this is simple: If errors are normally distributed,
-which is a conservative assumption, and there are no significant
-effects they will also be normally distributed, and so the estimated
-effects would end up on a straight line. Any significant deviations
-from a straight line indicates a significant factor.  That we use a
-half-normal plot (rather than a normal plot) means that
-the most significant effects will end up in the top right
-corner. 
+from the experiments for further study.
+ 
+The \textsf{FrF2} R package implements a criterion of significance
+known as Lenth's method, which we have used with a significance level at $\alpha =
+0.05$. % TODO: Kan slenge med referanse
 %
 \begin{wraptable}{r}{0.35\textwidth}
 \vspace{-35pt}
@@ -316,12 +309,6 @@ corner.
 \vspace{-45pt}
 \end{wraptable}
 %
-The axes themselves are not important to understand the plot
-nor the results, refer to \cite{PlanExp} for details.  We have also
-set the significance level at $\alpha = 0.05$, where
-\textsf{DanielPlot} is using Lenth's method for the analysis of
-unreplicated factorials.
-
 For brevity, we will use abbreviations given in Table~\ref{facandabbrev}.
 
 We ran several experiments, both randomized and unrandomized
@@ -365,14 +352,13 @@ check for significant effect when the experiment was evaluated.
 \end{wraptable}
 
 
-Figure~\ref{3factorGraph} shows only one significant factor, namely
-the \textsf{O} factor in the upper right corner. In
-Table~\ref{3factorEffect} we can see the time effects from largest to
-smallest.  We see that the ontology factor has the largest effect on
-approximately 2.2 seconds which means that one of the ontologies
-overall is 2.2 seconds faster. By reading the results from the linear
-model it is the factor level \textsf{-vso} which has an overall faster
-response time.
+Using the Lenth criterion, we find only one significant factor, namely
+the \textsf{O} factor. In Table~\ref{3factorEffect} we can see the
+time effects from largest to smallest.  We see that the ontology
+factor has the largest effect on approximately 2.2 seconds which means
+that one of the ontologies overall is 2.2 seconds faster. By reading
+the results from the linear model it is the factor level \textsf{-vso}
+which has an overall faster response time.
 
 \begin{wraptable}{l}{0.25\textwidth}
 \vspace{-35pt}
@@ -403,17 +389,13 @@ of each factor present in the data sets. The two levels of each factor would the
 represent either values over or under the average. This was done to hit 
 as many values in the data sets as possible. % TODO: more on this.
 
-In Figure~\ref{10factorGraph} we can see the results from running
-all the 1024 runs.  We can see that there are a lot of significant
-effects present here. 
-Unfortunately there are so many significant factors that there are
-some of them that are illegible, but most of them have a low impact on
-the significance graph.  In Table~\ref{10factorEffect} we can see the top
-fifteen absolute effects. We can see that emission and fuel consumption are 
-the most significant factors besides the ontology factor.
-The linear model again tells us that the option
+There is a large number of significant effects when we employ Lenth's
+method on this large experiment. In Table~\ref{10factorEffect} we have
+included the top fifteen absolute effects. We can see that emission
+and fuel consumption are the most significant factors besides the
+ontology factor.  The linear model again tells us that the option
 \textsf{-vso} has a significantly lower response time than
-\textsf{-co}. 
+\textsf{-co}.
 
 \begin{wraptable}{l}{0.25\textwidth}
 \vspace{-25pt}
