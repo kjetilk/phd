@@ -73,7 +73,7 @@ requests may be answered closer to the client.
 In spite of this, we have not seen it in widespread use in the
 Semantic Web, and therefore we decided to conduct a survey to
 investigate the actual compliance to RFC7234 and RFC7232. 
-With this paper, we hope to achieve the following:
+With this paper, we hope to achieve the following:\todo{formulate as contributions}
 \begin{enumerate}
 \item Understand the actual usage rather than rely on anecdotal
   conceptions.
@@ -94,7 +94,7 @@ anywhere between a server and a client, in which case it may be
 shared, i.e. it may cache responses from several servers served to
 several clients. Another example is an institutional forward proxy,
 which are close to several users. Finally, the User Agent may
-implement a private cache for its user at the client side.
+implement a private cache for its user at the client side.\todo{split here}
 
 As mentioned, two standards are relevant for this study, RFC7234,
 which is named ``Caching'' and RFC7232, named ``Conditional
@@ -143,7 +143,7 @@ prohibited by the server, either by setting a non-positive freshness
 lifetime or explicitly using a \httph{no-store} control field.
 
 In this paper, we study to what extent SPARQL endpoints, vocabulary
-and data publishers support these standards.
+and data publishers support these standards.\todo{link to dump}
 
 \section{Related work}
 
@@ -151,7 +151,8 @@ We are not aware of any surveys of this type. Although the database
 literature is rich with query cache literature, it is mostly relevant
 to what would happen within the server or between the server and a
 reverse proxy, which is opaque to the Internet, and therefore not of
-our concern.
+our concern. For the same reason, caching that happens within the
+SPARQL engine is not our concern.
 
 The Dynamic Linked Data Observatory (DyLDO) \cite{dyldo2} performed,
 and continues to do so, monitoring of parts of the Linked Open Data
@@ -174,7 +175,7 @@ sense than we do, they rather prefetched an entire dataset to a local
 store and based on heuristics tried to determine which parts of the
 query should be evaluated remotely and locally. \cite{lampo2011cache}
 explored when caching had a positive effect on complex SPARQL
-queries.
+queries.\todo{discuss SPARQL cache complexity}
 
 In the broader Web literature, \cite{ager2010revisiting} analysed the
 value of caching based anonymized traces of actual Web usage at a
@@ -216,11 +217,12 @@ list of 312 endpoints.
 To examine as many different implementations and hosts as possible, we
 noted that the Billion Triple Challenge 2014 \cite{btc-2014} dataset
 consisted of a 4~GTriple corpus of spidered Web data. This was seeded
-from datahub.io (aka CKAN), which is also the definition of the LOD
-cloud, as well as other sources. To compile a list of candidates to
-further examine, we performed a series of data reduction steps,
-manually inspecting the result between each step. The details of this
-process is given in Appendix~\ref{app:reduction}.
+from datahub.io (aka CKAN, which is also used to manage the datasets
+in the ``LOD cloud'')\todo{expand on the coverage}, as well as other sources. To compile a list of
+candidates to further examine, we performed a series of data reduction
+steps, manually inspecting the result between each step. The details
+of this process is given in Appendix~\ref{app:reduction}.\todo{more
+  detail on filtering}
 
 The end result of this process is a list of 3117 unique hosts, for
 each several resources would be visited, some several times, as they
@@ -234,7 +236,7 @@ number of resources.
 
 This results in an NQuads file per host, which is then loaded into a
 Virtuoso-based SPARQL endpoint for analysis by using the statistics
-system R\cite{kn:r} in the following section.
+system R\cite{kn:r} in the following section.\todo{Reorg, rev 6}
 
 \section{Analysis}
 
@@ -250,7 +252,7 @@ may assist caching such as modification time, certain predicates, etc.
 
 For each unique \httph{Server} header, we found the ones where
 \emph{all} responses had a freshness lifetime or other usable metadata. For
-the former, this amounted to 22 servers. 70 servers always responded
+the former, this amounted to 22 servers\todo{reintroduce table}.  70 servers always responded
 with usable metadata. Inspecting the values we find the well-known
 Virtuoso and Callimachus servers, as well as the Perl modules
 RDF::LinkedData and RDF::Endpoint, which is partly developed by and
@@ -270,7 +272,7 @@ cache headers than others. Unfortunately, since most \httph{Server}
 headers only contain generic values, little can be learnt about these
 implementations. We note, however, that DBPedia exposes
 standards-compliant freshness lifetime of 604800 seconds (i.e. 1 week) for
-both LOD and SPARQL endpoints.
+both LOD and SPARQL endpoints.\todo{elaborate}
 
 \subsection{Other caching headers}
 
@@ -278,7 +280,7 @@ As shown in Table~\ref{tab:headers}, there are also other caching
 headers than those mentioned in the introduction. We found
 \httph{Pragma} (archaic HTTP 1.0 header) in 287 responses, but except
 for two hosts, where they were superfluous, they were only used to
-prohibit caching. \httph{Surrogates} were not observed.
+prohibit caching. \httph{Surrogates} were not observed.\todo{fix}
 
 \subsection{Distribution of freshness lifetime}
 
@@ -312,7 +314,7 @@ In Figure~\ref{fig:hardall}, there is a barplot where
 the freshness lifetime is grouped in bins. We see that in these
 categories, the most common is to prohibit caching. Nevertheless, many
 also declare a standards compliant freshness lifetime in minutes to
-days.
+days\todo{explain number of occur; fix labels}.
 
 \begin{figure}[ht]
   \centerline{%
@@ -530,7 +532,8 @@ We found that some implementations are likely better than others, but
 further understanding of these differences are impeded by the fact
 that most \httph{Server} headers contained very little
 information. Future work could seek more sophisticated fingerprinting
-and understanding of the nature of these differences.
+and understanding of the nature of these differences.\todo{comment on
+  conscious setting}
 
 Further investigate the suitability of the \rdfterm{dct:modified}
 property for estimating heuristic freshness lifetime.
@@ -545,7 +548,7 @@ For SPARQL endpoints, it is interesting to examine the queries in a
 shared proxy, e.g. an institutional cache or a Content
 Delivery Network for frequent subpatterns, and prefetch and cache such
 intermediate results so that subsequent queries can be answered in
-part by the proxy.
+part by the proxy.\todo{more on this difficulty}
 
 Even though it is clear that other parts of the Web benefit greatly
 from caching, and that the potential for HTTP metadata to better
@@ -556,7 +559,8 @@ estimating the actual impact of doing so should be done.
 
 Based on the results of DyLDO, it is highly likely that most cache
 prohibitions are misguided, and server administrators are advised to
-turn them off unless they are sure they are required.
+turn them off unless they are sure they are required.\todo{split this
+  in the stuff that follows}
 
 In many cases, setting reasonable cache headers is straightforward,
 and should be done by data owners. Framework authors should make it
