@@ -181,7 +181,7 @@ sense than we do, they rather prefetched an entire dataset to a local
 store and based on heuristics tried to determine which parts of the
 query should be evaluated remotely and locally. \cite{lampo2011cache}
 explored when caching had a positive effect on complex SPARQL
-queries.\todo{discuss SPARQL cache complexity}
+queries.
 
 In the broader Web literature, \cite{ager2010revisiting} analysed the
 value of caching based anonymized traces of actual Web usage at a
@@ -589,13 +589,26 @@ Estimating the freshness lifetime is a challenging problem for data
 owners. It must necessarily involve the human users involved in the
 publishing cycle since they are making a commitment about future
 changes. Designing user support systems as well as interfaces that fit
-the publisher's workflow, is an important problem.
+the publisher's workflow is an important problem.
 
 For SPARQL endpoints, it is interesting to examine the queries in a
 shared proxy, e.g. an institutional cache or a Content
 Delivery Network for frequent subpatterns, and prefetch and cache such
 intermediate results so that subsequent queries can be answered in
-part by the proxy.\todo{more on this difficulty}
+part by the proxy.
+
+We believe that  \cite{ldf1} and \cite{hogan2014paths} prematurely
+reject caching in connection to SPARQL. They are correct that
+currently, query results can only be cached on a per-query
+basis. Moreover, semantically insignificant changes to a query, such
+as whitespace or the order of triple patterns in a basic graph
+pattern, currently causes problems for caches. The latter problem can
+probably be fixed by developing digest algorithms. Such algorithms
+exist, but are focused on cryptographical strength, and much simpler
+algorithms could be used for this problem.
+
+Furthermore, by using similarity measures, like those discussed in  
+
 
 Even though it is clear that other parts of the Web benefit greatly
 from caching, and that the potential for HTTP metadata to better
