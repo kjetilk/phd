@@ -189,8 +189,6 @@ major Internet Service Provider. They find that while caching often
 yields little benefit when content is user-generated, they still find
 some potential.
 
-\todo{reintroduce refs}
-
 While these studies have little overlap with the present paper, they
 underline the importance of understanding the current deployment and
 future potential. In some of the related work, it is shown that
@@ -295,7 +293,12 @@ resources, either with SPARQL results or RDF data. A successful
 response is rather strictly defined, not only must there be a
 successful HTTP response after redirects are resolved, the response
 must also return a valid RDF media type (unless it is a SPARQL result)
-and the response must parse into an RDF model. 
+and the response must parse into an RDF model. We have given priority
+to survey many hosts since configuration usually doesn't differ much
+across a host, especially since it also captures different types of
+resources. It is therefore acceptable that the number of resources is
+relatively small.
+
 
 Since we are interested in the properties of valid response, including
 examining some of the RDF contained in them, and that web servers may
@@ -320,7 +323,7 @@ In Figure~\ref{fig:hardall}, there is a barplot where
 the freshness lifetime is grouped in bins. We see that in these
 categories, the most common is to prohibit caching. Nevertheless, many
 also declare a standards compliant freshness lifetime in minutes to
-days\todo{explain number of occur; fix labels}.
+days\todo{explain number of occur; fix labels}\todo{qqplot in report}.
 
 \begin{figure}[ht]
   \centerline{%
