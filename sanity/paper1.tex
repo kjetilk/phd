@@ -255,16 +255,54 @@ the response had other indications of caching-related metadata that
 may assist caching such as modification time, certain predicates, etc.
 
 For each unique \httph{Server} header, we found the ones where
-\emph{all} responses had a freshness lifetime or other usable metadata. For
-the former, this amounted to 22 servers\todo{reintroduce table}.  70 servers always responded
-with usable metadata. Inspecting the values we find the well-known
-Virtuoso and Callimachus servers, as well as the Perl modules
-RDF::LinkedData and RDF::Endpoint, which is partly developed by and
-runs on a server operated by this author. Apart from those, a typical
-server string is e.g. \httph{Apache/2.2.22 (Fedora)}, which reveals
-very little about the RDF-specific parts of the underlying server
-implementation. A quick inspection of all \httph{Server} headers
-confirmed that few reveal any further detail.
+\emph{all} responses had a freshness lifetime or other usable
+metadata. For the former, this amounted to 22 servers, which are
+listed in Table~\ref{tab:servers}.  70 servers always responded with
+usable metadata. Inspecting the values we find the well-known Virtuoso
+and Callimachus servers, as well as the Perl module
+RDF::LinkedData\footnote{See
+  \url{https://metacpan.org/pod/RDF::LinkedData}. It is also present
+  in Debian/Ubuntu as \texttt{librdf-linkeddata-perl}}, which is
+developed by and runs on a server operated by this author. Apart from
+those, we see that the they reveal very little about the RDF-specific
+parts of the underlying server implementation. A quick inspection of
+all \httph{Server} headers confirmed that few reveal any further
+detail.
+
+\begin{table}[h]
+  \caption{\httph{Server} headers for hosts that enabled a freshness
+    lifetime to be computed for \emph{all} requests.}\label{tab:servers}
+\begin{center}
+\begin{tabular}{rl}
+  \hline
+  1 & DFE/largefile \\ 
+  2 & git\_frontend \\ 
+  3 & nginx/1.3.9 \\ 
+  4 & thin 1.6.0 codename Greek Yogurt \\ 
+  5 & Oracle-Application-Server-10g/10.1.3.4.0 Oracle-HTTP-Server [\ldots]\\
+  6 & Oracle-Application-Server-10g/10.1.3.4.0 Oracle-HTTP-Server [\ldots]\\
+  7 & TwistedWeb/8.2.0 \\ 
+  8 & RDF::Endpoint/0.07 \\ 
+  9 & Jetty(6.1.26) \\ 
+  10 & nginx/1.6.1 \\ 
+  11 & Jigsaw/2.3.0-beta3 \\ 
+  12 & Apache/2.2.9 (Win32) PHP/5.2.6 \\ 
+  13 & Apache/2.4.10 (Unix) mod\_fcgid/2.3.9 \\ 
+  14 &  \\ 
+  15 & GFE/2.0 \\ 
+  16 & RDF::LinkedData/0.70 \\ 
+  17 & Apache/2.2.17 (Unix) mod\_wsgi/3.3 Python/2.6.6 \\ 
+  18 & Virtuoso/07.10.3211 (Linux) i686-generic-linux-glibc212-64  VDB \\ 
+  19 & Apache/2.2.24 (Unix) mod\_ssl/2.2.24 OpenSSL/0.9.8y \\ 
+  20 & Apache/2.2.22 (Fedora) \\ 
+  21 & INSEE \\ 
+  22 & GitHub.com \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
 
 For a more systematic approach, we wish to test the hypothesis that
 some servers are better configured to support caching than others.
