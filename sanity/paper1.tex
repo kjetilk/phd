@@ -7,7 +7,6 @@
 \usepackage{verbatim}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{appendix}
 
 \newcommand{\rdfterm}[1]{\texttt{#1}}
 \newcommand{\pvalue}{\textit{p}-value\ }
@@ -138,8 +137,10 @@ this: \httph{ETag}, which sets an opaque identifier for the response,
 or \httph{Last-Modified} which gives the time and date of the last
 modification of the resource. Clients may use these values to retrieve
 the updated response only if the resource has changed. Other relevant
-headers are described in Table~\ref{tab:headers}
-in Appendix~\ref{app:fetcher}.\todo{ref report}\todo{More on HTTP}
+headers are described in a companion technical report
+\cite{kjernsmo_add_survey_2015}.
+% Table~\ref{tab:headers} in Appendix~\ref{app:fetcher}.
+\todo{More on HTTP}
 
 RFC7234 provides detailed control of caching, and caching may also be
 prohibited by the server, either by setting a non-positive freshness
@@ -225,18 +226,19 @@ from datahub.io (aka CKAN, which is also used to manage the datasets
 in the ``LOD cloud'')\todo{expand on the coverage}, as well as other sources. To compile a list of
 candidates to further examine, we performed a series of data reduction
 steps, manually inspecting the result between each step. The details
-of this process is given in Appendix~\ref{app:reduction}.\todo{more
-  detail on filtering}
+of this process is given in the companion technical report
+\cite{kjernsmo_add_survey_2015}.% Appendix~\ref{app:reduction}.
+\todo{more detail on filtering}
 
 The end result of this process is a list of 3117 unique hosts, for
 each several resources would be visited, some several times, as they
 may host SPARQL endpoints, vocabularies, or other information
-resources, by a spider detailed in Appendix~\ref{app:fetcher},
-resulting in 7745 requests, done on 2015-01-02. Although this is not a
-very large number, we assume that caching headers are usually set on a
-per-host basis, if any differences exist, they are likely on different
-types, and so the number of hosts is more important than the
-number of resources.
+resources, by a spider detailed in the companion technical report
+\cite{kjernsmo_add_survey_2015}, resulting in 7745 requests, done on
+2015-01-02. Although this is not a very large number, we assume that
+caching headers are usually set on a per-host basis, if any
+differences exist, they are likely on different types, and so the
+number of hosts is more important than the number of resources.
 
 This results in an NQuads file per host, which is then loaded into a
 Virtuoso-based SPARQL endpoint for analysis by using the statistics
@@ -306,7 +308,8 @@ detail.
 
 For a more systematic approach, we wish to test the hypothesis that
 some servers are better configured to support caching than others.
-Using the methodology given in Appendix~\ref{app:stats}, we find in
+Using the methodology given in the companion technical report
+\cite{kjernsmo_add_survey_2015}, we find in
 both the cases of standards-compliant freshness lifetime and for the other
 usable metadata, the test reports \pvalue = 0.0001. We can conclude
 that it is highly likely that some servers are better at exposing
@@ -318,7 +321,7 @@ both LOD and SPARQL endpoints.\todo{elaborate}
 
 \subsection{Other caching headers}
 
-As shown in Table~\ref{tab:headers}, there are also other caching
+The companion technical report \cite{kjernsmo_add_survey_2015}, lists other caching
 headers than those mentioned in the introduction. We found
 \httph{Pragma} (archaic HTTP 1.0 header) in 287 responses, but except
 for two hosts, where they were superfluous, they were only used to
@@ -567,7 +570,7 @@ operate within the loose constraints of Section~4.2.2 in RFC7234, and
 should find its niche when the other techniques described in this paper
 are unavailable. Once this is done, the correctness of caching headers
 should be assessed, possibly using contingency tables similar to those
-in Appendix~\ref{app:stats}.
+in the companion technical report \cite{kjernsmo_add_survey_2015}.
 
 Investigate whether curated collections such as LOV or SPARQLES
 contain resources that have different characteristics. Since the
@@ -665,7 +668,7 @@ reviewers for extensive reviews.
 %\bibliographystyle{abbrv}
 %\bibliographystyle{jbact}
 %\bibliographystyle{splncs03}
-\bibliography{webarch,data,rfc,hypermedia,dynamicity,stat1,specs,vocabs}
+\bibliography{egne,webarch,data,rfc,hypermedia,dynamicity,stat1,specs,vocabs,similarity,optimization}
 
 
 
