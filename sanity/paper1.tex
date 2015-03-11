@@ -229,27 +229,56 @@ list of 312 endpoints.
 To examine as many different implementations and hosts as possible, we
 noted that the Billion Triple Challenge 2014 \cite{btc-2014} dataset
 consisted of a 4~GTriple corpus of spidered Web data. This was seeded
-from datahub.io (aka CKAN, which is also used to manage the datasets
-in the ``LOD cloud'')\todo{expand on the coverage}, as well as other sources. To compile a list of
+from datahub.io (aka CKAN), as well as other sources. To compile a list of
 candidates to further examine, we performed a series of data reduction
 steps, manually inspecting the result between each step. The details
 of this process is given in the companion technical report
 \cite{kjernsmo_add_survey_2015}.% Appendix~\ref{app:reduction}.
-\todo{more detail on filtering}
 
 The end result of this process is a list of 3117 unique hosts, for
 each several resources would be visited, some several times, as they
 may host SPARQL endpoints, vocabularies, or other information
 resources, by a spider detailed in the companion technical report
 \cite{kjernsmo_add_survey_2015}, resulting in 7745 requests, done on
-2015-01-02. Although this is not a very large number, we assume that
-caching headers are usually set on a per-host basis, if any
-differences exist, they are likely on different types, and so the
-number of hosts is more important than the number of resources.
+2015-01-02. 
 
 This results in an NQuads file per host, which is then loaded into a
 Virtuoso-based SPARQL endpoint for analysis by using the statistics
 system R\cite{kn:r} in the following section.\todo{Reorg, rev 6}
+
+A key challenge to the validity of the survey is biases that may be
+introduced by the coverage and then the data reduction. The breadth of
+the Semantic Web is derived mainly from the BTC2014 crawl. While
+LODstats\footnote{\url{http://stats.lod2.eu/}} has presently seen an
+order of magnitude more triples, the number of error-free datasets
+were at the time of this writing 4442. We work under the assumption
+that cache headers are set mostly on a per-host basis, and if this
+assumption is valid, sampling a URL per host is sufficient. LODstats
+do not report per-host statistics, but often one host will host
+several datasets. Another recent crawl was reported by
+\cite{stateoflod2014}. It is not clear how many hosts were crawled, but the
+number of triples in the crawl is much smaller than that of
+BTC2014. It is therefore a fair assumption that BTC2014 fairly well
+represent the breadth of the Semantic Web, momentarily at least. 
+
+As for the coverage of vocabularies, we realize that LODstats might
+have been a better source, but we have been able to select the most
+important, and not far inferior in number. The number of SPARQL
+endpoints found in SPARQLES is larger than LODstats, and we also
+looked for further endpoints both in the BTC2014 and our own crawl,
+finding only a few. If endpoints went underdiscovered, then there is a
+discovery problem that is beyond this survey to rectify.
+
+The data reduction that was subsequently done was mainly done to
+eliminate errors. We have not investigated biases that may be
+introduced by discarding momentarily dysfunctional parts of the
+Semantic Web, but we investigated whether the freshness lifetimes
+reported in the case of certain errors were distributed differently
+from those that returned a valid response, the companion technical
+report \cite{kjernsmo_add_survey_2015}. We found that they were, but
+we have assumed that this is due to that errors are configured to be
+cached differently, which we know from experience is common
+practice. The following analysis is based on valid responses.
 
 \section{Analysis}
 
