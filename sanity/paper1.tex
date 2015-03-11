@@ -94,16 +94,19 @@ anywhere between a server and a client, in which case it may be
 shared, i.e. it may cache responses from several servers served to
 several clients. Another example is an institutional forward proxy,
 which are close to several users. Finally, the User Agent may
-implement a private cache for its user at the client side.\todo{split here}
+implement a private cache for its user at the client side.
 
-As mentioned, two standards are relevant for this study, RFC7234,
-which is named ``Caching'' and RFC7232, named ``Conditional
-Requests''. The main difference is that the caching standard defines
-when a response may be reused without contacting the origin server at
-all, whereas the conditional requests define how to validate a
-response by contacting the origin server. The two can be combined:
-Clients and proxies may use the latter to revalidate a response that
-has been cached based on the former.
+\subsection{HTTP Caching standards}
+
+As mentioned, the two documents from the HTTP 1.1 standards suite that
+are relevant for this study are RFC7234, which is named ``Caching''
+and RFC7232, named ``Conditional Requests''. The main difference is
+that the caching standard defines when a response may be reused
+without contacting the origin server at all, whereas the conditional
+requests define how to validate a response by contacting the origin
+server. The two can be combined: Clients and proxies may use the
+latter to revalidate a response that has been cached based on the
+former.
 
 RFC7234 defines two important headers: \httph{Expires}, whose value is
 a date and time of when the response is considered stale, and
