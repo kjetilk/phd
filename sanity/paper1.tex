@@ -144,9 +144,7 @@ this: \httph{ETag}, which sets an opaque identifier for the response,
 or \httph{Last-Modified} which gives the time and date of the last
 modification of the resource. Clients may use these values to retrieve
 the updated response only if the resource has changed. Other relevant
-headers are described in % a companion technical report
-%\cite{kjernsmo_add_survey_2015}.
- Table~\ref{tab:headers}.
+headers are described in Table~\ref{tab:headers}.
 \todo{More on HTTP}
 
 \begin{table}[tb]
@@ -273,15 +271,15 @@ consisted of a 4~GTriple corpus of spidered Web data. This was seeded
 from datahub.io (aka CKAN), as well as other sources. To compile a list of
 candidates to further examine, we performed a series of data reduction
 steps, manually inspecting the result between each step. The details
-of this process is given in the companion technical report
-\cite{kjernsmo_add_survey_2015}.% Appendix~\ref{app:reduction}.
+of this process is given in a companion technical report
+\cite{kjernsmo_add_survey_2015}.
 
 The end result of this process is a list of 3117 unique hosts, for
 each several resources would be visited, some several times, as they
 may host SPARQL endpoints, vocabularies, or other information
-resources, by a spider detailed in the companion technical report
+resources, by a spider also detailed in
 \cite{kjernsmo_add_survey_2015}, resulting in 7745 requests, done on
-2015-01-02. 
+2015-01-02.
 
 This results in an NQuads file per host, which is then loaded into a
 Virtuoso-based SPARQL endpoint for analysis by using the statistics
@@ -300,7 +298,7 @@ assumption is valid, sampling a URL per host is sufficient. LODstats
 do not report per-host statistics, but often one host will host
 several datasets. Another recent crawl was reported by
 \cite{stateoflod2014}. It is not clear how many hosts were crawled, but the
-number of triples in the crawl is much smaller than that of
+number of triples is much smaller than that of
 BTC2014. It is therefore a fair assumption that BTC2014 fairly well
 represent the breadth of the Semantic Web, momentarily at least. 
 
@@ -334,7 +332,8 @@ lifetime, and revalidate the response on expiry. Apart from quoting
 the numbers we aggregated, we do this by presenting summarized data
 distribution visualizations, to allow for an intuitive understanding
 of the data. Where appropriate, we also do statistical hypothesis
-tests.
+tests, using so-called contingency tables, see
+\cite{kjernsmo_add_survey_2015} for details.
 
 \subsection{Different server implementations}
 
@@ -411,8 +410,7 @@ make a commitment long into the future. It may provide considerable benefits.
 
 \subsection{Other caching headers}
 
-The companion technical report \cite{kjernsmo_add_survey_2015} lists other caching
-headers than those mentioned in the introduction. We found
+We also looked for other headers in \ref{tab:headers}. We found
 \httph{Pragma} (archaic HTTP 1.0 header) in 287 responses, but except
 for two hosts, where they were superfluous, they were only used to
 prohibit caching. \httph{Surrogate-Capability} were not observed.
