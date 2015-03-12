@@ -409,18 +409,19 @@ In Figure~\ref{fig:hardall}, there is a barplot where
 the freshness lifetime is grouped in bins. We see that in these
 categories, the most common is to prohibit caching. Nevertheless, many
 also declare a standards compliant freshness lifetime in minutes to
-days\todo{explain number of occur}\todo{qqplot in report}.
+days\todo{qqplot in report}.
 
 \begin{figure}[ht]
   \centerline{%
     \includegraphics[width=.9\textwidth]{hardall.pdf}}
-  \caption{Barplot counting all standards-compliant freshness lifetimes
-    found, with the percentage of occurrences indicated on the
-    bars. The first bin are the cases where caching is explicitly
-    prohibited. The next bins are for lifetimes, where the values are
-    grouped if they are on the order of seconds, minutes, hours, etc,
-    i.e. the second bin counts the lifetimes in the interval [1,59]
-    seconds, etc.}
+  \caption{Barplot counting all standards-compliant freshness
+    lifetimes found, with the percentage of occurrences indicated on
+    the bars. On the horizontal axis, the first bin are the cases
+    where caching is explicitly prohibited. The next bins are for
+    lifetimes, where the values are grouped if they are on the order
+    of seconds, minutes, hours, etc, i.e. the second bin counts the
+    lifetimes in the interval [1,59] seconds, etc. On the vertical
+    axis, the number of times a certain freshness lifetime was found.}
   \label{fig:hardall}
 \end{figure}
 
@@ -468,7 +469,7 @@ Section~4.2.2 in RFC7234 and mentioned in the introduction.
   \centerline{%
     \includegraphics[width=.9\textwidth]{heuristicall.pdf}}
   \caption{Barplot counting all simple heuristic freshness lifetimes
-    found. Bins as in Figure~\ref{fig:hardall}.}
+    found. Axes as in Figure~\ref{fig:hardall}.}
   \label{fig:heuristicall}
 \end{figure}
 
