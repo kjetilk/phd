@@ -452,7 +452,10 @@ statistics are considered estimates.
 
 We also note that prohibition of SPARQL results caching is rare.
 Amongst the servers that expose caching headers it is common
-that the result may be cached for some minutes.
+that the result may be cached for some minutes, and closer inspection
+of the dataset reveals that many of these are due to that
+RBKExplorer\footnote{\url{http://www.rkbexplorer.com/}} sets an
+freshness lifetime of 300~s for many endpoints.
 
 \subsubsection{Simple heuristic freshness estimates}\label{sec:simplefresh}
 
