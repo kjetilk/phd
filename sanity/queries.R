@@ -79,3 +79,15 @@ par(mai=c(1,1,0.2,0.05))
 qqplot(errorok,errorparse, xlab="Lifetime when no errors", ylab="Lifetime with parse errors")
 dev.off()
 
+# To generate logarithmic as request by review 6
+data <- sparqlfile("other-hard.rq")
+hardvec <- data$results$fresh
+hardvec[hardvec <= 0] <- 0
+hardveclog <- log10(hardvec)
+hardveclog[hardveclog <= 0] <- -1
+hardvecloghist <- hist(hardveclog, axes=F, main=NULL)
+axis(side=2, at=seq(0, max(hardvecloghist$counts), 20))
+axis(side=1, at=hardvecloghist$breaks, label=c(0, 10^(hardvecloghist$breaks[-1])) )
+tblog <- log10(timebuckets(hardvec)$points)
+tblog[tblog < 0] <- -1
+axis(3, at=tblog, label=c(timebuckets(hardvec)$names, "Max"))
