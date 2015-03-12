@@ -289,6 +289,8 @@ practice. The following analysis is based on valid responses.
 
 \section{Analysis}
 
+\todo{overview of characteristics and why}
+
 \subsection{Different server implementations}
 
 First, we investigated whether certain server implementations provided
@@ -304,10 +306,8 @@ For each unique \httph{Server} header, we found the ones where
 metadata. For the former, this amounted to 22 servers, which are
 listed in Table~\ref{tab:servers}.  70 servers always responded with
 usable metadata. Inspecting the values we find the well-known Virtuoso
-and Callimachus servers, as well as the Perl module
-RDF::LinkedData\footnote{See
-  \url{https://metacpan.org/pod/RDF::LinkedData}. It is also present
-  in Debian/Ubuntu as \texttt{librdf-linkeddata-perl}}, which is
+and Callimachus servers, as well as the Perl modules
+RDF::LinkedData and RDF::Endpoint, which are partly
 developed by and runs on a server operated by this author. Apart from
 those, we see that the they reveal very little about the RDF-specific
 parts of the underlying server implementation. A quick inspection of
