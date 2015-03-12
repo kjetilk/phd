@@ -46,7 +46,8 @@ hardall <- apply(hardtable, 1, sum)
 pdf(file="hardall.pdf", height=5.2,width=8)
 par(mai=c(1,1,0.2,0.05))
 bphard <- barplot(hardall, col="white", xlab="Standards-compliant freshness lifetime", ylab="Number of occurences", main='')
-text(bphard, hardall, labels=paste0(signif(hardall*100/sum(hardall),2),'%'), pos=1)
+text(bphard, c(0, hardall[-1]), labels=c('',paste0(signif(hardall[-1]*100/sum(hardall),2),'%')), pos=3)
+text(bphard, hardall[1], labels=c(paste0(signif(hardall[1]*100/sum(hardall),2),'%'), rep('', 7)), pos=1)
 dev.off()
 
 heuristictable <- lifetimetable("other-heuristic.rq")
@@ -64,7 +65,10 @@ heuristicall <- apply(heuristictable, 1, sum)
 pdf(file="heuristicall.pdf", height=5.2,width=8)
 par(mai=c(1,1,0.2,0.05))
 bpheuristic <- barplot(heuristicall, col="white", xlab="Simple heuristic freshness lifetime", ylab="Number of occurrences", main='')
-text(bpheuristic, heuristicall, labels=paste0(signif(heuristicall*100/sum(heuristicall),2),'%'), pos=1)
+text(bpheuristic, heuristicall, labels=paste0(signif(heuristicall*100/sum(heuristicall),2),'%'), pos=3)
+text(bpheuristic, c(rep(0, 6), heuristicall[7], 0),
+     labels=c(rep('', 6), paste0(signif(heuristicall[7]*100/sum(heuristicall),2),'%'), ''),
+         pos=1)
 dev.off()
 
 pdf(file="heuristictable.pdf", height=5.2,width=8)
