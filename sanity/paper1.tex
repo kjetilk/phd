@@ -366,7 +366,7 @@ make a commitment long into the future. It may provide considerable benefits.
 
 \subsection{Other caching headers}
 
-The companion technical report \cite{kjernsmo_add_survey_2015}, lists other caching
+The companion technical report \cite{kjernsmo_add_survey_2015} lists other caching
 headers than those mentioned in the introduction. We found
 \httph{Pragma} (archaic HTTP 1.0 header) in 287 responses, but except
 for two hosts, where they were superfluous, they were only used to
@@ -433,11 +433,14 @@ vocabularies, dataset descriptions or unclassified information
 resources. First, we note that it seems like the distribution of
 freshness lifetime is quite different for the different types, an
 observation that is also supported by a similar hypothesis test as
-above, with a \pvalue = 0.00001. We also note that it is often
-prohibited to cache dataset descriptions. This is odd, since
-statistics about datasets is usually costly to compute and should be
-cached. The VoID specification \cite{voidnote} also notes that the
-statistics are considered estimates.
+above, with a \pvalue = 0.00001 (note, however, it is more contrived
+than above, since the bins are like in Figure~\ref{fig:hardtable},
+which is chosen for intuitive interpretation rather than statistical
+rigor). Second, we note that it is often prohibited to cache dataset
+descriptions. This is odd, since statistics about datasets is usually
+costly to compute and should be cached. The VoID specification
+\cite{voidnote} also notes that the statistics are considered
+estimates.
 
 \begin{figure}[ht]
   \centerline{%
