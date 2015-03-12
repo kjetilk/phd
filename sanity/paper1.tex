@@ -11,7 +11,7 @@
 \newcommand{\rdfterm}[1]{\texttt{#1}}
 \newcommand{\pvalue}{\textit{p}-value\ }
 \newcommand{\httph}[1]{\texttt{#1}}
-\newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
+%\newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
 \title{A survey of HTTP caching implementations on the open Semantic Web}
 \author{Kjetil Kjernsmo}
@@ -87,7 +87,7 @@ well as practical experience, we point out future research directions
 as well as some recommendations for deployed implementations.
 
 
-We note that caching is not only useful for long-living information
+We note that caching is not only useful for long-living 
 resources, even though that may be the most important use. If a resource
 is frequently requested, it may make sense to cache it even though it
 may be fresh for only a very short period.
@@ -124,7 +124,7 @@ over \httph{Expires}. In the following \emph{freshness lifetime} is
 understood as the number of seconds that the response may be used
 without contacting the origin server. Ideally, the calculation of the
 freshness lifetime should be based of the above, we therefore shall
-refer to this as ``standards-compliant caching''. However it can also
+refer to this as ``standards-compliant caching''. It can also
 be based on heuristics, and Section~4.2.2 in RFC7234 provides some loose
 constraints for such practice, as well as a suggestion for a useful
 heuristic. This heuristic is based on a fraction of the time lapsed
@@ -142,12 +142,16 @@ resource has changed less expensively than serving the entire
 response. Either of two headers must be set by the server to achieve
 this: \httph{ETag}, which sets an opaque identifier for the response,
 or \httph{Last-Modified} which gives the time and date of the last
-modification of the resource. Clients may use these values to retrieve
-the updated response only if the resource has changed. Other relevant
-headers are described in Table~\ref{tab:headers}.
+modification of the resource. Clients that have obtained these values
+may use them to validate an earlier response by using
+\httph{If-None-Match} and/or \httph{If-Modified-Since} respectively in
+a subsequent request. If the server finds the response has not changed
+based on this, it will respond with a \httph{304} status code and no
+body, otherwise it will return the full response. The other headers we
+recorded are listed in Table~\ref{tab:headers}.
 
 
-\begin{table}[tb]
+\begin{table}[bt]
 \caption{Recorded HTTP headers}\label{tab:headers}
  \begin{tabular}{ | l |  p{1.4cm} | p{6.8cm} |}
     \hline
