@@ -91,9 +91,11 @@ hardvec <- data$results$fresh
 hardvec[hardvec <= 0] <- 0
 hardveclog <- log10(hardvec)
 hardveclog[hardveclog <= 0] <- -1
+pdf(file="logandtime.pdf", height=5.2,width=8)
 hardvecloghist <- hist(hardveclog, axes=F, main=NULL)
 axis(side=2, at=seq(0, max(hardvecloghist$counts), 20))
 axis(side=1, at=hardvecloghist$breaks, label=c(0, 10^(hardvecloghist$breaks[-1])) )
 tblog <- log10(timebuckets(hardvec)$points)
 tblog[tblog < 0] <- -1
 axis(3, at=tblog, label=c(timebuckets(hardvec)$names, "Max"))
+dev.off()

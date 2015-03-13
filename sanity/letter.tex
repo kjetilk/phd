@@ -40,13 +40,13 @@ from the paper before submission.
   the contingency table test, the reader is referred to
   \cite{kjernsmo_add_survey_2015}.
 
-\item Number of occurences is now explained in the caption. The
+\item Number of occurrences is now explained in the caption. The
   percentage numbers have been hacked to display well.
 
 \item This comment seems to pertain to different aspects of the paper:
   First, I acknowledge that I quote many numbers in the text, outside
   of the descriptive statistics, and I understand that this may seem
-  disorganized, and that the desire may emerge to see them nicely
+  disorganised, and that the desire may emerge to see them nicely
   tabulated. They don't lend themselves well to tabular display, since
   they come from quite different parts of the analysis. For example, I
   don't think it would serve paper well if the figures of the
@@ -61,7 +61,11 @@ from the paper before submission.
 \item I have made a separate section entitled ``Challenges to
   validity'' to address some of these concerns. In retrospect, using
   LODstats for a list of vocabularies would probably have spared me
-  much trouble, but should not challenge the validity much.
+  much trouble, but should not challenge the validity much. However, I
+  acknowledge that I have not quite understood what
+  \cite{stateoflod2014} did, as the LOD cloud is now quite a lot
+  larger than the BTC2014 dataset, but the website quoted in the
+  review has only crawled 188 MTriples, which isn't at all large.
 
 \item First, it is clearly out of the scope of the paper to discuss
   how to cache and get a performance improvement. As this is the focus
@@ -86,9 +90,9 @@ from the paper before submission.
 \item First, I changed ``RFC7234, Section~4.2.2'' to ``Section~4.2.2
   in RFC7234'', which I hope should clarify that it pertains to the
   standard. Second, since it is my agenda to spread knowledge about
-  foundational Web technologys, I would like to follow this
+  foundational Web technologies, I would like to follow this
   suggestion. However, to satisfy all the other requirements, I found
-  this hard to prioritize, after all this is about the HTTP standard,
+  this hard to prioritise, after all this is about the HTTP standard,
   a standard that is fundamental to all practical contributions to the
   Semantic Web. Since review 5 requested further elaboration on how
   the revalidation process works, I detailed that. I also reintroduced
@@ -108,7 +112,7 @@ from the paper before submission.
 \begin{description}
 \item [Contribution list] I have rewritten two paragraphs, essentially
   keeping the objectives, but detailing how meeting those objectives
-  realize the contributions.
+  realise the contributions.
 \item [Preliminaries and Fundamentals] I have, as noted about, further
   expanded on the RFCs, and put that in a separate subsection under
   Introduction, as I think the text flows better with that
@@ -128,9 +132,91 @@ from the paper before submission.
   the paper, see Section~\ref{restructure} for my take.
 \end{description}
 
+\subsection{Histogram breaks}\label{histogramstuff}
 
+The reviewer remarks that the diagrams do not follow clean
+mathematical mechanics. This is a very interesting comment, and one
+that I have devoted much thought to both while writing the paper, and
+after receiving the reviews. 
 
+First, it is important to note that histograms, mosaic plots,
+boxplots, density plots are all ways to visualise summarised
+distributions of data. As summarisations, they can be seriously
+misleading, even deceiving, if done wrong. Moreover, I acknowledge
+that violating ``mathematical mechanics'' in histograms is a
+frequently seen technique to ``lie with statistics''. 
 
+However, the key goal of the paper is to communicate some essential
+characteristics, and I had already before the paper was submitted used
+a logarithmic scale in those plots, like the reviewer suggested. They
+did not communicate well, since we do not live on a scale of seconds
+when we talk beyond a few minutes.
+
+I had not, however used both axis, as the reviewer suggested, so I
+have now done that, see Figure~\ref{fig:log}.
+
+\begin{figure}[h!]
+  \centerline{%
+    \includegraphics[width=.9\textwidth]{logandtime.pdf}}
+  \caption{Histogram counting all standards-compliant freshness
+    lifetimes found. The data is presented on a logarithmic scale,
+    with the lower x-axis giving the lifetime in seconds and the upper
+    x-axis dividing into ``off'', and then times in usual
+    calendar. Sans polishing.}
+  \label{fig:log}
+\end{figure}
+
+I still opted not to polish and include this into the paper, as
+including the axis on top didn't solve the fundamental problem of
+communication: One doesn't have any everyday feeling for how long
+100~000 seconds is, that is seldomly of interest, rather, one is more
+likely to ask how many months a cache may be valid, and in
+Figure~\ref{fig:log} that question cannot be answered. 
+
+Further, if one is interested in the freshness for a resource at that
+level of detail, it is more likely that the primary interest is actual
+change frequency, a topic that is already better covered by DyLDO \cite{dyldo2}.
+
+The only advocacy I derive from these graphs is the suggestion that
+cache prohibition is misguided, which is something that the violation
+of mathematical mechanics doesn't change. Other than that, the
+intention here is purely descriptive, and that is better served with
+the current breaks.
+
+\subsection{Restructure}\label{restructure} 
+
+Review 6 asked for a major restructure of the paper. I have noted that
+most of the other reviewers found that the the clarity was good, also
+across expertise levels: Both reviewer 4, who indicated expert
+confidence and reviewer 1, who indicated confidence 3, rather the
+paper with ``very clear''. Reviewer 5 also write that the paper is
+very well presented even though they give it a 3 rating on
+clarity. I'm therefore wary about making changes that may ruin the
+clarity for the majority, to satisfy what seems to be a minority.
+
+I have therefore rather tried to understand what reviewer 6 finds
+problematic about it than take their suggestions literally. I have
+therefore done little to the Analysis section, apart from providing an
+initial overview. 
+
+Clearly, reviewer 6 as found the diagrams as not conforming to usual
+form, and they are like reviewer 2, somewhat confused by all the
+numbers that appear in the text, which indeed is somewhat problematic
+but not easily improved.
+
+However, I think the main concern of reviewer 6 is that they put an
+emphasis of the recommendations that I didn't intend. The paper is
+first and foremost meant descriptive, and that's the reason the
+Recommendations is just a tiny section at the end. The only
+recommendation that is derived directly from the paper is the one on
+cache prohibitions. The rest of the recommendations are based in part
+of that I've been working with this for a decade.
+
+Therefore, I have rather than restructured the paper, clarified this
+in the Recommendations, but also in the contributions, and also
+changed wording here and there. I hope this makes it possible to read
+the paper with different eyes, and that it will be clearer to
+everyone.
 
 %\bibliographystyle{plain}
 \bibliographystyle{abbrv}
