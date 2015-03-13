@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[english,british]{babel}
+
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{appendix}
+
+\newcommand{\rdfterm}[1]{\texttt{#1}}
+\newcommand{\pvalue}{\textit{p}-value\ }
+\newcommand{\httph}[1]{\texttt{#1}}
+\newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
+
+\title{Letter concerning changes in ``A survey of HTTP caching implementations on the open Semantic Web''}
+\author{Kjetil Kjernsmo}
+
+%\subtitle{---Unpublished Working Draft, do not circulate---}
+
+
+\begin{document}
+\maketitle
+
+I have as requested made extensive changes to the submitted
+paper. First, the appendices were moved to a Technical Report, due to
+be published by the University of Oslo shortly as
+\cite{kjernsmo_add_survey_2015}. This report will also include some
+extra material, particularly statistical methods, that were removed
+from the paper before submission.
+
+\section{Meta-review items}
+
+\begin{enumerate}
+
+\item We include Table~2, which lists the \httph{Server} headers for
+  hosts that enabled a freshness lifetime to be computed for
+  \emph{all} requests. It makes the conclusion that not much can be
+  found from these headers clear, and shows how they should look. For
+  the contingency table test, the reader is referred to
+  \cite{kjernsmo_add_survey_2015}.
+
+\item Number of occurences is now explained in the caption. The
+  percentage numbers have been hacked to display well.
+
+\item This comment seems to pertain to different aspects of the paper:
+  First, I acknowledge that I quote many numbers in the text, outside
+  of the descriptive statistics, and I understand that this may seem
+  disorganized, and that the desire may emerge to see them nicely
+  tabulated. They don't lend themselves well to tabular display, since
+  they come from quite different parts of the analysis. For example, I
+  don't think it would serve paper well if the figures of the
+  \httph{Pragma} headers would be in a table with the
+  \httph{Cache-Control} headers, the discussion is too
+  different. Also, I note that the majority of the reviewers rated the
+  paper well with respect to clarity. The other aspect of the paper
+  seems related to coverage. To answer that, I have noted that the
+  relative sizes of the databases are not important. See also the next
+  item.
+
+\item I have made a separate section entitled ``Challenges to
+  validity'' to address some of these concerns. In retrospect, using
+  LODstats for a list of vocabularies would probably have spared me
+  much trouble, but should not challenge the validity much.
+
+\item First, it is clearly out of the scope of the paper to discuss
+  how to cache and get a performance improvement. As this is the focus
+  of my current work, I took the opportunity to talk about it dearly
+  anyway, and extended the future work section with a discussion. I
+  note that the reviewer had changed their review to ask us to
+  ``acknowledge the complexity to cache SPARQL'', which I think I had
+  done in the related work section where I wrote that ``In some of the
+  related work, it is shown that caching does not necessarily give
+  tangible benefits.'', but I didn't at that time find space to
+  elaborate. With space freed by the technical report, I have now done
+  so anyway.
+
+\item A very brief comment in ``Future work'', as doing this as a
+  major undertaking. Ultimately, it can probably only be done by an
+  extensive survey using questionnaires.
+
+\item I acknowledge the error, and reran the spider recording
+  \httph{Surrogate-Capability}, which is the correct header, but that
+  were not observed either.
+
+\item First, I changed ``RFC7234, Section~4.2.2'' to ``Section~4.2.2
+  in RFC7234'', which I hope should clarify that it pertains to the
+  standard. Second, since it is my agenda to spread knowledge about
+  foundational Web technologys, I would like to follow this
+  suggestion. However, to satisfy all the other requirements, I found
+  this hard to prioritize, after all this is about the HTTP standard,
+  a standard that is fundamental to all practical contributions to the
+  Semantic Web. Since review 5 requested further elaboration on how
+  the revalidation process works, I detailed that. I also reintroduced
+  the table of all recorded headers, that previously was in the
+  appendix.
+
+\item See Section~\ref{rev6}.
+
+\item I have made another pass of the paper, and also sent it to a
+  professional English proofreader, but don't know if it will fit in
+  their schedule to review it before the deadline.
+
+\end{enumerate}
+
+\section{Reviewer 6's comments}\label{rev6}
+
+\begin{description}
+\item [Contribution list] I have rewritten two paragraphs, essentially
+  keeping the objectives, but detailing how meeting those objectives
+  realize the contributions.
+\item [Preliminaries and Fundamentals] I have, as noted about, further
+  expanded on the RFCs, and put that in a separate subsection under
+  Introduction, as I think the text flows better with that
+  arrangement. I also included the table as per their suggestion.
+\item [Methodology] I identified the the source of the correlation
+  that reviewer mentioned as due to a single host having many SPARQL
+  endpoints configured similarly and noted that.
+\item [Data] I have included a URL to my homepage, where I will make
+  an archive available shortly with data and code (I have to admit
+  that the code isn't all that pretty, I didn't intend the survey to
+  become as extensive as it that, that's why I didn't just release it
+  immediately).
+\item [Analysis1] I'm not quite sure what they are getting at, but
+  included a paragraph just after the section headline.
+\item [Analysis2] See Section~\ref{histogramstuff}.
+\item [Discussion] This is really about an extensive restructuring of
+  the paper, see Section~\ref{restructure} for my take.
+\end{description}
+
+
+
+
+
+%\bibliographystyle{plain}
+\bibliographystyle{abbrv}
+%\bibliographystyle{jbact}
+%\bibliographystyle{splncs03}
+\bibliography{egne,webarch,data,rfc,hypermedia,dynamicity,stat1,specs,vocabs,similarity,optimization}
+
+
+
+\end{document}
