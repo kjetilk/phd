@@ -414,7 +414,7 @@ make a commitment long into the future. It may provide considerable benefits.
 
 \subsection{Other caching headers}
 
-We also looked for other headers in \ref{tab:headers}. We found
+We also looked for other headers in Table~\ref{tab:headers}. We found
 \httph{Pragma} (archaic HTTP 1.0 header) in 287 responses, but except
 for two hosts, where they were superfluous, they were only used to
 prohibit caching. \httph{Surrogate-Capability} were not observed.
@@ -694,12 +694,6 @@ publishing cycle since they are making a commitment about future
 changes. Designing user support systems as well as interfaces that fit
 the publisher's workflow is an important problem.
 
-For SPARQL endpoints, it is interesting to examine the queries in a
-shared proxy, e.g. an institutional cache or a Content
-Delivery Network for frequent subpatterns, and prefetch and cache such
-intermediate results so that subsequent queries can be answered in
-part by the proxy.
-
 We believe that  \cite{ldf1} and \cite{hogan2014paths} prematurely
 reject caching in connection to SPARQL. They are correct that
 currently, query results can only be cached on a per-query
@@ -711,11 +705,13 @@ exist, but are focused on cryptographical strength, and much simpler
 algorithms could be used for this problem.
 
 Furthermore, by using similarity measures, like those discussed in
-\cite{dividino2013following}, proxies can proactively prefetch data
-into a cache to help answer queries. A cost model that takes into
-account several data access methods, those described by
-\cite{hogan2014paths} as well as  the novel work in \cite{ldf1} may be
-a key ingredient in enabling efficient SPARQL evaluation on the Web.
+\cite{dividino2013following}, shared proxies, e.g. an institutional
+cache or a Content Delivery Network, can examine queries for frequent
+subpatterns and proactively prefetch data into a cache to help answer
+queries on the proxy. A cost model that takes into account several
+data access methods, those described by \cite{hogan2014paths} as well
+as the novel work in \cite{ldf1} may be a key ingredient in enabling
+efficient SPARQL evaluation on the Web.
 
 
 Even though it is clear that other parts of the Web benefit greatly
