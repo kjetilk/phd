@@ -46,21 +46,21 @@ caching in the Semantic Web.
 
 Caching has been given a prominent place in the foundational documents
 of the World Wide Web. Out of the 6 documents that make up the HTTP
-1.1 standard, RFC7234 \cite{rfc7234} is entirely devoted to the topic,
-and RFC7232 \cite{rfc7232} defines conditional requests, which is also
-important when constructing caches. As the former notes:
+1.1 standard, RFC7234 \cite{rfc7234} is entirely devoted to the topic.
+RFC7232 \cite{rfc7232} defines conditional requests, and is also
+important when constructing caches. As RFC7234 notes:
 \begin{quote} 
   The goal of caching in HTTP/1.1 is to significantly improve
   performance by reusing a prior response message to satisfy a current
   request.
 \end{quote}
-Furthermore, the Architecture of the World Wide Web
-\cite{Jacobs:04:AWW} discusses caching throughout, and the definition
-of the Representational State Transfer (REST) architectural style
+Furthermore, caching is discussed throughout the Architecture of the
+World Wide Web \cite{Jacobs:04:AWW}, and the definition of the
+Representational State Transfer (REST) architectural style
 \cite{Fielding_2000_Architectural-Styles} is partly motivated from the
 requirement to implement efficient caching. We also note that caching
 in the Internet infrastructure, through so-called Content Delivery
-Networks, is both a large business area and something that could
+Networks, is both a large business area and could
 provide great value to the Semantic Web.
 
 If used correctly, caching mechanisms will reduce the need to make
@@ -80,7 +80,7 @@ The objectives of this paper are:
   infrastructure.
 \item Point out future research directions.
 \end{enumerate}
-The contributions of this paper are to meet these objective by means
+The contributions of this paper are to meet these objectives by means
 of a survey that shows that while the uptake has been moderate,
 practical benefits may be realized already. Based on this survey as
 well as practical experience, we point out future research directions
@@ -96,8 +96,8 @@ Caching may be deployed at several different levels: An HTTP cache may
 be in a reverse proxy close to the server, in which case it may have
 much in common with a conventional database cache. It may also be
 anywhere between a server and a client, in which case it may be
-shared, i.e. it may cache responses from several servers served to
-several clients. Another example is an institutional forward proxy,
+shared, i.e. it may cache responses from a number of servers to
+many clients. Another example is an institutional forward proxy,
 which are close to several users. Finally, the User Agent may
 implement a private cache for its user at the client side.
 
@@ -105,31 +105,31 @@ implement a private cache for its user at the client side.
 \subsection{HTTP Caching standards}
 
 As mentioned, the two documents from the HTTP 1.1 standards suite that
-are relevant for this study are RFC7234, which is named ``Caching''
+are relevant for this study are RFC7234, named ``Caching'',
 and RFC7232, named ``Conditional Requests''. The main difference is
 that the caching standard defines when a response may be reused
-without contacting the origin server at all, whereas the conditional
+without any contact to origin server, whereas the conditional
 requests define how to validate a response by contacting the origin
 server. The two can be combined: Clients and proxies may use the
 latter to revalidate a response that has been cached based on the
 former.
 
-RFC7234 defines two important headers: \httph{Expires}, whose value is
+RFC7234 defines two important headers. The first of which is \httph{Expires}, whose value is
 a date and time of when the response is considered stale, and
-therefore should not be used; and \httph{Cache-Control}, which allows
+therefore should not be used. The second is \httph{Cache-Control}, which allows
 detailed control of the cache, including a \httph{max-age} field,
 which gives the time in seconds for how long the the response may be
 used from the time of the request. \httph{max-age} takes precedence
-over \httph{Expires}. In the following \emph{freshness lifetime} is
+over \httph{Expires}. In this article, \emph{freshness lifetime} is
 understood as the number of seconds that the response may be used
 without contacting the origin server. Ideally, the calculation of the
 freshness lifetime should be based of the above, we therefore shall
 refer to this as ``standards-compliant caching''. It can also
-be based on heuristics, and Section~4.2.2 in RFC7234 provides some loose
-constraints for such practice, as well as a suggestion for a useful
+be based on heuristics, Section~4.2.2 in RFC7234 provides some loose
+constraints for such practice as well as a suggestion for a useful
 heuristic. This heuristic is based on a fraction of the time lapsed
 between the current time and the modification time given in the
-\httph{Last-Modified} header. This approach therefore still requires
+\httph{Last-Modified} header. This approach still requires
 the Web server to be cooperative to be successful. Commonly, Web
 servers can track this, for example if RDF is served from a file
 system the file modification time is used.
@@ -137,8 +137,8 @@ system the file modification time is used.
 RFC7232, on the other hand, defines a protocol for asking the server
 if the cached response is still fresh using conditional requests. This
 doesn't burden the content provider with the task of estimating the
-time to live beforehand, but then, it must be able to answer if the
-resource has changed less expensively than serving the entire
+freshness lifetime beforehand. However, the server is then required to be able to answer if the
+resource has changed less expensively than it would be to serve the entire
 response. Either of two headers must be set by the server to achieve
 this: \httph{ETag}, which sets an opaque identifier for the response,
 or \httph{Last-Modified} which gives the time and date of the last
@@ -202,7 +202,7 @@ literature is rich with query cache literature, it is mostly relevant
 to what would happen within the server or between the server and a
 reverse proxy, which is opaque to the Internet, and therefore not of
 our concern. For the same reason, caching that happens within the
-SPARQL engine is not our concern.
+SPARQL engine is not relevant.
 
 The Dynamic Linked Data Observatory (DyLDO) \cite{dyldo2} performed,
 and continues to do so, monitoring of parts of the Linked Open Data
@@ -212,7 +212,7 @@ HTTP headers.
 
 Linked Data Fragments is claimed in \cite{ldf1} to take advantage of
 caching and contrasts this with the unavailability of SPARQL query
-caches, and it is claimed that this is an architectural problem. In
+caches. They assert that this is an architectural problem. In
 \cite{hogan2014paths}, the authors examine cacheable as one of the
 desiderata for sustainable data access. They claim, without further
 justification, that SPARQL isn't cacheable. 
@@ -224,7 +224,7 @@ are interested in the situation where the changes cannot be
 controlled.
 
 In \cite{umbrich2012hybrid}, the term caching was used in a different
-sense than we do, they rather prefetched an entire dataset to a local
+sense than we use it. They rather prefetched an entire dataset to a local
 store and based on heuristics tried to determine which parts of the
 query should be evaluated remotely and locally. \cite{lampo2011cache}
 explored when caching had a positive effect on complex SPARQL
@@ -232,8 +232,8 @@ queries.
 
 In the broader Web literature, \cite{ager2010revisiting} analysed the
 value of caching based anonymized traces of actual Web usage at a
-major Internet Service Provider. They find that while caching often
-yields little benefit when content is user-generated, they still find
+major Internet Service Provider. They found that while caching often
+yields little benefit when content is user-generated, there is still 
 some potential.
 
 While these studies have little overlap with the present paper, they
@@ -252,16 +252,16 @@ SPARQL endpoints, vocabularies, dataset descriptions and other
 resources and record headers recommended by current standards, as well
 as obsoleted and non-standard headers. Additionally, we examine the
 triples in the returned information resources to see if there is
-information there that may be used to calculate heuristic freshness.
+information that may be used to calculate heuristic freshness.
 
-We make several approaches to ensure that we visit a large and
-representative section of the open Semantic Web. We take SPARQL
+We made several approaches to ensure that we visited a large and
+representative section of the open Semantic Web. We took SPARQL
 Endpoints from the SPARQLES survey \cite{buil2013sparql}, vocabularies
 from Linked Open Vocabularies (LOV) \cite{lov2} and prefix.cc, and we
-augment these data with spidered data from the Billion Triple
+augmented these data with spidered data from the Billion Triple
 Challenge (BTC) 2014 \cite{btc-2014} dataset. Of these, BTC2014 is by
 far the largest, the others are small, curated and targeted
-datasets. However, the size is besides the point, we are only
+datasets. However, the size is besides the point, we were only
 interested in examining as many hosts as possible, and they are still
 few.
 
@@ -273,9 +273,9 @@ To examine as many different implementations and hosts as possible, we
 noted that the Billion Triple Challenge 2014 \cite{btc-2014} dataset
 consisted of a 4~GTriple corpus of spidered Web data. This was seeded
 from datahub.io (aka CKAN), as well as other sources. To compile a list of
-candidates to further examine, we performed a series of data reduction
+candidates for further examination, we performed a series of data reduction
 steps, manually inspecting the result between each step. The details
-of this process is given in a companion technical report
+of this process are given in a companion technical report
 \cite{kjernsmo_add_survey_2015}.
 
 The end result of this process is a list of 3117 unique hosts, for
@@ -304,7 +304,7 @@ several datasets. Another recent crawl was reported by
 \cite{stateoflod2014}. It is not clear how many hosts were crawled, but the
 number of triples is much smaller than that of
 BTC2014. It is therefore a fair assumption that BTC2014 fairly well
-represent the breadth of the Semantic Web, momentarily at least. 
+represents the breadth of the Semantic Web, momentarily at least. 
 
 As for the coverage of vocabularies, we have verified that all
 resolveable vocabularies in LODstats that are found in more than 10
@@ -344,7 +344,7 @@ tests, using so-called contingency tables, see
 First, we investigated whether certain server implementations provided
 better support for caching than others. To do this, we formulated
 SPARQL queries to examine the \httph{Server} headers of successful
-responses, with optional clauses matching the standards-compliant
+responses. We used optional clauses matching the standards-compliant
 computed freshness lifetime (which is the ideal) as well as whether
 the response had other indications of caching-related metadata that
 may assist caching such as modification time, certain predicates, etc.
@@ -356,7 +356,7 @@ listed in Table~\ref{tab:servers}.  70 servers always responded with
 usable metadata. Inspecting the values we find the well-known Virtuoso
 and Callimachus servers, as well as the Perl modules
 RDF::LinkedData and RDF::Endpoint, which are partly
-developed by and runs on a server operated by this author. Apart from
+developed by and run on a server operated by this author. Apart from
 those, we see that the they reveal very little about the RDF-specific
 parts of the underlying server implementation. A quick inspection of
 all \httph{Server} headers confirmed that few reveal any further
@@ -409,8 +409,8 @@ headers only contain generic values, little can be learnt about these
 implementations. We note, however, that DBPedia exposes
 standards-compliant freshness lifetime of 604800 seconds (i.e. 1 week) for
 both LOD and SPARQL endpoints. DBPedia has historically been updated
-only a few times a year, but this was probably chosen so as to not
-make a commitment long into the future. It may provide considerable benefits.
+only a few times a year, but this was probably chosen to avoid
+making a commitment far into the future. It may provide considerable benefits.
 
 \subsection{Other caching headers}
 
@@ -477,13 +477,13 @@ days.
 In Figure~\ref{fig:hardtable}, we have broken this
 up by the type of resource that was accessed, i.e. SPARQL endpoints,
 vocabularies, dataset descriptions or unclassified information
-resources. First, we note that it seems like the distribution of
+resources. Firstly, we note that it seems like the distribution of
 freshness lifetime is quite different for the different types, an
 observation that is also supported by a similar hypothesis test as
 above, with a \pvalue = 0.00001 (note, however, it is more contrived
 than above, since the bins are like in Figure~\ref{fig:hardtable},
 which is chosen for intuitive interpretation rather than statistical
-rigor). Second, we note that it is often prohibited to cache dataset
+rigor). Secondly, we note that it is often prohibited to cache dataset
 descriptions. This is odd, since statistics about datasets is usually
 costly to compute and should be cached. The VoID specification
 \cite{voidnote} also notes that the statistics are considered
@@ -526,9 +526,9 @@ Section~4.2.2 in RFC7234 and mentioned in the introduction.
 We were able to compute a heuristic lifetime for 554 resources, a
 larger number than standards-compliant resources. In
 Figure~\ref{fig:heuristicall}, we see that the distribution of
-lifetimes are radically different from the case in
+lifetimes is radically different from the case in
 Figure~\ref{fig:hardall}. In this case, we may cache many resources
-for months. Only a handful of resources had changed in the last
+for months. Only a handful of resources changed in the last
 minutes. Since this is based on actual times since last modifications,
 this suggests that many resources should have had explicit cache
 headers with very long lifetimes. This is supported by
@@ -569,16 +569,16 @@ predicates \rdfterm{dct:date}, \rdfterm{dct:accrualPeriodicity},
 \rdfterm{dct:created}, \rdfterm{dct:issued}, \rdfterm{dct:modified} or
 \rdfterm{dct:valid}.
 
-First, we compare dates given in \rdfterm{dct:modified} to dates given
+First, we compared dates given in \rdfterm{dct:modified} to dates given
 in \httph{Last-Modified} when both are available for a resource. They
-are often not the same, but it appears that dates in the former are
-further back in time than the latter. We speculate that this may be
+were often not the same, but it appeared that dates in the former are
+further back in time than the latter. We speculated that this may be
 due to that the web-server tracks semantically insignificant changes
 through the file system, while authors of RDF only update timestamp
 when significant changes are made, or it may be that authors forget to
 update their timestamps.
 
-\rdfterm{dct:modified} occurs in 2687 triples, but 2487 of these does
+\rdfterm{dct:modified} occured in 2687 triples, but 2487 of these does
 not have the Request-URI of the information resource as their subject,
 i.e. it gives the last modification time of some subgraph of the
 returned RDF. Nevertheless, given its prevalence, it is highly likely
@@ -601,12 +601,12 @@ could be useful in further analysis.
 
 \subsection{Cache validation}
 
-Hitherto, we have considered the case where the client or proxy does
+So far, we have considered the case where the client or proxy does
 not send a HTTP request to the server when a resource that is present
 in the cache is requested. This is desirable if the client can be
 sufficiently confident that the response is fresh, either by having a
 standards-compliant freshness lifetime or a heuristic to determine
-it. At the end of this period, or if the previous response had no
+it. At the end of this period, or if the previous response have no
 lifetime, due to lack of information, or to that the server has stated
 so in the \httph{Cache-Control} header, responses must be
 revalidated. In this case, RFC7232 defines the behaviour, with
@@ -689,7 +689,7 @@ Further investigate the suitability of the \rdfterm{dct:modified}
 property for estimating heuristic freshness lifetime.
 
 Estimating the freshness lifetime is a challenging problem for data
-owners. It must necessarily involve the human users involved in the
+owners. It must necessarily include the human users involved in the
 publishing cycle since they are making a commitment about future
 changes. Designing user support systems as well as interfaces that fit
 the publisher's workflow is an important problem.
@@ -717,7 +717,7 @@ efficient SPARQL evaluation on the Web.
 Even though it is clear that other parts of the Web benefit greatly
 from caching, and that the potential for HTTP metadata to better
 reflect actual update practices in the Semantic Web is great,
-estimating the actual impact of doing so should be done.
+estimating the actual impact of doing so should be a topic for further research.
 
 \subsection{Recommendations}
 
@@ -757,7 +757,8 @@ Umbrich and Martin Giese for careful review and critical comments, and
 Gregory Todd Williams for promptly solving issues in the underlying
 libraries used in this study, Axel Polleres for encouraging comments
 and Jonas Smedegaard for proofreading. We also thank the anonymous
-reviewers for extensive reviews.
+reviewers for extensive reviews. Many to Helen Murray for linguistic
+assistance.
 
 %\bibliographystyle{plain}
 \bibliographystyle{abbrv}
