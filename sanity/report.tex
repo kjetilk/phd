@@ -59,7 +59,7 @@ line-by-line basis. First, we matched each line against a regular
 expression were lines matching
 \texttt{ontology|endpoint|sparql|vocabular} passed the filter. Then,
 the Perl framework
-RDF::Trine\footnote{https://metacpan.org/release/GWILLIAMS/RDF-Trine-1.011}
+RDF::Trine\footnote{\url{https://metacpan.org/release/GWILLIAMS/RDF-Trine-1.011}}
 was used to parse the line. Lines that failed to parse were
 discarded. We have not investigated whether this could introduce
 biases. Statements were then accepted into a new NQuad file if they
@@ -143,12 +143,12 @@ which should be quite light, yet likely yield results.
 Then, the first request would be made, and a selection of the
 resulting HTTP headers recorded in an per-host NQuads file. For this
 purpose, we developed and released a module
-RDF::Generator::HTTP\footnote{https://metacpan.org/release/KJETILK/RDF-Generator-HTTP-0.003}
+RDF::Generator::HTTP\footnote{\url{https://metacpan.org/release/KJETILK/RDF-Generator-HTTP-0.003}}
 to CPAN. We recorded whether the conditional request showed that the
 BTC2014 data were still fresh, and if it was, we retrieved the current
 data, as we had not coupled the headers to the body in our original
 retrieval.  Based on the resulting headers, we let
-libwww\footnote{https://metacpan.org/release/GAAS/libwww-perl-6.04}
+libwww\footnote{\url{https://metacpan.org/release/GAAS/libwww-perl-6.04}}
 calculate both standards-compliant and simple heuristic freshness
 lifetime.
 
@@ -162,10 +162,10 @@ support it.
 
 For endpoints, we examined the response message, to see if there are
 any results to our query, and recorded that if there are. In addition
-to the endpoints registered in the SPARQLES survey, our process found
-18~endpoints that responded with results. For all others, we parsed
-the response, and recorded any errors if the parser concluded the
-content were invalid.
+to the endpoints registered in the SPARQLES survey
+\cite{buil2013sparql}, our process found 18~endpoints that responded
+with results. For all others, we parsed the response, and recorded any
+errors if the parser concluded the content were invalid.
 
 For resource types other than ``vocabulary'', we look for SPARQL
 endpoints in the response, using the predicates \rdfterm{sd:endpoint}
@@ -201,10 +201,36 @@ compensate for the fact that many servers will not expose caching
 headers at all, an issue that would otherwise violate the underlying
 assumptions of the test.
 
+Since the same test can be used for binned data in many different
+situations, we used it more informally in other parts of the paper as well.
+
 \section{Valid versus invalid responses}\label{app:qqplot}
 
-		
-\todo{qqplot in report}.
+Since web servers may be configured to instruct clients and proxies to
+cache errors differently from successfully served requests, it is
+interesting to investigate whether we can simply use all cache headers
+in the analysis, or if we should remove unsuccessful responses to
+avoid introducing bias to the analysis of valid responses.
+ 
+For a visual inspection, we may use a quantile-quantile plot to plot
+the freshness lifetimes of successful responses versus requests that
+failed for some reason. If the distribution of both variables are the
+same, these points will lie on a straight line. In
+Figure~\ref{fig:errorsqq}, we see successful responses vs. the most
+common parse error, and it is clear that these are so different that
+no further formal analysis is necessary. This is one of the reasons
+why we filtered unsuccessful requests before we analyzed the freshness
+lifetimes in the paper.
+
+
+\begin{figure}[h]
+  \centerline{%
+    \includegraphics[width=.8\textwidth]{errorsqq.pdf}}
+  \caption{A quantile-quantile plot of freshness lifetimes for
+    standard compliant headers with and without errors.}
+  \label{fig:errorsqq}
+\end{figure}
+
 
 
 %\bibliographystyle{plain}
