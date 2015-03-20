@@ -1,22 +1,20 @@
+\documentclass{article}
 \usepackage[english,british]{babel}
-%\documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{cite}
 \usepackage{verbatim}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{appendix}
+
 
 \newcommand{\rdfterm}[1]{\texttt{#1}}
 \newcommand{\pvalue}{\textit{p}-value\ }
 \newcommand{\httph}[1]{\texttt{#1}}
 \newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
-\title{A survey of HTTP caching implementations on the open Semantic Web}
+\title{Addendum to a survey of HTTP caching on the Semantic Web}
 \author{Kjetil Kjernsmo}
-\institute{Department of Informatics,
-Postboks 1080 Blindern,
-N-0316 Oslo, Norway \email{kjetil@kjernsmo.net}}
+
 
 %\subtitle{---Unpublished Working Draft, do not circulate---}
 
@@ -25,15 +23,40 @@ N-0316 Oslo, Norway \email{kjetil@kjernsmo.net}}
 \maketitle
 
 \section{Introduction}
-		
-\todo{qqplot in report}.
 
+This Technical Report is an addendum to a paper to be published in the
+proceedings of the Extended Semantic Web Conference 2015 titled ``A
+survey of HTTP caching implementations on the open Semantic Web''.
+
+That paper was motivated from the perception that we had that caching
+was much used on the open Semantic Web. This is surprising, since
+caching has been given a very prominent role in the architecture of
+the World Wide Web, and caching based on HTTP headers as defined in
+RFC7234 \cite{rfc7234} and RFC7232 \cite{rfc7232} is prevalent
+elsewhere in the Web.
+
+To understand the actual usage, we conducted an extensive survey of
+actual resources on the Semantic Web. We obtained data from different
+sources, with the breadth of the Semantic Web mainly covered by the
+Billion Triple Challenge (BTC) 2014 dataset  \cite{btc-2014}.
+
+In this addendum, we document in detail several aspects that there
+were not sufficient space for in the conference paper. Since we made
+the assumption that the relevant headers are mostly the same for each
+host, Section~\ref{app:reduction} documents how the large BTC2014 data
+set is reduced to visit a large number hosts, but a small number of
+resources. Then, Section~\ref{app:fetcher} discusses the system we
+developed to visit these resources and extract the information that we
+were interested. Section~\ref{app:stats} documents our main
+statistical method and Section~\ref{app:qqplot} has an analysis of
+valid versus invalid responses.
+ 
 \section{Implementation of data reduction}\label{app:reduction}
 
-The Billion Triple Challenge 2014 dataset provided data in the form of
-NQuad files. Due to the presence of invalid RDF, we iterated through
-the NQuad files on a line-by-line basis. First, we matched each line
-against a regular expression were lines matching
+The BTC2014 dataset provided data in the form of NQuad files. Due to
+the presence of invalid RDF, we iterated through the NQuad files on a
+line-by-line basis. First, we matched each line against a regular
+expression were lines matching
 \texttt{ontology|endpoint|sparql|vocabular} passed the filter. Then,
 the Perl framework
 RDF::Trine\footnote{https://metacpan.org/release/GWILLIAMS/RDF-Trine-1.011}
@@ -48,9 +71,10 @@ objects were both resources, or the predicates
 object. Finally, statements with the the classes
 \rdfterm{cogs:Endpoint}, \rdfterm{owl:Ontology} and
 \rdfterm{voaf:Vocabulary} in the object position were also
-accepted\footnote{LOV may be used to resolve these prefixed
-  names}. More classes and properties were considered, but not used in
-the data reduction if they did not occur in the original data.
+accepted\footnote{Linked Open Vocabularies \cite{lov2} may be used to
+  resolve these prefixed names}. More classes and properties were
+considered, but not used in the data reduction if they did not occur
+in the original data.
 
 In the next step, we filtered out statements with URIs that were
 invalid or irrelevant, e.g. URIs that didn't have a scheme or where
@@ -150,10 +174,10 @@ and record the relevant headers. Unfortunately, we found early that
 this only turns up misconfigured endpoints that point to localhost,
 and was removed from the spider for the final analysis.
 
-Finally, if the LOV SPARQL endpoint used a URI for the vocabulary that
-was different from the namespace URI (after a normalization step),
-another request would be made to record the selected HTTP headers from
-that as well.
+Finally, if the Linked Open Vocabularies \cite{lov2} SPARQL endpoint
+used a URI for the vocabulary that was different from the namespace
+URI (after a normalization step), another request would be made to
+record the selected HTTP headers from that as well.
 
 \section{Statistical method}\label{app:stats}
 
@@ -177,8 +201,14 @@ compensate for the fact that many servers will not expose caching
 headers at all, an issue that would otherwise violate the underlying
 assumptions of the test.
 
-\bibliographystyle{plain}
-%\bibliographystyle{abbrv}
+\section{Valid versus invalid responses}\label{app:qqplot}
+
+		
+\todo{qqplot in report}.
+
+
+%\bibliographystyle{plain}
+\bibliographystyle{abbrv}
 %\bibliographystyle{jbact}
 %\bibliographystyle{splncs03}
 \bibliography{webarch,data,rfc,hypermedia,dynamicity,stat1,specs,vocabs}
