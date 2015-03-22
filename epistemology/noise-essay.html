@@ -128,9 +128,15 @@
               the common understanding of phenomena, and thereby
               create new knowledge. This is an important motivation
               for research, since using science may accelerate the
-              progress of the Semantic Web. If this is true, then we
-              have to understand the nature of knowledge to understand
-              the methodology that is used. So, what does it mean to
+              progress of the Semantic Web. 
+            </p>
+            <p>
+              If this is true, it means that we cannot content
+              ourselves with testing individual hypotheses, we must
+              have methodologies to understand how a hypothesis would
+              fit more generally into the Semantic Web. Then we have
+              to understand the nature of knowledge to understand the
+              methodology that is used. So, what does it mean to
               <em>know</em> something?  That is one of the questions
               epistemologists concern themselves with.
             </p>
@@ -156,7 +162,7 @@
               large ontologies today, and therefore conclude that the
               Semantic Web exists.  I would disagree, the number of
               JSON APIs with little semantics, the number of datasets
-              based on comma-separated values, etc., overshadows the
+              based on comma-separated values, etc., overshadow the
               Semantic Web approaches completely. However, they do not
               provide the power to realise the applications envisioned
               in the <em>revolutionary</em> scenarios. It is my
@@ -265,7 +271,7 @@
               but found no evidence that falsificationism had played
               an important role historically. He also gave us the
               terminological scaffolding of "paradigms", "normal
-              science", "scientific revolutions", where scientists in
+              science", "scientific revolutions" etc., where scientists in
               the "normal science" mode of operation are concerned
               with solving puzzles within the constraints of current
               theories. This goes on to a point where too many
@@ -356,19 +362,20 @@
             working with small part of a Theory of the Semantic Web.
           </p>
           <p>
-            I have previously argued that empirical
-            research in our field is lacking [<a class="ref" href="#ref-8">8</a>], but in principle we can
-            test individual hypotheses vigorously, but that the
-            external validity with respect to the "Theory of the
-            Semantic Web" can always be contested, based on the
+            I have previously argued that empirical research in our
+            field is lacking [<a class="ref" href="#ref-8">8</a>], but
+            in principle we can test individual hypotheses vigorously,
+            but that the external validity with respect to the "Theory
+            of the Semantic Web" can always be contested, based on the
             premise that the Semantic Web is a revolutionary
             technology that and does not yet exist. When it comes into
-            existence it will have characteristics (e.g. workloads), very
-            different from what it has now. The extrapolation beyond
-            something that actually works at a large scale may be
-            permissible, but the Semantic Web is such a tiny part of
-            the Web nowadays, I would contest the validity of any
-            study based on that at present.
+            existence it will have characteristics
+            (e.g. workloads. data profiles, etc.), very different from
+            what it has now. The extrapolation beyond something that
+            actually works at a large scale may be permissible, but
+            the Semantic Web is such a tiny part of the Web nowadays,
+            I would contest the validity of any study based on that at
+            present.
           </p>
           <p>
             Say that I successfully test a hypothesis empirically with
@@ -386,58 +393,104 @@
             Unfortunately, that context is something that does not
             exist, we can only speculate about it. Therein lies the
             fundamental problem: Whereas other sciences are testing
-            against a reality that does exist with unknown properties,
+            against a reality that does exist, but with unknown properties,
             we are obliged to test against a something that doesn't
             exist. Therefore, our results will always be inconclusive.
           </p>
         </div>
       </section>
  
-      <section id="development" about="[this:]" rel="dcterms:hasPart" resource="[this:#development]">
-        <h2 about="[this:#development]"
-            property="dcterms:title">Consequences for development</h2>
-        <div about="[this:#development]"
+      <section id="consequences" about="[this:]" rel="dcterms:hasPart" resource="[this:#consequences]">
+        <h2 about="[this:#consequences]"
+            property="dcterms:title">Discussion of consequences</h2>
+        <div about="[this:#consequences]"
              property="dcterms:description">
-          <p>
-            This causes the breakdown of the motivation that we should
-            use science to drive development, a motivation I have
-            retained because there has been a remarkable rate of
-            progress in the sciences, in spite of Feyerabend's
-            attacks. This happens because we don't have a
-            way to test hypotheses without the Semantic Web workload,
-            and without science, we cannot help build that Semantic
-            Web to get that workload. Moreover, we cannot make a
-            "Theory of the Semantic Web" falsifiable either, if one so
-            desired. If we are challenged by outsiders who say that
-            "The Semantic Web isn't going to work", an assertion that
-            certainly is common, can we address that scientifically?
-          </p>
-          <p>
-            I have always maintained that science and engineering must
-            be seen as one (except in some cases, like implementing
-            most standards, which is pure engineering), to ensure that
-            the extrapolation between known characteristics and future
-            characteristics are kept at a minimum, but I'm not sure
-            this is enough anymore, the problem appears fundamental. 
-          </p>
-          <p>
-            I therefore write this essay to start a discussion around
-            methodology, a discussion that I think must be rooted in
-            epistemology, and what we can hope achieving when trying
-            to accelerate the Semantic Web. A new direction, that I
-            find appealing is known as "The New Experimentalism", see
-            e.g. [<a class="ref" href="#ref-9">9</a>]. I clearly see
-            how this could be helpful in the type of study I did in
-            [<a class="ref" href="#ref-8">8</a>], but despite their
-            efforts, I don't see how it applies beyond that type of
-            study. Moreover, I don't see any immediate contribution
-            towards the understanding of the fundamental problem of
-            testing against something that doesn't exist, nor a
-            thorough rooting in the history of science.
-          </p>
+
+          <section id="science" about="[this:]" rel="dcterms:hasPart" resource="[this:#science]">
+            <h3 about="[this:#science]"
+                property="dcterms:title">Consequences for science</h3>
+            <div about="[this:#science]"
+             property="dcterms:description">
+              <p id="fundamental">
+                Certainly, fundamental research in informatics doesn't
+                need to be tested against the Theory of the Semantic
+                Web, or for the same reasons that research on
+                astrophysics doesn't need to justify its existence
+                based on applications. It is beyond the scope of this
+                essay to discuss such justifications. 
+              </p>
+              <p id="burden">
+                However, a scientific work that makes the assertion
+                that it forwards the Semantic Web certainly has the
+                burden of proving that it does. Such papers must
+                address the epistemological problems discussed in this
+                essay. This requirement is equally strong regardless of
+                whether the investigation uses formal or empirical
+                methods.
+              </p>
+              <p id="ex-triplestore">
+                I consider this fair: For example, a triple store, as
+                a specialisation of a database management system,
+                represents a distraction unless it can be argued that
+                this particular specialisation is fruitful in a larger
+                context. 
+              </p>
+              <p id="semweb-falsifiable">
+                Moreover, we cannot make a "Theory of the Semantic
+                Web" falsifiable, if one so desired. If we are
+                challenged by outsiders who say that "The Semantic Web
+                isn't going to work", an assertion that certainly is
+                common, can we address that scientifically?
+              </p>
+            </div>
+          </section>
+
+          <section id="development" about="[this:]" rel="dcterms:hasPart" resource="[this:#development]">
+            <h3 about="[this:#development]"
+                property="dcterms:title">Consequences for development</h3>
+            <div about="[this:#development]"
+             property="dcterms:description">
+              <p id="motivation-breakdown">
+                This inconclusiveness causes the breakdown of the motivation that we
+                should use science to drive development, a motivation
+                I have retained because I think a remarkable rate of
+                progress in the sciences can be demonstrated, in spite
+                of Feyerabend's attacks. This happens because we don't
+                have a way to test hypotheses without for example a
+                Semantic Web workload, and without science, we cannot
+                help build that Semantic Web to get that
+                workload. 
+              </p>
+              <p id="dev-and-science">
+                I have always maintained that science and engineering must
+                be seen as one, when working with assertions on
+                specific technologies (except in some cases, like implementing
+                most standards, which is pure engineering), to ensure that
+                the extrapolation between known characteristics and future
+                characteristics are kept at a minimum, but I'm not sure
+                this is enough anymore, the problem appears fundamental. 
+              </p>
+              <p>
+                I therefore write this essay to start a discussion around
+                methodology, a discussion that I think must be rooted in
+                epistemology, and what we can hope achieving when trying
+                to accelerate the Semantic Web. A new direction, that I
+                find appealing is known as "The New Experimentalism", see
+                e.g. [<a class="ref" href="#ref-9">9</a>]. I clearly see
+                how this could be helpful in the type of study I did in
+                [<a class="ref" href="#ref-8">8</a>], but despite their
+                efforts, I don't see how it applies beyond that type of
+                study. Moreover, I don't see any immediate contribution
+                towards the understanding of the fundamental problem of
+                testing against something that doesn't exist, nor a
+                thorough rooting in the history of science.
+              </p>
+            </div>
+          </section>
+
         </div>
       </section>
-                <!-- TODO consequences for science -->
+
       <section id="acknowledgements" about="[this:]" rel="dcterms:hasPart" resource="[this:#acknowledgements]">
         <h2 about="[this:#acknowledgements]" property="dcterms:title">Acknowledgements</h2>
         <div about="[this:#acknowledgements]" property="dcterms:description" typeof="deo:Acknowledgements">
