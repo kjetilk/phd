@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448819"
-   height="1052.3622047"
+   width="560.4707"
+   height="491"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -20,28 +20,30 @@
     <marker
        inkscape:stockid="Arrow2Mstart"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow2Mstart"
        style="overflow:visible">
       <path
          id="path3975"
-         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
-         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         transform="scale(0.6) translate(0,0)" />
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(0.6,0.6)"
+         inkscape:connector-curvature="0" />
     </marker>
     <marker
        inkscape:stockid="Arrow2Mend"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow2Mend"
-       style="overflow:visible;">
+       style="overflow:visible">
       <path
          id="path3978"
-         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
-         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         transform="scale(0.6) rotate(180) translate(0,0)" />
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)"
+         inkscape:connector-curvature="0" />
     </marker>
   </defs>
   <sodipodi:namedview
@@ -52,8 +54,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="220.82931"
-     inkscape:cy="759.50557"
+     inkscape:cx="326.07811"
+     inkscape:cy="240.18831"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -62,10 +64,20 @@
      inkscape:window-height="968"
      inkscape:window-x="-2"
      inkscape:window-y="511"
-     inkscape:window-maximized="1">
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
     <inkscape:grid
        type="xygrid"
-       id="grid3031" />
+       id="grid3031"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       originx="-526.17773px"
+       originy="-1233.603px" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -82,7 +94,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-40,-31.875)">
     <rect
        style="fill:#ff0000;fill-opacity:1;stroke:#008080;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3, 1;stroke-dashoffset:0"
        id="rect3037"
@@ -157,7 +170,7 @@
        x="60.776581"
        y="83.138763" />
     <rect
-       style="opacity:1;fill:#ff0000;fill-opacity:0.81592041;stroke:#008080;stroke-width:1.45186769999999998;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.35560301000000027, 1.45186766999999994;stroke-dashoffset:0"
+       style="fill:#ff0000;fill-opacity:0.81592042;stroke:#008080;stroke-width:1.4518677;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.35560301, 1.45186767;stroke-dashoffset:0"
        id="rect3854"
        width="70.976707"
        height="44.548134"
@@ -186,7 +199,9 @@
        id="text3862"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan3864"></tspan></text>
+         id="tspan3864"
+         x="119.28571"
+         y="135.21931"></tspan></text>
     <rect
        style="fill:#ff0000;fill-opacity:0.81592042;stroke:#008080;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3, 1;stroke-dashoffset:0"
        id="rect3873"
@@ -212,7 +227,7 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot3881"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:12px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
          id="flowRegion3883"><rect
            id="rect3885"
            width="101.42857"
@@ -252,7 +267,7 @@
        sodipodi:cy="312.36218"
        sodipodi:rx="40"
        sodipodi:ry="10"
-       d="m 360,312.36218 a 40,10 0 1 1 -80,0 40,10 0 1 1 80,0 z"
+       d="m 360,312.36218 c 0,5.52285 -17.90861,10 -40,10 -22.09139,0 -40,-4.47715 -40,-10 0,-5.52284 17.90861,-10 40,-10 22.09139,0 40,4.47716 40,10 z"
        transform="translate(17.142853,3.5714417)" />
     <path
        sodipodi:type="arc"
@@ -262,7 +277,7 @@
        sodipodi:cy="392.36218"
        sodipodi:rx="40"
        sodipodi:ry="10"
-       d="m 360,392.36218 a 40,10 0 1 1 -80,0 40,10 0 1 1 80,0 z"
+       d="m 360,392.36218 c 0,5.52285 -17.90861,10 -40,10 -22.09139,0 -40,-4.47715 -40,-10 0,-5.52284 17.90861,-10 40,-10 22.09139,0 40,4.47716 40,10 z"
        transform="translate(17.857139,-4.9999869)" />
     <text
        xml:space="preserve"
@@ -305,7 +320,7 @@
        sodipodi:cy="187.36218"
        sodipodi:rx="25"
        sodipodi:ry="5"
-       d="m 160,187.36218 a 25,5 0 1 1 -50,0 25,5 0 1 1 50,0 z"
+       d="m 160,187.36218 c 0,2.76143 -11.19288,5 -25,5 -13.80712,0 -25,-2.23857 -25,-5 0,-2.76142 11.19288,-5 25,-5 13.80712,0 25,2.23858 25,5 z"
        transform="translate(0,6.4285714)" />
     <path
        sodipodi:type="arc"
@@ -315,7 +330,7 @@
        sodipodi:cy="257.36218"
        sodipodi:rx="25"
        sodipodi:ry="5"
-       d="m 160,257.36218 a 25,5 0 1 1 -50,0 25,5 0 1 1 50,0 z"
+       d="m 160,257.36218 c 0,2.76143 -11.19288,5 -25,5 -13.80712,0 -25,-2.23857 -25,-5 0,-2.76142 11.19288,-5 25,-5 13.80712,0 25,2.23858 25,5 z"
        transform="translate(0.71428572,-5)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
