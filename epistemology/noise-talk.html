@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <base href="http://0.0.0.0:8000/"/>
+    <title>Testing against against a reality that does not exist yet</title>
+    
+    <meta name="description" content="TODO: abstract"/>
+    <meta name="author" content="Kjetil Kjernsmo"/>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    
+    <link rel="stylesheet" href="css/reveal.css"/>
+    <link rel="stylesheet" href="css/theme/black.css" id="theme"/>
+    
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css"/>
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+    
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+    
+    <div class="reveal">
+      
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+	<section>
+	  <h1 style="font-size: 4ex">Testing against against a reality that does not exist yet</h1>
+	  <h3 style="font-size: 2ex">Or why every result is inconclusive with respect to the
+	  Semantic Web</h3>
+	  <p>
+	    <small> <a href="http://folk.uio.no/kjekje/">Kjetil Kjernsmo</a> </small>
+	  </p>
+
+          <aside class="notes">
+            <ul><li>I've been around the Semantic Web since 1998, and served
+            on many W3C Semantic Web groups, but I'm no computer
+            scientist.</li>
+            <li>I've read lots of history and philosophy of
+            science. I've come to adopt the view that science is
+            remarkable because of its rate of progress.</li>
+            <li>Back when I discovered the Semantic Web, I studied
+            these (next slide)</li>
+            </ul>
+          </aside>
+	</section>
+
+        <section>
+          <h1>Quasars</h1>
+          <figure>
+            <img src="epistemology/agncov1.png" alt="Meg Urry's depiction of
+                                        quasar"/>
+          </figure>
+        </section>
+
+      </div>
+
+    </div>
+
+
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    
+    <script>
+      
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+      
+      // Optional reveal.js plugins
+      dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true },
+      { src: 'plugin/notes/notes.js', async: true }
+      ]
+      });
+      
+    </script>
+    
+    <script>//<![CDATA[
+    document.write('<script src="//' + (location.hostname || 'localhost') + ':35729/livereload.js?snipver=1"><\/script>')
+    //]]></script>
+
+  </body>
+</html>
