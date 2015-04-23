@@ -193,7 +193,8 @@
           <aside class="notes">
             <ul><li>
             In my HTTP caching survey, presented later, I found just
-            3000 hostnames with valid RDF, compare nearly 1 billion at Netcraft.</li>
+            3000 hostnames with valid RDF, compare nearly 1 billion at
+            Netcraft. Much more RDFa.</li>
             <li>There are 13000 APIs on the Web, bad idea, but still
             larger and more useful</li>
             <li>Nigel Shadbolt said in ISWC keynote Linked Data was a
@@ -262,7 +263,11 @@
             What can Computer Science do to <a
             href="http://videolectures.net/iswc2011_van_harmelen_universal/">help</a>?
           </p>
-
+     
+          <aside class="notes">
+            It is not sufficient to look at each hypothesis
+            separately, an evaluation should include "fitness for
+            Semantic Web"
         </section>
 
 
@@ -291,22 +296,22 @@
             </p>
             <p>By that, I mean, you can construct a philosophy around
             assertions like "all swans are white", and it'll be
-            trivial, but we don't that trivial.
+            trivial, but we don't do trivial.
             </p>
           </aside>
         </section>
 
         <section>
-          <h1>Against method</h1>
+          <h1>No method?</h1>
           
-          <figure class="fragment fade-out">
+          <figure>
             <a href="http://en.wikipedia.org/wiki/Paul_Feyerabend"><img
                 src="http://upload.wikimedia.org/wikipedia/commons/e/e2/Paul_Feyerabend_Berkeley.jpg"
                 alt="Paul Feyerabend"/></a> <cite>Credit: Grazia Borrini-Feyerabend</cite>
           </figure> 
 
 
-          <p class="fragment fade-in">TODO: Smiling troll</p>
+          <!-- p class="fragment fade-in">TODO: Smiling troll</p -->
 
           <aside class="notes">
             <p>
@@ -321,14 +326,155 @@
               <li>Falsificationism would destroy all of science</li>
               <li>E.g. you can't tell if the benchmark or the engine
               is to blame</li>
-
+            </ul>
+          </aside>
 
         </section>
+
+        <section>
+          <h1>History as a teacher</h1>
+          
+          <figure>
+            <a href="http://en.wikipedia.org/wiki/Thomas_Kuhn"><img
+            src="http://upload.wikimedia.org/wikipedia/hu/5/55/Thomas_Kuhn_%281922-1996%29_tudom%C3%A1nyfiloz%C3%B3fus.jpg"
+            alt="Thomas Kuhn"/></a>
+          </figure> 
+
+          <aside class="notes">
+            <ul>
+              <li>terminological scaffolding of "paradigms", "normal
+              science", "scientific revolutions"</li>
+              <li>In normal science: puzzle solving</li>
+              <li>Goes up to a certain point, where anomalies are too
+              much, and then revolution.</li>
+              <li>Emphasized science as social process. </li>
+              <li>Insists philosophy of science must be rooted in
+              history.</li>
+              <li>But he got the history wrong</li>
+            </ul>
+          </aside>
+          
+        </section>
+
+        <section>
+          <h2>The Copernican Revolution</h2>
+
+          <figure>
+            <a href="http://dash.harvard.edu/handle/1/4258973">
+              <img src="epistemology/gingericherror.png" alt="figure
+                with errors from Ptolemy and Copernicus"
+                   height="600"/>
+            </a>
+          </figure>
+          
+          <aside class="notes">
+            <p>You probably heard the story, which Kuhn popularized,
+            how astronomy became increasingly complex in the Middle
+            Ages, finally to be overthrown by a better heliosentric
+            system. This is a myth.</p>
+            <p>In 1975, Owen Gingerich computed where the planets
+            actually were, where the old models predicted them to be,
+            and where contemporaries predicted them to be. He showed
+            that contemporaries used an unchanged Ptolemaic model, and
+            that the magnitude of the errors were about the same.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>The New Experimentalism</h2>
+        
+          <p>Focuses on </p>
+          <ul>
+            <li>Experimentation</li>
+            <li>instrumentation</li>
+            <li>laboratory practices</li>
+            <li>Not sufficient to just test a hypothesis, you need to
+            prove the test is <em>severe</em>.</li>
+          </ul>
+
+          <aside class="notes">
+            <p>the people working on this are still alive. Can be used
+            to direct experimental practices. Sometimes a clear
+            statistical formulation is possible</p>
+            <p>Perhaps my Trial of Empirical 2014 should rather ask if
+            benchmarks can be severe rather than scientific?</p>
+          </aside>
+
+        </section>
+
+        <section>
+          <h1>Theory</h1>
+          
+          <p>What is a theory?</p>
+
+          <dl class="fragment definition" id="theory-def">
+              <dt>Theory</dt>
+              <dd>
+                A theory is a <span class="fragment
+                highlight-red">coherent</span> set of hypotheses <span
+                class="fragment">that are held as true
+                after having been subjected to vigorous testing by a
+                scientific community.</span>
+              </dd>
+            </dl>
+
+
+          <aside class="notes">
+            <ul>
+              <li>Can we formulate Theory of Semantic Web? Something
+              to test against</li>
+              <li>Philosophers aren't terribly useful...</li>
+              <li>Roughly: Hypotheses should be easy-come, easy-go
+              things</li>
+              <li>Theories are collections of hypotheses</li>
+              <li>Coherentism in its pure form is OK for stuff like
+              string theory, or formal frameworks. Many points of
+              attack, can bring down entire theory.</li>
+              <li>No connection to real world, bad. No acknowledgement
+              of community, bad</li>
+            </ul>
+              
+          </aside>
+        </section>
+
+        <section>
+          <h1>Theory of the Semantic Web</h1>
+          
+          <p>Very tenuous formulation:</p>
+
+          <p class="fragment roll-in">It is possible to build a large-scale Semantic Web</p>
+
+          <p class="fragment"><strong>If you assert that what you do
+          will forward the Semantic Web, you have to test your
+          hypothesis with respect to a Semantic Web theory!</strong></p>
+
+          <aside class="notes">
+            <p>Hide behind the podium until all the rotten tomatoes have
+            been thrown.</p>
+            <p>This exercise must be done!</p>
+            <p>It is not good enough to test each pieces individually.</p>
+          </aside>
+          
+        </section>
+
+        <section>
+          <h2>Testing against a "Semantic Web Theory"</h2>
+          
+          <ul>
+            <li class="fragment">The Semantic Web will have very different
+            characteristics if successful.</li>
+            <li class="fragment">So, today's workloads, data profiles, etc. would be a
+            untenable extrapolation.</li>
+            <li class="fragment">Epistemological problem: We can't know anything
+            because we can't test.</li>
+          </ul>
+            
+        </section>
+
       </div>
 
     </div>
-
-
 
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
