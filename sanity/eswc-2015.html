@@ -56,14 +56,194 @@ caching in the Semantic Web."/>
 	<section>
 	  <h1>A survey of HTTP caching implementations on the open Semantic Web</h1>
 	  <p>
-	    <small> <a href="http://folk.uio.no/kjekje/">Kjetil Kjernsmo</a> </small>
+	    <a href="http://folk.uio.no/kjekje/">Kjetil
+            Kjernsmo</a>,
+          </p><p><small>Department of Informatics, University of
+            Oslo, Norway </small>
 	  </p>
 
         </section>
-	<section>
 
+	<section>
+          <h2>Motivation and take-away</h2>
+
+          <p>The HTTP standard and Internet infrastucture has good
+          facilities, we shouldn't speculate on whether they can be
+          used.</p>
+
+          <p class="fragment">Support for it is not as good as I hoped, but not as bad
+          as I feared.</p>
+          <p class="fragment">Please check that you're doing it right!</p>
+
+          <aside class="notes">
+            <ul><li>
+            I would like to avoid conversations ending up in "nobody
+            is exposing caching information, so it can't be used" or
+            "it is so widespread, it will have great benefits"</li>
+            <li>I suspect it isn't that well understood in this
+            community</li>
+            </ul>
+          </aside>
         </section>
 
+	<section>
+          <section>
+            <h2>Caching in HTTP and the Internet</h2>
+            
+            <p>
+              From <a href="http://tools.ietf.org/html/rfc7234">RFC 7234</a>:  
+            </p>
+            <blockquote><p> 
+              The goal of caching in HTTP/1.1 is to significantly improve
+              performance by reusing a prior response message to satisfy a current
+              request.
+            </p></blockquote>
+
+            <aside class="notes">
+              Not just for long-living resources: if you have 10000
+              requests/second and it can be cached for a minute, it is
+              a big win
+            </aside>
+          </section>
+          <section>
+            <h3>Caching prominently featured</h3>
+            <ul>
+              <li><a href="http://www.w3.org/TR/webarch/">Architecture
+              of the World Wide Web, Volume One</a></li>
+              <li>Motivates <a
+              href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">Representational
+              State Transfer (REST)</a>.</li>
+              <li>Many other documents</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Current HTTP specifications</h3>
+	    <ul>
+	      <li><a href="//tools.ietf.org/html/rfc7230">RFC 7230</a> - HTTP/1.1: Message Syntax and Routing</li>
+	      <li class="fragment"><a href="//tools.ietf.org/html/rfc7231">RFC 7231</a> - HTTP/1.1: Semantics and Content</li>
+	      <li class="fragment"><a href="//tools.ietf.org/html/rfc7232">RFC 7232</a> - HTTP/1.1: Conditional Requests</li>
+	      <li class="fragment"><a href="//tools.ietf.org/html/rfc7233">RFC 7233</a> - HTTP/1.1: Range Requests</li>
+	      <li class="fragment"><a href="//tools.ietf.org/html/rfc7234">RFC 7234</a> - HTTP/1.1: Caching</li>
+	      <li class="fragment"><a href="//tools.ietf.org/html/rfc7235">RFC 7235</a> - HTTP/1.1: Authentication</li>
+	    </ul>
+            <aside class="notes">
+              <p>All published in 2014, replacing RFC 2616 and
+              others</p><p>HTTP/2 finalized as we speak. Doesn't
+              change anything for this paper, but opens interesting
+              directions for research</p>
+            </aside>
+            
+	  </section>
+          <section>
+            <h3>Caching vs. Conditional Requests</h3>
+            
+            <dl>
+              <dt>Caching (defined in RFC 7234)</dt>
+              <dd>HTTP headers where the server says how
+              long the server thinks the response will remain
+              valid</dd>
+
+              <dt>Conditional Requests (defined in RFC 7232)</dt>
+              <dd>A mechanism where a client asks the server: "is the
+              response I have still valid?"</dd>
+            </dl>
+            
+            <aside class="notes">
+              <p>First case, no further communication is needed, but
+              the server will have to estimate.</p>
+              <p>Second case, a request must be made, the server will
+              decide whether to reply with a body.</p>
+            </aside>
+            
+          </section>
+            
+          <section>
+            <h3>Most relevant HTTP headers &ndash; Caching</h3>
+            
+              <dl>
+                <dt><tt>Cache-Control</tt></dt>
+                <dd>For fine-grained control, values including
+                <tt>max-age</tt> and <tt>no-store</tt>.</dd>
+                <dt><tt>Expires</tt></dt>
+                <dd>A time for when the response should not be
+                used</dd>
+              </dl>
+
+ 
+              <aside class="notes">
+                <ul>
+                  <li>
+                    HTTP requests and responses have headers and a body. For
+                    our purpose, the most important headers are:
+                  </li>
+                  <li>Caching headers are mostly response headers</li>
+                  <li>Based on Cache-control or expires, a freshness
+                  lifetime may be computed. </li>
+                </ul>
+
+              </aside>
+          </section>
+          <section>
+            <h3>Most relevant HTTP headers &ndash; Conditional requests</h3>
+
+              <h4>Response headers</h4>
+              <dl>
+                <dt><tt>ETag</tt></dt>
+                <dd>An opaque validator for the response</dd>
+                <dt><tt>Last-Modified</tt></dt>
+                <dd>A timestamp giving the time of modificaton of the
+                resource</dd>
+              </dl>
+
+              <h4>Request headers</h4>
+              <dl>
+                <dt><tt>If-None-Match</tt></dt>
+                <dd>Check the opaque validator</dd>
+                <dt><tt>If-Modified-Since</tt></dt>
+                <dd>Give a timestamp to check if the resource has changed.</dd>
+              </dl>
+ 
+              <aside class="notes">
+                <p>First a request has been made, and the resource has
+                been retrieved with the response headers. </p><p> When
+                we want to check</p><p>Respond with the body if it has
+                changed, if not, just status 304 Not Modified</p>
+              </aside>
+
+          </section>
+
+          <section>
+            <h3>Freshness lifetime</h3>
+            
+            <p>
+              Number of seconds that the response may be used
+              without contacting the origin server.
+            </p>
+
+ 
+              <aside class="notes">
+                <ul>                
+                  <li>When Based on Cache-control or expires, we shall
+                  call this standards-compliant caching. </li>
+                </ul>
+
+              </aside>
+
+          </section>
+
+          <section>
+            <h3>Heuristic freshness lifetime</h3>
+
+            <p>RFC7234 allows for heuristics to be used to estimate
+            freshness lifetime.</p>
+
+            <p>Also suggests a useful heuristics based on <tt>Last-Modified</tt>.</p>
+
+            <p>We might also use RDF data or machine learning to
+            estimate.</p>
+          </section>
+              
+        </section>
 
       </div>
 
