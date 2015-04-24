@@ -237,7 +237,7 @@ caching in the Semantic Web."/>
             <p>RFC7234 allows for heuristics to be used to estimate
             freshness lifetime.</p>
 
-            <p>Also suggests a useful heuristics based on <tt>Last-Modified</tt>.</p>
+            <p>Also suggests a useful heuristic based on <tt>Last-Modified</tt>.</p>
 
             <p>We might also use RDF data or machine learning to
             estimate.</p>
@@ -245,6 +245,70 @@ caching in the Semantic Web."/>
               
         </section>
 
+        <section>
+          <section>
+            <h2>Methodology</h2>
+            
+            <p>Gather as many different hosts as we could and send HTTP
+            requests to them and record relevant data.</p>
+            
+            <p>Classify resources into </p>
+            <ol>
+              <li>Dataset descriptions</li>
+              <li>SPARQL Endpoints</li>
+              <li>Vocabularies</li>
+              <li>Generic information resources</li>
+            </ol>
+          </section>
+          
+          <section>
+            <h3>Gathering hosts</h3>
+            
+            <p>To decide where to go, we used:</p>
+            <ul>
+              <li><a href="http://lov.okfn.org/">Linked Open
+              Vocabularies</a></li>
+              <li><a href="http://prefix.cc/"><tt>prefix.cc</tt></a></li>
+              <li><a href="http://sparqles.ai.wu.ac.at/">SPARQLES
+              survey</a></li>
+              <li><a href="http://km.aifb.kit.edu/projects/btc-2014/">Billion
+              Triples Challenge 2014</a></li>
+            </ul>
+            
+
+            <p class="fragment"><strong>Got a list of 3117 unique hosts, and
+            did 7745 HTTP requests</strong></p>
+
+            <aside class="notes">
+              <p>Amongst these, the BTC-2014 is by far the largest, with
+              4 GTriples, it represents the breadth, the others are
+              small curated datasets.</p>
+              <p>Then the data was scanned with a combination of Perl,
+              UNIX grep with fair amounts of manual inspection done</p>
+                
+            </aside>
+
+          </section>
+
+          <section>
+            <h3>Why isn't it bigger?</h3>
+            <ul>
+              <li>We only included valid data</li>
+
+              <li class="fragment"><strong>Important
+              assumption:</strong> Cache headers are set mostly on a
+              per-host basis.</li>
+              <li class="fragment">Not the RDFa Web</li>
+              <li class="fragment">Others do not report per-host
+              statistics, but LODstats has 4442 error-free datasets</li>
+            </ul>
+
+            <aside class="notes">
+              <p>Hurts to say, but semweb isn't bigger</p>
+            </aside>
+
+
+        </section>
       </div>
 
     </div>
