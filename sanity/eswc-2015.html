@@ -324,6 +324,161 @@ caching in the Semantic Web."/>
           </section>
           
         </section>
+
+        <section>
+          <section>
+            <h2>Analysis</h2>
+            
+            <ol>
+              <li>Do certain server implementations provide better
+              caching support than others?</li>
+              <li>Distribution of freshness lifetime
+              <ol>
+                <li>Standards-compliant</li>
+                <li>Simple heuristic</li>
+              </ol>
+              </li>
+              <li>Dublin Core properties</li>
+              <li>Cache (re)validation</li>
+            </ol>
+
+            <aside class="notes">
+              <p>Focused on descriptive statistics, how frequent
+              caching headers are found, how long freshness lifetimes
+              are, ease of finding heuristics, possible to
+              revalidate</p>
+              <p>We also do statistical hypotheses tests using
+              so-called contingency tables</p>
+            </aside>
+          </section>
+
+          <section>
+            <h3><tt>Server</tt>-headers</h3>
+
+            <table style="font-size:small">
+             
+              <tr><td> DFE/largefile</td></tr> 
+              <tr><td> git_frontend</td></tr> 
+              <tr data-fragment-index="1" class="fragment grow"><td> nginx/1.3.9</td></tr> 
+              <tr><td> thin 1.6.0 codename Greek Yogurt</td></tr> 
+              <tr><td> Oracle-Application-Server-10g/10.1.3.4.0 Oracle-HTTP-Server</td></tr>
+              <tr><td> Oracle-Application-Server-10g/10.1.3.4.0 Oracle-HTTP-Server</td></tr>
+              <tr><td> TwistedWeb/8.2.0</td></tr> 
+              <tr data-fragment-index="7" class="fragment grow"><td> RDF::Endpoint/0.07</td></tr> 
+              <tr><td> Jetty(6.1.26)</td></tr> 
+              <tr><td> nginx/1.6.1</td></tr> 
+              <tr><td> Jigsaw/2.3.0-beta3</td></tr> 
+              <tr data-fragment-index="3" class="fragment grow"><td>
+                Apache/2.2.9 (Win32) PHP/5.2.6</td></tr> 
+              <tr><td> Apache/2.4.10 (Unix) mod_fcgid/2.3.9</td></tr> 
+              <tr><td> &nbsp; </td></tr> 
+              <tr><td> GFE/2.0</td></tr> 
+              <tr data-fragment-index="6" class="fragment grow"><td> RDF::LinkedData/0.70</td></tr> 
+              <tr data-fragment-index="4" class="fragment grow"><td> Apache/2.2.17 (Unix) mod_wsgi/3.3 Python/2.6.6</td></tr> 
+              <tr><td data-fragment-index="5" class="fragment grow"> Virtuoso/07.10.3211 (Linux) i686-generic-linux-glibc212-64  VDB</td></tr> 
+              <tr><td> Apache/2.2.24 (Unix) mod_ssl/2.2.24 OpenSSL/0.9.8y</td></tr> 
+              <tr data-fragment-index="2" class="fragment grow"><td> Apache/2.2.22 (Fedora)</td></tr> 
+              <tr><td> INSEE</td></tr> 
+              <tr><td> GitHub.com</td></tr> 
+            </table>
+            <aside class="notes">
+              <p>These 22 returned standards-compliant freshness
+              lifetime for <em>all</em> responses (which could be
+              across hosts)</p>
+              <p>70 had some promising results (DC properties,
+              last-modified, Etag, etc)</p>
+              <p>I've googled all these, and that's basically all we
+              have to go on.</p>
+            </aside>
+
+          </section>
+          
+          <section>
+            <h3>Contingency Table test</h3>
+            
+            <p>We can do a statistical test to see if certain headers
+            occur significantly more frequently.</p>
+            
+            <p class="fragment">Pearson's &chi;<sup>2</sup> test with simulated <i>p</i>-value
+	    (based on 10000 replicates)</p>
+            
+            <dl class="fragment">
+              <dt>For standards-compliant caching</dt>
+              <dd>Supports that some server may be better than others at
+              <i>p</i>-value&nbsp;=&nbsp;0.0001.</dd>
+              <dt>For other usable features</dt>
+              <dd>Supports that some server may be better than others at
+              <i>p</i>-value&nbsp;=&nbsp;0.0001.</dd>
+            </dl>
+            
+          </section>
+          
+          <section>
+            <h3>Successful responses</h3>
+            
+            <p>We had 2965 successful responses</p>
+            
+            <div class="fragment">
+              <p>Successful response defined as</p>
+              
+              <ul>
+                <li>Successful HTTP Response (after redirects)</li>
+                <li>Valid RDF media type or SPARQL result</li>
+                <li>Must parse into an RDF Model</li>
+              </ul>
+            </div>
+          </section>
+          
+          <section>
+            <h3>Standards-compliant caching in numbers</h3>
+            
+            <ul>
+              <li><strong>405</strong> resources returned parsable cache
+              headers</li>
+              <li class="fragment"><strong>114</strong> did so to
+              prohibit caching</li>
+              <li class="fragment"><strong>3</strong> contained
+              conflicting headers</li>
+              <li class="fragment">Usually <tt>Cache-Control</tt> and
+              <tt>Expires</tt> both occurred, former most common.</li>
+              <li class="fragment"><strong>269</strong> used
+              <tt>Cache-Control</tt> for other purposes than freshness lifetime</li>
+            </ul>
+            
+            
+            <aside class="notes">
+              <p>Look at level of support</p>
+              <p>Reminder: Expires or Cache-Control with max-age</p>
+              <p>Cache-Control to mandate revalidation, prohibition,
+              only private caches may use the response, etc.</p>
+            </aside>
+
+          </section>
+
+          <section>
+            <h3>Standards-compliant freshness lifetime</h3>
+            
+            <figure>
+              <img src="sanity/hardall.png" alt="Standards-compliant
+                                          freshness lifetime"/>
+            </figure>
+
+
+
+        </section>
+
+
+        <section>
+          <h3>Hall of Fame</h3>
+          <ul>
+            <li>DBPedia</li>
+            <li>Dydra</li>
+            <li>RDF::LinkedData</li>
+            <li>Graphity</li>
+            <li>Callimachus</li>
+          </ul>
+        </section>
+
       </div>
 
     </div>
