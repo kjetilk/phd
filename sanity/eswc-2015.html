@@ -463,8 +463,18 @@ caching in the Semantic Web."/>
                                           freshness lifetime"/>
             </figure>
             
-            
-            
+            <aside class="notes">
+              <ul>
+                <li>Barplot: horizontal axis is divided up unevenly,
+                in time bins, 1-59 sec, 60-3599 sec, etc. vertical
+                axis is the number of times a certain freshness
+                lifetime was found.
+                </li>
+                <li>Cache prohibition is most common. Minutes to days
+                also common.</li>
+              </ul>
+            </aside>
+                
           </section>
           
           <section>
@@ -475,8 +485,23 @@ caching in the Semantic Web."/>
                                                    freshness lifetime"/>
             </figure>
             
-            
-            
+            <aside class="notes">
+              <ul>
+                <li>Breaking up by type: vocabs (light orange),
+                generic resources (dark orange), datasets (dark
+                violet), SPARQL endpoints (light blue)</li>
+                <li>Width of column proportional to occurances.</li>
+                <li>Height of boxes proportional to category
+                abundance</li>
+                <li>Endpoints are in the minutes.</li>
+                <li>Datasets are prohibited. Bad idea: Costly to
+                compute. Void is estimates</li>
+                <li>Very little beyond days.</li>
+                <li>Quite different distribution for different
+                types. Contigency table can be used, even if a little
+                contrived, p-value = 0.00001</li>
+              </ul>
+            </aside>
           </section>
           
                     
@@ -488,7 +513,21 @@ caching in the Semantic Web."/>
                                                       freshness lifetime"/>
             </figure>
             
-            
+            <aside class="notes">
+              <ul>
+                <li>Found simple heuristic freshness for 554
+                resources. Many more than standards-based. Based on
+                actual modification times</li>
+                <li>Now 60% is in the month range. Agreeing with
+                Dynamic Linked Data Observatory</li>
+                <li>We could also still verify 911 resources where
+                last-modified and/or Etag that were recorded by the
+                BTC crawl months prior to our crawl as fresh.
+                </li>
+                <li>This gives a better picture of the actual change
+                frequency</li>
+              </ul>
+            </aside>
             
           </section>
 
@@ -499,12 +538,52 @@ caching in the Semantic Web."/>
               <img src="sanity/heuristictable.png" alt="Simple heuristic
                                                         freshness lifetime"/>
             </figure>
-            
-            
+                        
+            <aside class="notes">
+              <ul>
+                <li>First note that the types are rather similar,
+                confirmed by test p = 0.02, still quite different</li>
+                <li>Just one endpoint had last-modified, could be that
+                DBMSes aren't helping in tracking</li>
+              </ul>
+            </aside>
             
           </section>
 
+          <section>
+            <h3>Dublin Core properties</h3>
 
+            <table>
+              <tr><th>Predicate</th><th>Number of occurences</th></tr>
+              <tr><th><tt>dct:modified</tt></th><td style="text-align:
+              right" class="fragment">2687</td></tr>
+              <tr><th><tt>dct:valid   </tt></th><td  style="text-align:
+              right" class="fragment">21</td></tr>
+              <tr><th><tt>dct:accrualPeriodicity   </tt></th><td  style="text-align:
+              right" class="fragment">2</td></tr>
+              <tr><th><tt>dct:date </tt></th><td  style="text-align:
+              right" class="fragment">36</td></tr>
+              <tr><th><tt>dct:created</tt></th><td  style="text-align:
+              right" class="fragment">389</td></tr>
+              <tr><th><tt>dct:issued</tt></th><td style="text-align:
+              right" class="fragment">1475 </td></tr>
+            </table>
+
+            <aside class="notes">
+              <ul>
+                <li>Modified, 2487 has a different subject then the
+                request-URI, so, they probably describe a
+                sub-graph. Latest date may be used.</li>
+                <li>valid could replace expires, but none were in the
+                future.</li>
+                <li>periodicity, no machine readable.</li>
+                <li>All roughly like date header, which is always
+                present, but perhaps something for further study</li>
+              </ul>
+            </aside>
+
+          </section>
+        </section>
 
         <section>
           <h3>Hall of Fame</h3>
