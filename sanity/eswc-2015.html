@@ -583,24 +583,167 @@ caching in the Semantic Web."/>
             </aside>
 
           </section>
+
+          <section>
+            <h3>Cache validation</h3>
+
+            <h4>In our excerpt from BTC-2014:</h4>
+            <ul>
+              <li>1733 had <tt>ETag</tt></li>
+              <li>690 had <tt>Last-Modified</tt></li>
+              <li>with great overlap</li>
+              <li>911 were still verified as fresh</li>
+            </ul>
+            
+
+            <aside class="notes">
+              <p>BTC crawl was from February to June 2014</p>
+              <p>This is pretty good</p>
+            </aside>
+
+              
+          </section>
+
+          <section>
+            <h3>Cache validation</h3>
+
+            <h4>In initial responses:</h4>
+
+            <ul>
+              <li>1260 had <tt>ETag</tt>
+              <ul>
+                <li>606 for vocabularies</li>
+                <li>117 for datasets</li>
+                <li>12 for endpoints</li>
+                <li>525 for unclassified</li>
+              </ul>
+              </li>
+            </ul>
+            <aside class="notes">
+              <p>The initial requests contained no headers that were
+              set based on previous responses, and then, the initial
+              responses contained</p>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Conditional request support</h3>
+            
+            <p>Another 1822 requests to check if conditional requests
+            were actually supported</p>
+
+            <p>Found 85 faulty implementations</p>
+
+            <aside class="notes">
+              <p>One thing is to expose a header, another is to
+              implement some logic, so we checked if they actually
+              returned the 304 response where they should</p>
+            </aside>
+
+          </section>
+
         </section>
 
         <section>
-          <h3>Hall of Fame</h3>
-          <ul>
-            <li>DBPedia</li>
-            <li>Dydra</li>
-            <li>RDF::LinkedData</li>
-            <li>Graphity</li>
-            <li>Callimachus</li>
-          </ul>
+          <section>
+            <h2>Conclusions</h2>
+            
+            <ul>
+              <li><strong>We found moderate uptake for HTTP caching and
+              conditional requests</strong></li>
+              <li class="fragment">Many resources change slowly, but
+              standard-compliant cache doesn't reflect this</li>
+              <li class="fragment">Errors are common, but not in caching headers</li>
+              <li class="fragment">Possible to compute heuristic
+              freshness from headers of Dublin Core in many cases</li>
+              <li class="fragment">Conditional requests seldomly
+              supported, but standards-compliant freshness lifetimes
+              have been seen</li>
+            </ul>
 
-          <aside class="notes">
-            <p>but it is easy in all major servers, Apache, nginx, the
-            hard part is management</p>
-          </aside>
-
+          </section>
+          
+          <section>
+            <h3>Hall of Fame</h3>
+            <ul>
+              <li>DBPedia</li>
+              <li>Dydra</li>
+              <li>RDF::LinkedData</li>
+              <li>Graphity</li>
+              <li>Callimachus</li>
+            </ul>
+            
+            <aside class="notes">
+              <p>but it is easy in all major servers, Apache, nginx,
+              Virtuoso, the hard part is management</p>
+            </aside>
+            
+          </section>
         </section>
+      
+        <section>
+          <section>
+            <h2>Future work</h2>
+
+            <ul>
+              <li>Learn change frequency of resources <span class="fragment">(but please
+              respect the standards!)</span></li>
+              <li class="fragment">Do curated collections (e.g. LOV, SPARQLES) have
+              different characteristics?</li>
+              <li class="fragment">Understand what the differences
+              between implementations are based on fingerprinting</li>
+              <li class="fragment">User support systems to help
+              estimate freshness lifetime</li>
+              <li class="fragment">SPARQL caching based on prefetching
+              results for query answering on proxy</li>
+              <li class="fragment">Understanding the actual impact of
+              caching of data</li>
+            </ul>
+            <aside class="notes">
+              <p>So far, the server has been assumed
+              cooperative. Better statistical methods than used here
+              needed. We haven't studied if caching really
+              matters.</p>
+            </aside>
+
+          </section>
+
+          <section>
+            <h3>Recommendations</h3>
+
+            <ul>
+              <li>You should set cache headers, on a best-effort
+              basis!</li>
+              <li class="fragment">Framework authors should make it easy to be
+              accurate</li>
+              <li class="fragment">If headers can't be set, set <tt>dct:valid</tt> and
+              <tt>dct:modified</tt></li>
+              <li class="fragment">DBMS authors should make it much cheaper to retrieve
+              a modification time of a subgraph than to retrieve the
+              graph itself.</li>
+              <li class="fragment">A change periodicity predicate should be
+              standardized in VoID</li>
+              <li class="fragment">For now, caches are key-value databases, accept that
+              for short-term impact</li>
+            </ul>
+            
+            <aside class="notes">
+              <p>The focus of this work is descriptive, and this
+              hasn't been a study of whether caching is actually
+              important. Given my practical experience it would be
+              surprising if it isn't </p>
+            </aside>
+
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Thanks</h1>
+          </section>
+        </section>
+
+
 
       </div>
 
