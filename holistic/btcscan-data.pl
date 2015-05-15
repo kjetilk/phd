@@ -10,14 +10,14 @@ use PerlIO::gzip;
 use RDF::Trine qw(iri);
 use RDF::Trine::Parser::NQuads;
 use RDF::Trine::Namespace;
-use Digest::MD4 qw(md4);
+use Digest::MD4 qw(md4_base64);
 
 my $parser     = RDF::Trine::Parser::NQuads->new(canonicalize => 0) ;
 
 
 my %patterns = (
-				  sql => {},
-				  sqo => {},
+				  sql => {}, # OK
+				  sqo => {}, # OK
 				  qpl => {},
 				  qpo => {},
 				  spq => {},
@@ -36,16 +36,16 @@ my %counts = ( qqq => 0,
 
 my $handler = sub {
 	my $st = shift;
-	$patterns{sqo} = md4_base64($st->predicate->as_string);
+	${$patterns{sqo}}{md4_base64($st->predicate->as_string)} = 1;
 	if ($st->object->is_literal) {
-		$patterns{sql} = md4_base64($st->predicate->as_string);
+		${$patterns{sql}}{md4_base64($st->predicate->as_string)} = 1;
 	}
 	
 };
 
 my @files = (
 			 '/home/kjetil/Projects/SemWeb/data/btc-2014/data/01/data.nq-0.gz',
-          '/home/kjetil/Projects/SemWeb/data/btc-2014/data/01/data.nq-1.gz',
+          # '/home/kjetil/Projects/SemWeb/data/btc-2014/data/01/data.nq-1.gz',
           # '/home/kjetil/Projects/SemWeb/data/btc-2014/data/01/data.nq-10.gz',
           # '/home/kjetil/Projects/SemWeb/data/btc-2014/data/01/data.nq-2.gz',
           # '/home/kjetil/Projects/SemWeb/data/btc-2014/data/01/data.nq-3-00.gz',
@@ -452,7 +452,7 @@ foreach my $filename (@files) {
 		try {
 			$parser->parse( 'http://robin:5000', $line, $handler);
 		} catch {
-#					warn "Parse failed for $line: $_";
+					warn "Parse failed for $line: $_";
 					$counts{failures}++;
 					next;
 		};
@@ -465,9 +465,9 @@ foreach my $filename (@files) {
 
 print Dumper(\%counts);
 
-print Dumper(%patterns);
+#print Dumper(\%patterns);
 
 while (my ($label, $digest) = each(%patterns)) {
-	print $label . "\t" . scalar @{$digest} . "\n";
+	print $label . "\t" . scalar keys(%{$digest}) . "\n";
 }
 
