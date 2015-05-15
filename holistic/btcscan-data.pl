@@ -12,21 +12,23 @@ use RDF::Trine::Parser::NQuads;
 use RDF::Trine::Namespace;
 use Digest::MD4 qw(md4_base64);
 
+binmode STDOUT, ':utf8';
+
 my $parser     = RDF::Trine::Parser::NQuads->new(canonicalize => 0) ;
 
 
 my %patterns = (
 				  sql => {}, # OK
 				  sqo => {}, # OK
-				  qpl => {},
-				  qpo => {},
-				  spq => {},
-				  saq => {},
-				  qql => {},
-				  qqo => {},
-				  sqq => {},
-				  qpq => {},
-				  qaq => {},
+				  qpl => {}, # OK
+				  qpo => {}, # OK
+				  spq => {}, # OK
+				  saq => {}, # OK
+				  qql => {}, # OK
+				  qqo => {}, # OK
+				  sqq => {}, # OK
+				  qpq => {}, # OK
+				  qaq => {}, # OK
 				 );
 
 my %counts = ( qqq => 0,
@@ -37,10 +39,19 @@ my %counts = ( qqq => 0,
 my $handler = sub {
 	my $st = shift;
 	${$patterns{sqo}}{md4_base64($st->predicate->as_string)} = 1;
+	${$patterns{qpo}}{md4_base64($st->subject->as_string)} = 1;
+	${$patterns{spq}}{md4_base64($st->object->as_string)} = 1;
+	${$patterns{qqo}}{md4_base64("kj1" . $st->subject->as_string . "df2" . $st->predicate->as_string)} = 1;
+	${$patterns{sqq}}{md4_base64("kj1" . $st->predicate->as_string . "df2" . $st->object->as_string)} = 1;
+	${$patterns{qpq}}{md4_base64("kj1" . $st->subject->as_string . "df2" . $st->object->as_string)} = 1;
 	if ($st->object->is_literal) {
 		${$patterns{sql}}{md4_base64($st->predicate->as_string)} = 1;
+		${$patterns{qpl}}{md4_base64($st->subject->as_string)} = 1;
+		${$patterns{qql}}{md4_base64("kj1" . $st->subject->as_string . "df2" . $st->predicate->as_string)} = 1;
+	} elsif ($st->predicate->equal(iri('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'))) {
+		${$patterns{saq}}{md4_base64($st->object->as_string)} = 1;
+		${$patterns{qaq}}{md4_base64("kj1" . $st->subject->as_string . "df2" . $st->object->as_string)} = 1;
 	}
-	
 };
 
 my @files = (
@@ -452,7 +463,7 @@ foreach my $filename (@files) {
 		try {
 			$parser->parse( 'http://robin:5000', $line, $handler);
 		} catch {
-					warn "Parse failed for $line: $_";
+				#	warn "Parse failed for $line: $_";
 					$counts{failures}++;
 					next;
 		};
@@ -467,7 +478,12 @@ print Dumper(\%counts);
 
 #print Dumper(\%patterns);
 
+my %out;
 while (my ($label, $digest) = each(%patterns)) {
-	print $label . "\t" . scalar keys(%{$digest}) . "\n";
+	$out{$label} = scalar keys(%{$digest});
 }
 
+
+foreach my $name (sort { $out{$a} <=> $out{$b} } keys %out) {
+    printf "%-8s %s\n", $name, $out{$name};
+}
