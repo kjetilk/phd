@@ -124,7 +124,7 @@ caching in the Semantic Web."/>
               a big win
             </aside>
           </section>
-          <section>
+          <!-- section>
             <h3>Caching prominently featured</h3>
             <ul>
               <li><a href="http://www.w3.org/TR/webarch/">Architecture
@@ -134,8 +134,8 @@ caching in the Semantic Web."/>
               State Transfer (REST)</a>.</li>
               <li>Many other documents</li>
             </ul>
-          </section>
-          <section>
+          </section -->
+          <!-- section>
             <h3>Current HTTP specifications</h3>
 	    <ul>
 	      <li><a href="//tools.ietf.org/html/rfc7230">RFC 7230</a> - HTTP/1.1: Message Syntax and Routing</li>
@@ -152,22 +152,24 @@ caching in the Semantic Web."/>
               directions for research</p>
             </aside>
             
-	  </section>
+	  </section -->
           <section>
             <h3>Caching vs. Conditional Requests</h3>
             
             <dl>
-              <dt>Caching (defined in RFC 7234)</dt>
+              <dt>Caching (defined in <a href="//tools.ietf.org/html/rfc7234">RFC 7234</a>)</dt>
               <dd>HTTP headers where the server says how
               long the server thinks the response will remain
               valid</dd>
 
-              <dt>Conditional Requests (defined in RFC 7232)</dt>
+              <dt>Conditional Requests (defined in <a href="//tools.ietf.org/html/rfc7232">RFC 7232</a>)</dt>
               <dd>A mechanism where a client asks the server: "is the
               response I have still valid?"</dd>
             </dl>
             
             <aside class="notes">
+              <p>Caching is prominently featured in many documents,
+              but these are specs</p>
               <p>First case, no further communication is needed, but
               the server will have to estimate.</p>
               <p>Second case, a request must be made, the server will
@@ -304,7 +306,7 @@ caching in the Semantic Web."/>
               small curated datasets.</p>
               <p>Then the data was scanned with a combination of Perl,
               UNIX grep with fair amounts of manual inspection done</p>
-                
+              <p><strong>Go right</strong></p>  
             </aside>
 
           </section>
@@ -437,7 +439,7 @@ caching in the Semantic Web."/>
             
             <p>We had 2965 successful responses</p>
             
-            <div class="fragment">
+            <div>
               <p>Successful response defined as</p>
               
               <ul>
@@ -446,6 +448,12 @@ caching in the Semantic Web."/>
                 <li>Must parse into an RDF Model</li>
               </ul>
             </div>
+
+            <aside class="notes">
+              <p>Quickly: A successful response is rather strictly
+              defined</p>
+            </aside>
+                
           </section>
           
           <section>
@@ -487,7 +495,10 @@ caching in the Semantic Web."/>
                 <li>Barplot: horizontal axis is divided up unevenly,
                 in time bins, 1-59 sec, 60-3599 sec, etc. vertical
                 axis is the number of times a certain freshness
-                lifetime was found.
+                lifetime was found. Sorry about this, chose the lesser
+                evil, <a
+                href="http://www.scientificamerican.com/article/experts-time-division-days-hours-minutes/">blame
+                the egyptians and babylonians</a>.
                 </li>
                 <li>Cache prohibition is most common. Minutes to days
                 also common.</li>
