@@ -555,6 +555,64 @@ caching in the Semantic Web."/>
           </section>
 
           <section>
+            <h3>Cache validation</h3>
+
+            <h4>In our excerpt from BTC-2014:</h4>
+            <ul>
+              <li>1733 had <tt>ETag</tt></li>
+              <li>690 had <tt>Last-Modified</tt></li>
+              <li>with great overlap</li>
+              <li>911 were still verified as fresh</li>
+            </ul>
+            
+
+            <aside class="notes">
+              <p>BTC crawl was from February to June 2014</p>
+              <p>This is pretty good</p>
+            </aside>
+
+              
+          </section>
+
+          <section>
+            <h3>Cache validation</h3>
+
+            <h4>In initial responses:</h4>
+
+            <ul>
+              <li>1260 had <tt>ETag</tt>
+              <ul>
+                <li>606 for vocabularies</li>
+                <li>117 for datasets</li>
+                <li>12 for endpoints</li>
+                <li>525 for unclassified</li>
+              </ul>
+              </li>
+            </ul>
+            <aside class="notes">
+              <p>The initial requests contained no headers that were
+              set based on previous responses, and then, the initial
+              responses contained</p>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Conditional request support</h3>
+            
+            <p>Another 1822 requests to check if conditional requests
+            were actually supported</p>
+
+            <p>Found 85 faulty implementations</p>
+
+            <aside class="notes">
+              <p>One thing is to expose a header, another is to
+              implement some logic, so we checked if they actually
+              returned the 304 response where they should</p>
+            </aside>
+
+          </section>
+
+          <section>
             <h3><tt>Server</tt>-headers</h3>
 
             <table style="font-size:small">
@@ -613,65 +671,6 @@ caching in the Semantic Web."/>
               <i>p</i>-value&nbsp;=&nbsp;0.0001.</dd>
             </dl>
             
-          </section>
-
-
-          <section>
-            <h3>Cache validation</h3>
-
-            <h4>In our excerpt from BTC-2014:</h4>
-            <ul>
-              <li>1733 had <tt>ETag</tt></li>
-              <li>690 had <tt>Last-Modified</tt></li>
-              <li>with great overlap</li>
-              <li>911 were still verified as fresh</li>
-            </ul>
-            
-
-            <aside class="notes">
-              <p>BTC crawl was from February to June 2014</p>
-              <p>This is pretty good</p>
-            </aside>
-
-              
-          </section>
-
-          <section>
-            <h3>Cache validation</h3>
-
-            <h4>In initial responses:</h4>
-
-            <ul>
-              <li>1260 had <tt>ETag</tt>
-              <ul>
-                <li>606 for vocabularies</li>
-                <li>117 for datasets</li>
-                <li>12 for endpoints</li>
-                <li>525 for unclassified</li>
-              </ul>
-              </li>
-            </ul>
-            <aside class="notes">
-              <p>The initial requests contained no headers that were
-              set based on previous responses, and then, the initial
-              responses contained</p>
-            </aside>
-          </section>
-
-          <section>
-            <h3>Conditional request support</h3>
-            
-            <p>Another 1822 requests to check if conditional requests
-            were actually supported</p>
-
-            <p>Found 85 faulty implementations</p>
-
-            <aside class="notes">
-              <p>One thing is to expose a header, another is to
-              implement some logic, so we checked if they actually
-              returned the 304 response where they should</p>
-            </aside>
-
           </section>
 
         </section>
