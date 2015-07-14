@@ -1,3 +1,20 @@
+\section{Overview}
+
+The World Wide Web, or just the Web for short, is a well-known global
+information space invented by Tim Berners-Lee in 1989, further emerged
+in the 1990-ties. It is characterised first and foremost by its
+openness, anyone can set up a computer, connect it to the Internet and
+start serving data or documents from it. 
+
+The Semantic Web is an extension of the Web that has been under
+development since 1997\footnote{The first working group draft of the
+  RDF specification is dated 1997-08-01, see
+  \href{http://www.w3.org/TR/WD-rdf-syntax-971002/}.}, to extend the
+Web with languages for expressing information in a machine processable
+form\cite{TODO}.
+
+
+
 The present work sits in the confluence of several contemporary
 efforts in the Semantic Web community. The focus is on query answering
 with the SPARQL query language, with emphasis on exploiting the World
@@ -24,19 +41,20 @@ players are able to force convergence towards e.g. \texttt{Schema.org}
 is an example of the social, economic and cultural mechanisms that
 shape the future of the Semantic Web. Likewise, it may not be the W3C
 Semantic Web stack at all that achieves success, it may be
-microformats\footnote{see e.g. }, microdata\cite{TODO}, or something
-else entirely\footnote{for a thoughtful criticism of Linked Data with
-  a proposed alternative, see \href{http://berjon.com/linked-data/}},
-but again, it is likely that social, economic and cultural factors
-will be as decisive as technical. One may say that e.g. microformats
-cannot help achieve the visions that may be stated for the Semantic
-Web, but that again emphasises visions, not operational definitions.
+microformats\footnote{see \href{http://microformats.org/]},
+microdata\cite{TODO}, or something else entirely\footnote{for a
+  thoughtful criticism of Linked Data with a proposed alternative, see
+  \href{http://berjon.com/linked-data/}}, but again, it is likely that
+social, economic and cultural factors will be as decisive as
+technical. One may say that e.g. microformats cannot help achieve the
+visions that may be stated for the Semantic Web, but that again
+emphasises visions, not operational definitions.
 
 One such vision is the article by Berners-Lee, Hendler and Lassila in
 Scientific American 2001\cite{TODO}, but it does not attempt such an
 operational definition. Neither \cite{TODO} nor \cite{TODO} contains
 such definitions. However, it is clear that an essential
-characteristic of the Web, and by extension, the Semantic Web is its
+characteristic of the Web, and by extension, the Semantic Web, is its
 \emph{universality} and therefore, any actor should be as free as
 possible to adapt it to their visions and needs, and so, a pursuit of
 such a definition may not be desirable. Therefore, rather than
@@ -44,4 +62,117 @@ defining it, one should carefully declare one's visions.
 
 \section{A personal history}
 
+I created my first Web page in December 1994, and strongly appreciated
+the value of the fact that I could easily contribute to the Web, and
+therefore, I quickly posted anything that I had of value, for example
+a collection of my best mountaineering pictures, constrained not by
+the platform, but by my own time. Initially, I learnt purely by
+example, i.e. using the ``View Source'' menu item when I encountered
+web pages that I liked. I also had the power to mint identifiers. 
 
+With identifiers, and the hypertext language HTML came the fact that I
+could link to anyone, and anyone could link to me was highly
+empowering: Discovering that people I didn't know linked to my
+material was a strong, social reward. After some time, I had tens of
+thousands of visitors every month.
+
+In 1996, I started the Web pages of the Norwegian Skeptics Society
+\texttt{skepsis.no}, and therefore got the control over an entire Web
+server. That was another revelation, as I could actually run code, and
+from that arose the need to not just learn by ``View Source'', but
+start to read the specifications, notably HTML, CSS and
+HTTP. Appreciating the design of these specifications took a while,
+but eventually, the value of orthogonal specifications and separation
+of concerns became apparent.
+
+When the RDF working drafts were first published, I was first
+inundated by the amount of new text to read, but at the same time I
+had a growing realisation that getting information out was not solving
+the problem The Norwegian Skeptics Society needed to solve: We needed
+to push information into closed minds. My initial plan to address that
+was to enable a higher degree of targeting of information, and a Web-wide
+conversation. To do that, I wanted to create a large thesaurus of
+topics of interest, and create annotations of the type ``this article
+is a rebuttal of that article'', and an index that browsers could
+query, so that when a user viewed an article, they would also get a
+critical context. At the same time, Netscape was open-sourced as
+Mozilla, and so, I was quite convinced I could contribute the code
+needed for this to be accepted. 
+
+I shared these ideas on some mailing lists in August 1998, and one of
+the persons who responded was Dan Brickley, who would chair the RDF
+working group. He quickly convinced me that RDF was not something to
+be afraid of, quite the contrary, it was exactly what I needed.
+
+However, all the above had happened on my spare time, as the topic of
+my study was something else entirely: Cosmology, and so the interest
+laid dormant for a few years as I finished my Cand. Scient.-degree. 
+After that, I got some limited funding to write what today would be
+called a Semantic Content Management System. The project was far too
+ambitious and largely a failure, but it got me some valuable
+experience with Semantic Web technology.
+
+It was not until I joined Opera Software in 2005 to work on the now
+defunct Opera Community social networking site, that I had a bit more
+time to work on Semantic Web technology. When I joined, they had
+rudimentary support for an RDF/XML-based ``Friend of a Friend'' (FOAF)
+export, which I improved before the initial release. At the time, it
+was not anticipated that everything would have a URI, so Dan Brickley
+was a proponent of the view that most things, including people, would
+be identified mainly by their properties, e.g. their email address. It
+was a certain tension between that view and the ``give everything a
+URI''-movement heralded by Tim Berners-Lee at the time, but I decided
+to place myself in between, by giving everything a URI, but at the
+same time ensure that enough properties would identify people. I also
+included outward links, so that people could integrate the database
+export we provided with their hand-maintained FOAF. I also added
+support for photo gallery metadata and linking tags as given in a
+personal SKOS-ontology to Wordnet to enable assigning clearer meaning
+to tags. This effort was acknowledged in the Linked Data Design
+Issue\cite{TODO} that formed the basis for the more recent Linking
+Open Data project.
+
+However, at this point, I started to realise that it was difficult to
+develop applications around traversing the Linked Data, and that
+prompted me to consider the possibility to offer the ability to
+execute arbitrary queries. On 2005-11-30, I published the first public
+SPARQL endpoint with actual production data\footnote{see
+  \href{http://www.onlamp.com/pub/wlg/8609}}, consisting of 2695114
+triples, but it quickly grew to \~15~million triples.
+
+Unfortunately, it wasn't allotted time to enhance and document the
+SPARQL Endpoint further, and it didn't see much practical use. 
+I was, however, allowed to join several World Wide Web Consortium
+groups. First, the Web Content Label Incubator Group, which was tasked
+with discussing a replacement for the then archaic Platform for
+Internet Content Selection, and resolved to use RDF for this
+purpose, and it transitioned into the POWDER Working Group, which
+provided the specifications. 
+
+More importantly, I joined the Semantic Web Education and Outreach
+(SWEO) Interest Group, where I admitted my frustration with the lack
+of practical progress with Semantic Web technologies and the relative
+lack of uptake. This sentiment was echoed by the late Aaron Swartz,
+who was asked by the group on his opinion, and he emailed the
+following statement\footnote{see
+  \href{https://lists.w3.org/Archives/Public/public-sweo-ig/2006Dec/0138.html}}:
+\begin{quote}
+I'm not sure what SWEO is, but my feeling is and pretty much always
+has been that the Semantic Web people need to start putting together
+Genuinely Useful stuff that can be done Right Now.
+\end{quote}
+
+This was one of the motivations I had for starting the SWEO Community
+Projects, where a questionnaire was posted on the Web, and people from
+the Semantic Web community were challenged to come up with a project
+that would provide practical benefits in the short term. We received
+10 proposals, out of which 3 was selected for backing by the SWEO
+IG. None of them was successful, but a fourth proposal, submitted by
+Chris Bizer and Richard Cyganiak built momentum quickly and was
+therefore also selected for backing, despite some criticism by several
+IG members, myself included. The proposal was titled ``Linking Open
+Data'' and sought to take already abundant open data and model it
+using guidelines of the Linked Data Design
+Issue\cite{TODO}. LODstats\cite{TODO} provides extensive statistics on
+the results of this project, and has of this writing seen nearly
+10~000 data sets.
