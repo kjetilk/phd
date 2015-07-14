@@ -189,10 +189,30 @@ were also implemented with SPARQL using what was then specified only
 in a member submission to the W3C\cite{TODO}. This was the basis for
 the update language in SPARQL 1.1 but differed substantially in
 surface syntax, partly because our work showed how certain patterns
-could be simplified. Another project, based on much of the same code
+could be simplified. 
+
+Two features that arose from Sublima requirements were not accepted
+for SPARQL 1.1, however: Full text index and a feature known as
+``Limit Per Resource''\footnote{see
+  \href{http://www.w3.org/2009/sparql/wiki/Feature:LimitPerResource}}. The
+latter feature arises from the fact that usually, the user is
+indifferent to the number of solutions to a query, and therefore
+limiting by the number of solutions is unhelpful. This is especially
+true since other features of SPARQL, such as optional clauses, are
+helpful in dealing with heterogeneous data. In the Sublima case, it
+was interesting to limit by the number of articles that were returned,
+but the number of solutions depended on the number of authors of an
+article and the concepts used to classify an article. To achieve the
+desired effect with SPARQL 1.1, one would have to write a very complex
+subquery, which is undesirable for such an important feature.
+
+
+Another project, based on much of the same code
 base replaced the SKOS ontology of the Sublima project with an OWL
 ontology, and also used reasoning to aid navigation in multimedia
 libraries.
+
+
 
 However, it became clear that I could not have sufficient time in the
 industry to pursue what was developing as my main interest, query
