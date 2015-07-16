@@ -69,6 +69,28 @@ enumarate the problems I have foreseen, discuss their place in current
 research, and what problems I have attempted to tackle in this
 dissertation.
 
+Both the idea of a decentralised Web and the idea that SPARQL
+endpoints can be made openly available for any query on the Internet
+seems to go against the conventional wisdom of the database
+community. We are, however, motivated to solve this problem by the
+social requirement of decentralisation and by the use cases mentioned
+at the start of this section.
+
+It is also important to frame the question correctly: We want to
+answer queries, we do not require that any remote server accepts the
+entire burden of evaluating queries. It is becoming quite clear that
+the current practice of evaluating any arbitrary SPARQL query on a
+remote server is economically unsustainable, and it is made clear by
+the instability of SPARQL endpoints on the Web \cite{TODO}.
+
+However, we note that the Internet infrastructure is accommodating for
+solving parts of this problem with the presence of caches at several
+different levels. Some clients also have significant processing
+capacity, and these are among the factors that could make SPARQL query
+answering on the open Web practically feasible. The focus of this work
+is to ease the burden of servers by allowing other parties to take
+part of the query evaluation.
+
 
 
 %%  LocalWords:  hegemonies
