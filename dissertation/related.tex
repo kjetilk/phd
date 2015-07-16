@@ -5,7 +5,7 @@ research that is well aligned with the present work, either because
 the authors share parts of the motivation, or more serendipitous
 reuse.
 
-Verborgh et al. \cite{TODO} share many of the observations and goals
+Verborgh et al. \cite{ldf1} share many of the observations and goals
 that motivates this study. They introduce a hypermedia system that can
 be used to answer individual triple patterns (known as Triple Pattern
 Fragments (TPF)). Their stated goal is to transfer as much as possible
@@ -43,3 +43,21 @@ server. It is not quite clear from the brief description in
 Montoya et al. \cite{DBLP:journals/corr/MontoyaSMV15} proposes a query
 federation system that takes advantage of client-side data
 replication. 
+
+Umbrich et al. \cite{umbrich2012hybrid} considered a situation where
+parts of the graph changes at different paces. For the slow-changing
+parts, they prefetch an entire dataset to a local store to relieve
+remote endpoints from some processing, and thereby speed up query
+responses. 
+
+Martin et al. \cite{sparqlproxy} implemented a reverse caching proxy
+that controlled the changes to the dataset, and so could relieve the
+endpoint of the burden of evaluating all queries.
+
+While the approaches are diverse, these studies pull in the same
+direction: Motivated by the problems of maintaining SPARQL endpoints,
+they all seek to share the burden, and so make query answering
+economically feasible.
+
+For more detailed related work, see the corresponding section in the
+individual papers.
