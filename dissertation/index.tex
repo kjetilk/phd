@@ -1,11 +1,12 @@
-\documentclass[a4paper, 12pt, draft]{scrartcl}
+\documentclass[a4paper, 12pt, draft]{article}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage{multirow}
-\usepackage{times}
+%\usepackage{times}
 \usepackage{listings}
 \usepackage{supertabular}
 \usepackage{cite}
+\usepackage{hyperref}
 \include{notasjon}
 \include{helpers}
 %\usepackage[pdftex,linktocpage,ps2pdf,dvips]{hyperref}
@@ -24,10 +25,12 @@
 
 
 \input{introdefhistory}
+\input{motivation}
+\input{related}
+\input{problems}
 
 
-
-\bibliography{selectivity,practical,machinelearning}
+\bibliography{management,dataprofiles,federation,dynamicity,hypermedia}
 \bibliographystyle{plain}
 
 \end{document}
