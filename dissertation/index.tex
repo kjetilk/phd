@@ -6,11 +6,13 @@
 \usepackage{listings}
 \usepackage{supertabular}
 \usepackage{cite}
-\usepackage{hyperref}
+\usepackage{amsthm}
+
 \include{notasjon}
 \include{helpers}
-%\usepackage[pdftex,linktocpage,ps2pdf,dvips]{hyperref}
+\usepackage[pdftex,linktocpage]{hyperref}
 
+\newtheorem{problem}{Problem}[subsection]
 
 \begin{document}
 \title{Introduction}
@@ -30,7 +32,7 @@
 \input{problems}
 
 
-\bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching}
+\bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism}
 \bibliographystyle{plain}
 
 \end{document}

@@ -1,11 +1,24 @@
 \section{Problems}\label{sec:problems}
 
-\subsection{Performance problems}
+\subsection{Performance problems}\label{sec:perfproblems}
 
-\subsection{Stability problems}
+\subsection{Stability problems}\label{sec:stabproblems}
 
-\subsection{Problems of shared understanding}
+\subsection{Problems of shared understanding}\label{sec:semproblems}
 
-\subsection{Problems with evaluations}
+\subsection{Problems with evaluations}\label{sec:evalproblems}
 
-\subsection{Development problems}
+\subsection{Development problems}\label{sec:devproblems}
+
+There are several issues that make Semantic Web development difficult,
+that are connected with development in current programming languages
+and current Semantic Web libraries. As pointed out in \cite{darobin1},
+there are few things that are simpler in contemporary programming than
+to parse a string containing a tree-formatted data structure into a
+tree that can be accessed directly. However, RDF makes the assumption
+that the natural form of data is not a tree, but a graph, and in the
+general case, it must be addressed as such.
+
+\begin{problem}\label{prob:graph}
+Addressing graph data in a programming language.
+\end{problem}
