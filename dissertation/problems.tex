@@ -61,4 +61,58 @@ Since the SPARQL language is described in an external specification,
 it cannot be hypermedia.
 \end{problem}
 
+Until recently, a query engine would need to break down a SPARQL query
+to individual triple pattern matches, which would then use for example
+the \jcode{listStatements()} method of Jena, \jcode{filter()} method
+of Sesame or \pcode{get\_statements} of \pmodule{RDF::Trine}, so that only
+individual triple patterns could be evaluated against the underlying
+triplestore.  The latter also had a \pcode{get\_pattern} method that
+could be implemented if the underlying store had a way to optimise
+Basic Graph Patterns. Sesame, on the other hand, allow implementations
+to get a query representation, which it must then evaluate.
+Nevertheless, this resulted in many problems:
 
+\begin{problem}
+By breaking down the query down to individual triple patterns, the
+query engine cannot take advantage of optimisations that involve
+multiple triple patterns or other parts of the query.
+\end{problem}
+
+\begin{problem}
+If methods such as \pcode{get\_pattern} are added for every part of the
+query, it would increase the complexity of the API dramatically.
+\end{problem}
+
+\begin{problem}
+By merely passing the entire query representation to an
+implementation, the burden of evaluating the entire query is also
+transferred, which makes it harder to use default implementations for
+most of the query.
+\end{problem}
+
+The same kind of problems occur in many operations, such as parsing
+and serialisation, where an underlying implementation might have
+relevant information to enhance e.g. the performance of an operation,
+but where the API does not allow it to expose it so that upper layers
+can take advantage of it.
+
+Another type of problems occur when working with dynamic RDF that may
+mix terminological and assertional information with object-oriented
+programming. LITEQ \cite{leinberger2014semantic} has a modern approach
+to a static case, where the developer gets substantial support from
+their Integrated Development Environment when programming, and where
+static typing is seen as a virtue that helps quality assurance of the
+code.
+
+However, a more interesting case is where an application (in a broad
+sense) can adapt to the data it is seeing. For example, say that there
+is an implementation of a Boat and a Car. It may not have been
+anticipated when the application was first developed, but the
+application sees an AmphibiousVehicle. Since it already knows how to
+propel a Car and Boat, it should be able to adapt to the situation
+given the context of whether the vehicle is on the road or in water.
+
+\begin{problem}
+Adapt programming languages to deal with dynamic RDF data containing a
+mix of terminological and assertional information.
+\end{problem}
