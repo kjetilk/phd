@@ -20,25 +20,25 @@ every response must contain a cardinality estimate for every triple
 pattern, an operation that may be quite expensive for the server, and
 indeed, this information may be so expensive to provide that SPARQL
 planners may not provide it to keep the cost of planning itself
-down. In \cite{TODO}, they demonstrated SPARQL evaluation over TPF,
+down. In \cite{verborgh2014querying}, they demonstrated SPARQL evaluation over TPF,
 and further improvements have been made in more recent papers.
 
 Olaf Hartig has a large number of papers that are adjacent to the
-present work, including his Ph.D. dissertation \cite{TODO} where he
+present work, including his Ph.D. dissertation \cite{hartig2014querying} where he
 explores querying Linked Data, i.e. query data that is not contained
 in an a-priory defined collection of RDF data, but where a resources
 are traversed to compute a result. Hartig provides solid formal
 foundations for such query processing, as well as computational
-feasibility, soundness and completeness. The most relevant paper of
-this work is \cite{TODO}.
+feasibility, soundness and completeness. The most relevant paper to
+this work is \cite{hartig2011caching}.
 
-Acosta et al. \cite{TODO} has ongoing work named ``SHEPHERD'' to
+Acosta et al. \cite{acosta2014shepherd} has ongoing work named ``SHEPHERD'' to
 create a SPARQL processor that takes into account observations done by
-the SPARQLES survey \cite{TODO}, to decompose a SPARQL query into
+the SPARQLES survey \cite{buil2013sparql}, to decompose a SPARQL query into
 subqueries that is indicated to be easier for the server to evaluate,
 and so is well aligned with our goal to ease the load of the
 server. It is not quite clear from the brief description in 
-\cite{TODO} whether the SHEPHERD system can cache results locally.
+\cite{acosta2014shepherd} whether the SHEPHERD system can cache results locally.
 
 Montoya et al. \cite{DBLP:journals/corr/MontoyaSMV15} proposes a query
 federation system that takes advantage of client-side data
