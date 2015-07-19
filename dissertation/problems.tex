@@ -1,8 +1,10 @@
 \section{Problems}\label{sec:problems}
 
-\subsection{Performance problems}\label{sec:perfproblems}
+\subsection{Performance and stability problems}\label{sec:perfproblems}
 
-\subsection{Stability problems}\label{sec:stabproblems}
+\begin{problem}
+The complexity of SPARQL is high.
+\end{problem}
 
 \subsection{Problems of shared understanding}\label{sec:semproblems}
 
@@ -12,13 +14,51 @@
 
 There are several issues that make Semantic Web development difficult,
 that are connected with development in current programming languages
-and current Semantic Web libraries. As pointed out in \cite{darobin1},
-there are few things that are simpler in contemporary programming than
-to parse a string containing a tree-formatted data structure into a
-tree that can be accessed directly. However, RDF makes the assumption
-that the natural form of data is not a tree, but a graph, and in the
-general case, it must be addressed as such.
+and current Semantic Web libraries.
+
+This is very important, because even though we have argued that the
+programmer needs to be eliminated from the data integration task,
+there are several functions where they need to be involved, including
+end-user application development, and in the short term, certainly
+also the data integration task. 
+
+Following the discussion in Section~\ref{sec:history}, the
+availability of tools and examples so that the vast majority of active
+Web developers can quickly publish and make use of RDF is a key to the
+success of the Semantic Web.
+
+As pointed out in \cite{darobin1}, there are few things that are
+simpler in contemporary programming than to parse a string containing
+a tree-formatted data structure into a tree that can be accessed
+directly. However, RDF makes the assumption that the natural form of
+data is not a tree, but a graph, and in the general case, it must be
+addressed as such.
 
 \begin{problem}\label{prob:graph}
 Addressing graph data in a programming language.
 \end{problem}
+
+The initial learning by example by ``View Source'' of HTML markup can
+be generalised to RDF by considering the term \emph{hypermedia}. The
+most important aspect of hypermedia is, as argued in
+\cite{Fielding_2000_Architectural-Styles}, that hypermedia can be used
+to drive the interaction of applications, and that all the information
+needed to do so is in the messages that are passed between the server
+and the client, no information beyond that is needed. As such, the
+importance of ``View Source'' extends well beyond the original
+motivation of learning by example. More concretely, hypermedia can be
+used to describe simple query interfaces, define how read-write
+operations are to be made, etc. %TODO more here
+
+\begin{problem}\label{prob:lapis}
+Developers who are not well versed in RDF need a readily
+understandable format that details how they can interact with an RDF
+server that offers a read-write interface.
+\end{problem}
+
+\begin{problem}\label{prob:tpf}
+Since the SPARQL language is described in an external specification,
+it cannot be hypermedia.
+\end{problem}
+
+
