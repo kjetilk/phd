@@ -14,11 +14,89 @@ The complexity of SPARQL is high.
 
 \subsection{Problems of shared understanding}\label{sec:semproblems}
 
+In \cite{berners2000weaving}, Tim Berners-Lee take schema
+heterogeneity for granted and that it would be resolved by using
+inference, saying:
+
+\begin{quote}
+When, eventually, thousands of forms are linked together through the
+field for ``family name'' or ``last name'' or ``surname,'' then anyone
+analyzing the Web would realize that there is an important common
+concept here.
+\end{quote}
+
+He further goes on to explain how linking such terms will help make
+that inference, and how partial understanding is common in everyday
+life and will also be sufficient in my cases on the Web. The practice
+of using inference to find a common understanding is now known as
+ontology matching or ontology alignment, and is a very active area of
+research.
+
+% TODO, take some open problems in ontology alignment
+
+\begin{problem}
+How can suitable inference engines be made available to all users?
+\end{problem}
+
+
+However, we shall note that there are two directions that do not
+require inference to the same extent: 
+
+Schema.org is sponsored by Google, Microsoft, Yahoo and Yandex using a
+community process to create and maintain a single, coordinated
+ontology. With their market shares, they have a reasonable chance of
+getting wide-spread adoption. However, we see also the key problem:
+
+\begin{problem}
+With a centralised ontology approach, how are anybody enabled to say
+anything?
+\end{problem}
+
+The next possibility is that authors converge towards using a single
+vocabulary per domain, but with no central control. The Linked Open
+Vocabularies is a useful resource for work in this direction, see
+\cite{lov2}. This may occur for economical reasons: If this happens to
+be the least expensive way to achieve useful data integration, authors
+may realise that this is a reasonable action to take. While this does
+not eliminate the need for inference, it may greatly reduce it.
+
+\begin{problem}
+How can the adoption of existing vocabularies be encouraged?
+\end{problem}
+
+
 \subsection{Problems with evaluations}\label{sec:evalproblems}
+
+To understand whether a result from a study on e.g. performance is
+valid, an empirical study must be conducted, as a SPARQL system is
+generally too complex to be evaluated solely by formal
+methods. Conventionally, one or more benchmarks have been used for
+this purpose, and there exists a number such
+benchmarks. Unfortunately, due to this complexity, they have to test a
+very large number of parameters, but are unable to do that, and they
+may also oversimplify the test by attempting to neutralise certain
+optimisation techniques. Further, they have no structured approach to
+investigate flaws in the benchmark itself, and have no meaningful
+summary statistics that can be used to understand the overall
+performance. While one may standardise benchmarks, doing so makes it
+impossible to test assertions that are outside of that standard. 
 
 \begin{problem}
 Evaluation methodologies are not founded on sound statistics.
 \end{problem}
+
+It is clear that neither the vision presented in
+Section~\ref{sec:motivation} nor the more advanced vision presented in
+\cite{berners2001semantic} exists as of today. In both cases, Semantic
+Web would have to be deployed at a very different scale than what it
+is today. If the Semantic Web is sufficiently successful to realise
+these visions, it is also likely that it will be very different from
+today in terms of data profiles, workloads, etc. Since data profiles
+and workloads are important to device a test to evaluate assertions
+about performance, the fundamental problem arises that we currently
+test against something that does not exist, and this differs markedly
+from the methodology of natural science.
+
 
 \begin{problem}
 Few laws of the Semantic Web information space can reasonably be
@@ -27,7 +105,7 @@ expected to have validity far beyond the present.
 
 
 \begin{problem}
-Evaluation methodologies has no foundation in philosophy of science.
+Evaluation methodologies has little foundation in philosophy of science.
 \end{problem}
 
 
