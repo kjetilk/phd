@@ -10,7 +10,7 @@ presented vision.
 
 It was found in \cite{perez2009semantics} that
 
-\begin{problem}
+\begin{problem}\label{prob:sparqlcomplex}
 SPARQL has some highly complex parts.
 \end{problem}
 
@@ -19,18 +19,18 @@ evaluate. A Cartesian join is also likely to cause trouble, but even
 seemingly straightforward queries may be heavy. We also note from
 experience that:
 
-\begin{problem}
+\begin{problem}\label{prob:endpointunpred}
 Public endpoints may have unpredictable usage patterns.
 \end{problem}
 
 Moreover, an ambition of the Semantic Web is to deal well with
 heterogeneous data, and it has been known for long \cite{1385469} that:
 
-\begin{problem}
+\begin{problem}\label{prob:zipf}
 The distribution of data is often dominated by a power-law.
 \end{problem}
 However, 
-\begin{problem}
+\begin{problem}\label{prob:uniform}
 The data distribution is often unknown to the query engine, and so,
 following the principle of indifference, assumes uniform
 distributions.
@@ -42,17 +42,17 @@ Caching plays an important role in the Web architecture
 satisfy a current request. However, there are many problems that need
 to be solved to use it for SPARQL query evaluation:
 
-\begin{problem}
+\begin{problem}\label{prob:syntacticcache}
 SPARQL endpoints, which are based on HTTP, will only enable caching
 syntactically identical queries by  default.
 \end{problem}
 
-\begin{problem}
+\begin{problem}\label{prob:queryeq}
 Determining that two queries will return the exact same answer is a
 complex problem.
 \end{problem}
 
-\begin{problem}
+\begin{problem}\label{prob:sanity}
 It is not known how much of the Semantic Web exposes information that
 could be used in HTTP caching.
 \end{problem}
@@ -80,7 +80,7 @@ research.
 
 % TODO, take some open problems in ontology alignment
 
-\begin{problem}
+\begin{problem}\label{prob:infgivecode}
 How can suitable inference engines be made available to all users?
 \end{problem}
 
@@ -93,7 +93,7 @@ community process to create and maintain a single, coordinated
 ontology. With their market shares, they have a reasonable chance of
 getting wide-spread adoption. However, we see also the key problem:
 
-\begin{problem}
+\begin{problem}\label{prob:sayanything}
 With a centralised ontology approach, how are anybody enabled to say
 anything?
 \end{problem}
@@ -106,7 +106,7 @@ be the least expensive way to achieve useful data integration, authors
 may realise that this is a reasonable action to take. While this does
 not eliminate the need for inference, it may greatly reduce it.
 
-\begin{problem}
+\begin{problem}\label{prob:useexist}
 How can the adoption of existing vocabularies be encouraged? 
 % TODO: Find the ref by Frank on the economics
 \end{problem}
@@ -128,7 +128,7 @@ summary statistics that can be used to understand the overall
 performance. While one may standardise benchmarks, doing so makes it
 impossible to test assertions that are outside of that standard. 
 
-\begin{problem}
+\begin{problem}\label{prob:badstats}
 Evaluation methodologies are not founded on sound statistics.
 \end{problem}
 
@@ -155,7 +155,7 @@ can support realistic experiments even though a future Semantic Web
 may be several orders of magnitude larger than today's.
 
 
-\begin{problem}
+\begin{problem}\label{prob:lawsfuture}
 Establish laws of the Semantic Web information universe can reasonably be
 expected to have validity far beyond the present.
 \end{problem}
@@ -171,7 +171,7 @@ know if their hypothesis should be rejected, or if it is something
 wrong with the law, or perhaps the experiment itself?
 
 
-\begin{problem}
+\begin{problem}\label{prob:badphil}
 Evaluation methodologies have little foundation in philosophy of science.
 \end{problem}
 
@@ -238,18 +238,18 @@ Basic Graph Patterns. Sesame, on the other hand, allow implementations
 to get a query representation, which it must then evaluate.
 Nevertheless, this resulted in many problems:
 
-\begin{problem}
+\begin{problem}\label{prob:breakdown}
 By breaking down the query down to individual triple patterns, the
 query engine cannot take advantage of optimisations that involve
 multiple triple patterns or other parts of the query.
 \end{problem}
 
-\begin{problem}
+\begin{problem}\label{prob:complexapi}
 If methods such as \pcode{get\_pattern} are added for every part of the
 query, it would increase the complexity of the API dramatically.
 \end{problem}
 
-\begin{problem}
+\begin{problem}\label{prob:dontjustpass}
 By merely passing the entire query representation to an
 implementation, the burden of evaluating the entire query is also
 transferred, which makes it harder to use default implementations for
@@ -279,7 +279,44 @@ already knows how to propel a \rdfterm{Car} and \rdfterm{Boat}, it
 should be able to adapt to the situation given the context of whether
 the vehicle is on the road or in water.
 
-\begin{problem}
+\begin{problem}\label{prob:dynaprog}
 Current programming paradigm deals poorly with dynamic RDF data
 containing a mix of terminological and assertional information.
 \end{problem}
+
+
+\subsection{Problems addressed by this work}\label{sec:probaddress}
+
+Given the technical experience outlined in Section~\ref{sec:history},
+I first addressed Problem~\ref{prob:lapis}, by suggesting a simple
+vocabulary for the server to tell the client what primitive operations
+it is allowed to perform on a given resource. See
+Section~\ref{sec:conlapis} for more on this paper.
+
+My next concern was the implications of the
+problems~\ref{prob:zipf}~and~\ref{prob:uniform} in a federated SPARQL
+engine. While studying the evaluations done in the relevant literature
+in the field, I decided to start an effort to address
+Problem~\ref{prob:badstats} first by adopting methodology from the
+statistical field of ``Design of Experiments'' (DoE). See
+Section~\ref{sec:condoe} for details on this work.
+
+Then, as \cite{buil2013sparql} confirmed my suspicions that there were
+severe stability problems with SPARQL endpoints,
+Problem~\ref{prob:syntacticcache} became my main focus, but clearly,
+the understanding of the actual usage of caching was inadequate, so I
+decided to solve Problem~\ref{prob:sanity} first. This work is
+discussed in Section~\ref{sec:consanity}.
+
+
+To further address Problem~\ref{prob:syntacticcache}, I decided to
+write a query planner that could reuse previous results or prefetch
+data the system deemed relevant, but then we realised that the current
+programming paradigm was quite unhelpful when customising a query
+planner for such a purpose. Rather than writing a prototypical query
+engine for illustrative purposes, we wanted to integrate it into a
+fully compliant SPARQL query engine, and address
+problems~\ref{prob:breakdown},~\ref{prob:complexapi}~and~\ref{prob:dontjustpass}. This
+is explained in Section~\ref{sec:conpush}
+
+
