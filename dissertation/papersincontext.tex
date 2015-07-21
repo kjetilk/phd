@@ -1,14 +1,95 @@
 \section{The papers in context}
 
+This section will put the included papers into context. It also enjoys
+the benefit of hindsight, and will therefore address some of the
+shortcomings that have surfaced since their publication.
+
 \subsection{Read-write hypermedia}\label{sec:conlapis}
+
+This work is a paper entitled ``The necessity of hypermedia RDF and an
+approach to achieve it'' that was presented in the First Linked APIs
+workshop at the Ninth Extended Semantic Web Conference. I was the sole
+author. The reference is \cite{kjernsmo_lapis_2012}.
+
+%TODO: not the Dagstuhl?
+
+This paper is relevant to the topic of the dissertation for two
+reasons: First, it shows how hypermedia may be used to drive a
+read-write application, not just read-only, which is the focus of most
+of the discussion. Second, it provides some of the basis for
+\cite{ldf1}, which is important in the query planner.
+
+The main idea in this paper is to look upon RDF as a natural language
+sentence with subject, predicate and object, and that sentence should
+then be sufficiently human-readable to be straightforward to
+understand when a developer does ``View Source''.
+
+Its main weakness is how it deals with authentication: The basic idea
+is that when a client visits a resource, it will be told what
+write operations it can perform. However, write operations will rarely
+be permitted unless the client has authenticated and been authorised
+to do so, and so, it assumes that credentials will be supplied with
+the first read request. While the HTTP standard permits clients to
+supply credentials with such requests, in practice, it rarely if ever
+happens, possibly for privacy reasons. Thus, the server will have to
+challenge the client first, but this should not happen on a resource
+that the client is permitted to read. Thus, the proposed hypermedia
+needs a property so that the client understands what to do if it wants
+to do write operations.
 
 \subsection{Design of Experiments}\label{sec:condoe}
 
-including the criticism forwarded by
-\cite{Duan:2011:AOC:1989323.1989340} and \cite{MontoyaVCRA12},
+This work resulted in a paper that was nominated for Best Paper on the
+Evaluation track on the International Semantic Web Conference 2013,
+entitled ``Introducing Statistical Design of Experiments to SPARQL
+Endpoint Evaluation'', which was co-authored with John
+S. Tyssedal. The reference is \cite{kjernsmo_doe_intro}.
+
+To understand the context of this study, I noted none of the
+benchmarks that was in use for the evaluation of SPARQL engines could
+be used for basic statistical hypothesis testing, and clearly,
+hypothesis testing must be a fundamental requirement. Then, I noted
+substantial criticism forwarded by
+\cite{Duan:2011:AOC:1989323.1989340} and \cite{MontoyaVCRA12}.
+
+However, this study merely scratches the surface. To establish a
+Design of Experiment-based methodology would be a multi-year project
+in its own right, clearly beyond the scope of this
+dissertation. Unfortunately, this also implies that I do not have the
+rigorous evaluation that I would preferred to have in this
+dissertation, it is unattainable.
 
 \subsection{Pushing complexity down the stack}\label{sec:conpush}
 
+This work resulted in a workshop paper entitled ``Pushing complexity
+down the stack'', presented in the Developers Workshop at the
+International Semantic Web Conference, by the lead author Gregory Todd
+Williams, we were the two authors. The reference is
+\cite{williamspushing}.
+
+% TODO: detailed contribution?
+
+This work was the outcome of several hackathons that I had organised
+in the Perl community. It is not very well known that Gregory Todd
+Williams' SPARQL implementation written in Perl is one of the SPARQL
+1.1 reference implementations, and is known to be fully compliant with
+the specification. Through our work, and the availability of
+traits-based programming in Perl, see \cite{traits}, we had extensive
+discussions on how to leave optimisations to lower levels, e.g. the
+underlying database engine, when they had the potential to provide a
+better plan or cost estimate. While it is certainly possible to do
+this without this new programming paradigm, traits made the
+methodology much more comprehensible, and so helped the subsequent
+work substantially.
+
+This work also resulted in the ``Attean''
+framework\footnote{\url{https://metacpan.org/release/Attean}}, also
+mainly authored by Gregory Todd Williams with some smaller
+contributions from me. It is also available in the Linux distribution
+Debian (and derivatives, such as Ubuntu) as \texttt{libattean-perl}.
+
 \subsection{Survey of HTTP caching}\label{sec:consanity}
+
+
 
 \subsection{Philosophy of Science}\label{sec:conphil}
