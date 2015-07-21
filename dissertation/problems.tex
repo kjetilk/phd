@@ -303,14 +303,8 @@ Section~\ref{sec:condoe} for details on this work.
 
 Then, as \cite{buil2013sparql} confirmed my suspicions that there were
 severe stability problems with SPARQL endpoints,
-Problem~\ref{prob:syntacticcache} became my main focus, but clearly,
-the understanding of the actual usage of caching was inadequate, so I
-decided to solve Problem~\ref{prob:sanity} first. This work is
-discussed in Section~\ref{sec:consanity}.
-
-
-To further address Problem~\ref{prob:syntacticcache}, I decided to
-write a query planner that could reuse previous results or prefetch
+Problem~\ref{prob:syntacticcache} became my main focus, and I decided
+to write a query planner that could reuse previous results or prefetch
 data the system deemed relevant, but then we realised that the current
 programming paradigm was quite unhelpful when customising a query
 planner for such a purpose. Rather than writing a prototypical query
@@ -320,3 +314,7 @@ problems~\ref{prob:breakdown},~\ref{prob:complexapi}~and~\ref{prob:dontjustpass}
 is explained in Section~\ref{sec:conpush}
 
 
+Before addressing Problem~\ref{prob:syntacticcache}, I found that the
+understanding of the actual usage of caching was inadequate, so I
+decided to solve Problem~\ref{prob:sanity} first. This work is
+discussed in Section~\ref{sec:consanity}.
