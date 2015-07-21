@@ -326,3 +326,32 @@ Section~\ref{sec:evalproblems} are so severe that the time frame of
 this work does not allow a satisfactory solution to these
 problems. The paper discussed in Section~\ref{sec:conphil} serves to
 excuse this.
+
+TODO: Paper yet to be done on caching.
+
+\subsection{Future work; Discussion of other problems}
+
+As noted in Section~\ref{sec:motivation} it is clear that evaluating
+arbitrary SPARQL queries are in general unsustainable, and it is
+likely that the problems in Section~\ref{sec:perfproblems} is partly
+to blame for it. Our work, and most of the related work in
+Section~\ref{sec:related} approach this work from the direction of
+moving stress from the server, but it is also clear that another way
+to address Problem~\ref{prob:sparqlcomplex} is for the SPARQL engine
+to identify queries it would be too heavy to answer already when
+parsing or planning, and also expose that in the service description
+so that clients can avoid asking them. The HTTP/2 specification
+\cite{rfc7540} has some generic facilities that may be helpful: 
+
+\begin{quote}
+\texttt{ENHANCE\_YOUR\_CALM (0xb)}:  The endpoint detected that its peer is
+      exhibiting a behavior that might be generating excessive load.
+\end{quote}
+
+% TODO: Discuss characteristic sets?
+
+Problem~\ref{prob:queryeq} is best addressed by creating hashing
+algorithms that have a reasonable chance of returning the same digest
+if two queries are equivalent. Some works have created cryptographical
+hashing functions, but they may be overly costly to compute for this
+purpose. % TODO ref.
