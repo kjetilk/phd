@@ -8,9 +8,41 @@ presented vision.
 
 \subsection{Performance and stability problems}\label{sec:perfproblems}
 
+It was found in \cite{perez2009semantics} that
+
 \begin{problem}
-The complexity of SPARQL is high.
+SPARQL has some highly complex parts.
 \end{problem}
+
+In particular, nested \sparql{OPTIONAL}s will be difficult to
+evaluate. A Cartesian join is also likely to cause trouble, but even
+seemingly straightforward queries may be heavy. We also note from
+experience that:
+
+\begin{problem}
+Public endpoints may have unpredictable usage patterns.
+\end{problem}
+
+Caching plays an important role in the Web architecture
+\cite{webarch}, because previous responses may be reused to satisfy a
+current request. However, there are many problems that need to be
+solved to use it for SPARQL query evaluation:
+
+\begin{problem}
+SPARQL endpoints, which are based on HTTP, will only enable caching
+syntactically identical queries by  default.
+\end{problem}
+
+\begin{problem}
+Determining that two queries will return the exact same answer is a
+complex problem.
+\end{problem}
+
+\begin{problem}
+It is not known how much of the Semantic Web exposes information that
+could be used in HTTP caching.
+\end{problem}
+
 
 \subsection{Problems of shared understanding}\label{sec:semproblems}
 
