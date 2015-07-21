@@ -23,10 +23,24 @@ experience that:
 Public endpoints may have unpredictable usage patterns.
 \end{problem}
 
+Moreover, an ambition of the Semantic Web is to deal well with
+heterogeneous data, and it has been known for long \cite{1385469} that:
+
+\begin{problem}
+The distribution of data is often dominated by a power-law.
+\end{problem}
+However, 
+\begin{problem}
+The data distribution is often unknown to the query engine, and so,
+following the principle of indifference, assumes uniform
+distributions.
+\end{problem}
+
+
 Caching plays an important role in the Web architecture
-\cite{webarch}, because previous responses may be reused to satisfy a
-current request. However, there are many problems that need to be
-solved to use it for SPARQL query evaluation:
+\cite{Jacobs:04:AWW}, because previous responses may be reused to
+satisfy a current request. However, there are many problems that need
+to be solved to use it for SPARQL query evaluation:
 
 \begin{problem}
 SPARQL endpoints, which are based on HTTP, will only enable caching
