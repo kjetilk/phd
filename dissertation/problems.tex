@@ -352,9 +352,9 @@ so that clients can avoid asking them. The HTTP/2 specification
 
 Problem~\ref{prob:queryeq} is best addressed by creating hashing
 algorithms that have a reasonable chance of returning the same digest
-if two queries are equivalent. Some works have created cryptographical
-hashing functions, but they may be overly costly to compute for this
-purpose. % TODO ref.
+if two queries are equivalent. This problem was addressed by
+\cite{papailiou2015graph} and their approach might be portable to be
+used in an HTTP context. 
 
 I have not approached any of the problems of
 Section~\ref{sec:semproblems}, mainly because I think it is an open
