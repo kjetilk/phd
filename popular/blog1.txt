@@ -199,6 +199,16 @@ omfattende søk over alle data jeg fant, og konkluderte med at
 situasjonen må forbedres mye, men at for enkelte deler kan man dra
 nytte av denne infrastrukturen.
 
+For mitt siste arbeid gikk jeg tilbake til det praktiske, nemlig å
+lage et system som utnytter mellomlagringen i nettet, prøver å gjette
+hvilke data som kan være nyttige for brukernes framtidige spørringer
+og integrerer hypermedia i tillegg til databasene. Dette skal bli et
+modulært og ganske komplett system jeg publiserer som fri
+programvare. To av modulene har allerede blitt tatt opp av
+Debian-prosjektet, som danner grunnlaget for de mest utbredte
+Linux-baserte operativsystemene.
 
-
-
+Dette arbeidet vil også ha en Design of Experiments-basert
+evaluering. Uansett hva den sier, vil de store spørsmålene bli stående
+ubesvart, jeg kan fortsatt ikke si om mitt arbeid er et verdifullt
+bidrag på veien mot Semantic Web.
