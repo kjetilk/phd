@@ -162,6 +162,26 @@ dager viste vi hvordan man kan generere testspørringer, gjøre
 hypotesetester, finne de viktigste problemene og lage en strukturert
 måte å vise om selve eksperimentet har viktige feil.
 
+Likevel fortsatte flere vitenskapsteoretiske problemstillinger å plage
+meg. Når man står på Semantic Web-konferanser, som forøvrig
+kjennetegnes av svært godt sosialt og inkluderende miljø, så påstår så
+godt som alle at deres løsning fremmer visjonen om Semantic Web. Men
+hvordan underbygger man en slik påstand, all den tid Semantic Web ikke
+eksisterer ennå i den formen som visjonen forutsetter? Kan den trege
+utviklingen tilskrives at vi rett og slett ikke driver vitenskap, og i
+såfall, hva er vitenskap? Klare, popperske kriterier viser raskt sine
+problematiske sider, ettersom man innenfor dagens evalueringsmetodikk
+ikke har rimelig grad av sikkerhet på om det er studiets resultat som
+falsifiseres eller bare evalueringsmetodikken som er for dårlig. Vi
+har ingen formulert teori der hypotesene finner sin kontekts, slik min
+hovedfagsoppgave i sin tid fant sin kontekst i generell
+relativitetsteori og kvasarteori. 
+
+De gamle vitenskapsfilosofer gir en god ide om hva som kan gå galt
+hvis man ikke holder tunga rett i munnen, men jeg finner lite
+rettledning i de konkrete problemene jeg står oppi, og spørsmålet om
+sviktende metode er en av årsakene til treg framdrift har blitt
+stående.
 
 
 
