@@ -66,13 +66,13 @@ Prosjektet skulle først og fremst være praktisk. Måten man lager
 applikasjoner på må endres, fra systemer der utviklere må ha
 eksplisitt informasjon til systemer som drives av dataene de får fra
 nettet. Dette er essensen i hypermedia. Når jeg sier hypermedia,
-tenker de fleste på en film på en side, men det er bare det enkleste
-tilfellet. I det tilfellet vet applikasjonen at når den har siden, og
-finner en film, så kan den filmen spilles av. Men hypermedia handler
-egentlig om at det er en dialog der brukerens system resonnerer seg
-fram til hva den skal gjøre. En applikasjon skal ikke trenge å være
-kodet for å bestille pizza, den blir fortalt hvordan den skal gå fram
-av restaurantens websider. 
+tenker de fleste på en film med tekst rundt, men det er bare det
+enkleste tilfellet. I det tilfellet vet applikasjonen at når den har
+siden, og finner en film, så kan den filmen spilles av. Men hypermedia
+handler egentlig om at det er en dialog der brukerens system
+resonnerer seg fram til hva den skal gjøre. En applikasjon skal ikke
+trenge å være kodet for å bestille pizza, den blir fortalt hvordan den
+skal gå fram av restaurantens websider.
 
 Likevel er det utenfor hypermedia-området jeg har jobbet mest, med et
 spørrespråk ved navn SPARQL. Enkle spørrespråk har nok de fleste sett:
@@ -105,7 +105,7 @@ verktøy som kunne hjelpe med å lage spørringene, noe som også finnes
 flere av, kunne gjøre det.
 
 Det som dermed ble en interessant forskningsproblemstilling var å
-bruke språket ikke bare på en databaase, men på kryss av mange, alt
+bruke språket ikke bare på en database, men på kryss av mange, alt
 etter hvilke data som finnes hvor. Dette ble mitt tema i likhet med
 mange andre grupper.
 
@@ -118,7 +118,7 @@ Et nytt felt, som Semantic Web, kan beskyldes for å glemme gammel
 lærdom, og snart kom kritikken fra database-miljøet: Selvfølgelig kan
 man ikke la tilfeldige brukere stille tilfeldige spørringer med et så
 kraftig spørrespråk som SPARQL, det er ikke vanskelig å lage en
-spørring som vil ta hundrevis av år å svare på, enten fordi man ikke
+spørring som vil ta årevis å svare på. Det kan skje enten fordi man ikke
 forstår hva man gjør, eller som et angrep. Man ser da heller ikke
 vanlige databaser på nett, det er alltid et forenklet grensesnitt man
 får som tilfeldig bruker. Nei, sa de, sentralisering av databaser til
@@ -130,7 +130,8 @@ forhold som kan motivere forskningspørsmål. Sentralisering kan føre
 meg seg at enkeltaktører blir for mektige, og at hvis du ikke er
 innenfor en større kundegruppe blir dine problemer kommersielt
 uinteressante. Det er nettopp kommersielt uinteressante problemer vi
-skulle løse!
+skulle løse, fordi virkelige mennesker trenger en løsning også der det
+ikke finnes en klar forretningsmodell.
 
 Så dermed må vi utnytte fordelen med å være et nytt felt til å
 utfordre gamle selvfølgeligheter, ved å formulere nye
@@ -173,7 +174,7 @@ såfall, hva er vitenskap? Klare, popperske kriterier viser raskt sine
 problematiske sider, ettersom man innenfor dagens evalueringsmetodikk
 ikke har rimelig grad av sikkerhet på om det er studiets resultat som
 falsifiseres eller bare evalueringsmetodikken som er for dårlig. Vi
-har ingen formulert teori der hypotesene finner sin kontekts, slik min
+har ingen formulert teori der hypotesene finner sin kontekst, slik min
 hovedfagsoppgave i sin tid fant sin kontekst i generell
 relativitetsteori og kvasarteori. 
 
