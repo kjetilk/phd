@@ -30,7 +30,7 @@ uka etter skulle bli leder og redaktør for standardiseringsarbeidet av
 RDF. Han overbeviste meg raskt om at mine tekniske ideer var
 realistiske innenfor rammeverket av Semantic Web. Skjønt, selv om jeg
 fikk sjansen til å jobbe med det, var det for mye for en mann å løse
-med svært umoden teknologi. Kommentarfeltenes tragiske endeligt
+med svært umoden teknologi. Kommentarfeltenes tragiske endelikt
 skylder jeg fortsatt på at ingen gjorde den jobben, demokratiet kunne
 ha vunnet så mye.
 
@@ -170,7 +170,7 @@ godt som alle at deres løsning fremmer visjonen om Semantic Web. Men
 hvordan underbygger man en slik påstand, all den tid Semantic Web ikke
 eksisterer ennå i den formen som visjonen forutsetter? Kan den trege
 utviklingen tilskrives at vi rett og slett ikke driver vitenskap, og i
-såfall, hva er vitenskap? Klare, popperske kriterier viser raskt sine
+så fall, hva er vitenskap? Klare, popperske kriterier viser raskt sine
 problematiske sider, ettersom man innenfor dagens evalueringsmetodikk
 ikke har rimelig grad av sikkerhet på om det er studiets resultat som
 falsifiseres eller bare evalueringsmetodikken som er for dårlig. Vi
