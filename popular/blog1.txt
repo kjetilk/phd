@@ -1,0 +1,78 @@
+Jeg startet med en dyp fascinasjon for ideen om Semantic Web, og mye
+praktisk erfaring. Som forsker er det kanskje ikke det beste
+utgangspunktet, siden det kan kan være en utfordring for
+objektiviteten forskeren bør ha. Men akkurat det viste seg å være mitt
+minste vitenskapsfilosofiske problem, vitenskapsfilosofiske grublerier
+skulle bli langt mer framtredende en jeg hadde forestilt meg på
+forhånd.
+
+Semantic Web er ideen om at man skal kunne bygge ut dagens World Wide
+Web med data som skal i større og mindre grad analyseres av
+datamaskiner. Egentlig var det ideen helt fra starten: Hvis en webside
+har en tabell, og en av kolonnene har overskriften "Pris" kan man
+gjette seg til at i cellene står prisene for produktene som angis på
+radene. Innen 1997 begynte det å bli ganske klart at websider ble i
+praksis kodet på en slik måte at dette var noe man ikke ville klare i
+praksis og dermed startet man arbeidet med en datamodell kalt
+"Resource Description Framework" (RDF).
+
+Året etter startet jeg på mitt hovedfag i astrofysikk, men i bakhodet
+hadde jeg en problemstilling som jeg hadde opplevd da jeg på frivillig
+basis startet skepsis.no: Problemet med å opplyse de overtroiske var
+ikke snakk om å nå ut med informasjon, det er banalt enkelt. Det
+vanskelige var å nå inn i lukkede sinn, trenge inn i ekkokamre, få
+noen interessert i det de aller minst vil høre. Naturligvis er de
+tekniske løsningene bare en liten del av bildet, men det begynte å
+tegne seg et bilde av noen teknologiske muligheter i mitt hode. Jeg
+skrev noen ideer og sendte dem litt rundt på nett, og en av dem som
+plukket dem opp og fortalte at de tenkte i samme retning var han som
+uka etter skulle bli leder og redaktør for standardiseringsarbeidet av
+RDF. Han overbeviste meg raskt om at mine tekniske ideer var
+realistiske innenfor rammeverket av Semantic Web. Skjønt, selv om jeg
+fikk sjansen til å jobbe med det, var det for mye for en mann å løse
+med svært umoden teknologi. Kommentarfeltenes tragiske endeligt
+skylder jeg fortsatt på at ingen gjorde den jobben, demokratiet kunne
+ha vunnet så mye.
+
+Anvendelsene av Semantic Web-teknologi er brede, så brede at det bør
+kunne gjennomsyre samfunnet i langt større grad en dagens
+Web. Rørleggeren som skal levere tilbud burde bruke det, skal man ut
+på reise bare vet hva man vil oppleve og ikke helt hvor man skal, bør
+man bruke det, i medisin og i industri. Kort sagt over alt der noe som
+er offentlig tilgjengelig skal integreres med noe som er privat, for å
+hjelpe noen med å ta en avgjørelse. 
+
+Dataintegrasjon er stikkordet. I dag er situasjonen at hvis man skal
+integrere flere datakilder trenger man gjerne en programmerer til å
+gjøre jobben. Jo flere datakilder som skal integreres, jo mer arbeid,
+og sannsynligvis er det ikke bare dobbelt så mye arbeid for dobbelt så
+mange datakilder, det er enda verre! Samtidig går antallet som er
+interessert i akkurat den kombinasjonen ned. At kostnaden går opp
+etterhvert som færre kan betale for jobben gjør at man ikke ser så
+veldig store integrasjonsprosjekter til daglig, de er for dyre.
+
+På Semantic Web skal hver enkelt gjøre en litt større innsats for å
+gjøre sine egne data lettere å integrere, men belønningen er at
+datamaskinene skal gjøre resten av jobben. Det bør legge teknologien
+i hendene til folk flest.
+
+Og det er nettopp det som er idealet bak mitt prosjekt. Industrien har
+tatt teknologien i bruk, og Semantic Web ble brukt da IBM brukte sin
+Watson til å sette menneskeheten i forlegenhet da den vant Jeopardy
+over de mestvinnende menneskene i øvelsen. Mektig imponerende, helt
+klart, men teknologi for de få i overskuelig framtid.
+
+
+
+Jeg var med på standardiseringen av et spørrespråk som har fått navnet
+SPARQL. Enkle spørrespråk har nok de fleste sett: På Google kan man
+skrive + foran et ord hvis man vil at det skal være med, eller
+gåseøyne rundt en frase hvis ordene skal stå akkurat slik. Med et
+ordentlig spørrespråk kan man f.eks. si at "gi meg alle steder der det
+er meldt over 25 grader, i nærheten av en UNESCO world heritage site,
+men også badestrand, minst 4 stjernes hotell, hvor det er mindre enn 6
+timer å fly fra min nærmeste flyplass med ledig plass neste uke, og
+min nåværende posisjon er...", pluss at man kan ordne, begrense antall
+resultater, osv., osv.
+
+
