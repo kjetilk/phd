@@ -183,7 +183,21 @@ rettledning i de konkrete problemene jeg står oppi, og spørsmålet om
 sviktende metode er en av årsakene til treg framdrift har blitt
 stående.
 
+Et annet svar til databasemiljøet er at "vi har nå et fungerende,
+globalt informasjonsystem som dere ikke hadde da dere prøvde å legge
+databaser åpent for mange år siden". Dette informasjonsystemet,
+Webben, har visse egenskaper i infrastrukturen som muligens kan
+utnyttes. Et av dem er mellomlagring. I nettet finnes det maskiner som
+mellomlagrer data fra forskjellige kilder for å hjelpe til med å ta
+last fra publiseringssystemet, og for å sørge for at brukeren får
+bedre opplevd hastighet.
 
+Det første spørsmålet var om Web-standardene for mellomlagre er i
+tilstrekkelig utbredt bruk av eksisterende datakilder på Semantic
+Web, noe som allerede innebærer ganske mye data. Jeg gjorde et
+omfattende søk over alle data jeg fant, og konkluderte med at
+situasjonen må forbedres mye, men at for enkelte deler kan man dra
+nytte av denne infrastrukturen.
 
 
 
