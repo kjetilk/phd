@@ -62,17 +62,109 @@ Watson til å sette menneskeheten i forlegenhet da den vant Jeopardy
 over de mestvinnende menneskene i øvelsen. Mektig imponerende, helt
 klart, men teknologi for de få i overskuelig framtid.
 
+Prosjektet skulle først og fremst være praktisk. Måten man lager
+applikasjoner på må endres, fra systemer der utviklere må ha
+eksplisitt informasjon til systemer som drives av dataene de får fra
+nettet. Dette er essensen i hypermedia. Når jeg sier hypermedia,
+tenker de fleste på en film på en side, men det er bare det enkleste
+tilfellet. I det tilfellet vet applikasjonen at når den har siden, og
+finner en film, så kan den filmen spilles av. Men hypermedia handler
+egentlig om at det er en dialog der brukerens system resonnerer seg
+fram til hva den skal gjøre. En applikasjon skal ikke trenge å være
+kodet for å bestille pizza, den blir fortalt hvordan den skal gå fram
+av restaurantens websider. 
+
+Likevel er det utenfor hypermedia-området jeg har jobbet mest, med et
+spørrespråk ved navn SPARQL. Enkle spørrespråk har nok de fleste sett:
+På Google kan man skrive + foran et ord hvis man vil at det skal være
+med, eller gåseøyne rundt en frase hvis ordene skal stå akkurat
+slik. Med et ordentlig spørrespråk kan man f.eks. si at "gi meg alle
+steder der det er meldt over 25 grader, i nærheten av en UNESCO world
+heritage site, men også badestrand, minst 4 stjernes hotell, hvor det
+er mindre enn 6 timer å fly fra min nærmeste flyplass med ledig plass
+neste uke, og min nåværende posisjon er...", pluss at man kan ordne,
+begrense antall resultater, osv., osv.
+
+Dataene kan være under forskjellige aktørers kontroll, i forskjellige
+databaser med forskjellig struktur. Det Semantic Web gir oss er en
+måte å koble dem sammen hvis man enes om et navn for hver ting og
+felles navn for egenskapene, og et språk til å bygge broer der man
+ikke enes. Navnene som brukes på Semantic Web er velkjent fra
+Weben. Navnet på denne artikkelen er dens adresse, og den kalles en
+URL: http://TODO/. Semantic Web generaliserer dette til noe vi kaller
+URI, som kan brukes for ting som ikke er på nett, som en person, eller
+abstrakte ting, som en værtype. Men, siden dette er Web-teknologi, så
+begynner gjerne også disse navnene med 'http' slik at man kan få data
+om tingen bare ved å laste ned navnet. Data som brukes på denne måten
+kalles "Linked Data".
+
+Med SPARQL kan man stille spørsmål og få svar på svært innviklede
+spørsmål, og etter ganske kort tid spratt det opp flere hundre
+databaser åpent på nett der enhver som kunne språket eller hadde et
+verktøy som kunne hjelpe med å lage spørringene, noe som også finnes
+flere av, kunne gjøre det.
+
+Det som dermed ble en interessant forskningsproblemstilling var å
+bruke språket ikke bare på en databaase, men på kryss av mange, alt
+etter hvilke data som finnes hvor. Dette ble mitt tema i likhet med
+mange andre grupper.
+
+Problemet var den nagende mistanken om at infrastrukturen ikke klarer
+trafikken, noe som ble bekreftet av et studie av flere hundre slike
+databaser. De var svært ustabile og svært få var stabile nok til
+praktisk bruk. 
+
+Et nytt felt, som Semantic Web, kan beskyldes for å glemme gammel
+lærdom, og snart kom kritikken fra database-miljøet: Selvfølgelig kan
+man ikke la tilfeldige brukere stille tilfeldige spørringer med et så
+kraftig spørrespråk som SPARQL, det er ikke vanskelig å lage en
+spørring som vil ta hundrevis av år å svare på, enten fordi man ikke
+forstår hva man gjør, eller som et angrep. Man ser da heller ikke
+vanlige databaser på nett, det er alltid et forenklet grensesnitt man
+får som tilfeldig bruker. Nei, sa de, sentralisering av databaser til
+datavarehus og strenge begrensninger på hvilke spørsmål man kan stille
+er løsningen. 
+
+Rent teknisk kan det være korrekt, men det er ikke bare tekniske
+forhold som kan motivere forskningspørsmål. Sentralisering kan føre
+meg seg at enkeltaktører blir for mektige, og at hvis du ikke er
+innenfor en større kundegruppe blir dine problemer kommersielt
+uinteressante. Det er nettopp kommersielt uinteressante problemer vi
+skulle løse!
+
+Så dermed må vi utnytte fordelen med å være et nytt felt til å
+utfordre gamle selvfølgeligheter, ved å formulere nye
+problemstillinger. Det er to retninger min forskning har gått i:
+
+For det første: Hvorfor har vi ikke gjort de store framskrittene mot
+stabile løsninger? Spørsmålet plaget meg så mye at jeg tok en lang tur
+bort fra det praktiske og over til det vitenskapsfilosofiske og den
+statistiske literaturen.
+
+Mye av forskningen foregår med formelle metoder, som står støtt på
+sine formelle bevis. Problemet er når veldig mange formelle resultater
+legges sammen til et ferdig utviklet databasesystem har systemet blitt
+så komplekst at evalueringen av helheten må skje med empiriske
+metoder. De er lite utviklet i literaturen.  Hypotesetester finnes
+nesten ikke, man setter opp systemet man har utviklet, sender noen
+spørringer til det og måler hvor lang tid det tok før man fikk
+svar. "Benchmarking" kaller man det. Det er ingen samlende statistikk
+rundt de forskjellige testspørringene, ingen strukturert måte å finne
+ut om evalueringen i seg selv gir meningsfylte resultater. Man
+forsøker å møte problemet med at man i prinsippet kan velge spørringer
+utifra hvilken konklusjon man ønsker ved å standardisere spørringene,
+men dermed gjør man det umulig å teste utsagn som ligger utenfor
+standarden. 
+
+Mitt forslag var derfor å introdusere metode fra statistikken kjent
+som "Design of Experiments". Med et eksperiment som kjørte i flere
+dager viste vi hvordan man kan generere testspørringer, gjøre
+hypotesetester, finne de viktigste problemene og lage en strukturert
+måte å vise om selve eksperimentet har viktige feil.
 
 
-Jeg var med på standardiseringen av et spørrespråk som har fått navnet
-SPARQL. Enkle spørrespråk har nok de fleste sett: På Google kan man
-skrive + foran et ord hvis man vil at det skal være med, eller
-gåseøyne rundt en frase hvis ordene skal stå akkurat slik. Med et
-ordentlig spørrespråk kan man f.eks. si at "gi meg alle steder der det
-er meldt over 25 grader, i nærheten av en UNESCO world heritage site,
-men også badestrand, minst 4 stjernes hotell, hvor det er mindre enn 6
-timer å fly fra min nærmeste flyplass med ledig plass neste uke, og
-min nåværende posisjon er...", pluss at man kan ordne, begrense antall
-resultater, osv., osv.
+
+
+
 
 
