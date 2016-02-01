@@ -1,9 +1,30 @@
 Practical implications of the New Experimentalism on evaluations of RDF database performance
 
-I have argued in TODOref and TODOref the scientific methodology has some severe shortcomings, causing conclusions on performance to be non-generaliseable beyond the context of the evaluation itself. I have also argued that there are some fundamental difficulties with regards to testing hypotheses against a reality that does not yet exist. 
+I have argued in [1] and [2] the scientific methodology has some severe shortcomings, causing conclusions on performance to be non-generaliseable beyond the context of the evaluation itself. I have also argued that there are some fundamental difficulties with regards to testing hypotheses against a reality that does not yet exist. 
 
-Such problems have philosophical dimensions, and previously, I have sought guidance in older texts in philosophy of science, texts that are commonly have a place in philosophy of science courses for natural scientists. However, as argued in TODOref, I have found little help in those texts.
+Such problems have philosophical dimensions, and previously, I have sought guidance in older texts in philosophy of science, texts that are commonly have a place in philosophy of science courses for natural scientists. However, as reported in [2], I have found little help in those texts.
 
 I would like to propose a project to study contemporary philosophies of science, and to explore their practical implications on evaluation methodology.
 
-In TODOref, we explored the use of statistical Design of Experiments for SPARQL endpoint evaluation. In my preliminary study, this methodology seems like a good fit with a direction in philosophy of science known as "The New Experimentalism". This direction argues that it is not sufficient just to test, but it must be argued that the test is severe, i.e. it would 
+In [1], we explored the use of statistical Design of Experiments for SPARQL endpoint evaluation. In my preliminary study, this methodology seems like a good fit with a direction in philosophy of science known as "The New Experimentalism". 
+
+Some characteristics of The New Experimentalism is that[3]:
+
+- It emphasizes active experimentation over passive observation.
+- Experiments can be designed outside or inside the framework of theories.
+- It is not sufficient just to test, one must be able to argue that the test is severe, i.e. if a hypothesis H is false, the test would have detected it.[3,4]
+- Some authors, e.g. Mayo, emphasizes statistical tests as learning tools. 
+
+As shown in [4], key concepts in The New Experimentalism can be formalised in concrete terms when applied to statistical methods. Indeed, [4] represents prior art to the proposed project in that it applies this theory to evolutionary computation.
+
+The work I did in [1] needs to be extended in several directions to become a useful and yet scientifically sound alternative to the practice of benchmarking, which I do not consider to be able to produce any severe testing. One part of this work is to increase the size of the experiments dramatically, possibly beyond the size that has previously been studied in the statistical literature. Another part is to generate data and queries that can serve to ensure the external validity of the experiments. Finally, the formalism argued by the New Experimentalism has to be applied to these experiments.
+
+It is at this point not clear how either of these points may be addressed, even though it appears that the latter point is straightforward if the two former can be solved. This research is therefore basic research. Nevertheless, as I have reported frustration with not finding the guidance I require in philosophical texts, the goal and end result of this work is decidedly practical: I aim at producing a set of easily installable modules written in highly popular R language for statistical computing and release them as free software to the Comprehensive R Archive Network. If successful, other researchers can then apply this code to their own experiments.
+
+
+
+[1] http://folk.uio.no/kjekje/2013/iswc.pdf
+[2] http://folk.uio.no/kjekje/2015/noise-essay.html
+[3] http://link.springer.com/chapter/10.1007/3-540-32027-X_2
+[4] http://www.phil.vt.edu/dmayo/PhilStatistics/Mayo%20EGEK%20Chapter%203.pdf
+
