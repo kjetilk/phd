@@ -1,0 +1,13 @@
+Response variables:
+
+Load/execution time
+execution time
+
+Baseline:
+
+no cache
+
+Factors:
+
+no cache vs SPARQL + LDF
+LDF from HDT vs LDF nopage from Virtuoso
