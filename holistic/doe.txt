@@ -9,5 +9,8 @@ no cache
 
 Factors:
 
-no cache vs SPARQL + LDF
+SPARQL vs SPARQL + LDF
 LDF from HDT vs LDF nopage from Virtuoso
+No subscription vs count analysis
+No subscription vs best cost
+Order of analysis
