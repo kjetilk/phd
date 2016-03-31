@@ -14,3 +14,4 @@ LDF from HDT vs LDF nopage from Virtuoso
 No subscription vs count analysis
 No subscription vs best cost
 Order of analysis
+Simple vs IDP
