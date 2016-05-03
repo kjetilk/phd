@@ -10,6 +10,7 @@
 \usepackage{tikz}
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\todo}[1]{\ensuremath{^{\textrm{\tiny{TODO}\normalsize}}}\footnote{\textbf{TODO:}~#1}}
 
 \include{notasjon}
 \include{helpers}
@@ -135,11 +136,30 @@ are being passed, where the cache is assumed to reside on a
 intermediate caching proxy in the Internet, i.e. a CDN. The figure may
 be viewed as having time on the $x$-axis, with the arrows pointing
 down being requests and the arrows point up being responses. In this
-example, the client first makes a request (, which is passed through the
-proxy because it has not yet cached any responses. The response is
-then also transmitted directly from the SPARQL Endpoint at the
-database back to the client. The entire response may be cached at the
-proxy in case it can be reused in its entirety. However, 
+example, the client first makes a request (request \circled{1}), which
+is passed through the proxy because it has not yet cached any
+responses. The response (response \circled{1}) is then also
+transmitted directly from the SPARQL Endpoint at the database back to
+the client. The entire response may be cached at the proxy in case it
+can be reused in its entirety. However, the main point is that the
+request will be analysed by the proxy in parallel to being sent to the
+server, and another request \circled{2} for a triple pattern fragment
+that the analyser thinks will enable the proxy to assist the server
+the best for future requests, is sent. This analysis is discussed in
+\todo{ref}. The response \circled{2} is not sent back to the client,
+but will enter the cache. Lets say that the analyser was successful
+and that the cache can be used to answer request \circled{3}. In that
+case, the proxy will send a rewritten query for the rest of the data
+it needs to answer the query to the origin server, indicated by the
+dashed arrows. This may be a SPARQL query, a TPF request or a
+combination thereof, depending on what the planner finds least
+expensive. The proxy will then evaluate the entire query and send the
+final result back as response \circled{3}. In addition, the analyser
+may have identified another Triple Pattern Fragment that it takes as
+likely useful for future requests, and sends a request and caches the
+response \circled{4}. At some point, it may be able to answer the
+entire query using only cached results, as illustrated by request and
+response \circled{5}.
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
 \bibliographystyle{plain}
