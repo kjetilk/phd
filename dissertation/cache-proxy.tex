@@ -50,6 +50,10 @@ points out some interesting lessons with varying degrees of
 certainty. This chapter will detail the system, show its design and
 features and discuss its failures.
 
+Figure~\ref{fig:messaging} illustrates where caches may be in the
+Internet infrastructure, as well as HTTP requests and responses in a
+typical deployment scenario of the system.
+
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}
@@ -79,15 +83,44 @@ features and discuss its failures.
 \end{tikzpicture}
 \caption{The possible positions of a cache. A cache may reside at both
   the server side (as a database cache) or client side, or any of the
-  intermediate proxies. The database cache and reverse proxy is
-  typically controlled by the data provider. The arrows illustrate
-  requests (when pointing down) and responses (when pointing up) in a
-  deployment scenario for when a the query cache considered in this
-  paper is deployed on a caching proxy in the Internet infrastructure,
-  see the text for details.}
+  intermediate proxies. The arrows illustrate requests (when pointing
+  down) and responses (when pointing up) in a deployment scenario for
+  when a the query cache considered in this paper is deployed on a
+  caching proxy in the Internet infrastructure, see the text for
+  details.}\label{fig:messaging}
 \end{center}
 \end{figure}
 
+The system is based on HTTP, which implies a client-server
+architecture. In this architecture, a cache may be present at
+conceptually five different levels. First, the client may have its own
+cache, which caches only responses made by the client itself. The next
+level is known as a forward proxy. They aren't currently very common,
+but have in the past often been institutional proxies, or proxies
+employed by Internet Service Providers for caching responses that may
+be common to many of their users. The next level, generically referred
+to as a caching proxy, may be in the Internet
+infrastructure. Currently, the most common form of this type of proxy
+is known as a Content Delivery Network (CDN). It is very common to
+have a reverse proxy near the server. They are often known as a ``Web
+Accelerator''. Usually, they will communicate with the server with
+HTTP, but it is conceivable that it may use a different protocol, and
+may employ detailed knowledge of the hosted data to optimise cache
+operations. Finally, the database, in this context a SPARQL Endpoint,
+may use conventional database caching techniques. The database cache
+and reverse proxy is typically controlled by the data provider.
+
+The present system may be deployed at any of these levels. However,
+since the database and the reverse proxy in front of it may have
+detailed knowledge of the data, e.g. a complete data profile with
+statistics to optimise join order, these levels have much in common
+with a conventional database cache, which is extensively discussed in
+the literature.
+
+My interest is the case where the caching proxy has no further
+knowledge of the data than what is exposed through the SPARQL
+Endpoint or hypermedia metadata. In practice, there is very
+little information. 
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
 \bibliographystyle{plain}
