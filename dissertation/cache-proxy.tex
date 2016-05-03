@@ -7,6 +7,7 @@
 \usepackage{supertabular}
 \usepackage{cite}
 \usepackage{amsthm}
+\usepackage{tikz}
 
 \include{notasjon}
 \include{helpers}
@@ -48,6 +49,25 @@ performance for an evaluation to be meaningful. Nevertheless, it
 points out some interesting lessons with varying degrees of
 certainty. This chapter will detail the system, show its design and
 features and discuss its failures.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) --(4,0);
+\node at (5.5,0) { Database cache };
+\draw (0,0.5) --(4,0.5);
+\node at (5.5,0.5) { Reverse proxy };
+\draw (0,2) --(4,2);
+\node at (5.5,2) { Caching proxy };
+\draw (0,3.5) --(4,3.5);
+\node at (5.5,3.5) { Forward proxy };
+\draw (0,4) --(4,4);
+\node at (5.5,4) { Client cache };
+\end{tikzpicture}
+\caption{The possible positions of a cache}
+\end{center}
+\end{figure}
+
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
 \bibliographystyle{plain}
