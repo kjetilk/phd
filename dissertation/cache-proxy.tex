@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt, draft]{article}
+\documentclass[a4paper, 12pt]{article}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage{multirow}
@@ -15,6 +15,7 @@
 \include{notasjon}
 \include{helpers}
 \usepackage[pdftex,linktocpage]{hyperref}
+\hyperbaseurl{https://github.com/}
 
 \begin{document}
 \title{Prefetching SPARQL query cacher}
@@ -160,6 +161,64 @@ likely useful for future requests, and sends a request and caches the
 response \circled{4}. At some point, it may be able to answer the
 entire query using only cached results, as illustrated by request and
 response \circled{5}.
+
+\section{Implementation}\label{sec:impl}
+
+The implementation consists of several modules that have been
+published to the Comprehensive Perl Archive Network as Free Software,
+and most of which have become a part the Free Software ecosystem. As
+such, it builds on the code of hundreds of authors, too long to
+enumerate. I shall constrain myself to list the modules that have code
+that has been motivated from this study. Modules that have other
+primary authors than myself have been started prior to this present
+project, but may have substantial contributions from this project. The
+Attean framework was started as part of the effort in
+Section~\ref{sec:conpush}, but even though it has been developed
+further with the requirements that arose from this project and has
+contributions from me, the vast majority of the code has been written
+my Gregory Todd Williams. The main work in this project has gone into
+the module AtteanX::Query::Cache, where I have authored the vast
+majority of the code. The relative difference in authorship can be
+further examined by checking the linked Github repositories, or by
+using git2prov\footnote{see \url{http://git2prov.org/}} to create RDF
+data of the commit history. Table~\ref{tab:modules} shows the modules
+that have been influenced or written as part of this project.
+
+\begin{table}
+\caption{The modules that enable the query cache}\label{tab:modules}
+\begin{tabular}{ | l | p{3cm} | l |}
+  \hline
+  Module & Authors & Github URL \\ \hline
+
+  AtteanX::Query::Cache & Kjetil Kjernsmo, Gregory Todd Williams &
+  \url{kjetilk/p5-atteanx-query-cache} \\
+
+  AtteanX::Store::SPARQL & Kjetil Kjernsmo &
+  \url{kjetilk/p5-atteanx-store-sparql} \\
+  
+  AtteanX::Store::LDF & Kjetil Kjernsmo, Patrick Hochstenbach &
+  \url{phochste/AtteanX-Store-LDF} \\
+
+  LWP::UserAgent::CHICaching & Kjetil Kjernsmo &
+  \url{kjetilk/p5-lwp-useragent-chicaching} \\
+  
+  Attean & Gregory Todd Williams, Kjetil Kjernsmo &
+  \url{kasei/attean} \\
+
+  AtteanX::Endpoint & Gregory Todd Williams &
+  \url{kasei/atteanx-endpoint} \\
+
+  RDF::LDF &  Patrick Hochstenbach, Gregory Todd Williams, Jakob Voß,
+  Kjetil Kjernsmo & \url{phochste/RDF-LDF} \\
+  
+  \hline
+\end{tabular}
+\end{table}
+
+The system also depends on modules I have written that is not part of
+the project: RDF::LinkedData, RDF::Generator::Void, Test::RDF,
+URI::NamespaceMap and RDF::NS::Curated.
+
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
 \bibliographystyle{plain}
