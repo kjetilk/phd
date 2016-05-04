@@ -1,1 +1,2 @@
 How about A join C join B
+Example of how freeing the planning classes from inheritance provide benefit
