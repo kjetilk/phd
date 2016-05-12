@@ -254,6 +254,19 @@ heuristics.
 
 \subsection{Linked Data Fragment client}
 
+The Linked Data Fragment client work was started prior to this project
+by Patrick Hochstenbach, and consists of the client code for Triple
+Pattern Fragments in \pmodule{RDF::LDF}. It also includes the Basic
+Graph Pattern optimisation from \ref{ldf2}. Included with the client
+code is an implementation of a triple store of the legacy
+\pmodule{RDF::Trine} framework that predates Attean. He also started
+an Attean store implementation \pmodule{AtteanX::Store::LDF}, but that
+module was subsequently adopted by me, and I have written most of the
+functionality. It composes the TripleStore API and implements triple
+pattern queries and cardinality estimates, both provided by the
+underlying client code as they are a part of the core functionality of
+Triple Pattern Fragments, but also a \pcode{cost\_for\_plan}
+implementation used by the cost planner.
 
 
 
