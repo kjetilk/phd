@@ -179,7 +179,7 @@ Section~\ref{sec:conpush}, but even though it has been developed
 further with the requirements that arose from this project and has
 contributions from me, the vast majority of the code has been written
 my Gregory Todd Williams. The main work in this project has gone into
-the module AtteanX::Query::Cache, where I have authored the vast
+the module \pmodule{AtteanX::Query::Cache}, where I have authored the vast
 majority of the code. The relative difference in authorship can be
 further examined by checking the linked Github repositories, or by
 using git2prov\footnote{see \url{http://git2prov.org/}} to create RDF
@@ -192,25 +192,25 @@ that have been influenced or written as part of this project.
   \hline
   Module & Authors & Github URL \\ \hline
 
-  AtteanX::Query::Cache & Kjetil Kjernsmo, Gregory Todd Williams &
+  \pmodule{AtteanX::Query::Cache} & Kjetil Kjernsmo, Gregory Todd Williams &
   \url{kjetilk/p5-atteanx-query-cache} \\
 
-  AtteanX::Store::SPARQL & Kjetil Kjernsmo &
+  \pmodule{AtteanX::Store::SPARQL} & Kjetil Kjernsmo &
   \url{kjetilk/p5-atteanx-store-sparql} \\
   
-  AtteanX::Store::LDF & Kjetil Kjernsmo, Patrick Hochstenbach &
+  \pmodule{AtteanX::Store::LDF} & Kjetil Kjernsmo, Patrick Hochstenbach &
   \url{phochste/AtteanX-Store-LDF} \\
 
-  LWP::UserAgent::CHICaching & Kjetil Kjernsmo &
+  \pmodule{LWP::UserAgent::CHICaching} & Kjetil Kjernsmo &
   \url{kjetilk/p5-lwp-useragent-chicaching} \\
   
-  Attean & Gregory Todd Williams, Kjetil Kjernsmo &
+  \pmodule{Attean} & Gregory Todd Williams, Kjetil Kjernsmo &
   \url{kasei/attean} \\
 
-  AtteanX::Endpoint & Gregory Todd Williams &
+  \pmodule{AtteanX::Endpoint} & Gregory Todd Williams &
   \url{kasei/atteanx-endpoint} \\
 
-  RDF::LDF &  Patrick Hochstenbach, Gregory Todd Williams, Jakob Voß,
+  \pmodule{RDF::LDF} &  Patrick Hochstenbach, Gregory Todd Williams, Jakob Voß,
   Kjetil Kjernsmo & \url{phochste/RDF-LDF} \\
   
   \hline
@@ -218,17 +218,39 @@ that have been influenced or written as part of this project.
 \end{table}
 
 The system also depends on modules I have written that is not part of
-the project: RDF::LinkedData, RDF::Generator::Void, Test::RDF,
-URI::NamespaceMap and RDF::NS::Curated.
+the project: \pmodule{RDF::LinkedData}, \pmodule{RDF::Generator::Void}, \pmodule{Test::RDF},
+\pmodule{URI::NamespaceMap} and \pmodule{RDF::NS::Curated}.
 
-To further understand the roles of the different modules, note the following:
-LWP::UserAgent::CHICaching is a traits-based \cite{traits} implementation of the
-majority of RFC7234. AtteanX::Endpoint is an implementation of the
+To further understand the roles of the different modules, note the
+following: \pmodule{LWP::UserAgent::CHICaching} is a traits-based \cite{traits} implementation of the
+majority of RFC7234. \pmodule{AtteanX::Endpoint} is an implementation of the
 server side of SPARQL 1.1 Protocol. 
 
 \subsection{The Attean framework}
 
 \subsection{SPARQL protocol client}
+
+The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
+Protocol client that implements Attean APIs. The store implementation
+itself composes the TripleStore API and implements methods to retrieve
+the results of a single triple pattern and exact cardinality for a
+given triple pattern, by using an aggregate query. In addition, it can
+generate plans for Basic Graph Pattern algebra objects that have more
+than one triple pattern. If that is the case, it will return an
+instance of the class \pmodule{AtteanX::Plan::SPARQLBGP}, which is
+also defined by the module. If it is not the case, the module also has
+an implementation of the \pcode{access\_plan} method in a
+\pmodule{AtteanX::Query::AccessPlan::SingleQuadBGP} role, that can be
+composed by a query planner to provide a single triple pattern
+\pmodule{AtteanX::Plan::SPARQLBGP} object. Finally, it also provides a
+model implementation that composes the Model and CostPlanner
+APIs. This contains a \pcode{cost\_for\_plan} implementation that will
+provide a cost for \pmodule{AtteanX::Plan::SPARQLBGP} objects that are
+proportional to the number of triple patterns in the plan, but
+penalises plans that does not have triple patterns that are connected
+through a variable (i.e. will cause a Cartesian join) with a factor
+10. See Section~\ref{sec:costheuristics} for details on the cost
+heuristics. 
 
 \subsection{Linked Data Fragment client}
 
