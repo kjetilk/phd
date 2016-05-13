@@ -228,6 +228,20 @@ server side of SPARQL 1.1 Protocol.
 
 \subsection{The Attean framework}
 
+The Attean framework was born from the experiences the PerlRDF
+community gained with \pmodule{RDF::Trine}, the Perl counterpart to
+the more well-known Jena framework, and the opportunities presented by
+the introduction of traits \cite{traits}, or roles as they are known,
+to the Perl world.
+
+Traits are groups of methods that serve as a primitive unit of code
+reuse. Traits are not constructed to objects themselves and do not
+use inheritance for composition, instead a class is composed by a set of
+traits and possibly the class' own methods, and then instantiated. A
+trait can also require a set of methods, and as such, is similar to
+interfaces, but since its focus is code reuse, it can also provide a
+default implementation. 
+
 \subsection{SPARQL protocol client}
 
 The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
