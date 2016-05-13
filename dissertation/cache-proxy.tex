@@ -242,6 +242,18 @@ trait can also require a set of methods, and as such, is similar to
 interfaces, but since its focus is code reuse, it can also provide a
 default implementation. 
 
+The Attean framework packages commonly used classes when using
+Semantic Web data, like RDF statements and terms, parsers,
+serializers, triple/quad stores, iterators, but also features that are
+relevant to query answering, like algebra, query planners and
+plans. Additionally, it has an underlying extensive API consisting of
+roles that can be composed to the above classes.
+
+Perl is an interpreted language and is not known to run fast. Instead,
+the focus is on developer efficiency. However, our motivation for
+Attean, expressed in \cite{williamspushing}, was to enable the use
+of faster implementations by using roles to simplify code reuse.
+
 \subsection{SPARQL protocol client}
 
 The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
