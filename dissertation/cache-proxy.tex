@@ -314,9 +314,12 @@ plan generation. When a final plan tree has been found, the query may
 be executed. 
 
 That new plan types can be integrated into the planner with ease, and
-that the  planner itself can be changed with very little effort is a
+that the planner itself can be changed with very little effort is a
 key contribution of the Attean system, which I have taken advantage of
-in this work. That this is made easy is to the credit of traits, as 
+in this work. That this is made easy is to the credit of traits, as
+will become clear as we study the details of the implementation in
+Section~\ref{sec:cacher}.
+
 
 \subsection{SPARQL protocol client}
 
@@ -340,7 +343,7 @@ proportional to the number of triple patterns in the plan, but
 penalises plans that does not have triple patterns that are connected
 through a variable (i.e. will cause a Cartesian join) with a factor
 10. See Section~\ref{sec:costheuristics} for details on the cost
-heuristics. 
+heuristics.
 
 \subsection{Linked Data Fragment client}
 
