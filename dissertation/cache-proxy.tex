@@ -254,6 +254,36 @@ the focus is on developer efficiency. However, our motivation for
 Attean, expressed in \cite{williamspushing}, was to enable the use
 of faster implementations by using roles to simplify code reuse.
 
+For this work, the usage of roles to simplify query planning is of
+particular importance. While we do not exploit optimisations closer to
+the database, we extend the query planner in several directions with
+several separate add-on modules, with only generic functionality in
+the core Attean framework.
+
+We have found it convenient to use classical inheritance in
+combination with traits-based composition, but only when the base
+class provide only fundamental functionality that is very likely to be
+common to all implementations. For an example of this, see
+Section~\ref{sec:cacher}.
+
+Also of importance are the APIs to compose stores. Stores in Attean
+can be triplestores or quadstores, they can be mutable,
+bulkupdateable, can enable the use of \httph{ETag}s or modification
+times for conditional requests, and makes possible further
+extensions. Each of these primitives is represented by a role that
+implements default functionality or simply requires such functionality
+to be required. For instance, a quadstore is required by
+\pmodule{Attean::API::QuadStore} to implement the \pcode{get\_quads}
+method, which can take an RDF term as one or more of the arguments and
+variables for the rest, and should return an iterator over the quads
+that were matched. Based on an implementation of the
+\pcode{get\_quads} method, the \pmodule{Attean::API::QuadStore} role
+provides default implementations of methods \pcode{count\_quads},
+\pcode{count\_quads\_estimate}, \pcode{get\_graphs} and
+\pcode{size}. These methods may be overridden when composing a
+class. Composing other roles will require further methods to be
+implemented.\todo{Explain Model}
+
 \subsection{SPARQL protocol client}
 
 The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
@@ -293,6 +323,18 @@ and CostPlanner APIs and implements triple pattern queries and
 cardinality estimates, both provided by the underlying client code as
 they are a part of the core functionality of Triple Pattern Fragments,
 as well as \pcode{cost\_for\_plan}.
+
+\subsection{The query proxy}\label{sec:cacher}
+
+For example, the query planner that can use a local cache and a remote
+endpoint, named \pmodule{AtteanX::QueryPlanner::Cache}, extends the
+basic query planner of the Attean framework,
+\pmodule{Attean::QueryPlanner}, but also composes the following roles:
+\pmodule{Attean::API::NaiveJoinPlanner},
+\pmodule{Attean::API::SimpleCostPlanner},
+\pmodule{AtteanX::API::JoinRotatingPlanner},
+\pmodule{AtteanX::Query::AccessPlan::SingleQuadBGP} and
+\pmodule{AtteanX::Query::AccessPlan::Cache}. 
 
 
 
