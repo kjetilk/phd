@@ -361,7 +361,26 @@ cardinality estimates, both provided by the underlying client code as
 they are a part of the core functionality of Triple Pattern Fragments,
 as well as \pcode{cost\_for\_plan}.
 
-\subsection{The query proxy}\label{sec:cacher}
+\subsection{The caching proxy}\label{sec:cacher}
+
+The caching proxy consists of several components:
+
+\begin{itemize}
+\item An analyser, used to determine whether certain triple patterns
+  should have their results prefetched and cached.
+\item A prefetcher that performs the needed actions.
+\item Two query planners, one that can use a local cache and a remote
+  endpoint, and another that extends this to be able to use Triple
+  Pattern Fragments as well, and corresponding models.
+\item Two roles to generate plans for accessing cache and Triple
+  Pattern Fragments and a corresponding plan class to enter results
+  in the cache.
+\item A custom User Agent for caching.
+\item The actual caching proxy that accepts queries, runs the planner
+  and returns the results.
+\item Scripts to run the whole system.
+\end{itemize}
+
 
 For example, the query planner that can use a local cache and a remote
 endpoint, named \pmodule{AtteanX::QueryPlanner::Cache}, extends the
