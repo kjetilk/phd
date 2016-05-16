@@ -268,17 +268,17 @@ Section~\ref{sec:cacher}.
 
 Also of importance are the APIs to compose stores. Stores in Attean
 can be triplestores or quadstores, they can be mutable,
-bulkupdateable, can enable the use of \httph{ETag}s or modification
-times for conditional requests, and makes possible further
-extensions. Each of these primitives is represented by a role that
-implements default functionality or simply requires such functionality
-to be required. For instance, a quadstore is required by
-\pmodule{Attean::API::QuadStore} to implement the \pcode{get\_quads}
-method, which can take an RDF term as one or more of the arguments and
-variables for the rest, and should return an iterator over the quads
-that were matched. Based on an implementation of the
-\pcode{get\_quads} method, the \pmodule{Attean::API::QuadStore} role
-provides default implementations of methods \pcode{count\_quads},
+bulkupdateable, can enable the use of ETags or modification times for
+conditional requests (as defined in RFC7232 \cite{rfc7234}, and makes
+possible further extensions. Each of these primitives is represented
+by a role that implements default functionality or simply requires
+such functionality to be required. For instance, a quadstore is
+required by \pmodule{Attean::API::QuadStore} to implement the
+\pcode{get\_quads} method, which can take an RDF term as one or more
+of the arguments and variables for the rest, and should return an
+iterator over the quads that were matched. Based on an implementation
+of the \pcode{get\_quads} method, the \pmodule{Attean::API::QuadStore}
+role provides default implementations of methods \pcode{count\_quads},
 \pcode{count\_quads\_estimate}, \pcode{get\_graphs} and
 \pcode{size}. These methods may be overridden when composing a
 class. Composing other roles will require further methods to be
@@ -313,6 +313,11 @@ aggressively based on their estimated cost in each iteration of query
 plan generation. When a final plan tree has been found, the query may
 be executed. 
 
+That new plan types can be integrated into the planner with ease, and
+that the  planner itself can be changed with very little effort is a
+key contribution of the Attean system, which I have taken advantage of
+in this work. That this is made easy is to the credit of traits, as 
+
 \subsection{SPARQL protocol client}
 
 The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
@@ -342,7 +347,7 @@ heuristics.
 The Linked Data Fragment client work was started prior to this project
 by Patrick Hochstenbach, and consists of the client code for Triple
 Pattern Fragments in \pmodule{RDF::LDF}. It also includes the Basic
-Graph Pattern optimisation from \ref{ldf2}. Included with the client
+Graph Pattern optimisation from \cite{verborgh2014querying}. Included with the client
 code is an implementation of a triple store of the legacy
 \pmodule{RDF::Trine} framework that predates Attean. He also started
 an Attean store implementation \pmodule{AtteanX::Store::LDF} as a
