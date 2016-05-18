@@ -394,7 +394,7 @@ the cache key.
 The main technical contributions are in the analysis of the query and
 in the query planning.
 
-\subsubsection{Analysis and prefetching}
+\subsubsection{Analysis and prefetching}\label{sec:analpre}
 
 Analysers and prefetchers run asynchronously with query
 evaluation. This is achieved by an addition to the proxy that sends a
@@ -438,17 +438,34 @@ extension to the plan class in Section~\ref{sec:ldfclient}.
 
 \subsubsection{Query planner}\label{sec:implqueryplan}
 
-For example, the query planner that can use a local cache and a remote
-endpoint, named \pmodule{AtteanX::QueryPlanner::Cache}, extends the
-basic query planner of the Attean framework,
-\pmodule{Attean::QueryPlanner}, but also composes the following roles:
+The query planner is written as completely stand-alone modules, based
+on the facilities in the Attean framework, but without accessing
+Attean internals. The system has in fact three query planners:
+\pmodule{AtteanX::QueryPlanner::Cache},
+\pmodule{AtteanX::QueryPlanner::Cache::LDF} and
+\pmodule{AtteanX::Query::Cache::Analyzer::QueryPlanner}. Each is an
+extension of the previous. The first is written to use a remote
+endpoint in combination with a local cache. The second extends this to
+also be able to generate and use Triple Pattern Fragments plans. The
+final is a query planner for the analyser in Section~\ref{sec:analpre}
+that reruns the query planning with all triple patterns in a simulated
+cache.
+
+These query planners are a good example of the virtues of traits-based
+programming: \pmodule{AtteanX::QueryPlanner::Cache} extends the basic query
+planner of the Attean framework, \pmodule{Attean::QueryPlanner}, but
+also composes the following roles:
 \pmodule{Attean::API::NaiveJoinPlanner},
 \pmodule{Attean::API::SimpleCostPlanner},
 \pmodule{AtteanX::API::JoinRotatingPlanner},
 \pmodule{AtteanX::Query::AccessPlan::SingleQuadBGP} and
-\pmodule{AtteanX::Query::AccessPlan::Cache}. 
+\pmodule{AtteanX::Query::AccessPlan::Cache}.
 
-
+\pmodule{Attean::QueryPlanner} has only minimal functionality,
+everything else is provided by the roles. With conventional single
+inheritance, one would end up with a rather complex base class. While
+multiple inheritance or mix-in could be employed, \cite{traits}
+explains why this is an inferior solution. 
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
 \bibliographystyle{plain}
