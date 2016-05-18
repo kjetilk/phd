@@ -264,7 +264,7 @@ We have found it convenient to use classical inheritance in
 combination with traits-based composition, but only when the base
 class provide only fundamental functionality that is very likely to be
 common to all implementations. For an example of this, see
-Section~\ref{sec:cacher}.
+Section~\ref{sec:implqueryplan}.
 
 Also of importance are the APIs to compose stores. Stores in Attean
 can be triplestores or quadstores, they can be mutable,
@@ -318,7 +318,7 @@ that the planner itself can be changed with very little effort is a
 key contribution of the Attean system, which I have taken advantage of
 in this work. That this is made easy is to the credit of traits, as
 will become clear as we study the details of the implementation in
-Section~\ref{sec:cacher}.
+Section~\ref{sec:implqueryplan}.
 
 
 \subsection{SPARQL protocol client}
@@ -436,7 +436,7 @@ extension to the plan class in Section~\ref{sec:ldfclient}.
 
 
 
-\subsubsection{Query planner}
+\subsubsection{Query planner}\label{sec:implqueryplan}
 
 For example, the query planner that can use a local cache and a remote
 endpoint, named \pmodule{AtteanX::QueryPlanner::Cache}, extends the
