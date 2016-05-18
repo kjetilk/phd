@@ -384,6 +384,16 @@ The caching proxy consists of several components:
 \item Scripts to run the whole system.
 \end{itemize}
 
+In terms of technical contribution, most of these are
+straightforward. The proxy itself, for example, is just a few lines of
+wrapper code around the \pmodule{AtteanX::Endpoint} module. The User
+Agent is a class that composes the roles of
+\pmodule{LWP::UserAgent::CHICaching} and adds a hash of the query as
+the cache key.
+
+The main technical contributions are in the analysis of the query and
+in the query planning.
+
 \subsubsection{Analysis and prefetching}
 
 Analysers and prefetchers run asynchronously with query
