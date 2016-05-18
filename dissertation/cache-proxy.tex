@@ -345,7 +345,7 @@ through a variable (i.e. will cause a Cartesian join) with a factor
 10. See Section~\ref{sec:costheuristics} for details on the cost
 heuristics.
 
-\subsection{Linked Data Fragment client}
+\subsection{Linked Data Fragment client}\label{sec:ldfclient}
 
 The Linked Data Fragment client work was started prior to this project
 by Patrick Hochstenbach, and consists of the client code for Triple
@@ -360,6 +360,9 @@ and CostPlanner APIs and implements triple pattern queries and
 cardinality estimates, both provided by the underlying client code as
 they are a part of the core functionality of Triple Pattern Fragments,
 as well as \pcode{cost\_for\_plan}.
+
+It also supplies a plan class \pmodule{AtteanX::Plan::LDF::Triple}
+used in the query planning. 
 
 \subsection{The caching proxy}\label{sec:cacher}
 
@@ -381,6 +384,49 @@ The caching proxy consists of several components:
 \item Scripts to run the whole system.
 \end{itemize}
 
+\subsubsection{Analysis and prefetching}
+
+Analysers and prefetchers run asynchronously with query
+evaluation. This is achieved by an addition to the proxy that sends a
+query to a persistent analyser script that subscribes to a channel on
+a Redis\footnote{See \url{http://redis.io/}} data structure store. 
+
+The analyser script can be configured to use any number of analysers.
+Two such analysers have been implemented, for now constrained to
+single triple patterns. One will count the predicates in consecutive
+queries it sees, and publish triple patterns to another Redis channel
+with the predicate if the count exceeds a certain configurable
+limit. This is an attempt to capture and cache popular parts of
+queries.
+
+The second analyser will rerun the query planner on the incoming query
+while simulating that the results of a certain triple pattern was in
+the cache. If the cost reduction of the best plan is larger than a
+configurable limit, it will publish that triple pattern to the same
+Redis channel as above. 
+
+Another persistent script is subscribed to this latter channel. If the
+Model supports Linked Data Fragments, a retriever will then download
+the results of the triple pattern and enter it into the cache, or use
+a single triple pattern SPARQL query if not.
+
+The cache itself is assumed to only cache triples where at least one
+term is bound. I have used the Redis data structure store for the
+cache as well. This choice is somewhat arbitrary, and has not proved
+very successful. The cache will store the results as an array if two
+RDF terms were bound in the triple pattern, or a hash if only one term
+was bound. The strings put into the cache are serialized N-Triples
+strings.
+
+In addition to caching the prefetched results, the proxy may also
+cache the serialized results of any full SPARQL query, and also enter
+the results of any Linked Data Fragment retrieved when the query
+planner evaluates a query into the above cache, using a trivial
+extension to the plan class in Section~\ref{sec:ldfclient}.
+
+
+
+\subsubsection{Query planner}
 
 For example, the query planner that can use a local cache and a remote
 endpoint, named \pmodule{AtteanX::QueryPlanner::Cache}, extends the
