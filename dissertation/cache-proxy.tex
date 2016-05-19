@@ -452,20 +452,29 @@ that reruns the query planning with all triple patterns in a simulated
 cache.
 
 These query planners are a good example of the virtues of traits-based
-programming: \pmodule{AtteanX::QueryPlanner::Cache} extends the basic query
-planner of the Attean framework, \pmodule{Attean::QueryPlanner}, but
-also composes the following roles:
+programming, as they are typically customised along different axes:
+access plans, cost estimation, planning of joins within Basic Graph
+Patterns or left joins, rewriting (like gathering quad patterns to
+blocks), etc. In the case of our query planner that combines a remote
+endpoint with a local cache, named
+\pmodule{AtteanX::QueryPlanner::Cache}, the basic query planner of the
+Attean framework, \pmodule{Attean::QueryPlanner} is extended
+(i.e. inherited from), but also composes the following roles:
 \pmodule{Attean::API::NaiveJoinPlanner},
 \pmodule{Attean::API::SimpleCostPlanner},
 \pmodule{AtteanX::API::JoinRotatingPlanner},
 \pmodule{AtteanX::Query::AccessPlan::SingleQuadBGP} and
 \pmodule{AtteanX::Query::AccessPlan::Cache}.
 
+
 \pmodule{Attean::QueryPlanner} has only minimal functionality,
-everything else is provided by the roles. With conventional single
-inheritance, one would end up with a rather complex base class. While
-multiple inheritance or mix-in could be employed, \cite{traits}
-explains why this is an inferior solution. 
+everything else is provided by the roles. Conventional single
+inheritance is constrained to tree structure, and would result in a
+very complex system. Another option is to use the factory method
+pattern, where a factory object would need to be initialised to return
+a suitable object for each axes of customisation. 
+
+
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
 \bibliographystyle{plain}
