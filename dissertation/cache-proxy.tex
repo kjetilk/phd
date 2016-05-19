@@ -321,7 +321,7 @@ will become clear as we study the details of the implementation in
 Section~\ref{sec:implqueryplan}.
 
 
-\subsection{SPARQL protocol client}
+\subsection{SPARQL protocol client}\label{sec:sparqlclient}
 
 The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
 Protocol client that implements Attean APIs. The store implementation
@@ -464,7 +464,10 @@ Attean framework, \pmodule{Attean::QueryPlanner} is extended
 \pmodule{Attean::API::SimpleCostPlanner},
 \pmodule{AtteanX::API::JoinRotatingPlanner},
 \pmodule{AtteanX::Query::AccessPlan::SingleQuadBGP} and
-\pmodule{AtteanX::Query::AccessPlan::Cache}.
+\pmodule{AtteanX::Query::AccessPlan::Cache}, out of which the three
+first are a part of the Attean framework, the next was described in
+Section~\ref{sec:sparqlclient} and the last is a part of the
+query cache system itself.
 
 
 \pmodule{Attean::QueryPlanner} has only minimal functionality,
@@ -474,6 +477,25 @@ very complex system. Another option is to use the factory method
 pattern, where a factory object would need to be initialised to return
 a suitable object for each axis of customisation. 
 
+It is interesting to detail the function of
+\pmodule{AtteanX::API::JoinRotatingPlanner}. Its main function is to
+produce alternatives for join query plans. For example, if we have
+three quad patterns $A$, $B$ and $C$, plans for both $ ( A \bowtie B)
+\bowtie C $ and $ A \bowtie ( B \bowtie C ) $ will be generated. In
+some cases, it may be possible to reduce a join to a more fundamental
+plan type, and this may be done next. In our case, this is done in
+\pmodule{AtteanX::QueryPlanner::Cache}, where adjacent quad patterns
+are coalesced into Basic Graph Pattern (BGP) plans, and BGP plans are
+coalesced into larger BGP plans, so that they can be evaluated by the
+remote SPARQL endpoint as a single unit. This will minimise the number
+of HTTP requests, in much the same way as the exclusive groups of
+\cite{springerlink:10.1007/978-3-642-25073-6-38}. Note, however, that
+the generated plans are subject to cost estimation, so whether a large
+BGP plan will be evaluated remotely, or as a join of local cached
+results and a smaller remote BGP, or in the case of
+\pmodule{AtteanX::QueryPlanner::Cache::LDF}, a remote Triple Pattern
+Fragments server, is up to the cost estimation. This will be discussed
+in detail in Section~\ref{sec:costheuristics}.
 
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
