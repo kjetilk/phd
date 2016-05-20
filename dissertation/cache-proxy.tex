@@ -630,8 +630,9 @@ within some hours.
 
 The cache was kept in a Redis data structure database on a machine
 with a Intel Core2 Duo E8500 CPU with 16 GB of RAM. The proxy server
-with the query engine ran on a  Intel Xeon CPU E3-1230 v5 CPU with 32
-GB of RAM. Running the query on this query took more than 1000 seconds
+with the query engine ran on a Intel Xeon CPU E3-1230 v5 CPU with 32
+GB of RAM, residing a LAN with a gigabit Ethernet link between
+them. Running the query on this query took more than 1000 seconds
 without any performance analysis enabled. This is clearly more than
 two orders of magnitude longer than acceptable. Moreover, it is then
 clearly not possible to draw any conclusions as to whether the system
@@ -668,6 +669,25 @@ Calls & 	Exclusive Time & Inclusive Time & Subroutine \\
 13309111	& 39.5s & 39.5s & \pcode{IRI::CORE:regcomp (opcode)}
 \end{tabular}
 \end{table}
+
+It is clear that the vast majority of time spent is due to my cache
+implementation. When using the Redis cache, I serialise RDF terms as
+N-Triples, and when they are retrieved, they have to be parsed and
+instantiated as objects for the query engine. Remarkably, parsing of
+Internationalized Resource Identifiers (IRIs) is the single most
+time-consuming task. While each parse does not take much time, it
+happens more than 13~million times. The reason why parsing IRIs
+happens is that a certain amount of parsing is required to compare
+them \cite{rfc3987}, and the \pmodule{IRI} module is a rigorous
+implementation of the standard that does syntax based resolution if
+the if an object is constructed with a base. IRI parsing happens not
+only when an \pmodule{Attean::IRI} object is constructed, but may also
+happen when an \pmodule{Attean::Literal} object is constructed, since
+the data type is a IRI.
+
+While most of the time is spent in parsing and comparison, the hash
+joins also require too much time. A discussion of possible
+improvements will follow in Section~\ref{sec:discussfail}.
 
 
 
