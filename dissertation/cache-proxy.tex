@@ -599,7 +599,76 @@ evaluation showed that the latter is not the case with the current
 implementation, and the practical constraints of the project then
 prevented further investigation. Thus, this section consists of an
 account of the evaluation that were performed and the methodology I
-planned to employ. 
+planned to employ.
+
+\subsection{Actual evaluation}
+
+I decided to set the entire system up as a proxy server, and run a
+realistic query against DBpedia repeatedly. The intention was to let
+the analyser find all required data and eventually add that to the
+cache. Once the cache was filled with all the data, the query cache
+should be able to answer the query on its own, at least within a time
+period on the order of a magnitude of the original endpoint (which
+took ca. 1~second). 
+
+The following query was used:
+
+\begin{verbatim}
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+SELECT ?name WHERE {
+  ?s a foaf:Person ;
+     foaf:name ?name ;
+     dbo:wikiPageID  9828878 .
+} ORDER BY ?name
+\end{verbatim}
+
+The query was chosen because of its wide variety in terms of
+selectivity of the individual triple patterns. The retriever managed
+to pull all the data from the Linked Data Fragments version of DBpedia
+within some hours. 
+
+The cache was kept in a Redis data structure database on a machine
+with a Intel Core2 Duo E8500 CPU with 16 GB of RAM. The proxy server
+with the query engine ran on a  Intel Xeon CPU E3-1230 v5 CPU with 32
+GB of RAM. Running the query on this query took more than 1000 seconds
+without any performance analysis enabled. This is clearly more than
+two orders of magnitude longer than acceptable. Moreover, it is then
+clearly not possible to draw any conclusions as to whether the system
+would be helpful in achieving its goal of taking load off of the
+remote server, as it could process far fewer queries than the public
+remote endpoint, and any load saved on the remote endpoint would
+likely be less than the uncertainty arising from that.
+
+Nevertheless, it is interesting to further understand this failure. In
+Table~\ref{tab:nytprof}, I have tabulated the result of the subroutine
+calls that take the most time.
+
+\begin{table}{l}
+\caption{Top 15 Subroutines Calls as measured by the profiler \pmodule{Devel::NYTProf}.}\label{tab:nytprof}
+
+\begin{tabular}{r p{1.5cm} p{1.5cm} l}
+  \hline
+Calls & 	Exclusive Time & Inclusive Time & Subroutine \\
+\hline
+13309080	& 244s	& 549s & \pcode{IRI::\_parse\_components} \\
+13309080	& 218s	& 218s & \pcode{IRI::CORE:match (opcode)} \\
+8774329	        & 116s	& 270s & \pcode{Attean::Result::new} \\
+10573035	& 111s	& 1420s & \pcode{AtteanX::Parser::NTuples::\_eat\_node} \\
+6355072	 	& 79.7s & 1856s & \pcode{Attean::CodeIterator::next} \\
+2 & 77.4s & 4540s & \pcode{Attean::Plan::HashJoin::\_\_ANON\_\_[Attean/Plan.pm:362]} \\
+4217970		& 70.0s & 847s & \pcode{Attean::Literal::new} \\
+9091102	 	& 61.8s	& 593s & \pcode{Attean::IRI::new} \\
+2419260	        & 50.3s & 208s & \pcode{Attean::API::Result::join} \\
+4217968	        & 48.7s	& 1463s & \pcode{AtteanX::Query::AccessPlan::Cache::\_\_ANON\_\_[AtteanX/Query/AccessPlan/Cache.pm:72]} \\
+24186545	& 48.1s	& 56.6s & \pcode{Role::Tiny::does\_role} \\
+28128408	& 44.4s	& 53.8s	& \pcode{Attean::Result::value} \\
+16871877	& 44.1s	& 470s & \pcode{Attean::Literal::\_\_ANON\_\_[(eval 234)[Class/Method/Modifiers.pm:93]:1] (merge of 4 subs)}\\
+4217969		& 40.0s & 92.0s & \pcode{Attean::API::Literal::\_\_ANON\_\_[Attean/API/Term.pm:160]} \\
+13309111	& 39.5s & 39.5s & \pcode{IRI::CORE:regcomp (opcode)}
+\end{tabular}
+\end{table}
+
 
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
