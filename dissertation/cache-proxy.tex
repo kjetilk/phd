@@ -497,6 +497,88 @@ results and a smaller remote BGP, or in the case of
 Fragments server, is up to the cost estimation. This will be discussed
 in detail in Section~\ref{sec:costheuristics}.
 
+\subsection{Cost Model}\label{sec:costheuristics}
+
+The final query execution is designed to be entirely cost-based,
+i.e. many alternative plans are generated, but the decision on whether
+to use a certain plan is entirely up to the cost model. While the
+framework is flexible and could support further research into cost
+models, I have considered this to be future work, and only a small
+heuristic cost model is present in the current system. 
+
+However, since the combination of remotely executed SPARQL with a
+local cache and Triple Pattern Fragments is rather complex, the cost
+heuristics are fairly elaborate. Moreover, since the objective of the
+study is to take load off of the remote endpoint, the heuristics is
+intended to make the proxy work harder than the remote endpoint.
+
+Throughout the system, the query planner takes the cost from the
+models implementing the \pmodule{Attean::API::CostPlanner} role. A
+key challenge is to balance the costs given by different models in the
+system, and this is done in
+\pmodule{AtteanX::Model::SPARQLCache::LDF}. Let us, however, start
+from the bottom. 
+
+The cost of evaluating a Triple Pattern Fragment plan $C_{tpf}$ is estimated to
+be 
+\begin{equation}
+C_{tpf} = 10 + \floor{990 \frac{n_{tpf}}{n_{tot}}} ,
+\end{equation}
+where $n_{tpf}$ is the estimated number of triples expected to be
+matched by the triple pattern and $n_{tot}$ is the size of the
+model. Thus, this cost will be an integer between 10 and 1000. The
+reason we use a floor function is that the Attean cost model only
+supports integers.
+
+The cost of accessing the cache is assumed to be small compared to the
+above, and is estimated as 
+\begin{equation}
+C_c = 2 + \floor{\log_{10}{n_c}} , 
+\end{equation}
+where $n_c$ is the number of triples in the cache that matches the
+given triple pattern.
+
+The cost of evaluating a remote SPARQL query is estimated to be the
+number of subplans (usually quad patterns) incremented by one and
+multiplied by 100 if there is a common variable between all the
+subplans, or 1000 if there is not. This is to prevent the remote
+endpoint from having to compute Cartesian joins as much as possible. A
+remote SPARQL query with only one triple pattern is assumed to always
+be more expensive than to evaluate than a Triple Pattern Fragment
+(recall that we want to relieve the remote endpoint of stress), and so
+is given the cost of 1001.
+
+
+Next, we detail the cost of a join where one of more children in the
+tree is a remote SPARQL plan. It is usually not wanted to execute
+several remote queries, it is assumed that the number of HTTP requests
+should be small, and that plans where the joins have been rotated and
+coalesced by \pmodule{AtteanX::API::JoinRotatingPlanner} should be
+less expensive. Therefore, such plans should be penalised, but by how
+much depends on the type plans. Conventionally, for a nested loop join
+plan, we multiply the cost of the subplans, increment the resulting
+cost by one if the right hand plan is more expensive than the left
+hand plan, and multiply by a factor of 10 if there are no shared
+variables, to mildly penalise Cartesian joins. If the plan is a hash
+join the difference is that, we add rather than multiply the cost of
+the of the subplans, and multiply by a factor of 100 rather than 10 so
+that if it is necessary to evaluate a Cartesian join, it is more
+likely done using a nested loop join. Then, the resulting cost is
+multiplied by the number of remote SPARQL Basic Graph Patterns in the
+tree and the factor 1.2, and floored to the nearest integer.
+
+Under the assumption that it is better to join remotely than to
+possibly retrieve large amounts of data, a similar algorithm is used
+to penalise join plans that contain many Triple Pattern Fragment
+plans, by multiplying the cost of the join plan by the number of the
+Triple Pattern Fragment plans in the tree.
+
+Finally, if a plan has a Triple Pattern Fragment plan that has a
+common variable with a remote SPARQL query, that plan is given an
+added cost to 1000, to allow plans where the triple pattern has been
+rotated into the BGP win, again to reduce the amount of data needed to
+be transferred.
+
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
 \bibliographystyle{plain}
