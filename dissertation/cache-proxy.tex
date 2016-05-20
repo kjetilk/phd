@@ -579,6 +579,28 @@ added cost to 1000, to allow plans where the triple pattern has been
 rotated into the BGP win, again to reduce the amount of data needed to
 be transferred.
 
+\section{Evaluation}
+
+The system was developed in a practically oriented test-driven manner,
+with emphasis on testing cases that I assumed \textit{a priori} to be
+difficult. The interested reader is referred to the published code,
+given in Section~\ref{sec:impl}. Some of the tests consist of a number
+of queries, and some of the tests concerns the problem I found in a
+preliminary study, that the cached triples would often break
+subsequent queries to cause Cartesian joins. Much of the above cost
+model is design to prevent this from having a detrimental impact.
+
+While I am quite confident that the code is producing query plans as
+intended and that analysis and prefetching is able to retrieve and
+cache results, an elaborate evaluation would be needed to further
+explore whether the system actually helps remote endpoints and is able
+to serve clients with adequate performance. Unfortunately, the
+evaluation showed that the latter is not the case with the current
+implementation, and the practical constraints of the project then
+prevented further investigation. Thus, this section consists of an
+account of the evaluation that were performed and the methodology I
+planned to employ. 
+
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
 \bibliographystyle{plain}
