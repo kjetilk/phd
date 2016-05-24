@@ -226,7 +226,7 @@ following: \pmodule{LWP::UserAgent::CHICaching} is a traits-based \cite{traits} 
 majority of RFC7234. \pmodule{AtteanX::Endpoint} is an implementation of the
 server side of SPARQL 1.1 Protocol. 
 
-\subsection{The Attean framework}
+\subsection{The Attean framework}\label{sec:attean}
 
 The Attean framework was born from the experiences the PerlRDF
 community gained with \pmodule{RDF::Trine}, the Perl counterpart to
@@ -688,6 +688,87 @@ the data type is a IRI.
 While most of the time is spent in parsing and comparison, the hash
 joins also require too much time. A discussion of possible
 improvements will follow in Section~\ref{sec:discussfail}.
+
+\subsection{Planned evaluation}
+
+This section outlines the evaluation I had planned to employ on the
+query cacher. The essence is to perform a ``query log replay, while
+recording remote endpoint load under different circumstances,
+determined by a experiment designed with statistical Design of
+Experiments formalism''. 
+
+In more detail, query logs can be obtained by from
+e.g. USEWOD~\cite{eps385344} or the Linked SPARQL SPARQL Queries
+Dataset \cite{Saleem2015}. An extraction of one of those datasets
+could be performed, to create a representative progression of
+queries. The data normally residing on a remote endpoint
+(i.e. ``server'') would then be loaded into a single database system
+under my control. A proxy system would be set up using our
+system. Finally, a client would submit the queries to the server, via
+the proxy. 
+
+On the server, some metric of system load would recorded. In
+statistical experimentation parlance, this is known as the ``response
+variable''. I had not entirely decided which metric to use, but
+\cite{Ferrari:1987:EIL:647412.725013} indicated the load average may
+be a good choice. It could be trivially recorded by polling the
+virtual file \texttt{/proc/loadavg} on the host system. Possibly a
+correction for any extra time spent by the proxy could be applied.
+
+As for the overall design of the experiment, the reader is referred to
+the paper discussed in Section~\ref{sec:condoe} for an introduction to
+the type of evaluation intended to be used. As noted, a $2^n$
+factorial experiment is the simplest experiment to set up, and I would
+therefore go to great lengths to ensure that such an experiment could
+be used.
+
+It would also be advantageous to design the experiment so that a
+combination of factors would correspond to the null hypothesis,
+i.e. that the proxy was not in use and the remote endpoint would
+tackle the whole load. To achieve this, a fractional factorial
+experiment would likely result where certain combinations would be
+banned. I did not think this complete through to a concrete
+experiment. 
+
+However, the factors that may be interesting to investigate include
+both factors that evaluate the analyser and the query planner. These
+factors might be:
+
+\begin{enumerate}
+\item Use of the cache and remote endpoints where the levels are on
+  and off.
+\item Use of a caching Linked Data Fragments client, levels on and
+  off.
+\item Use the predicate count analyser, levels on and off.
+\item Use the best cost improvement analyser, levels on and off.
+\item The order of the application of the different methods for
+  analysis.
+\item Which cost planner to use, with levels being the simple cost
+  planner and the Iterative Dynamic Programming planner, see
+  Section~\ref{sec:attean}.
+\end{enumerate}
+
+While this design would achieve the goal that a combination of levels
+would correspond to the null hypothesis, certain levels are somewhat
+problematic. For example, the Linked Data Fragments client in point~2
+might be an implementation of \cite{verborgh2014querying}, but that
+would be very different from the combination of point~1~and~2, which
+correspond to the usage of
+\pmodule{AtteanX::QueryPlanner::Cache::LDF}. Additionally, I noted
+that downloading the triple pattern fragment \sparql{?s foaf:name
+  ?name .}  resulted in more than 40~000 HTTP requests due to
+paging. Another relevant factor might be to deploy a Triple Pattern
+Fragments server that does not page, and have levels with paging on
+and off. Integrating this factor in the experimental design would
+further complicate it.
+
+If the experiment outlined here could come to fruition, and we take
+the factor in the first point with level~1 as the cache being enabled,
+then we can examine the experiment similarly to what with did with the
+``Implement'' factor in \cite{kjernsmo_doe_intro}. That is, if the
+effect of this factor and its interactions are negative\todo{finish a
+  short story about testing}.
+
 
 
 
