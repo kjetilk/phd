@@ -609,7 +609,7 @@ the analyser find all required data and eventually add that to the
 cache. Once the cache was filled with all the data, the query cache
 should be able to answer the query on its own, at least within a time
 period on the order of a magnitude of the original endpoint (which
-took ca. 1~second). 
+took on the order of 1~second). 
 
 The following query was used:
 
@@ -632,7 +632,7 @@ The cache was kept in a Redis data structure database on a machine
 with a Intel Core2 Duo E8500 CPU with 16 GB of RAM. The proxy server
 with the query engine ran on a Intel Xeon CPU E3-1230 v5 CPU with 32
 GB of RAM, residing a LAN with a gigabit Ethernet link between
-them. Running the query on this query took more than 1000 seconds
+them. Running the query on this hardware took more than 1000 seconds
 without any performance analysis enabled. This is clearly more than
 two orders of magnitude longer than acceptable. Moreover, it is then
 clearly not possible to draw any conclusions as to whether the system
@@ -755,8 +755,9 @@ might be an implementation of \cite{verborgh2014querying}, but that
 would be very different from the combination of point~1~and~2, which
 correspond to the usage of
 \pmodule{AtteanX::QueryPlanner::Cache::LDF}. Additionally, I noted
-that downloading the triple pattern fragment \sparql{?s foaf:name
-  ?name .}  resulted in more than 40~000 HTTP requests due to
+that downloading the triple pattern fragment
+\sparql{?s~foaf:name~?name~.}  
+resulted in more than 40~000 HTTP requests due to
 paging. Another relevant factor might be to deploy a Triple Pattern
 Fragments server that does not page, and have levels with paging on
 and off. Integrating this factor in the experimental design would
