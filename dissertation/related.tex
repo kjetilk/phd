@@ -60,6 +60,52 @@ Martin et al. \cite{sparqlproxy} implemented a reverse caching proxy
 that controlled the changes to the dataset, and so could relieve the
 endpoint of the burden of evaluating all queries.
 
+Dividino et al. \cite{Dividino2015} proposed strategies to keep caches
+of Linked Open Data up to date, in face of changing data. The authors
+sets out to learn the change frequency of resources, and based on that
+schedule updates of the resources. This does then not depend on the
+resource metadata (neither HTTP headers nor metadata in the RDF
+itself, which I studied in \cite{kjernsmo_survey_2015}), which is
+motivated by their finding that only 8\% of \httph{Last-Modified}
+headers they surveyed reflected the true change frequency. While I
+have no reason to doubt this finding, and the monitoring approach is
+interesting, I think the dismissal of resource metadata is
+insufficiently motivated, and therefore the evaluation is
+inadequate. First, the \httph{Last-Modified} header is far from the
+only cache-relevant header, as should be evident by the fact that it
+is not defined in the cache standard, RFC7234, but in the conditional
+request standard, RFC7232. Moreover, RFC7234 contains a Section~4.2.2.
+titled ``Calculating Heuristic Freshness''. It is my opinion that the
+paper should be framed within the loose constraints of this section,
+where it could make a substantial contribution. As it stands, it would
+serve to violate Web standards, which in my opinion, is something the
+Semantic Web community should be more cautious about. If further
+considered within the frames of RFC7234's Section~4.2.2., it also
+proposes a simple heuristic for calculating freshness lifetime. I
+found that the distribution of this heuristic freshness lifetime
+agrees well with The Dynamic Linked Data Observatory (DyLDO)
+\cite{dyldo2}. However, a weakness of my study, which could make this
+observation irrelevant, is if the change frequency of individual
+resources were wrong, in particular, if the use of the simple
+heuristic lead to using stale content.  RFC7234's
+Section~4.2.2. explicitly prohibits the use of a heuristic if an
+explicit expiration time is present (defined in the caching standard
+RFC7234), yet the paper does not attempt to include those in their
+assessment. Furthermore, I found in \cite{kjernsmo_survey_2015} that
+cache prohibitions were common. While they in many cases may be
+misguided, they nevertheless express a strong statement from the
+server administrators, that should be respected. RDF data,
+e.g. \rdfterm{dct:valid} and \rdfterm{dct:modified} could also be used
+to compute a expiration time. Finally, an opaque validator,
+\httph{ETag} is also a part of RFC7232. After considering cache
+prohibitions, explicit expiration times, opaque validators, simpler
+heuristics, etc., the space where learning the change frequency could
+be applied is likely much smaller. However, if understood as a
+sophisticated heuristic with the constraints of RFC7234's
+Section~4.2.2., the contribution is valuable.
+
+
+
 While the approaches are diverse, these studies pull in the same
 direction: Motivated by the problems of maintaining SPARQL endpoints,
 they all seek to share the burden, and so make query answering
