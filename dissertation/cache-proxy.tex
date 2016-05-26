@@ -147,20 +147,20 @@ request will be analysed by the proxy in parallel to being sent to the
 server, and another request \circled{2} for a triple pattern fragment
 that the analyser thinks will enable the proxy to assist the server
 the best for future requests, is sent. This analysis is discussed in
-\todo{ref}. The response \circled{2} is not sent back to the client,
-but will enter the cache. Lets say that the analyser was successful
-and that the cache can be used to answer request \circled{3}. In that
-case, the proxy will send a rewritten query for the rest of the data
-it needs to answer the query to the origin server, indicated by the
-dashed arrows. This may be a SPARQL query, a TPF request or a
-combination thereof, depending on what the planner finds least
-expensive. The proxy will then evaluate the entire query and send the
-final result back as response \circled{3}. In addition, the analyser
-may have identified another Triple Pattern Fragment that it takes as
-likely useful for future requests, and sends a request and caches the
-response \circled{4}. At some point, it may be able to answer the
-entire query using only cached results, as illustrated by request and
-response \circled{5}.
+Section~\ref{sec:analpre}. The response \circled{2} is not sent back
+to the client, but will enter the cache. Lets say that the analyser
+was successful and that the cache can be used to answer request
+\circled{3}. In that case, the proxy will send a rewritten query for
+the rest of the data it needs to answer the query to the origin
+server, indicated by the dashed arrows. This may be a SPARQL query, a
+TPF request or a combination thereof, depending on what the planner
+finds least expensive. The proxy will then evaluate the entire query
+and send the final result back as response \circled{3}. In addition,
+the analyser may have identified another Triple Pattern Fragment that
+it takes as likely useful for future requests, and sends a request and
+caches the response \circled{4}. At some point, it may be able to
+answer the entire query using only cached results, as illustrated by
+request and response \circled{5}.
 
 Finally note that in this text, the term Triple Pattern Fragment is
 understood as a specialisation of Linked Data Fragments, in which a
