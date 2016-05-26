@@ -418,7 +418,12 @@ Redis channel as above.
 Another persistent script is subscribed to this latter channel. If the
 Model supports Linked Data Fragments, a retriever will then download
 the results of the triple pattern and enter it into the cache, or use
-a single triple pattern SPARQL query if not.
+a single triple pattern SPARQL query if not. The current
+implementation assumes that both and LDF server and a SPARQL endpoint
+can be used to answer any triple pattern. Relaxing this assumption
+depends on that the LDF specifications gain stronger semantics to link
+SPARQL endpoints and LDF servers together. With that, the assumption
+could be abandoned trivially.
 
 The cache itself is assumed to only cache triples where at least one
 term is bound. I have used the Redis data structure store for the
