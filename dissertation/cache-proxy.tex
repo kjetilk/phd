@@ -588,7 +588,7 @@ given in Section~\ref{sec:impl}. Some of the tests consist of a number
 of queries, and some of the tests concerns the problem I found in a
 preliminary study, that the cached triples would often break
 subsequent queries to cause Cartesian joins. Much of the above cost
-model is design to prevent this from having a detrimental impact.
+model is designed to prevent this from having a detrimental impact.
 
 While I am quite confident that the code is producing query plans as
 intended and that analysis and prefetching is able to retrieve and
@@ -775,6 +775,11 @@ form an average of the effects for all combinations of the factor in
 point~1 and the insignificant factors determined in the first step,
 based on the average over the rest of the factors. Based on this, a
 common one-sided two-sample $t$-test can be performed.
+
+\section{Discussion}
+
+\subsection{Join rotation in combination with Iterative Dynamic
+  Programming}
 
 
 
