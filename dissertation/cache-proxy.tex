@@ -781,6 +781,66 @@ common one-sided two-sample $t$-test can be performed.
 \subsection{Join rotation and Iterative Dynamic
   Programming}
 
+While the system used a simple brute-force query planner in the above
+evaluation, using an Iterative Dynamic Programming planner
+\cite{Kossmann:2000:IDP:352958.352982} would simply amount to
+composing \pmodule{Attean::API::IDPJoinPlanner} in the planner class.
+
+While this performed better in most cases, the test suite contains a
+query where it does not:
+\begin{verbatim}
+?s <http://example.org/m/p> "1" ;
+   <http://example.org/m/p> ?o ;
+   <http://example.org/m/q> _:xyz ;
+   <http://example.org/m/q> <http://example.org/m/a> .
+?a <http://example.org/m/b> <http://example.org/m/c> .
+\end{verbatim}
+Note that the above Basic Graph Pattern contains a triple pattern that
+does not share a variable (\sparql{?a}) with any other triple pattern,
+thus creating a problematic Cartesian join. Additionally, in this
+test, the results of the two first triple patterns have been
+cached. \textit{A priori}, I have assumed that the best plan is a plan
+where the cache is used for these two triple patterns, the last triple
+pattern is answered by a Linked Data Fragments server and the last two
+triple patterns are coalesced into a new SPARQL query, and evaluated
+remotely. This is also coded as a pass criterion for the test. With
+the simple query planner, this test passes, but not with the IDP
+planner, as it results in a plan where the two triple patterns that
+should run is a single SPARQL query is split into two. This resulted
+in an interesting observation:
+
+As noted in Section~\ref{sec:implqueryplan}, we rely on rotating joins
+to gather triple pattern plans into a larger structure that can be
+evaluated together, like a remote SPARQL BGP. On careful inspection, I
+found that the join rotation would have had to descend into
+great-grandchildren of the top join plan. However, with the IDP
+planner, plans are aggressively pruned, and therefore, this
+constellation is not considered. This led us (with Gregory Todd
+Williams) to conjecture that this weakness is inherit to IDP planning
+when using join rotation. We did not attempt to examine this any
+further, however.
+
+To remedy this problem, we considered creating a custom query planner
+for Basic Graph Patterns, but I did not implement it. The outline
+would be as follows:
+\begin{enumerate}
+\item Find triple patterns that are connected with a common variable,
+  and group them to ``components''.
+\item If a triple pattern have a cached result, create a plan that
+  accesses the cache. 
+\item If the triple pattern in the previous step caused a Cartesian
+  join to be created within a component, create an equivalent
+  additional plan for a SPARQL remote evaluation that does not access
+  the local cache.
+\item Any remaining components consisting of a single triple pattern
+  results in a LDF plans.
+\item Any remaining components are turned into SPARQL remote BGP
+  plans.
+\end{enumerate}
+
+This procedure would allow the cost model to balance the cost between
+doing a Cartesian join and doing a remote SPARQL evaluation of data
+already in the cache.
 
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
