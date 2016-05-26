@@ -702,7 +702,7 @@ While most of the time is spent in parsing and comparison, the hash
 joins also require too much time. A discussion of possible
 improvements will follow in Section~\ref{sec:discussfail}.
 
-\subsection{Planned evaluation}
+\subsection{Planned evaluation}\label{sec:planned}
 
 This section outlines the evaluation I had planned to employ on the
 query cacher. The essence is to perform a ``query log replay, while
@@ -856,8 +856,52 @@ This procedure would allow the cost model to balance the cost between
 doing a Cartesian join and doing a remote SPARQL evaluation of data
 already in the cache, as plans for both these options would be provided.
 
+\subsection{Remedies for performance issues}\label{sec:discussfail}
+
+One may raise the issue that it was a bad idea to begin with to use a
+scripting language like Perl to write a query engine with performance
+requirements. Indeed, that may be the case. However, generally
+accepted practice is to first find the actual performance issues and
+then optimise using a bridge to first and foremost the C family of
+languages as needed. Importantly, with the width of the scope, I only
+had some months to implement the query engine. This is not a software
+engineering project, but given past industrial experience, it seems
+unlikely that I could have achieved it within the allowed time frame
+using older paradigms, such as the factory method pattern.
+
+The profiling points out a clearly where large gains could be
+made. First and foremost, parsing must be avoided, and that could be
+avoided by ensuring that IRIs where canonicalised before they were
+written to the cache, so that comparing them later would be a simple
+string comparison. Secondly, the Redis data structure store could be
+better exploited to store strings that could be used to construct  
+literals and IRI objects without parsing. 
+
+However, since computing the join itself is too slow, it is not
+necessarily a solution worth pursuing. The main motivation behind
+caching hashes and arrays in Redis was to save space; since at least
+one term would be bound in any cached pattern, it shouldn't be
+necessary to insert more data into the cache. Since the performance of
+doing the join is poor, this may not be justified. Instead, it may be
+a better idea to use a conventional quad store for the cache. In that
+case, the planner would require a simple modification so that triple
+patterns are gathered into locally evaluated BGPs and remotely
+evaluated BGPs as well as LDFs. To take full advantage of this
+approach, SPARQL 1.1 \sparql{VALUES} would also need to be supported,
+so that the local quad store could perform all join operations. To
+this end, I wrote a rudimentary Virtuoso store driver for Attean, but
+at that point, the project was overdue and needed to be concluded. 
+
+It seems likely that the project, with more time, could be brought to
+the point where a the evaluation in Section~\ref{sec:planned} could be
+applied, and new insight could be gained.
+
+Thus, the main contribution from this project is the remarkable ease
+with which it was implemented.
 
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne}
 \bibliographystyle{plain}
 
 \end{document}
+
+%%  LocalWords:  canonicalised
