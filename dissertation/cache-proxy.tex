@@ -290,13 +290,22 @@ role provides default implementations of methods \pcode{count\_quads},
 \pcode{count\_quads\_estimate}, \pcode{get\_graphs} and
 \pcode{size}. These methods may be overridden when composing a
 class. Composing other roles will require further methods to be
-implemented.\todo{Explain Model}
+implemented.
+
+Stores can be rather diverse, so in addition, Attean provides another
+abstraction layer, called a Model. Models will consistently have
+quads, in the case where underlying store is a triple store, a graph
+name will be set, or it may wrap several triple stores with a graph
+name for each. In addition, Models provide higher level methods, like
+for example a \pcode{subject} method to list all subjects, and
+corresponding for other terms. Thus, upper layers of an application
+should use the Model. We have also chosen to implement significant
+parts of the query planning in the Model.
 
 When a query is parsed, algebra objects are generated. Based on the
-algebra tree, models (which may delegate the task to the store) may
-generate plans for any algebra object of their choosing by
-implementing the \pmodule{Attean::API::CostPlanner} role. This amounts
-to implementing \pcode{plans\_for\_algebra} and
+algebra tree, models may generate plans for any algebra object of
+their choosing by implementing the \pmodule{Attean::API::CostPlanner}
+role. This amounts to implementing \pcode{plans\_for\_algebra} and
 \pcode{cost\_for\_plan} methods. For a given algebra, Attean's query
 planner will trust that the model's \pcode{plans\_for\_algebra} is
 better than its own by default, a choice that was justified in
