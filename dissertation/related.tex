@@ -79,30 +79,30 @@ titled ``Calculating Heuristic Freshness''. It is my opinion that the
 paper should be framed within the loose constraints of this section,
 where it could make a substantial contribution. As it stands, it would
 serve to violate Web standards, which in my opinion, is something the
-Semantic Web community should be more cautious about. If further
-considered within the frames of RFC7234's Section~4.2.2., it also
-proposes a simple heuristic for calculating freshness lifetime. I
-found that the distribution of this heuristic freshness lifetime
-agrees well with The Dynamic Linked Data Observatory (DyLDO)
-\cite{dyldo2}. However, a weakness of my study, which could make this
-observation irrelevant, is if the change frequency of individual
+Semantic Web community should be more cautious about. RFC7234's
+Section~4.2.2. also proposes a simple heuristic for calculating
+freshness lifetime. I found that the distribution of this heuristic
+freshness lifetime agrees well with The Dynamic Linked Data
+Observatory (DyLDO) \cite{dyldo2}. However, a weakness of my study
+which could make this observation irrelevant, is that I considered
+only summary statistics, . If the change frequency of individual
 resources were wrong, in particular, if the use of the simple
-heuristic lead to using stale content.  RFC7234's
-Section~4.2.2. explicitly prohibits the use of a heuristic if an
-explicit expiration time is present (defined in the caching standard
-RFC7234), yet the paper does not attempt to include those in their
-assessment. Furthermore, I found in \cite{kjernsmo_survey_2015} that
-cache prohibitions were common. While they in many cases may be
-misguided, they nevertheless express a strong statement from the
-server administrators, that should be respected. RDF data,
-e.g. \rdfterm{dct:valid} and \rdfterm{dct:modified} could also be used
-to compute a expiration time. Finally, an opaque validator,
-\httph{ETag} is also a part of RFC7232. After considering cache
-prohibitions, explicit expiration times, opaque validators, simpler
-heuristics, etc., the space where learning the change frequency could
-be applied is likely much smaller. However, if understood as a
-sophisticated heuristic within the constraints of RFC7234's
-Section~4.2.2., the contribution is valuable.
+heuristic lead to using stale content, it would be inappropriate to
+use the simple heuristic.  RFC7234's explicitly prohibits the use of a
+heuristic if an explicit expiration time is present, yet the paper
+does not attempt to include those in their assessment. Furthermore, I
+found in \cite{kjernsmo_survey_2015} that cache prohibitions were
+common. While they in many cases may be misguided, they nevertheless
+express a strong statement from the server administrators, that should
+be respected. RDF data, e.g. \rdfterm{dct:valid} and
+\rdfterm{dct:modified} could also be used to compute a expiration
+time. Finally, an opaque validator, \httph{ETag} is also a part of
+RFC7232. After considering cache prohibitions, explicit expiration
+times, opaque validators, simpler heuristics, etc., the space where
+learning the change frequency could be applied is likely much
+smaller. However, if understood as a sophisticated heuristic within
+the constraints of RFC7234's Section~4.2.2., the contribution is
+valuable.
 
 
 
