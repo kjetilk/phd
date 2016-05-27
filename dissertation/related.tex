@@ -6,7 +6,7 @@ the authors share parts of the motivation, or more serendipitous
 reuse.
 
 Verborgh et al. \cite{ldf1} share many of the observations and goals
-that motivates this study. They introduce a hypermedia system that can
+that motivate this study. They introduce a hypermedia system that can
 be used to answer individual triple patterns (known as Triple Pattern
 Fragments (TPF)). Their stated goal is to transfer as much as possible
 of the burden of evaluating a query from the server to the
@@ -27,13 +27,13 @@ and further improvements have been made in more recent papers.
 Olaf Hartig has a large number of papers that are adjacent to the
 present work, including his Ph.D. dissertation \cite{hartig2014querying} where he
 explores querying Linked Data, i.e. query data that is not contained
-in an a-priory defined collection of RDF data, but where a resources
+in an a-priory defined collection of RDF data, but where resources
 are traversed to compute a result. Hartig provides solid formal
 foundations for such query processing, as well as computational
 feasibility, soundness and completeness. The most relevant paper to
 this work is \cite{hartig2011caching}.
 
-Acosta et al. \cite{acosta2014shepherd} has ongoing work named ``SHEPHERD'' to
+Acosta et al. \cite{acosta2014shepherd} have ongoing work named ``SHEPHERD'' to
 create a SPARQL processor that takes into account observations done by
 the SPARQLES survey \cite{buil2013sparql}, to decompose a SPARQL query into
 subqueries that is indicated to be easier for the server to evaluate,
@@ -45,13 +45,13 @@ Recently, Papailiou et al. \cite{papailiou2015graph} made an extensive
 study of SPARQL caching, addressing some of the same problems as the
 present work, except for our emphasis on deployment on proxies in the
 Internet and integration with HTTP-based caching.  Montoya et
-al. \cite{DBLP:journals/corr/MontoyaSMV15} proposes a query federation
+al. \cite{DBLP:journals/corr/MontoyaSMV15} propose a query federation
 system that takes advantage of client-side data replication. Both
 these studies claim to support the entire SPARQL query language, but
 in both cases, it is not clear that they actually do that.
 
 Umbrich et al. \cite{umbrich2012hybrid} considered a situation where
-parts of the graph changes at different paces. For the slow-changing
+parts of the graph change at different paces. For the slow-changing
 parts, they prefetch an entire dataset to a local store to relieve
 remote endpoints from some processing, and thereby speed up query
 responses. 

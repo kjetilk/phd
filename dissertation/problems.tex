@@ -60,8 +60,8 @@ could be used in HTTP caching.
 
 \subsection{Problems of shared understanding}\label{sec:semproblems}
 
-In \cite{berners2000weaving}, Tim Berners-Lee take schema
-heterogeneity for granted and that it would be resolved by using
+In \cite{berners2000weaving}, Tim Berners-Lee et al take schema
+heterogeneity for granted and postulate that it would be resolved by using
 inference, saying:
 
 \begin{quote}
@@ -94,7 +94,7 @@ ontology. With their market shares, they have a reasonable chance of
 getting wide-spread adoption. However, we see also the key problem:
 
 \begin{problem}\label{prob:sayanything}
-With a centralised ontology approach, how are anybody enabled to say
+With a centralised ontology approach, how can we ensure that anybody is enabled to say
 anything?
 \end{problem}
 
@@ -118,7 +118,7 @@ To understand whether a result from a study on e.g. performance is
 valid, an empirical study must be conducted, as a SPARQL system is
 generally too complex to be evaluated solely by formal
 methods. Conventionally, one or more benchmarks have been used for
-this purpose, and there exists a number such
+this purpose, and there exists a number of such
 benchmarks. Unfortunately, due to this complexity, they have to test a
 very large number of parameters, but are unable to do that, and they
 may also oversimplify the test by attempting to neutralise certain
@@ -139,7 +139,7 @@ Web would have to be deployed at a very different scale than what it
 is today. If the Semantic Web is sufficiently successful to realise
 these visions, it is also likely that it will be very different from
 today in terms of data profiles, workloads, etc. Since data profiles
-and workloads are important to device a test to evaluate assertions
+and workloads are important to devise a test to evaluate assertions
 about performance, the fundamental problem arises that we currently
 test against something that does not exist, and this differs markedly
 from the methodology of natural science.
@@ -156,7 +156,7 @@ may be several orders of magnitude larger than today's.
 
 
 \begin{problem}\label{prob:lawsfuture}
-Establish laws of the Semantic Web information universe can reasonably be
+Establish laws of the Semantic Web information universe that can reasonably be
 expected to have validity far beyond the present.
 \end{problem}
 
@@ -293,7 +293,7 @@ vocabulary for the server to tell the client what primitive operations
 it is allowed to perform on a given resource. See
 Section~\ref{sec:conlapis} for more on this paper.
 
-My next concern was the implications of the
+My next concern were the implications of the
 problems~\ref{prob:zipf}~and~\ref{prob:uniform} in a federated SPARQL
 engine. While studying the evaluations done in the relevant literature
 in the field, I decided to start an effort to address
@@ -333,7 +333,7 @@ TODO: Paper yet to be done on caching.
 
 As noted in Section~\ref{sec:motivation} it is clear that evaluating
 arbitrary SPARQL queries are in general unsustainable, and it is
-likely that the problems in Section~\ref{sec:perfproblems} is partly
+likely that the problems in Section~\ref{sec:perfproblems} are partly
 to blame for it. Our work, and most of the related work in
 Section~\ref{sec:related} approach this work from the direction of
 moving stress from the server, but it is also clear that another way
@@ -361,7 +361,7 @@ Section~\ref{sec:semproblems}, mainly because I think it is an open
 question which of these approaches will be adopted in practice, and
 whatever the solution may be, their designers should make sure they
 are orthogonal to the other problems discussed here. Thus, it was
-natural to define them out of scope. 
+natural to consider them out of scope. 
 % TODO: However, I shall assume that no inference is needed in the
 % following examples.
 
