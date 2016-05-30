@@ -30,7 +30,7 @@ pattern, an operation that may be quite expensive for the server, and
 indeed, this information may be so expensive to provide that SPARQL
 planners may not provide it to keep the cost of planning itself
 down. In \cite{verborgh2014querying}, they demonstrated SPARQL evaluation over TPF,
-and further improvements have been made in more recent papers.
+and further improvements have been made in more recent papers.\todo{more here}
 
 \subsection{Query answering with cache}
 
@@ -43,7 +43,7 @@ in an a-priory defined collection of RDF data, but where resources
 are traversed to compute a result. Hartig provides solid formal
 foundations for such query processing, as well as computational
 feasibility, soundness and completeness. The most relevant paper to
-this work is \cite{hartig2011caching}.
+this work is \cite{hartig2011caching}.\todo{more here}
 
 Acosta et al. \cite{acosta2014shepherd} have ongoing work named ``SHEPHERD'' to
 create a SPARQL processor that takes into account observations done by
@@ -56,22 +56,23 @@ server. It is not quite clear from the brief description in
 Recently, Papailiou et al. \cite{papailiou2015graph} made an extensive
 study of SPARQL caching, addressing some of the same problems as the
 present work, except for our emphasis on deployment on proxies in the
-Internet and integration with HTTP-based caching.  
+Internet and integration with HTTP-based caching.  \todo{reread the
+  paper more here}
 
 Montoya et al. \cite{montoya2015federated} propose a query federation
 system that takes advantage of client-side data replication. Both
 these studies claim to support the entire SPARQL query language, but
-in both cases, it is not clear that they actually do that.
+in both cases, it is not clear that they actually do that.\todo{more here}
 
 Umbrich et al. \cite{umbrich2012hybrid} considered a situation where
 parts of the graph change at different paces. For the slow-changing
 parts, they prefetch an entire dataset to a local store to relieve
 remote endpoints from some processing, and thereby speed up query
-responses. 
+responses. \todo{more here}
 
 Martin et al. \cite{sparqlproxy} implemented a reverse caching proxy
 that controlled the changes to the dataset, and so could relieve the
-endpoint of the burden of evaluating all queries.
+endpoint of the burden of evaluating all queries.\todo{more here}
 
 Dividino et al. \cite{Dividino2015} proposed strategies to keep caches
 of Linked Open Data up to date, in face of changing data. The authors
@@ -118,6 +119,7 @@ the constraints of RFC7234's Section~4.2.2., the contribution is
 valuable.
 
 \subsection{Tools for developer efficiency}
+\todo{more here}
 
 \hskip
 
