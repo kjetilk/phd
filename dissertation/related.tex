@@ -74,7 +74,46 @@ Linked Data Fragments server, a cardinality estimate is required to be
 available for every triple pattern, and is also cacheable with the
 same constraints as the data themselves.
 
+Interestingly, \cite{papailiou2015graph} opens by noting that many
+optimisations used by SQL databases are ineffective in RDF databases,
+due to that RDF schema, even if they exist, are not as helpful as the
+obligatory schema in SQL databases. This provides an opportunity for
+novel research. The solution proposed in this paper is not a cache on
+a proxy or a mediator like my primary focus is. The execution engine
+in this case, has access to both the primary indexes of the RDF store
+and the cache. A key contribution of the paper is a canonical
+labelling algorithm that can create a string that will be unique for a
+Basic Graph Pattern including optional blocks. This is done by
+transforming a SPARQL query to a directed vertex-coloured graph, where
+each triple pattern is represented by a vertex, and triple patterns
+that share a common variable is linked with an edge. For each vertex,
+a label that consists of three IDs are created. Bound terms are
+translated to IDs using a dictionary, while variables are translated
+to zero. Then, the graph is directed and edges labelled according to
+the type of join they represent. The vertex and edge labels are then
+translated to non-negative integers (colours) using a sort key, to
+form an directed vertex-and-edge-coloured graph that is the authors
+claim is isomorphic with the original SPARQL. Finally, the graph is
+transformed to a simpler directed vertex-coloured graph. With this
+graph, the author's method can produce a canonical label for the query
+graph.
 
+The canonical labelling algorithm presented in this paper provides an
+opportunity for further work, when considered in an HTTP context: The
+\httph{ETag} header, defined in RFC7232 \cite{rfc7232}, can optionally
+contain an opaque identifier for a specific version of a resource
+representation, e.g. a SPARQL result. Such a canonical label could be
+used in conjunction with an algorithm that tracks changes to the RDF
+graph to produce an \httph{ETag}. For slow-changing Linked Data, which
+is a common case, it is a possibility that a canonical label in
+combination with a time-stamp of the entire RDF Graph could yield
+considerable benefits. However, the presented algorithm does not cover
+SPARQL in its entirety, for example, it does not handle named graphs,
+solution modifiers and filters, nor is it clear how it handles
+property paths (which in many cases should be trivial, since a
+property path often has an equivalent Basic Graph Pattern). Union
+queries or negation is also not mentioned, so more work is needed for
+this method to have general applicability.
 
 
 \todo{import from paper}
