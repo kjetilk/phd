@@ -34,7 +34,48 @@ and further improvements have been made in more recent papers.\todo{more here}
 
 \subsection{Query answering with cache}
 
-\todo{\cite{adali1996query}}
+Two papers that span nearly two decades of research are of particular
+interest: The HERMES system \cite{adali1996query} considered query
+processing and cost-model based optimisation in a mediator system
+where the mediator does not have access to source statistics
+information. Recently, Papailiou et al. \cite{papailiou2015graph}
+made an extensive study of SPARQL caching, addressing some of the same
+problems as the present work.
+
+Even though these do not share our perspective, which is deployment on
+proxies in the Internet and integration with HTTP-based caching, these
+contributions provide important context. 
+
+HERMES \cite{adali1996query} provided motivation for
+\cite{sec:conpush}, but is also important prior art for the work in
+Chapter~\ref{sec:tpfcacheplanning}. An important concept in the HERMES
+system is ``invariants''. They are, in our terminology, patterns that
+do not need to be looked up remotely, but can be integrated in the
+query answer by the mediator. The expectation in HERMES is that such
+invariants will be encoded by a domain expert. The Attean framework
+provides facilities to do so by using traits. Attean can also pass the
+task of computing a scalar cost metric by a similar mechanism, but
+HERMES has a more advanced cost model in that it has a cost vector
+with estimates for time required to find the first answer, time to
+find all answers and the cardinality of the answer set. Caching
+summary statistics is another important feature of HERMES, and it also
+contributes lossy and lossless summaries, for the purpose of saving
+space and reduce the time it takes to compute a cost estimate. HERMES
+further has a query rewriter and optimiser, that rewrites the query
+taking into account the cache and the invariants. While HERMES is more
+general than what I detail in Chapter~\ref{sec:tpfcacheplanning}, we
+note that while invariants could be coded in Attean, a SPARQL query
+cache should be oblivious to domain knowledge and therefore shouldn't
+assume any invariants, except in the possible but unlikely case where
+the remote server declares that an infinite freshness lifetime for the
+result of a certain graph pattern. While statistics summarisation is
+relevant and should be studied in future work, we note that with a
+Linked Data Fragments server, a cardinality estimate is required to be
+available for every triple pattern, and is also cacheable with the
+same constraints as the data themselves.
+
+
+
 
 \todo{import from paper}
 
@@ -55,12 +96,6 @@ subqueries that is indicated to be easier for the server to evaluate,
 and so is well aligned with our goal to ease the load of the
 server. It is not quite clear from the brief description in 
 \cite{acosta2014shepherd} whether the SHEPHERD system can cache results locally.
-
-Recently, Papailiou et al. \cite{papailiou2015graph} made an extensive
-study of SPARQL caching, addressing some of the same problems as the
-present work, except for our emphasis on deployment on proxies in the
-Internet and integration with HTTP-based caching.  \todo{reread the
-  paper more here}
 
 Montoya et al. \cite{montoya2015federated} propose a query federation
 system that takes advantage of client-side data replication. Both
@@ -132,3 +167,5 @@ they all seek to share the burden, and so make query answering
 economically feasible.
 
 
+
+%%  LocalWords:  summarisation
