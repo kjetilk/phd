@@ -128,9 +128,13 @@ the literature.
 
 My interest is the case where the caching proxy has no further
 knowledge of the data than what is exposed through the SPARQL Endpoint
-or hypermedia metadata. In practice, there is very little
-information. If the cache is to be shared, then it would typically
-reside on the forward proxy, or in a CDN. 
+or hypermedia metadata. While this would be known as a mediator in the
+database literature and has also been a field of study for 20 years, I
+focus on a practical motivation stemming mainly from what is currently
+available, and in practice, there is very little information. Also,
+this study is also practically restricted to HTTP. If the cache is to
+be shared, then it would typically reside on the forward proxy, or in
+a CDN.
 
 Figure~\ref{fig:messaging} illustrates the case where HTTP messages
 are being passed, where the cache is assumed to reside on a
