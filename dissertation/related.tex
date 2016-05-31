@@ -98,6 +98,13 @@ transformed to a simpler directed vertex-coloured graph. With this
 graph, the author's method can produce a canonical label for the query
 graph.
 
+The query planner first examines all connected subgraphs of a full
+SPARQL query, and generates canonical labels for each one. Since it
+insists on caching connected subgraphs, it avoids the problem I
+encountered in Chapter~\ref{sec:tpfcacheplanning} that the cache may
+break up connected subgraphs and thus create Cartesian joins.
+
+
 The canonical labelling algorithm presented in this paper provides an
 opportunity for further work, when considered in an HTTP context: The
 \httph{ETag} header, defined in RFC7232 \cite{rfc7232}, can optionally
