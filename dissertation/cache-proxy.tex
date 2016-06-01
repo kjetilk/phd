@@ -207,9 +207,13 @@ the project: \pmodule{RDF::LinkedData}, \pmodule{RDF::Generator::Void}, \pmodule
 \pmodule{URI::NamespaceMap} and \pmodule{RDF::NS::Curated}.
 
 To further understand the roles of the different modules, note the
-following: \pmodule{LWP::UserAgent::CHICaching} is a traits-based \cite{traits} implementation of the
-majority of RFC7234. \pmodule{AtteanX::Endpoint} is an implementation of the
-server side of SPARQL 1.1 Protocol. 
+following: \pmodule{LWP::UserAgent::CHICaching} is a traits-based
+\cite{traits} implementation of the majority of RFC7234.
+The underlying caching framework used by this module, \pmodule{CHI},
+will take care of expiry and purging of entries, since this module
+will supply an explicit freshness lifetime. 
+\pmodule{AtteanX::Endpoint} is an implementation of the server side of
+SPARQL 1.1 Protocol.
 
 \subsection{The Attean framework}\label{sec:attean}
 
