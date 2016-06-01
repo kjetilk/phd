@@ -146,7 +146,7 @@ in an \textit{a priori} defined collection of RDF data, but where resources
 are traversed to compute a result. Hartig provides solid formal
 foundations for such query processing, as well as computational
 feasibility, soundness and completeness. The most relevant paper to
-this work is \cite{hartig2011caching}.\todo{more here}
+this work is \cite{hartig2011caching}.
 
 Acosta et al. has published a poster on ``SHEPHERD''
 \cite{acosta2014shepherd}, presumed to be have ongoing, to
@@ -157,10 +157,6 @@ and so is well aligned with our goal to ease the load of the
 server. It is not quite clear from the brief description in 
 \cite{acosta2014shepherd} whether the SHEPHERD system can cache results locally.
 
-Montoya et al. \cite{montoya2015federated} propose a query federation
-system that takes advantage of client-side data replication. Both
-these studies claim to support the entire SPARQL query language, but
-in both cases, it is not clear that they actually do that.\todo{more here}
 
 Umbrich et al. \cite{umbrich2012hybrid} considered a situation where
 parts of the graph change at different paces. For the slow-changing
@@ -216,6 +212,27 @@ smaller. However, if understood as a sophisticated heuristic within
 the constraints of RFC7234's Section~4.2.2., the contribution is
 valuable.
 
+Naturally, the problem of caching in a proxy has much in common with
+the federation problem, as the cache, as seen from the query execution
+engine's perspective, could be view as yet another possible data
+source, and the number of HTTP requests to the remote endpoint can be
+wisely assumed to be kept small. Schwarte et
+al. \cite{springerlink:10.1007/978-3-642-25073-6-38} addressed these
+problems with FedX, in which they sought to group connected subgraphs
+with their concept of exclusive groups.  Montoya et
+al. \cite{montoya2015federated} propose a query federation system that
+minimise the data needed to be transferred while preserving
+completeness in the common case where the data relevant to a query is
+available on different endpoints. Görlitz and Staab \cite{splendid}
+exploited cardinality estimates sometimes available in VoID
+\cite{voidnote} descriptions to improve join order execution plans. It
+could be advantageous for the system in
+Chapter~\ref{sec:tpfcacheplanning} to exploit as well, and
+straightforward to implement, but since it has not seen wide uptake
+and the statistics is mandated by Triple Pattern Fragments, and
+therefore available in some cases to the planner, we chose not to.
+
+
 \subsection{Tools for developer efficiency}
 \todo{more here}
 
@@ -227,4 +244,4 @@ economically feasible.
 
 
 
-%%  LocalWords:  summarisation
+%%  LocalWords:  summarisation Schwarte
