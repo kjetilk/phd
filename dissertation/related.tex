@@ -102,7 +102,13 @@ The query planner first examines all connected subgraphs of a full
 SPARQL query, and generates canonical labels for each one. Since it
 insists on caching connected subgraphs, it avoids the problem I
 encountered in Chapter~\ref{sec:tpfcacheplanning} that the cache may
-break up connected subgraphs and thus create Cartesian joins.
+break up connected subgraphs and thus create Cartesian joins. To
+further enhance the query planner, the cache can optionally include
+indexing. The authors also introduce the concept of
+\textit{profitable} query patterns. It is not quite clear from the
+text, but it seems this implies that the cache can also prefetch
+results into the cache, if it finds that the result may benefit
+subsequent queries.
 
 
 The canonical labelling algorithm presented in this paper provides an
@@ -120,7 +126,15 @@ solution modifiers and filters, nor is it clear how it handles
 property paths (which in many cases should be trivial, since a
 property path often has an equivalent Basic Graph Pattern). Union
 queries or negation is also not mentioned, so more work is needed for
-this method to have general applicability.
+this method to have general applicability. Nevertheless, if the entire
+Group Graph Pattern of a certain query is supported, and the query
+projects all variables, e.g. it wraps the pattern with \sparql{SELECT
+  *} or \sparql{CONSTRUCT}, the \httph{ETag} would be trivial to
+construct using the presented algorithm in a non-trivial number of
+beneficial cases. With this, cached result verification could be done
+by a mediator using HTTP requests with the \httph{If-None-Match}
+header and so make it possible to use parts of the engine of this
+paper usable in the Internet infrastructure.
 
 
 \todo{import from paper}
