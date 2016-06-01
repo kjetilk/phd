@@ -157,16 +157,48 @@ and so is well aligned with our goal to ease the load of the
 server. It is not quite clear from the brief description in 
 \cite{acosta2014shepherd} whether the SHEPHERD system can cache results locally.
 
-
+The following studies do not consider how the results of one query can
+benefit the execution of a subsequent query. Nevertheless, they are
+important to consider as prior art:
 Umbrich et al. \cite{umbrich2012hybrid} considered a situation where
 parts of the graph change at different paces. For the slow-changing
 parts, they prefetch an entire dataset to a local store to relieve
 remote endpoints from some processing, and thereby speed up query
-responses. \todo{more here}
+responses. Of central importance to this approach is the notion of
+coherence of query patterns, defined through the ratio between results
+that were found in the live remote endpoint but not in the local cache
+and the results from the live remote endpoint. Based on this, the need
+for correct, up to date answers can be balanced against the need for
+good response times.  This approach differs radically from our
+approach in Chapter~\ref{sec:tpfcacheplanning} in that it replicates
+an entire dataset rather than just fragments.
+
+Naturally, the problem of caching in a proxy has much in common with
+the federation problem, as the cache, as seen from the query execution
+engine's perspective, could be view as yet another possible data
+source, and the number of HTTP requests to the remote endpoint can be
+wisely assumed to be kept small. Schwarte et
+al. \cite{springerlink:10.1007/978-3-642-25073-6-38} addressed these
+problems with FedX, in which they sought to group connected subgraphs
+with their concept of exclusive groups.  Montoya et
+al. \cite{montoya2015federated} propose a query federation system that
+minimise the data needed to be transferred while preserving
+completeness in the common case where the data relevant to a query is
+available on different endpoints. Görlitz and Staab \cite{splendid}
+exploited cardinality estimates sometimes available in VoID
+\cite{voidnote} descriptions to improve join order execution plans. It
+could be advantageous for the system in
+Chapter~\ref{sec:tpfcacheplanning} to exploit as well, and
+straightforward to implement, but since it has not seen wide uptake
+and the statistics is mandated by Triple Pattern Fragments, and
+therefore available in some cases to the planner, we chose not to.
 
 Martin et al. \cite{sparqlproxy} implemented a reverse caching proxy
-that controlled the changes to the dataset, and so could relieve the
-endpoint of the burden of evaluating all queries.\todo{more here}
+that controlled the changes to the dataset rather than rely on HTTP
+headers to track changes, and so could relieve the endpoint of the
+burden of evaluating all queries. Such a proxy would work poorly in
+the scenario considered in Chapter~\ref{sec:tpfcacheplanning}, as
+there is no way to mandate use of the proxy in this scenario.
 
 Dividino et al. \cite{Dividino2015} proposed strategies to keep caches
 of Linked Open Data up to date, in face of changing data. The authors
@@ -211,27 +243,6 @@ learning the change frequency could be applied is likely much
 smaller. However, if understood as a sophisticated heuristic within
 the constraints of RFC7234's Section~4.2.2., the contribution is
 valuable.
-
-Naturally, the problem of caching in a proxy has much in common with
-the federation problem, as the cache, as seen from the query execution
-engine's perspective, could be view as yet another possible data
-source, and the number of HTTP requests to the remote endpoint can be
-wisely assumed to be kept small. Schwarte et
-al. \cite{springerlink:10.1007/978-3-642-25073-6-38} addressed these
-problems with FedX, in which they sought to group connected subgraphs
-with their concept of exclusive groups.  Montoya et
-al. \cite{montoya2015federated} propose a query federation system that
-minimise the data needed to be transferred while preserving
-completeness in the common case where the data relevant to a query is
-available on different endpoints. Görlitz and Staab \cite{splendid}
-exploited cardinality estimates sometimes available in VoID
-\cite{voidnote} descriptions to improve join order execution plans. It
-could be advantageous for the system in
-Chapter~\ref{sec:tpfcacheplanning} to exploit as well, and
-straightforward to implement, but since it has not seen wide uptake
-and the statistics is mandated by Triple Pattern Fragments, and
-therefore available in some cases to the planner, we chose not to.
-
 
 \subsection{Tools for developer efficiency}
 \todo{more here}
