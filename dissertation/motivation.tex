@@ -1,5 +1,7 @@
 \section{Motivation}\label{sec:motivation}
 
+\subsection{Cruise altitude view}
+
 There is a class of diverse, yet structurally similar, problems people
 face nearly every day: When we book a flight, we may be interested in
 a romantic getaway, yet we are forced to select the airport of
@@ -105,6 +107,36 @@ capacity, and these are among the factors that could make SPARQL query
 answering on the open Web practically feasible. The focus of this work
 is to ease the burden of servers by allowing other parties to take
 parts of the query evaluation.
+
+\subsection{Hypermedia}
+
+The hypermedia idea is attractive as it is the extension of the ``View
+Source'' idea that brought me to the Web. In its original form, I
+believe that this feature is essential for broad developer
+adoption\footnote{See also
+  \url{http://archive.oreilly.com/pub/a/network/2000/04/13/CFPkeynote.html}
+  for a view aligned with this.}. With hypermedia, a developer would
+not need to read extensive documentation, but can start using the data
+to create applications that interact with the data with a very low
+barrier to entry. When designing the hypermedia discussed in
+Section~\ref{sec:conlapis}, this was my primary design motivation. 
+
+It is also possible to think of hypermedia in terms of machine
+interaction. A classical SQL database is often the antithesis of
+hypermedia, as the semantics of columns is usually not clear, to
+interpret the schema, domain expertise is needed, the documentation
+may reside in documents not even accessible to machines, for various
+reasons.
+
+RDF is well suited to include information that clarifies the semantics
+with the data so it could be argued that most RDF documents would be
+hypermedia, but what is often overlooked is that the documents need to
+be explicit in linking schema from all documents. Moreover, control
+information to enable anticipated and serendipitous applications must
+be made available in the RDF. E.g. It is not sufficient for a pizza
+restaurant to publish data on pizzas, the RDF must also express how to
+order to enable a software agent to organise a party.
+
 
 
 
