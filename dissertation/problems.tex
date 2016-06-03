@@ -47,6 +47,11 @@ SPARQL endpoints, which are based on HTTP, will only enable caching
 syntactically identical queries by  default.
 \end{problem}
 
+\begin{problem}\label{prob:cachecartesian}
+Caching of results of individual triple patterns may cause subsequent
+queries to break into blocks that must be evaluated with Cartesian joins.
+\end{problem}
+
 \begin{problem}\label{prob:queryeq}
 Determining that two queries will return the exact same answer is a
 complex problem.
@@ -56,6 +61,12 @@ complex problem.
 It is not known how much of the Semantic Web exposes information that
 could be used in HTTP caching.
 \end{problem}
+
+\begin{problem}\label{prob:nostats}
+A caching proxy far removed from the database it caches may have
+little or no statistics for query optimisation.
+\end{problem}
+
 
 
 \subsection{Problems of shared understanding}\label{sec:semproblems}
@@ -76,9 +87,7 @@ that inference, and how partial understanding is common in everyday
 life and will also be sufficient in my cases on the Web. The practice
 of using inference to find a common understanding is now known as
 ontology matching or ontology alignment, and is a very active area of
-research.
-
-% TODO, take some open problems in ontology alignment
+research.\todo{take some open problems in ontology alignment}
 
 \begin{problem}\label{prob:infgivecode}
 How can suitable inference engines be made available to all users?
@@ -214,7 +223,7 @@ and the client, no information beyond that is needed. As such, the
 importance of ``View Source'' extends well beyond the original
 motivation of learning by example. More concretely, hypermedia can be
 used to describe simple query interfaces, define how read-write
-operations are to be made, etc. %TODO more here
+operations are to be made, etc. \todo{more here}
 
 \begin{problem}\label{prob:lapis}
 Developers who are not well versed in RDF need a readily
@@ -311,7 +320,7 @@ planner for such a purpose. Rather than writing a prototypical query
 engine for illustrative purposes, we wanted to integrate it into a
 fully compliant SPARQL query engine, and address
 problems~\ref{prob:breakdown},~\ref{prob:complexapi}~and~\ref{prob:dontjustpass}. This
-is explained in Section~\ref{sec:conpush}
+is explained in Section~\ref{sec:conpush}.
 
 
 Before addressing Problem~\ref{prob:syntacticcache}, I found that the
@@ -327,7 +336,20 @@ this work does not allow a satisfactory solution to these
 problems. The paper discussed in Section~\ref{sec:conphil} is
 motivated in part from these problems.
 
-TODO: Paper yet to be done on caching.
+Finally, the intention was to bring convergence to the topics of this
+thesis around a system to cache results that could be reused in
+subsequent queries. As noted in Section~\ref{sec:motivcache}, this was
+motivated by opportunity as well as problems, but it is intended to
+address
+problems~\ref{prob:syntacticcache}~and~\ref{prob:cachecartesian}. In
+addition, problems~\ref{prob:zipf}~and~\ref{prob:uniform} are
+compounded by Problem~\ref{prob:nostats}, but alleviated somewhat by
+the presence of cardinality estimates given by Triple Pattern
+Fragments, which we exploit. 
+
+
+
+
 
 \subsection{Future work; Discussion of other problems}
 
@@ -348,13 +370,13 @@ so that clients can avoid asking them. The HTTP/2 specification
       exhibiting a behavior that might be generating excessive load.
 \end{quote}
 
-% TODO: Discuss characteristic sets?
+\todo{Discuss characteristic sets?}
 
 Problem~\ref{prob:queryeq} is best addressed by creating hashing
 algorithms that have a reasonable chance of returning the same digest
-if two queries are equivalent. This problem was addressed by
-\cite{papailiou2015graph} and their approach might be portable to be
-used in an HTTP context. 
+if two queries are equivalent. As noted in Section~\ref{sec:relcache},
+the approach \cite{papailiou2015graph} took to canonical labelling may
+be extended to address this problem.
 
 I have not approached any of the problems of
 Section~\ref{sec:semproblems}, mainly because I think it is an open
