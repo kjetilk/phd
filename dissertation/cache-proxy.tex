@@ -12,7 +12,7 @@ The system is in the convergence of the directions described in this
 dissertation: It should relieve the remote endpoint of some of the
 burden to evaluate the query and it should add to the robustness of the
 open Web SPARQL infrastructure. It uses hypermedia to answer individual
-triple patterns, based on Triple Pattern Fragments  \cite{ldf1}. The
+triple patterns, based on Triple Pattern Fragments (TPF) \cite{ldf1}. The
 system can only answer triple patterns, but other than that, supports
 SPARQL 1.1 in its entirety. This was made possible to develop quickly
 by the efforts put into the query planning in the Attean framework
@@ -139,11 +139,11 @@ caches the response \circled{4}. At some point, it may be able to
 answer the entire query using only cached results, as illustrated by
 request and response \circled{5}.
 
-Finally note that in this text, the term Triple Pattern Fragment is
-understood as a specialisation of Linked Data Fragments, in which a
-Triple Pattern Fragment server must be able to answer any triple
-pattern, whereas for a Linked Data Fragments server, this is not
-required. However, there is no difference in the current
+Finally note that in this text, the term Triple Pattern Fragment (TPF)
+is understood as a specialisation of Linked Data Fragments (LDF), in
+which a Triple Pattern Fragment server must be able to answer any
+triple pattern, whereas for a Linked Data Fragments server, this is
+not required. However, there is no difference in the current
 implementation, so in practice, the terms could be used
 interchangeably.
 
@@ -356,7 +356,7 @@ separate module, but that module was subsequently adopted by me, and I
 have written most of the functionality. It composes the TripleStore
 and CostPlanner APIs and implements triple pattern queries and
 cardinality estimates, both provided by the underlying client code as
-they are a part of the core functionality of Triple Pattern Fragments,
+they are a part of the core functionality of TPF,
 as well as \pcode{cost\_for\_plan}.
 
 It also supplies a plan class \pmodule{AtteanX::Plan::LDF::Triple}
@@ -414,7 +414,7 @@ configurable limit, it will publish that triple pattern to the same
 Redis channel as above. 
 
 Another persistent script is subscribed to this latter channel. If the
-Model supports Linked Data Fragments, a retriever will then download
+Model supports LDF, a retriever will then download
 the results of the triple pattern and enter it into the cache, or use
 a single triple pattern SPARQL query if not. The current
 implementation assumes that both and LDF server and a SPARQL endpoint
@@ -449,7 +449,7 @@ Attean internals. The system has in fact three query planners:
 \pmodule{AtteanX::Query::Cache::Analyzer::QueryPlanner}. Each is an
 extension of the previous. The first is written to use a remote
 endpoint in combination with a local cache. The second extends this to
-also be able to generate and use Triple Pattern Fragments plans. The
+also be able to generate and use TPF plans. The
 final is a query planner for the analyser in Section~\ref{sec:analpre}
 that reruns the query planning with all triple patterns in a simulated
 cache.
@@ -510,7 +510,7 @@ models, I have considered this to be future work, and only a small
 heuristic cost model is present in the current system. 
 
 However, since the combination of remotely executed SPARQL with a
-local cache and Triple Pattern Fragments is rather complex, the cost
+local cache and TPF is rather complex, the cost
 heuristics are fairly elaborate. Moreover, since the objective of the
 study is to take load off of the remote endpoint, the heuristics is
 intended to make the proxy work harder than the remote endpoint.
@@ -628,7 +628,7 @@ SELECT ?name WHERE {
 
 The query was chosen because of its wide variety in terms of
 selectivity of the individual triple patterns. The retriever managed
-to pull all the data from the Linked Data Fragments version of DBpedia
+to pull all the data from the LDF version of DBpedia
 within some hours. 
 
 The cache was kept in a Redis data structure database on a machine
@@ -740,7 +740,7 @@ factors might be:
 \begin{enumerate}
 \item Use of the cache and remote endpoints where the levels are on
   and off.
-\item Use of a caching Linked Data Fragments client, levels on and
+\item Use of a caching LDF client, levels on and
   off.
 \item Use the predicate count analyser, levels on and off.
 \item Use the best cost improvement analyser, levels on and off.
@@ -753,7 +753,7 @@ factors might be:
 
 While this design would achieve the goal that a combination of levels
 would correspond to the null hypothesis, certain levels are somewhat
-problematic. For example, the Linked Data Fragments client in point~2
+problematic. For example, the LDF client in point~2
 might be an implementation of \cite{verborgh2014querying}, but that
 would be very different from the combination of point~1~and~2, which
 correspond to the usage of
@@ -804,7 +804,7 @@ thus creating a problematic Cartesian join. Additionally, in this
 test, the results of the two first triple patterns have been
 cached. \textit{A priori}, I have assumed that the best plan is a plan
 where the cache is used for these two triple patterns, the last triple
-pattern is answered by a Linked Data Fragments server and the last two
+pattern is answered by a LDF server and the last two
 triple patterns are coalesced into a new SPARQL query, and evaluated
 remotely. This is also coded as a pass criterion for the test. With
 the simple query planner, this test passes, but not with the IDP
