@@ -36,6 +36,15 @@ following the principle of indifference, assumes uniform
 distributions.
 \end{problem}
 
+Heterogeneity should also be expected in different types of servers
+and clients, in particular
+
+\begin{problem}\label{prob:microcontroller}
+A client running on a microcontroller does not have significant
+processing capability.
+\end{problem}
+
+
 
 Caching plays an important role in the Web architecture
 \cite{Jacobs:04:AWW}, because previous responses may be reused to
@@ -341,11 +350,14 @@ thesis around a system to cache results that could be reused in
 subsequent queries. As noted in Section~\ref{sec:motivcache}, this was
 motivated by opportunity as well as problems, but it is intended to
 address
-problems~\ref{prob:syntacticcache}~and~\ref{prob:cachecartesian}. In
-addition, problems~\ref{prob:zipf}~and~\ref{prob:uniform} are
-compounded by Problem~\ref{prob:nostats}, but alleviated somewhat by
-the presence of cardinality estimates given by Triple Pattern
-Fragments, which we exploit. 
+problems~\ref{prob:syntacticcache}~and~\ref{prob:cachecartesian}.
+Triple Pattern Fragments shifts most of the processing from servers to
+clients, but Problem~\ref{prob:microcontrollers} makes that in some
+cases infeasible.  In addition,
+problems~\ref{prob:zipf}~and~\ref{prob:uniform} are compounded by
+Problem~\ref{prob:nostats}, but alleviated somewhat by the presence of
+cardinality estimates given by Triple Pattern Fragments, which we
+exploit.
 
 
 
@@ -406,7 +418,10 @@ and this builds in part on the insight I contributed when addressing
 Problem~\ref{prob:lapis}. Their solution was to define an ontology to
 describe an interface that can answer a single triple pattern, but
 since it is hypermedia, it can be described in the messages of the
-protocol.
+protocol. However, the solution in \cite{verborgh2014querying} does
+not take into account Problem~\ref{prob:microcontroller}, so query
+planning that shifts the burden to a cost-model driven balance between
+server, proxy and client is an interesting direction.
 
 I believe that the core of Problem~\ref{prob:dynaprog} lies in the
 prevalence of statically typed languages. From an engineering
