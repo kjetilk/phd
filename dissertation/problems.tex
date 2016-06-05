@@ -421,7 +421,11 @@ since it is hypermedia, it can be described in the messages of the
 protocol. However, the solution in \cite{verborgh2014querying} does
 not take into account Problem~\ref{prob:microcontroller}, so query
 planning that shifts the burden to a cost-model driven balance between
-server, proxy and client is an interesting direction.
+server, proxy and client is an interesting direction. In this context,
+it should be noted that HTTP/2 \cite{rfc7540} is intended to make
+multiple requests less expensive, and it is interesting to study the
+practical impact of this as it could impact the cost of making many
+HTTP requests substantially.
 
 I believe that the core of Problem~\ref{prob:dynaprog} lies in the
 prevalence of statically typed languages. From an engineering
