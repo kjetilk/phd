@@ -227,7 +227,7 @@ Traits are groups of methods that serve as a primitive unit of code
 reuse. Traits are not constructed to objects themselves and do not
 use inheritance for composition, instead a class is composed by a set of
 traits and possibly the class' own methods, and then instantiated. A
-trait can also require a set of methods, and as such, is similar to
+trait can also require a set of methods or attributes, and as such, is similar to
 interfaces, but since its focus is code reuse, it can also provide a
 default implementation. 
 
@@ -304,7 +304,7 @@ estimated. How this happens in detail depends on how the planner is
 composed. Attean comes with two roles that implement different
 planners, \pmodule{Attean::API::SimpleCostPlanner} will compute all
 possible plans and then estimate the cost of all plans, and finally
-return the best 5. \pmodule{Attean::API::IDPJoinPlanner}, which
+return the best 5. \pmodule{Attean::API::IDPJoinPlanner}
 implements an Iterative Dynamic Programming planner
 \cite{Kossmann:2000:IDP:352958.352982}, which prunes plans
 aggressively based on their estimated cost in each iteration of query
