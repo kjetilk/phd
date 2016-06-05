@@ -134,6 +134,16 @@ awareness of these important Web standards in the Semantic Web community.
 Although the support for caching headers is not yet widespread, it is
 sufficient to perform experiments on real-world data.
 
+The main shortcoming of this paper was that I didn't attempt to
+validate the recorded freshness lifetime against the true change
+frequency recorded by \cite{dyldo2} and discussed by
+\cite{Dividino2015}. It would be interesting to see how common it is
+that the given freshness lifetime, both given as standard-compliant
+caching and from existing heuristics, is wrong. There are two types of
+errors: That the freshness lifetime is too short, i.e., we could have
+cached it longer, and that it is too long, i.e., we would serve stale
+data.
+
 \subsection{Philosophy of Science}\label{sec:conphil}
 
 Dissatisfaction with the methodology used in the literature,
