@@ -10,7 +10,7 @@ may prefetch the results of certain triple patterns into the cache.
 
 The system is in the convergence of the directions described in this
 dissertation: It should relieve the remote endpoint of some of the
-burden to evaluated the query and it should add to the robustness of the
+burden to evaluate the query and it should add to the robustness of the
 open Web SPARQL infrastructure. It uses hypermedia to answer individual
 triple patterns, based on Triple Pattern Fragments  \cite{ldf1}. The
 system can only answer triple patterns, but other than that, supports
@@ -104,10 +104,10 @@ knowledge of the data than what is exposed through the SPARQL Endpoint
 or hypermedia metadata. While this would be known as a mediator in the
 database literature and has also been a field of study for 20 years, I
 focus on a practical motivation stemming mainly from what is currently
-available, and in practice, there is very little information. Also,
-this study is also practically restricted to HTTP. If the cache is to
-be shared, then it would typically reside on the forward proxy, or in
-a CDN.
+available. In current practice, very little information is available
+to the mediator. Also, this study is also practically restricted to
+HTTP. If the cache is to be shared, then it would typically reside on
+the forward proxy, or in a CDN.
 
 Figure~\ref{fig:messaging} illustrates the case where HTTP messages
 are being passed, where the cache is assumed to reside on a
