@@ -86,7 +86,7 @@ LDP has to be superseded by hypermedia in some way.
 
 \subsection{Query answering with cache}\label{sec:relcache}
 
-First, we note some claims that SPARQL query caching is not possible:
+First, we note a claim that SPARQL query caching is not possible:
 In \cite{hogan2014paths}, the authors examine cacheable as one of the
 desiderata for sustainable data access. They claim, without further
 justification, that SPARQL isn't cacheable. With this work and much of
@@ -112,9 +112,10 @@ Chapter~\ref{sec:tpfcacheplanning}. An important concept in the HERMES
 system is ``invariants''. They are, in our terminology, patterns that
 do not need to be looked up remotely, but can be integrated in the
 query answer by the mediator. The expectation in HERMES is that such
-invariants will be encoded by a domain expert. The Attean framework
-provides facilities to do so by using traits. Attean can also pass the
-task of computing a scalar cost metric by a similar mechanism, but
+invariants will be encoded by a domain expert. The Attean framework,
+which is used extensively in this work and is detailed in Section~\ref{sec:attean}
+provides facilities to do this in an easy and extensible way, and also
+accommodates for the task of computing a scalar cost metric, but
 HERMES has a more advanced cost model in that it has a cost vector
 with estimates for time required to find the first answer, time to
 find all answers and the cardinality of the answer set. Caching
