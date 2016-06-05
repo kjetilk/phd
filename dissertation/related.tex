@@ -232,8 +232,8 @@ approach in Chapter~\ref{sec:tpfcacheplanning} in that it replicates
 an entire dataset rather than just fragments.
 
 Naturally, the problem of caching in a proxy has much in common with
-the federation problem, as the cache, as seen from the query execution
-engine's perspective, could be view as yet another possible data
+the federation problem as the cache, as seen from the query execution
+engine's perspective, could be viewed as yet another possible data
 source, and the number of HTTP requests to the remote endpoint can be
 wisely assumed to be kept small. Schwarte et
 al. \cite{springerlink:10.1007/978-3-642-25073-6-38} addressed these
@@ -282,13 +282,13 @@ insufficiently motivated, and therefore the evaluation is
 inadequate. First, the \httph{Last-Modified} header is far from the
 only cache-relevant header, as should be evident by the fact that it
 is not defined in the cache standard, RFC7234, but in the conditional
-request standard, RFC7232. Moreover, RFC7234 contains a Section~4.2.2.
+request standard, RFC7232. Moreover, RFC7234 contains a Section~4.2.2
 titled ``Calculating Heuristic Freshness''. It is my opinion that the
 paper should be framed within the loose constraints of this section,
 where it could make a substantial contribution. As it stands, it would
 serve to violate Web standards, which in my opinion, is something the
 Semantic Web community should be more cautious about. RFC7234's
-Section~4.2.2. also proposes a simple heuristic for calculating
+Section~4.2.2 also proposes a simple heuristic for calculating
 freshness lifetime. I found that the distribution of this heuristic
 freshness lifetime agrees well with The Dynamic Linked Data
 Observatory (DyLDO) \cite{dyldo2}. However, a weakness of my study
@@ -309,7 +309,7 @@ RFC7232. After considering cache prohibitions, explicit expiration
 times, opaque validators, simpler heuristics, etc., the space where
 learning the change frequency could be applied is likely much
 smaller. However, if understood as a sophisticated heuristic within
-the constraints of RFC7234's Section~4.2.2., the contribution is
+the constraints of RFC7234's Section~4.2.2, the contribution is
 valuable.
 
 %\subsection{Tools for developer efficiency}
