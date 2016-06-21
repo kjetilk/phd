@@ -1,5 +1,5 @@
 
-\chapter{Prefetching SPARQL query cacher}\label{sec:tpfcacheplanning}
+\chapter{Prefetching SPARQL Query Cacher}\label{sec:tpfcacheplanning}
 
 \section{Introduction}
 
@@ -216,7 +216,7 @@ will supply an explicit freshness lifetime.
 \pmodule{AtteanX::Endpoint} is an implementation of the server side of
 SPARQL 1.1 Protocol. The system is further detailed in the following sections:
 
-\subsection{The Attean framework}\label{sec:attean}
+\subsection{The Attean Framework}\label{sec:attean}
 
 The Attean framework was born from the experiences the PerlRDF
 community gained with \pmodule{RDF::Trine}, the Perl counterpart to
@@ -320,7 +320,7 @@ will become clear as we study the details of the implementation in
 Section~\ref{sec:implqueryplan}.
 
 
-\subsection{SPARQL protocol client}\label{sec:sparqlclient}
+\subsection{SPARQL Protocol Client}\label{sec:sparqlclient}
 
 The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
 Protocol client that implements Attean APIs. The store implementation
@@ -344,7 +344,7 @@ through a variable (i.e. will cause a Cartesian join) with a factor
 10. See Section~\ref{sec:costheuristics} for details on the cost
 heuristics.
 
-\subsection{Linked Data Fragment client}\label{sec:ldfclient}
+\subsection{Linked Data Fragment Client}\label{sec:ldfclient}
 
 The Linked Data Fragment client work was started prior to this project
 by Patrick Hochstenbach, and consists of the client code for Triple
@@ -363,7 +363,7 @@ as well as \pcode{cost\_for\_plan}.
 It also supplies a plan class \pmodule{AtteanX::Plan::LDF::Triple}
 used in the query planning. 
 
-\subsection{The caching proxy}\label{sec:cacher}
+\subsection{The Caching Proxy}\label{sec:cacher}
 
 The caching proxy consists of several components:
 
@@ -393,7 +393,7 @@ the cache key.
 The main technical contributions are in the analysis of the query and
 in the query planning.
 
-\subsubsection{Analysis and prefetching}\label{sec:analpre}
+\subsubsection{Analysis and Prefetching}\label{sec:analpre}
 
 Analysers and prefetchers run asynchronously with query
 evaluation. This is achieved by an addition to the proxy that sends a
@@ -440,7 +440,7 @@ extension to the plan class in Section~\ref{sec:ldfclient}.
 
 
 
-\subsubsection{Query planner}\label{sec:implqueryplan}
+\subsubsection{Query Planner}\label{sec:implqueryplan}
 
 The query planner is written as completely stand-alone modules, based
 on the facilities in the Attean framework, but without accessing
@@ -605,7 +605,7 @@ prevented further investigation. Thus, this section consists of an
 account of the evaluation that were performed and the methodology I
 planned to employ.
 
-\subsection{Actual evaluation}
+\subsection{Actual Evaluation}
 
 I decided to set the entire system up as a proxy server, and run a
 realistic query against DBpedia repeatedly. The intention was to let
@@ -693,7 +693,7 @@ While most of the time is spent in parsing and comparison, the hash
 joins also require too much time. A discussion of possible
 improvements will follow in Section~\ref{sec:discussfail}.
 
-\subsection{Planned evaluation}\label{sec:planned}
+\subsection{Planned Evaluation}\label{sec:planned}
 
 This section outlines the evaluation I had planned to employ on the
 query cacher. The essence is to perform a ``query log replay, while
@@ -784,7 +784,7 @@ common one-sided two-sample $t$-test can be performed.\todo{Discuss
 
 \section{Discussion}
 
-\subsection{Join rotation and Iterative Dynamic
+\subsection{Join Rotation and Iterative Dynamic
   Programming}
 
 While the system used a simple brute-force query planner in the above
@@ -849,7 +849,7 @@ This procedure would allow the cost model to balance the cost between
 doing a Cartesian join and doing a remote SPARQL evaluation of data
 already in the cache, as plans for both these options would be provided.
 
-\subsection{Remedies for performance issues}\label{sec:discussfail}
+\subsection{Remedies for Performance Issues}\label{sec:discussfail}
 
 One may raise the issue that it was a bad idea to begin with to use a
 scripting language like Perl to write a query engine with performance
