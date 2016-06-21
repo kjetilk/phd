@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt, draft]{uiophd}
+\documentclass[a4paper, 12pt]{uiophd}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage{multirow}
@@ -7,6 +7,7 @@
 \usepackage{cite}
 \usepackage{amsthm}
 \usepackage{tikz}
+\usepackage{pdfpages}
 \usepackage[obeyDraft]{todonotes}
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
@@ -63,4 +64,12 @@
 \bibliography{management,dataprofiles,federation,dynamicity,hypermedia,specs,webarch,practical,semweb,caching,critisism,data,philosophy,benchmarks,rfc,programming,egne,optimization}
 \bibliographystyle{plain}
 
+\chapter{Papers}
+
+\includepdf[pages=1-last,openright]{/home/kjetil/uio/www_docs/2012/hypermedia-rdf.pdf}
+\includepdf[pages=1-last,openright]{/home/kjetil/uio/www_docs/2013/iswc.pdf}
+\includepdf[pages=1-last,openright]{paper14.pdf}
+\includepdf[pages=1-last,openright]{/home/kjetil/uio/www_docs/2015/cache-survey.pdf}
+\includepdf[pages=1-last,openright]{report.pdf}
+\includepdf[pages=1-last,openright]{noise.pdf}
 \end{document}
