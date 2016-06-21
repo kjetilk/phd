@@ -94,6 +94,18 @@ the below related work, I suggest they are mistaken. Not only can
 whole SPARQL queries be cached, but it is possible to break down the
 query to parts that can be cached.
 
+As such, this mirrors an extensive development known as ``Semantic
+Caching'' in the database community. Ahmad et al. \cite{4777801}
+surveyed the state of the art in that area. They divided caching
+approaches into \emph{page}, \emph{tuple} and \emph{semantic} caches,
+and noted that in the two former cases, if only partial results were
+available in the cache, the entire result would have to be fetched
+from the remote database. Indeed, a page or tuple cache may be used to
+cache the results of a whole SPARQL query in HTTP context, but SPARQL
+queries are also trivial to partition by e.g. triple patterns or Basic
+Graph Patterns, which provides further opportunities for caching where
+only partial results are available.\todo{Have I understood this correctly?}
+
 Two papers that span nearly two decades of research are of particular
 interest: The HERMES system \cite{adali1996query} considered query
 processing and cost-model based optimisation in a mediator system
