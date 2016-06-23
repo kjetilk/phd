@@ -15,7 +15,33 @@ form\cite{semwebroadmap}.
 
 The Semantic Web is built on a number of specifications that has been
 developed under the auspices of the World Wide Web Consortium. The
-core technology is known as Resource Description Framework (RDF). 
+core technology is known as the Resource Description Framework
+(RDF). The framework is defined in a suite of specifications, defining
+concepts and abstract syntax, semantics, and several concrete
+syntaxes.
+
+Conceptually, an RDF statement is a triple, where the terms are a
+subject, a predicate and an object. The building blocks for these
+triples are literals, blank nodes and Internationalized Resource
+Identifiers (IRI). IRIs builds on the familiar URL: Uniform Resource
+Locator, informally known as a Web address,
+e.g. \url{https://www.w3.org/RDF/} is an address for a document about
+RDF. On the Semantic Web, the URL is first generalised to a Uniform
+Resource Identifier, URI, that can not only name a document on the
+Web, but any resource. A resource can be a physical thing, like a
+person, or an abstract thing, like the type of weather at some place
+at some time, numbers, strings, etc. Then, URIs are extended to IRIs
+to enable the use of any character in them. Literals are strings with
+a datatype (denoted by a IRI), and optionally a language tag. Finally,
+blank nodes are unnamed nodes. RDF defines which of these building
+blocks may be used for what term: The subject may be a IRI or a blank
+node, the predicate only a IRI, whereas the object may be a literal,
+blank node or IRI.
+
+
+
+
+
 
 The present work sits in the confluence of several contemporary
 efforts in the Semantic Web community. The focus is on query answering
