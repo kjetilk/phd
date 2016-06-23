@@ -86,7 +86,11 @@ Note that all the IRIs uses the HTTP schema. The Hypertext Transfer
 Protocol (HTTP) is the main application protocol used on the Internet
 for the Web, and is also the protocol used most for the Semantic
 Web. It is a request-response protocol in a client-server computing
-model, but also accommodates for intermediate proxies.
+model, but also accommodates for intermediate proxies. HTTP messages
+consist of a header, typically with metadata, and a body, which is the
+content itself. The standard defines several headers that can be used
+to control caching on either the client, the server or an intermediate
+proxy.
 
 Also, note that all IRIs in this example are \emph{dereferenceable},
 meaning that if an HTTP client is used, a representation of the
@@ -146,6 +150,8 @@ machine-machine interactions.
 
 In this context, hypermedia types is a way to classify what kind of
 operations a certain media type can help the application perform.
+
+
 
 The present work sits in the confluence of several contemporary
 efforts in the Semantic Web community. The focus is on query answering
