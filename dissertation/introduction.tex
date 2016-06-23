@@ -1,5 +1,7 @@
 \chapter{Introduction}
 
+\section{Semantic Web Technology}
+
 The World Wide Web, or just the Web for short, is a well-known global
 information space invented by Tim Berners-Lee in 1989, further emerged
 in the 1990-ties. It is characterised first and foremost by its
@@ -70,9 +72,9 @@ simple graph expressed in Turtle could be:
 The example opens with prefix declarations, to allow abbreviating
 IRIs, e.g. the predicate \rdfterm{foaf:name} is an abbreviation of the
 IRI \rdfterm{http://xmlns.com/foaf/0.1/name}. The IRI
-\rdfterm{http://www.kjetil.kjernsmo.net/foaf#me} is a name for this
+\rdfterm{http://www.kjetil.kjernsmo.net/foaf\#me} is a name for this
 author. The \rdfterm{a} predicate is standards-defined abbreviation
-for \rdfterm{http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, which
+for \rdfterm{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type}, which
 is used for declaring the subject an instance of a class, in this case
 \rdfterm{foaf:Person}. Then, the \rdfterm{foaf:publications} predicate
 is used to link to an author-published version of one of the
@@ -195,6 +197,8 @@ machine-machine interactions.
 In this context, hypermedia types is a way to classify what kind of
 operations a certain media type can help the application perform.
 
+\section{Contributions}\label{sec:contribsum}
+
 The present work sits in the confluence of several contemporary
 efforts in the Semantic Web community. The focus is on query answering
 with the SPARQL query language, with emphasis on exploiting the World
@@ -202,10 +206,6 @@ Wide Web, but it touches upon query federation, hypermedia, empiricial
 methods for evaluating performance, standards compliance and even
 philosophy of science. 
 
-
-
-
-\section{Contributions}
 
 \subsection{Hypermedia}
 
@@ -235,8 +235,7 @@ philosophy of science.
   databases.
 \item Simplification when implementing experimental features in
   SPARQL.
-\item Make it possible to compose custom query planners that doesn't
-  require inheritance.
+\item Novel programming techniques for custom query planners.
 \end{enumerate}
 
 \subsection{Survey of HTTP Caching}
