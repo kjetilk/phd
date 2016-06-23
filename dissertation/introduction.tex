@@ -38,8 +38,52 @@ blocks may be used for what term: The subject may be a IRI or a blank
 node, the predicate only a IRI, whereas the object may be a literal,
 blank node or IRI.
 
+The use of IRIs makes it possible to view RDF statements as a directed
+graph, where the subject IRI is a vertex, the predicate is an edge to
+an object vertex\footnote{In general it is more precisely described as a
+  partially labelled directed pseudograph with unique node labels}.
 
+For historical reasons, the first syntax that was standardised for RDF
+was an syntax based on the tree-structured Extensible Markup Language
+(XML). The simplest standardised syntax is known as N-Triples, where
+each statement is written on a single line, where each IRI is written
+out in full. The basic building blocks of N-Triples has been reused to
+create a compact and natural text form syntax, known as Turtle. Turtle
+has gained traction, and is well established as a common syntax. A
+simple graph expressed in Turtle could be:
 
+\begin{verbatim}
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix dct:  <http://purl.org/dc/terms/>.
+
+<http://www.kjetil.kjernsmo.net/foaf#me> a foaf:Person ;
+    foaf:name "Kjetil Kjernsmo" ;
+    foaf:publications <http://folk.uio.no/kjekje/2013/iswc.pdf> .
+<http://folk.uio.no/kjekje/2013/iswc.pdf> a foaf:Document ;
+    dct:title "Introducing Statistical Design of Experiments to SPARQL Endpoint Evaluation" ; 
+    dct:creator <http://www.kjetil.kjernsmo.net/foaf#me>, 
+                <http://data.semanticweb.org/person/john-s-tyssedal> .
+\end{verbatim}
+
+The example opens with prefix declarations, to allow abbreviating
+IRIs, e.g. the predicate \rdfterm{foaf:name} is an abbreviation of the
+IRI \rdfterm{http://xmlns.com/foaf/0.1/name}. The IRI
+\rdfterm{http://www.kjetil.kjernsmo.net/foaf#me} is a name for this
+author. The \rdfterm{a} predicate is standards-defined abbreviation
+for \rdfterm{http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, which
+is used for declaring the subject an instance of a class, in this case
+\rdfterm{foaf:Person}. Then, the \rdfterm{foaf:publications} predicate
+is used to link to an author-published version of one of the
+publications of this dissertation, and further information is then
+provided about this publication, including a link to the co-author. As
+we see, semicolons are used to separate statements that share a
+subject, commas separate statements with the same subject and
+predicate, while periods terminate a statement. 
+
+Also, note that all IRIs in this example are \emph{dereferenceable},
+meaning that if an HTTP client is used, a representation of the
+resource can be retrieved across the Internet. This, along with that
+it is expressed as RDF, makes the above so-called Linked Data.
 
 
 
