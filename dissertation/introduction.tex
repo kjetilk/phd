@@ -117,8 +117,9 @@ This triple pattern will match the two triples
 <http://www.kjetil.kjernsmo.net/foaf#me> a foaf:Person .
 <http://folk.uio.no/kjekje/2013/iswc.pdf> a foaf:Document .
 \end{verbatim}
-from the above example. Frameworks in popular programming languages
-commonly have a method that implements this.
+from the above example (prefixes omitted for brevity). Frameworks in
+popular programming languages commonly have a method that implements
+this.
 
 The triple pattern is also a fundamental building block of the SPARQL
 query language, which is the language that is the main topic of this
@@ -133,6 +134,48 @@ expressions. Together, they are known as a Basic Graph Pattern
 SPARQL also introduced a mechanism for naming a graph or parts of a
 graph with a IRI, an approach that was subsequently adopted by
 RDF. Today, RDF is not just a triple, but may be a quad.
+
+To execute a query, a SPARQL engine would typically parse the query to
+create a tree of algebra objects (in the case where an object oriented
+programming language is used) in the process. Then, a query planner
+component would traverse the algebra tree, and for each algebra object
+or branch of algebra objects, the query planner finds various ways to
+access the data in the underlying store or execute other
+operations. In many programming frameworks, the only way to access
+data is through matching a triple pattern. If that is the case and
+the incoming query consists of just a BGP, the query planner's task
+would simply be to match all the triple patterns and join their
+results, and finally apply any constraining filters. 
+
+However, even though the result does not depend on the order of
+execution, the time it takes to find the result often does. For
+example, consider the following BGP:
+\begin{verbatim}
+?subject foaf:name ?name ;
+         foaf:workplaceHomepage <http://example.com/> ;
+         foaf:made ?contribution .
+\end{verbatim}
+In most cases, if the triple pattern with the \rdfterm{foaf:name}
+predicate is evaluated first, it is likely to match many resources,
+since nearly everything may have a name, and therefore, it does not
+reduce the number of statements that needs to be searched when
+matching the next triple pattern by much. Instead, the
+\rdfterm{foaf:workplaceHomepage} may be matched first, as we may guess
+the fact that the object is given will be more restrictive, but that
+too fails if everyone in the database works for the same organisation
+and has used this predicate. It is the query planner's task to choose
+between equivalent plans to ensure that the most efficient evaluation
+is chosen. As is clear from this example, it is often insufficient to
+rely on such heuristics, and therefore, it is common to rely on a
+statistical digest in the query planner. Still, the task of query
+planning remains a very complex one, and often, insufficient
+statistics is available, so that planning is done using heuristics or
+based on assumptions that do not hold.
+
+Indeed, detailed knowledge of the data, such as a comprehensive
+statistical digest may be available close to the database, but is not
+exposed in ways that higher levels in the technology stack can make
+use of. In our case, this is especially true for a caching proxy.
 
 \subsection{Hypermedia}
 
