@@ -188,9 +188,8 @@ subsequent queries.
 
 The canonical labelling algorithm presented in this paper provides an
 opportunity for further work, when considered in an HTTP context: The
-\httph{ETag} header, defined in RFC7232 \cite{rfc7232}, can optionally
-contain an opaque identifier for a specific version of a resource
-representation, e.g. a SPARQL result. Such a canonical label could be
+\httph{ETag} header, discussed in Section~\ref{sec:httpcache}, can be
+used for a SPARQL result. Such a canonical label could be
 used in conjunction with an algorithm that tracks changes to the RDF
 graph to produce an \httph{ETag}. For slow-changing Linked Data, which
 is a common case, it is a possibility that a canonical label in

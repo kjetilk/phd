@@ -1,1 +1,40 @@
 \section{Preliminaries}
+
+\subsection{Caching in the Hypertext Transfer Protocol Standard}\label{sec:httpcache}
+
+Internet standards come in the shape of Requests for Comments (RFC),
+that it is hoped will gain traction to become \textit{de facto}
+standards. Two such RFCs regulate caching in the Internet when HTTP is
+used: RFC7234 ``Caching'' \cite{rfc7234} and RFC7232 ``Conditional
+Requests'' \cite{rfc7232}. In \cite{kjernsmo_survey_2015}, I provided
+some details on these standards in Section~1.1, that is worth
+reiterating to understand the problems and contributions of this
+work. 
+
+RFC7234 defines how clients and proxies may reuse a prior response
+without contacting the origin server at all. The server can do this by
+supplying a freshness lifetime. It also defines when clients and/or
+proxies may \emph{not} reuse a prior response, and what can be done
+with stale responses. It also contains a Section~4.2.2 titled
+``Calculating Heuristic Freshness'', which sets some loose constraints
+for when a prior response may be used even when the server has not
+supplied a freshness lifetime. These constraints include that
+heuristics may not be used if there is an explicit freshness lifetime,
+or the server prohibits caching. The section also proposes a simple
+heuristic for calculating freshness lifetime.
+
+RFC7232 defines a protocol for asking the origin server if the cached
+response is still fresh. Two response headers are relevant to achieve
+this: \httph{ETag} and \httph{Last-Modified}.  \httph{ETag} may
+contain an opaque identifier for a specific version of a resource
+representation, for example a query result. A client or proxy may then
+ask the origin server if the resource is still fresh, by sending a
+request with a \httph{If-None-Match} header. If the server is able to
+validate the resource representation, it will respond with a 304
+status code, otherwise it will return an updated representation. It
+may be of use if servers are able to generate and validate such opaque
+identifiers cheaply.
+
+The \httph{Last-Modified} header should contain the time of last
+modification of the resource representation. A similar protocol is
+used to validate it.
