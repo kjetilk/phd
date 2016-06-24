@@ -1,3 +1,80 @@
+
+
+\section[Future Work]{Future work; Discussion of Other Problems}
+
+As noted in Section~\ref{sec:motivation} it is clear that evaluating
+arbitrary SPARQL queries are in general unsustainable, and it is
+likely that the problems in Section~\ref{sec:perfproblems} are partly
+to blame for it. Our work, and most of the related work in
+Section~\ref{sec:related} approach this work from the direction of
+moving stress from the server, but it is also clear that another way
+to address Problem~\ref{prob:sparqlcomplex} is for the SPARQL engine
+to identify queries it would be too heavy to answer already when
+parsing or planning, and also expose that in the service description
+so that clients can avoid asking them. The HTTP/2 specification
+\cite{rfc7540} has some generic facilities that may be helpful: 
+
+\begin{quote}
+\texttt{ENHANCE\_YOUR\_CALM (0xb)}:  The endpoint detected that its peer is
+      exhibiting a behavior that might be generating excessive load.
+\end{quote}
+
+Problem~\ref{prob:queryeq} is best addressed by creating hashing
+algorithms that have a reasonable chance of returning the same digest
+if two queries are equivalent. As noted in Section~\ref{sec:relcache},
+the approach \cite{papailiou2015graph} took to canonical labelling may
+be extended to address this problem.
+
+I have not approached any of the problems of
+Section~\ref{sec:semproblems}, mainly because I think it is an open
+question which of these approaches will be adopted in practice, and
+whatever the solution may be, their designers should make sure they
+are orthogonal to the other problems discussed here. Thus, it was
+natural to consider them out of scope. 
+\todo{However, I shall assume that no inference is needed in the
+following examples.}
+
+Clearly, Problem~\ref{prob:lawsfuture} is a very interesting one, with
+important implications for evaluation, but also because it shifts the
+focus of our attention. In this work, the methodology used to study
+Problem~\ref{prob:sanity} could be used to gain such understanding,
+but at present, the field is too immature to attempt the formulation
+of any laws. As noted in Section~\ref{sec:history}, this study is
+partly motivated by my subjective experience of why the Web was so
+successful. Clearly, this should be studied more objectively, but I am
+not aware of any such study. Such study could also be applied to see
+if the experiences from the emergence of the Web can be applied to
+accelerating the Semantic Web, like I subjectively propose.
+
+Problem~\ref{prob:tpf} was along with
+problems~\ref{prob:sparqlcomplex},~\ref{prob:endpointunpred}~and~\ref{prob:syntacticcache}
+part of the motivation of \cite{ldf1} and \cite{verborgh2014querying},
+and this builds in part on the insight I contributed when addressing
+Problem~\ref{prob:lapis}. Their solution was to define an ontology to
+describe an interface that can answer a single triple pattern, but
+since it is hypermedia, it can be described in the messages of the
+protocol. However, the solution in \cite{verborgh2014querying} does
+not take into account Problem~\ref{prob:microcontroller}, so query
+planning that shifts the burden to a cost-model driven balance between
+server, proxy and client is an interesting direction. In this context,
+it should be noted that HTTP/2 \cite{rfc7540} is intended to make
+multiple requests less expensive, and it is interesting to study the
+practical impact of this as it could impact the cost of making many
+HTTP requests substantially.
+
+I believe that the core of Problem~\ref{prob:dynaprog} lies in the
+prevalence of statically typed languages. From an engineering
+perspective, static typing seems like a good idea, since errors should
+surface at compile time. However, it seems like it comes at a high
+cost: Programmers seem incapable of thinking beyond the constraints it
+sets. Nevertheless, the theoretical framework that seems to solve the
+problem was proposed in 1991 in the book ``The art of the metaobject
+protocol'' \cite{kiczales1991art}. Perl has a mature implementation of
+the metaobject protocol, and the topic has been discussed on several
+hackathons, and some code has been written, but the solution seems
+elusive.
+
+
 \section{Conclusions}\label{sec:conclusions}
 
 \begin{itemize}
