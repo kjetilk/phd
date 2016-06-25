@@ -283,47 +283,34 @@ than to evaluate the query. This also represent an alternative to HTTP
 
 Dividino et al. \cite{Dividino2015} proposed strategies to keep caches
 of Linked Open Data up to date, in face of changing data. The authors
-sets out to learn the change frequency of resources, and based on that
-schedule updates of the resources. This does then not depend on the
-resource metadata (neither HTTP headers nor metadata in the RDF
-itself, which I studied in \cite{kjernsmo_survey_2015}), which is
-motivated by their finding that only 8\% of \httph{Last-Modified}
-headers they surveyed reflected the true change frequency. While I
-have no reason to doubt this finding, and the monitoring approach is
-interesting, I think the dismissal of resource metadata is
-insufficiently motivated, and therefore the evaluation is
-inadequate. First, the \httph{Last-Modified} header is far from the
-only cache-relevant header, as should be evident by the fact that it
-is not defined in the cache standard, RFC7234, but in the conditional
-request standard, RFC7232. Moreover, RFC7234 contains a Section~4.2.2
-titled ``Calculating Heuristic Freshness''. It is my opinion that the
-paper should be framed within the loose constraints of this section,
-where it could make a substantial contribution. As it stands, it would
-serve to violate Web standards, which in my opinion, is something the
-Semantic Web community should be more cautious about. RFC7234's
-Section~4.2.2 also proposes a simple heuristic for calculating
-freshness lifetime. I found that the distribution of this heuristic
-freshness lifetime agrees well with The Dynamic Linked Data
-Observatory (DyLDO) \cite{dyldo2}. However, a weakness of my study
-which could make this observation irrelevant, is that I considered
-only summary statistics. If the change frequency of individual
-resources were wrong, in particular, if the use of the simple
-heuristic lead to using stale content, it would be inappropriate to
-use the simple heuristic.  RFC7234's explicitly prohibits the use of a
-heuristic if an explicit expiration time is present, yet the paper
-does not attempt to include those in their assessment. Furthermore, I
-found in \cite{kjernsmo_survey_2015} that cache prohibitions were
-common. While they in many cases may be misguided, they nevertheless
-express a strong statement from the server administrators, that should
-be respected. RDF data, e.g. \rdfterm{dct:valid} and
-\rdfterm{dct:modified} could also be used to compute a expiration
-time. Finally, an opaque validator, \httph{ETag} is also a part of
-RFC7232. After considering cache prohibitions, explicit expiration
-times, opaque validators, simpler heuristics, etc., the space where
-learning the change frequency could be applied is likely much
-smaller. However, if understood as a sophisticated heuristic within
-the constraints of RFC7234's Section~4.2.2, the contribution is
-valuable.
+set out to learn the change frequency of resources representations,
+and based on that schedule updates of them as efficiently as possible
+under bandwidth constraints. Instead of relying on resource metadata,
+the authors propose an algorithm that iteratively ensures the quality
+of the cache by examining the resource representations that have been
+downloaded and compute certain metrics, such a dynamicity and
+changerate.
+
+
+While the approach is interesting and useful, I nevertheless have some
+points of critisism: They motivate their approach from an earlier
+finding that only 8\% of \httph{Last-Modified} headers they surveyed
+reflected the true change frequency. While I have no reason to doubt
+this finding, the authors boldly go on to claim that `` The only
+alternative [to \httph{Last-Modified}] is to actually retrieve the
+data from the sources and check it for changes.'', but this
+contradicts the results I found in \cite{kjernsmo_survey_2015}. The
+authors have not considered all alternatives, including not the
+alternative presented by the HTTP caching standard RFC7234 discussed
+in Section~\ref{sec:httpcache}, which invalidates that
+assertion. Moreover, the author's approach would violate RFC7234 in
+the case where their algorithm caches results that should not be
+cached or has an explicit freshness lifetime, as discussed in
+Section~\ref{sec:httpcache}. As a general observation, it is my belief
+that the Semantic Web community should be more cautious about
+violating core Web standards.
+
+
 
 %\subsection{Tools for developer efficiency}
 %\todo{more here}
