@@ -9,13 +9,13 @@ triple patterns. It will asynchronously analyse executed queries, and
 may prefetch the results of certain triple patterns into the cache.
 
 The system is in the convergence of the directions described in this
-dissertation: It should relieve the remote endpoint of some of the
+thesis: It should relieve the remote endpoint of some of the
 burden to evaluate the query and it should add to the robustness of
 the open Web SPARQL infrastructure. It uses hypermedia to answer
 individual triple patterns, based on Triple Pattern Fragments (TPF)
 \cite{ldf1}. The system does not support named graphs (i.e. only
-triple stores), but other than that, supports SPARQL 1.1 in its
-entirety. This was made possible to develop quickly by the efforts put
+triple stores), but other than that, it supports SPARQL 1.1 in its
+entirety. It was possible to develop this quickly by the efforts put
 into the query planning in the Attean framework described in
 Section~\ref{sec:conpush}. Caching based on RFC7234 \cite{rfc7234} was
 shown to be of possible use in the survey I conducted. Finally, it was
@@ -67,9 +67,9 @@ typical deployment scenario of the system.
   the server side (as a database cache) or client side, or any of the
   intermediate proxies. The arrows illustrate requests (when pointing
   down) and responses (when pointing up) in a deployment scenario for
-  when a the query cache considered in this paper is deployed on a
-  caching proxy in the Internet infrastructure, see the text for
-  details.}\label{fig:messaging}
+  when the query cache considered in this paper is deployed on a
+  caching proxy in the Internet infrastructure (see the text for
+  details).}\label{fig:messaging}
 \end{center}
 \end{figure}
 
@@ -118,7 +118,7 @@ example, the client first makes a request (request \circled{1}), which
 is passed through the proxy because it has not yet cached any
 responses. The response (response \circled{1}) is then also
 transmitted directly from the SPARQL Endpoint at the database back to
-the client. The entire response may be cached at the proxy in case it
+the client. The entire response may be cached on the proxy in case it
 can be reused in its entirety. However, the main point is that the
 request will be analysed by the proxy in parallel to being sent to the
 server, and another request \circled{2} for a triple pattern fragment
@@ -128,13 +128,13 @@ Section~\ref{sec:analpre}. The response \circled{2} is not sent back
 to the client, but will enter the cache. Lets say that the analyser
 was successful and that the cache can be used to answer request
 \circled{3}. In that case, the proxy will send a rewritten query for
-the rest of the data it needs to answer the query to the origin
+the rest of the data it needs to be able to answer the query to the origin
 server, indicated by the dashed arrows. This may be a SPARQL query, a
 TPF request or a combination thereof, depending on what the planner
 finds least expensive. The proxy will then evaluate the entire query
 and send the final result back as response \circled{3}. In addition,
 the analyser may have identified another Triple Pattern Fragment that
-it takes as likely useful for future requests, and sends a request and
+it takes as likely to be useful for future requests, and sends a request and
 caches the response \circled{4}. At some point, it may be able to
 answer the entire query using only cached results, as illustrated by
 request and response \circled{5}.
@@ -155,8 +155,8 @@ and most of which have become a part the Free Software ecosystem. To
 install the system on the top of a Debian system with only essential
 packages requires 146 Debian packages. Running the test suite requires
 even more. As such, it builds on the code of hundreds of authors, too
-long to enumerate. I shall constrain myself to list the modules that
-have code that has been motivated from this study. Modules that have
+many to enumerate. I shall constrain myself to list the modules that
+have code that has been motivated by this study. Modules that have
 other primary authors than myself have been started prior to this
 present project, but may have substantial contributions from this
 project. The Attean framework was started as part of the effort in
@@ -203,7 +203,7 @@ that have been influenced or written as part of this project.
 \end{table}
 \todo{make it fit. Rotate?}
 
-The system also depends on modules I have written that is not part of
+The system also depends on modules I have written that are not part of
 the project: \pmodule{RDF::LinkedData}, \pmodule{RDF::Generator::Void}, \pmodule{Test::RDF},
 \pmodule{URI::NamespaceMap} and \pmodule{RDF::NS::Curated}.
 
@@ -225,12 +225,12 @@ the introduction of traits \cite{traits}, or roles as they are known,
 to the Perl world.
 
 Traits are groups of methods that serve as a primitive unit of code
-reuse. Traits are not constructed to objects themselves and do not
-use inheritance for composition, instead a class is composed by a set of
-traits and possibly the class' own methods, and then instantiated. A
-trait can also require a set of methods or attributes, and as such, is similar to
-interfaces, but since its focus is code reuse, it can also provide a
-default implementation. 
+reuse. Traits are not constructed into objects themselves and do not
+use inheritance for composition, instead a class is composed by a set
+of traits and possibly the class' own methods, and then
+instantiated. A trait can also require a set of methods or attributes,
+and as such, is similar to an interface, but since its focus is code
+reuse, it can also provide a default implementation.
 
 The Attean framework packages commonly used classes when using
 Semantic Web data, like RDF statements and terms, parsers,
@@ -252,7 +252,7 @@ the core Attean framework.
 
 We have found it convenient to use classical inheritance in
 combination with traits-based composition, but only when the base
-class provide only fundamental functionality that is very likely to be
+class provide just fundamental functionality that is very likely to be
 common to all implementations. For an example of this, see
 Section~\ref{sec:implqueryplan}.
 
@@ -339,7 +339,7 @@ model implementation that composes the Model and CostPlanner
 APIs. This contains a \pcode{cost\_for\_plan} implementation that will
 provide a cost for \pmodule{AtteanX::Plan::SPARQLBGP} objects that are
 proportional to the number of triple patterns in the plan, but
-penalises plans that does not have triple patterns that are connected
+penalises plans that do not have triple patterns that are connected
 through a variable (i.e. will cause a Cartesian join) with a factor
 10. See Section~\ref{sec:costheuristics} for details on the cost
 heuristics.
@@ -428,8 +428,8 @@ The cache itself is assumed to only cache triples where at least one
 term is bound. I have used the Redis data structure store for the
 cache as well. This choice is somewhat arbitrary, and has not proved
 very successful. The cache will store the results as an array if two
-RDF terms were bound in the triple pattern, or a hash if only one term
-was bound. The strings put into the cache are serialized N-Triples
+RDF terms are bound in the triple pattern, or a hash if only one term
+is bound. The strings put into the cache are serialized N-Triples
 strings.
 
 In addition to caching the prefetched results, the proxy may also
@@ -476,7 +476,7 @@ query cache system itself.
 
 \pmodule{Attean::QueryPlanner} has only minimal functionality,
 everything else is provided by the roles. Conventional single
-inheritance is constrained to tree structure, and would result in a
+inheritance is constrained to a tree structure, and would result in a
 very complex system. Another option is to use the factory method
 pattern, where a factory object would need to be initialised to return
 a suitable object for each axis of customisation. 
@@ -513,7 +513,7 @@ heuristic cost model is present in the current system.
 However, since the combination of remotely executed SPARQL with a
 local cache and TPF is rather complex, the cost
 heuristics are fairly elaborate. Moreover, since the objective of the
-study is to take load off of the remote endpoint, the heuristics is
+study is to take load off of the remote endpoint, the heuristics are
 intended to make the proxy work harder than the remote endpoint.
 
 Throughout the system, the query planner takes the cost from the
@@ -553,7 +553,7 @@ be more expensive than to evaluate than a Triple Pattern Fragment
 is given the cost of 1001.
 
 
-Next, we detail the cost of a join where one of more children in the
+Next, we detail the cost of a join where one or more children in the
 tree is a remote SPARQL plan. It is usually not wanted to execute
 several remote queries, it is assumed that the number of HTTP requests
 should be small, and that plans where the joins have been rotated and
@@ -587,22 +587,22 @@ be transferred.
 
 The system was developed in a practically oriented test-driven manner,
 with emphasis on testing cases that I assumed \textit{a priori} to be
-difficult. The interested reader is referred to the published code,
+difficult. The interested reader may like to refer to the published code,
 given in Section~\ref{sec:impl}. Some of the tests consist of a number
-of queries, and some of the tests concerns the problem I found in a
+of queries, and some of the tests concern the problem I found in a
 preliminary study, that the cached triples would often break
 subsequent queries to cause Cartesian joins. Much of the above cost
 model is designed to prevent this from having a detrimental impact.
 
 While I am quite confident that the code is producing query plans as
 intended and that analysis and prefetching is able to retrieve and
-cache results, an elaborate evaluation would be needed to further
-explore whether the system actually helps remote endpoints and is able
+cache results, an elaborate evaluation would be needed to explore
+further whether the system actually helps remote endpoints and is able
 to serve clients with adequate performance. Unfortunately, the
 evaluation showed that the latter is not the case with the current
 implementation, and the practical constraints of the project then
 prevented further investigation. Thus, this section consists of an
-account of the evaluation that were performed and the methodology I
+account of the evaluation that was performed and the methodology I
 planned to employ.
 
 \subsection{Actual Evaluation}
@@ -701,8 +701,8 @@ recording remote endpoint load under different circumstances,
 determined by a experiment designed with statistical Design of
 Experiments formalism''. 
 
-In more detail, query logs can be obtained by from
-e.g. USEWOD~\cite{eps385344} or the Linked SPARQL Queries
+In more detail, query logs can be obtained from
+for example USEWOD~\cite{eps385344} or the Linked SPARQL Queries
 Dataset \cite{Saleem2015}. An extraction of one of those datasets
 could be performed, to create a representative progression of
 queries. The data normally residing on a remote endpoint
@@ -711,7 +711,7 @@ under my control. A proxy system would be set up using our
 system. Finally, a client would submit the queries to the server, via
 the proxy. 
 
-On the server, some metric of system load would recorded. In
+On the server, some metric of system load would be recorded. In
 statistical experimentation parlance, this is known as the ``response
 variable''. I had not entirely decided which metric to use, but
 \cite{Ferrari:1987:EIL:647412.725013} indicated the load average may
@@ -719,7 +719,7 @@ be a good choice. It could be trivially recorded by polling the
 virtual file \texttt{/proc/loadavg} on the host system. Possibly a
 correction for any extra time spent by the proxy could be applied.
 
-As for the overall design of the experiment, the reader is referred to
+As for the overall design of the experiment, the reader may refer to
 the paper discussed in Section~\ref{sec:condoe} for an introduction to
 the type of evaluation intended to be used. As noted, a $2^n$
 factorial experiment is the simplest experiment to set up, and I would
@@ -812,7 +812,7 @@ triple patterns are coalesced into a new SPARQL query, and evaluated
 remotely. This is also coded as a pass criterion for the test. With
 the simple query planner, this test passes, but not with the IDP
 planner, as it results in a plan where the two triple patterns that
-should run is a single SPARQL query is split into two. This resulted
+should run is a single SPARQL query are split into two. This resulted
 in an interesting observation:
 
 As noted in Section~\ref{sec:implqueryplan}, we rely on rotating joins
@@ -824,18 +824,18 @@ planner, plans are aggressively pruned, and therefore, this
 constellation is not considered. This led us (with Gregory Todd
 Williams) to conjecture that this weakness is inherit to IDP planning
 (and possibly a general problem with any early-pruning planner) 
-when using join rotation. We did not attempt to examine this any
-further, however.
+when using join rotation. However, we did not attempt to examine this any
+further.
 
 To remedy this problem, we considered creating a custom query planner
-for Basic Graph Patterns, but I did not implement it. The outline
-would be as follows:
+for Basic Graph Patterns, but this was not implemented. The outline
+would have been as follows:
 \begin{enumerate}
 \item Find triple patterns that are connected with a common variable,
   and group them to ``components''.
-\item If a triple pattern have a cached result, create a plan that
+\item If a triple pattern has a cached result, create a plan that
   accesses the cache. 
-\item If the triple pattern in the previous step caused a Cartesian
+\item If the triple pattern in the previous step causes a Cartesian
   join to be created within a component, create an equivalent
   additional plan for a SPARQL remote evaluation that does not access
   the local cache.
@@ -851,7 +851,7 @@ already in the cache, as plans for both these options would be provided.
 
 \subsection{Remedies for Performance Issues}\label{sec:discussfail}
 
-One may raise the issue that it was a bad idea to begin with to use a
+The issue could be raised that it was a bad idea to begin with to use a
 scripting language like Perl to write a query engine with performance
 requirements. Indeed, that may be the case. However, generally
 accepted practice is to first find the actual performance issues and
@@ -881,12 +881,12 @@ case, the planner would require a simple modification so that triple
 patterns are gathered into locally evaluated BGPs and remotely
 evaluated BGPs as well as LDFs. To take full advantage of this
 approach, SPARQL 1.1 \sparql{VALUES} would also need to be supported,
-so that the local quad store could perform all join operations. To
-this end, I wrote a rudimentary Virtuoso store driver for Attean, but
+so that the local quad store could perform all join operations. With
+this in mind, I wrote a rudimentary Virtuoso store driver for Attean, but
 at that point, the project was overdue and needed to be concluded. 
 
 It seems likely that the project, with more time, could be brought to
-the point where a the evaluation in Section~\ref{sec:planned} could be
+the point where the evaluation in Section~\ref{sec:planned} could be
 applied, and new insight could be gained.
 
 Thus, the main contribution from this project is the ease
