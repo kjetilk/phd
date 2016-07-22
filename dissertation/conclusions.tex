@@ -6,11 +6,11 @@ As noted in Section~\ref{sec:motivation} it is clear that evaluating
 arbitrary SPARQL queries are in general unsustainable, and it is
 likely that the problems in Section~\ref{sec:perfproblems} are partly
 to blame for it. Our work, and most of the related work in
-Section~\ref{sec:related} approach this work from the direction of
+Section~\ref{sec:related} approach this problem from the direction of
 moving stress from the server, but it is also clear that another way
 to address Problem~\ref{prob:sparqlcomplex} is for the SPARQL engine
 to identify queries it would be too heavy to answer already when
-parsing or planning, and also expose that in the service description
+parsing or planning, and also to expose that in the service description
 so that clients can avoid asking them. The HTTP/2 specification
 \cite{rfc7540} has some generic facilities that may be helpful: 
 
