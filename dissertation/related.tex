@@ -1,12 +1,12 @@
 \section{Related Work}\label{sec:related}
 
 There is a substantial amount of relevant literature and ongoing
-research that is well aligned with the present work, either because
-the authors share parts of the motivation, or more serendipitous
-reuse.
+research that are well aligned with the present work, either because
+the authors share parts of the motivation, or this work finds serendipitous
+reuse of prior work.
 
 The related work on the topic of evaluations based on contemporary
-statistics, and on the topic of philosophy is scarce, and have been
+statistics, and on the topic of philosophy is scarce, and has been
 dealt with in the papers. For the other topics dealt with in this
 thesis, a more extensive treatment is needed to place this work in
 context:
@@ -26,12 +26,12 @@ An example of this use is the work considered in
 Section~\ref{sec:conlapis}, another example is the new direction
 proposed by Verborgh et al. \cite{ldf1} who wanted a system that would
 be able to answer individual triple patterns to enable clients to
-answer queries, and to do so, they employed hypermedia, and formulated
+answer queries, and in doing so, they employed hypermedia, and formulated
 this as Triple Pattern Fragments. The key to this hypermedia is that
 an answer does not only include the data, but also metadata,
 importantly a cardinality estimate for the triple pattern, and also
 control information, that tells a client explicitly in every response
-how further interaction should be done, like obtaining further data.
+how further interaction should be done, like in obtaining further data.
 
 Overall, this study share many of the observations and goals that
 motivate this study. Their stated goal is to transfer as much as
@@ -47,16 +47,16 @@ However, it is not necessarily the case that evaluating the entire
 query on the client side is the most efficient, depending in
 particular on the perspective of the different
 actors. Chapter~\ref{sec:tpfcacheplanning} adopts Triple Pattern
-Fragments, but makes different assumptions, e.g. tries to avoid a
+Fragments, but makes different assumptions, for example by trying to avoid a
 large number of HTTP requests. 
 
 Also, TPF mandates that every response must contain a cardinality
 estimate for every triple pattern, an operation that may be quite
-expensive for the server, and
+expensive for the server.
 %TODO: ref characteristic sets?
-indeed, this information may be so expensive to provide that SPARQL
-planners may not provide it to keep the cost of planning itself
-down. 
+Indeed, this information may be so expensive to provide that SPARQL
+planners may not do so, in order to keep the cost of planning itself
+down.
 
 In \cite{verborgh2014querying}, they demonstrated SPARQL evaluation
 over TPF, and TPF has become an active area of research.
@@ -120,7 +120,7 @@ proxies in the Internet and integration with HTTP-based caching, these
 contributions provide important context. 
 
 HERMES \cite{adali1996query} provided motivation for the paper in
-Section~\ref{sec:conpush}, but is also important prior art for the
+Section~\ref{sec:conpush}, but is also important for the
 work in Chapter~\ref{sec:tpfcacheplanning}. An important concept in
 the HERMES system is ``invariants''. They are, in our terminology,
 patterns that do not need to be looked up remotely, but can be
@@ -154,7 +154,7 @@ optimisations used by SQL databases are ineffective in RDF databases,
 due to that RDF schema, even if they exist, are not as helpful as the
 obligatory schema in SQL databases. This provides an opportunity for
 novel research. The solution proposed in this paper is not a cache on
-a proxy or a mediator like my primary focus is. The execution engine
+a proxy or a mediator like that which is my primary focus. The execution engine
 in this case, has access to both the primary indexes of the RDF store
 and the cache. A key contribution of the paper is a canonical
 labelling algorithm that can create a string that will be unique for a
@@ -167,7 +167,7 @@ translated to IDs using a dictionary, while variables are translated
 to zero. Then, the graph is directed and edges labelled according to
 the type of join they represent. The vertex and edge labels are then
 translated to non-negative integers (colours) using a sort key, to
-form an directed vertex-and-edge-coloured graph that is the authors
+form a directed vertex-and-edge-coloured graph that the authors
 claim is isomorphic with the original SPARQL. Finally, the graph is
 transformed to a simpler directed vertex-coloured graph. With this
 graph, the author's method can produce a canonical label for the query
@@ -223,7 +223,7 @@ Acosta et al. has published a poster on ``SHEPHERD''
 \cite{acosta2014shepherd}, presumed to be ongoing work, to
 create a SPARQL processor that takes into account observations done by
 the SPARQLES survey \cite{buil2013sparql}, to decompose a SPARQL query into
-subqueries that is indicated to be easier for the server to evaluate,
+subqueries that are indicated to be easier for the server to evaluate,
 and so is well aligned with our goal to ease the load of the
 server. It is not quite clear from the brief description in 
 \cite{acosta2014shepherd} whether the SHEPHERD system can cache results locally.
@@ -261,7 +261,7 @@ exploited cardinality estimates sometimes available in VoID
 could be advantageous for the system in
 Chapter~\ref{sec:tpfcacheplanning} to exploit as well, and
 straightforward to implement, but since it has not seen wide uptake
-and the statistics is mandated by Triple Pattern Fragments, and
+and the statistics are mandated by Triple Pattern Fragments, and
 therefore available in some cases to the planner, we chose not to.
 
 Martin et al. \cite{sparqlproxy} implemented a reverse caching proxy
