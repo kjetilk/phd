@@ -126,13 +126,13 @@ reasons.
 
 RDF is well suited to include information that clarifies the semantics
 with the data so it could be argued that most RDF documents would be
-hypermedia, but what is often overlooked is that the documents need to
-be explicit in linking schema from all documents. Moreover, control
-information to enable anticipated and serendipitous applications must
-be made available in the RDF. For example, It is not sufficient for a pizza
-restaurant to publish data on pizzas and link to the schema, the RDF
-must also express how to order to enable a software agent to organise
-a party.
+hypermedia, but what is often overlooked is that for RDF documents to
+be self-descriptive, they need to explicitly link their relevant
+schema. Moreover, control information to enable anticipated and
+serendipitous applications must be made available in the RDF. For
+example, It is not sufficient for a pizza restaurant to publish data
+on pizzas and link to the schema, the RDF must also express how to
+order to enable a software agent to organise a party.
 
 \subsection{Developer Friendliness}
 
@@ -168,7 +168,7 @@ formulate the experiment as severe enough.
 
 \subsection{Caching in the Internet}\label{sec:motivcache}
 
-Clearly, the above motivation points out federated SPARQL as a key
+Based on the this discussion, federated SPARQL could be forwarded as a 
 solution to the problem of query answering over decentralised sources,
 and that was originally where I intended my main contributions. During
 the work, it became clear that the stability of individual endpoints
@@ -200,7 +200,7 @@ feasible.
 
 The convergence of all the directions of this work was intended to be
 a contribution to ease the burden of servers by allowing other parties
-to take parts of the query evaluation.
+to perform parts of the query evaluation.
 
 
 

@@ -274,13 +274,13 @@ transferred, which makes it harder to use default implementations for
 most of the query.
 \end{problem}
 
-The same kind of problems occur in many operations, such as parsing
+The same kind of problem occurs in many operations, such as parsing
 and serialisation, where an underlying implementation might have
 relevant information to enhance, for example, the performance of an operation,
 but where the API does not allow it to expose it so that upper layers
 can take advantage of it.
 
-Another type of problems occur when working with dynamic RDF that may
+Another type of problem occurs when working with dynamic RDF that may
 mix terminological and assertional information with object-oriented
 programming. LITEQ \cite{leinberger2014semantic} has a modern approach
 to a static case, where the developer gets substantial support from
@@ -352,8 +352,8 @@ motivated by opportunity as well as problems, but it is intended to
 address
 problems~\ref{prob:syntacticcache}~and~\ref{prob:cachecartesian}.
 Triple Pattern Fragments shifts most of the processing from servers to
-clients, but Problem~\ref{prob:microcontroller} makes that in some
-cases infeasible.  In addition,
+clients, but Problem~\ref{prob:microcontroller} makes that infeasible
+in some cases.  In addition,
 problems~\ref{prob:zipf}~and~\ref{prob:uniform} are compounded by
 Problem~\ref{prob:nostats}, but alleviated somewhat by the presence of
 cardinality estimates given by Triple Pattern Fragments, which we

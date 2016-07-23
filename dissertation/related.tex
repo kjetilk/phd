@@ -27,20 +27,21 @@ Section~\ref{sec:conlapis}, another example is the new direction
 proposed by Verborgh et al. \cite{ldf1} who wanted a system that would
 be able to answer individual triple patterns to enable clients to
 answer queries, and in doing so, they employed hypermedia, and formulated
-this as Triple Pattern Fragments. The key to this hypermedia is that
+this as Triple Pattern Fragments (TPF). The key to this hypermedia is that
 an answer does not only include the data, but also metadata,
 importantly a cardinality estimate for the triple pattern, and also
 control information, that tells a client explicitly in every response
 how further interaction should be done, like in obtaining further data.
 
-Overall, this study share many of the observations and goals that
+Overall, the work on query answering with Triple Pattern Fragments
+share many of the observations and goals that
 motivate this study. Their stated goal is to transfer as much as
 possible of the burden of evaluating a query from the server to the
 client. This can happen because a simple pattern match for a single
 triple pattern need not have a SPARQL parser, nor a query
 planner. Moreover, the server may materialise responses to frequent
 triple patterns and store them in a file system, which can be managed
-by a simple Web server. The results may also be paged, so that each
+by a simple Web server. The results may also be paginated, so that each
 individual response may be kept small. 
 
 However, it is not necessarily the case that evaluating the entire
@@ -87,7 +88,7 @@ LDP has to be superseded by hypermedia in some way.
 \subsection{Query Answering With Cache}\label{sec:relcache}
 
 First, we note a claim that SPARQL query caching is not possible:
-In \cite{hogan2014paths}, the authors examine cacheable as one of the
+In \cite{hogan2014paths}, the authors examine cacheability as one of the
 desiderata for sustainable data access. They claim, without further
 justification, that SPARQL isn't cacheable. With this work and much of
 the below related work, I suggest they are mistaken. Not only can
@@ -126,7 +127,7 @@ the HERMES system is ``invariants''. They are, in our terminology,
 patterns that do not need to be looked up remotely, but can be
 integrated in the query answer by the mediator. The expectation in
 HERMES is that such invariants will be encoded by a domain expert. The
-Attean framework, which is used extensively in this work and is
+Attean framework, which is used extensively in my work and is
 detailed in Section~\ref{sec:attean} provides facilities to do this in
 an easy and extensible way, and also accommodates for the task of
 computing a scalar cost metric, but HERMES has a more advanced cost
@@ -142,7 +143,7 @@ Chapter~\ref{sec:tpfcacheplanning}, we note that while invariants
 could be coded in Attean, a SPARQL query cache should be oblivious to
 domain knowledge and therefore shouldn't assume any invariants, except
 in the possible but unlikely case where the remote server declares
-that an infinite freshness lifetime for the result of a certain graph
+an infinite freshness lifetime for the result of a certain graph
 pattern. While statistics summarisation is relevant and should be
 studied in future work, we note that with a Linked Data Fragments
 server, a cardinality estimate is required to be available for every
@@ -153,9 +154,9 @@ Interestingly, \cite{papailiou2015graph} opens by noting that many
 optimisations used by SQL databases are ineffective in RDF databases,
 due to that RDF schema, even if they exist, are not as helpful as the
 obligatory schema in SQL databases. This provides an opportunity for
-novel research. The solution proposed in this paper is not a cache on
+novel research. The solution proposed in \cite{papailiou2015graph}  is not a cache on
 a proxy or a mediator like that which is my primary focus. The execution engine
-in this case, has access to both the primary indexes of the RDF store
+in this case, has access to both the primary indices of the RDF store
 and the cache. A key contribution of the paper is a canonical
 labelling algorithm that can create a string that will be unique for a
 Basic Graph Pattern including optional blocks. This is done by
@@ -167,8 +168,8 @@ translated to IDs using a dictionary, while variables are translated
 to zero. Then, the graph is directed and edges labelled according to
 the type of join they represent. The vertex and edge labels are then
 translated to non-negative integers (colours) using a sort key, to
-form a directed vertex-and-edge-coloured graph that the authors
-claim is isomorphic with the original SPARQL. Finally, the graph is
+form a directed vertex-and-edge-coloured graph that according to the
+authors is isomorphic with the original SPARQL. Finally, the graph is
 transformed to a simpler directed vertex-coloured graph. With this
 graph, the author's method can produce a canonical label for the query
 graph.
@@ -277,8 +278,8 @@ that were employed. They propose to introduce a modification timestamp
 in index structures, and find that the query engine would be able to
 identify pieces that have been changed during execution, and could
 therefore expose a \httph{Last-Modified} header and validate an
-earlier response in accordance with RFC7232 \cite{rfc7232} cheaper
-than to evaluate the query. This also represent an alternative to HTTP
+earlier response in accordance with RFC7232 \cite{rfc7232} in a cheaper way
+than by evaluating the query. This also represent an alternative to HTTP
 \httph{ETag} as in the discussion of \cite{papailiou2015graph}.
 
 Dividino et al. \cite{Dividino2015} proposed strategies to keep caches
