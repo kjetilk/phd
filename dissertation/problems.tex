@@ -21,17 +21,35 @@ Public endpoints may have unpredictable usage patterns.
 \end{problem}
 
 Moreover, an ambition of the Semantic Web is to deal well with
-heterogeneous data, and it has been known for long \cite{1385469} that:
+heterogeneous data and it has been known for long \cite{1385469} that
+power laws are frequently encountered when fitting a distribution to
+data. As noted in the discussion of Example~\ref{ex:bgp} in
+Section~\ref{sec:introinteract}, a query planner would often rely on
+statistics, but:
 
-\begin{problem}\label{prob:zipf}
-The distribution of data is often dominated by a power-law.
+\begin{problem}\label{prob:unknowndist}
+The data distribution is often unknown to the query engine.
 \end{problem}
-However, 
-\begin{problem}\label{prob:uniform}
-The data distribution is often unknown to the query engine, and so,
-following the principle of indifference, assumes uniform
-distributions.
+Only simple summary statistics may be available. The discussion of
+Example~\ref{ex:bgp} illustrates that even if the distribution of data
+given for example a predicate is known, 
+\begin{problem}\label{prob:unknownconddist}
+\emph{conditional} data distributions are usually unknown to the query engine.
 \end{problem}
+For example, the population of geographical places may be uniformly
+distributed in a given data set, but the population given that the
+places are of type city may be a power law. This could have very
+significant impact on the overall performance, since in the latter
+case, the query planner may consider a BGP like:
+\begin{example}{Skew distribution}
+\begin{verbatim}
+?place ex:population ?population ;
+       a ex:City .
+\end{verbatim}
+\end{example}
+as a unit.\todo{Move to preliminaries?}
+
+
 
 Heterogeneity should also be expected in different types of servers
 and clients, in particular
