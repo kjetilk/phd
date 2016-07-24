@@ -8,16 +8,13 @@ presented vision.
 
 \subsection{Performance and Stability Problems}\label{sec:perfproblems}
 
-It was found in \cite{perez2009semantics} that
+As discussed in \ref{sec:prelimquery}, 
 
 \begin{problem}\label{prob:sparqlcomplex}
-SPARQL has some highly complex parts.
+Some features of SPARQL may cause excessive endpoint load.
 \end{problem}
 
-In particular, nested \sparql{OPTIONAL}s will be difficult to
-evaluate. A Cartesian join is also likely to cause trouble, but even
-seemingly straightforward queries may be heavy. We also note from
-experience that:
+We also note from experience that:
 
 \begin{problem}\label{prob:endpointunpred}
 Public endpoints may have unpredictable usage patterns.
