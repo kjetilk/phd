@@ -56,6 +56,7 @@ create a compact and natural text form syntax, known as Turtle. Turtle
 has gained traction, and is well established as a common syntax. A
 simple graph expressed in Turtle could be:
 
+\begin{example}{Turtle syntax}\label{ex:turtle}
 \begin{verbatim}
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix dct:  <http://purl.org/dc/terms/>.
@@ -68,6 +69,7 @@ simple graph expressed in Turtle could be:
     dct:creator <http://www.kjetil.kjernsmo.net/foaf#me>, 
                 <http://data.semanticweb.org/person/john-s-tyssedal> .
 \end{verbatim}
+\end{example}
 
 The example opens with prefix declarations, to allow abbreviating
 IRIs, e.g. the predicate \rdfterm{foaf:name} is an abbreviation of the
@@ -116,10 +118,13 @@ A more sophisticated approach is to match parts of the graphs using
 \emph{triple patterns}. A triple pattern may contain variables for
 certain terms, for example:
 
+\begin{example}{A triple pattern}
 \begin{verbatim}
 ?subject a ?class .
 \end{verbatim}
+\end{example}
 This triple pattern will match the two triples 
+\begin{example}{Triples matched by triple pattern}
 \begin{verbatim}
 <http://www.kjetil.kjernsmo.net/foaf#me> a foaf:Person .
 <http://folk.uio.no/kjekje/2013/iswc.pdf> a foaf:Document .
@@ -157,11 +162,13 @@ results, and finally apply any constraining filters.
 However, even though the result does not depend on the order of
 execution of a BGP, the time it takes to find the result often does. For
 example, consider the following BGP:
+\begin{example}{A Basic Graph Pattern}
 \begin{verbatim}
 ?subject foaf:name ?name ;
          foaf:workplaceHomepage <http://example.com/> ;
          foaf:made ?contribution .
 \end{verbatim}
+\end{example}
 In most cases, if the triple pattern with the \rdfterm{foaf:name}
 predicate is evaluated first, it is likely to match many resources,
 since nearly everything may have a name, and therefore, it does not
