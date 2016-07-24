@@ -42,3 +42,31 @@ identifiers cheaply.
 The \httph{Last-Modified} header should contain the time of last
 modification of the resource representation. A similar protocol is
 used to validate it.
+
+\subsection{Topics in query evaluation}\label{sec:prelimquery}
+
+As shown in \cite{perez2009semantics} that SPARQL has some highly
+complex parts. In particular, nested \sparql{OPTIONAL}s will be
+difficult to evaluate. It is possible for a user to either inadvertently
+or with malicious intent (in e.g. an denial of service attack) submit
+a query that will cause excessive load to the server.
+
+Another problem worthy of special attention is the case where parts of
+the query has no connecting variable. Let us consider the
+simple example of when two triple patterns do not share a variable:
+\begin{verbatim}
+?person foaf:name ?name .
+?contribution dct:title ?title .
+\end{verbatim}
+When this is evaluated, it will cause what is known as a ``Cartesian
+join'', in which the result will contain \emph{all} the solutions of
+the first triple pattern joined with \emph{all} the solutions of the
+second triple pattern. This will usually be a large result, and it is
+also resource consuming to compute.
+
+In some cases, the users may have written such a query, in which case
+the query planner only has the options to execute the query or reject
+it entirely. In other cases, the query planner may arrive at such
+queries as part of query rewriting, in which case it must ensure that
+such plans are not preferred.
+
