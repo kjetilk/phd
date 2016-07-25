@@ -54,10 +54,12 @@ a query that will cause excessive load to the server.
 Another problem worthy of special attention is the case where parts of
 the query has no connecting variable. Let us consider the
 simple example of when two triple patterns do not share a variable:
+\begin{example}{BGP with Cartesian join}\label{ex:cartesian}
 \begin{verbatim}
 ?person foaf:name ?name .
-?contribution dct:title ?title .
+?paper  dct:title ?title .
 \end{verbatim}
+\end{example}
 When this is evaluated, it will cause what is known as a ``Cartesian
 join'', in which the result will contain \emph{all} the solutions of
 the first triple pattern joined with \emph{all} the solutions of the
