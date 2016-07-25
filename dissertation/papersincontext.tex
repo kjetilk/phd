@@ -1,8 +1,10 @@
 \section{The Papers in Context}\label{sec:papersincontext}
 
-This section will put the included papers into context. It also enjoys
-the benefit of hindsight, and will therefore address some of the
-shortcomings that have surfaced since their publication.
+This section will put the included papers into context, and enumerates
+the problem (from Section~\ref{sec:problems}) each paper is intended
+to address. It also enjoys the benefit of hindsight, and will
+therefore address some of the shortcomings that have surfaced since
+their publication.
 
 \subsection{Read-write Hypermedia}\label{sec:conlapis}
 
@@ -11,14 +13,14 @@ approach to achieve it'' that was presented in the First Linked APIs
 workshop at the Ninth Extended Semantic Web Conference. I was the sole
 author. The reference is \cite{kjernsmo_lapis_2012}.
 
-\todo{relate to problems}
 This paper is relevant to the topic of the dissertation for two
 reasons: First, it shows how hypermedia may be used to drive a
 read-write application, not just read-only, which is the focus of most
 of the discussion. Second, it provides some of the basis for
 \cite{ldf1}, which is important in the query planner.
 
-The main idea in this paper is to look upon RDF as a natural language
+The main idea in this paper is to address Problem~\ref{prob:lapis} 
+by looking upon RDF as a natural language
 sentence with subject, predicate and object, and that sentence should
 then be sufficiently human-readable to be straightforward to
 understand when a developer does ``View Source''.
@@ -44,6 +46,7 @@ entitled ``Introducing Statistical Design of Experiments to SPARQL
 Endpoint Evaluation'', which was co-authored with John
 S. Tyssedal. The reference is \cite{kjernsmo_doe_intro}.
 
+Problem~\ref{prob:badstats} motivates this paper. 
 To understand the context of this study, I noted none of the
 benchmarks that were in use for the evaluation of SPARQL engines could
 be used for basic statistical hypothesis testing, and clearly,
@@ -59,6 +62,13 @@ does not feature an evaluation that lives up to the rigorous standards
 I am advocating as it is unattainable within the time frame of this
 work.
 
+Originally, this paper was intended as the start of a methodology to
+evaluate a federated system that addressed the
+problems~\ref{prob:unknowndist},~\ref{prob:unknownconddist}~and~\ref{prob:largestats},
+but as \cite{buil2013sparql} confirmed my suspicions that there were
+severe stability problems with SPARQL endpoints, my attention shifted
+towards the more immediate Problem~\ref{prob:syntacticcache}.
+
 \subsection{Pushing Complexity Down the Stack}\label{sec:conpush}
 
 This work resulted in a workshop paper entitled ``Pushing complexity
@@ -67,18 +77,20 @@ International Semantic Web Conference, by the lead author Gregory Todd
 Williams. The reference is \cite{williamspushing}.
 
 
-This work was the outcome of several hackathons that I organised
-in the Perl community. It is not very well known that Gregory Todd
-Williams' SPARQL implementation written in Perl is one of the SPARQL
-1.1 reference implementations. It is also fully compliant with
-the specification. Through our work, and the availability of
-traits-based programming in Perl, see \cite{traits}, we had extensive
-discussions on how to leave optimisations to lower levels, e.g. the
-underlying database engine, when they had the potential to provide a
-better plan or cost estimate. While it is certainly possible to do
-this without this new programming paradigm, traits made the
-methodology much more comprehensible, and so helped the subsequent
-work substantially.
+This work was the outcome of several hackathons that I organised in
+the Perl community, where
+problems~\ref{prob:breakdown},~\ref{prob:complexapi}~and~\ref{prob:dontjustpass}
+were discussed at length after having become a major practical
+issue. It is not very well known that Gregory Todd Williams' SPARQL
+implementation written in Perl is one of the SPARQL 1.1 reference
+implementations. It is also fully compliant with the
+specification. Through our work, and the availability of traits-based
+programming in Perl, see \cite{traits}, we had extensive discussions
+on how to leave optimisations to lower levels, e.g. the underlying
+database engine, when they had the potential to provide a better plan
+or cost estimate. While it is certainly possible to do this without
+this new programming paradigm, traits made the methodology much more
+comprehensible, and so helped the subsequent work substantially.
 
 This work also resulted in the ``Attean''
 framework\footnote{\url{https://metacpan.org/release/Attean}}, also
@@ -89,7 +101,9 @@ Debian (and derivatives, such as Ubuntu) as \texttt{libattean-perl}.
 \subsection{Survey of HTTP Caching}\label{sec:consanity}
 
 I committed to do this survey after Jürgen Umbrich challenged me to see
-if the standards were actually followed. Rather than just survey the
+if the standards were actually followed, and thus address
+Problem~\ref{prob:sanity} before further work to solve practical
+caching problems. Rather than just survey the
 usage for SPARQL Endpoints, I decided to do it for the breadth of the
 Semantic Web. This resulted in a research track paper on the Extended
 Semantic Web Conference 2015 entitled ``A Survey of HTTP Caching
@@ -125,7 +139,8 @@ Workshop at the Extended Semantic Web Conference (which I was
 unfortunately prevented from attending myself). Frustrated by
 the slow progress of the last 16 years, and the difficulty in comparing
 methods to the more mature natural sciences, I still felt the need to
-express a philosophical view of science, which I did by submitting an
+address Problem~\ref{prob:badphil} and express a philosophical view of 
+science, which I did by submitting an
 article to the ``Negative or inconclusive results in Semantic Web''
 workshop at the Extended Semantic Web Conference 2015. The essay, see
 \cite{kjernsmo_noise_2015} was tangential to the Call for Papers, but
@@ -138,7 +153,9 @@ audience. The essay, at
 \url{http://folk.uio.no/kjekje/2015/noise-essay.html} is however a
 more thorough account.
 
-As a philosophical text, the contributions are hard to detail. It is
+As a philosophical text, the contributions are hard to detail. It
+should establish Problem~\ref{prob:testingnonexist} as a fundamental
+problem. It is further
 written in a provocative style, to encourage discussions of
 epistemological questions. It also points out shortcomings in current
 practice, and it is clear that a proper evaluation of the work
@@ -150,3 +167,24 @@ recognise the impact of Frank van Harmelen's call for studies that can
 establish laws of the Semantic Web information universe, as discussed
 in Section~\ref{sec:evalproblems}. To my defence, I was only made
 aware of this keynote by the reviewer.
+
+\section{Unpublished Work on Query Caching}
+
+Finally, the intention was to bring convergence in the topics of this
+thesis around a system to cache results that could be reused in
+subsequent queries. As noted in Section~\ref{sec:motivcache}, this was
+motivated by opportunity as well as problems, but it is intended to
+address
+problems~\ref{prob:syntacticcache}~and~\ref{prob:cachecartesian}. This
+work was not finished within the time frame of the dissertation, but
+is discussed at length in Chapter~\ref{sec:tpfcacheplanning}. This
+work relates to the problems in Section~\ref{sec:problems} as follows:
+Triple Pattern Fragments shifts most of the processing from servers to
+clients, but Problem~\ref{prob:microcontroller} makes that infeasible
+in some cases.  In addition,
+problems~\ref{prob:unknowndist},~\ref{prob:unknownconddist}~and~\ref{prob:largestats},
+are compounded by Problem~\ref{prob:nostats}, but alleviated somewhat
+by the presence of cardinality estimates given by Triple Pattern
+Fragments, which we exploit.
+
+
