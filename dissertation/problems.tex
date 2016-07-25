@@ -280,7 +280,18 @@ and the client, no information beyond that is needed. As such, the
 importance of ``View Source'' extends well beyond the original
 motivation of learning by example. More concretely, hypermedia can be
 used to describe simple query interfaces, define how read-write
-operations are to be made, etc. \todo{more here}
+operations are to be made, etc.
+
+\begin{problem}\label{prob:tpf}
+Since the SPARQL language is described in an external specification,
+it cannot be hypermedia.
+\end{problem}
+
+It is likely that the adoption of the open Semantic Web would be
+accelerated if large numbers of developers felt the technology was
+more accessible to them. There are a number of broad as well as
+detailed problems that must be solved to achieve this:
+
 
 \begin{problem}\label{prob:lapis}
 Developers who are not well versed in RDF need a readily
@@ -288,10 +299,6 @@ understandable format that details how they can interact with an RDF
 server that offers a read-write interface.
 \end{problem}
 
-\begin{problem}\label{prob:tpf}
-Since the SPARQL language is described in an external specification,
-it cannot be hypermedia.
-\end{problem}
 
 Until recently, a query engine would need to break down a SPARQL query
 to individual triple pattern matches, which would then use for example
@@ -346,7 +353,7 @@ should be able to adapt to the situation given the context of whether
 the vehicle is on the road or in water.
 
 \begin{problem}\label{prob:dynaprog}
-Current programming paradigm deals poorly with dynamic RDF data
+Current programming paradigms deal poorly with dynamic RDF data
 containing a mix of terminological and assertional information.
 \end{problem}
 
