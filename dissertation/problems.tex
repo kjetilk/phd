@@ -139,7 +139,10 @@ that inference, and how partial understanding is common in everyday
 life and will also be sufficient in my cases on the Web. The practice
 of using inference to find a common understanding is now known as
 ontology matching or ontology alignment, and is a very active area of
-research.\todo{take some open problems in ontology alignment}
+research. This problem, as well as related problems, such as entity
+resolution, are considered orthogonal to the problems in this thesis,
+so the below problems are issues that arise from the ideal of an open
+decentralised Web.
 
 \begin{problem}\label{prob:infgivecode}
 How can suitable inference engines be made available to all users?
@@ -169,7 +172,6 @@ not eliminate the need for inference, it may greatly reduce it.
 
 \begin{problem}\label{prob:useexist}
 How can the adoption of existing vocabularies be encouraged? 
-\todo{ Find the ref by Frank on the economics}
 \end{problem}
 
 
@@ -201,15 +203,16 @@ is today. If the Semantic Web is sufficiently successful to realise
 these visions, it is also likely that it will be very different from
 today in terms of data profiles, workloads, etc. Since data profiles
 and workloads are important to devise a test to evaluate assertions
-about performance, the fundamental problem arises that we currently
-test against something that does not exist, and this differs markedly
-from the methodology of natural science.
+about performance, the fundamental problem arises that: 
+\begin{problem}\label{prob:testingnonexist}
+We currently test against something that does not exist and therefore
+usage patterns cannot be predicted,
+\end{problem}
+and this differs markedly from the methodology of natural science.
 
 Frank van Harmelen has encouraged a direction that seeks to study laws
 of the Semantic Web information universe\footnote{See
-  e.g. \url{http://videolectures.net/iswc2011_van_harmelen_universal/}
-  and
-  \url{http://sssw.org/2015/invited-speakers-tutors/frank-vanharmelen/}}.
+  e.g. \url{http://videolectures.net/iswc2011_van_harmelen_universal/}}.
 If this direction is pursued with success, then it may be possible to
 establish laws that can be used to generate data and workloads that
 can support realistic experiments even though a future Semantic Web
@@ -217,8 +220,9 @@ may be several orders of magnitude larger than that of today.
 
 
 \begin{problem}\label{prob:lawsfuture}
-Establish laws of the Semantic Web information universe that can reasonably be
-expected to have validity far beyond the present.
+No methodology has been established to find laws of the Semantic Web
+information universe that can reasonably be expected to have validity
+far beyond the present.
 \end{problem}
 
 Even if laws have been found that can make extrapolations across
