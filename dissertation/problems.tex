@@ -49,6 +49,13 @@ case, the query planner may consider a BGP like:
 \end{example}
 as a unit.\todo{Move to preliminaries?}
 
+Even if this statistics could be found, it is not clear that it should:
+\begin{problem}\label{prob:largestats}
+Comprehensive statistics may be costly to compute and requires much
+storage space.
+\end{problem}
+Therefore, it is important to find a balance.
+
 
 
 Heterogeneity should also be expected in different types of servers
@@ -71,26 +78,47 @@ SPARQL endpoints, which are based on HTTP, will only enable caching
 syntactically identical queries by  default.
 \end{problem}
 
+The performance issue discussed in Section~\ref{sec:prelimquery} has
+relevance in the context of caching:
+
 \begin{problem}\label{prob:cachecartesian}
 Caching of results of individual triple patterns may cause subsequent
 queries to break into blocks that must be evaluated with Cartesian joins.
 \end{problem}
 
+To understand this, consider Example~\ref{ex:cartesian}, where the BGP
+was a part of a query with 3 triple patterns. In addition to the two
+triple patterns in Example~\ref{ex:cartesian}, a triple pattern that
+connected the two, for example
+\rdfterm{?person~foaf:publications~?paper~.}. If the result of this
+triple pattern is cached, what is left to evaluate are the two triple
+patterns in Example~\ref{ex:cartesian}, which is likely a very
+expensive operation.
+
+It would be useful when caching if one could compare the incoming
+query to a query with an already cached result and determine that they
+were equivalent, but unfortunately:
 \begin{problem}\label{prob:queryeq}
 Determining that two queries will return the exact same answer is a
 complex problem.
 \end{problem}
 
+
+Metadata is important for query planning, and as explained in
+Section~\ref{sec:httpcache}, the HTTP protocol provides facilities for
+sharing such information. However:
 \begin{problem}\label{prob:sanity}
 It is not known how much of the Semantic Web exposes information that
 could be used in HTTP caching.
 \end{problem}
 
+
+Even though statistics may be available internally in a query engine,
+a caching proxy is unlikely to have direct access to that data, and therefore:
 \begin{problem}\label{prob:nostats}
 A caching proxy far removed from the database it caches may have
 little or no statistics for query optimisation.
 \end{problem}
-
 
 
 \subsection{Problems of Shared Understanding}\label{sec:semproblems}
