@@ -8,7 +8,7 @@ presented vision.
 
 \subsection{Performance and Stability Problems}\label{sec:perfproblems}
 
-As discussed in \ref{sec:prelimquery}, 
+As discussed in Section~\ref{sec:prelimquery}, 
 
 \begin{problem}\label{prob:sparqlcomplex}
 Some features of SPARQL may cause excessive endpoint load.
@@ -86,10 +86,10 @@ Caching of results of individual triple patterns may cause subsequent
 queries to break into blocks that must be evaluated with Cartesian joins.
 \end{problem}
 
-To understand this, consider Example~\ref{ex:cartesian}, where the BGP
-was a part of a query with 3 triple patterns. In addition to the two
-triple patterns in Example~\ref{ex:cartesian}, a triple pattern that
-connected the two, for example
+To understand this, consider Example~\ref{ex:cartesian}, and extend
+the BGP to a query with 3 triple patterns. In addition to the two
+triple patterns in Example~\ref{ex:cartesian}, add a triple pattern that
+connect the two, for example
 \rdfterm{?person~foaf:publications~?paper~.}. If the result of this
 triple pattern is cached, what is left to evaluate are the two triple
 patterns in Example~\ref{ex:cartesian}, which is likely a very
@@ -142,7 +142,7 @@ ontology matching or ontology alignment, and is a very active area of
 research. This problem, as well as related problems, such as entity
 resolution, are considered orthogonal to the problems in this thesis,
 so the below problems are issues that arise from the ideal of an open
-decentralised Web.
+decentralised Web. These problems are therefore not discussed further.
 
 \begin{problem}%\label{prob:infgivecode}
 How can suitable inference engines be made available to all users?

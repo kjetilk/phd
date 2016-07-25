@@ -34,9 +34,9 @@ the first read request. While the HTTP standard permits clients to
 supply credentials with such requests, in practice, it rarely if ever
 happens, possibly for privacy reasons. Thus, the server will have to
 challenge the client first, but this should not happen on a resource
-that the client is permitted to read. Therefore, the proposed hypermedia
-needs a property so that the client understands what to do if it wants
-to do write operations.
+that the client is permitted to read without authentication. 
+Therefore, the proposed hypermedia needs a property so that the client
+understands what to do if it wants to do write operations.
 
 \subsection{Design of Experiments}\label{sec:condoe}
 
@@ -178,7 +178,7 @@ address
 problems~\ref{prob:syntacticcache}~and~\ref{prob:cachecartesian}. This
 work was not finished within the time frame of the dissertation, but
 is discussed at length in Chapter~\ref{sec:tpfcacheplanning}. This
-work relates to the problems in Section~\ref{sec:problems} as follows:
+work further relates to the problems in Section~\ref{sec:problems} as follows:
 Triple Pattern Fragments shifts most of the processing from servers to
 clients, but Problem~\ref{prob:microcontroller} makes that infeasible
 in some cases.  In addition,
