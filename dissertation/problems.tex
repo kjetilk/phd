@@ -301,7 +301,9 @@ server that offers a read-write interface.
 
 
 Until recently, a query engine would need to break down a SPARQL query
-to individual triple pattern matches, which would then use for example
+to individual triple pattern matches, see
+Section~\ref{sec:introinteract} for how frameworks tend to interact
+with data. Typically, the query engine would then use for example
 the \jcode{listStatements()} method of Jena, \jcode{filter()} method
 of Sesame or \pcode{get\_statements} of \pmodule{RDF::Trine}, so that only
 individual triple patterns could be evaluated against the underlying
@@ -316,6 +318,12 @@ By breaking down the query down to individual triple patterns, the
 query engine cannot take advantage of optimisations that involve
 multiple triple patterns or other parts of the query.
 \end{problem}
+
+For example, an underlying SQL store could not compile one query for a
+BGP, and could not use a \jcode{WHERE} clause to evaluate a SPARQL
+\rdfterm{FILTER}. To remedy this, one could have a method for
+evaluating BGPs with (such as the  \pcode{get\_pattern} method of
+\pmodule{RDF::Trine}) and without filters, but:
 
 \begin{problem}\label{prob:complexapi}
 If methods such as \pcode{get\_pattern} are added for every part of the
