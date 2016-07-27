@@ -115,7 +115,9 @@ Section~\ref{sec:relcache}: a SPARQL query cache be oblivious
 to domain knowledge in a CDN deployment and therefore shouldn't assume any invariants,
 except in the possible but unlikely case where the remote server
 declares an infinite freshness lifetime for the result of a certain
-graph pattern.
+graph pattern. A forward proxy, on the other hand, may have a deeper
+understanding on the needs of the client, and could possibly implement
+invariants. The Attean framework accommodates for this.
 
 Figure~\ref{fig:messaging} illustrates the case where HTTP messages
 are being passed, where the cache is assumed to reside on a
