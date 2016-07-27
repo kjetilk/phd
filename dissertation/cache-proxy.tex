@@ -109,6 +109,14 @@ to the mediator. Also, this study is also practically restricted to
 HTTP. If the cache is to be shared, then it would typically reside on
 the forward proxy, or in a CDN.
 
+It is further interesting to note the contrast to the HERMES
+\cite{adali1996query} system's concept of invariants discussed in
+Section~\ref{sec:relcache}: a SPARQL query cache should be oblivious
+to domain knowledge and therefore shouldn't assume any invariants,
+except in the possible but unlikely case where the remote server
+declares an infinite freshness lifetime for the result of a certain
+graph pattern.
+
 Figure~\ref{fig:messaging} illustrates the case where HTTP messages
 are being passed, where the cache is assumed to reside on a
 intermediate caching proxy in the Internet, i.e. a CDN. The figure may

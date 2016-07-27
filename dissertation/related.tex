@@ -121,30 +121,20 @@ proxies in the Internet and integration with HTTP-based caching, these
 contributions provide important context. 
 
 HERMES \cite{adali1996query} provided motivation for the paper in
-Section~\ref{sec:conpush}, but is also important for the
-work in Chapter~\ref{sec:tpfcacheplanning}. An important concept in
-the HERMES system is ``invariants''. They are, in our terminology,
-patterns that do not need to be looked up remotely, but can be
-integrated in the query answer by the mediator. The expectation in
-HERMES is that such invariants will be encoded by a domain expert. The
-Attean framework, which is used extensively in my work and is
-detailed in Section~\ref{sec:attean} provides facilities to do this in
-an easy and extensible way, and also accommodates for the task of
-computing a scalar cost metric, but HERMES has a more advanced cost
-model in that it has a cost vector with estimates for time required to
+Section~\ref{sec:conpush}, but is also important for the work in
+Chapter~\ref{sec:tpfcacheplanning}. An important concept in the HERMES
+system is ``invariants''. They are, in our terminology, patterns that
+do not need to be looked up remotely, but can be integrated in the
+query answer by the mediator. The expectation in HERMES is that such
+invariants will be encoded by a domain expert. The HERMES planner
+bases decision on a cost vector with estimates for time required to
 find the first answer, time to find all answers and the cardinality of
 the answer set. Caching summary statistics is another important
 feature of HERMES, and it also contributes lossy and lossless
 summaries, for the purpose of saving space and reduce the time it
 takes to compute a cost estimate. HERMES further has a query rewriter
 and optimiser, that rewrites the query taking into account the cache
-and the invariants. While HERMES is more general than what I detail in
-Chapter~\ref{sec:tpfcacheplanning}, we note that while invariants
-could be coded in Attean, a SPARQL query cache should be oblivious to
-domain knowledge and therefore shouldn't assume any invariants, except
-in the possible but unlikely case where the remote server declares
-an infinite freshness lifetime for the result of a certain graph
-pattern. While statistics summarisation is relevant and should be
+and the invariants. While statistics summarisation is relevant and should be
 studied in future work, we note that with a Linked Data Fragments
 server, a cardinality estimate is required to be available for every
 triple pattern, and is also cacheable with the same constraints as the
