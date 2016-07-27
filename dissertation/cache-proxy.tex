@@ -14,7 +14,7 @@ burden to evaluate the query and it should add to the robustness of
 the open Web SPARQL infrastructure. It uses hypermedia to answer
 individual triple patterns, based on Triple Pattern Fragments (TPF)
 \cite{ldf1}. The system does not support named graphs (i.e. only
-triple stores), but other than that, it supports SPARQL 1.1 in its
+triplestores), but other than that, it supports SPARQL 1.1 in its
 entirety. It was possible to develop this quickly by the efforts put
 into the query planning in the Attean framework described in
 Section~\ref{sec:conpush}. Caching based on RFC7234 \cite{rfc7234} was
@@ -288,8 +288,8 @@ require further methods to be implemented.
 
 Stores can be rather diverse, so in addition, Attean provides another
 abstraction layer, called a Model. Models consistently operate over
-quads, in the case where underlying store is a triple store, a graph
-name will be set, or it may wrap several triple stores with a graph
+quads, in the case where underlying store is a triplestore, a graph
+name will be set, or it may wrap several triplestores with a graph
 name for each. In addition, Models provide higher level methods,
 for example a \pcode{subject} method to list all subjects, and
 corresponding for other terms. Thus, upper layers of an application
@@ -361,7 +361,7 @@ The Linked Data Fragment client work was started prior to this project
 by Patrick Hochstenbach, and consists of the client code for Triple
 Pattern Fragments in \pmodule{RDF::LDF}. It also includes the Basic
 Graph Pattern optimisation from \cite{verborgh2014querying}. Included with the client
-code is an implementation of a triple store of the legacy
+code is an implementation of a triplestore of the legacy
 \pmodule{RDF::Trine} framework that predates Attean. He also started
 an Attean store implementation \pmodule{AtteanX::Store::LDF} as a
 separate module, but that module was subsequently adopted by me, and I
