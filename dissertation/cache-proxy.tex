@@ -335,7 +335,7 @@ Section~\ref{sec:implqueryplan}.
 
 The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
 Protocol client that implements Attean APIs. The store implementation
-itself composes the TripleStore API and implements methods to retrieve
+itself composes the \mbox{TripleStore} API and implements methods to retrieve
 the results of a single triple pattern and exact cardinality for a
 given triple pattern, by using an aggregate query. In addition, it can
 generate plans for Basic Graph Pattern algebra objects that have more
@@ -346,7 +346,7 @@ an implementation of the \pcode{access\_plan} method in a
 \pmodule{AtteanX::Query::AccessPlan::SingleQuadBGP} role, that can be
 composed by a query planner to provide a single triple pattern
 \pmodule{AtteanX::Plan::SPARQLBGP} object. Finally, it also provides a
-model implementation that composes the Model and CostPlanner
+model implementation that composes the Model and \mbox{CostPlanner}
 APIs. This contains a \pcode{cost\_for\_plan} implementation that will
 provide a cost for \pmodule{AtteanX::Plan::SPARQLBGP} objects that are
 proportional to the number of triple patterns in the plan, but
@@ -365,8 +365,8 @@ code is an implementation of a triplestore of the legacy
 \pmodule{RDF::Trine} framework that predates Attean. He also started
 an Attean store implementation \pmodule{AtteanX::Store::LDF} as a
 separate module, but that module was subsequently adopted by me, and I
-have written most of the functionality. It composes the TripleStore
-and CostPlanner APIs and implements triple pattern queries and
+have written most of the functionality. It composes the \mbox{TripleStore}
+and \mbox{CostPlanner} APIs and implements triple pattern queries and
 cardinality estimates, both provided by the underlying client code as
 they are a part of the core functionality of TPF,
 as well as \pcode{cost\_for\_plan}.
