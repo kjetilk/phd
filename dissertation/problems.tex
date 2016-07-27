@@ -93,7 +93,9 @@ connect the two, for example
 \rdfterm{?person~foaf:publications~?paper~.}. If the result of this
 triple pattern is cached, what is left to evaluate are the two triple
 patterns in Example~\ref{ex:cartesian}, which is likely a very
-expensive operation.
+expensive operation. Another approach to this problem is that of
+\cite{papailiou2015graph}, as they insist on caching only connected 
+subgraphs.
 
 It would be useful when caching if one could compare the incoming
 query to a query with an already cached result and determine that they

@@ -165,10 +165,7 @@ graph, the author's method can produce a canonical label for the query
 graph.
 
 The query planner first examines all connected subgraphs of a full
-SPARQL query, and generates canonical labels for each one. Since it
-insists on caching connected subgraphs, it avoids the problem I
-encountered in Chapter~\ref{sec:tpfcacheplanning} that the cache may
-break up connected subgraphs and thus create Cartesian joins. To
+SPARQL query, and generates canonical labels for each one. To
 further enhance the query planner, the cache can optionally include
 indexing. The authors also introduce the concept of
 \textit{profitable} query patterns. It is not quite clear from the
