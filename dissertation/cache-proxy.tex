@@ -4,7 +4,7 @@
 \section{Introduction}
 
 This chapter describes an effort to create a proxy that can cache the
-results of not only SPARQL queries, but also the results of individual
+results of not only complete SPARQL queries, but also the results of individual
 triple patterns. It will asynchronously analyse executed queries, and
 may prefetch the results of certain triple patterns into the cache.
 
@@ -92,7 +92,8 @@ operations. Finally, the database, in this context a SPARQL Endpoint,
 may use conventional database caching techniques. The database cache
 and reverse proxy is typically controlled by the data provider.
 
-The present system may be deployed at any of these levels. However,
+The present system may be deployed at any of these levels (and similar
+figures could be drawn). However,
 since the database and the reverse proxy in front of it may have
 detailed knowledge of the data, e.g. a complete data profile with
 statistics to optimise join order, these levels have much in common
@@ -121,8 +122,8 @@ invariants. The Attean framework accommodates for this.
 
 Figure~\ref{fig:messaging} illustrates the case where HTTP messages
 are being passed, where the cache is assumed to reside on a
-intermediate caching proxy in the Internet, i.e. a CDN. The figure may
-be viewed as having time on the $x$-axis, with the arrows pointing
+intermediate caching proxy in the Internet, i.e. a CDN. The figure
+may be viewed as having time on the $x$-axis, with the arrows pointing
 down being requests and the arrows point up being responses. In this
 example, the client first makes a request (request \circled{1}), which
 is passed through the proxy because it has not yet cached any
@@ -137,17 +138,17 @@ the best for future requests, is sent. This analysis is discussed in
 Section~\ref{sec:analpre}. The response \circled{2} is not sent back
 to the client, but will enter the cache. Lets say that the analyser
 was successful and that the cache can be used to answer request
-\circled{3}. In that case, the proxy will send a rewritten query for
-the rest of the data it needs to be able to answer the query to the origin
-server, indicated by the dashed arrows. This may be a SPARQL query, a
-TPF request or a combination thereof, depending on what the planner
-finds least expensive. The proxy will then evaluate the entire query
-and send the final result back as response \circled{3}. In addition,
-the analyser may have identified another Triple Pattern Fragment that
-it takes as likely to be useful for future requests, and sends a request and
-caches the response \circled{4}. At some point, it may be able to
-answer the entire query using only cached results, as illustrated by
-request and response \circled{5}.
+\circled{3}. In that case, the proxy will send rewritten queries for
+the rest of the data it needs to be able to answer the query to the
+origin server, indicated by the dashed arrows. This may be zero or more SPARQL
+query, TPF requests or a combination thereof, depending on what the
+planner finds least expensive. The proxy will then evaluate the entire
+query and send the final result back as response \circled{3}. In
+addition, the analyser may have identified another Triple Pattern
+Fragment that it takes as likely to be useful for future requests, and
+sends a request and caches the response \circled{4}. At some point, it
+may be able to answer the entire query using only cached results, as
+illustrated by request and response \circled{5}.
 
 Finally note that in this text, the term Triple Pattern Fragment (TPF)
 is understood as a specialisation of Linked Data Fragments (LDF), in
@@ -231,7 +232,7 @@ SPARQL 1.1 Protocol. The system is further detailed in the following sections:
 The Attean framework was born from the experiences the PerlRDF
 community gained with \pmodule{RDF::Trine}, the Perl counterpart to
 the more well-known Jena framework, and the opportunities presented by
-the introduction of traits \cite{traits}, or roles as they are known,
+the introduction of traits \cite{traits}, or roles as they are known
 to the Perl world.
 
 Traits are groups of methods that serve as a primitive unit of code
@@ -249,10 +250,11 @@ relevant to query answering, like algebra, query planners and
 plans. Additionally, it has an underlying extensive API consisting of
 roles that can be composed to the above classes.
 
-Perl is an interpreted language and is not known to run fast. Instead,
+Perl is an interpreted language and is not focused on speed. Instead,
 the focus is on developer efficiency. However, our motivation for
 Attean, expressed in \cite{williamspushing}, was to enable the use
-of faster implementations by using roles to simplify code reuse.
+of faster implementations by using roles. It also serves to simplify 
+code reuse.
 
 For this work, the usage of roles to simplify query planning is of
 particular importance. While we do not exploit optimisations closer to
@@ -269,7 +271,7 @@ Section~\ref{sec:implqueryplan}.
 Also of importance are the APIs to compose stores. Stores in Attean
 can be triplestores or quadstores, they can be mutable,
 bulkupdateable, can enable the use of ETags or modification times for
-conditional requests (as defined in RFC7232 \cite{rfc7234}, and makes
+conditional requests (as defined in RFC7232 \cite{rfc7234}), and makes
 possible further extensions. Each of these primitives is represented
 by a role that implements default functionality or simply requires
 such functionality to be required. For instance, a quadstore is
@@ -280,18 +282,18 @@ iterator over the quads that were matched. Based on an implementation
 of the \pcode{get\_quads} method, the \pmodule{Attean::API::QuadStore}
 role provides default implementations of methods \pcode{count\_quads},
 \pcode{count\_quads\_estimate}, \pcode{get\_graphs} and
-\pcode{size}. These methods may be overridden when composing a
-class. Composing other roles will require further methods to be
-implemented.
+\pcode{size}. These methods may be overridden with more efficient
+implementations when composing a class. Composing other roles will
+require further methods to be implemented.
 
 Stores can be rather diverse, so in addition, Attean provides another
-abstraction layer, called a Model. Models will consistently have
+abstraction layer, called a Model. Models consistently operate over
 quads, in the case where underlying store is a triple store, a graph
 name will be set, or it may wrap several triple stores with a graph
-name for each. In addition, Models provide higher level methods, like
+name for each. In addition, Models provide higher level methods,
 for example a \pcode{subject} method to list all subjects, and
 corresponding for other terms. Thus, upper layers of an application
-should use the Model. We have also chosen to implement significant
+should use the Model abstraction. We have also chosen to implement significant
 parts of the query planning in the Model.
 
 When a query is parsed, algebra objects are generated. Based on the
@@ -302,11 +304,10 @@ role. This amounts to implementing \pcode{plans\_for\_algebra} and
 planner will trust that the model's \pcode{plans\_for\_algebra} is
 better than its own by default, a choice that was justified in
 \cite{williamspushing}. Additionally, Attean has a simpler mechanism
-for single triple or quad patterns: By default, triple or quad
-patterns are evaluated by calling the store's \pcode{get\_triples} or
-\pcode{get\_quads}, but this may be augmented by adding a wrapper
-around an \pcode{access\_plans} method used by the query planner to
-produce further plans.
+for single quad patterns: By default, quad patterns are evaluated by
+calling the Model's \pcode{get\_quads}, but this may be augmented by
+adding a wrapper around an \pcode{access\_plans} method used by the
+query planner to produce further plans.
 
 Based on the algebra tree and plans generated by the models or the
 default query planner, as well as the access plans, several
@@ -434,8 +435,9 @@ depends on that the LDF specifications gain stronger semantics to link
 SPARQL endpoints and LDF servers together. With that, the assumption
 could be abandoned trivially.
 
-The cache itself is assumed to only cache triples where at least one
-term is bound. I have used the Redis data structure store for the
+The cache itself is assumed to only cache the results of triple
+patterns where at least one term is bound. 
+I have used the Redis data structure store for the
 cache as well. This choice is somewhat arbitrary, and has not proved
 very successful. The cache will store the results as an array if two
 RDF terms are bound in the triple pattern, or a hash if only one term
