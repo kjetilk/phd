@@ -173,31 +173,6 @@ text, but it seems this implies that the cache can also prefetch
 results into the cache, if it finds that the result may benefit
 subsequent queries.
 
-
-The canonical labelling algorithm presented in this paper provides an
-opportunity for further work, when considered in an HTTP context: The
-\httph{ETag} header, discussed in Section~\ref{sec:httpcache}, can be
-used for a SPARQL result. Such a canonical label could be
-used in conjunction with an algorithm that tracks changes to the RDF
-graph to produce an \httph{ETag}. For slow-changing Linked Data, which
-is a common case, it is a possibility that a canonical label in
-combination with a time-stamp of the entire RDF Graph could yield
-considerable benefits. However, the presented algorithm does not cover
-SPARQL in its entirety, for example, it does not handle named graphs,
-solution modifiers and filters, nor is it clear how it handles
-property paths (which in many cases should be trivial, since a
-property path often has an equivalent Basic Graph Pattern). Union
-queries or negation is also not mentioned, so more work is needed for
-this method to have general applicability. Nevertheless, if the entire
-Group Graph Pattern of a certain query is supported, and the query
-projects all variables, e.g. it wraps the pattern with \sparql{SELECT
-  *} or \sparql{CONSTRUCT}, the \httph{ETag} would be trivial to
-construct using the presented algorithm in a non-trivial number of
-beneficial cases. With this, cached result verification could be done
-by a mediator using HTTP requests with the \httph{If-None-Match}
-header and so make it possible to use parts of the engine of this
-paper usable in the Internet infrastructure.
-
 Olaf Hartig has a large number of papers that are adjacent to the
 present work, including his Ph.D. dissertation \cite{hartig2014querying} where he
 explores querying Linked Data, i.e. query data that is not contained
