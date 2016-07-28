@@ -588,7 +588,8 @@ The cost of evaluating a remote SPARQL query is estimated to be the
 number of subplans (usually quad patterns) incremented by one and
 multiplied by 100 if there is a common variable between all the
 subplans, or 1000 if there is not. This is to prevent the remote
-endpoint from having to compute Cartesian joins as much as possible. A
+endpoint from having to compute Cartesian joins as much as possible,
+thus addressing Problem~\ref{prob:cachecartesian}. A
 remote SPARQL query with only one triple pattern is assumed to always
 be more expensive than to evaluate than a Triple Pattern Fragment
 (recall that we want to relieve the remote endpoint of stress), and so
@@ -617,8 +618,10 @@ Under the assumption that it is better to join remotely than to
 possibly retrieve large amounts of data, a similar algorithm is used
 to penalise join plans that contain many Triple Pattern Fragment
 plans, by multiplying the cost of the join plan by the number of the
-Triple Pattern Fragment plans in the tree. Whether this is a
-reasonable choice would have been a subject of the planned evaluation.
+Triple Pattern Fragment plans in the tree. Example~\ref{ex:bgp4} is an
+example of a situation where this heuristic ensures a larger
+BGP. Whether this is a reasonable choice would have been a subject of
+the planned evaluation.
 
 Finally, if a plan has a Triple Pattern Fragment plan that has a
 common variable with a remote SPARQL query, that plan is given an
