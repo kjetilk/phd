@@ -161,7 +161,7 @@ not required. However, there is no difference in the current
 implementation, so in practice, the terms could be used
 interchangeably.
 
-\subsection{Understanding the Query Planning}
+\subsection{Understanding the Query Planning}\label{sec:understandquery}
 
 We saw in Section~\ref{sec:introinteract} that a query would be parsed
 to a tree of algebra objects and then a query planner would traverse
@@ -268,17 +268,23 @@ up in e.g. a cache. If we assign the letters $A$, $B$, $C$ and $D$ to
 quad patterns \todo{correctly expressed?} in the order in
 Example~\ref{ex:bgp4}, the initial join tree produced by parsing may
 be $ ((A \bowtie B )\bowtie C) \bowtie D) $. Now, we are interested in
-a plan on the form $A \bowtie BCD$ (all commutations will be
-generated). To facilitate this, we employ \emph{join rotation}. A
-simple example of join rotation would be this: We first generate
-subplans for both $((A \bowtie B )\bowtie C) \bowtie D) $ and $ (A
-\bowtie B )\bowtie (C \bowtie D) $. Then, $C$ and $D$ can be merged to
-a SPARQL BGP to $ (A \bowtie B )\bowtie CD $. Another rotation can
-then be performed: $ A \bowtie (B \bowtie CD) $ and then coalesced to
-the final result. The planner will generate alternative plans for both
-rotated and unrotated plans, and cost is estimated for both, so we
-have to be careful to design the cost model to allow the rotation to
-result in SPARQL BGP plans.
+a plan on the form $A \bowtie BCD$, i.e. $BCD$ is reduced to a more
+fundamental plan type, in this example a SPARQL BGP. This will
+minimise the number of HTTP requests, in much the same way as the
+exclusive groups of
+\cite{springerlink:10.1007/978-3-642-25073-6-38}. To facilitate this,
+we employ \emph{join rotation}. A simple example of join rotation
+would be this: We first generate subplans for both $((A \bowtie B
+)\bowtie C) \bowtie D) $ and $ (A \bowtie B )\bowtie (C \bowtie D)
+$. Then, $C$ and $D$ can be merged to a SPARQL BGP to $ (A \bowtie B
+)\bowtie CD $. Another rotation can then be performed: $ A \bowtie (B
+\bowtie CD) $ and then coalesced to the final result. The planner will
+generate alternative plans for both rotated and unrotated plans, and
+all generated plans are subject to cost estimation, so whether a large
+BGP plan will be evaluated remotely, or as a join of local cached
+results and a smaller remote BGP, or a remote Triple Pattern Fragments
+server, is up to the cost estimation. This will be discussed in detail
+in Section~\ref{sec:costheuristics}.
 
 As can be imagined from the fact that a BGP with just to triple
 patterns result in 4 plan trees, a naive query planner may generate a
@@ -526,25 +532,15 @@ very complex system. Another option is to use the factory method
 pattern, where a factory object would need to be initialised to return
 a suitable object for each axis of customisation. 
 
-It is interesting to detail the function of
-\pmodule{AtteanX::API::JoinRotatingPlanner}. Its main function is to
-produce alternatives for join query plans. For example, if we have
-three quad patterns $A$, $B$ and $C$, plans for both $ ( A \bowtie B)
-\bowtie C $ and $ A \bowtie ( B \bowtie C ) $ will be generated. In
-some cases, it may be possible to reduce a join to a more fundamental
-plan type, and this may be done next. In our case, this is done in
-\pmodule{AtteanX::QueryPlanner::Cache}, where adjacent quad patterns
-are coalesced into Basic Graph Pattern (BGP) plans, and BGP plans are
+The implementation of the join rotation detailed in
+Section~\ref{sec:understandquery} is in the role
+\pmodule{AtteanX::API::JoinRotatingPlanner}. In the planner
+\pmodule{AtteanX::QueryPlanner::Cache} adjacent quad patterns are
+coalesced into Basic Graph Pattern (BGP) plans, and BGP plans are
 coalesced into larger BGP plans, so that they can be evaluated by the
-remote SPARQL endpoint as a single unit. This will minimise the number
-of HTTP requests, in much the same way as the exclusive groups of
-\cite{springerlink:10.1007/978-3-642-25073-6-38}. Note, however, that
-the generated plans are subject to cost estimation, so whether a large
-BGP plan will be evaluated remotely, or as a join of local cached
-results and a smaller remote BGP, or in the case of
-\pmodule{AtteanX::QueryPlanner::Cache::LDF}, a remote Triple Pattern
-Fragments server, is up to the cost estimation. This will be discussed
-in detail in Section~\ref{sec:costheuristics}.
+remote SPARQL endpoint as a single unit. The extension
+\pmodule{AtteanX::QueryPlanner::Cache::LDF} adds the option of
+querying remote LDF servers.
 
 \subsection{Cost Model}\label{sec:costheuristics}
 
