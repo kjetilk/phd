@@ -248,7 +248,7 @@ evaluation. When the results are returned from both the cache and the
 remote endpoint, they must then finally be joined to produce the final
 result returned to the client. A string representation of the plan
 tree from the current implementation reflects this and reads:
-\begin{example}{An example Attean plan}
+\begin{example}{An example Attean plan with a remotely executed BGP}
 \begin{verbatim}
 - Hash Join { s } (distinct cost: 74)
 -   SPARQLBGP (cost: 60)
@@ -258,7 +258,7 @@ tree from the current implementation reflects this and reads:
 -   Iterator (?s with 2 elements) (cost: 2)
 \end{verbatim}
 \end{example}
-
+where accessing the cache is represented by an iterator plan.
 
 
 \section{Implementation}\label{sec:impl}
