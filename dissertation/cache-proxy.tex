@@ -161,7 +161,80 @@ not required. However, there is no difference in the current
 implementation, so in practice, the terms could be used
 interchangeably.
 
-\subsection{Key Problems}
+\subsection{Understanding the Query Planning}
+
+We saw in Section~\ref{sec:introinteract} that a query would be parsed
+to a tree of algebra objects and then a query planner would traverse
+the algebra tree to create a plan tree by finding all the ways the
+data can be accessed, or operations executed over them. For example,
+if the input query has a BGP with two triple patterns and there are
+two types of join operations, it may result in four trees, where each
+of the join operation plans are paired with both access plans for the
+triple patterns.
+
+It is next the query planner's task to determine which of the possible
+plans it should execute. A common choice to perform this task is to
+estimate the cost executing various choices.
+
+The system we propose is based on this paradigm, any choices we make
+are therefore to be encoded into a cost model. The cost model itself
+is not considered a part of the contributions, it is a simple cost
+model based on heuristics that arises from the following
+discussion. The heuristics themselves are detailed in
+Section~\ref{sec:costheuristics}. 
+
+Recall Problem~\ref{prob:cachecartesian}, where a BGP with three
+triple patterns could break into two components if the triple pattern
+connecting the two others was cached. It is one of the requirements
+for the heuristics of the cost model that it is be able to avoid such
+situations.
+
+As mentioned, the proposed query planner takes may access a remote
+SPARQL endpoint and a Linked Data Fragments Server as well as the
+local cache. I have also said that a key motivation behind the study
+is to relieve the remote endpoint of load. It was argued in
+\cite{verborgh2014querying} that LDF shifts the burden of query
+evaluation to the client, and so relieves the server of load. It is
+not clear from the literature that this strikes the right balance, it
+is my belief that the balance must depend on the concrete server and
+client capabilities, keeping in mind
+Problem~\ref{prob:microcontroller}. Future work to determine the right
+balance in a given situation would be welcome in this area, but I
+believe it would be advantageous to build on a cost model.
+
+Following this discussion, consider this example:
+\begin{example}{A four-triple pattern BGP}
+\begin{verbatim}
+?s <http://example.org/m/p> "1" ;
+   <http://example.org/m/q> <http://example.org/m/a> ;
+   <http://example.org/m/p> ?o .
+?o <http://example.org/m/b> "2" .
+\end{verbatim}
+\end{example}
+Say that the first triple pattern has a result in the cache. This will
+not cause Problem~\ref{prob:cachecartesian} to occur (it would have
+occurred if the third triple pattern had a cached result, however), so
+we can safely use the cache. The results of the three remaining triple
+patterns must be fetched from a remote server. There are essentially
+two reasonable choices: Either fetch the result from an LDF server as
+argued by \cite{verborgh2014querying} and join them locally or send a
+single, rewritten SPARQL query to the remote endpoint for the
+evaluation. When the results are returned from both the cache and the
+remote endpoint, they must then finally be joined to produce the final
+result returned to the client. A string representation of the plan
+tree from the current implementation reflects this and reads:
+\begin{example}{An example Attean plan}
+\begin{verbatim}
+- Hash Join { s } (distinct cost: 74)
+-   SPARQLBGP (cost: 60)
+-     Quad { ?s, <http://example.org/m/p>, ?o, <http://test.invalid/graph> }
+-     Quad { ?o, <http://example.org/m/b>, "2", <http://test.invalid/graph> }
+-     Quad { ?s, <http://example.org/m/q>, <http://example.org/m/a>, <http://test.invalid/graph> }
+-   Iterator (?s with 2 elements) (cost: 2)
+\end{verbatim}
+\end{example}
+
+
 
 \section{Implementation}\label{sec:impl}
 
