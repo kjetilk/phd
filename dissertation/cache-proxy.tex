@@ -176,6 +176,31 @@ It is next the query planner's task to determine which of the possible
 plans it should execute. A common choice to perform this task is to
 estimate the cost executing various choices.
 
+The resulting plan trees may be represented as strings as follows:
+\begin{example}{Four Attean plan trees}
+\begin{verbatim}
+- Hash Join { s } (distinct cost: 27)
+-   Quad { ?s, <http://example.org/p>, ?o, <http://example.org/> } (cost: 15)
+-   Quad { ?s, <http://example.org/p>, "1", <http://example.org/> } (cost: 12)
+
+- Hash Join { s } (distinct cost: 28)
+-   Quad { ?s, <http://example.org/p>, "1", <http://example.org/> } (cost: 12)
+-   Quad { ?s, <http://example.org/p>, ?o, <http://example.org/> } (cost: 15)
+
+- NestedLoop Join (distinct cost: 180)
+-   Quad { ?s, <http://example.org/p>, "1", <http://example.org/> } (cost: 12)
+-   Quad { ?s, <http://example.org/p>, ?o, <http://example.org/> } (cost: 15)
+
+- NestedLoop Join (distinct cost: 180)
+-   Quad { ?s, <http://example.org/p>, ?o, <http://example.org/> } (cost: 15)
+-   Quad { ?s, <http://example.org/p>, "1", <http://example.org/> } (cost: 12)
+\end{verbatim}
+\end{example}
+In the above example, the first plan tree will be returned from the
+query planner for execution, since it has the lowest estimated cost
+(27).
+
+
 The system we propose is based on this paradigm, any choices we make
 are therefore to be encoded into a cost model. The cost model itself
 is not considered a part of the contributions, it is a simple cost
