@@ -837,6 +837,8 @@ composing \pmodule{Attean::API::IDPJoinPlanner} in the planner class.
 
 While this performed better in most cases, the test suite contains a
 query where it does not:
+\begin{example}{Query with results of 2 triple patterns cached and
+    unconnected triple pattern.}
 \begin{verbatim}
 ?s <http://example.org/m/p> "1" ;
    <http://example.org/m/p> ?o ;
@@ -844,6 +846,7 @@ query where it does not:
    <http://example.org/m/q> <http://example.org/m/a> .
 ?a <http://example.org/m/b> <http://example.org/m/c> .
 \end{verbatim}
+\end{example}
 Note that the above Basic Graph Pattern contains a triple pattern that
 does not share a variable (\sparql{?a}) with any other triple pattern,
 thus creating a problematic Cartesian join. Additionally, in this
