@@ -28,7 +28,7 @@ Unfortunately, the system has as of this writing insufficient
 performance for an evaluation to be meaningful. Nevertheless, it
 points out some interesting lessons with varying degrees of
 certainty. This chapter will detail the system, show its design and
-features and discuss its failures.
+features and discuss its strengths and weaknesses.
 
 Figure~\ref{fig:messaging} illustrates where caches may be in the
 Internet infrastructure, as well as HTTP requests and responses in a
@@ -93,7 +93,7 @@ HTTP, but it is conceivable that it may use a different protocol, and
 may employ detailed knowledge of the hosted data to optimise cache
 operations. Finally, the database, in this context a SPARQL Endpoint,
 may use conventional database caching techniques. The database cache
-and reverse proxy is typically controlled by the data provider.
+and reverse proxy are typically controlled by the data provider.
 
 The present system may be deployed at any of these levels (and similar
 figures could be drawn). However,
@@ -139,7 +139,7 @@ server, and another request \circled{2} for a triple pattern fragment
 that the analyser thinks will enable the proxy to assist the server
 the best for future requests, is sent. This analysis is discussed in
 Section~\ref{sec:analpre}. The response \circled{2} is not sent back
-to the client, but will enter the cache. Lets say that the analyser
+to the client, but will enter the cache. Assuming that the analyser
 was successful and that the cache can be used to answer request
 \circled{3}. In that case, the proxy will send rewritten queries for
 the rest of the data it needs to be able to answer the query to the
@@ -315,7 +315,7 @@ in the following:
 
 The Attean framework was born from the experiences the PerlRDF
 community gained with \pmodule{RDF::Trine}, the Perl counterpart to
-the more well-known Jena framework, and the opportunities presented by
+the better known Jena framework, and the opportunities presented by
 the introduction of traits \cite{traits}, or roles as they are known
 to the Perl world.
 
@@ -355,8 +355,8 @@ Section~\ref{sec:implqueryplan}.
 Also of importance are the APIs to compose stores. Stores in Attean
 can be triplestores or quadstores, they can be mutable,
 bulkupdateable, can enable the use of ETags or modification times for
-conditional requests (as defined in RFC7232 \cite{rfc7234}), and makes
-possible further extensions. Each of these primitives is represented
+conditional requests (as defined in RFC7232 \cite{rfc7234}), and
+enables further extensions. Each of these primitives is represented
 by a role that implements default functionality or simply requires
 such functionality to be required. For instance, a quadstore is
 required by \pmodule{Attean::API::QuadStore} to implement the
@@ -468,9 +468,9 @@ Another persistent script is subscribed to this latter channel. If the
 Model supports LDF, a retriever will then download
 the results of the triple pattern and enter it into the cache, or use
 a single triple pattern SPARQL query if not. The current
-implementation assumes that both and LDF server and a SPARQL endpoint
+implementation assumes that both an LDF server and a SPARQL endpoint
 can be used to answer any triple pattern. Relaxing this assumption
-depends on that the LDF specifications gain stronger semantics to link
+depends on the LDF specifications gaining stronger semantics to link
 SPARQL endpoints and LDF servers together. With that, the assumption
 could be abandoned trivially.
 
@@ -653,7 +653,7 @@ planned to employ.
 
 \subsection{Actual Evaluation}
 
-I decided to set the entire system up as a proxy server, and run a
+I decided to set up the entire system as a proxy server, and run a
 realistic query against DBpedia repeatedly. The intention was to let
 the analyser find all required data and eventually add that to the
 cache. Once the cache was filled with all the data, the query cache
@@ -679,8 +679,8 @@ to pull all the data from the LDF version of DBpedia
 within some hours. 
 
 The cache was kept in a Redis data structure database on a machine
-with a Intel Core2 Duo E8500 CPU with 16 GB of RAM. The proxy server
-with the query engine ran on a Intel Xeon CPU E3-1230 v5 CPU with 32
+with an Intel Core2 Duo E8500 CPU with 16 GB of RAM. The proxy server
+with the query engine ran on an Intel Xeon CPU E3-1230 v5 CPU with 32
 GB of RAM, residing a LAN with a gigabit Ethernet link between
 them. Running the query on this hardware took more than 1000 seconds
 without any performance analysis enabled. This is clearly more than
@@ -804,18 +804,19 @@ problematic. For example, the LDF client in point~2
 might be an implementation of \cite{verborgh2014querying}, but that
 would be very different from the combination of point~1~and~2, which
 correspond to the usage of
-\pmodule{AtteanX::QueryPlanner::Cache::LDF}. Additionally, I noted
-that downloading the triple pattern fragment
-\sparql{?s~foaf:name~?name~.}  
-resulted in more than 40~000 HTTP requests due to
-paging. Another relevant factor might be to deploy a Triple Pattern
-Fragments server that does not page, and have levels with paging on
-and off. Integrating this factor in the experimental design would
-further complicate it.
+\pmodule{AtteanX::QueryPlanner::Cache::LDF}. 
+%Additionally, I noted
+%that downloading the triple pattern fragment
+%\sparql{?s~foaf:name~?name~.}  
+%resulted in more than 40~000 HTTP requests due to
+%paging. Another relevant factor might be to deploy a Triple Pattern
+%Fragments server that does not page, and have levels with paging on
+%and off. Integrating this factor in the experimental design would
+%further complicate it.
 
 If the experiment outlined here could come to fruition, and we take
 the factor in the first point with level~1 as the cache being enabled,
-then we can examine the experiment similarly to what with did with the
+then we can examine the experiment similarly to what we did with the
 ``Implement'' factor in \cite{kjernsmo_doe_intro}. That is, the first
 step to understand the contributions to the endpoint system load by
 the different factors, is to create a normal plot and then use the
@@ -906,13 +907,13 @@ scripting language like Perl to write a query engine with performance
 requirements. Indeed, that may be the case. However, generally
 accepted practice is to first find the actual performance issues and
 then optimise using a bridge to first and foremost the C family of
-languages as needed. Importantly, with the width of the scope, I only
+languages as needed. Importantly, with the breadth of the scope, I only
 had some months to implement the query engine. This is not a software
 engineering project, but given past industrial experience, it seems
 unlikely that I could have achieved it within the allowed time frame
 using older paradigms, such as the factory method pattern.
 
-The profiling points out a clearly where large gains could be
+The profiling points out clearly where large gains could be
 made. First and foremost, parsing must be avoided, and that could be
 avoided by ensuring that IRIs where canonicalised before they were
 written to the cache, so that comparing them later would be a simple
