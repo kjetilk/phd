@@ -198,7 +198,9 @@ The resulting plan trees may be represented as strings as follows:
 \end{example}
 In the above example, the first plan tree will be returned from the
 query planner for execution, since it has the lowest estimated cost
-(27).
+(27). Since the SPARQL engine operates over quads, we have assigned a
+dummy graph name when constructing the Model, namely
+\rdfterm{<http://example.org/>}. 
 
 
 The system we propose is based on this paradigm, any choices we make
@@ -228,7 +230,7 @@ balance in a given situation would be welcome in this area, but I
 believe it would be advantageous to build on a cost model.
 
 Following this discussion, consider this example:
-\begin{example}{A four-triple pattern BGP}
+\begin{example}{A four-triple pattern BGP}\label{ex:bgp4}
 \begin{verbatim}
 ?s <http://example.org/m/p> "1" ;
    <http://example.org/m/q> <http://example.org/m/a> ;
@@ -260,6 +262,23 @@ that accessing the cache is represented by an iterator plan):
 \end{verbatim}
 \end{example}
 
+Merging the quad plans into a single SPARQL BGP plan is not
+straightforward in the presence of a quad pattern that is to be looked
+up in e.g. a cache. If we assign the letters $A$, $B$, $C$ and $D$ to
+quad patterns\todo{correctly expressed?}  in the order in
+Example~\ref{ex:bgp4}, the initial join tree produced by parsing may
+be $ ((A \bowtie B )\bowtie C) \bowtie D) $. Now, we are interested in
+a plan on the form $A \bowtie BCD$ (all commutations will be
+generated). To facilitate this, we employ \emph{join rotation}. A
+simple example of join rotation would be this: We first generate
+subplans for both $((A \bowtie B )\bowtie C) \bowtie D) $ and $ (A
+\bowtie B )\bowtie (C \bowtie D) $. Then, $C$ and $D$ can be merged to
+a SPARQL BGP to $ (A \bowtie B )\bowtie CD $. Another rotation can
+then be performed: $ A \bowtie (B \bowtie CD) $ and then coalesced to
+the final result. The planner will generate alternative plans for both
+rotated and unrotated plans, and cost is estimated for both, so we
+have to be careful to design the cost model to allow the rotation to
+result in SPARQL BGP plans.
 
 
 
