@@ -280,7 +280,17 @@ rotated and unrotated plans, and cost is estimated for both, so we
 have to be careful to design the cost model to allow the rotation to
 result in SPARQL BGP plans.
 
-
+As can be imagined from the fact that a BGP with just to triple
+patterns result in 4 plan trees, a naive query planner may generate a
+large number of plans for complex queries. In addition, the proposed
+system will generate even more plans, since it considers three sources
+of the same data, the cache, the remote endpoint and an LDF
+server. Various methods have been developed in the literature to limit
+the growth of plans. In addition to a naive planner, we also have an
+Iterative Dynamic Programming planner
+\cite{Kossmann:2000:IDP:352958.352982}, which prunes plans
+aggressively based on their estimated cost in each iteration of query
+plan generation.
 
 
 \section{Implementation}\label{sec:impl}
@@ -383,12 +393,10 @@ estimated. How this happens in detail depends on how the planner is
 composed. Attean comes with two roles that implement different
 planners, \pmodule{Attean::API::SimpleCostPlanner} will compute all
 possible plans and then estimate the cost of all plans, and finally
-return the best 5. \pmodule{Attean::API::IDPJoinPlanner}
-implements an Iterative Dynamic Programming planner
-\cite{Kossmann:2000:IDP:352958.352982}, which prunes plans
-aggressively based on their estimated cost in each iteration of query
-plan generation. When a final plan tree has been found, the query may
-be executed. 
+return the best 5. \pmodule{Attean::API::IDPJoinPlanner} implements an
+Iterative Dynamic Programming planner
+\cite{Kossmann:2000:IDP:352958.352982}. When a final plan tree has
+been found, the query may be executed.
 
 That new plan types can be integrated into the planner with ease, and
 that the planner itself can be changed with very little effort is a
