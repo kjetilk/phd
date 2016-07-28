@@ -265,7 +265,7 @@ that accessing the cache is represented by an iterator plan):
 Merging the quad plans into a single SPARQL BGP plan is not
 straightforward in the presence of a quad pattern that is to be looked
 up in e.g. a cache. If we assign the letters $A$, $B$, $C$ and $D$ to
-quad patterns\todo{correctly expressed?}  in the order in
+quad patterns \todo{correctly expressed?} in the order in
 Example~\ref{ex:bgp4}, the initial join tree produced by parsing may
 be $ ((A \bowtie B )\bowtie C) \bowtie D) $. Now, we are interested in
 a plan on the form $A \bowtie BCD$ (all commutations will be
