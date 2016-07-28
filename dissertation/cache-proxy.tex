@@ -606,7 +606,7 @@ plan, we multiply the cost of the subplans, increment the resulting
 cost by one if the right hand plan is more expensive than the left
 hand plan, and multiply by a factor of 10 if there are no shared
 variables, to mildly penalise Cartesian joins. If the plan is a hash
-join the difference is that, we add rather than multiply the cost of
+join the difference is that we add rather than multiply the cost of
 the of the subplans, and multiply by a factor of 100 rather than 10 so
 that if it is necessary to evaluate a Cartesian join, it is more
 likely done using a nested loop join. Then, the resulting cost is
