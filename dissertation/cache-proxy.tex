@@ -170,9 +170,9 @@ published to the Comprehensive Perl Archive Network as Free Software,
 and most of which have become a part the Free Software ecosystem. For
 a detailed account of the modules that are a part of the system and
 the authors that have contributed code in this ecosystem, see
-Appendix~\ref{app:modules}.
-
-
+Appendix~\ref{app:modules}. Some parts are essential for the
+discussion and to understand the contributions, and therefore detailed
+in the following:
 
 \subsection{The Attean Framework}\label{sec:attean}
 
@@ -277,49 +277,6 @@ in this work. That this is made easy is to the credit of traits, as
 will become clear as we study the details of the implementation in
 Section~\ref{sec:implqueryplan}.
 
-
-\subsection{SPARQL Protocol Client}\label{sec:sparqlclient}
-
-The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
-Protocol client that implements Attean APIs. The store implementation
-itself composes the \mbox{TripleStore} API and implements methods to retrieve
-the results of a single triple pattern and exact cardinality for a
-given triple pattern, by using an aggregate query. In addition, it can
-generate plans for Basic Graph Pattern algebra objects that have more
-than one triple pattern. If that is the case, it will return an
-instance of the class \pmodule{AtteanX::Plan::SPARQLBGP}, which is
-also defined by the module. If it is not the case, the module also has
-an implementation of the \pcode{access\_plan} method in a
-\pmodule{AtteanX::Query::AccessPlan::SingleQuadBGP} role, that can be
-composed by a query planner to provide a single triple pattern
-\pmodule{AtteanX::Plan::SPARQLBGP} object. Finally, it also provides a
-model implementation that composes the Model and \mbox{CostPlanner}
-APIs. This contains a \pcode{cost\_for\_plan} implementation that will
-provide a cost for \pmodule{AtteanX::Plan::SPARQLBGP} objects that are
-proportional to the number of triple patterns in the plan, but
-penalises plans that do not have triple patterns that are connected
-through a variable (i.e. will cause a Cartesian join) with a factor
-10. See Section~\ref{sec:costheuristics} for details on the cost
-heuristics.
-
-\subsection{Linked Data Fragment Client}\label{sec:ldfclient}
-
-The Linked Data Fragment client work was started prior to this project
-by Patrick Hochstenbach, and consists of the client code for Triple
-Pattern Fragments in \pmodule{RDF::LDF}. It also includes the Basic
-Graph Pattern optimisation from \cite{verborgh2014querying}. Included with the client
-code is an implementation of a triplestore of the legacy
-\pmodule{RDF::Trine} framework that predates Attean. He also started
-an Attean store implementation \pmodule{AtteanX::Store::LDF} as a
-separate module, but that module was subsequently adopted by me, and I
-have written most of the functionality. It composes the \mbox{TripleStore}
-and \mbox{CostPlanner} APIs and implements triple pattern queries and
-cardinality estimates, both provided by the underlying client code as
-they are a part of the core functionality of TPF,
-as well as \pcode{cost\_for\_plan}.
-
-It also supplies a plan class \pmodule{AtteanX::Plan::LDF::Triple}
-used in the query planning. 
 
 \subsection{The Caching Proxy}\label{sec:cacher}
 
@@ -925,7 +882,52 @@ The underlying caching framework used by this module, \pmodule{CHI},
 will take care of expiry and purging of entries, since this module
 will supply an explicit freshness lifetime. 
 \pmodule{AtteanX::Endpoint} is an implementation of the server side of
-SPARQL 1.1 Protocol. 
+SPARQL 1.1 Protocol. Another two modules require further details:
+
+
+\subsection{SPARQL Protocol Client}\label{sec:sparqlclient}
+
+The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
+Protocol client that implements Attean APIs. The store implementation
+itself composes the \mbox{TripleStore} API and implements methods to retrieve
+the results of a single triple pattern and exact cardinality for a
+given triple pattern, by using an aggregate query. In addition, it can
+generate plans for Basic Graph Pattern algebra objects that have more
+than one triple pattern. If that is the case, it will return an
+instance of the class \pmodule{AtteanX::Plan::SPARQLBGP}, which is
+also defined by the module. If it is not the case, the module also has
+an implementation of the \pcode{access\_plan} method in a
+\pmodule{AtteanX::Query::AccessPlan::SingleQuadBGP} role, that can be
+composed by a query planner to provide a single triple pattern
+\pmodule{AtteanX::Plan::SPARQLBGP} object. Finally, it also provides a
+model implementation that composes the Model and \mbox{CostPlanner}
+APIs. This contains a \pcode{cost\_for\_plan} implementation that will
+provide a cost for \pmodule{AtteanX::Plan::SPARQLBGP} objects that are
+proportional to the number of triple patterns in the plan, but
+penalises plans that do not have triple patterns that are connected
+through a variable (i.e. will cause a Cartesian join) with a factor
+10. See Section~\ref{sec:costheuristics} for details on the cost
+heuristics.
+
+\subsection{Linked Data Fragment Client}\label{sec:ldfclient}
+
+The Linked Data Fragment client work was started prior to this project
+by Patrick Hochstenbach, and consists of the client code for Triple
+Pattern Fragments in \pmodule{RDF::LDF}. It also includes the Basic
+Graph Pattern optimisation from \cite{verborgh2014querying}. Included with the client
+code is an implementation of a triplestore of the legacy
+\pmodule{RDF::Trine} framework that predates Attean. He also started
+an Attean store implementation \pmodule{AtteanX::Store::LDF} as a
+separate module, but that module was subsequently adopted by me, and I
+have written most of the functionality. It composes the \mbox{TripleStore}
+and \mbox{CostPlanner} APIs and implements triple pattern queries and
+cardinality estimates, both provided by the underlying client code as
+they are a part of the core functionality of TPF,
+as well as \pcode{cost\_for\_plan}.
+
+It also supplies a plan class \pmodule{AtteanX::Plan::LDF::Triple}
+used in the query planning. 
+
 
 \end{subappendices}
 
