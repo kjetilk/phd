@@ -495,7 +495,8 @@ evaluation. This is achieved by an addition to the proxy that sends a
 query to a persistent analyser script that subscribes to a channel on
 a Redis\footnote{See \url{http://redis.io/}} data structure store. The
 Redis data structure store is a mostly-memory ``NoSQL'' database for
-storing primitive data structures identified by a key.
+storing primitive data structures identified by a key. It also
+features a publish-subscribe system.
 
 The analyser script can be configured to use any number of analysers.
 Two such analysers have been implemented, for now constrained to
