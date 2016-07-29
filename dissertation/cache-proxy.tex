@@ -662,8 +662,8 @@ system, and this is done in
 \pmodule{AtteanX::Model::SPARQLCache::LDF}. Let us, however, start
 from the bottom. 
 
-The cost of evaluating a Triple Pattern Fragment plan $C_{tpf}$ is estimated to
-be 
+The cost of evaluating a Triple Pattern Fragment plan $C_{tpf}$ is
+designated to be
 \begin{equation}
 C_{tpf} = 10 + \floor{990 \frac{n_{tpf}}{n_{tot}}} ,
 \end{equation}
@@ -671,10 +671,14 @@ where $n_{tpf}$ is the estimated number of triples expected to be
 matched by the triple pattern and $n_{tot}$ is the size of the
 model. Thus, this cost will be an integer between 10 and 1000. The
 reason we use a floor function is that the Attean cost model only
-supports integers.
+supports integers. This choice is mainly motivated from the assumption
+that evaluating TPFs is a relatively cheap operation for the remote
+endpoint, and so the cost should be contained within an interval, so
+that other costs can easily be balanced against it.
 
-The cost of accessing the cache is assumed to be small compared to the
-above, and is estimated as 
+It is then assumed that the cost of accessing the cache is usually
+lower than the above, i.e. it should usually be below the lowest cost
+of a TPF (yet have no upper bound), and is therefore designated as
 \begin{equation}
 C_c = 2 + \floor{\log_{10}{n_c}} , 
 \end{equation}
