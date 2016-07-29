@@ -351,8 +351,8 @@ where my work was already near the deadline. I opted for a simple
 approach to consider only individual triple patterns.
 
 With this constraint, the analysers have been implemented with two
-different assumptions of usefulness: In the first case, I try to
-capture frequently occurring bound predicates. This is due to the
+different assumptions of usefulness: The first analyser, called
+predicate-count, captures frequently occurring bound predicates. This is due to the
 observation that predicates are often bound, and so predicates that
 are common will occur in the future, and therefore, prefetching and
 caching results of a triple pattern where the predicate is bound to a
@@ -360,7 +360,8 @@ frequently occurring is likely to be beneficial. This is done by
 counting the occurrences of predicates, and when the number exceeds a
 certain threshold, the prefetcher is instructed to fetch the data.
 
-The second analyser works along a different axis: It tries to find the
+The second analyser, named cost-reduction, works along a different
+axis: It tries to find the 
 triple pattern that, if cached, would provide the greatest cost
 benefit. To do so, it will rerun the query planner on the incoming
 query while simulating that the results of a certain triple pattern
