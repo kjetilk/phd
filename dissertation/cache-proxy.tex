@@ -161,6 +161,46 @@ not required. However, there is no difference in the current
 implementation, so in practice, the terms could be used
 interchangeably.
 
+
+\subsection{Architecture}\label{sec:arch}
+
+The architecture is depicted in Figure~\ref{fig:arch}. A SPARQL
+protocol implementation will accept a client's query (and could cache
+it's result in its entirety, but this is neither implemented nor
+depicted). Two things happen to a valid query:
+
+\begin{itemize}
+\item The query (or indeed the algebra) is sent asynchronously to a
+  set of analysers that is tasked with predicting what parts of the
+  incoming query may be useful to answer future queries. The result of
+  the analysis is sent to a prefetcher that will decide how to fetch
+  the needed data, currently it only operates on triple patterns, and
+  therefore, and since it is also assumed that a triple pattern
+  fragments server can answer any triple pattern, it instructs a TPF
+  client to fetch and enter the result into the cache.  
+\item The SPARQL protocol implementation will also send the query to
+  a parser that will create an algebra tree from it. The algebra tree
+  is then passed to a query engine for immediate execution. The query
+  engine has an elaborate query planner that can create plans for
+  accessing a cache, a TPF server and a SPARQL Endpoint. When the
+  planner finishes planning, the evaluator may use a TPF client or a
+  SPARQL protocol client to fetch data that is not in the cache. The
+  results of single triple patterns may be inserted in the cache by
+  the TPF client.
+\end{itemize}
+
+\begin{figure}[bh]
+\begin{center}
+\includegraphics{architecture.pdf}
+\caption{Architectural overview. The proposed system is represented
+  inside the box titled ``Proxy''. It interacts with a client, a
+  Triple Patterns Fragments Server and a SPARQL Endpoint. The most
+  important component is the query engine, which consists of a query
+  planner and a query evaluator.}\label{fig:arch}
+\end{center}
+\end{figure}
+
+
 \subsection{Understanding the Query Planning}\label{sec:understandquery}
 
 We saw in Section~\ref{sec:introinteract} that a query would be parsed
@@ -298,44 +338,6 @@ Iterative Dynamic Programming planner
 \cite{Kossmann:2000:IDP:352958.352982}, which prunes plans
 aggressively based on their estimated cost in each iteration of query
 plan generation.
-
-\subsection{Architecture}\label{sec:arch}
-
-The architecture is depicted in Figure~\ref{fig:arch}. A SPARQL
-protocol implementation will accept a client's query (and could cache
-it's result in its entirety, but this is neither implemented nor
-depicted). Two things happen to a valid query:
-
-\begin{itemize}
-\item The query (or indeed the algebra) is sent asynchronously to a
-  set of analysers that is tasked with predicting what parts of the
-  incoming query may be useful to answer future queries. The result of
-  the analysis is sent to a prefetcher that will decide how to fetch
-  the needed data, currently it only operates on triple patterns, and
-  therefore, and since it is also assumed that a triple pattern
-  fragments server can answer any triple pattern, it instructs a TPF
-  client to fetch and enter the result into the cache.  
-\item The SPARQL protocol implementation will also send the query to
-  a parser that will create an algebra tree from it. The algebra tree
-  is then passed to a query engine for immediate execution. The query
-  engine has an elaborate query planner that can create plans for
-  accessing a cache, a TPF server and a SPARQL Endpoint. When the
-  planner finishes planning, the evaluator may use a TPF client or a
-  SPARQL protocol client to fetch data that is not in the cache. The
-  results of single triple patterns may be inserted in the cache by
-  the TPF client.
-\end{itemize}
-
-\begin{figure}[bh]
-\begin{center}
-\includegraphics{architecture.pdf}
-\caption{Architectural overview. The proposed system is represented
-  inside the box titled ``Proxy''. It interacts with a client, a
-  Triple Patterns Fragments Server and a SPARQL Endpoint. The most
-  important component is the query engine, which consists of a query
-  planner and a query evaluator.}\label{fig:arch}
-\end{center}
-\end{figure}
 
 \section{Implementation}\label{sec:impl}
 
