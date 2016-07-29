@@ -725,7 +725,8 @@ Eq.~(\ref{eq:ch}) is multiplied by a factor of 100 rather than 10 so
 that if it is necessary to evaluate a Cartesian join, it is more
 likely done using a nested loop join.
 
-Then, to make local joins somewhat more expensive than similar BGPs\todo{check},
+Then, to ensure that the join rotation and coalescing can be
+efficient, we penalise plans that have more of them, so
 for both these join types, we designate the cost of joins to be
 \begin{equation}\label{eq:cjoins}
 C_{A \bowtie_* B} = \floor{ 1.2 n_{rs} T_{A \bowtie_{*} B} } ,
