@@ -347,7 +347,7 @@ what remote data is most useful to answer future queries. I haven't
 attempted to formalise the notion of what a useful cache entry is, nor
 have I attempted to exploit the concept of profitable query patterns
 of \cite{papailiou2015graph}, mostly because this work came at a time
-where my work was already near the deadline. I opted for a simple
+when my work was already near the deadline. I opted for a simple
 approach to consider only individual triple patterns.
 
 With this constraint, the analysers have been implemented with two
@@ -676,8 +676,8 @@ that evaluating TPFs is a relatively cheap operation for the remote
 endpoint, and so the cost should be contained within an interval, so
 that other costs can easily be balanced against it.
 
-It is then assumed that the cost of accessing the cache is usually
-lower than the above, i.e. it should usually be below the lowest cost
+I have assumed that the cost of accessing the cache is usually
+lower than the above, that is, it should usually be below the lowest cost
 of a TPF (yet have no upper bound), and is therefore designated as
 \begin{equation}
 C_c = 2 + \floor{\log_{10}{n_c}} , 
@@ -715,7 +715,7 @@ implementation in Attean, we multiply the cost in Eq.~(\ref{eq:cnl})
 by a factor of 10 if there are no shared variables, to mildly penalise
 Cartesian joins.
 
-If the plan is a hash join the, we continue to follow the example of
+If the plan is a hash join, we continue to follow the example of
 the Attean implementation and set
 \begin{equation}\label{eq:ch}
 T_{A \bowtie_{h} B} = 10 ((1 + C_A) + C_B ) .
