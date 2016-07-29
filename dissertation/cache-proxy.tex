@@ -567,7 +567,12 @@ planner evaluates a query into the above cache, using a trivial
 extension to the plan class packaged with the LDF client code
 described in Appendix~\ref{sec:ldfclient}.
 
-
+Cache maintenance, for example purging elements that are not useful or
+has expired from the cache, is an orthogonal problem to the proposed
+system. It is currently done straightforwardly in the User Agent
+described in Appendix~\ref{sec:modules} which supports HTTP caching as
+specified in RFC7234 \cite{rfc7234}, but further sophistication could
+be added without modifications to the rest of the system.
 
 \subsubsection{Query Planner}\label{sec:implqueryplan}
 
