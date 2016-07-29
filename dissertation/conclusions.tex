@@ -2,8 +2,6 @@
 
 \section[Future Work]{Future work; Discussion of Other Problems}\label{sec:future}
 
-% TODO: useful cache entry
-% TODO: client-server balance
 As noted in Section~\ref{sec:motivation}, it is clear that evaluating
 arbitrary SPARQL queries are in general unsustainable, and it is
 likely that the problems in Section~\ref{sec:perfproblems} are partly
@@ -20,6 +18,17 @@ so that clients can avoid asking them. The HTTP/2 specification
 \texttt{ENHANCE\_YOUR\_CALM (0xb)}:  The endpoint detected that its peer is
       exhibiting a behavior that might be generating excessive load.
 \end{quote}
+
+In Section~\ref{sec:understandquery}, it is noted that
+Problem~\ref{prob:microcontroller} makes it important for a query
+planner that integrates LDF query answering to find a balance between
+client and server capability.
+
+The lack of a formalisation of the notion of a useful cache entry is
+noted in Section~\ref{sec:analpre}, and while there has been some work
+on this topic, I am not aware of any attempt to do so in the context
+of the present topic.
+
 
 Problem~\ref{prob:queryeq} is has an interesting possible solution in
 the application of hashing algorithms that have a reasonable chance of
@@ -52,7 +61,10 @@ the Internet infrastructure.
 
 
 Problems~\ref{prob:unknowndist},~\ref{prob:unknownconddist}~and~\ref{prob:largestats}
-has a promising approach in \cite{5767868}. % TODO: Expose, discuss void
+has a promising approach in \cite{5767868}, but a way to expose this
+information to a client or a proxy is lacking. We saw in
+\cite{splendid} that a VoID description can be used with some success,
+but this needs further elaboration.
 
 I have not approached any of the problems of
 Section~\ref{sec:semproblems}, mainly because I think it is an open
