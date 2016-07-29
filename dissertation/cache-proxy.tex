@@ -704,16 +704,35 @@ should be small, and that plans where the joins have been rotated and
 coalesced by \pmodule{AtteanX::API::JoinRotatingPlanner} should be
 less expensive. Therefore, such plans should be penalised, but by how
 much depends on the type plans. Conventionally, for a nested loop join
-plan, we multiply the cost of the subplans, increment the resulting
-cost by one if the right hand plan is more expensive than the left
-hand plan, and multiply by a factor of 10 if there are no shared
-variables, to mildly penalise Cartesian joins. If the plan is a hash
-join the difference is that we add rather than multiply the cost of
-the of the subplans, and multiply by a factor of 100 rather than 10 so
+plan, the we first assign 
+\begin{equation}\label{eq:cnl}
+T_{A \bowtie_{nl} B} = 10 ((1 + C_A) C_B ) ,
+\end{equation}
+where $A$ and $B$ signifies the left and right subplans, and $C_A$ and
+$C_B$ their respective cost estimates (which is originates from the
+other heuristics in this section).  Following the default
+implementation in Attean, we multiply the cost in Eq.~(\ref{eq:cnl})
+by a factor of 10 if there are no shared variables, to mildly penalise
+Cartesian joins.
+
+If the plan is a hash join the, we continue to follow the example of
+the Attean implementation and set
+\begin{equation}\label{eq:ch}
+T_{A \bowtie_{h} B} = 10 ((1 + C_A) + C_B ) .
+\end{equation}
+Further, if there are no shared variables, the cost of
+Eq.~(\ref{eq:ch}) is multiplied by a factor of 100 rather than 10 so
 that if it is necessary to evaluate a Cartesian join, it is more
-likely done using a nested loop join. Then, the resulting cost is
-multiplied by the number of remote SPARQL Basic Graph Patterns in the
-tree and the factor 1.2, and floored to the nearest integer.
+likely done using a nested loop join.
+
+Then, to make local joins somewhat more expensive than similar BGPs\todo{check},
+for both these join types, we designate the cost of joins to be
+\begin{equation}\label{eq:cjoins}
+C_{A \bowtie_* B} = \floor{ 1.2 n_{rs} T_{A \bowtie_{*} B} } ,
+\end{equation}
+where the asterisk denotes either $nl$ for nested loop or $h$ for hash
+join, respectively, and $n_{rs}$ is the number of remote SPARQL Basic
+Graph Patterns in the tree.
 
 Under the assumption that it is better to join remotely than to
 possibly retrieve large amounts of data, a similar algorithm is used
