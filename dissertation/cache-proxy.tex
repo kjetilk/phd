@@ -195,8 +195,9 @@ depicted). Two things happen to a valid query:
 \caption{Architectural overview. The proposed system is represented
   inside the box titled ``Proxy''. It interacts with a client, a
   Triple Patterns Fragments Server and a SPARQL Endpoint. The most
-  important component is the query engine, which consists of a query
-  planner and a query evaluator.}\label{fig:arch}
+  important components are the query engine, which consists of a query
+  planner and a query evaluator, and the analysers that find
+  subqueries to cache.}\label{fig:arch}
 \end{center}
 \end{figure}
 
@@ -339,7 +340,7 @@ Iterative Dynamic Programming planner
 aggressively based on their estimated cost in each iteration of query
 plan generation.
 
-\subsection{Analysis for prefetching}\ref{sec:analpre}
+\subsection{Analysis for prefetching}\label{sec:analpre}
 
 The objective of the analyser in Figure~\ref{fig:arch} is to predict
 what remote data is most useful to answer future queries. I haven't
