@@ -341,6 +341,9 @@ plan generation.
 
 \section{Implementation}\label{sec:impl}
 
+This section explores the implementation of the general architecture
+outlined in Section~\ref{sec:arch}. 
+
 The implementation consists of several modules that have been
 published to the Comprehensive Perl Archive Network as Free Software,
 and most of which have become a part the Free Software ecosystem. For
@@ -419,8 +422,9 @@ corresponding for other terms. Thus, upper layers of an application
 should use the Model abstraction. We have also chosen to implement significant
 parts of the query planning in the Model.
 
-When a query is parsed, algebra objects are generated. Based on the
-algebra tree, models may generate plans for any algebra object of
+Based on the algebra tree from a parsed query (see
+Section~\ref{sec:understandquery} for details), models may generate
+plans for any algebra object of
 their choosing by implementing the \pmodule{Attean::API::CostPlanner}
 role. This amounts to implementing \pcode{plans\_for\_algebra} and
 \pcode{cost\_for\_plan} methods. For a given algebra, Attean's query
@@ -454,7 +458,8 @@ Section~\ref{sec:implqueryplan}.
 
 \subsection{The Caching Proxy}\label{sec:cacher}
 
-The caching proxy consists of several components:
+The caching proxy consists of several components, detailing the
+overview in Figure~\ref{fig:arch}:
 
 \begin{itemize}
 \item Analysers, used to determine whether certain triple patterns
