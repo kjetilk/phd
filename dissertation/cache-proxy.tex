@@ -633,13 +633,27 @@ i.e. many alternative plans are generated, but the decision on whether
 to use a certain plan is entirely up to the cost model. While the
 framework is flexible and could support further research into cost
 models, I have considered this to be future work, and only a small
-heuristic cost model is present in the current system. 
+heuristic cost model is present in the current system. This is guided
+by intuition and verified mainly by a number of tests in the code for
+expected corner cases. Importantly the different parts of the cost
+model are tuned to balance each other, not actually estimate the cost
+of any actual operation.
 
-However, since the combination of remotely executed SPARQL with a
-local cache and TPF is rather complex, the cost
-heuristics are fairly elaborate. Moreover, since the objective of the
-study is to take load off of the remote endpoint, the heuristics are
-intended to make the proxy work harder than the remote endpoint.
+Admittedly, with this approach, using the term ``cost model'' is
+somewhat of a misnomer. An important motivation for this work is to
+relieve the remote endpoint of stress, and so a principled approach
+could attempt to estimate the cost for the remote endpoint, but
+rather, the intuition explained in Section~\ref{sec:understandquery}
+motivates the choices made in the following.
+
+Moreover, since the combination of remotely executed SPARQL with a
+local cache and TPF is rather complex, the cost heuristics are fairly
+elaborate. Therefore, an attempt to create a proper cost model would
+make that a primary focus of the research, rather than the empirical
+analysis of a first-generation caching proxy integrating SPARQL and
+LDF we set out to achieve. That being said, I have chosen to keep the
+``cost model'' terminology since the usage of the metric resembles how
+it is used in the literature.
 
 Throughout the system, the query planner takes the cost from the
 models implementing the \pmodule{Attean::API::CostPlanner} role. A
