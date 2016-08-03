@@ -598,15 +598,19 @@ programming, as they are typically customised along different axes:
 access plans, cost estimation, planning of joins within Basic Graph
 Patterns or left joins, rewriting (like gathering quad patterns to
 blocks), etc. In the case of our query planner that combines a remote
-endpoint with a local cache, named
+endpoint with a local cache, the module named above
 \pmodule{AtteanX::QueryPlanner::Cache}, the basic query planner of the
 Attean framework, \pmodule{Attean::QueryPlanner} is extended
 (i.e. inherited from), but also composes the following roles:
+\begin{itemize}
+\item 
 \pmodule{Attean::API::NaiveJoinPlanner},
-\pmodule{Attean::API::SimpleCostPlanner},
-\pmodule{AtteanX::API::JoinRotatingPlanner},
-\pmodule{AtteanX::Query::AccessPlan::SingleQuadBGP} and
-\pmodule{AtteanX::Query::AccessPlan::Cache}, out of which the three
+\item \pmodule{Attean::API::SimpleCostPlanner},
+\item \pmodule{AtteanX::API::JoinRotatingPlanner},
+\item \pmodule{AtteanX::Query::AccessPlan::SingleQuadBGP} and
+\item \pmodule{AtteanX::Query::AccessPlan::Cache},
+\end{itemize}
+out of which the three
 first are a part of the Attean framework, the next is described in
 Appendix~\ref{sec:sparqlclient} and the last is a part of the
 query cache system itself.
@@ -622,7 +626,7 @@ a suitable object for each axis of customisation.
 The implementation of the join rotation detailed in
 Section~\ref{sec:understandquery} is in the role
 \pmodule{AtteanX::API::JoinRotatingPlanner}. In the planner
-\pmodule{AtteanX::QueryPlanner::Cache} adjacent quad patterns are
+\pmodule{AtteanX::Query\linebreak[4]Planner::Cache} adjacent quad patterns are
 coalesced into Basic Graph Pattern (BGP) plans, and BGP plans are
 coalesced into larger BGP plans, so that they can be evaluated by the
 remote SPARQL endpoint as a single unit. The extension
@@ -661,7 +665,7 @@ it is used in the literature.
 Throughout the system, the query planner takes the cost from the
 models implementing the \pmodule{Attean::API::CostPlanner} role. A
 key challenge is to balance the costs given by different models in the
-system, and this is done in
+system, and this is done in the module
 \pmodule{AtteanX::Model::SPARQLCache::LDF}. Let us, however, start
 from the bottom. 
 
@@ -704,7 +708,7 @@ Next, we detail the cost of a join where one or more children in the
 tree is a remote SPARQL plan. It is usually not wanted to execute
 several remote queries, it is assumed that the number of HTTP requests
 should be small, and that plans where the joins have been rotated and
-coalesced by \pmodule{AtteanX::API::JoinRotatingPlanner} should be
+coalesced by the implementation in the role \pmodule{AtteanX::API::JoinRotatingPlanner} should be
 less expensive. Therefore, such plans should be penalised, but by how
 much depends on the type plans. Conventionally, for a nested loop join
 plan, the we first assign 
@@ -1130,8 +1134,14 @@ that have been influenced or written as part of this project.
 \end{landscape}
 
 The system also depends on modules I have written that are not part of
-the project: \pmodule{RDF::LinkedData}, \pmodule{RDF::Generator::Void}, \pmodule{Test::RDF},
-\pmodule{URI::NamespaceMap} and \pmodule{RDF::NS::Curated}.
+the project, but that I have enhanced as time has allowed: 
+\begin{itemize}
+\item \pmodule{RDF::LinkedData},
+\item \pmodule{RDF::Generator::Void},
+\item \pmodule{Test::RDF},
+\item \pmodule{URI::NamespaceMap} and
+\item \pmodule{RDF::NS::Curated}.
+\end{itemize}
 
 To further understand the roles of the different modules, note the
 following: \pmodule{LWP::UserAgent::CHICaching} is a traits-based
@@ -1147,7 +1157,7 @@ SPARQL 1.1 Protocol. Another two modules require further details:
 
 The \pmodule{AtteanX::Store::SPARQL} module is a partial SPARQL
 Protocol client that implements Attean APIs. The store implementation
-itself composes the \mbox{TripleStore} API and implements methods to retrieve
+itself composes the supplied \mbox{TripleStore} API and implements methods to retrieve
 the results of a single triple pattern and exact cardinality for a
 given triple pattern, by using an aggregate query. In addition, it can
 generate plans for Basic Graph Pattern algebra objects that have more
