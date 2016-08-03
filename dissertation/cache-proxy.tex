@@ -115,12 +115,12 @@ the forward proxy, or in a CDN.
 
 It is further interesting to note the contrast to the HERMES
 \cite{adali1996query} system's concept of invariants discussed in
-Section~\ref{sec:relcache}: a SPARQL query cache be oblivious
+Section~\ref{sec:relcache}: a SPARQL query cache should be oblivious
 to domain knowledge in a CDN deployment and therefore shouldn't assume any invariants,
 except in the possible but unlikely case where the remote server
 declares an infinite freshness lifetime for the result of a certain
 graph pattern. A forward proxy, on the other hand, may have a deeper
-understanding on the needs of the client, and could possibly implement
+understanding of the needs of the client, and could possibly implement
 invariants. The Attean framework accommodates for this.
 
 Figure~\ref{fig:messaging} illustrates the case where HTTP messages
@@ -139,12 +139,12 @@ server, and another request \circled{2} for a triple pattern fragment
 that the analyser thinks will enable the proxy to assist the server
 the best for future requests, is sent. This analysis is discussed in
 Section~\ref{sec:analpre}. The response \circled{2} is not sent back
-to the client, but will enter the cache. Assuming that the analyser
+to the client, but will enter the cache. We then assume that the analyser
 was successful and that the cache can be used to answer request
 \circled{3}. In that case, the proxy will send rewritten queries for
 the rest of the data it needs to be able to answer the query to the
 origin server, indicated by the dashed arrows. This may be zero or more SPARQL
-query, TPF requests or a combination thereof, depending on what the
+queries, TPF requests or a combination thereof, depending on what the
 planner finds least expensive. The proxy will then evaluate the entire
 query and send the final result back as response \circled{3}. In
 addition, the analyser may have identified another Triple Pattern
@@ -332,7 +332,7 @@ results and a smaller remote BGP, or a remote Triple Pattern Fragments
 server, is up to the cost estimation. This will be discussed in detail
 in Section~\ref{sec:costheuristics}.
 
-As can be imagined from the fact that a BGP with just to triple
+As can be imagined from the fact that a BGP with just two triple
 patterns result in 4 plan trees, a naive query planner may generate a
 large number of plans for complex queries. In addition, the proposed
 system will generate even more plans, since it considers three sources
@@ -437,7 +437,7 @@ bulkupdateable, can enable the use of ETags or modification times for
 conditional requests (as defined in RFC7232 \cite{rfc7234}), and
 enables further extensions. Each of these primitives is represented
 by a role that implements default functionality or simply requires
-such functionality to be required. For instance, a quadstore is
+such functionality to be present. For instance, a quadstore is
 required by \pmodule{Attean::API::QuadStore} to implement the
 \pcode{get\_quads} method, which can take an RDF term as one or more
 of the arguments and variables for the rest, and should return an
@@ -861,8 +861,8 @@ time-consuming task. While each parse does not take much time, it
 happens more than 13~million times. The reason why parsing IRIs
 happens is that a certain amount of parsing is required to compare
 them \cite{rfc3987}, and the \pmodule{IRI} module is a rigorous
-implementation of the standard that does syntax based resolution if
-the if an object is constructed with a base. IRI parsing happens not
+implementation of the standard that does syntax based resolution
+if an object is constructed with a base. IRI parsing happens not
 only when an \pmodule{Attean::IRI} object is constructed, but may also
 happen when an \pmodule{Attean::Literal} object is constructed, since
 the data type is a IRI.
