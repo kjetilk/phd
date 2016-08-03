@@ -307,16 +307,16 @@ that accessing the cache is represented by an iterator plan):
 Merging the quad plans into a single SPARQL BGP plan is not
 straightforward in the presence of a quad pattern that is to be looked
 up in e.g. a cache. If we assign the letters $A$, $B$, $C$ and $D$ to
-quad patterns \todo{correctly expressed?} in the order in
+triple patterns in the order expressed in
 Example~\ref{ex:bgp4}, the initial join tree produced by parsing may
-be $ ((A \bowtie B )\bowtie C) \bowtie D) $. Now, we are interested in
+be $ (((A \bowtie B )\bowtie C) \bowtie D) $. Now, we are interested in
 a plan on the form $A \bowtie BCD$, i.e. $BCD$ is reduced to a more
 fundamental plan type, in this example a SPARQL BGP. This will
 minimise the number of HTTP requests, in much the same way as the
 exclusive groups of
 \cite{springerlink:10.1007/978-3-642-25073-6-38}. To facilitate this,
 we employ \emph{join rotation}. A simple example of join rotation
-would be this: We first generate subplans for both $((A \bowtie B
+would be this: We first generate subplans for both $(((A \bowtie B
 )\bowtie C) \bowtie D) $ and $ (A \bowtie B )\bowtie (C \bowtie D)
 $. Then, $C$ and $D$ can be merged to a SPARQL BGP to $ (A \bowtie B
 )\bowtie CD $. Another rotation can then be performed: $ A \bowtie (B
