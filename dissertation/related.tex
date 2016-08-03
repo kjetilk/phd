@@ -181,7 +181,14 @@ in an \textit{a priori} defined collection of RDF data, but where resources
 are traversed to compute a result. Hartig provides solid formal
 foundations for such query processing, as well as computational
 feasibility, soundness and completeness. The most relevant paper to
-this work is \cite{hartig2011caching}.
+this work is \cite{hartig2011caching}. In that work, he considers the
+impact of caching on performance and completeness. Completeness is
+important in the context of query answering when the collection is not
+defined, and the cache may therefore provide results that were not
+accessible for some reason, at query time. Hartig finds many cases
+where it is profitable to cache, but also cases where it is not.
+
+
 
 Acosta et al. has published a poster on ``SHEPHERD''
 \cite{acosta2014shepherd}, presumed to be ongoing work, to
