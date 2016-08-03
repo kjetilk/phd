@@ -204,6 +204,14 @@ statistical digest may be available close to the database, but is not
 exposed in ways that higher levels in the technology stack can make
 use of. In our case, this is especially true for a caching proxy.
 
+More techniques have been developed for writing data. The simplest is
+to write RDF in one of its serialisations to a file. Basic operations
+like writing single triples or quads may be done with a framework
+directly onto a triplestore. Since write operations are specified in
+HTTP, write operations may use HTTP verbs if they are authorised to do
+so. Finally, SPARQL has been extended with an update language in
+version 1.1.
+
 \subsection{Hypermedia}
 
 However, in terms of utility when programming, advanced query
