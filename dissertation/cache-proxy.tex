@@ -221,27 +221,27 @@ The resulting plan trees may be represented as strings as follows:
 \begin{example}{Four Attean plan trees}
 \begin{verbatim}
 - Hash Join { s } (distinct cost: 27)
--   Quad { ?s, <http://ex.org/p>, ?o, <http://ex.org/graph> } (cost: 15)
--   Quad { ?s, <http://ex.org/p>, "1", <http://ex.org/graph> } (cost: 12)
+-   Quad { ?s, <http://ex.org/p>, ?o, <g> } (cost: 15)
+-   Quad { ?s, <http://ex.org/p>, "1", <g> } (cost: 12)
 
 - Hash Join { s } (distinct cost: 28)
--   Quad { ?s, <http://ex.org/p>, "1", <http://ex.org/graph> } (cost: 12)
--   Quad { ?s, <http://ex.org/p>, ?o, <http://ex.org/graph> } (cost: 15)
+-   Quad { ?s, <http://ex.org/p>, "1", <g> } (cost: 12)
+-   Quad { ?s, <http://ex.org/p>, ?o, <g> } (cost: 15)
 
 - NestedLoop Join (distinct cost: 180)
--   Quad { ?s, <http://ex.org/p>, "1", <http://ex.org/graph> } (cost: 12)
--   Quad { ?s, <http://ex.org/p>, ?o, <http://ex.org/graph> } (cost: 15)
+-   Quad { ?s, <http://ex.org/p>, "1", <g> } (cost: 12)
+-   Quad { ?s, <http://ex.org/p>, ?o, <g> } (cost: 15)
 
 - NestedLoop Join (distinct cost: 180)
--   Quad { ?s, <http://ex.org/p>, ?o, <http://ex.org/graph> } (cost: 15)
--   Quad { ?s, <http://ex.org/p>, "1", <http://ex.org/graph> } (cost: 12)
+-   Quad { ?s, <http://ex.org/p>, ?o, <g> } (cost: 15)
+-   Quad { ?s, <http://ex.org/p>, "1", <g> } (cost: 12)
 \end{verbatim}
 \end{example}
 In the above example, the first plan tree will be returned from the
 query planner for execution, since it has the lowest estimated cost
 (27). Since the SPARQL engine operates over quads, we have assigned a
 dummy graph name when constructing the Model, namely
-\rdfterm{<http://ex.org/graph>}. 
+\rdfterm{<g>}. 
 
 
 The system we propose is based on this paradigm, any choices we make
