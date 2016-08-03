@@ -274,10 +274,10 @@ believe it would be advantageous to build on a cost model.
 Following this discussion, consider this example:
 \begin{example}{A four-triple pattern BGP}\label{ex:bgp4}
 \begin{verbatim}
-?s <http://example.org/m/p> "1" ;
-   <http://example.org/m/q> <http://example.org/m/a> ;
-   <http://example.org/m/p> ?o .
-?o <http://example.org/m/b> "2" .
+?s <http://example.org/m/p> "1" .                      # A
+?s <http://example.org/m/q> <http://example.org/m/a> . # B
+?s <http://example.org/m/p> ?o .                       # C
+?o <http://example.org/m/b> "2" .                      # D
 \end{verbatim}
 \end{example}
 Say that the first triple pattern has a result in the cache. This will
