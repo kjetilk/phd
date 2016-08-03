@@ -3,7 +3,7 @@
 \section{Semantic Web Technology}\label{sec:semwebtech}
 
 The World Wide Web, or just the Web for short, is a well-known global
-information space invented by Tim Berners-Lee in 1989, further emerged
+information space invented by Tim Berners-Lee in 1989, that further emerged
 in the 1990s. It is characterised first and foremost by its
 universality, anyone can set up a computer, connect it to the Internet and
 start serving data or documents from it, and further adapt it to their purpose. 
@@ -13,7 +13,7 @@ development since 1997\footnote{The first working group draft of the
   RDF specification is dated 1997-08-01, see
   \url{http://www.w3.org/TR/WD-rdf-syntax-971002/}.}, to extend the
 Web with languages for expressing information in a machine processable
-form\cite{semwebroadmap}.\todo{citations in intro}
+form\cite{semwebroadmap}.
 
 \subsection{Basic technology}
 
@@ -30,7 +30,9 @@ triples are literals, blank nodes and Internationalized Resource
 Identifiers (IRI). IRIs builds on the familiar URL: Uniform Resource
 Locator, informally known as a Web address,
 e.g. \url{https://www.w3.org/RDF/} is an address for a document about
-RDF. On the Semantic Web, the URL is first generalised to a Uniform
+RDF. It is also the document that lists the specifications that the
+following outline relies. 
+On the Semantic Web, the URL is first generalised to a Uniform
 Resource Identifier, URI, that can not only name a document on the
 Web, but any resource. A resource can be a physical thing, like a
 person, or an abstract thing, like the type of weather at some place
@@ -63,7 +65,7 @@ simple graph expressed in Turtle could be:
 
 <http://www.kjetil.kjernsmo.net/foaf#me> a foaf:Person ;
     foaf:name "Kjetil Kjernsmo" ;
-    foaf:publications <http://folk.uio.no/kjekje/2013/iswc.pdf> .
+    foaf:made <http://folk.uio.no/kjekje/2013/iswc.pdf> .
 <http://folk.uio.no/kjekje/2013/iswc.pdf> a foaf:Document ;
     dct:title "Introducing Statistical Design of Experiments to SPARQL Endpoint Evaluation" ; 
     dct:creator <http://www.kjetil.kjernsmo.net/foaf#me>, 
@@ -78,7 +80,7 @@ IRI \rdfterm{http://xmlns.com/foaf/0.1/name}. The IRI
 author. The \rdfterm{a} predicate is standards-defined abbreviation
 for \rdfterm{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type}, which
 is used for declaring the subject an instance of a class, in this case
-\rdfterm{foaf:Person}. Then, the \rdfterm{foaf:publications} predicate
+\rdfterm{foaf:Person}. Then, the \rdfterm{foaf:made} predicate
 is used to link to an author-published version of one of the
 publications of this dissertation, and further information is then
 provided about this publication, including a link to the co-author. As
