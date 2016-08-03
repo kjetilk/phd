@@ -296,14 +296,16 @@ result returned to the client. A string representation of the plan
 tree from the current implementation reflects this and reads (note
 that accessing the cache is represented by an iterator plan):
 \begin{example}{An example Attean plan with a remotely executed BGP}
+\small
 \begin{verbatim}
 - Hash Join { s } (distinct cost: 74)
 -   SPARQLBGP (cost: 60)
--     Quad { ?s, <http://ex.org/p>, ?o, <http://ex.org/graph> }
--     Quad { ?o, <http://ex.org/b>, "2", <http://ex.org/graph> }
--     Quad { ?s, <http://ex.org/q>, <http://ex.org/a>, <http://ex.org/graph> }
+-     Quad { ?s, <http://ex.org/p>, ?o, <g> }
+-     Quad { ?o, <http://ex.org/b>, "2", <g> }
+-     Quad { ?s, <http://ex.org/q>, <http://ex.org/a>, <g> }
 -   Iterator (?s with 2 elements) (cost: 2)
 \end{verbatim}
+\normalsize
 \end{example}
 
 Merging the quad plans into a single SPARQL BGP plan is not
