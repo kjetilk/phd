@@ -297,9 +297,9 @@ that accessing the cache is represented by an iterator plan):
 \begin{verbatim}
 - Hash Join { s } (distinct cost: 74)
 -   SPARQLBGP (cost: 60)
--     Quad { ?s, <http://ex.org/p>, ?o, <http://test.invalid/graph> }
--     Quad { ?o, <http://ex.org/b>, "2", <http://test.invalid/graph> }
--     Quad { ?s, <http://ex.org/q>, <http://ex.org/a>, <http://test.invalid/graph> }
+-     Quad { ?s, <http://ex.org/p>, ?o, <http://ex.org/graph> }
+-     Quad { ?o, <http://ex.org/b>, "2", <http://ex.org/graph> }
+-     Quad { ?s, <http://ex.org/q>, <http://ex.org/a>, <http://ex.org/graph> }
 -   Iterator (?s with 2 elements) (cost: 2)
 \end{verbatim}
 \end{example}
