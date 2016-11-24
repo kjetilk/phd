@@ -14,10 +14,10 @@ bilen, til hvor man skal bygge hus, og hva som skal være i det
 huset. I dag kan man bruke dager og uker på å surfe for å sikre at man
 har nok informasjon i de store sakene. Hva om det var en måte å bygge
 opp spørsmålet på, slik at man kunne få svar på sekunder? For å gjøre
-dette, kan man bruke et spørrespråk, og språket jeg bruker heter
-SPARQL. På Google kan man bruke + og - foran et ord for å si at ordet
-skal være med eller ikke være med. Det er begynnelsen på et
-spørrespråk, men SPARQL er fryktelig mye mer avansert.
+dette, kan man bruke et spørrespråk, og språket jeg bruker og var med
+å lage heter SPARQL. På Google kan man bruke + og - foran et ord for å
+si at ordet skal være med eller ikke være med. Det er begynnelsen på
+et spørrespråk, men SPARQL er fryktelig mye mer avansert.
 
 Så er problemet at for å bruke så avanserte ting til å stille
 spørsmål, så er det teknisk enklest å samle data i en kjempestor
@@ -26,7 +26,8 @@ problemet er da at de som gjør denne jobben får veldig mye
 makt. Derfor må vi gjøre noe som er mye vanskeligere, la dataene være
 hos dem som framstiller dem, og så lage et system som sprer spørsmålet
 vårt ut og samler opp de dataene vi trenger. Da trenger vi heller ikke
-dele våre data mer enn vi må. Vi kaller det desentralisering.
+dele våre data mer enn vi må. Får vi det til, har vi desentralisert
+dataene.
 
 Min forskning handler om å gjøre hver enkelt av de små databasene
 rundt omkring mer robuste, slik at de tåler å delta i et slikt
@@ -35,18 +36,17 @@ ved å gjøre det mulig å bruke mellomlagre som er en standardisert del
 av Internett.
 
 Men dette skjedde ikke uten omveier. Enn så praktisk rettet min
-forskning er, så grublet jeg mye på vitenskapsteori. Vi trenger å vite
+forskning er, så grublet jeg mye om vitenskapsteori. Vi trenger å vite
 om systemene vi utvikler for få opp ytelsen når vanskelige spørsmål
 skal besvares, faktisk forbedrer situasjonen, men dette er faktisk
 veldig vanskelig å være sikker på. Derfor begynte jeg å ta ibruk
-statistiske metoder som ikke hadde vært i bruk tidligere for å peke på
-en bedre måte å gjøre det på. Men, ei heller det er godt nok, fordi vi
-vet jo ikke hvordan verden vil se ut om millioner av mennesker
-begynner å bruke slike systemer, de vil vi ha helt andre data og helt
-andre spørsmål som skal besvares.
+statistiske metoder som ikke tidligere har vært brukt i feltet for å
+peke på en bedre måte å gjøre det på. Men, ei heller det er godt nok,
+fordi vi vet jo ikke hvordan verden vil se ut om millioner av
+mennesker begynner å bruke slike systemer, da vil vi ha helt andre
+data og helt andre spørsmål som skal besvares.
 
-Jeg kom ikke dit jeg ville, men slik er forskningens natur. Se også
-bloggen min for mer om disse temaene: http://kjetil.kjernsmo.net/
-
- 
-
+Jeg kom ikke dit jeg ville, men jeg bidro med litt praktisk og litt
+teoretisk om hvordan en framtid der vi beholder mer av kontrollen selv
+kan se ut. Se også bloggen min for mer om disse temaene:
+http://kjetil.kjernsmo.net/
