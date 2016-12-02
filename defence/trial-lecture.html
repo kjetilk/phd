@@ -145,7 +145,8 @@ Galaxy(id, name, type)
             
             <div>
               <img src="file:///home/kjetil/fag/phd/defence/relalgtree1.svg" 
-                   alt="Algebra Tree Take 1" height="500"/>
+                   alt="Algebra Tree Take 1" height="500"/><!-- TODO:
+                   SPARQL algebra -->
             </div>
             
           </section>
@@ -156,8 +157,45 @@ Galaxy(id, name, type)
               <img src="file:///home/kjetil/fag/phd/defence/relalgtree2.svg" 
                    alt="Algebra Tree Take 2" height="500"/>
             </div>
+
+          <aside class="notes">
+            <ul>
+              <li>Usually a good idea, since less data might be
+              joined.</li>
+              <li>More generally, we may involve a cost model
+              already</li>
+              <li>However, it is usually done in the next step, since
+              doing too much may slow the overall performance.</li>
+            </ul>
+          </aside>
+
           </section>
           
+          <section>
+            <h3>Transform to physical query plan</h3>
+            
+            <ul>
+              <li>For every node or branch in the algebra tree, create a plan
+                object for every way the data can be accessed or
+                operations executed.</li>
+              <li>Then, estimate the cost of running each part of the plan.</li>
+            </ul>
+
+            <aside class="notes">
+              <ul>
+                <li>And that's where it gets interesting, </li>
+                <li>Why? In the previous example, there are very few
+                GRBs, but many galaxies. This affects  the choice
+                of the join algorithm to use and how to use it. Like,
+                  one side of the tree might have to go into RAM.</li>
+                
+                <li>Then, combinatorial explosion, doing every plan
+                  will take a long time. Various strategies
+                  developed.</li>
+                <li>TODO: Dynamic programming, etc</li>
+            </aside>
+          </section>
+
         </section>
 
 
