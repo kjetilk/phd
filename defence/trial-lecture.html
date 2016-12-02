@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <base href="http://dev.kjernsmo.net/reveal.js/"/>
     <!-- base href="http://0.0.0.0:8000/"/ -->
-    <title>SPARQL on the Open, Decentralised Web</title>
+    <title>Query Processing in Distributed Databases</title>
     
     <meta name="description" content=""/>
     <meta name="author" content="Kjetil Kjernsmo"/>
@@ -97,18 +97,69 @@
         </section>
     
         <section>
-          <h2>The general flow</h2>
-          
-          <ol>
-            <li>Start with a query to answer.</li>
-            <li>Parse that to an algebra tree.</li>
-            <li>Equivalent queries may be found.</li>
-          </ol>
-          
-          <aside class="notes">
+          <section>
+            <h2>Steps to execute queries</h2>
+            
+            <h3>Start with a query to answer.</h3>
+            
+            <blockquote>
+              Give me all names, times, and positions of Gamma Ray Bursts with a
+              duration of more than 1&nbsp;000 seconds and the type and
+              name of their host galaxy.
+            </blockquote>
+            
+<!--
+PREFIX ex: <http://example.org/ex> .
+SELECT ?name ?time ?ra ?decl WHERE {
+  ?grb ex:name ?name ;
+       ex:time ?time ;
+       ex:duration ?duration ;
+       ex:ra ?ra ;
+       ex:decl ?decl ;
+       ex:host ?host .
+  ?host a ?type ;
+        ex:name ?gname .
+  FILTER (?duration > 1000)
+}
+  
+      
+GRB(id, name, time, duration, ra, decl, host)
+Galaxy(id, name, type)
 
-          </aside>
+
+
+-->
+
+            <aside class="notes">
+              <ul>
+                <li>You'd have to express that using a query
+                language.</li>
+                <li>Though there is research to help you translate
+                natural language to query languages.</li>
+              </ul>
+            </aside>
+          </section>
+      
+          <section>
+            <h3>Parse the query to an algebra tree</h3>
+            
+            <div>
+              <img src="file:///home/kjetil/fag/phd/defence/relalgtree1.svg" 
+                   alt="Algebra Tree Take 1" height="500"/>
+            </div>
+            
+          </section>
+          <section>
+            <h3>Equivalent queries may be found</h3>
+            
+            <div>
+              <img src="file:///home/kjetil/fag/phd/defence/relalgtree2.svg" 
+                   alt="Algebra Tree Take 2" height="500"/>
+            </div>
+          </section>
+          
         </section>
+
 
         <section>
           <h3>Key steps</h3>
