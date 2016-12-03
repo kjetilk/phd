@@ -70,7 +70,12 @@
           <h2>Why distributed databases?</h2>
           
           <ul>
-            <li></li>
+            <li>Handle higher loads</li>
+            <li>Handle higher volumes</li>
+            <li>Increase fault tolerance</li>
+            <li>Elasticity</li>
+            <li>Support decentralised organisational structure</li>
+            <li>Ease latency problems in proximity sensitive applications</li>
           </ul>
           
           <aside class="notes">
@@ -132,6 +137,7 @@ Galaxy(id, name, type)
 
             <aside class="notes">
               <ul>
+                <li>We seek to minimize the time to answer that query.</li>
                 <li>You'd have to express that using a query
                 language.</li>
                 <li>Though there is research to help you translate
@@ -212,34 +218,31 @@ Galaxy(id, name, type)
           </aside>
 
          <section>
+             <h3 class="fragment">Query load</h3>
            <div class="fragment">
-             <h3>Query load</h3>
-             
-             <p>Still seek to minimize:</p>
+             <p>Now, how about</p>
              <ul>
-               <li>Total query time</li>
-             </ul>
-           </div>
-           <div class="fragment">
-             <p>but how about</p>
-             <ul>
-               <li class="fragment">Network transfer</li>
+               <li>Network transfer</li>
                <li class="fragment">Number of peers</li>               
                <li class="fragment">Load on peers</li>
              </ul>
            </div>
 
             <aside class="notes">
-              
+              <p>wanted to minimize Total query time</p>
             </aside>
           </section>
-
+<!-- TODO:  who's computers? What's more expensive, network or disk --
+  -- IO? High vs low network latency -->
           <section>
             <h3>Fragmentation and fragment allocation</h3>
             
             
             <aside class="notes">
-              
+              <ul>
+                <li>all the data on all hosts. Redundancy is expensive
+                  but any host could evaluate everything</li>
+                <li>Updates become expensive.</li>
             </aside>
           </section>
 
@@ -284,7 +287,7 @@ Galaxy(id, name, type)
           </section>
 
           <section>
-            <h3>Hadoop</h3>
+            <h3>Hadoop/Spark</h3>
             
             
             <aside class="notes">
