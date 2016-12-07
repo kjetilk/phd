@@ -523,14 +523,61 @@ Galaxy(id, name, type)
           <h2>Elasticity and Scheduling</h2>
 
           <ul>
-            <li>
-          <!-- EXAREME -->
+            <li><strong>Exareme</strong>: Scheduling query processing in the cloud
+              while balancing query time and monetary cost</li>
+          </ul>
+
 
           <aside class="notes">
             <ul>
               <li>Interesting to study the Exareme project</li>
             </ul>
           </aside>
+
+          <section>
+            <h3>Exareme definitions</h3>
+            <ul>
+              <li class="fragment">Defines dataflow as a directed
+                acyclic graph</li>
+              <li class="fragment">Defines container as an abstraction
+                containing physical resources</li>
+              <li class="fragment">Defines the schedule of a dataflow as
+                assigning its operations to container</li> 
+            </ul>
+            
+            
+            <aside class="notes">
+              <ul>
+                <li>where the DAG is nodes as the physical
+                  operators and edges the data transferred between them</li>
+                <li>cpu, memory, network</li>
+            </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Exareme Time Modelling</h3>
+            
+            <ul>
+              <li class="fragments">Execution is constrained by
+                <ul>
+                  <li>Inter-operator dependencies</li>
+                  <li>Availability of inputs (TODO)</li>
+                  <li>Resource limitations</li></ul>
+              </li>
+              <li class="fragment">Formalizing for operators give
+                abstract equations</li>
+            </ul>
+            </ul>
+            <aside class="notes">
+              <ul>
+                <li>Memory is space-shared, CPU, network
+                time-shared</li>
+                <li>abstract meaning, the actual parameters need to be estimated</li>
+              </ul>
+            </aside>
+          </section>
+          
         </section>
 <!--
         <section>
