@@ -303,6 +303,7 @@ Galaxy(id, name, type)
                <li>Peer may have no incentives ot provide it</li>
                <li>Spinning disk expensive random access, RAM low
                  cost, but unknown.</li>
+               <li>Some approaches include trading schemes</li>
              </ul>
 
            </aside>
@@ -347,6 +348,29 @@ Galaxy(id, name, type)
          </section>
 
          <section>
+           <h3>Scheduling</h3>
+           
+           <ul>
+             <li>Mostly left to operating systems</li>
+             <li>More information or trade-offs can be used to improve scheduling</li>
+           </ul>
+
+           <aside class="notes">
+             <ul>
+               <li>Expectation is that query runs immediately, but
+               that's not always the case with large analytical queries</li>
+               <li>Per-host Operating systems tend to implement several schedulers</li>
+               <li>Cloud systems, e.g. Amazon EC2 Container Service
+               provide basic and extensible services</li>
+               <li>Apache Mesos provides another implementation</li>
+               <li>Scheduling is a difficult problem, so that a DBMS
+               may reasonably want to influence it if it has
+                 information to improve</li>
+             </ul>
+           </aside>
+         </section>
+
+         <section>
            <h3>Distributed Transactions</h3>
            
            
@@ -374,6 +398,7 @@ Galaxy(id, name, type)
           <aside class="notes">
 
           </aside>
+        </section>
 
           <section>
             <h3>MapReduce</h3>
@@ -393,6 +418,16 @@ Galaxy(id, name, type)
                 <li>The reduce function is to assemble a sandwich</li>
               </ul>
             </aside>
+
+            <section>
+              <h4>MapReduce to execute queries</h4>
+              
+          
+              <aside class="notes">
+                TODO
+              </aside>
+            </section>
+
           </section>
 
           <section>
@@ -425,6 +460,16 @@ Galaxy(id, name, type)
                 but can also execute asynchronously.</li>
               </ul>
             </aside>
+
+            <section>
+              <h4>Signal/Collect to execute queries</h4>
+              
+          
+              <aside class="notes">
+                TODO
+              </aside>
+            </section>
+
           </section>
 
           <section>
@@ -475,12 +520,16 @@ Galaxy(id, name, type)
         </section>
 
         <section>
-          <h2>Elasticity</h2>
-          
+          <h2>Elasticity and Scheduling</h2>
+
+          <ul>
+            <li>
           <!-- EXAREME -->
 
           <aside class="notes">
-
+            <ul>
+              <li>Interesting to study the Exareme project</li>
+            </ul>
           </aside>
         </section>
 <!--
