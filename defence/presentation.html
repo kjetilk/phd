@@ -350,6 +350,206 @@ hm:mergedInto
               </aside>
             </section>
 
+            <section>
+              <h3>Survey of HTTP Caching Implementations</h3>
+              
+                      <h4>Gathering hosts</h4>
+            
+            <p>To decide where to go, we used:</p>
+            <ul>
+              <li><a href="http://lov.okfn.org/">Linked Open
+              Vocabularies</a></li>
+              <li><a href="http://prefix.cc/"><tt>prefix.cc</tt></a></li>
+              <li><a href="http://sparqles.ai.wu.ac.at/">SPARQLES
+              survey</a></li>
+              <li><a href="http://km.aifb.kit.edu/projects/btc-2014/">Billion
+              Triples Challenge 2014</a></li>
+            </ul>
+            
+
+            <p class="fragment visible"><strong>Got a list of 3117 unique hosts, and
+            did 7745 HTTP requests</strong></p>
+
+            <aside class="notes">
+              <p>Amongst these, the BTC-2014 is by far the largest, with
+              4 GTriples, it represents the breadth, the others are
+              small curated datasets.</p>
+              <p>Then the data was scanned with a combination of Perl,
+              UNIX grep with fair amounts of manual inspection done</p>
+              <p><strong>Go right</strong></p>  
+            </aside>
+              <aside class="notes">
+                
+              </aside>
+            </section>
+
+
+          <section>
+            <h3>Analysis</h3>
+            
+            <ol>
+              <li>Distribution of freshness lifetime
+              <ol>
+                <li>Standards-compliant</li>
+                <li>Simple heuristic</li>
+              </ol>
+              </li>
+              <li>Dublin Core properties</li>
+              <li>Do certain server implementations provide better
+              caching support than others?</li>
+              <li>Cache (re)validation</li>
+            </ol>
+
+            <aside class="notes">
+              <p>Focused on descriptive statistics, how frequent
+              caching headers are found, how long freshness lifetimes
+              are, ease of finding heuristics, possible to
+              revalidate</p>
+              <p>We also do statistical hypotheses tests using
+              so-called contingency tables</p>
+            </aside>
+          </section>
+
+         <section>
+            <h3>Standards-compliant caching in numbers</h3>
+            
+            <ul>
+              <li><strong>405</strong> resources returned parsable cache
+              headers</li>
+              <li class="fragment"><strong>114</strong> did so to
+              prohibit caching</li>
+              <li class="fragment"><strong>3</strong> contained
+              conflicting headers</li>
+              <li class="fragment">Usually <tt>Cache-Control</tt> and
+              <tt>Expires</tt> both occurred, former most common.</li>
+              <li class="fragment"><strong>269</strong> used
+              <tt>Cache-Control</tt> for other purposes than freshness lifetime</li>
+            </ul>
+            
+            
+            <aside class="notes">
+              <p>Look at level of support</p>
+              <p>Reminder: Expires or Cache-Control with max-age</p>
+              <p>Cache-Control to mandate revalidation, prohibition,
+              only private caches may use the response, etc.</p>
+            </aside>
+
+          </section>
+
+          <section>
+            <h3>Standards-compliant freshness lifetime</h3>
+            
+            <figure>
+              <img src="http://folk.uio.no/kjekje/2015/hardall.png" alt="Standards-compliant
+                                          freshness lifetime">
+            </figure>
+            
+            <aside class="notes">
+              <ul>
+                <li>Barplot: horizontal axis is divided up unevenly,
+                in time bins, 1-59 sec, 60-3599 sec, etc. To make it
+                clear, I chose the lesser evil, <a href="http://www.scientificamerican.com/article/experts-time-division-days-hours-minutes/">blame
+                the egyptians and babylonians</a>.</li>  <li>vertical axis
+                is the number of times a certain freshness lifetime
+                was found.
+                </li>
+                <li>Cache prohibition is most common. Minutes to days
+                also common.</li>
+              </ul>
+            </aside>
+                
+          </section>
+          
+          <section>
+            <h3>Standards-compliant freshness lifetime</h3>
+            
+            <figure>
+              <img src="http://folk.uio.no/kjekje/2015/hardtable.png" alt="Standards-compliant
+                                                   freshness lifetime">
+            </figure>
+            
+            <aside class="notes">
+              <ul>
+                <li>Breaking up by type: vocabs (light orange),
+                generic resources (dark orange), datasets (dark
+                violet), SPARQL endpoints (light blue)</li>
+                <li>Width of column proportional to occurances.</li>
+                <li>Height of boxes proportional to category
+                abundance</li>
+                <li>Endpoints are in the minutes.</li>
+                <li>Datasets are prohibited. Bad idea: Costly to
+                compute. Void is estimates</li>
+                <li>Very little beyond days.</li>
+                <li>Quite different distribution for different
+                types. Contigency table can be used, even if a little
+                contrived, p-value = 0.00001</li>
+              </ul>
+            </aside>
+          </section>
+          
+                    
+          <section>
+            <h3>Simple heuristic freshness lifetime</h3>
+            
+            <figure>
+              <img src="http://folk.uio.no/kjekje/2015/heuristicall.png" alt="Simple heuristic
+                                                      freshness lifetime">
+            </figure>
+            
+            <aside class="notes">
+              <ul>
+                <li>Found simple heuristic freshness for 554
+                resources. Many more than standards-based. Based on
+                actual modification times</li>
+                <li>Now 60% is in the month range. Agreeing with
+                Dynamic Linked Data Observatory</li>
+                <li>We could also still verify 911 resources where
+                last-modified and/or Etag that were recorded by the
+                BTC crawl months prior to our crawl as fresh.
+                </li>
+                <li>This gives a better picture of the actual change
+                frequency</li>
+              </ul>
+            </aside>
+            
+          </section>
+
+          <section>
+            <h3>Simple heuristic freshness lifetime</h3>
+            
+            <figure>
+              <img src="http://folk.uio.no/kjekje/2015/heuristictable.png" alt="Simple heuristic
+                                                        freshness lifetime">
+            </figure>
+                        
+            <aside class="notes">
+              <ul>
+                <li>First note that the types are rather similar,
+                confirmed by test p = 0.02, still quite different</li>
+                <li>Just one endpoint had last-modified, could be that
+                DBMSes aren't helping in tracking</li>
+              </ul>
+            </aside>
+            
+          </section>
+
+          <section>
+            <h3>Conclusions from the survey</h3>
+            
+            <ul>
+              <li><strong>We found moderate uptake for HTTP caching and
+              conditional requests</strong></li>
+              <li class="fragment">Many resources change slowly, but
+              standard-compliant cache doesn't reflect this</li>
+              <li class="fragment">Errors are common, but not in caching headers</li>
+              <li class="fragment">Possible to compute heuristic
+              freshness from headers or Dublin Core in many cases</li>
+              <li class="fragment">Conditional requests seldomly
+              supported on SPARQL endpoints, but standards-compliant
+              freshness lifetimes have been seen</li>
+            </ul>
+
+          </section>
 
         </section>
         
