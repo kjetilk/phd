@@ -36,6 +36,9 @@
        <style>
          blockquote { text-align: justify }
          blockquote footer { text-align: right }
+         pre { padding : 1em; background-color: #444 }
+         td.cd { background-color: #366 }
+         td.ld { background-color: #636 }
        </style>
   </head>
   
@@ -254,6 +257,91 @@
 
         </section>
 
+        <section>
+          <section>
+            <h2>Results</h2>
+            
+            
+            <aside class="notes">
+              I'll briefly go through some of the results
+            </aside>
+          </section>
+          
+          <section>
+            <h3>Read Write Hypermedia</h3>
+
+            <p>Think of RDF triples as natural language</p>
+            <div class="fragment">
+              <p>Adding triples:</p>
+              <pre>&lt;&gt; hm:canBe hm:mergedInto .</pre>
+              <p class="fragment">Indicates that
+                an <a href="http://www.w3.org/TR/rdf-mt/#graphdefs"
+                      class="">RDF Merge</a> of payload into the resource should
+                be done.</p>
+            </div>
+          
+            <aside class="notes">
+              
+            </aside>
+          </section>
+          <section>
+            <h3>Self-description</h3>
+              
+<pre>
+hm:mergedInto 
+   rdfs:comment "Perform an RDF merge of payload into resource"@en ;
+   rdfs:seeAlso [ 
+     rdfs:label "RDF Merge" ;
+     rdfs:isDefinedBy &lt;http://www.w3.org/TR/rdf-mt/#graphdefs&gt; . 
+   ] .
+</pre>
+
+            <aside class="notes">
+  
+            </aside>
+            </section>
+            <section>
+              <h3>Hypermedia Factors</h3>
+  
+          <table style="float: none; font-size: 120%" class="hfactors">
+  <thead>
+    <tr>
+      <th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td></td>
+      <td></td>
+      <td class="border cd">CL</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      
+      <td class="border">CR</td>
+      <td class="border cd">CU</td>
+      <td class="border cd">CM</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="border">LE</td>
+      
+      <td class="border ld">LO</td>
+      <td class="border ld">LT</td>
+      <td class="border ld">LN</td>
+      <td class="border ld">LI</td>
+    </tr>
+  </tbody>
+</table>
+          <aside class="notes">
+
+          </aside>
+        </section>
+        </section>
+        
 
         <section>
           <aside class="notes">
