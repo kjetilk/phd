@@ -30,7 +30,7 @@ on this topic, I am not aware of any attempt to do so in the context
 of the present topic.
 
 
-Problem~\ref{prob:queryeq} is has an interesting possible solution in
+Problem~\ref{prob:queryeq} has an interesting possible solution in
 the application of hashing algorithms that have a reasonable chance of
 returning the same digest if two queries are equivalent. As noted in
 Section~\ref{sec:relcache}, \cite{kaseicache} can be used for this. It
@@ -122,20 +122,60 @@ apply this to query endpoint evaluation.
 
 \section{Conclusions}\label{sec:conclusions}
 
-\begin{itemize}
-\item Hypermedia is one key to developing applications on the Semantic
-  Web.
-\item Traits ease the task of developing experimental systems and
-  usage of optimisations in underlying systems.
-\item While the adoption of caching and conditional requests as defined
-  in HTTP is not widespread, the adoption is sufficient to start using
-  them in practical systems.
-\item Evaluation methodologies suffer from a poor foundation in
-  philosophy of science, and research into the epistemology of the
-  field is important.
-\item The author admits that the study is lacking in terms of
-  objectivity, but notes that the problems are of a general nature.
-\item Statistical Design of Experiments provides a path to a critical
-  practice of evaluations, needed to improve the foundations of the
-  field.
-\end{itemize}
+The conclusions of the papers can be summarised as follows:
+
+Hypermedia can contribute a ``View Source'' capability to application
+development and data exploration, and thinking about an RDF statement
+with control information as a natural language sentence can make RDF
+understandable to many developers. Therefore, it is one key to
+developing applications on the Semantic Web.
+
+
+When engineering systems to encourage contributions from many
+different parties, it is important to carefully consider how such
+systems can be extended and adapted, and how contributions can be made
+a part of the systems and so enhance the base that researchers and
+other users can benefit from. Traits ease the task of extending
+database systems with experimental features and eases the usage of
+optimisations in underlying systems.
+
+Caching in the Web is a prominent topic, but we found that while the
+adoption of caching and conditional requests as defined in HTTP is not
+widespread, the adoption is sufficient to start using them in
+practical systems. We also found that many resources change at a very
+slow pace, but that it is not reflected in the freshness lifetime set
+by the server, but may more commonly be computed by common heuristics.
+
+
+Evaluation methodologies suffer from a poor foundation in philosophy
+of science, and research into the epistemology of the field is
+important. This is due to several interrelated factors: The field of
+research differs from natural science in that it studies a human
+artefact that does not yet exist. An example of this problem is that
+there is no formulated coherent theory of the Semantic Web, so the
+external validity of any hypothesis relative to such a theory can
+always be contested. If one would wish to follow the criterion that
+science is distinguished by falsifiability, it is currently difficult
+to tell if the evaluation or the hypothesis is to be rejected.
+
+Moreover, along the above directions, and based on the fact that the
+author has a large intellectual investment in the success of the
+Semantic Web, the author admits that the study is lacking in terms of
+objectivity, but notes that the problems are of a general nature.
+
+Empirical evaluations should be developed from the principles of
+philosophy of science and statistics, and the practice of benchmarking
+does not adequately follow these principles. Statistical Design of
+Experiments provides a path to a critical practice of evaluations,
+needed to improve the foundations of the field. The experiment we
+designed provided for both an instructive example of a new methodology
+and how to use the methodology to evaluate the experiment itself.
+
+Finally, the work extended to a SPARQL query engine that could run on
+a proxy. It could cache intermediate results of triple pattern
+matches, either in real time or by prefetching results that might be
+valuable. In query planning and evaluation, it could use the cache, a
+remote SPARQL endpoint and a Triple Pattern Fragments
+server. Unfortunately, this work had to be ended before it could reach
+a conclusion, but a detailed account of the work is included in
+Chapther~\ref{sec:tpfcacheplanning}.

@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <base href="http://dev.kjernsmo.net/reveal.js/"/>
+    <!-- base href="http://0.0.0.0:8000/"/ -->
+    <title>Query Processing in Distributed Databases</title>
+    
+    <meta name="description" content=""/>
+    <meta name="author" content="Kjetil Kjernsmo"/>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    
+    <link rel="stylesheet" href="css/reveal.css"/>
+    <link rel="stylesheet" href="css/theme/black.css" id="theme"/>
+    
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css"/>
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+    
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+       <style>
+         blockquote { text-align: justify }
+         blockquote footer { text-align: right }
+       </style>
+  </head>
+  
+  <body>
+    
+    <div class="reveal">
+      
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+	<section>
+	  <h1>Query Processing in Distributed Databases</h1>
+	  <p>
+	    Kjetil
+            Kjernsmo, <a href="http://kjetil.kjernsmo.net/">http://kjetil.kjernsmo.net/</a>,
+            <a href="https://twitter.com/KKjernsmo">@KKjernsmo</a>.
+          </p>
+          <p>
+            Trial lecture for the Degree of <span lang="la">Philosophiæ Doctor</span>.
+          </p>
+        </section>
+
+        <section>
+          <h2>Overview</h2>
+
+          <blockquote cite="http://link.springer.com/book/10.1007%2F978-1-4419-8834-8">
+            Query processing deals with designing algorithms that
+            analyze queries and convert them into a series of data
+            manipulation operations.</blockquote>
+
+          <ul>
+            <li class="fragment">Motivation</li>
+            <li class="fragment">Common steps in query processing</li>
+            <li class="fragment">New concerns</li>
+            <li class="fragment">Details</li>
+            <li class="fragment">Conclusions</li>
+          </ul>
+
+          <aside class="notes">
+
+          </aside>
+        </section>
+
+        <section>
+          <h2>Why distributed databases?</h2>
+          
+          <ul>
+            <li>Handle higher loads</li>
+            <li>Handle higher volumes</li>
+            <li>Increase fault tolerance</li>
+            <li>Elasticity</li>
+            <li>Support decentralised organisational structure</li>
+            <li>Ease latency problems in proximity sensitive applications</li>
+          </ul>
+          
+          <aside class="notes">
+            <ul>
+              <li>Decommissioning servers in face of lower
+              revenue</li>
+              <li>A car in 100 km/h travels 2 m in 70 ms</li>
+            </ul>
+          </aside>
+        </section>
+
+
+ 
+        <section>
+          <h2>Distribution</h2>
+          <img src="http://robin.kjernsmo.net/defence/distribution.svg" 
+               alt="Centralisation vs distribution"/>
+          
+          <aside class="notes">
+            <ul>
+              <li>Distribution encompasses everything from where
+                there are parallell, but outwards, nothing is visible,
+                to P2P where no node has a privileged
+                position and they are completely autonomous.</li>
+            </ul>
+          </aside>
+          
+        </section>
+    
+        <section>
+          <section>
+            <h2>Steps to execute queries</h2>
+            
+            <h3>Start with a query to answer.</h3>
+            
+            <blockquote>
+              Give me all names, times, and positions of Gamma Ray Bursts with a
+              duration of more than 1&nbsp;000 seconds and the type and
+              name of their host galaxy.
+            </blockquote>
+            
+<!--
+PREFIX ex: <http://example.org/ex> .
+SELECT ?name ?time ?ra ?decl WHERE {
+  ?grb ex:name ?name ;
+       ex:time ?time ;
+       ex:duration ?duration ;
+       ex:ra ?ra ;
+       ex:decl ?decl ;
+       ex:host ?host .
+  ?host a ?type ;
+        ex:name ?gname .
+  FILTER (?duration > 1000)
+}
+  
+      
+GRB(id, name, time, duration, ra, decl, host)
+Galaxy(id, name, type)
+
+
+
+-->
+
+            <aside class="notes">
+              <ul>
+                <li>We seek to minimize the time to answer that query,
+                time to first answer, maximize throughput.</li>
+                <li>You'd have to express that using a query
+                language.</li>
+                <li>Though there is research to help you translate
+                natural language to query languages.</li>
+              </ul>
+            </aside>
+          </section>
+      
+          <section>
+            <h3>Parse the query to an algebra tree</h3>
+            
+            <div>
+              <img src="http://robin.kjernsmo.net/defence/relalgtree1.svg" 
+                   alt="Algebra Tree Take 1" height="500"/><!-- TODO:
+                   SPARQL algebra -->
+            </div>
+            
+          </section>
+          <section>
+            <h3>Equivalent queries may be found</h3>
+            
+            <div>
+              <img src="http://robin.kjernsmo.net/defence/relalgtree2.svg" 
+                   alt="Algebra Tree Take 2" height="500"/>
+            </div>
+
+          <aside class="notes">
+            <ul>
+              <li>Usually a good idea, since less data might be
+              joined.</li>
+              <li>More generally, we may involve a cost model
+              already</li>
+              <li>However, it is usually done in the next step, since
+              doing too much may slow the overall performance.</li>
+            </ul>
+          </aside>
+
+          </section>
+          
+          <section>
+            <h3>Transform to physical query plan</h3>
+            
+            <ul>
+              <li>For every node or branch in the algebra tree, create a plan
+                object for every way the data can be accessed or
+                operations executed.</li>
+              <li>Then, estimate the cost of running each part of the plan.</li>
+            </ul>
+
+            <aside class="notes">
+              <ul>
+                <li>And that's where it gets interesting, </li>
+                <li>Why? In the previous example, there are very few
+                GRBs, but many galaxies. This affects  the choice
+                of the join algorithm to use and how to use it. Like,
+                  one side of the tree might have to go into RAM.</li>
+                
+                <li>Then, combinatorial explosion, doing every plan
+                  will take a long time. Various strategies
+                  developed.</li>
+                <li>TODO: Dynamic programming, etc</li>
+            </aside>
+          </section>
+
+        </section>
+
+
+        <section>
+          <h2>Concerns Introduced By Distribution</h2>
+
+          <p>
+
+          <aside class="notes">
+            <ul>
+              <li>Same overall process, but data can be fetched and
+                computation can be made across many computers.</li>
+            </ul>
+          </aside>
+
+         <section>
+             <h3 class="fragment">Query load</h3>
+           <div class="fragment">
+             <p>Now, how about</p>
+             <ul>
+               <li>Network transfer</li>
+               <li class="fragment">Number of peers</li>               
+               <li class="fragment">Load on peers</li>
+             </ul>
+           </div>
+
+            <aside class="notes">
+              <p>wanted to minimize Total query time</p>
+              TODO: resource vectors, network interconnect matrix
+            </aside>
+         </section>
+         <!-- TODO:  who's computers? What's more expensive, network or disk --
+         -- IO? High vs low network latency -->
+                  
+         <section>
+           <h3>Shipping</h3>
+
+           <ul>
+             <li>Query shipping</li>
+             <li>Data shipping</li>
+           </ul>
+         </section>
+
+         <section>
+           <h3>The Network Axis</h3>
+           
+           <p>From 20 kb/s over GPRS to Tb/s over fibre.</p>
+           
+          <aside class="notes">
+            <ul>
+              <li>Previously, classification into parallell system
+                based on that communication costs less than disk I/O.</li>
+              <li>Now, there is a broad range of networks, and also
+              disk technologies
+                <ul><li>spinning disks</li>
+                  <li>Solid state disks</li>
+                  <li>Other forms of non-volatile memory</li>
+                  <li>or even volatile memory, e.g. RAM</li>
+                </ul>
+              </li>
+              <li>Attempt to classify may not make sense, at the very
+              least, it would require an extensive taxonomy</li>
+            </ul>
+            
+
+          </aside>
+         </section>
+         
+         <section>
+           <h3>Cost Model</h3>
+           
+           <ul>
+             <li>Data summaries may be absent or limited</li>
+             <li>Physical characteristics of may be unknown</li> 
+             <li>Probing performance may be expensive for the peer</li>
+           </ul>
+           
+           <aside class="notes">
+             <ul>
+               <li>Remote peers</li>
+               <li>Sufficiently detailed statistics is hard to digest
+               or compute</li>
+               <li>Peer may have no incentives ot provide it</li>
+               <li>Spinning disk expensive random access, RAM low
+                 cost, but unknown.</li>
+               <li>Some approaches include trading schemes</li>
+             </ul>
+
+           </aside>
+         </section>
+         
+         <section>
+           <h3>Fragmentation and fragment allocation</h3>
+           
+           <ul>
+             <li>Decide how to divide the data between
+             hosts</li>
+             <li>Decide what fragments should be assigned to what
+             host</li>
+           </ul>
+
+           <!-- TODO: hash? -->
+            
+           <aside class="notes">
+             <ul>
+               <li>all the data on all hosts. Redundancy is expensive
+                 but any host could evaluate everything</li>
+               <li>Updates become expensive.</li>
+               <li>You may not control all fragments</li>
+             </ul>
+           </aside>
+         </section>
+         
+         <section>
+           <h3>The Role of Mediators</h3>
+           
+           <ul>
+             <li>Use encoded knowledge to assist other levels of an application</li>
+             <li>Integrate heterogeneous sources</li>
+             <li>Cache materialized views</li>
+           </ul>
+           <!-- TODO: HERMES -->
+           <!-- TODO: Materialization -->
+           
+           <aside class="notes">
+             
+           </aside>
+         </section>
+
+         <section>
+           <h3>Scheduling</h3>
+           
+           <ul>
+             <li>Mostly left to operating systems</li>
+             <li>More information or trade-offs can be used to improve scheduling</li>
+           </ul>
+
+           <aside class="notes">
+             <ul>
+               <li>Expectation is that query runs immediately, but
+               that's not always the case with large analytical queries</li>
+               <li>Per-host Operating systems tend to implement several schedulers</li>
+               <li>Cloud systems, e.g. Amazon EC2 Container Service
+               provide basic and extensible services</li>
+               <li>Apache Mesos provides another implementation</li>
+               <li>Scheduling is a difficult problem, so that a DBMS
+               may reasonably want to influence it if it has
+                 information to improve</li>
+             </ul>
+           </aside>
+         </section>
+
+         <section>
+           <h3>Distributed Transactions</h3>
+           
+           
+           <aside class="notes">
+             
+           </aside>
+         </section>
+
+         <section>
+            <h3>TODO</h3>
+            Additive operators
+
+            <aside class="notes">
+              
+            </aside>
+          </section>
+          
+        </section>
+
+      
+        <section>
+          <h2>Parallell execution</h2>
+
+
+          <aside class="notes">
+
+          </aside>
+        </section>
+
+          <section>
+            <h3>MapReduce</h3>
+
+            <img src="http://habrastorage.org/files/fbc/33e/2b2/fbc33e2b26894055b3a2c8d5d272aebb.jpg"
+            alt="MapReduce illustration"/>
+            
+            
+            <aside class="notes">
+              <ul>
+                <li>Start with an id for each item.</li>
+                <li>The map function is "chop it up", and when doing
+                that, assigns an ID to each piece of bread, every three
+                pieces of tomato, etc. 
+                </li>
+                <li>The pieces are grouped by ID</li>
+                <li>The reduce function is to assemble a sandwich</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h4>MapReduce to execute queries</h4>
+            
+            <ul>
+              <li>Apache Hive framework for SQL queries on Apache
+              Hadoop</li>
+              <li>Implements many algorithms, including different
+              joins over MapReduce</li>
+              <li>Has cost-based optimizer</li>
+            </ul>
+            
+            <aside class="notes">
+              But it is unclear how much help it is in choosing
+              between operators like joins over MapReduce
+            </aside>
+          </section>
+          
+          <section>
+            <h3>Signal/Collect</h3>
+
+            <ul style="float: left; width: 60%">
+              <li>A framework for scalable computation on graphs</li>
+              <li>Different vertices and edge types in the same
+                compute graph</li>
+            </ul>
+
+
+            <div style="float: right">
+              <img src="http://robin.kjernsmo.net/defence/signalcollect.svg"
+              alt="simple graph" height="400"/>
+            </div>
+
+            <aside class="notes">
+              <ul>
+                <li>Iterative programming model</li>
+                <li>For graphs</li>
+                <li>Different vertices and edge types in the same
+                  compute graph</li>
+                <li>Vertices as actors</li>
+                <li>Edges send signals</li>
+                <li>Vertex collects signals</li>
+                <li>Stage when all vertices tell edges to signal and a stage when all
+                  vertices collect</li>
+                <li>Signal is only sent when the state has changed,
+                but can also execute asynchronously.</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h4>Signal/Collect to execute queries</h4>
+            
+            <ul>
+              <li>TripleRush is built to answer SPARQL Basic Graph
+                Patterns on Signal/Collect</li>
+              <li>Three types of vertices:
+                <ul>
+                  <li>Index vertex represents triple pattern</li>
+                  <li>Triple vertex represents RDF triple</li>
+                  <li>Query vertices coordinate execution</li>
+              </ul></li>
+              <li>Query matching progresses in parallel TODO</li>
+            
+            <aside class="notes">
+              TODO
+            </aside>
+          </section>
+          
+          <section>
+            <h3>Apache project frameworks</h3>
+            
+            <ul>
+              <li>Apache Hadoop</li>
+              <li>Apache HBase</li>
+              <li>Apache Cassandra</li>
+              <li>Apache Spark</li>
+              <li>Apache Flink</li>
+              <li>Apache Pig</li>
+            </ul>
+            
+            <aside class="notes">
+              <ul>
+              <li>Apache Hadoop with distributed file system,
+              mapreduce etc</li>
+              <li>Apache HBase, distributed database, large tables</li>
+              <li>Apache Cassandra, multimaster with no single point
+              of failure</li>
+              <li>Apache Spark, compute engine for Hadoop, including
+              relational and graph data</li>
+              <li>Apache Flink, with emphasis on data streams</li>
+              <li>Apache Pig, data-flow language parallel computation</li>
+            </ul>
+ 
+            </aside>
+          </section>
+ 
+          <section>
+            <h3>Distributed Joins</h3>
+            
+            <ul>
+              <li>Shipping revisited:
+                <ul>
+                  <li class="fragment">The whole remote relation is shipped vs</li>
+                  <li class="fragment">First scan the local relation
+                    and request the matching tuples</li>
+                </ul>
+              </li>
+              <li>Sequential vs. Pipelined Processing</li>
+
+            <aside class="notes">
+              <ul>
+                <li>and then join matching</li>
+                <li>A balance between the larger transfer volume and
+                  possibly more messages.</li>
+                <li>Ship the smallest relation</li>
+                <li>fetch matches depends on the selectivity of the
+                join, low selectivity makes large shipment.</li>
+                <li>Some algos will allow processing results as they
+                come</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <h2>Cost Modelling</h2>
+          
+          <!-- TODO: query routing -->
+          <aside class="notes">
+
+          </aside>
+        </section>
+
+        <section>
+          <h2>Large Market-place Databases</h2>
+          
+          <p class="fragment">Mariposa</p>
+          <ul>
+            <li class="fragment">Rejects a traditional cost-based global
+              optimization</li>
+            <li class="fragment">Principles resembles the ideals of
+              the Semantic Web</li>
+            <li class="fragment">Introduces a microeconomic
+            paradigm</li>
+            <li class="fragment">Goal is to answer the query within a
+            budget</li>
+            <li class="fragment">Where various sites bids for pieces
+              of the query</li>
+            <li class="fragment">Perhaps the age of cryptocurrencies
+              will reignite Mariposa?</li>
+          </ul>
+
+          <aside class="notes">
+            <ul>
+              <li>Around the turn of the century, there were many
+              efforts for databases to exploit the Internet as a
+                marketplace for data and processing power.</li>
+              <li>Mariposa, ObjectGlobe</li>
+              <li>ObjectGlobe relied on sites registering a cost
+                function in a lookup service</li>
+              <li>paradigm where user allocates a budget, 
+            </ul>
+          </aside>
+        </section>
+
+
+        <section>
+          <h2>Elasticity and Scheduling</h2>
+
+          <aside class="notes">
+            <ul>
+              <li><strong>Exareme</strong>: Scheduling query processing in the cloud
+                while balancing query time and monetary cost</li>
+            </ul>
+          </aside>
+
+          <section>
+            <h3>Exareme definitions</h3>
+            <ul>
+              <li class="fragment">Defines dataflow as a directed
+                acyclic graph</li>
+              <li class="fragment">Defines container as an abstraction
+                containing physical resources</li>
+              <li class="fragment">Defines the schedule of a dataflow as
+                assigning its operations to container</li> 
+            </ul>
+            
+            
+            <aside class="notes">
+              <ul>
+                <li>where the DAG is: nodes as the physical
+                  operators and edges the data transferred between them</li>
+                <li>cpu, memory, network</li>
+            </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Exareme Time Modelling</h3>
+            
+            <ul>
+              <li class="fragments">Execution is constrained by
+                <ul>
+                  <li>Inter-operator dependencies</li>
+                  <li>Availability of inputs (TODO)</li>
+                  <li>Resource limitations</li></ul>
+              </li>
+              <li class="fragment">Formalizing for operators give
+                abstract equations</li>
+            </ul>
+
+            <aside class="notes">
+              <ul>
+                <li>Memory is space-shared, CPU, network
+                  time-shared</li>
+                <li>abstract meaning, the actual parameters need to be estimated</li>
+              </ul>
+            </aside>
+          </section>
+          
+          <section>
+            <h3>Exareme Money Modelling</h3>
+          
+            <ul>
+              <li>Financial cost is the count of time windows that has
+                at least one operator running</li>
+              <li>Also defines fragmentation as the time paid for but
+                not used</li>
+              
+            </ul>
+            
+            <aside class="notes">
+              <ul>
+                <li>Pay per unit time is common in the cloud</li>
+                <li>times the unit cost, of course</li>
+              </ul>
+            </aside>
+          </section>
+          
+          <section>
+            <h3>Exareme Scheduling Heuristics</h3>
+            
+            <ul>
+              <li class="fragment">A generic nested loop optimizer</li>
+              <li class="fragment">Four greedy algorithms:
+                <ul>
+                  <li>To balance container utilisation</li>
+                  <li>To minimise network traffic</li>
+                  <li>To minimise completion time</li>
+                  <li>To minimise monetary cost</li>
+                </ul>
+              </li>
+              <li class="fragment">Four local search algorithms</li>
+              <li class="fragment">The choice of optimal optimisation
+                algorithm is left for future work</li>
+            </ul>
+            
+            <aside class="notes">
+              
+            </aside>
+          </section>
+          
+        </section>
+<!--
+        <section>
+          <h3></h3>
+          
+          
+          <aside class="notes">
+
+          </aside>
+        </section>
+-->
+        <section>
+          <h2>Conclusions</h2>
+          <ul>
+
+          </ul>
+
+          
+          <aside class="notes">
+
+          </aside>
+        </section>
+
+        <section>
+          <h3>Thanks</h3>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    
+    <script>
+      
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+      
+      // Optional reveal.js plugins
+      dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true },
+      { src: 'plugin/notes/notes.js', async: true }
+      ]
+      });
+      
+    </script>
+    
+    <script>//<![CDATA[
+    document.write('<script src="//' + (location.hostname || 'localhost') + ':35729/livereload.js?snipver=1"><\/script>')
+    //]]></script>
+
+  </body>
+</html>

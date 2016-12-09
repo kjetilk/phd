@@ -147,8 +147,8 @@ this.
 The triple pattern is also a fundamental building block of the SPARQL
 query language, which is the language that is the main topic of this
 dissertation. SPARQL is an extensive, standardised query language with
-both read and write operations. The syntax is near Turtle, but as the
-above triple patterns, introduces variables. A set of triple patterns
+both read and write operations. The syntax is near Turtle but as the
+above triple pattern shows, introduces variables. A set of triple patterns
 may be used to create a conjunctive query, and along with a filter
 that can be used to further constrain the query with boolean
 expressions. Together, they are known as a Basic Graph Pattern
@@ -229,17 +229,76 @@ machine-machine interactions.
 In this context, hypermedia types is a way to classify what kind of
 operations a certain media type can help the application perform.
 
-\section{Contributions}\label{sec:contribsum}
+\section{Research Problems Overview}\label{sec:problemsum}
 
 The present work is located at the confluence of several contemporary
 efforts in the Semantic Web community. The focus is on query answering
 with the SPARQL query language, with emphasis on exploiting the World
 Wide Web, but it touches upon query federation, hypermedia, empiricial
 methods for evaluating performance, standards compliance and even
-philosophy of science. 
+philosophy of science.
+
+The overarching problem this work tries to address is this:
+
+\begin{framed}
+\begin{quote}
+To achieve a Semantic Web where anyone can say anything about
+anything, and where everyone is enabled to analyse data that have been
+contributed, there is a difficult balance between centralising
+infrastructure and decentralising it, and between processing on
+clients and servers.
+\end{quote}
+\end{framed}
+
+A comprehensive treatment of research problems is given in
+Section~\ref{sec:problems}, but to understand the following
+contributions, a superficial overview is provided:
+
+Many developers find it difficult to interact with RDF, and
+contributions to alleviate that are summarised in
+Section~\ref{sec:schm}. 
+
+We have found that in few cases, at least when evaluating SPARQL
+Engines, the evaluation has had a basis in sound statistics or in
+philosophy of science and therefore the validity of the conclusions
+drawn from them should be challenged. We summarise contributions to a
+new direction to the statistical problem in Section~\ref{sec:scdoe}
+and a philosophical discussion in Section~\ref{sec:scphil}.
+
+To create a framework that allows the flexible and at the same time
+efficient manner is difficult. Conventionally, the query engine would
+break down a query to individual triple pattern matches, which did not
+allow for much optimisation, or to easily modify the query
+planning. Our contributions towards these problems are summarised in
+Section~\ref{sec:scdev}.
+
+As noted, the HTTP standard and the Web architecture allows for
+caching responses, and in Section~\ref{sec:scsurvey} we detail
+contributions to understand the contemporary usage of these
+mechanisms. This is particularly interesting in the context of SPARQL
+query execution on the Web, as currently, the infrastructure cannot
+support evaluating arbitrary queries across the Web in a reliable
+manner. A situation where the client, a caching proxy and a server may
+share the work when evaluating a query results in a number of research
+problems that are detailed in Section~\ref{sec:perfproblems}, and we
+attempted to contribute an approach to some of these problems in
+Chapter~\ref{sec:tpfcacheplanning} without reaching any solid
+conclusions.
 
 
-\subsection{Hypermedia}
+
+\section{Contributions}\label{sec:contribsum}
+
+In this section, we summarise the contributions of this work, with
+reference to the detailed problem descriptions in
+Section~\ref{sec:problems}, as well as
+Section~\ref{sec:papersincontext}, where the papers are described and
+put in context. 
+
+\subsection{Hypermedia}\label{sec:schm}
+
+The following contributions were made towards Problem~\ref{prob:lapis}
+in the paper described in Section~\ref{sec:conlapis}:
 
 \begin{enumerate}
 \item A thorough discussion of the implications of Hypermedia
@@ -247,7 +306,11 @@ philosophy of science.
 \item A sketch of a vocabulary for read-write RDF hypermedia.
 \end{enumerate}
 
-\subsection{Design of Experiments}
+\subsection{Design of Experiments}\label{sec:scdoe}
+
+The following contributions were made towards Problem~\ref{prob:badstats}
+in the paper described in Section~\ref{sec:condoe}:
+
 
 \begin{enumerate}
 \item Introduction of a path for critical practice of evaluations, that makes
@@ -260,7 +323,11 @@ philosophy of science.
   
 \end{enumerate}
 
-\subsection{Development problems}
+\subsection{Development problems}\label{sec:scdev}
+
+The following contributions were made towards
+problems~\ref{prob:breakdown},~\ref{prob:complexapi}~and~\ref{prob:dontjustpass}
+in the paper described in Section~\ref{sec:conpush}:
 
 \begin{enumerate}
 \item A framework to enable the use of low-level optimisations in
@@ -270,14 +337,20 @@ philosophy of science.
 \item Novel programming techniques for custom query planners.
 \end{enumerate}
 
-\subsection{Survey of HTTP Caching}
+\subsection{Survey of HTTP Caching}\label{sec:scsurvey}
+
+The following contribution was made towards Problem~\ref{prob:sanity}
+in the papers described in Section~\ref{sec:consanity}:
 
 \begin{enumerate}
 \item An understanding of actual usage of caching headers (metadata)
   on the open Semantic Web.
 \end{enumerate}
 
-\subsection{Philosophy of Science}
+\subsection{Philosophy of Science}\label{sec:scphil}
+
+The following contribution was made towards Problem~\ref{prob:badphil}
+in the paper described in Section~\ref{sec:conphil}:
 
 \begin{enumerate}
 \item A provocation to discuss epistemological questions.
@@ -285,8 +358,11 @@ philosophy of science.
 
 \subsection{Software}
 
+In addition to papers, the following contributions were made in terms
+of Free Software:
+
 \begin{enumerate}
-\item 5 Free Software packages that have been accepted into the recent
+\item 5 packages that have been accepted into the recent
   versions of the Debian GNU/Linux operating system.
 \item Further 5 packages that already were accepted in Debian have been
   enhanced in the course of this work.

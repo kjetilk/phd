@@ -1,0 +1,52 @@
+Dette kan ikke få fortsette! Vi kan ikke la store enkeltaktører få så
+stor kontroll over våre data at vi mister kontrollen over hva de vet
+om oss. Vi kan ikke la framtiden styres av noen få, veldig mektige
+selskaper. Vi kan ta tilbake kontrollen, men det krever at mange
+vanskelige teknologiske problemer blir løst, men det er det min
+oppgave tar inn over seg.
+
+Problemstillingene er så store, men en doktorgrad er så smal, så jeg
+ville konsentrere meg om noe vi gjør omtrent hver dag: Vi
+sammenstiller informasjon fra ulike kilder, ser hva som passer sammen,
+og så tar vi en avgjørelse, om stort og smått, fra hvilke ingredienser
+skal kjøpes inn til middag i dag og hva slags takstativ som passer på
+bilen, til hvor man skal bygge hus, og hva som skal være i det
+huset. I dag kan man bruke dager og uker på å surfe for å sikre at man
+har nok informasjon i de store sakene. Hva om det var en måte å bygge
+opp spørsmålet på, slik at man kunne få svar på sekunder? For å gjøre
+dette, kan man bruke et spørrespråk, og språket jeg bruker og var med
+å lage heter SPARQL. På Google kan man bruke + og - foran et ord for å
+si at ordet skal være med eller ikke være med. Det er begynnelsen på
+et spørrespråk, men SPARQL er fryktelig mye mer avansert.
+
+Så er problemet at for å bruke så avanserte ting til å stille
+spørsmål, så er det teknisk enklest å samle data i en kjempestor
+database, og så stille spørsmålene. Dette kalles sentralisering. Men,
+problemet er da at de som gjør denne jobben får veldig mye
+makt. Derfor må vi gjøre noe som er mye vanskeligere, la dataene være
+hos dem som framstiller dem, og så lage et system som sprer spørsmålet
+vårt ut og samler opp de dataene vi trenger. Da trenger vi heller ikke
+dele våre data mer enn vi må. Får vi det til, har vi desentralisert
+dataene.
+
+Min forskning handler om å gjøre hver enkelt av de små databasene
+rundt omkring mer robuste, slik at de tåler å delta i et slikt
+opplegg. Dette gjør jeg ved å bidra med nye måter å programmere på og
+ved å gjøre det mulig å bruke mellomlagre som er en standardisert del
+av Internett.
+
+Men dette skjedde ikke uten omveier. Enn så praktisk rettet min
+forskning er, så grublet jeg mye om vitenskapsteori. Vi trenger å vite
+om systemene vi utvikler for få opp ytelsen når vanskelige spørsmål
+skal besvares, faktisk forbedrer situasjonen, men dette er faktisk
+veldig vanskelig å være sikker på. Derfor begynte jeg å ta ibruk
+statistiske metoder som ikke tidligere har vært brukt i feltet for å
+peke på en bedre måte å gjøre det på. Men, ei heller det er godt nok,
+fordi vi vet jo ikke hvordan verden vil se ut om millioner av
+mennesker begynner å bruke slike systemer, da vil vi ha helt andre
+data og helt andre spørsmål som skal besvares.
+
+Jeg kom ikke dit jeg ville, men jeg bidro med litt praktisk og litt
+teoretisk om hvordan en framtid der vi beholder mer av kontrollen selv
+kan se ut. Se også bloggen min for mer om disse temaene:
+http://kjetil.kjernsmo.net/
