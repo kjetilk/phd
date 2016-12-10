@@ -397,7 +397,15 @@
 
 	<section>
 	  <h3>Read Write Hypermedia</h3>
-
+	  <p>Think of RDF triples as natural language</p>
+	  <div class="fragment">
+	    <p>Adding triples:</p>
+	    <pre>&lt;&gt; hm:canBe hm:mergedInto .</pre>
+	    <p class="fragment">Indicates that
+	      an <a href="http://www.w3.org/TR/rdf-mt/#graphdefs"
+		class="">RDF Merge</a> of payload into the resource should
+	      be done.</p>
+	  </div>
         </section>
 
 	<section>
@@ -486,39 +494,6 @@
 	  </aside>
 	</section>
 	
-	<section>
-	  <h3>Read Write Hypermedia</h3>
-	  
-	  <p>Think of RDF triples as natural language</p>
-	  <div class="fragment">
-	    <p>Adding triples:</p>
-	    <pre>&lt;&gt; hm:canBe hm:mergedInto .</pre>
-	    <p class="fragment">Indicates that
-	      an <a href="http://www.w3.org/TR/rdf-mt/#graphdefs"
-		class="">RDF Merge</a> of payload into the resource should
-	      be done.</p>
-	  </div>
-          
-	  <aside class="notes">
-	    
-	  </aside>
-	</section>
-	<section>
-	  <h3>Self-description</h3>
-	  
-	  <pre>
-	    hm:mergedInto 
-	    rdfs:comment "Perform an RDF merge of payload into resource"@en ;
-	    rdfs:seeAlso [ 
-	    rdfs:label "RDF Merge" ;
-	    rdfs:isDefinedBy &lt;http://www.w3.org/TR/rdf-mt/#graphdefs&gt; . 
-	    ] .
-	  </pre>
-	  
-            <aside class="notes">
-	    
-	  </aside>
-	</section>
 
 
 	<section>
