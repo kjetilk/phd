@@ -254,6 +254,52 @@
         </section>
 
         <section>
+          <h2>Preliminaries</h2>
+
+          <section>
+            <h3>Uniform Resource Identifiers (URIs)</h3>
+            
+            <p><tt>http://folk.uio.no/kjekje/2016/defence/presentation.html</tt></p>
+
+            <ul> 
+              <li class="fragment">A URL points to a document</li>
+              <li class="fragment">A URI can name anything</li>
+              <li class="fragment">A IRI can name anything using any
+              character set</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h3>RDF Triple</h3>
+            
+<pre>
+&lt;http://www.kjetil.kjernsmo.net/foaf#me>
+&lt;http://xmlns.com/foaf/0.1/publications>
+&lt;http://folk.uio.no/kjekje/2016/defence/presentation.html>
+</pre>
+
+<p class="fragment">Many standardised syntaxes</li>
+
+            <aside class="notes">
+              <ul>
+                <li>RDF is defined by a series of standards, started
+                  in 1997, last update in 2014</li>
+                <li>Some are concise, some are verbose, some are
+                  binary, etc</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Triple Pattern</h3>           
+<pre>
+?person foaf:publications ?publication .
+</pre>
+          </section>
+        </section>  
+
+
+        <section>
           <h2>Hypermedia</h2>
           
           <ul>
@@ -319,6 +365,10 @@
 	      </tr>
 	    </tbody>
 	  </table>
+
+          <p class="fragment">
+            Self-descriptiveness and links to query interfaces
+          </p>
           <aside class="notes">
             <p>I formulated a vocab so that Mike Amundsen's hypermedia
             factors for RDF would be
