@@ -60,6 +60,18 @@
         <section>
           <h2>Overview</h2>
 
+          <blockquote cite="http://link.springer.com/book/10.1007%2F978-1-4419-8834-8">
+            Query processing deals with designing algorithms that
+            analyze queries and convert them into a series of data
+            manipulation operations.</blockquote>
+
+          <ul>
+            <li class="fragment">Motivation</li>
+            <li class="fragment">Common steps in query processing</li>
+            <li class="fragment">New concerns</li>
+            <li class="fragment">Details</li>
+            <li class="fragment">Conclusions</li>
+          </ul>
 
           <aside class="notes">
 
@@ -91,7 +103,7 @@
  
         <section>
           <h2>Distribution</h2>
-          <img src="file:///home/kjetil/fag/phd/defence/distribution.svg" 
+          <img src="http://folk.uio.no/kjekje/2016/defence/distribution.svg" 
                alt="Centralisation vs distribution"/>
           
           <aside class="notes">
@@ -141,7 +153,8 @@ Galaxy(id, name, type)
 
             <aside class="notes">
               <ul>
-                <li>We seek to minimize the time to answer that query.</li>
+                <li>We seek to minimize the time to answer that query,
+                time to first answer, maximize throughput.</li>
                 <li>You'd have to express that using a query
                 language.</li>
                 <li>Though there is research to help you translate
@@ -154,7 +167,7 @@ Galaxy(id, name, type)
             <h3>Parse the query to an algebra tree</h3>
             
             <div>
-              <img src="file:///home/kjetil/fag/phd/defence/relalgtree1.svg" 
+              <img src="http://folk.uio.no/kjekje/2016/defence/relalgtree1.svg" 
                    alt="Algebra Tree Take 1" height="500"/><!-- TODO:
                    SPARQL algebra -->
             </div>
@@ -164,7 +177,7 @@ Galaxy(id, name, type)
             <h3>Equivalent queries may be found</h3>
             
             <div>
-              <img src="file:///home/kjetil/fag/phd/defence/relalgtree2.svg" 
+              <img src="http://folk.uio.no/kjekje/2016/defence/relalgtree2.svg" 
                    alt="Algebra Tree Take 2" height="500"/>
             </div>
 
@@ -234,11 +247,21 @@ Galaxy(id, name, type)
 
             <aside class="notes">
               <p>wanted to minimize Total query time</p>
+              TODO: resource vectors, network interconnect matrix
             </aside>
          </section>
          <!-- TODO:  who's computers? What's more expensive, network or disk --
          -- IO? High vs low network latency -->
-         
+                  
+         <section>
+           <h3>Shipping</h3>
+
+           <ul>
+             <li>Query shipping</li>
+             <li>Data shipping</li>
+           </ul>
+         </section>
+
          <section>
            <h3>The Network Axis</h3>
            
@@ -256,7 +279,8 @@ Galaxy(id, name, type)
                   <li>or even volatile memory, e.g. RAM</li>
                 </ul>
               </li>
-              <li>Attempt to classify may not make sense</li>
+              <li>Attempt to classify may not make sense, at the very
+              least, it would require an extensive taxonomy</li>
             </ul>
             
 
@@ -280,6 +304,7 @@ Galaxy(id, name, type)
                <li>Peer may have no incentives ot provide it</li>
                <li>Spinning disk expensive random access, RAM low
                  cost, but unknown.</li>
+               <li>Some approaches include trading schemes</li>
              </ul>
 
            </aside>
@@ -310,11 +335,39 @@ Galaxy(id, name, type)
          <section>
            <h3>The Role of Mediators</h3>
            
+           <ul>
+             <li>Use encoded knowledge to assist other levels of an application</li>
+             <li>Integrate heterogeneous sources</li>
+             <li>Cache materialized views</li>
+           </ul>
            <!-- TODO: HERMES -->
            <!-- TODO: Materialization -->
            
            <aside class="notes">
              
+           </aside>
+         </section>
+
+         <section>
+           <h3>Scheduling</h3>
+           
+           <ul>
+             <li>Mostly left to operating systems</li>
+             <li>More information or trade-offs can be used to improve scheduling</li>
+           </ul>
+
+           <aside class="notes">
+             <ul>
+               <li>Expectation is that query runs immediately, but
+               that's not always the case with large analytical queries</li>
+               <li>Per-host Operating systems tend to implement several schedulers</li>
+               <li>Cloud systems, e.g. Amazon EC2 Container Service
+               provide basic and extensible services</li>
+               <li>Apache Mesos provides another implementation</li>
+               <li>Scheduling is a difficult problem, so that a DBMS
+               may reasonably want to influence it if it has
+                 information to improve</li>
+             </ul>
            </aside>
          </section>
 
@@ -346,40 +399,146 @@ Galaxy(id, name, type)
           <aside class="notes">
 
           </aside>
+        </section>
 
           <section>
             <h3>MapReduce</h3>
+
+            <img src="http://habrastorage.org/files/fbc/33e/2b2/fbc33e2b26894055b3a2c8d5d272aebb.jpg"
+            alt="MapReduce illustration"/>
             
             
             <aside class="notes">
-              
+              <ul>
+                <li>Start with an id for each item.</li>
+                <li>The map function is "chop it up", and when doing
+                that, assigns an ID to each piece of bread, every three
+                pieces of tomato, etc. 
+                </li>
+                <li>The pieces are grouped by ID</li>
+                <li>The reduce function is to assemble a sandwich</li>
+              </ul>
             </aside>
           </section>
-
+          <section>
+            <h4>MapReduce to execute queries</h4>
+            
+            <ul>
+              <li>Apache Hive framework for SQL queries on Apache
+              Hadoop</li>
+              <li>Implements many algorithms, including different
+              joins over MapReduce</li>
+              <li>Has cost-based optimizer</li>
+            </ul>
+            
+            <aside class="notes">
+              But it is unclear how much help it is in choosing
+              between operators like joins over MapReduce
+            </aside>
+          </section>
+          
           <section>
             <h3>Signal/Collect</h3>
 
-            
+            <ul style="float: left; width: 60%">
+              <li>A framework for scalable computation on graphs</li>
+              <li>Different vertices and edge types in the same
+                compute graph</li>
+            </ul>
+
+
+            <div style="float: right">
+              <img src="http://folk.uio.no/kjekje/2016/defence/signalcollect.svg"
+              alt="simple graph" height="400"/>
+            </div>
+
             <aside class="notes">
-              
+              <ul>
+                <li>Iterative programming model</li>
+                <li>For graphs</li>
+                <li>Different vertices and edge types in the same
+                  compute graph</li>
+                <li>Vertices as actors</li>
+                <li>Edges send signals</li>
+                <li>Vertex collects signals</li>
+                <li>Stage when all vertices tell edges to signal and a stage when all
+                  vertices collect</li>
+                <li>Signal is only sent when the state has changed,
+                but can also execute asynchronously.</li>
+              </ul>
             </aside>
           </section>
-
           <section>
-            <h3>Hadoop/Spark</h3>
+            <h4>Signal/Collect to execute queries</h4>
             
+            <ul>
+              <li>TripleRush is built to answer SPARQL Basic Graph
+                Patterns on Signal/Collect</li>
+              <li>Three types of vertices:
+                <ul>
+                  <li>Index vertex represents triple pattern</li>
+                  <li>Triple vertex represents RDF triple</li>
+                  <li>Query vertices coordinate execution</li>
+              </ul></li>
+              <li>Query matching progresses in parallel TODO</li>
             
             <aside class="notes">
-              
+              TODO
+            </aside>
+          </section>
+          
+          <section>
+            <h3>Apache project frameworks</h3>
+            
+            <ul>
+              <li>Apache Hadoop</li>
+              <li>Apache HBase</li>
+              <li>Apache Cassandra</li>
+              <li>Apache Spark</li>
+              <li>Apache Flink</li>
+              <li>Apache Pig</li>
+            </ul>
+            
+            <aside class="notes">
+              <ul>
+              <li>Apache Hadoop with distributed file system,
+              mapreduce etc</li>
+              <li>Apache HBase, distributed database, large tables</li>
+              <li>Apache Cassandra, multimaster with no single point
+              of failure</li>
+              <li>Apache Spark, compute engine for Hadoop, including
+              relational and graph data</li>
+              <li>Apache Flink, with emphasis on data streams</li>
+              <li>Apache Pig, data-flow language parallel computation</li>
+            </ul>
+ 
             </aside>
           </section>
  
           <section>
             <h3>Distributed Joins</h3>
             
-            
+            <ul>
+              <li>Shipping revisited:
+                <ul>
+                  <li class="fragment">The whole remote relation is shipped vs</li>
+                  <li class="fragment">First scan the local relation
+                    and request the matching tuples</li>
+                </ul>
+              </li>
+              <li>Sequential vs. Pipelined Processing</li>
+
             <aside class="notes">
-              
+              <ul>
+                <li>and then join matching</li>
+                <li>A balance between the larger transfer volume and
+                  possibly more messages.</li>
+                <li>Ship the smallest relation</li>
+                <li>fetch matches depends on the selectivity of the
+                join, low selectivity makes large shipment.</li>
+                <li>Some algos will allow processing results as they
+                come</li>
+              </ul>
             </aside>
           </section>
         </section>
@@ -387,13 +546,142 @@ Galaxy(id, name, type)
         <section>
           <h2>Cost Modelling</h2>
           
-          
+          <!-- TODO: query routing -->
           <aside class="notes">
 
           </aside>
         </section>
 
+        <section>
+          <h2>Large Market-place Databases</h2>
+          
+          <p class="fragment">Mariposa</p>
+          <ul>
+            <li class="fragment">Rejects a traditional cost-based global
+              optimization</li>
+            <li class="fragment">Principles resembles the ideals of
+              the Semantic Web</li>
+            <li class="fragment">Introduces a microeconomic
+            paradigm</li>
+            <li class="fragment">Goal is to answer the query within a
+            budget</li>
+            <li class="fragment">Where various sites bids for pieces
+              of the query</li>
+            <li class="fragment">Perhaps the age of cryptocurrencies
+              will reignite Mariposa?</li>
+          </ul>
 
+          <aside class="notes">
+            <ul>
+              <li>Around the turn of the century, there were many
+              efforts for databases to exploit the Internet as a
+                marketplace for data and processing power.</li>
+              <li>Mariposa, ObjectGlobe</li>
+              <li>ObjectGlobe relied on sites registering a cost
+                function in a lookup service</li>
+              <li>paradigm where user allocates a budget, 
+            </ul>
+          </aside>
+        </section>
+
+
+        <section>
+          <h2>Elasticity and Scheduling</h2>
+
+          <aside class="notes">
+            <ul>
+              <li><strong>Exareme</strong>: Scheduling query processing in the cloud
+                while balancing query time and monetary cost</li>
+            </ul>
+          </aside>
+
+          <section>
+            <h3>Exareme definitions</h3>
+            <ul>
+              <li class="fragment">Defines dataflow as a directed
+                acyclic graph</li>
+              <li class="fragment">Defines container as an abstraction
+                containing physical resources</li>
+              <li class="fragment">Defines the schedule of a dataflow as
+                assigning its operations to container</li> 
+            </ul>
+            
+            
+            <aside class="notes">
+              <ul>
+                <li>where the DAG is: nodes as the physical
+                  operators and edges the data transferred between them</li>
+                <li>cpu, memory, network</li>
+            </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Exareme Time Modelling</h3>
+            
+            <ul>
+              <li class="fragments">Execution is constrained by
+                <ul>
+                  <li>Inter-operator dependencies</li>
+                  <li>Availability of inputs (TODO)</li>
+                  <li>Resource limitations</li></ul>
+              </li>
+              <li class="fragment">Formalizing for operators give
+                abstract equations</li>
+            </ul>
+
+            <aside class="notes">
+              <ul>
+                <li>Memory is space-shared, CPU, network
+                  time-shared</li>
+                <li>abstract meaning, the actual parameters need to be estimated</li>
+              </ul>
+            </aside>
+          </section>
+          
+          <section>
+            <h3>Exareme Money Modelling</h3>
+          
+            <ul>
+              <li>Financial cost is the count of time windows that has
+                at least one operator running</li>
+              <li>Also defines fragmentation as the time paid for but
+                not used</li>
+              
+            </ul>
+            
+            <aside class="notes">
+              <ul>
+                <li>Pay per unit time is common in the cloud</li>
+                <li>times the unit cost, of course</li>
+              </ul>
+            </aside>
+          </section>
+          
+          <section>
+            <h3>Exareme Scheduling Heuristics</h3>
+            
+            <ul>
+              <li class="fragment">A generic nested loop optimizer</li>
+              <li class="fragment">Four greedy algorithms:
+                <ul>
+                  <li>To balance container utilisation</li>
+                  <li>To minimise network traffic</li>
+                  <li>To minimise completion time</li>
+                  <li>To minimise monetary cost</li>
+                </ul>
+              </li>
+              <li class="fragment">Four local search algorithms</li>
+              <li class="fragment">The choice of optimal optimisation
+                algorithm is left for future work</li>
+            </ul>
+            
+            <aside class="notes">
+              
+            </aside>
+          </section>
+          
+        </section>
 <!--
         <section>
           <h3></h3>
@@ -404,7 +692,21 @@ Galaxy(id, name, type)
           </aside>
         </section>
 -->
+        <section>
+          <h2>Conclusions</h2>
+          <ul>
 
+          </ul>
+
+          
+          <aside class="notes">
+
+          </aside>
+        </section>
+
+        <section>
+          <h3>Thanks</h3>
+        </section>
       </div>
 
     </div>
@@ -421,7 +723,8 @@ Galaxy(id, name, type)
       progress: true,
       history: true,
       center: true,
-      
+      slideNumber: true,
+
       transition: 'slide', // none/fade/slide/convex/concave/zoom
       
       // Optional reveal.js plugins
