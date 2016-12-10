@@ -37,8 +37,73 @@
          blockquote { text-align: justify }
          blockquote footer { text-align: right }
          pre { padding : 1em; background-color: #444 }
-         td.cd { background-color: #366 }
-         td.ld { background-color: #636 }
+
+    <!-- much of this CSS is from Mike Amundsen -->
+    li .factor { padding-left : 2em; padding-right: 1em; }
+
+    table.hfactors
+    {
+      border-collapse:collapse;
+      float : right;
+    }
+
+    table.hfactors thead th
+    { 
+      padding-bottom:.3em;
+    }
+
+    table.hfactors tfoot th
+    { 
+      padding-top: .5em;
+    }
+    
+    table.hfactors td
+    {
+      text-align:center;
+      padding:.3em;
+      border-color:#000;
+    }
+
+    table.hfactors td.ld
+    {
+      background-color:#3399ff;
+      color:black;
+    }
+
+    table.hfactors td.cd
+    {
+      background-color:pink;
+      color:black;
+    }
+
+    table.hfactors td.active
+    {
+      background-color:red;
+      color:black;
+    }
+
+    table.hfactors td.border
+    {
+      border: 3px #000 solid;
+    }
+
+    table.hfactors td a
+    {
+      color:inherit;
+      text-decoration:none;
+    }
+
+    table.hfactors td a:hover
+    {
+      text-decoration:underline;
+    }
+
+    dl.hfactor-values
+    {
+      border: 2px #000 solid;
+      clear : right;
+      float : left;
+    }
        </style>
   </head>
   
@@ -188,8 +253,103 @@
 
         </section>
 
+        <section>
+          <h2>Hypermedia</h2>
+          
+          <ul>
+            <li class="fragment">Creates powerful read-write
+              interfaces</li>
+            <li class="fragment">Enables alternative query interfaces</li>
+              
+            <li class="fragment">Enables technology adoption</li>
+          </ul>
+	  
+	  <aside class="notes">
+            <ul>
+              <li>Start with something that is relevant to all three</li>
+	      <li>Hypermedia is often thought of as a movie embedded
+		in text, but the essense is that everything needed in
+		the interaction should be accessible in the
+		messaging. With human users, it is obvious.  Only very
+		primitives may not</li>
+              <li>It enables data centralisation by ... yet
+              simple</li>
+              <li>we shall look into TPFs as an example</li>
+              <li>Makes tech adoption more likely by understandable
+                was to interact with data</li>
+            </ul>
+          </aside>
+        </section>
 
+	<section>
+	  <h3>Hypermedia Factors</h3>
+	  
+          <table style="float: none; font-size: 120%" class="hfactors">
+	    <thead>
+	      <tr>
+		<th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/"
+		title="Hypermedia Factors"
+		class="hfactor-link">Hypermedia Factors for RDF</a></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+		
+		<td></td>
+		<td></td>
+		<td class="border cd">CL</td>
+		<td></td>
+		<td></td>
+	      </tr>
+	      <tr>
+		<td></td>
+		
+		<td class="border">CR</td>
+		<td class="border cd">CU</td>
+		<td class="border cd">CM</td>
+		<td></td>
+	      </tr>
+	      <tr>
+		<td class="border">LE</td>
+		
+		<td class="border ld">LO</td>
+		<td class="border ld">LT</td>
+		<td class="border ld">LN</td>
+		<td class="border ld">LI</td>
+	      </tr>
+	    </tbody>
+	  </table>
+          <aside class="notes">
+            <p>I formulated a vocab so that Mike Amundsen's hypermedia
+            factors for RDF would be
+            </p>
+            <p>
+            <span class="factor">[LE]</span><a href="./#le" title="Embedding">Embedding links</a> 
+               <span class="factor">[LO]</span><a href="./#lo" title="Outbound Links">Outbound links</a> 
+               <span class="factor">[LT]</span><a href="./#lt" title="Templated queries">Templated queries</a> 
+               <span class="factor">[LN]</span><a href="./#ln"
+               title="Non-idempotent updates">updates that will
+               change the result if repeated</a> 
+               <span class="factor">[LI]</span><a href="./#li"
+               title="Idempotent updates">updates can be repeated
+               without change</a> 
+               <span class="factor">[CR]</span><a href="./#cr" title="Control data for reads">Control data for read requests</a> 
+               <span class="factor">[CU]</span><a href="./#cu" title="Control data for updates">Control data for update requests</a> 
+               <span class="factor">[CM]</span><a href="./#cm" title="Control data for methods">Control data for interface methods</a> 
+               <span class="factor">[CL]</span><a href="./#cl"
+               title="Control data for links">Control data for
+               links</a> 
+            </p>
+
+          </aside>
+	</section>
 	
+
+	<section>
+	  <h3>Read Write Hypermedia</h3>
+
+        </section>
+
 	<section>
 	  <h3>Make the infrastructure more robust</h3>
 	  
@@ -309,47 +469,7 @@
 	    
 	  </aside>
 	</section>
-	<section>
-	  <h3>Hypermedia Factors</h3>
-	  
-          <table style="float: none; font-size: 120%" class="hfactors">
-	    <thead>
-	      <tr>
-		<th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr>
-		
-		<td></td>
-		<td></td>
-		<td class="border cd">CL</td>
-		<td></td>
-		<td></td>
-	      </tr>
-	      <tr>
-		<td></td>
-		
-		<td class="border">CR</td>
-		<td class="border cd">CU</td>
-		<td class="border cd">CM</td>
-		<td></td>
-	      </tr>
-	      <tr>
-		<td class="border">LE</td>
-		
-		<td class="border ld">LO</td>
-		<td class="border ld">LT</td>
-		<td class="border ld">LN</td>
-		<td class="border ld">LI</td>
-	      </tr>
-	    </tbody>
-	  </table>
-          <aside class="notes">
 
-          </aside>
-	</section>
-	
 
 	<section>
 	  <h3>Technology Adoption</h3>
