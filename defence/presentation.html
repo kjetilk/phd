@@ -289,7 +289,7 @@
 &lt;http://folk.uio.no/kjekje/2016/defence/presentation.html>
 </pre>
 
-<p class="fragment">Many standardised syntaxes</li>
+<p class="fragment">Many standardised syntaxes</p>
 
             <aside class="notes">
               <ul>
@@ -462,9 +462,26 @@
         <section>
           <h3>Client-Server Balance</h3>
 
+          <ul>
+            <li>SPARQL Endpoint: Server takes all</li>
+            <li class="fragment">TPF: Client takes all</li>
+            <li class="fragment">Proxy should take some</li>
+            <li class="fragment">Me: Use endpoint, TPF and caching
+              proxy and let a cost model decide</li>
+          </ul>
+
         </section>
 
-	
+	<section>
+          <h3>Use Internet Caching Proxies</h3>
+
+          <ul>
+            <li>Caching proxies can be shared</li>
+            <li>Cache results that may be of later use</li>
+
+          </ul>
+
+
 	<section>
 	  <h3>Empirical Evaluations</h3>
 	  
