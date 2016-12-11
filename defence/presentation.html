@@ -660,69 +660,35 @@ sub cost_for_plan {
                 <li>Simple heuristic</li>
               </ul>
               </li>
-	    <li class="fragment">Dublin Core properties</li>
-	    <li class="fragment">Do certain server implementations provide better
-              caching support than others?</li>
-	    <li class="fragment">Cache (re)validation</li>
 	  </ul>
 	  
 	  <aside class="notes">
+            <p>Amongst the things we studied</p>    
             <p>Freshness lifetime is how long you may reuse a response
             you already have without contacting the remote server at all</p>
 	    <p>Focused on descriptive statistics, how frequent
               caching headers are found, how long freshness lifetimes
               are, ease of finding heuristics, possible to
               revalidate</p>
-            <p>Studied other things too</p>    
-	    <p>We also do statistical hypotheses tests using
-              so-called contingency tables</p>
 	  </aside>
 	</section>
 
 	<section>
 	  <h3>Standards-compliant freshness lifetime</h3>
-            
-	  <figure>
-	    <img src="http://folk.uio.no/kjekje/2015/hardtable.png" alt="Standards-compliant
-	      freshness lifetime"/>
-	  </figure>
-	  
-	  <aside class="notes">
-	    <ul>
-              <li>We had 2965 successful responses, with 405 cache headers</li>
-	      <li>Breaking up by type: vocabs (light orange),
-                generic resources (dark orange), datasets (dark
-                violet), SPARQL endpoints (light blue)</li>
-	      <li>Width of column proportional to occurances.</li>
-	      <li>Height of boxes proportional to category
-                abundance</li>
-	      <li>Endpoints are in the minutes.</li>
-	      <li>Datasets are prohibited. Bad idea: Costly to
-                compute. Void is estimates</li>
-	      <li>Very little beyond days.</li>
-	      <li>Quite different distribution for different
-                types. Contigency table can be used, even if a little
-                contrived, p-value = 0.00001</li>
-	    </ul>
-	  </aside>
-	</section>
-	
-	<section>
-	  <h3>Conclusions from the survey</h3>
-	  
-	  <ul>
-	    <li><strong>We found moderate uptake for HTTP caching and
-		conditional requests</strong></li>
-	    <li class="fragment">Many resources change slowly, but
-              standard-compliant cache doesn't reflect this</li>
-	    <li class="fragment">Errors are common, but not in caching headers</li>
-	    <li class="fragment">Possible to compute heuristic
-              freshness from headers or Dublin Core in many cases</li>
-	    <li class="fragment">Conditional requests seldomly
-              supported on SPARQL endpoints, but standards-compliant
-              freshness lifetimes have been seen</li>
-	  </ul>
-	  
+          
+          <figure>
+            <img src="http://folk.uio.no/kjekje/2015/hardall.png" alt="Standards-compliant
+                                                                       freshness lifetime"/>
+          </figure>
+          
+          <aside class="notes">
+            <ul>
+              <li>Cache prohibition is most common. Minutes to days
+              also common.</li>
+	      <li><strong>We found moderate uptake for HTTP caching and
+	      conditional requests</strong></li>
+            </ul>
+          </aside>	
 	</section>
 	
         <section>
