@@ -735,7 +735,7 @@ sub cost_for_plan {
 	  
 	</section>
 	
-<!--
+        <section>
 	  <ul>
 	    <li class="fragment">The community is strong at
               formalizing, and formal results can be evaluated by
@@ -757,11 +757,6 @@ sub cost_for_plan {
 
 	  <aside class="notes">
 	    <ul>
-	      <li>However, I do not consider developing software, nor
-                the social implications, nor the contributions to
-		caching the main scientific contributions.</li>
-	      <li>Rather, I'm motivated to improve empirical
-                evaluations</li>
 	      <li>But the external validity is always contestable</li>
 	      <li>Has many historical parallels, Tycho Brahe
                 considered the solar system complex</li>
@@ -769,7 +764,39 @@ sub cost_for_plan {
 		seems a stretch</li>
               </ul>
 	  </aside>
--->	  
+        </section>
+
+        <section>
+          <h3>Problems with benchmarking</h3>
+          
+          <ul>
+            <li>Large number of parameters to test for complex scenarios</li>
+            <li>No structured approach to investigate flaws</li>
+            <li>No meaningful summary of the overall performance</li>
+            <li>Standardized benchmarks cannot test assertions outside
+            of the standard</li>
+            <li>Attempting to neutralize the effect of certain
+            optimization techniques oversimplifies the test</li>
+            <li><em>A benchmark is an engineering tool, not a
+            scientific experiment</em></li>
+          </ul>
+
+	  <aside class="notes">
+
+            <ul>
+              <li>If you standardize hardware, you can't test claims
+              about improved hardware</li>
+              <li>Caching is a good practice, and its effect need to
+              be a part of the test, not gotten rid of. If something
+              is too complex, we need to enhance our ability to deal
+              with complexity, not oversimplify</li>
+              <li>That said benchmarking is still nice to have if you
+              know what queries you will run, it can't replace that.
+              </li>
+            </ul>
+          </aside>
+        </section>
+
 	
         <section>
           <h3>Also Industry Problem</h3>
