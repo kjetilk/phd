@@ -499,6 +499,83 @@
           </aside>
         </section>
 
+	<section>
+	  <h3>Pushing Complexity Down the Stack</h3>
+	  
+          <ul>
+            <li class="fragment">Stores may assist in query
+            planning</li>
+            <li class="fragment">...as other components may assist in
+            other tasks</li>
+            <li class="fragment">Traits, a composition method for Object Orientation</li>
+          </ul>
+
+          <!-- TODO: code here? -->
+	  
+	  <aside class="notes">
+	    <ul>
+              <li>Which brings us to a different paper</li>
+              <li>Frameworks could either do a whole SPARQL query or
+              break it up to individual triple patterns</li>
+              <li>We wanted a better way to extend query planners</li>
+              <li>Traits result in single inheritance hierarchy, but
+              can be used to specify behaviour.</li>
+              <li>Can bring default implementation, or require methods</li>
+              <li>Avoids the factory pattern</li>
+              
+            </ul>
+	  </aside>
+	</section>
+
+        <section>
+          <h3>Code of a Store</h3>
+          
+          <pre><code data-trim="true">
+package AtteanX::Store::SPARQL;
+[...]
+with 'Attean::API::TripleStore';
+
+sub get_triples {
+  [...]
+  return $self->get_sparql("CONSTRUCT WHERE {\n\t".$pattern->tuples_string."\n}");
+}
+
+sub plans_for_algebra {
+  [...] 
+  if ($algebra->isa('Attean::Algebra::BGP') && scalar $algebra->elements > 1) {
+    [...]
+    return AtteanX::Plan::SPARQLBGP->new(children => \@quads, [...]); 
+  }
+  return;
+}
+</code>
+</pre>     
+          <aside class="notes">
+            Look at the implementation of interaction with remote
+            SPARQL endpoint, because it is really simple
+          </aside>
+        </section>
+
+        <section>
+          <h3>Code of a Model</h3>
+          
+          <pre><code data-trim="true">
+package AtteanX::Model::SPARQL;
+[...]
+has 'store' => ( isa => InstanceOf['AtteanX::Store::SPARQL'], [...]);
+
+with 'Attean::API::Model', 'Attean::API::CostPlanner';
+
+sub cost_for_plan {
+  [...] 
+  if ($plan->isa('AtteanX::Plan::SPARQLBGP')) {
+    [ cost estimation goes here ]
+    return $cost;
+  }
+  return;
+}
+</code></pre>
+        </section>
 
 	<section>
           <h3>Cost Model</h3>
@@ -609,14 +686,7 @@
 	  </aside>
 	  
 	</section>
-	<section>
-	  <h3>Pushing Complexity Down the Stack</h3>
-	  
-	  
-	  <aside class="notes">
-	    
-	  </aside>
-	</section>
+
 	
 	<section>
 	  <h3>Survey of HTTP Caching Implementations</h3>
