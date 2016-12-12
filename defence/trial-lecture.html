@@ -363,51 +363,6 @@ Galaxy(id, name, type)
 
         </section>
 
-        <section>
-          <h2>Parallell execution</h2>
-
-
-          <aside class="notes">
-
-          </aside>
-        </section>
-
-          <section>
-            <h3>MapReduce</h3>
-
-            <img src="http://habrastorage.org/files/fbc/33e/2b2/fbc33e2b26894055b3a2c8d5d272aebb.jpg"
-            alt="MapReduce illustration"/>
-            
-            
-            <aside class="notes">
-              <ul>
-                <li>Start with an id for each item.</li>
-                <li>The map function is "chop it up", and when doing
-                that, assigns an ID to each piece of bread, every three
-                pieces of tomato, etc. 
-                </li>
-                <li>The pieces are grouped by ID</li>
-                <li>The reduce function is to assemble a sandwich</li>
-              </ul>
-            </aside>
-          </section>
-          <section>
-            <h4>MapReduce to execute queries</h4>
-            
-            <ul>
-              <li>Apache Hive framework for SQL queries on Apache
-              Hadoop</li>
-              <li>Implements many algorithms, including different
-              joins over MapReduce</li>
-              <li>Has cost-based optimizer</li>
-            </ul>
-            
-            <aside class="notes">
-              But it is unclear how much help it is in choosing
-              between operators like joins over MapReduce
-            </aside>
-          </section>
-          
           <section>
             <h3>Signal/Collect</h3>
 
