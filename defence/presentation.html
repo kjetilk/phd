@@ -37,8 +37,73 @@
          blockquote { text-align: justify }
          blockquote footer { text-align: right }
          pre { padding : 1em; background-color: #444 }
-         td.cd { background-color: #366 }
-         td.ld { background-color: #636 }
+
+    <!-- much of this CSS is from Mike Amundsen -->
+    li .factor { padding-left : 2em; padding-right: 1em; }
+
+    table.hfactors
+    {
+      border-collapse:collapse;
+      float : right;
+    }
+
+    table.hfactors thead th
+    { 
+      padding-bottom:.3em;
+    }
+
+    table.hfactors tfoot th
+    { 
+      padding-top: .5em;
+    }
+    
+    table.hfactors td
+    {
+      text-align:center;
+      padding:.3em;
+      border-color:#000;
+    }
+
+    table.hfactors td.ld
+    {
+      background-color:#3399ff;
+      color:black;
+    }
+
+    table.hfactors td.cd
+    {
+      background-color:pink;
+      color:black;
+    }
+
+    table.hfactors td.active
+    {
+      background-color:red;
+      color:black;
+    }
+
+    table.hfactors td.border
+    {
+      border: 3px #000 solid;
+    }
+
+    table.hfactors td a
+    {
+      color:inherit;
+      text-decoration:none;
+    }
+
+    table.hfactors td a:hover
+    {
+      text-decoration:underline;
+    }
+
+    dl.hfactor-values
+    {
+      border: 2px #000 solid;
+      clear : right;
+      float : left;
+    }
        </style>
   </head>
   
@@ -59,22 +124,12 @@
             Defence for the Degree of <span lang="la">Philosophiæ Doctor</span>.
           </p>
         </section>
- 
-        <section>
-          <h2>The Philosophical Take</h2>
-          <ol>
-            <li class="fragment">Motivation</li>
-            <li class="fragment">Preliminaries</li>
-            <li class="fragment">Solutions</li> 
-           <li class="fragment">Contributions</li>
-          </ol>
-        </section>
 
         <section>
 	  <h3>The Problem</h3>
 	  
 	  <p style="border: solid; padding: 1em 2em; text-align: justify">
-	    To achieve a Semantic Web where anyone can say anything
+	    To achieve a Web where anyone can say anything
 	    about anything, and where everyone is enabled to analyse
 	    data that have been contributed, there is a difficult
 	    balance between centralising infrastructure and
@@ -82,39 +137,62 @@
 	    servers.
             </p>
 	  <aside class="notes">
-	    TODO: Semweb needs to be explained, SPARQL too?
+            <ul>
+              <li>First, what kind of Web is this?</li>
+              <li>Today's Web isn't mostly about data, 20 years
+	        working on Semantic Web</li>
+              <li>which is about data, and keeps in the meaning that
+              explains the data close to it.</li>
+              <li>Inherits the ideal of universality from the
+              Web.</li>
+              <li>The reason I mention the tension is that from a
+	        technical viewpoint, centralisation has merits. In
+	        fact, 2. opponent coauthored a paper titled "Learning
+	        from the History of Distributed Query Processing" in a
+	        workshop that the 1. opponent chaired, where a
+	        centralised solution was proposed, in response to
+	        lessons learned over decades of research on
+	        distributed systems. 
+              </li>
+            </ul>
 	  </aside>
 	</section>
 	
 	<section>
 	  <h3>There are Social Issues</h3>
             
-	  <ul class="fragment">
-	    <li class="fragment">The "Echo Chamber" problem, getting information into
+	  <ul>
+	    <li>The "Echo Chamber" problem, getting information into
 	      closed minds</li>
-	    <li class="fragment">Concentration of power</li>
-	    <li class="fragment">Limits the research on platforms</li>
-	    <li class="fragment">Doesn't provide a platform for everyone</li>
-	    <li class="fragment">Limits the influence people have of their own data.</li>
-            </ul>
+	    <li class="fragment">Concentration of power limits
+              <ul>
+	        <li class="fragment">the research on platforms</li>
+	        <li class="fragment">making a platform for everyone</li>
+	        <li class="fragment">the influence people have of their own data.</li>
+              </ul>
+            </li>
+          </ul>
 	  
 	  <aside class="notes">
-	    2. opponent coauthored a paper titled "Learning from the
-	    History of Distributed Query Processing" in a workshop
-	    that the 1. opponent chaired, where a centralised
-	    solution was proposed, in response to lessons learned
-	    over decades of research on distributed
-	    systems. However, the main reasons for decentralisation
-	    aren't technical, they are social.
+            <ul>
+              <li>But from today's Web, we see a number of social
+                issues stemming partly from the centralisation that
+                has happened.</li>
+              <li>so, the main reasons for decentralisation aren't
+	        technical, they are social.
+              </li>
+            </ul>
 	  </aside>
 	  
 	</section>
 	
 	<section>
 	  <h3>Decentralisation</h3>
-	  <img src="http://folk.uio.no/kjekje/2016/defence/decentralised.svg" 
-	    alt="Centralisation vs decentralisation"/>
-            
+          <figure>
+	    <img src="http://folk.uio.no/kjekje/2016/defence/decentralised.svg" 
+	         alt="Centralisation vs decentralisation"/>
+          </figure>
+
             <aside class="notes">
               <ul>
                 <li>Not the same as in the Trial Lecture. TimBL,
@@ -152,158 +230,118 @@
 	  </aside>
 	</section>
 	
-	<section>
-	  <h3>Technology Adoption</h3>
-	  
-	  <ul>
-	    <li>Hypermedia</li>
-              <li>TODO: Code that is made to live beyond the project</li>
-	    <li>TODO: Practices that could make development easier.</li>
+        <section>
+          <h2>How do we get there?</h2>
 
-	  </ul>
-	  
+          <ul>
+            <li class="fragment">Enable data decentralisation</li>
+            <li class="fragment">Enable queries on them
+              <ul>
+                <li class="fragment">Need a robust infrastructure</li>
+                <li class="fragment">Need to understand how to build it</li>
+              </ul>
+            </li>
+            <li class="fragment">Technology adoption</li>
+          </ul>
+
+	  <aside class="notes">
+            And that's the rough outline of my talk
+          </aside>
+
+        </section>
+
+        <section>
+          <h2>Preliminaries</h2>
+
+          <section>
+            <h3>Client-Proxy-Server</h3>
+
+            <figure>
+              <img src="http://folk.uio.no/kjekje/2016/defence/clientproxyserver.svg"
+              alt="Client Proxy Server" height="400"/>
+            </figure>
+          </section>
+
+          <section>
+            <h3>Uniform Resource Identifiers (URIs)</h3>
+            
+            <p><tt>http://folk.uio.no/kjekje/2016/defence/presentation.html</tt></p>
+
+            <ul> 
+              <li>A URL points to a document</li>
+              <li class="fragment">A URI can name anything</li>
+              <li class="fragment">A IRI can name anything using any
+              character set</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h3>RDF Triple</h3>
+            
+<pre>
+&lt;http://www.kjetil.kjernsmo.net/foaf#me>
+&lt;http://xmlns.com/foaf/0.1/publications>
+&lt;http://folk.uio.no/kjekje/2016/defence/presentation.html>
+</pre>
+
+<p class="fragment">Many standardised syntaxes</p>
+
             <aside class="notes">
-	    <ul>
-	      <li>Semweb will not be realised by academia alone, nor
-		by industry. No such common platform has succeeded
-		without broad develop adoption.</li>
+              <ul>
+                <li>RDF is defined by a series of standards, started
+                  in 1997, last update in 2014</li>
+                <li>Some are concise, some are verbose, some are
+                  binary, etc</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Triple Pattern</h3>           
+<pre>
+?person foaf:publications ?publication .
+</pre>
+          </section>
+        </section>  
+
+
+        <section>
+          <h2>Hypermedia</h2>
+          
+          <ul>
+            <li class="fragment">Creates powerful read-write
+              interfaces</li>
+            <li class="fragment">Enables alternative query interfaces</li>
+              
+            <li class="fragment">Enhances technology adoption</li>
+          </ul>
+	  
+	  <aside class="notes">
+            <ul>
+              <li>Start with something that is relevant to all three</li>
 	      <li>Hypermedia is often thought of as a movie embedded
 		in text, but the essense is that everything needed in
 		the interaction should be accessible in the
-		messaging. With human users, it is obvious. 
-		Only very primitives may not</li>
-	      
-	    </ul>
-	  </aside>
-	  
-	</section>
-	
-	<section>
-	  <h3>Make the infrastructure more robust</h3>
-	  
-	  <ul>
-	    <li class="fragments">Research technologies to reject heavy queries</li>
-	    <li class="fragments">Create marketplace based query systems</li>
-	    <li class="fragments">Find a better client-server balance</li>
-	    <li class="fragments">Exploit other infrastructure, such as caching
-              proxies</li>
-	  </ul>
-	  
-	  <aside class="notes">
-	    <ul>
-	      <li>Query answering is needed for both the social and
-		practical problems</li>
-                <li>Many solutions have been developed to query open
-		data sources on the Web, but stability is insufficient
-                  for most practical uses.</li>
-	    </ul>
-	  </aside>
-	</section>
-	
-	<section>
-	  <h3>Empirical Evaluations</h3>
-	  
-	  <ul>
-	    <li class="fragment">The community is strong at
-              formalizing, and formal results can be evaluated by
-	      formal methods</li>
-	    <li class="fragment">However, a database system is so
-	      complex, it must be evaluated chiefly by empirical
-	      methods</li>
-	    <li class="fragment">Yet, I found empirical methods in
-              its infancy.
-	      <ul>
-		<li>Few formal hypothesis tests (not even a <i>p</i>-value)</li>
-		<li>Unwillingness to dive into statistics</li>
-		<li>Benchmarks that do not meet basic standards</li>
-	      </ul>
-	    </li>
-	  </ul>
-	  
-
-
-	  <aside class="notes">
-	    <ul>
-	      <li>However, I do not consider developing software, nor
-                the social implications, nor the contributions to
-		caching the main scientific contributions.</li>
-	      <li>Rather, I'm motivated to improve empirical
-                evaluations</li>
-	      <li>But the external validity is always contestable</li>
-	      <li>Has many historical parallels, Tycho Brahe
-                considered the solar system complex</li>
-	      <li>They do not go unchallenged, but abandoning them
-		seems a stretch</li>
-              </ul>
-	  </aside>
-	</section>
-	
-        <section>
-          <h3>Also Industry Problem</h3>
-          
-          <blockquote><p>
-              The energy needed to refute benchmarks is
-              multiple orders of magnitude bigger than to run them
-            </p><footer>&mdash; Brendan Gregg, Netflix</footer>
-          </blockquote>
-          
-          <aside class="notes">
-            <p>Systematic approach to evaluate systems, as well as their
-              evaluation is needed both for science and for
-              industry</p>
+		messaging. With human users, it is obvious.  Only very
+		primitives may not</li>
+              <li>It enables data decentralisation by ... yet
+              simple</li>
+              <li>we shall look into TPFs as an example</li>
+              <li>Makes tech adoption more likely by understandable
+                was to interact with data</li>
+            </ul>
           </aside>
         </section>
 
-
-	<section>
-	  <h2>Results</h2>
-	  
-	  
-	  <aside class="notes">
-	    I'll briefly go through some of the results
-	  </aside>
-	</section>
-	
-	<section>
-	  <h3>Read Write Hypermedia</h3>
-	  
-	  <p>Think of RDF triples as natural language</p>
-	  <div class="fragment">
-	    <p>Adding triples:</p>
-	    <pre>&lt;&gt; hm:canBe hm:mergedInto .</pre>
-	    <p class="fragment">Indicates that
-	      an <a href="http://www.w3.org/TR/rdf-mt/#graphdefs"
-		class="">RDF Merge</a> of payload into the resource should
-	      be done.</p>
-	  </div>
-          
-	  <aside class="notes">
-	    
-	  </aside>
-	</section>
-	<section>
-	  <h3>Self-description</h3>
-	  
-	  <pre>
-	    hm:mergedInto 
-	    rdfs:comment "Perform an RDF merge of payload into resource"@en ;
-	    rdfs:seeAlso [ 
-	    rdfs:label "RDF Merge" ;
-	    rdfs:isDefinedBy &lt;http://www.w3.org/TR/rdf-mt/#graphdefs&gt; . 
-	    ] .
-	  </pre>
-	  
-            <aside class="notes">
-	    
-	  </aside>
-	</section>
 	<section>
 	  <h3>Hypermedia Factors</h3>
 	  
           <table style="float: none; font-size: 120%" class="hfactors">
 	    <thead>
 	      <tr>
-		<th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/" title="Hypermedia Factors" class="hfactor-link">Hypermedia Factors</a></th>
+		<th colspan="5"><a href="http://amundsen.com/hypermedia/hfactor/"
+		title="Hypermedia Factors"
+		class="hfactor-link">Hypermedia Factors for RDF</a></th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -333,20 +371,268 @@
 	      </tr>
 	    </tbody>
 	  </table>
+
+          <p class="fragment">
+            Self-descriptiveness and links to query interfaces
+          </p>
           <aside class="notes">
+            <p>I formulated a vocab so that Mike Amundsen's hypermedia
+            factors for RDF would be
+            </p>
+            <p>
+            <span class="factor">[LE]</span><a href="./#le" title="Embedding">Embedding links</a> 
+               <span class="factor">[LO]</span><a href="./#lo" title="Outbound Links">Outbound links</a> 
+               <span class="factor">[LT]</span><a href="./#lt" title="Templated queries">Templated queries</a> 
+               <span class="factor">[LN]</span><a href="./#ln"
+               title="Non-idempotent updates">updates that will
+               change the result if repeated</a> 
+               <span class="factor">[LI]</span><a href="./#li"
+               title="Idempotent updates">updates can be repeated
+               without change</a> 
+               <span class="factor">[CR]</span><a href="./#cr" title="Control data for reads">Control data for read requests</a> 
+               <span class="factor">[CU]</span><a href="./#cu" title="Control data for updates">Control data for update requests</a> 
+               <span class="factor">[CM]</span><a href="./#cm" title="Control data for methods">Control data for interface methods</a> 
+               <span class="factor">[CL]</span><a href="./#cl"
+               title="Control data for links">Control data for
+               links</a> 
+            </p>
 
           </aside>
 	</section>
 	
+
 	<section>
-	  <h3>Pushing Complexity Down the Stack</h3>
+	  <h3>Read Write Hypermedia</h3>
+	  <p>Think of RDF triples as natural language</p>
+	  <div class="fragment">
+	    <p>Adding triples:</p>
+	    <pre>&lt;&gt; hm:canBe hm:mergedInto .</pre>
+	    <p class="fragment">Indicates that
+	      an <a href="http://www.w3.org/TR/rdf-mt/#graphdefs"
+		class="">RDF Merge</a> of payload into the resource should
+	      be done.</p>
+	  </div>
+        </section>
+
+        <section>
+          <h3>Triple Pattern Fragments</h3>
+          
+          <ul>
+            <li>Defines a way to specify an interface to query for Triple
+              Patterns</li>
+            <li class="fragments">Must follow data:
+              <ul>
+                <li class="fragments">Control data</li>
+                <li class="fragments">Metadata</li>
+              </ul>
+            </li>
+          </ul>
+          <aside class="notes">
+            An estimate of how many triples can be expected to match
+          </aside>
+        </section>
+
+
+	<section>
+	  <h2>Make the infrastructure more robust</h2>
 	  
+	  <ul>
+	    <li class="fragments">Research technologies to reject heavy queries</li>
+	    <li class="fragments">Create marketplace based query systems</li>
+	    <li class="fragments">Find a better client-server balance</li>
+	    <li class="fragments">Exploit other infrastructure, such as caching
+              proxies</li>
+	  </ul>
 	  
 	  <aside class="notes">
-	    
+	    <ul>
+	      <li>Query answering is needed for both the social and
+		practical problems</li>
+                <li>Many solutions have been developed to query open
+		data sources on the Web, but stability is insufficient
+                  for most practical uses.</li>
+	    </ul>
 	  </aside>
 	</section>
-	
+
+        <section>
+          <h3>Client-Server Balance</h3>
+
+          <ul>
+            <li>SPARQL Endpoint: Server takes all</li>
+            <li class="fragment">TPF: Client takes all</li>
+            <li class="fragment">Proxy should take some</li>
+            <li class="fragment">Me: Use endpoint, TPF and caching
+              proxy and let a cost model decide</li>
+          </ul>
+
+        </section>
+
+	<section>
+          <h3>Use Internet Caching Proxies</h3>
+
+          <ul>
+            <li>Caching proxies can be shared</li>
+            <li>Cache results that may be of later use</li>
+
+          </ul>
+
+        </section>
+
+
+        <section>
+          <h3>Architecture</h3>
+          
+          <figure>
+            <img
+                src="http://folk.uio.no/kjekje/2016/defence/architecture.png"
+                alt="Architecture of the solution"/>
+          </figure>
+          
+          <aside class="notes">
+            <ul>
+              <li>would tie everything together</li>
+              <li>make a lasting technical contribution in terms of
+              code</li>
+              <li>But the main reusable contribution was going to be
+              the evaluation</li>
+              <li>Never got there, ran out of time, when the code
+              wasn't performant enough on completion, no time
+              left</li>
+            </ul>
+            
+          </aside>
+        </section>
+
+	<section>
+          <section>
+	    <h3>Pushing Complexity Down the Stack</h3>
+	    
+            <ul>
+              <li class="fragment">Stores may assist in query
+                planning</li>
+              <li class="fragment">...as other components may assist in
+                other tasks</li>
+              <li class="fragment">Traits, a composition method for Object Orientation</li>
+            </ul>
+            
+            
+	    <aside class="notes">
+	      <ul>
+                <li>Which brings us to a different paper</li>
+                <li>Frameworks could either do a whole SPARQL query or
+                  break it up to individual triple patterns</li>
+                <li>We wanted a better way to extend query planners</li>
+                <li>Traits result in single inheritance hierarchy, but
+                  can be used to specify behaviour.</li>
+                <li>Can bring default implementation, or require methods</li>
+                <li>Avoids the factory pattern</li>
+                <li>It is easy to add new plan types, and code to
+                  estimate the cost of plans</li>
+              </ul>
+	    </aside>
+
+          </section>
+
+          <section>
+            <h3>Code of a Store</h3>
+            
+            <pre><code data-trim="true">
+package AtteanX::Store::SPARQL;
+[...]
+with 'Attean::API::TripleStore';
+
+sub get_triples {
+  [...]
+  return $self->get_sparql("CONSTRUCT WHERE {\n\t".$pattern->tuples_string."\n}");
+}
+
+sub plans_for_algebra {
+  [...] 
+  if ($algebra->isa('Attean::Algebra::BGP') && scalar $algebra->elements > 1) {
+    [...]
+    return AtteanX::Plan::SPARQLBGP->new(children => \@quads, [...]); 
+  }
+  return;
+}
+</code>
+</pre>     
+            <aside class="notes">
+              Look at the implementation of interaction with remote
+              SPARQL endpoint, because it is really simple
+            </aside>
+          </section>
+          
+          <section>
+            <h3>Code of a Model</h3>
+          
+          <pre><code data-trim="true">
+package AtteanX::Model::SPARQL;
+[...]
+has 'store' => ( isa => InstanceOf['AtteanX::Store::SPARQL'], [...]);
+
+with 'Attean::API::Model', 'Attean::API::CostPlanner';
+
+sub cost_for_plan {
+  [...] 
+  if ($plan->isa('AtteanX::Plan::SPARQLBGP')) {
+    [ cost estimation goes here ]
+    return $cost;
+  }
+  return;
+}
+</code></pre>
+          </section>
+        </section>
+
+	<section>
+          <h3>Cost Model</h3>
+
+          <ul>
+            <li>Cost model was <em>not</em> a key contribution</li>
+            <li class="fragment">Very extensive literature</li>
+            <li class="fragment">Complexity of balancing the cost of
+            many interests</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Talked a bit in the trial lecture</li>
+              <li>For example, if you have a query with two joins for
+              a car model, then doing the join between "car" and
+              "brand" first is a bad idea, because all brands would
+              also be cars, whereas "model" is mostly specific to a brand,
+              and should be done first</li>
+              <li>Would have made it a main topic of the thesis, but I
+              had a better contribution to make in empirical
+              research</li>
+            </ul>
+          </aside>
+
+        </section>
+
+
+
+	<section>
+	  <h2>Empirical Research and Evaluations</h2>
+	  
+          <ul>
+            <li>A Survey of HTTP caching</li>
+            <li class="fragment">Evaluation founded on contemporary statistics
+            <ul>
+              <li>A didactical experiment</li>
+              <li class="fragment">The evaluation of the unfinished paper</li>
+            </ul></li>
+            <li class="fragment">Initiating a discussion on empirical methods</li>
+          </ul>
+
+          <aside class="notes">
+            At the core, empirical research is about understanding if
+            what you do is right
+          </aside>
+
+	</section>
+        
+
 	<section>
 	  <h3>Survey of HTTP Caching Implementations</h3>
 	  
@@ -368,15 +654,8 @@
 	      did 7745 HTTP requests</strong></p>
 	  
 	  <aside class="notes">
-	    <p>Amongst these, the BTC-2014 is by far the largest, with
-              4 GTriples, it represents the breadth, the others are
-              small curated datasets.</p>
-	    <p>Then the data was scanned with a combination of Perl,
-              UNIX grep with fair amounts of manual inspection done</p>
-              <p><strong>Go right</strong></p>  
-	  </aside>
-	  <aside class="notes">
-	    
+            <p>Usually, support level doesn't vary much across hosts,
+            so the survey was done mostly on a per-host level.</p>
 	  </aside>
 	</section>
 	
@@ -384,220 +663,217 @@
 	<section>
 	  <h3>Analysis</h3>
 	  
-	  <ol>
+	  <ul>
 	    <li>Distribution of freshness lifetime
-              <ol>
+              <ul>
                 <li>Standards-compliant</li>
                 <li>Simple heuristic</li>
-              </ol>
+              </ul>
               </li>
-	    <li>Dublin Core properties</li>
-	    <li>Do certain server implementations provide better
-              caching support than others?</li>
-	    <li>Cache (re)validation</li>
-	  </ol>
+	  </ul>
 	  
 	  <aside class="notes">
+            <p>Amongst the things we studied</p>    
+            <p>Freshness lifetime is how long you may reuse a response
+            you already have without contacting the remote server at all</p>
 	    <p>Focused on descriptive statistics, how frequent
               caching headers are found, how long freshness lifetimes
               are, ease of finding heuristics, possible to
               revalidate</p>
-	    <p>We also do statistical hypotheses tests using
-              so-called contingency tables</p>
 	  </aside>
 	</section>
-	
-	<section>
-	  <h3>Standards-compliant caching in numbers</h3>
-	  
-	  <ul>
-	    <li><strong>405</strong> resources returned parsable cache
-              headers</li>
-	    <li class="fragment"><strong>114</strong> did so to
-              prohibit caching</li>
-	    <li class="fragment"><strong>3</strong> contained
-              conflicting headers</li>
-	    <li class="fragment">Usually <tt>Cache-Control</tt> and
-              <tt>Expires</tt> both occurred, former most common.</li>
-	    <li class="fragment"><strong>269</strong> used
-              <tt>Cache-Control</tt> for other purposes than freshness lifetime</li>
-	  </ul>
-	  
-	  
-	  <aside class="notes">
-	    <p>Look at level of support</p>
-	    <p>Reminder: Expires or Cache-Control with max-age</p>
-	    <p>Cache-Control to mandate revalidation, prohibition,
-              only private caches may use the response, etc.</p>
-	  </aside>
-	  
-	</section>
-	
+
 	<section>
 	  <h3>Standards-compliant freshness lifetime</h3>
-	  
-	  <figure>
-	    <img src="http://folk.uio.no/kjekje/2015/hardall.png" alt="Standards-compliant
-	      freshness lifetime">
-	  </figure>
-	  
+          
+          <figure>
+            <img src="http://folk.uio.no/kjekje/2015/hardall.png" alt="Standards-compliant
+                                                                       freshness lifetime"/>
+          </figure>
+          
+          <aside class="notes">
+            <ul>
+              <li>Cache prohibition is most common. Minutes to days
+              also common.</li>
+	      <li><strong>We found moderate uptake for HTTP caching and
+	      conditional requests</strong></li>
+            </ul>
+          </aside>	
+	</section>
+	
+	<section>
+	  <h2>Starting From Basic Principles in Statistics</h2>
+          <aside class="notes">
+            Now, to the harder parts, to improve empirical evaluations
+          </aside>
+        </section>
+
+
+        <section>
+          <h3>Problems with benchmarking</h3>
+          
+          <ul>
+            <li>Large number of parameters to test for complex scenarios</li>
+            <li>No structured approach to investigate flaws</li>
+            <li>No meaningful summary of the overall performance</li>
+            <li>Standardized benchmarks cannot test assertions outside
+            of the standard</li>
+            <li>Attempting to neutralize the effect of certain
+            optimization techniques oversimplifies the test</li>
+            <li><em>A benchmark is an engineering tool, not a
+            scientific experiment</em></li>
+          </ul>
+
 	  <aside class="notes">
-	    <ul>
-	      <li>Barplot: horizontal axis is divided up unevenly,
-                in time bins, 1-59 sec, 60-3599 sec, etc. To make it
-                clear, I chose the lesser evil, <a href="http://www.scientificamerican.com/article/experts-time-division-days-hours-minutes/">blame
-		  the egyptians and babylonians</a>.</li>  <li>vertical axis
-                is the number of times a certain freshness lifetime
-                was found.
-	      </li>
-	      <li>Cache prohibition is most common. Minutes to days
-                also common.</li>
-	    </ul>
-	  </aside>
-	  
-	</section>
+
+            <ul>
+              <li>If you standardize hardware, you can't test claims
+              about improved hardware</li>
+              <li>Caching is a good practice, and its effect need to
+              be a part of the test, not gotten rid of. If something
+              is too complex, we need to enhance our ability to deal
+              with complexity, not oversimplify</li>
+              <li>That said benchmarking is still nice to have if you
+              know what queries you will run, it can't replace that.
+              </li>
+            </ul>
+          </aside>
+        </section>
+
 	
+        <section>
+          <h3>Also Industry Problem</h3>
+          
+          <blockquote><p>
+              The energy needed to refute benchmarks is
+              multiple orders of magnitude bigger than to run them
+            </p><footer>&mdash; Brendan Gregg, Netflix</footer>
+          </blockquote>
+          
+          <aside class="notes">
+            <p>Systematic approach to evaluate systems, as well as their
+              evaluation is needed both for science and for
+              industry</p>
+          </aside>
+        </section>
+
 	<section>
-	  <h3>Standards-compliant freshness lifetime</h3>
-            
-	  <figure>
-	    <img src="http://folk.uio.no/kjekje/2015/hardtable.png" alt="Standards-compliant
-	      freshness lifetime">
-	  </figure>
-	  
-	  <aside class="notes">
-	    <ul>
-	      <li>Breaking up by type: vocabs (light orange),
-                generic resources (dark orange), datasets (dark
-                violet), SPARQL endpoints (light blue)</li>
-	      <li>Width of column proportional to occurances.</li>
-	      <li>Height of boxes proportional to category
-                abundance</li>
-	      <li>Endpoints are in the minutes.</li>
-	      <li>Datasets are prohibited. Bad idea: Costly to
-                compute. Void is estimates</li>
-	      <li>Very little beyond days.</li>
-	      <li>Quite different distribution for different
-                types. Contigency table can be used, even if a little
-                contrived, p-value = 0.00001</li>
-	    </ul>
-	  </aside>
-	</section>
-	
-	
-	<section>
-	  <h3>Simple heuristic freshness lifetime</h3>
-	  
-	  <figure>
-	    <img src="http://folk.uio.no/kjekje/2015/heuristicall.png" alt="Simple heuristic
-	      freshness lifetime">
-	  </figure>
-	  
-	  <aside class="notes">
-	    <ul>
-	      <li>Found simple heuristic freshness for 554
-                resources. Many more than standards-based. Based on
-                actual modification times</li>
-	      <li>Now 60% is in the month range. Agreeing with
-                Dynamic Linked Data Observatory</li>
-	      <li>We could also still verify 911 resources where
-                last-modified and/or Etag that were recorded by the
-                BTC crawl months prior to our crawl as fresh.
-	      </li>
-	      <li>This gives a better picture of the actual change
-                frequency</li>
-	    </ul>
-	  </aside>
-	  
-	</section>
-	
-	<section>
-	  <h3>Simple heuristic freshness lifetime</h3>
-	  
-	  <figure>
-	    <img src="http://folk.uio.no/kjekje/2015/heuristictable.png" alt="Simple heuristic
-	      freshness lifetime">
-	  </figure>
-	  
-	  <aside class="notes">
-	    <ul>
-	      <li>First note that the types are rather similar,
-                confirmed by test p = 0.02, still quite different</li>
-	      <li>Just one endpoint had last-modified, could be that
-                DBMSes aren't helping in tracking</li>
-	    </ul>
-	  </aside>
-	  
-	</section>
-	
-	<section>
-	  <h3>Conclusions from the survey</h3>
-	  
-	  <ul>
-	    <li><strong>We found moderate uptake for HTTP caching and
-		conditional requests</strong></li>
-	    <li class="fragment">Many resources change slowly, but
-              standard-compliant cache doesn't reflect this</li>
-	    <li class="fragment">Errors are common, but not in caching headers</li>
-	    <li class="fragment">Possible to compute heuristic
-              freshness from headers or Dublin Core in many cases</li>
-	    <li class="fragment">Conditional requests seldomly
-              supported on SPARQL endpoints, but standards-compliant
-              freshness lifetimes have been seen</li>
-	  </ul>
-	  
-	</section>
-	
-	<section>
-	  <h3>Starting From Basic Principles in Statistics</h3>
-	  
-	  <h4>Design of Experiments</h4>
+	  <h3>Design of Experiments</h3>
 
 	  <ul>
-	    <li class="fragment">an experimental setup using DoE.</li>
-	    <li class="fragment">how the analysis pointed out the important effects.</li>
-	    <li class="fragment">how we got a comprehensive view of the experiment.</li>
-	    <li class="fragment">how hypothesis tests could be formulated.</li>
-	    <li class="fragment">how 2-level experiments can determine significant effects, even though it is not
-	      good enough for modelling.</li>
-	    <li class="fragment">how more economic experiments can be designed, and noted their limitations.</li>
+	    <li class="fragment">an experimental setup using DoE</li>
+	    <li class="fragment">how the analysis pointed out the important effects</li>
+	    <li class="fragment">how we got a comprehensive view of the experiment</li>
+	    <li class="fragment">how hypothesis tests could be formulated</li>
+	    <li class="fragment">how more economic experiments can be designed</li>
 	    <li class="fragment">finally how the experiment could be
-              shown to be flawed.</li>
+              shown to be flawed</li>
 	  </ul>
 	  
 	  
 	  <aside class="notes">
 	    <ul>
-	      <li>Benchmarking is not a scientific experiment,
-		merely an engineering tool</li>
 	      <li>Focus is didactical</li>
-	      <li>Show how to build an experiment from basic
-                principles</li>
-	      <li>but also to show that the experiment is
-                flawed</li>
+	      <li>The paper shows </li>
 	    </ul>
 	  </aside>
 	</section>
 	
         
         <section>
+          <section>
           <h2>Starting From Even More Basic Principles</h2>
 	  
           <h3>Philosophy of Science</h3>
-	  
+
+          <p>Two ways that objectivity is challenged</p>
+	  <ul>
+            <li>By externally invalid research methods</li>
+            <li class="fragment">By value committments</li>
+          </ul>
+
 	  <aside class="notes">
-            If you wondered why I didn't take a principled approach to
-            the cost model, here's your answer: It is grounded in
-            epistemology, in the natural scientist's mind, knowledge
-            is founded on the evaluation. Therefore, the focus on my
-            effort was reusability, the code is modularized and
-            reusable. The evaluation would also be reusable, and
-            the cost model done with someone better equipped than
-            myself.
+            <p>This is very difficult to think about, challenges our
+            own self-image. Show book</p>
+            <p>The ideal of objectivity, whether it is desireable or
+            attainable, is a large debate. In this two main ways...</p>
+            <p>Poses problems to evaluation of hypotheses</p>
+            <p>Example: Galileo on diameter of stars, convincing
+            people the telescope didn't distort.</p>
+            <p>A benchmark can run again and again, and give the same
+            result. With no structured method to investigate its
+            flaws, external validity should be contested</p>
+            <p>This study was not value-free from Slide 1. Most of
+            applied research is not value-free, we tend to argue value
+            for society in research proposals. Climate research is not
+            value free. AI that can replace millions of jobs in a
+            society is not value free.</p>
+            <p>Need to be brutally honest towards ourselves.</p>
+          </aside>
+            
+        </section>
+
+       <section>
+          <h3>Importance of Statistics</h3>
+          
+          <blockquote cite="https://plato.stanford.edu/entries/scientific-objectivity/#Con">
+            <p>[...] although an “unbiased” science may be impossible,
+            there are many mechanisms scientists can adopt for
+            protecting their reasoning against undesirable forms of
+            bias, e.g., choosing an appropriate method of statistical
+            inference.</p>
+            <footer>&mdash; <a
+            href="https://plato.stanford.edu/entries/scientific-objectivity/#Con">Stanford
+            Encyclopedia of Philosophy</a></footer>
+          </blockquote>
+
+        
+          <aside class="notes">
+
           </aside>
         </section>
 
+        <section>
+          <h3>Testing against a reality that doesn't exist</h3>
+          
+          <ul>
+            <li>If the Semantic Web takes off, it will have very
+            different characteristics than it has now</li>
+            <li>Hypotheses can be tested independently, but meaningful
+            context is required</li>
+            <li>An assertion that a certain contribution forwards the
+            Semantic Web must prove that.</li>
+          </ul>
+          <aside class="notes">
 
+          </aside>
+        </section>
+        </section>
+
+
+	<section>
+	  <h3>Technology Adoption</h3>
+	  
+	  <ul>
+            <li>Code that is made to live beyond the project</li>
+            <li>Grow the code base</li>
+	    <li>Practices that could make development easier.</li>
+	    <li>Wider distribution of software</li>
+	    <li>Hypermedia</li>
+	  </ul>
+	  
+          <aside class="notes">
+	    <ul>
+	      <li>Semweb will not be realised by academia alone, nor
+	      by industry. No such common platform has succeeded
+	      without broad developer adoption.</li>
+              <li>we need that for the field to be real</li>
+              
+	      
+	    </ul>
+	  </aside>
+	  
+	</section>
 
 <!--
         <section>
@@ -612,31 +888,31 @@
 
         <section>
           <h2>Conclusions</h2>
-          <ul>
-            <li class="fragment">Hypermedia is one key to developing
-            applications on the Semantic Web.</li>
-            <li class="fragment">Traits ease the task of developing
-              experimental systems and usage of opti- misations in
+
+
+            <section>Hypermedia is one key to developing
+            applications on the Semantic Web.</section>
+            <section>Traits ease the task of developing
+              experimental systems and usage of optimisations in
               underlying systems.
-            </li>
-            <li class="fragment">While the adoption of caching and
+            </section>
+            <section>While the adoption of caching and
               conditional requests as defined in HTTP is not
               widespread, the adoption is sufficient to start using
               them in practical systems.
-            </li>
-            <li class="fragment">Evaluation methodologies suffer from
+            </section>
+            <section>Evaluation methodologies suffer from
               a poor foundation in philosophy of science, and research
               into the epistemology of the field is important.
-            </li>
-            <li class="fragment">The author admits that the study is
+            </section>
+            <section>The author admits that the study is
               lacking in terms of objectivity, but notes that the
               problems are of a general nature.
-            </li>
-            <li class="fragment">Statistical Design of Experiments
+            </section>
+            <section>Statistical Design of Experiments
               provides a path to a critical practice of evaluations,
               needed to improve the foundations of the field.
-            </li>
-          </ul>
+            </section>
 
           
           <aside class="notes">
@@ -648,8 +924,8 @@
           <h3>Thanks</h3>
         </section>
 
-      </div>
 
+      </div>
     </div>
 
     <script src="lib/js/head.min.js"></script>

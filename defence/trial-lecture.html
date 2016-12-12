@@ -118,10 +118,9 @@
         </section>
     
         <section>
-          <section>
             <h2>Steps to execute queries</h2>
             
-            <h3>Start with a query to answer.</h3>
+            <h3>Start with a query to answer</h3>
             
             <blockquote>
               Give me all names, times, and positions of Gamma Ray Bursts with a
@@ -216,16 +215,15 @@ Galaxy(id, name, type)
                   will take a long time. Various strategies
                   developed.</li>
                 <li>TODO: Dynamic programming, etc</li>
+              </ul>
             </aside>
-          </section>
+
 
         </section>
 
 
         <section>
           <h2>Concerns Introduced By Distribution</h2>
-
-          <p>
 
           <aside class="notes">
             <ul>
@@ -235,7 +233,7 @@ Galaxy(id, name, type)
           </aside>
 
          <section>
-             <h3 class="fragment">Query load</h3>
+           <h3 class="fragment">Query load</h3>
            <div class="fragment">
              <p>Now, how about</p>
              <ul>
@@ -250,8 +248,6 @@ Galaxy(id, name, type)
               TODO: resource vectors, network interconnect matrix
             </aside>
          </section>
-         <!-- TODO:  who's computers? What's more expensive, network or disk --
-         -- IO? High vs low network latency -->
                   
          <section>
            <h3>Shipping</h3>
@@ -332,21 +328,6 @@ Galaxy(id, name, type)
            </aside>
          </section>
          
-         <section>
-           <h3>The Role of Mediators</h3>
-           
-           <ul>
-             <li>Use encoded knowledge to assist other levels of an application</li>
-             <li>Integrate heterogeneous sources</li>
-             <li>Cache materialized views</li>
-           </ul>
-           <!-- TODO: HERMES -->
-           <!-- TODO: Materialization -->
-           
-           <aside class="notes">
-             
-           </aside>
-         </section>
 
          <section>
            <h3>Scheduling</h3>
@@ -371,72 +352,17 @@ Galaxy(id, name, type)
            </aside>
          </section>
 
-         <section>
+         <!-- section>
            <h3>Distributed Transactions</h3>
            
            
            <aside class="notes">
              
            </aside>
-         </section>
+         </section -->
 
-         <section>
-            <h3>TODO</h3>
-            Additive operators
-
-            <aside class="notes">
-              
-            </aside>
-          </section>
-          
         </section>
 
-      
-        <section>
-          <h2>Parallell execution</h2>
-
-
-          <aside class="notes">
-
-          </aside>
-        </section>
-
-          <section>
-            <h3>MapReduce</h3>
-
-            <img src="http://habrastorage.org/files/fbc/33e/2b2/fbc33e2b26894055b3a2c8d5d272aebb.jpg"
-            alt="MapReduce illustration"/>
-            
-            
-            <aside class="notes">
-              <ul>
-                <li>Start with an id for each item.</li>
-                <li>The map function is "chop it up", and when doing
-                that, assigns an ID to each piece of bread, every three
-                pieces of tomato, etc. 
-                </li>
-                <li>The pieces are grouped by ID</li>
-                <li>The reduce function is to assemble a sandwich</li>
-              </ul>
-            </aside>
-          </section>
-          <section>
-            <h4>MapReduce to execute queries</h4>
-            
-            <ul>
-              <li>Apache Hive framework for SQL queries on Apache
-              Hadoop</li>
-              <li>Implements many algorithms, including different
-              joins over MapReduce</li>
-              <li>Has cost-based optimizer</li>
-            </ul>
-            
-            <aside class="notes">
-              But it is unclear how much help it is in choosing
-              between operators like joins over MapReduce
-            </aside>
-          </section>
-          
           <section>
             <h3>Signal/Collect</h3>
 
@@ -481,40 +407,12 @@ Galaxy(id, name, type)
                   <li>Query vertices coordinate execution</li>
               </ul></li>
               <li>Query matching progresses in parallel TODO</li>
-            
+            </ul>
             <aside class="notes">
               TODO
             </aside>
           </section>
           
-          <section>
-            <h3>Apache project frameworks</h3>
-            
-            <ul>
-              <li>Apache Hadoop</li>
-              <li>Apache HBase</li>
-              <li>Apache Cassandra</li>
-              <li>Apache Spark</li>
-              <li>Apache Flink</li>
-              <li>Apache Pig</li>
-            </ul>
-            
-            <aside class="notes">
-              <ul>
-              <li>Apache Hadoop with distributed file system,
-              mapreduce etc</li>
-              <li>Apache HBase, distributed database, large tables</li>
-              <li>Apache Cassandra, multimaster with no single point
-              of failure</li>
-              <li>Apache Spark, compute engine for Hadoop, including
-              relational and graph data</li>
-              <li>Apache Flink, with emphasis on data streams</li>
-              <li>Apache Pig, data-flow language parallel computation</li>
-            </ul>
- 
-            </aside>
-          </section>
- 
           <section>
             <h3>Distributed Joins</h3>
             
@@ -527,6 +425,7 @@ Galaxy(id, name, type)
                 </ul>
               </li>
               <li>Sequential vs. Pipelined Processing</li>
+            </ul>
 
             <aside class="notes">
               <ul>
@@ -541,16 +440,6 @@ Galaxy(id, name, type)
               </ul>
             </aside>
           </section>
-        </section>
-
-        <section>
-          <h2>Cost Modelling</h2>
-          
-          <!-- TODO: query routing -->
-          <aside class="notes">
-
-          </aside>
-        </section>
 
         <section>
           <h2>Large Market-place Databases</h2>
@@ -579,7 +468,7 @@ Galaxy(id, name, type)
               <li>Mariposa, ObjectGlobe</li>
               <li>ObjectGlobe relied on sites registering a cost
                 function in a lookup service</li>
-              <li>paradigm where user allocates a budget, 
+              <li>paradigm where user allocates a budget,</li> 
             </ul>
           </aside>
         </section>
