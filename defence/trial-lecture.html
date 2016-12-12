@@ -112,10 +112,9 @@
           
           <aside class="notes">
             <ul>
-              <li>Distribution encompasses everything from where
-                there are parallell, but outwards, nothing is visible,
-                to P2P where no node has a privileged
-                position and they are completely autonomous.</li>
+              <li>Different things may be distributed: Processing
+                logic, function, data and control</li>
+              <li>In the most extreme P2P case, all these things are distributed</li>
             </ul>
           </aside>
           
@@ -356,14 +355,25 @@ Galaxy(id, name, type)
            </aside>
          </section>
 
-         <!-- section>
-           <h3>Distributed Transactions</h3>
+         <section>
+           <h3>Concurrency Control</h3>
            
-           
+           <p>Ensure that all parts of the database is consistent</p>
+
+           <ul>
+             <li>Pessimistic</li>
+             <li>Optimistic</li>
+           </ul>
+
+
            <aside class="notes">
-             
+             <ul>
+               <li>Pess make sure it is in sync before execution starts</li>
+               <li>Opti execute and then check if it worked OK</li>
+             </ul>
+               
            </aside>
-         </section -->
+         </section>
 
         </section>
 
