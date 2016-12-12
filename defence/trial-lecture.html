@@ -132,7 +132,7 @@
             </blockquote>
             
 <!--
-PREFIX ex: <http://example.org/ex> .
+PREFIX ex: <http://example.org/ex#>
 SELECT ?name ?time ?ra ?decl WHERE {
   ?grb ex:name ?name ;
        ex:time ?time ;
@@ -170,11 +170,11 @@ Galaxy(id, name, type)
             
             <div>
               <img src="http://folk.uio.no/kjekje/2016/defence/relalgtree1.svg" 
-                   alt="Algebra Tree Take 1" height="500"/><!-- TODO:
-                   SPARQL algebra -->
+                   alt="Algebra Tree Take 1" height="500"/>
             </div>
             
           </section>
+
           <section>
             <h3>Equivalent queries may be found</h3>
             
@@ -196,6 +196,27 @@ Galaxy(id, name, type)
 
           </section>
           
+          <section>
+            <h3>SPARQL Algebra</h3>
+            
+            <div>
+              <img src="http://folk.uio.no/kjekje/2016/defence/relalgtreesparql.svg" 
+                   alt="Algebra Tree SPARQL"/>
+            </div>
+
+            <aside class="notes">
+              <p>
+              not the only algebra to represent the same query
+              </p>
+              <p>
+                rough approximation of what an algebra tree would look
+                like for the SPARQL algebra
+              </p>
+            </aside>
+
+          </section>
+
+
           <section>
             <h3>Transform to physical query plan</h3>
             
