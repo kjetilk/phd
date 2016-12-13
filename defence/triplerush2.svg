@@ -709,7 +709,7 @@
          style="font-size:14.68723392px;fill:#ffffff"
          id="tspan6258-3-3">&lt;GRB091024A&gt;     <tspan
    style="font-size:20.98176384px"
-   id="tspan6347-1">ex:name   </tspan></tspan></text>
+   id="tspan6347-1">ex:host   </tspan></tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:0.27363191;stroke:#ffffff;stroke-width:1.85862064;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="triplevertex-3-7-7"
@@ -741,7 +741,7 @@
          style="font-size:14.68723392px;fill:#ffffff"
          id="tspan6258-3-2-17"><tspan
    style="font-size:20.98176384px"
-   id="tspan6347-8-8">   ex:name</tspan>         &quot;GRB 091024A&quot; </tspan></text>
+   id="tspan6347-8-8">   ex:host  </tspan>         &lt;a-host-galaxy&gt; </tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:0.27363191;stroke:#ffffff;stroke-width:1.85862064;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="triplevertex-3-9-5"
@@ -771,7 +771,7 @@
          x="1868.2891"
          y="410.38345"
          style="font-size:14.68723392px;fill:#ffffff"
-         id="tspan6258-3-1-8">&lt;GRB091024A&gt;                                 &quot;GRB 091024A&quot; </tspan></text>
+         id="tspan6258-3-1-8">&lt;GRB091024A&gt;                                &lt;a-host-galaxy&gt; </tspan></text>
     <text
        xml:space="preserve"
        style="font-size:31.6260128px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
@@ -811,5 +811,18 @@
          x="1220.9575"
          y="696.09045"
          style="fill:#ffffff">*</tspan></text>
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM-89)"
+       d="m 680,44.094482 c 0,0 250,-39.9999996 230,69.999998 -20,110 -20,110 -20,110"
+       id="path7956"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none;marker-end:url(#EmptyTriangleOutM-89)"
+       d="m 220,234.09448 490,80 c 0,0 30,0 20,50 -10,50 -10,50 -10,50 l -10,20"
+       id="path8176"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)"
+       sodipodi:nodetypes="ccscc" />
   </g>
 </svg>
