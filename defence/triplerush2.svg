@@ -501,7 +501,7 @@
          style="fill:#ffffff">*</tspan></text>
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM);display:inline"
-       d="m 510,84.094482 0,89.999998"
+       d="m 510,84.094482 0,39.999998"
        id="path6694"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -509,42 +509,42 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
-       d="m 160,592.36218 1.03986,101.03986"
+       d="m 160,542.36218 0,90"
        id="path7072"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
-       d="m 430,552.36218 -240,140"
+       d="m 460,502.36218 -280,130"
        id="path7072-6"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
-       d="m 640,552.36218 -180,140"
+       d="m 650,502.36218 -200,130"
        id="path7072-6-3"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
-       d="M 520.34722,761.47835 360,852.36218"
+       d="m 450,702.36218 -90,150"
        id="path7072-6-9"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
-       d="m 870,762.36218 -430,90"
+       d="m 720,702.36218 -280,150"
        id="path7072-6-6"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
-       d="m 170,762.36218 130,90"
+       d="m 170,702.36218 130,150"
        id="path7072-6-66"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
