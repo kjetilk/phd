@@ -426,6 +426,43 @@ Galaxy(id, name, type)
               </ul>
             </aside>
           </section>
+
+        <section>
+          <h2>Semantic Web Preliminaries</h2>
+
+
+          
+          <section>
+            <h3>RDF Triple</h3>
+            
+<pre>
+&lt;http://www.kjetil.kjernsmo.net/foaf#me>
+&lt;http://xmlns.com/foaf/0.1/publications>
+&lt;http://folk.uio.no/kjekje/2016/defence/presentation.html>
+</pre>
+
+<p class="fragment">Many standardised syntaxes</p>
+
+            <aside class="notes">
+              <ul>
+                <li>URIs and URLs</li>
+                <li>RDF is defined by a series of standards, started
+                  in 1997, last update in 2014</li>
+                <li>Some are concise, some are verbose, some are
+                  binary, etc</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Triple Pattern</h3>           
+<pre>
+?person foaf:publications ?publication .
+</pre>
+          </section>
+        </section>  
+
+
           <section>
             <h4>Signal/Collect to execute queries</h4>
             
@@ -466,7 +503,7 @@ Galaxy(id, name, type)
           <section>
             <h4>TripleRush Query Execution</h4>
             <figure>
-              <img src="http://folk.uio.no/kjekje/2016/defence/triplerush1.svg"
+              <img src="http://folk.uio.no/kjekje/2016/defence/triplerush2.svg"
               alt="Triplerush index graph with triple vertex"/>
             <aside class="notes">
               <p>Optimizer gives execution order</p>
