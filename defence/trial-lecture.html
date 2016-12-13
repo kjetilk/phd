@@ -442,16 +442,38 @@ Galaxy(id, name, type)
               <li>Query matching progresses in parallel TODO</li>
             </ul>
             <aside class="notes">
+              Main memory database
             </aside>
           </section>
 
           <section>
-            <h4>Signal/Collect to execute queries</h4>
+            <h4>TripleRush Index Graph</h4>
             <figure>
               <img src="http://folk.uio.no/kjekje/2016/defence/triplerush1.svg"
               alt="Triplerush index graph with triple vertex"/>
             <aside class="notes">
-              <p>Index graph made from index vertices and triple vertix</p>
+              <p>Index graph made from index vertices and triple
+              vertix, permanently in RAM</p>
+            </aside>
+          </section>
+
+          <section>
+            <h4>TripleRush Query Execution</h4>
+            <figure>
+              <img src="http://folk.uio.no/kjekje/2016/defence/triplerush1.svg"
+              alt="Triplerush index graph with triple vertex"/>
+            <aside class="notes">
+              <p>Optimizer gives execution order</p>
+              <p>Query vertex emits query particle, has triple
+              patterns, bindings and query vertix ID</p>
+              <p>Matches first unmatched</p> <!-- TODO: need to show
+              query -->
+              <p>At index vertex, copies along all edges.</p>
+              <p>Coming to a triple vertex, bindings are updated, and
+              tries the next pattern</p>
+              <p>
+              <p>Uses a ticketing system to ensure consistency</p>
+
             </aside>
           </section>
           
