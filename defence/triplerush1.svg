@@ -498,11 +498,12 @@
          style="fill:#ffffff">*</tspan></text>
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM);display:inline"
-       d="m 510,124.09448 -360,90"
+       d="m 510,124.09448 0,90"
        id="path6694"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
-       transform="translate(0,308.2677)" />
+       transform="translate(0,308.2677)"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
        d="m 161.03986,593.40204 0,100"
@@ -511,16 +512,18 @@
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
-       d="m 528.82215,594.35533 0,100"
+       d="M 528.82215,594.35533 190,692.36218"
        id="path7072-6"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
-       d="m 869.89719,593.9567 0,100"
+       d="M 869.89719,593.9567 520,692.36218"
        id="path7072-6-3"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM)"
        d="M 520.34722,761.47835 520,882.36218"
