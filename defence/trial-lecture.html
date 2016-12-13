@@ -542,17 +542,33 @@ Galaxy(id, name, type)
                   <li>Triple vertex represents RDF triple</li>
                   <li>Query vertices coordinate execution</li>
               </ul></li>
-              <li class="fragment">Derives
-                <ul>
-                  <li class="fragment">Parallelism from multiple possible bindings</li>
-                  <li class="fragment">Distribution from messaging</li>
-                  <li class="fragment">Fragmentation from index structure</li>
-                </ul>
-              </li>
             </ul>
             <aside class="notes">
               Main memory database
             </aside>
+          </section>
+          <section>
+            <h4>How is Triplerush a distributed database?</h4>
+
+            <ul>
+              <li class="fragment">Parallelism from multiple possible bindings</li>
+              <li class="fragment">Distribution from messaging</li>
+              <li class="fragment">Fragmentation from index structure</li>
+            </ul>
+
+<div class="fragment">
+  <p>
+    Consider triple pattern:
+  </p>
+<pre>
+?grb ex:name ?name .
+</pre>
+</div>
+            <aside class="notes">
+              for parallelism when different parts of query has the
+              same structure that is reflected in index graph
+            </aside>
+
           </section>
 
           <section>
@@ -563,11 +579,19 @@ Galaxy(id, name, type)
             </figure>
             <aside class="notes">
               <p>Index graph made from index vertices and triple
-              vertix, permanently in RAM</p>
+              vertex, permanently in RAM</p>
+              <p>Optimizer gives execution order</p>
+              <p>Query vertex emits query particle, has triple
+              patterns, bindings and query vertix ID</p>
+              <p>Matches first unmatched</p> 
+              <p>At index vertex, copies along all edges.</p>
+              <p>Coming to a triple vertex, bindings are updated, and
+              tries the next pattern</p>
+              <p>Uses a ticketing system to ensure consistency</p>
             </aside>
           </section>
 
-          <section>
+          <!-- section>
             <h4>TripleRush Query Execution</h4>
             <figure>
               <img src="http://folk.uio.no/kjekje/2016/defence/triplerush2.svg"
@@ -577,15 +601,14 @@ Galaxy(id, name, type)
               <p>Optimizer gives execution order</p>
               <p>Query vertex emits query particle, has triple
               patterns, bindings and query vertix ID</p>
-              <p>Matches first unmatched</p> <!-- TODO: need to show
-              query -->
+              <p>Matches first unmatched</p> 
               <p>At index vertex, copies along all edges.</p>
               <p>Coming to a triple vertex, bindings are updated, and
               tries the next pattern</p>
               <p>Uses a ticketing system to ensure consistency</p>
 
             </aside>
-          </section>
+          </section -->
           
 
         <section>
