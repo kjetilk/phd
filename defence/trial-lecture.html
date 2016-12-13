@@ -405,6 +405,36 @@ Galaxy(id, name, type)
 
         </section>
 
+
+        <section>
+          <h3>Distributed Joins</h3>
+          <ul>
+            <li>Shipping revisited:
+            <ul>
+              <li class="fragment">The whole remote relation is shipped vs</li>
+              <li class="fragment">First scan the local relation
+              and request the matching tuples</li>
+            </ul>
+            </li>
+            <li class="fragment">Sequential vs. Pipelined Processing</li>
+          </ul>
+          
+          <aside class="notes">
+            <ul>
+              <li>overview, now more detail</li>
+              <li>and then join matching</li>
+              <li>A balance between the larger transfer volume and
+              possibly more messages.</li>
+              <li>Ship the smallest relation</li>
+              <li>fetch matches depends on the selectivity of the
+              join, low selectivity makes large shipment.</li>
+              <li>Some algos will allow processing results as they
+              come</li>
+            </ul>
+          </aside>
+        </section>
+
+
           <section>
             <h3>Signal/Collect</h3>
 
@@ -531,33 +561,6 @@ Galaxy(id, name, type)
             </aside>
           </section>
           
-          <section>
-            <h3>Distributed Joins</h3>
-            <!-- TODO: semijoins -->
-            <ul>
-              <li>Shipping revisited:
-                <ul>
-                  <li class="fragment">The whole remote relation is shipped vs</li>
-                  <li class="fragment">First scan the local relation
-                    and request the matching tuples</li>
-                </ul>
-              </li>
-              <li class="fragment">Sequential vs. Pipelined Processing</li>
-            </ul>
-
-            <aside class="notes">
-              <ul>
-                <li>and then join matching</li>
-                <li>A balance between the larger transfer volume and
-                  possibly more messages.</li>
-                <li>Ship the smallest relation</li>
-                <li>fetch matches depends on the selectivity of the
-                join, low selectivity makes large shipment.</li>
-                <li>Some algos will allow processing results as they
-                come</li>
-              </ul>
-            </aside>
-          </section>
 
         <section>
           <h2>Large Market-place Databases</h2>
