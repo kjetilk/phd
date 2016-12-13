@@ -123,7 +123,7 @@
      inkscape:pageopacity="1.0"
      inkscape:pageshadow="0"
      inkscape:zoom="0.96166522"
-     inkscape:cx="647.53363"
+     inkscape:cx="574.64873"
      inkscape:cy="405.9101"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -824,5 +824,35 @@
        inkscape:connector-curvature="0"
        transform="translate(0,308.2677)"
        sodipodi:nodetypes="ccscc" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM-89)"
+       d="m 800,294.09448 c -70,140 -70,140 -70,140"
+       id="path8762"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-start:none;marker-end:url(#EmptyTriangleOutM-89)"
+       d="m 980,294.09448 c -110,140 -110,140 -110,140"
+       id="path8958"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#EmptyTriangleOutM-89);stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 710,504.09448 60,140"
+       id="path9744"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#EmptyTriangleOutM-89)"
+       d="m 860,504.09448 -20,140"
+       id="path10328"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#EmptyTriangleOutM-89);stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 1070,504.09448 -180,140"
+       id="path10524"
+       inkscape:connector-curvature="0"
+       transform="translate(0,308.2677)" />
   </g>
 </svg>
